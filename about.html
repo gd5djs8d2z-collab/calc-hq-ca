@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Calc-HQ.ca</title>
+  <meta name="description" content="About the Calc-HQ.ca Canadian calculator network — rate sourcing, CRA and ESDC references, jurisdiction scope, and methodology limitations.">
+  <link rel="canonical" href="https://calc-hq.ca/about.html">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About | Calc-HQ.ca">
+  <meta property="og:description" content="About the Calc-HQ.ca Canadian calculator network — rate sourcing, CRA and ESDC references, jurisdiction scope, and methodology limitations.">
+  <meta property="og:url" content="https://calc-hq.ca/about.html">
+  <meta property="og:site_name" content="Calc-HQ.ca">
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Calc-HQ.ca",
+    "url": "https://calc-hq.ca/about.html",
+    "description": "About the Calc-HQ.ca Canadian calculator network, rate sourcing methodology, and jurisdiction scope."
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <a href="/" class="brand-link">
+        <span class="brand-name">Calc-HQ.ca</span>
+        <span class="brand-tagline">Canadian payroll &amp; tax calculators — CRA rates, 2026</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="content-section">
+    <div class="wrap">
+      <h1>About Calc-HQ.ca</h1>
+      <p>
+        Calc-HQ.ca is a network of Canadian payroll and tax reference calculators. Each tool in the
+        network addresses a specific deduction or take-home pay question using jurisdiction-specific
+        logic and rates published by the Canada Revenue Agency (CRA) and Employment and Social
+        Development Canada (ESDC). The network currently covers Ontario-resident scenarios for
+        federal and provincial income tax, CPP contributions, and EI premiums.
+      </p>
+      <p>
+        These calculators exist because payroll deduction questions require jurisdiction-specific
+        answers. A general income calculator does not account for Ontario's surtax thresholds, the
+        CPP2 second-tier contribution ceiling, or the interaction between the federal and provincial
+        Basic Personal Amounts. Each tool in this network is built around the specific rules that
+        apply to the question it answers.
+      </p>
+
+      <h2>How Rates Are Sourced</h2>
+      <p>
+        All federal income tax brackets and the federal Basic Personal Amount are sourced from CRA
+        publications, including the T4032 Payroll Deductions Tables and the federal budget for the
+        relevant tax year. CPP contribution rates, the Year's Maximum Pensionable Earnings (YMPE),
+        the Year's Basic Exemption (YBE), and the CPP2 second-tier ceiling (YMPE2) are published
+        annually by ESDC. EI premium rates and maximum insurable earnings are also set and published
+        by ESDC.
+      </p>
+      <p>
+        Ontario provincial tax brackets, the Ontario Basic Personal Amount, and Ontario surtax
+        thresholds are sourced from the Ontario Ministry of Finance. All values in the network are
+        updated to reflect the published amounts for the current tax year. The tax year and
+        last-updated date are declared explicitly in <code>js/config.js</code> and are visible
+        in the source of every calculator page.
+      </p>
+
+      <h2>Jurisdiction Scope</h2>
+      <p>
+        The calculators in this network cover Ontario-resident scenarios. CPP and EI are federal
+        programs and apply uniformly to most Canadian employees regardless of province, with the
+        exception of Quebec, which operates the Quebec Pension Plan (QPP) separately. The take-home
+        pay and income tax calculators use Ontario provincial rates and are not applicable to
+        residents of other provinces.
+      </p>
+      <p>
+        This network does not cover: Quebec (QPP, Quebec income tax), British Columbia, Alberta,
+        or other provincial tax structures. It does not cover self-employment income, investment
+        income, capital gains, rental income, or any income type other than employment income.
+        It does not account for individual tax credits beyond the Basic Personal Amount.
+      </p>
+
+      <h2>Calculation Methodology</h2>
+      <p>
+        Income tax calculations use the standard marginal bracket method: income is taxed at
+        increasing rates as it moves through successive brackets, not at a single flat rate on the
+        full amount. The Basic Personal Amount is converted to a tax credit at the lowest marginal
+        rate and subtracted from gross tax owing. Federal and Ontario taxes are calculated
+        independently and then combined.
+      </p>
+      <p>
+        CPP contributions are calculated on the pensionable earnings between the Year's Basic
+        Exemption and the YMPE at the base CPP rate. Where earnings exceed the YMPE, the CPP2
+        rate applies to earnings up to the YMPE2 ceiling. EI premiums are calculated at the
+        published rate on all insurable earnings up to the annual maximum.
+      </p>
+
+      <h2>Limitations</h2>
+      <ul class="limitations-list">
+        <li>Results are estimates for planning purposes and do not constitute tax advice.</li>
+        <li>Calculators do not account for RRSP deductions, pension adjustments, union dues,
+            or employer-specific benefit arrangements.</li>
+        <li>Payroll withholding amounts on individual paycheques may differ from annual
+            estimates due to timing, mid-year changes, or employer-specific withholding methods.</li>
+        <li>Provincial calculations are Ontario-specific only. Other provinces use different
+            brackets, rates, and credits.</li>
+        <li>Quebec residents should not use these calculators — Quebec administers its own
+            provincial income tax and QPP separately.</li>
+        <li>Rates are updated annually. Users should verify that the displayed tax year matches
+            the year relevant to their calculation.</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>
+        For rate corrections, methodology questions, or partnership inquiries, use the
+        <a href="contact.html">contact page</a> or email
+        <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a> directly.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="legal.html">Legal</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-contact">
+      Partnerships &amp; corrections: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a>
+    </div>
+    <div class="footer-note">
+      Calc-HQ.ca &mdash; Canadian payroll and tax reference calculators. Estimates only. Not tax or legal advice.
+      Rates sourced from CRA and ESDC for tax year <span id="footer-tax-year">2026</span>.
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/network.js"></script>
+
+</body>
+</html>

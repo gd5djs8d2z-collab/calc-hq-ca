@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Calc-HQ.ca</title>
+  <meta name="description" content="Frequently asked questions about Canadian payroll deductions, CPP, CPP2, EI premiums, Ontario income tax, and how the Calc-HQ.ca calculators work.">
+  <link rel="canonical" href="https://calc-hq.ca/faq.html">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FAQ | Calc-HQ.ca">
+  <meta property="og:description" content="Frequently asked questions about Canadian payroll deductions, CPP, CPP2, EI premiums, Ontario income tax, and how the Calc-HQ.ca calculators work.">
+  <meta property="og:url" content="https://calc-hq.ca/faq.html">
+  <meta property="og:site_name" content="Calc-HQ.ca">
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What payroll deductions does Canada require?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Canadian employers must withhold federal and provincial income tax, Canada Pension Plan (CPP) contributions, and Employment Insurance (EI) premiums from employment income each pay period. These amounts are remitted to the Canada Revenue Agency (CRA) on the employee's behalf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is CPP and how is it calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CPP (Canada Pension Plan) is a mandatory federal pension contribution for employed Canadians outside Quebec. For 2026, contributions are calculated at 5.95% on pensionable earnings between the Year's Basic Exemption ($3,500) and the Year's Maximum Pensionable Earnings ($71,300). The maximum employee contribution for 2026 is approximately $4,034."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is CPP2 and who pays it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CPP2 is a second-tier CPP contribution introduced as part of the CPP enhancement phase-in beginning in 2024. It applies to earnings above the standard YMPE ceiling ($71,300 in 2026) up to a second ceiling called YMPE2 ($81,900 in 2026), at a rate of 4.0%. Only employees earning above the YMPE are subject to CPP2."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is EI calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EI (Employment Insurance) premiums are calculated at 1.66% of insurable earnings up to the maximum insurable earnings of $65,700 for 2026, producing a maximum annual employee premium of $1,090.62. Employers pay 1.4 times the employee rate. Once the maximum is reached, no further EI is deducted for the remainder of the year."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Basic Personal Amount?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Basic Personal Amount (BPA) is a non-refundable tax credit that reduces the amount of income subject to tax. For 2026, the federal BPA is $16,129 and the Ontario BPA is $12,582. Each BPA is converted to a tax credit at the lowest marginal rate in its respective jurisdiction and subtracted from gross tax owing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Ontario surtax work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Ontario surtax is an additional provincial tax applied when Ontario income tax payable exceeds a threshold. For 2026, a 20% surtax applies to Ontario tax above $5,710, and an additional 36% (total 56%) applies to Ontario tax above $7,307. The surtax is calculated on the Ontario tax amount, not on income directly, and primarily affects higher-income Ontario residents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between federal and provincial income tax in Canada?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Federal income tax uses CRA brackets and applies to all Canadian residents. Provincial income tax is calculated separately using each province's own rates, brackets, and credits. The two are added together to produce total income tax owing. Ontario residents pay both federal and Ontario provincial tax, calculated independently using their respective bracket structures and BPA credits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these calculators apply to Quebec residents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Quebec operates its own provincial income tax system and the Quebec Pension Plan (QPP) instead of CPP. Quebec residents should not use these calculators — the CPP rates, Ontario provincial brackets, and Ontario-specific credits do not apply to Quebec employment income."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why might my actual paycheque differ from the calculator result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Payroll withholding is calculated by employers using annualized projections, which can differ from actual annual tax owing. Factors that cause differences include mid-year salary changes, bonus withholding methods, additional tax requested on a TD1 form, employer benefit deductions, union dues, and any personal tax credits beyond the Basic Personal Amount. These calculators use standard withholding methodology without individual-specific adjustments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the rates used in these calculators current?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculators use rates published by CRA and ESDC for the current tax year displayed on each page. Federal brackets and the BPA are sourced from CRA T4032 tables. CPP and EI rates are published by ESDC. Ontario rates are sourced from the Ontario Ministry of Finance. The tax year and last-updated date are stored in js/config.js and displayed on each calculator page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these calculators account for RRSP contributions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RRSP deductions are not included in the base calculations because contribution room and amounts vary by individual. To estimate the tax impact of an RRSP contribution, enter gross income reduced by the intended RRSP amount and compare the results. The difference in estimated income tax represents the approximate tax deferral from that contribution."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does marginal tax rate mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The marginal tax rate is the rate applied to the next dollar of income earned. Canada uses a progressive bracket system where income is taxed at increasing rates as it crosses successive thresholds — lower income is taxed at lower rates, and only the portion of income above each threshold is taxed at the higher rate. For 2026, federal marginal rates range from 15% to 33%, and Ontario provincial rates range from 5.05% to 13.16%."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <a href="/" class="brand-link">
+        <span class="brand-name">Calc-HQ.ca</span>
+        <span class="brand-tagline">Canadian payroll &amp; tax calculators — CRA rates, 2026</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html" aria-current="page">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="content-section">
+    <div class="wrap">
+      <h1>Frequently Asked Questions</h1>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <h2>What payroll deductions does Canada require?</h2>
+          <p>
+            Canadian employers must withhold three categories of deductions from employment income
+            each pay period: federal and provincial income tax, Canada Pension Plan (CPP)
+            contributions, and Employment Insurance (EI) premiums. These amounts are remitted to
+            the Canada Revenue Agency (CRA) on the employee's behalf. The exact amounts depend on
+            gross earnings, pay frequency, province of employment, and the employee's TD1 claim.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>What is CPP and how is it calculated?</h2>
+          <p>
+            CPP (Canada Pension Plan) is a mandatory federal pension contribution for employed
+            Canadians outside Quebec. For 2026, contributions are calculated at 5.95% on
+            pensionable earnings between the Year's Basic Exemption ($3,500) and the Year's
+            Maximum Pensionable Earnings ($71,300). Earnings below the exemption threshold and
+            above the YMPE are not subject to the base CPP rate. The maximum employee contribution
+            for 2026 is approximately $4,034.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>What is CPP2 and who pays it?</h2>
+          <p>
+            CPP2 is a second-tier CPP contribution introduced as part of the CPP enhancement
+            phase-in beginning in 2024. It applies to earnings above the standard YMPE ceiling
+            ($71,300 in 2026) up to a second ceiling called YMPE2 ($81,900 in 2026), at a rate
+            of 4.0%. Only employees earning above the YMPE are subject to CPP2. The maximum CPP2
+            contribution for 2026 is $424 ($81,900 &minus; $71,300 &times; 4.0%).
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>How is EI calculated?</h2>
+          <p>
+            EI (Employment Insurance) premiums are calculated at 1.66% of insurable earnings up
+            to the maximum insurable earnings of $65,700 for 2026, producing a maximum annual
+            employee premium of $1,090.62. Employers contribute at 1.4 times the employee rate.
+            Once an employee's cumulative insurable earnings reach $65,700 in the calendar year,
+            no further EI is deducted for the remainder of the year.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>What is the Basic Personal Amount?</h2>
+          <p>
+            The Basic Personal Amount (BPA) is a non-refundable tax credit that effectively
+            shelters a portion of income from tax. For 2026, the federal BPA is $16,129 and the
+            Ontario BPA is $12,582. The credit is calculated by multiplying the BPA by the lowest
+            marginal rate in each jurisdiction (15% federal, 5.05% Ontario) and subtracting the
+            result from gross tax owing. It is not a deduction from income — it is a credit
+            against tax.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>How does the Ontario surtax work?</h2>
+          <p>
+            The Ontario surtax is an additional provincial tax that applies when Ontario income
+            tax payable (after the Ontario BPA credit) exceeds a threshold. For 2026, a 20%
+            surtax applies to Ontario tax above $5,710, and an additional 36% (total 56%) applies
+            to Ontario tax above $7,307. The surtax is calculated on the Ontario tax amount, not
+            on income directly. It primarily affects Ontario residents with taxable incomes
+            roughly above $100,000.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>What is the difference between federal and provincial income tax in Canada?</h2>
+          <p>
+            Federal income tax uses CRA-published brackets and applies to all Canadian residents
+            regardless of province. Provincial income tax is calculated separately using each
+            province's own brackets, rates, and credits. The two are computed independently and
+            then combined to produce total income tax. Ontario residents in 2026 pay federal tax
+            ranging from 15% to 33% and Ontario tax ranging from 5.05% to 13.16%, with Ontario
+            surtax potentially adding more at higher income levels.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>Do these calculators apply to Quebec residents?</h2>
+          <p>
+            No. Quebec administers its own provincial income tax system separately from the federal
+            system and uses the Quebec Pension Plan (QPP) instead of CPP. The Ontario provincial
+            brackets, Ontario BPA, Ontario surtax, and CPP rate structure in these calculators do
+            not apply to Quebec employment income. Quebec residents should use QPP-specific and
+            Quebec provincial tax tools.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>Why might my actual paycheque differ from the calculator result?</h2>
+          <p>
+            Payroll withholding uses annualized projection methods applied to each pay period,
+            which can diverge from actual annual tax owing. Common sources of difference include
+            mid-year salary changes, bonus withholding at flat rates, additional tax requested
+            on a TD1 form, employer-sponsored benefit deductions, union dues, and pension
+            adjustments. These calculators use standard withholding methodology without
+            individual-specific adjustments. The year-end reconciliation happens on the T1 return.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>Are the rates used in these calculators current?</h2>
+          <p>
+            The calculators use rates published by CRA and ESDC for the tax year displayed on each
+            page. Federal brackets and the BPA are sourced from CRA T4032 payroll deduction tables.
+            CPP rates and ceilings are published by ESDC. Ontario rates are sourced from the Ontario
+            Ministry of Finance. The tax year and last-updated date are stored in
+            <code>js/config.js</code> and surface on each page. If the tax year shown does not
+            match the year you need, verify the applicable rates directly with CRA.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>Do these calculators account for RRSP contributions?</h2>
+          <p>
+            RRSP deductions are not included in the base calculations because contribution room
+            and amounts vary by individual. To estimate the tax impact of an RRSP contribution,
+            enter gross income reduced by the intended RRSP amount and compare the resulting
+            tax estimate to the full-income estimate. The difference represents the approximate
+            tax deferral from that contribution for the year.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h2>What does marginal tax rate mean?</h2>
+          <p>
+            The marginal tax rate is the rate that applies to the next dollar of income earned.
+            Canada's progressive bracket system taxes successive portions of income at increasing
+            rates — lower income is taxed at lower rates, and only the income above each threshold
+            moves to the higher bracket. For 2026, federal marginal rates range from 15% to 33%
+            and Ontario provincial rates range from 5.05% to 13.16%. The effective tax rate —
+            total tax divided by total income — is always lower than the marginal rate.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="legal.html">Legal</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-contact">
+      Partnerships &amp; corrections: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a>
+    </div>
+    <div class="footer-note">
+      Calc-HQ.ca &mdash; Canadian payroll and tax reference calculators. Estimates only. Not tax or legal advice.
+      Rates sourced from CRA and ESDC for tax year <span id="footer-tax-year">2026</span>.
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/network.js"></script>
+
+</body>
+</html>

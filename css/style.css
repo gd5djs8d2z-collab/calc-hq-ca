@@ -1,0 +1,560 @@
+/* =============================================================================
+   Calc-HQ.ca — Centralized Stylesheet
+   Utility-focused. Mobile-first. IBM Plex Sans + IBM Plex Mono.
+   No frameworks. No gradients. No animations.
+   ============================================================================= */
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+
+:root {
+  --color-bg:             #f8f7f4;
+  --color-surface:        #ffffff;
+  --color-border:         #e2e0db;
+  --color-text-primary:   #1a1917;
+  --color-text-secondary: #5c5955;
+  --color-accent:         #c41e1e;
+  --color-accent-light:   #fdf2f2;
+
+  --font-heading: 'IBM Plex Sans', sans-serif;
+  --font-body:    'IBM Plex Sans', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  --size-wrap:    1080px;
+  --space-xs:     0.25rem;
+  --space-sm:     0.5rem;
+  --space-md:     1rem;
+  --space-lg:     1.75rem;
+  --space-xl:     2.5rem;
+  --space-2xl:    4rem;
+
+  --radius:       4px;
+  --border:       1px solid var(--color-border);
+}
+
+/* ── Reset ──────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────────── */
+
+.wrap {
+  max-width: var(--size-wrap);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: 1.75rem; margin-bottom: var(--space-md); }
+h2 { font-size: 1.3rem;  margin-top: var(--space-xl);  margin-bottom: var(--space-sm); }
+h3 { font-size: 1.1rem;  margin-top: var(--space-lg);  margin-bottom: var(--space-xs); }
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+p + p {
+  margin-top: calc(var(--space-md) * -0.25);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-accent-light);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 0.1em 0.35em;
+}
+
+ul, ol {
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+}
+
+strong {
+  font-weight: 600;
+}
+
+.mini {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+/* ── Site header ────────────────────────────────────────────────────────────── */
+
+.site-header {
+  background: var(--color-surface);
+  border-bottom: var(--border);
+  padding-block: var(--space-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.brand-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* ── Site navigation ────────────────────────────────────────────────────────── */
+
+.site-nav {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Content sections ───────────────────────────────────────────────────────── */
+
+.content-section {
+  padding-block: var(--space-xl);
+}
+
+.content-section.alt-bg {
+  background: var(--color-surface);
+  border-top: var(--border);
+  border-bottom: var(--border);
+}
+
+/* ── Hub intro ──────────────────────────────────────────────────────────────── */
+
+.hub-intro {
+  padding-block: var(--space-xl) var(--space-lg);
+  border-bottom: var(--border);
+}
+
+.intro-lead {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  max-width: 680px;
+  margin-bottom: 0;
+}
+
+/* ── Calculator card grid ───────────────────────────────────────────────────── */
+
+.calc-grid-section {
+  padding-block: var(--space-xl);
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.calc-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.calc-card:hover {
+  border-color: var(--color-accent);
+}
+
+.calc-card-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.calc-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.calc-card-cta {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-top: auto;
+}
+
+/* ── Related calculators grid ───────────────────────────────────────────────── */
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-card:hover {
+  border-color: var(--color-accent);
+}
+
+.related-card-name {
+  font-weight: 600;
+  font-size: 0.925rem;
+  color: var(--color-text-primary);
+}
+
+.related-card-desc {
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ── Use-cases list ─────────────────────────────────────────────────────────── */
+
+.use-cases {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.use-cases li {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border: var(--border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius);
+  margin-bottom: 0;
+}
+
+/* ── Calculator pathways ────────────────────────────────────────────────────── */
+
+.pathways {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.pathway-item {
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.pathway-q {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.pathway-a {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* ── FAQ list ───────────────────────────────────────────────────────────────── */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: var(--space-lg);
+}
+
+.faq-item {
+  border-bottom: var(--border);
+  padding-block: var(--space-lg);
+}
+
+.faq-item:first-child {
+  border-top: var(--border);
+}
+
+.faq-item h2,
+.faq-item h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.faq-item p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Deduction reference table ──────────────────────────────────────────────── */
+
+.deduction-table-wrap {
+  margin-top: var(--space-lg);
+  overflow-x: auto;
+}
+
+.deduction-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.deduction-table caption {
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border-bottom: var(--border);
+}
+
+.deduction-table th {
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border-bottom: var(--border);
+  font-weight: 600;
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+}
+
+.deduction-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+}
+
+.deduction-table tr:last-child td {
+  border-bottom: none;
+}
+
+.table-note {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-sm);
+}
+
+/* ── Limitations list ───────────────────────────────────────────────────────── */
+
+.limitations-list {
+  list-style: disc;
+  padding-left: var(--space-lg);
+  color: var(--color-text-primary);
+}
+
+.limitations-list li {
+  margin-bottom: var(--space-sm);
+  font-size: 0.95rem;
+}
+
+/* ── Site footer ────────────────────────────────────────────────────────────── */
+
+.site-footer {
+  background: var(--color-surface);
+  border-top: var(--border);
+  padding-block: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.footer-links a {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+.footer-contact {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.footer-contact a {
+  color: var(--color-accent);
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+/* ── Ad slots ───────────────────────────────────────────────────────────────── */
+
+.ad-slot {
+  width: 100%;
+  min-height: 90px;
+  background: transparent;
+}
+
+.ad-slot.is-off {
+  display: none;
+}
+
+/* ── Mobile responsive ──────────────────────────────────────────────────────── */
+
+@media (max-width: 680px) {
+  :root {
+    --space-lg: 1.25rem;
+    --space-xl: 1.75rem;
+    --space-2xl: 2.5rem;
+  }
+
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.15rem; }
+
+  .site-header .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .site-nav {
+    gap: var(--space-md);
+  }
+
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links {
+    gap: var(--space-md);
+  }
+
+  .deduction-table {
+    font-size: 0.8rem;
+  }
+
+  .use-cases li {
+    padding: var(--space-md);
+  }
+
+  .pathway-item {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 400px) {
+  .wrap {
+    padding-inline: var(--space-md);
+  }
+
+  h1 { font-size: 1.25rem; }
+}
