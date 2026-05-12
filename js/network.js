@@ -9,10 +9,36 @@
  * Depends on: config.js (loaded before this file)
  */
 
+// ─── GA4 — Google Analytics 4 ─────────────────────────────────────────────────
+// Measurement ID: G-W4SWZ1YRS2
+// Guard prevents duplicate injection if script is loaded multiple times.
+
+if (!window.__GA4_LOADED) {
+  window.__GA4_LOADED = true;
+  (function() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-W4SWZ1YRS2';
+    document.head.appendChild(script);
+  })();
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-W4SWZ1YRS2');
+}
+
 // ─── Approved Canadian spoke network ─────────────────────────────────────────
 // Only approved spoke URLs. Do NOT add placeholders or future tools.
 
 const CA_NETWORK = [
+  {
+    name: "Ontario Raise Calculator",
+    url: "https://calc-hq.ca/ontario-raise-calculator/",
+    description: "Find out how much of your raise you actually keep after Ontario tax, federal tax, CPP, and EI deductions. 2026 rates.",
+    cluster: "scenario-planning",
+    tags: ["raise", "salary increase", "after-tax", "Ontario", "take-home"],
+  },
   {
     name: "Ontario Take-Home Pay Calculator",
     url: "https://ontariotakehomecalc.ca",
