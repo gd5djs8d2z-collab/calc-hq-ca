@@ -196,7 +196,7 @@ strong {
   border-bottom: var(--border);
 }
 
-/* ── Hub intro ──────────────────────────────────────────────────────────────── */
+/* ── Hub intro (legacy, kept for back-compat) ───────────────────────────────── */
 
 .hub-intro {
   padding-block: var(--space-xl) var(--space-lg);
@@ -208,6 +208,250 @@ strong {
   color: var(--color-text-secondary);
   max-width: 680px;
   margin-bottom: 0;
+}
+
+/* =============================================================================
+   ISSUE 1 — HUB HOMEPAGE: Hero + Authority Hierarchy
+   ============================================================================= */
+
+/* ── Hub hero ───────────────────────────────────────────────────────────────── */
+
+.hub-hero {
+  background: var(--color-surface);
+  border-bottom: var(--border);
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+
+.hub-hero-content {
+  max-width: 780px;
+}
+
+.hub-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+}
+
+.hub-hero h1 {
+  font-size: 2.25rem;
+  line-height: 1.15;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.hub-hero-lead {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  max-width: 640px;
+  line-height: 1.65;
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Trust badge strip ──────────────────────────────────────────────────────── */
+
+.hub-trust-strip,
+.calc-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.trust-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.6rem;
+  white-space: nowrap;
+}
+
+/* ── Section label ──────────────────────────────────────────────────────────── */
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--border);
+}
+
+.section-intro {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  max-width: 640px;
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Network card grid ──────────────────────────────────────────────────────── */
+
+.network-nav-section {
+  padding-block: var(--space-xl);
+  background: var(--color-bg);
+  border-bottom: var(--border);
+}
+
+.network-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.network-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.network-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.network-card-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.network-card-domain {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+}
+
+.network-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.network-card-cta {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-top: var(--space-sm);
+}
+
+/* =============================================================================
+   ISSUE 2 — RAISE CALCULATOR: Hero + Flow Fix
+   ============================================================================= */
+
+/* ── Calculator page hero ───────────────────────────────────────────────────── */
+
+.calc-hero {
+  background: var(--color-surface);
+  border-bottom: var(--border);
+  padding-block: var(--space-xl) var(--space-lg);
+}
+
+.calc-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-xs);
+}
+
+.calc-hero h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.calc-hero-lead {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  max-width: 620px;
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+/* ── Calculator card section (directly after hero, no gap) ──────────────────── */
+
+.calc-card-section {
+  padding-block: var(--space-xl);
+  background: var(--color-bg);
+}
+
+/* ── Ad slot wrapper (post-calculator, compressed) ──────────────────────────── */
+
+.ad-slot-wrap {
+  padding-block: var(--space-md);
+}
+
+/* ── Responsive adjustments (Issues 1 + 2) ──────────────────────────────────── */
+
+@media (max-width: 680px) {
+  .hub-hero {
+    padding-block: var(--space-xl) var(--space-lg);
+  }
+
+  .hub-hero h1 {
+    font-size: 1.65rem;
+  }
+
+  .hub-hero-lead {
+    font-size: 1rem;
+  }
+
+  .calc-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .calc-hero-lead {
+    font-size: 0.975rem;
+  }
+
+  .network-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-trust-strip,
+  .calc-trust-strip {
+    gap: var(--space-xs);
+  }
+
+  .trust-badge {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1024px) {
+  .hub-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .network-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ── Calculator card grid ───────────────────────────────────────────────────── */

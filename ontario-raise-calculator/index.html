@@ -118,28 +118,22 @@
 <main>
 
   <!-- SECTION 1: Hero / intro -->
-  <section class="hub-intro content-section">
+  <section class="calc-hero">
     <div class="wrap">
+      <p class="calc-hero-eyebrow">Ontario · 2026 CRA Rates</p>
       <h1>Ontario Raise Calculator</h1>
-      <p class="intro-lead">Find out exactly how much of your raise you actually keep after Ontario income tax, federal income tax, CPP, and EI deductions — using 2026 CRA rates.</p>
+      <p class="calc-hero-lead">Find out exactly how much of your raise you actually keep after Ontario income tax, federal income tax, CPP, and EI deductions.</p>
+      <div class="calc-trust-strip">
+        <span class="trust-badge">✓ 2026 CRA federal brackets</span>
+        <span class="trust-badge">✓ 2026 Ontario brackets + surtax</span>
+        <span class="trust-badge">✓ 2026 CPP / CPP2 / EI rates</span>
+        <span class="trust-badge">✓ Estimates only — not tax advice</span>
+      </div>
     </div>
   </section>
 
-  <!-- Ad slot: top -->
-  <div class="wrap">
-    <div class="ad-slot" aria-hidden="true">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7744853829365165"
-           data-ad-slot="auto"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-  </div>
-
-  <!-- SECTION 2: Calculator -->
-  <section class="content-section alt-bg" id="calculator">
+  <!-- SECTION 2: Calculator (directly follows hero — no ad gap) -->
+  <section class="calc-card-section" id="calculator">
     <div class="wrap">
       <h2>Calculate Your After-Tax Raise</h2>
       <p class="mini">Ontario 2026 — federal + provincial tax, CPP, CPP2, EI</p>
@@ -194,6 +188,19 @@
 
     </div>
   </section>
+
+  <!-- Ad slot: post-calculator -->
+  <div class="wrap ad-slot-wrap">
+    <div class="ad-slot" aria-hidden="true">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7744853829365165"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
 
   <!-- SECTION 3: Results (hidden until calculated) -->
   <section class="content-section" id="result-section" hidden>

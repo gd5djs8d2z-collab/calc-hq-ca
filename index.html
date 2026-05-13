@@ -47,7 +47,7 @@
       </a>
     </div>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="/">Home</a>
+      <a href="/" aria-current="page">Home</a>
       <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
@@ -57,24 +57,61 @@
 
 <main>
 
-  <!-- SECTION 1: Hub introduction -->
-  <section class="hub-intro">
+  <!-- SECTION 1: Hub hero -->
+  <section class="hub-hero">
     <div class="wrap">
-      <h1>Canadian Payroll &amp; Tax Calculators</h1>
-      <p class="intro-lead">
-        A set of jurisdiction-specific calculators for Canadian payroll deductions, CPP contributions,
-        EI premiums, and take-home pay. All tools use 2026 CRA and ESDC rates. Results are estimates
-        for planning purposes — not tax advice.
-      </p>
+      <div class="hub-hero-content">
+        <p class="hub-hero-eyebrow">Canadian Payroll &amp; Tax Reference</p>
+        <h1>Payroll Calculators for Canadian Workers</h1>
+        <p class="hub-hero-lead">
+          Jurisdiction-specific calculators for Ontario take-home pay, CPP contributions,
+          EI premiums, and salary raises. All tools use 2026 CRA and ESDC published rates.
+          Estimates only — not tax advice.
+        </p>
+        <div class="hub-trust-strip">
+          <span class="trust-badge">✓ 2026 CRA rates</span>
+          <span class="trust-badge">✓ 2026 ESDC rates</span>
+          <span class="trust-badge">✓ Ontario-specific results</span>
+          <span class="trust-badge">✓ No account required</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- SECTION 2: Primary calculator navigation cards (rendered from network.js) -->
   <section class="calc-grid-section">
     <div class="wrap">
-      <h2>Calculators</h2>
+      <h2 class="section-label">Calculators</h2>
       <div id="calc-cards" class="calc-grid">
         <!-- Populated by network.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Network navigation -->
+  <section class="network-nav-section">
+    <div class="wrap">
+      <h2 class="section-label">Calculator Network</h2>
+      <p class="section-intro">Each tool in the Calc-HQ.ca network covers a specific payroll or tax question for Canadian workers. All tools are jurisdiction-specific and use published CRA or ESDC rates.</p>
+      <div class="network-card-grid">
+        <a href="https://eicalc.ca" class="network-card" target="_blank" rel="noopener">
+          <span class="network-card-name">EI Eligibility Calculator</span>
+          <span class="network-card-domain">eicalc.ca</span>
+          <span class="network-card-desc">How many insurable hours do you need? 62 EI regions, 2026 ESDC rates, StatCan LFS data.</span>
+          <span class="network-card-cta">Calculate EI eligibility →</span>
+        </a>
+        <a href="https://cppcalc.ca" class="network-card" target="_blank" rel="noopener">
+          <span class="network-card-name">CPP Contribution Calculator</span>
+          <span class="network-card-domain">cppcalc.ca</span>
+          <span class="network-card-desc">Employee and self-employed CPP1 and CPP2 contributions. 2026 YMPE and YAMPE thresholds.</span>
+          <span class="network-card-cta">Calculate CPP →</span>
+        </a>
+        <a href="/ontario-raise-calculator/" class="network-card">
+          <span class="network-card-name">Ontario Raise Calculator</span>
+          <span class="network-card-domain">calc-hq.ca</span>
+          <span class="network-card-desc">How much of your raise do you actually keep after Ontario tax, CPP, and EI? 2026 rates.</span>
+          <span class="network-card-cta">Calculate your raise →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -92,18 +129,18 @@
       <p>
         Income tax withholding uses a progressive federal bracket system combined with a
         province-specific bracket system. For 2026, the federal Basic Personal Amount (BPA) is
-        $16,129, which reduces the amount of income subject to federal tax. Each province applies
+        $16,452, which reduces the amount of income subject to federal tax. Each province applies
         its own BPA and bracket structure on top of the federal calculation.
       </p>
       <p>
         CPP contributions are calculated on pensionable earnings between the Year's Basic Exemption
-        ($3,500) and the Year's Maximum Pensionable Earnings (YMPE). For 2026, the YMPE is $71,300
+        ($3,500) and the Year's Maximum Pensionable Earnings (YMPE). For 2026, the YMPE is $74,600
         and the employee contribution rate is 5.95%. A second-tier CPP2 rate of 4.0% applies to
-        earnings between the YMPE and the YMPE2 ceiling of $81,900.
+        earnings between the YMPE and the YMPE2 ceiling of $85,000.
       </p>
       <p>
-        EI premiums are deducted at 1.66% of insurable earnings up to a maximum insurable earnings
-        amount of $65,700 for 2026, producing a maximum annual employee premium of $1,090.62.
+        EI premiums are deducted at 1.63% of insurable earnings up to a maximum insurable earnings
+        amount of $68,900 for 2026, producing a maximum annual employee premium of $1,123.27.
         Employers contribute at 1.4 times the employee rate.
       </p>
     </div>
@@ -120,9 +157,9 @@
         added to the federal amount to produce total income tax owing.
       </p>
       <p>
-        Ontario, for example, applies four provincial tax brackets ranging from 5.05% to 13.16%,
-        plus an Ontario surtax that activates when provincial tax payable exceeds $5,710. The
-        Ontario Basic Personal Amount for 2026 is $12,582. Residents of other provinces face
+        Ontario, for example, applies five provincial tax brackets ranging from 5.05% to 13.16%,
+        plus an Ontario surtax that activates when provincial tax payable exceeds $5,818. The
+        Ontario Basic Personal Amount for 2026 is $12,989. Residents of other provinces face
         different rate structures — Alberta has no provincial surtax and uses different brackets;
         Quebec administers its own tax collection system separately from the federal system.
       </p>
@@ -191,7 +228,7 @@
         </li>
         <li>
           <strong>Checking EI eligibility thresholds</strong> — Understand how EI premiums are
-          calculated and at what income level you reach the annual maximum premium of $1,090.62.
+          calculated and at what income level you reach the annual maximum premium.
         </li>
         <li>
           <strong>Payroll planning for employers</strong> — Estimate employer-side CPP and EI
@@ -229,8 +266,12 @@
           <p class="pathway-a">→ <a href="https://eicalc.ca" target="_blank" rel="noopener">EI Premium Calculator</a></p>
         </div>
         <div class="pathway-item">
-          <p class="pathway-q">I earn above $71,300 — do I owe CPP2, and how much?</p>
+          <p class="pathway-q">I earn above $74,600 — do I owe CPP2, and how much?</p>
           <p class="pathway-a">→ <a href="https://cppcalc.ca" target="_blank" rel="noopener">CPP Contribution Calculator</a> (handles CPP2 tier automatically)</p>
+        </div>
+        <div class="pathway-item">
+          <p class="pathway-q">How much of my raise will I actually keep after taxes?</p>
+          <p class="pathway-a">→ <a href="/ontario-raise-calculator/">Ontario Raise Calculator</a> — see the net impact on your pay cheque</p>
         </div>
         <div class="pathway-item">
           <p class="pathway-q">How does the Ontario surtax affect my total tax bill?</p>
@@ -272,9 +313,9 @@
           <h3>What is the difference between CPP and CPP2?</h3>
           <p>
             CPP contributions apply to pensionable earnings between the Year's Basic Exemption
-            ($3,500) and the Year's Maximum Pensionable Earnings (YMPE of $71,300 in 2026) at a
+            ($3,500) and the Year's Maximum Pensionable Earnings (YMPE of $74,600 in 2026) at a
             rate of 5.95%. CPP2 is an additional second-tier contribution that applies to earnings
-            between the YMPE and a second ceiling (YMPE2 of $81,900 in 2026) at a rate of 4.0%.
+            between the YMPE and a second ceiling (YMPE2 of $85,000 in 2026) at a rate of 4.0%.
             CPP2 was introduced in 2024 as part of the CPP enhancement phase-in.
           </p>
         </div>
@@ -283,10 +324,10 @@
           <h3>How is EI calculated for part-year or part-time workers?</h3>
           <p>
             EI premiums are calculated on actual insurable earnings in the year, not on an
-            annualized basis. The employee rate of 1.66% applies to each dollar of insurable
-            earnings until the annual maximum insurable earnings of $65,700 is reached, at which
-            point no further EI is deducted. Workers who earn less than $65,700 in insurable
-            earnings in the year pay proportionally less than the annual maximum of $1,090.62.
+            annualized basis. The employee rate of 1.63% applies to each dollar of insurable
+            earnings until the annual maximum insurable earnings of $68,900 is reached, at which
+            point no further EI is deducted. Workers who earn less than $68,900 in insurable
+            earnings in the year pay proportionally less than the annual maximum.
           </p>
         </div>
 
@@ -318,8 +359,8 @@
           <p>
             The Ontario surtax is an additional provincial tax that applies when Ontario income
             tax payable exceeds a threshold. For 2026, a 20% surtax applies when Ontario tax
-            exceeds $5,710, and a further 36% surtax (total 56%) applies when Ontario tax
-            exceeds $7,307. The surtax is applied to the Ontario tax amount above the threshold,
+            exceeds $5,818, and a further 36% surtax (total 56%) applies when Ontario tax
+            exceeds $7,446. The surtax is applied to the Ontario tax amount above the threshold,
             not to income directly. It primarily affects higher-income Ontario residents.
           </p>
         </div>
