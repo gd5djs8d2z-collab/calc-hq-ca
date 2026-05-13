@@ -34,7 +34,7 @@ if (!window.__GA4_LOADED) {
 const CA_NETWORK = [
   {
     name: "Ontario Raise Calculator",
-    url: "https://calc-hq.ca/ontario-raise-calculator/",
+    url: "https://ontarioraisecalc.ca",
     description: "Find out how much of your raise you actually keep after Ontario tax, federal tax, CPP, and EI deductions. 2026 rates.",
     cluster: "scenario-planning",
     tags: ["raise", "salary increase", "after-tax", "Ontario", "take-home"],
@@ -45,6 +45,13 @@ const CA_NETWORK = [
     description: "Estimate your net take-home pay after federal tax, Ontario provincial tax, CPP, and EI deductions for a given gross salary.",
     cluster: "take-home-pay",
     tags: ["income tax", "Ontario", "take-home", "salary"],
+  },
+  {
+    name: "Ontario Income Tax Calculator",
+    url: "https://ontarioincometaxcalc.ca",
+    description: "See your full federal and Ontario tax breakdown, marginal rates, surtax, and Ontario Health Premium by income level. 2026 CRA rates.",
+    cluster: "income-tax",
+    tags: ["income tax", "Ontario", "marginal rate", "surtax", "CRA"],
   },
   {
     name: "CPP Contribution Calculator",
