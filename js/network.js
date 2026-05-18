@@ -76,26 +76,81 @@ const CA_NETWORK = [
   },
 ];
 
-// ─── Render: cluster calculator cards ────────────────────────────────────────
-// Filters CA_NETWORK by cluster value and renders into the given target element id.
+// ─── Cluster metadata: accordion titles and descriptions ───────────────────────
+// Source of truth for cluster-level copy. Not in HTML. Not in CA_NETWORK entries.
+
+var CLUSTER_META = {
+  ontario: {
+    title: "Ontario Payroll & Employment",
+    description: "Estimate take-home pay, raises, income taxes, and employment earnings for Ontario workers."
+  },
+  federal: {
+    title: "Federal Payroll Contributions",
+    description: "Calculate CPP and EI deductions used across Canadian payroll systems."
+  }
+};
+
+// ─── Render: cluster accordion card ─────────────────────────────────────
+// Renders a single expandable accordion card into the target container.
+// Collapsed by default. One cluster open at a time (handled by toggle logic).
+// Filters calculators from CA_NETWORK by cluster metadata.
 
 function renderClusterTools(clusterName, targetId) {
   var container = document.getElementById(targetId);
   if (!container) return;
 
+  var meta = CLUSTER_META[clusterName];
+  if (!meta) return;
+
   var tools = CA_NETWORK.filter(function(c) { return c.cluster === clusterName; });
   if (tools.length === 0) return;
 
-  container.innerHTML = tools.map(function(calc) {
+  var linksHtml = tools.map(function(calc) {
     return (
-      '<a href="' + calc.url + '" class="calc-card" target="_blank" rel="noopener">' +
-        '<span class="calc-card-name">' + calc.name + '</span>' +
-        '<span class="calc-card-desc">' + calc.description + '</span>' +
-        '<span class="calc-card-domain">' + calc.url.replace(/^https?:\/\//, '').replace(/\/$/, '') + '</span>' +
-        '<span class="calc-card-cta">Open calculator &rarr;</span>' +
-      '</a>'
+      '<li class="cluster-accordion-item">' +
+        '<a href="' + calc.url + '" target="_blank" rel="noopener">' + calc.name + '</a>' +
+      '</li>'
     );
   }).join("");
+
+  container.innerHTML =
+    '<div class="cluster-accordion" data-cluster="' + clusterName + '">' +
+      '<button class="cluster-accordion-trigger" aria-expanded="false" type="button">' +
+        '<span class="cluster-accordion-title">' + meta.title + '</span>' +
+        '<span class="cluster-accordion-desc">' + meta.description + '</span>' +
+        '<span class="cluster-accordion-chevron" aria-hidden="true">▼</span>' +
+      '</button>' +
+      '<div class="cluster-accordion-body" hidden>' +
+        '<ul class="cluster-accordion-list">' + linksHtml + '</ul>' +
+      '</div>' +
+    '</div>';
+
+  // Attach toggle behaviour
+  var trigger = container.querySelector('.cluster-accordion-trigger');
+  var body    = container.querySelector('.cluster-accordion-body');
+  var chevron = container.querySelector('.cluster-accordion-chevron');
+
+  trigger.addEventListener('click', function() {
+    var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+    if (!isOpen) {
+      // Close all other open accordions first
+      document.querySelectorAll('.cluster-accordion-trigger[aria-expanded="true"]').forEach(function(other) {
+        other.setAttribute('aria-expanded', 'false');
+        other.querySelector('.cluster-accordion-chevron').textContent = '▼';
+        other.nextElementSibling.hidden = true;
+      });
+      // Open this one
+      trigger.setAttribute('aria-expanded', 'true');
+      chevron.textContent = '▲';
+      body.hidden = false;
+    } else {
+      // Close this one
+      trigger.setAttribute('aria-expanded', 'false');
+      chevron.textContent = '▼';
+      body.hidden = true;
+    }
+  });
 }
 
 // ─── Render: footer network tools (#footer-network-tools) ────────────────────
