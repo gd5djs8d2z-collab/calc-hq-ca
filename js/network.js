@@ -36,75 +36,77 @@ const CA_NETWORK = [
     name: "Ontario Raise Calculator",
     url: "https://ontarioraisecalc.ca",
     description: "Find out how much of your raise you actually keep after Ontario tax, federal tax, CPP, and EI deductions. 2026 rates.",
-    cluster: "scenario-planning",
+    cluster: "ontario",
     tags: ["raise", "salary increase", "after-tax", "Ontario", "take-home"],
   },
   {
     name: "Ontario Take-Home Pay Calculator",
     url: "https://ontariotakehomecalc.ca",
     description: "Estimate your net take-home pay after federal tax, Ontario provincial tax, CPP, and EI deductions for a given gross salary.",
-    cluster: "take-home-pay",
+    cluster: "ontario",
     tags: ["income tax", "Ontario", "take-home", "salary"],
   },
   {
     name: "Ontario Income Tax Calculator",
     url: "https://ontarioincometaxcalc.ca",
     description: "See your full federal and Ontario tax breakdown, marginal rates, surtax, and Ontario Health Premium by income level. 2026 CRA rates.",
-    cluster: "income-tax",
+    cluster: "ontario",
     tags: ["income tax", "Ontario", "marginal rate", "surtax", "CRA"],
+  },
+  {
+    name: "Marginal Tax Calculator",
+    url: "https://marginaltaxcalc.ca",
+    description: "Find your combined federal and Ontario marginal tax rate at any income level for 2026.",
+    cluster: "ontario",
+    tags: ["marginal tax", "Ontario", "federal", "tax rate"],
   },
   {
     name: "CPP Contribution Calculator",
     url: "https://cppcalc.ca",
     description: "Calculate your CPP and CPP2 contributions for 2026 based on pensionable earnings, including the second-tier CPP2 ceiling.",
-    cluster: "payroll-deductions",
+    cluster: "federal",
     tags: ["CPP", "CPP2", "pension", "ESDC"],
   },
   {
     name: "EI Premium Calculator",
     url: "https://eicalc.ca",
     description: "Calculate Employment Insurance premiums based on insurable earnings using the 2026 ESDC rate and maximum insurable earnings.",
-    cluster: "payroll-deductions",
+    cluster: "federal",
     tags: ["EI", "employment insurance", "ESDC", "premiums"],
   },
 ];
 
-// ─── Render: homepage calculator cards (#calc-cards) ─────────────────────────
+// ─── Render: cluster calculator cards ────────────────────────────────────────
+// Filters CA_NETWORK by cluster value and renders into the given target element id.
 
-function renderCalcCards() {
-  const container = document.getElementById("calc-cards");
+function renderClusterTools(clusterName, targetId) {
+  var container = document.getElementById(targetId);
   if (!container) return;
 
-  container.innerHTML = CA_NETWORK.map(function(calc) {
+  var tools = CA_NETWORK.filter(function(c) { return c.cluster === clusterName; });
+  if (tools.length === 0) return;
+
+  container.innerHTML = tools.map(function(calc) {
     return (
       '<a href="' + calc.url + '" class="calc-card" target="_blank" rel="noopener">' +
         '<span class="calc-card-name">' + calc.name + '</span>' +
         '<span class="calc-card-desc">' + calc.description + '</span>' +
+        '<span class="calc-card-domain">' + calc.url.replace(/^https?:\/\//, '').replace(/\/$/, '') + '</span>' +
         '<span class="calc-card-cta">Open calculator &rarr;</span>' +
       '</a>'
     );
   }).join("");
 }
 
-// ─── Render: related calculators section (#related-calculators) ───────────────
+// ─── Render: footer network tools (#footer-network-tools) ────────────────────
+// Renders all CA_NETWORK tools as compact footer links.
 
-function renderRelatedCalculators(currentUrl) {
-  const container = document.getElementById("related-calculators");
+function renderFooterNetworkTools() {
+  var container = document.getElementById("footer-network-tools");
   if (!container) return;
 
-  const tools = currentUrl
-    ? CA_NETWORK.filter(function(c) { return c.url !== currentUrl; })
-    : CA_NETWORK;
-
-  if (tools.length === 0) return;
-
-  container.innerHTML = tools.map(function(calc) {
-    return (
-      '<a href="' + calc.url + '" class="related-card" target="_blank" rel="noopener">' +
-        '<span class="related-card-name">' + calc.name + '</span>' +
-        '<span class="related-card-desc">' + calc.description + '</span>' +
-      '</a>'
-    );
+  container.innerHTML = CA_NETWORK.map(function(calc) {
+    return '<a href="' + calc.url + '" target="_blank" rel="noopener">' + calc.name + '</a>';
   }).join("");
 }
 
@@ -133,7 +135,8 @@ function renderDeductionTable() {
 // ─── Bootstrap: run on DOMContentLoaded ──────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", function() {
-  renderCalcCards();
-  renderRelatedCalculators(null);
+  renderClusterTools("ontario", "cluster-ontario-tools");
+  renderClusterTools("federal", "cluster-federal-tools");
+  renderFooterNetworkTools();
   renderDeductionTable();
 });

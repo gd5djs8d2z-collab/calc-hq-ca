@@ -802,3 +802,117 @@ strong {
 
   h1 { font-size: 1.25rem; }
 }
+
+/* ── Cluster colour tokens ────────────────────────────────────────────────── */
+
+:root {
+  --color-cluster-ontario:     #1a6b3c;
+  --color-cluster-ontario-bg:  #f0f7f3;
+  --color-cluster-federal:     #1a3f6b;
+  --color-cluster-federal-bg:  #f0f4f9;
+}
+
+/* ── Cluster base ─────────────────────────────────────────────────────── */
+
+.cluster {
+  padding-block: var(--space-xl);
+  border-top: var(--border);
+}
+
+/* ── Cluster accent variants ───────────────────────────────────────────── */
+
+.cluster-ontario {
+  background: var(--color-cluster-ontario-bg);
+}
+
+.cluster-ontario .cluster-header h2 {
+  color: var(--color-cluster-ontario);
+  border-left: 3px solid var(--color-cluster-ontario);
+  padding-left: var(--space-md);
+}
+
+.cluster-ontario .calc-card:hover {
+  border-color: var(--color-cluster-ontario);
+}
+
+.cluster-federal {
+  background: var(--color-cluster-federal-bg);
+}
+
+.cluster-federal .cluster-header h2 {
+  color: var(--color-cluster-federal);
+  border-left: 3px solid var(--color-cluster-federal);
+  padding-left: var(--space-md);
+}
+
+.cluster-federal .calc-card:hover {
+  border-color: var(--color-cluster-federal);
+}
+
+/* ── Cluster header ─────────────────────────────────────────────────── */
+
+.cluster-header {
+  margin-bottom: var(--space-lg);
+}
+
+.cluster-header h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+
+/* ── Cluster card grid ───────────────────────────────────────────────── */
+
+.cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ── Calc card domain line ────────────────────────────────────────────── */
+
+.calc-card-domain {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  color: var(--color-text-secondary);
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+/* ── Footer network tools ─────────────────────────────────────────────── */
+
+.footer-network {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: var(--border);
+  margin-bottom: var(--space-md);
+}
+
+.footer-network a {
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.footer-network a:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 680px) {
+  .cluster-header h2 {
+    font-size: 1rem;
+  }
+
+  .cluster-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-network {
+    gap: var(--space-sm);
+  }
+}
