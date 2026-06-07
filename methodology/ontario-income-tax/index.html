@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ontario Income Tax Methodology | Calc-HQ.ca</title>
+  <meta name="description" content="Methodology for the Ontario Income Tax Calculator. Federal and Ontario bracket logic, CPP base/additional split, Canada Employment Amount, Ontario Tax Reduction, surtax, and Health Premium — 2026 CRA rates.">
+  <link rel="canonical" href="https://calc-hq.ca/methodology/ontario-income-tax/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Ontario Income Tax Methodology | Calc-HQ.ca">
+  <meta property="og:description" content="Methodology for the Ontario Income Tax Calculator. Federal and Ontario bracket logic, CPP split, CEA, Ontario Tax Reduction — 2026 CRA rates.">
+  <meta property="og:url" content="https://calc-hq.ca/methodology/ontario-income-tax/">
+  <meta property="og:site_name" content="Calc-HQ.ca">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ontario Income Tax Methodology | Calc-HQ.ca">
+  <meta name="twitter:description" content="Methodology for the Ontario Income Tax Calculator. Federal and Ontario bracket logic, CPP split, CEA, Ontario Tax Reduction — 2026 CRA rates.">
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "Ontario Income Tax Calculator Methodology",
+    "description": "How the Ontario Income Tax Calculator computes federal and Ontario income tax, CPP contributions, EI premiums, surtax, Ontario Health Premium, and Ontario Tax Reduction for 2026.",
+    "url": "https://calc-hq.ca/methodology/ontario-income-tax/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Calc-HQ.ca"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <a href="/" class="brand-link">
+        <span class="brand-name">🍁 Calc-HQ.ca</span>
+        <span class="brand-tagline">Canadian payroll &amp; tax calculators — CRA rates, 2026</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+    </nav>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobile-overlay"></div>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="/">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/faq.html">FAQ</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/legal.html">Legal</a>
+  <a href="/contact.html">Contact</a>
+</nav>
+
+<main>
+
+  <section class="content-section">
+    <div class="wrap">
+      <h1>Ontario Income Tax Calculator — Methodology</h1>
+      <p>
+        This page documents how the <a href="https://ontarioincometaxcalc.ca/">Ontario Income Tax Calculator</a>
+        computes federal and provincial income tax, CPP contributions, EI premiums, the Ontario surtax,
+        the Ontario Health Premium, and the Ontario Tax Reduction for the 2026 tax year. All rates are
+        sourced from CRA and ESDC published tables.
+      </p>
+
+      <!-- Section 1 -->
+      <h2>1. What This Methodology Covers</h2>
+      <p>
+        This methodology applies to the Ontario Income Tax Calculator at ontarioincometaxcalc.ca. It
+        documents the calculation of federal and Ontario provincial income tax on employment income
+        for Ontario residents in the 2026 tax year.
+      </p>
+      <p>This methodology covers:</p>
+      <ul>
+        <li>Federal income tax brackets and the Basic Personal Amount</li>
+        <li>Ontario provincial income tax brackets and the Ontario BPA</li>
+        <li>Canada Employment Amount (CEA)</li>
+        <li>CPP base and first additional contribution split</li>
+        <li>EI premiums</li>
+        <li>Ontario surtax</li>
+        <li>Ontario Health Premium</li>
+        <li>Ontario Tax Reduction (basic-only)</li>
+      </ul>
+      <p>This methodology does <strong>not</strong> cover self-employment income, RRSP contributions,
+        childcare deductions, union dues, dividend income, capital gains, rental income, or
+        provincial tax credits beyond those listed above.</p>
+
+      <!-- Section 2 -->
+      <h2>2. Calculation Order</h2>
+      <p>The calculator follows this sequence, which aligns with the CRA T4032-ON step-by-step method:</p>
+      <ol>
+        <li>Compute CPP contributions (base + first additional + second additional)</li>
+        <li>Compute EI premiums</li>
+        <li>Calculate taxable income: gross income − CPP first additional − EI</li>
+        <li>Apply federal brackets to taxable income</li>
+        <li>Apply federal non-refundable credits: BPA, CPP base, EI, CEA</li>
+        <li>Apply Ontario brackets to taxable income</li>
+        <li>Apply Ontario non-refundable credits: BPA, CPP base, EI</li>
+        <li>Calculate Ontario surtax on basic Ontario tax</li>
+        <li>Calculate Ontario Health Premium on gross income</li>
+        <li>Calculate Ontario Tax Reduction on provincial tax + surtax (excluding OHP)</li>
+        <li>Subtract tax reduction from total Ontario tax (including OHP)</li>
+        <li>Sum federal tax + total Ontario tax = total tax</li>
+        <li>Net income = gross income − total tax − CPP total − EI</li>
+      </ol>
+
+      <!-- Section 3 -->
+      <h2>3. Federal Tax Brackets</h2>
+      <p>Federal income tax is calculated on taxable income using progressive brackets. For 2026:</p>
+      <div class="deduction-table-wrap">
+        <table class="deduction-table">
+          <caption>2026 Federal Income Tax Brackets</caption>
+          <thead>
+            <tr><th>Bracket</th><th>Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$0 – $58,523</td><td>14.0%</td></tr>
+            <tr><td>$58,523 – $117,047</td><td>20.5%</td></tr>
+            <tr><td>$117,047 – $169,849</td><td>26.0%</td></tr>
+            <tr><td>$169,849 – $239,381</td><td>29.0%</td></tr>
+            <tr><td>Over $239,381</td><td>33.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Source: CRA T4127 (123rd edition, January 2026).</p>
+
+      <!-- Section 4 -->
+      <h2>4. Ontario Tax Brackets</h2>
+      <p>Ontario provincial income tax is calculated on the same taxable income using Ontario brackets:</p>
+      <div class="deduction-table-wrap">
+        <table class="deduction-table">
+          <caption>2026 Ontario Income Tax Brackets</caption>
+          <thead>
+            <tr><th>Bracket</th><th>Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$0 – $53,419</td><td>5.05%</td></tr>
+            <tr><td>$53,419 – $106,837</td><td>9.15%</td></tr>
+            <tr><td>$106,837 – $150,000</td><td>11.16%</td></tr>
+            <tr><td>$150,000 – $220,000</td><td>12.16%</td></tr>
+            <tr><td>Over $220,000</td><td>13.16%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Source: Ontario Ministry of Finance — 2026 Ontario Budget annex; CRA T4032-ON (January 2026).</p>
+
+      <!-- Section 5 -->
+      <h2>5. Basic Personal Amount</h2>
+      <h3>Federal BPA</h3>
+      <p>
+        The federal Basic Personal Amount for 2026 is $16,452. It generates a non-refundable
+        tax credit at the lowest federal bracket rate (14%):
+      </p>
+      <p><code>federalBPACredit = $16,452 × 0.14 = $2,303.28</code></p>
+      <p>
+        For incomes above $177,882, the BPA begins to phase down toward a base amount of $13,161,
+        reaching the base at $263,764. The phase-down reduces both the BPA and the resulting credit.
+      </p>
+      <h3>Ontario BPA</h3>
+      <p>
+        The Ontario Basic Personal Amount for 2026 is $12,989. It generates a non-refundable
+        credit at Ontario's lowest bracket rate (5.05%):
+      </p>
+      <p><code>ontarioBPACredit = $12,989 × 0.0505 = $655.94</code></p>
+      <p>The Ontario BPA does not phase down — it applies at the full amount for all incomes.</p>
+
+      <!-- Section 6 -->
+      <h2>6. Canada Employment Amount (D1)</h2>
+      <p>
+        The Canada Employment Amount (CEA) is a non-refundable federal tax credit available to
+        individuals with employment income. For 2026, the prescribed amount is $1,501.
+      </p>
+      <p>The credit is calculated as:</p>
+      <p><code>ceaCredit = min($1,501, employmentIncome) × 0.14</code></p>
+      <p>
+        For any employment income of $1,501 or more, the maximum credit is:
+      </p>
+      <p><code>$1,501 × 0.14 = $210.14</code></p>
+      <p>
+        This credit reduces federal tax payable. It is applied at the federal lowest bracket rate
+        (14%), the same rate used for the BPA, CPP base, and EI credits. The CEA does not reduce
+        taxable income — it is a credit against computed federal tax only.
+      </p>
+      <p>Source: CRA Line 31260; CRA T4032-ON (January 2026), line 10.</p>
+
+      <!-- Section 7 -->
+      <h2>7. CPP Treatment (D3)</h2>
+      <p>
+        The Canada Pension Plan contribution is split into three components. The treatment of each
+        component for income tax purposes differs and is critical to correct calculation:
+      </p>
+
+      <h3>CPP Base Contribution (4.95%)</h3>
+      <p>
+        The CPP base contribution is calculated on pensionable earnings between the basic exemption
+        ($3,500) and the YMPE ($74,600) at a rate of 4.95%. The maximum base contribution for 2026
+        is $3,519.45.
+      </p>
+      <p><strong>Tax treatment: non-refundable credit only.</strong> The CPP base contribution
+        generates a non-refundable tax credit at the federal lowest bracket rate (14%) and the
+        Ontario lowest bracket rate (5.05%). It is <strong>not</strong> deducted from taxable income.</p>
+      <p><code>federalCPPBaseCredit = cppBase × 0.14</code></p>
+      <p><code>ontarioCPPBaseCredit = cppBase × 0.0505</code></p>
+
+      <h3>CPP First Additional Contribution (1.00%)</h3>
+      <p>
+        The CPP first additional contribution is calculated on the same pensionable earnings range
+        as the base contribution (between $3,500 and the YMPE) at a rate of 1.00%. The maximum
+        first additional contribution for 2026 is $711.00.
+      </p>
+      <p><strong>Tax treatment: deduction from taxable income only.</strong> The CPP first additional
+        contribution is deducted from gross income before tax brackets are applied. It does
+        <strong>not</strong> generate a non-refundable tax credit.</p>
+      <p><code>taxableIncome = grossIncome − cppAdditional − ei</code></p>
+
+      <h3>CPP Second Additional Contribution (4.00%)</h3>
+      <p>
+        CPP2 applies to earnings between the YMPE ($74,600) and the YAMPE ($85,000) at a rate of
+        4.00%. The maximum CPP2 contribution for 2026 is $416.00. CPP2 is neither deductible from
+        taxable income nor eligible for a non-refundable credit. It reduces net income but does not
+        affect the income tax calculation.
+      </p>
+
+      <h3>Why the Split Matters</h3>
+      <p>
+        Treating the full CPP1 amount (5.95%) as both a deduction from taxable income and a
+        non-refundable credit would double-count the tax benefit. The CRA T4032-ON step-by-step
+        method explicitly separates the base (credit only) from the first additional (deduction
+        only). This calculator follows that treatment.
+      </p>
+      <p>
+        Combined CPP1 rate: 4.95% (base) + 1.00% (first additional) = 5.95%.<br>
+        Combined maximum CPP1 contribution: $3,519.45 + $711.00 = $4,230.45.
+      </p>
+      <p>Source: CRA T4032-ON (January 2026); ESDC 2026 CPP contribution rate order.</p>
+
+      <!-- Section 8 -->
+      <h2>8. EI Treatment</h2>
+      <p>
+        Employment Insurance premiums are calculated on insurable earnings up to the maximum
+        insurable earnings of $68,900 at a rate of 1.63%.
+      </p>
+      <p><code>ei = min(grossIncome, $68,900) × 0.0163, capped at $1,123.07</code></p>
+      <p>
+        EI premiums are both deducted from taxable income and eligible for a non-refundable tax
+        credit at the federal and Ontario lowest bracket rates:
+      </p>
+      <p><code>taxableIncome = grossIncome − cppAdditional − ei</code></p>
+      <p><code>federalEICredit = ei × 0.14</code></p>
+      <p><code>ontarioEICredit = ei × 0.0505</code></p>
+      <p>Source: ESDC — 2026 EI Premium Rate Announcement.</p>
+
+      <!-- Section 9 -->
+      <h2>9. Ontario Surtax</h2>
+      <p>
+        The Ontario surtax is an additional levy on basic Ontario tax (provincial tax before
+        surtax). It does not apply to income directly. For 2026:
+      </p>
+      <ul>
+        <li>20% surtax on basic Ontario tax exceeding $5,818</li>
+        <li>36% surtax on basic Ontario tax exceeding $7,446</li>
+      </ul>
+      <p><code>surtax = 0.20 × max(0, basicOntarioTax − $5,818) + 0.36 × max(0, basicOntarioTax − $7,446)</code></p>
+      <p>
+        At the first surtax trigger ($5,818 in basic Ontario tax), the approximate gross income
+        is $90,000. Most Ontario earners below $80,000 pay zero surtax.
+      </p>
+      <p>Source: CRA T4032-ON (January 2026); Ontario Ministry of Finance.</p>
+
+      <!-- Section 10 -->
+      <h2>10. Ontario Health Premium</h2>
+      <p>
+        The Ontario Health Premium (OHP) is a provincial levy collected through the tax return,
+        not through payroll. It is based on taxable income and follows a band schedule:
+      </p>
+      <div class="deduction-table-wrap">
+        <table class="deduction-table">
+          <caption>2026 Ontario Health Premium Schedule</caption>
+          <thead>
+            <tr><th>Taxable Income</th><th>OHP</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Up to $20,000</td><td>$0</td></tr>
+            <tr><td>$20,000 – $25,000</td><td>$300</td></tr>
+            <tr><td>$25,000 – $36,000</td><td>$450</td></tr>
+            <tr><td>$36,000 – $48,000</td><td>$600</td></tr>
+            <tr><td>$48,000 – $72,000</td><td>$750</td></tr>
+            <tr><td>$72,000 – $200,600</td><td>$750</td></tr>
+            <tr><td>Over $200,600</td><td>$900</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The OHP does not appear on paycheques. It is calculated on gross income and added to
+        Ontario tax after surtax.
+      </p>
+      <p>Source: ontario.ca — Ontario Health Premium; CRA T4032-ON (January 2026).</p>
+
+      <!-- Section 11 -->
+      <h2>11. Ontario Tax Reduction (D2)</h2>
+      <p>
+        The Ontario Tax Reduction reduces provincial tax payable for lower-income Ontario
+        residents. This calculator implements the basic-only reduction, matching the CRA payroll
+        table methodology used in T4032-ON.
+      </p>
+
+      <h3>Formula</h3>
+      <p>
+        The reduction uses the provincial tax before reduction (basic Ontario tax + surtax,
+        excluding the Ontario Health Premium), consistent with T4032-ON line 22:
+      </p>
+      <p><code>provincialTaxExclOHP = basicOntarioTax + surtax</code></p>
+      <p>The reduction is then:</p>
+      <p><code>reduction = min(provincialTaxExclOHP, max(0, 2 × basicAmount − provincialTaxExclOHP))</code></p>
+      <p>Where the basic amount for 2026 is $300.</p>
+
+      <h3>How It Works</h3>
+      <p>
+        The reduction is largest when provincial tax is at or below $300. At that point the
+        reduction equals the provincial tax itself, reducing it to zero. As provincial tax
+        increases above $300, the reduction decreases until it reaches zero at
+        <code>provincialTaxExclOHP = 2 × $300 = $600</code>.
+      </p>
+      <p>
+        The reduction is subtracted from total Ontario tax including the OHP (line 24 → 26
+        in T4032-ON), but the OHP itself is not included in the reduction formula.
+      </p>
+
+      <h3>Not Modeled</h3>
+      <p>
+        Dependant amounts ($575 each), spouse amounts, and disability amounts are not modeled.
+        These would further reduce Ontario tax for eligible filers but require inputs
+        (number of dependants, disability status) that this calculator does not collect.
+      </p>
+      <p>Source: CRA T4032-ON (January 2026), lines 22–26; Ontario Ministry of Finance — Ontario Tax Reduction.</p>
+
+      <!-- Section 12 -->
+      <h2>12. Assumptions and Limitations</h2>
+      <ul>
+        <li><strong>Employment income only.</strong> The calculator does not model self-employment income, investment income, rental income, or other income types.</li>
+        <li><strong>No RRSP deductions.</strong> RRSP contributions reduce taxable income but are not included as an input.</li>
+        <li><strong>No dependant credits.</strong> The Ontario Tax Reduction uses the basic amount only. Dependant, spouse, and disability amounts are not modeled.</li>
+        <li><strong>Standard withholding methodology.</strong> The calculator follows the CRA T4032-ON payroll deduction methodology. Individual tax returns may differ due to credits, deductions, or employer-specific arrangements not captured here.</li>
+        <li><strong>Ontario residents only.</strong> Provincial calculations are specific to Ontario. Other provinces have different brackets, credits, and surtax rules.</li>
+        <li><strong>No CPP2 credit.</strong> CPP2 contributions do not generate a non-refundable tax credit and are not deductible from taxable income.</li>
+        <li><strong>Tax year 2026.</strong> All rates and brackets reflect published 2026 values. Rates may change in future tax years.</li>
+        <li><strong>Rounding.</strong> All monetary values are rounded to two decimal places at each calculation step.</li>
+      </ul>
+
+      <!-- Section 13 -->
+      <h2>13. Sources and Update Date</h2>
+      <ul>
+        <li>CRA T4032-ON — Payroll Deductions Tables (January 2026)</li>
+        <li>CRA T4127 — Payroll Deductions Formulas (122nd/123rd editions)</li>
+        <li>CRA — Tax rates and income brackets for individuals (Line 31260 for CEA)</li>
+        <li>CRA TD1 / TD1ON — Personal Tax Credits Return (2026)</li>
+        <li>ESDC — 2026 CPP Contribution Rate and Maximums Order</li>
+        <li>ESDC — 2026 EI Premium Rate Announcement</li>
+        <li>Ontario Ministry of Finance — 2026 Ontario Budget Annex</li>
+        <li>Ontario Ministry of Finance — Ontario Tax Reduction</li>
+        <li>ontario.ca — Ontario Health Premium schedule</li>
+      </ul>
+      <p><strong>Last updated:</strong> June 2026.</p>
+      <p><strong>Tax year:</strong> 2026.</p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    Calc-HQ.ca &mdash; Canadian payroll and tax reference calculators. Estimates only. Not tax or legal advice.
+  </div>
+</footer>
+
+<script src="../../js/nav.js"></script>
+</body>
+</html>
