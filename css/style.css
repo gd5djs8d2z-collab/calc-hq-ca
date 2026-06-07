@@ -979,7 +979,8 @@ strong {
   width: 260px;
   max-width: 80vw;
   height: 100vh;
-  background: var(--color-accent);
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
   z-index: 105;
   padding: 20px;
   transform: translateX(100%);
@@ -994,17 +995,17 @@ strong {
 
 .mobile-nav a {
   display: block;
-  color: rgba(255,255,255,0.85);
+  color: var(--color-text-secondary);
   font-size: 1rem;
   font-weight: 500;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid var(--color-border);
   text-decoration: none;
   transition: color 0.15s;
 }
 
 .mobile-nav a:hover {
-  color: #fff;
+  color: var(--color-text-primary);
 }
 
 @media (max-width: 680px) {
