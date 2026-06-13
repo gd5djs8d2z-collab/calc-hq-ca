@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ontario Bonus Tax Calculator Methodology | Calc-HQ.ca</title>
+  <meta name="description" content="Methodology for the Ontario Bonus Tax Calculator. How bonus withholding is estimated using the CRA T4032 annualization method, CPP/EI treatment, and Ontario surtax for 2026.">
+  <link rel="canonical" href="https://calc-hq.ca/methodology/ontario-bonus-tax/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Ontario Bonus Tax Calculator Methodology | Calc-HQ.ca">
+  <meta property="og:description" content="Methodology for the Ontario Bonus Tax Calculator. CRA T4032 annualization method, CPP/EI treatment, Ontario surtax — 2026 rates.">
+  <meta property="og:url" content="https://calc-hq.ca/methodology/ontario-bonus-tax/">
+  <meta property="og:site_name" content="Calc-HQ.ca">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ontario Bonus Tax Calculator Methodology | Calc-HQ.ca">
+  <meta name="twitter:description" content="Methodology for the Ontario Bonus Tax Calculator. CRA T4032 annualization method, CPP/EI treatment, Ontario surtax — 2026 rates.">
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "Ontario Bonus Tax Calculator Methodology",
+    "description": "How the Ontario Bonus Tax Calculator estimates bonus withholding using the CRA T4032 annualization method, CPP/EI treatment, Ontario surtax, and Ontario Health Premium for 2026.",
+    "url": "https://calc-hq.ca/methodology/ontario-bonus-tax/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Calc-HQ.ca"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <a href="/" class="brand-link">
+        <span class="brand-name">🍁 Calc-HQ.ca</span>
+        <span class="brand-tagline">Canadian payroll &amp; tax calculators — CRA rates, 2026</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/legal.html">Legal</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobile-overlay"></div>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="/">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/faq.html">FAQ</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/legal.html">Legal</a>
+  <a href="/contact.html">Contact</a>
+</nav>
+
+<main>
+
+  <section class="content-section">
+    <div class="wrap">
+      <h1>Ontario Bonus Tax Calculator — Methodology</h1>
+      <p>
+        This page documents how the <a href="https://ontariobonustaxcalc.ca/">Ontario Bonus Tax Calculator</a>
+        estimates federal and Ontario tax withholding on bonus payments for Ontario residents in the 2026 tax year.
+        The calculator uses the CRA T4032 annualization method — the standard payroll approach employers follow
+        when processing bonus or irregular payments.
+      </p>
+
+      <!-- Section 1 -->
+      <h2>1. What This Methodology Covers</h2>
+      <p>
+        This methodology applies to the Ontario Bonus Tax Calculator at ontariobonustaxcalc.ca. It documents
+        how the calculator estimates employer withholding on bonus or irregular payments for Ontario residents
+        in the 2026 tax year.
+      </p>
+      <p>This methodology covers:</p>
+      <ul>
+        <li>The CRA T4032 annualization method for bonus withholding</li>
+        <li>Federal income tax withholding on bonus payments</li>
+        <li>Ontario provincial income tax withholding on bonus payments</li>
+        <li>CPP base, first additional, and second additional (CPP2) contributions</li>
+        <li>EI premiums on bonus payments</li>
+        <li>Ontario surtax</li>
+        <li>Ontario Health Premium</li>
+      </ul>
+      <p>This methodology does <strong>not</strong> cover self-employment income, RRSP deductions beyond the
+        TD1 claim, dependant credits, non-resident withholding, multiple employer situations, or provincial
+        tax credits beyond those listed above.</p>
+
+      <!-- Section 2 -->
+      <h2>2. Inputs Used by the Calculator</h2>
+      <p>The calculator requires the following inputs:</p>
+      <ul>
+        <li><strong>Annual base salary</strong> — your regular employment income before this bonus</li>
+        <li><strong>Bonus amount</strong> — the gross bonus payment</li>
+        <li><strong>Pay frequency</strong> — how often you are paid (weekly, bi-weekly, semi-monthly, or monthly), which determines the annualization factor</li>
+      </ul>
+      <p>Optional inputs:</p>
+      <ul>
+        <li><strong>RRSP deduction</strong> — claimed on TD1, reduces taxable income</li>
+        <li><strong>Additional withholding</strong> — extra tax you request your employer to withhold</li>
+      </ul>
+      <p>
+        The pay frequency is critical because it determines the annualization factor used by the CRA T4032
+        method. For example, bi-weekly pay uses a factor of 26, while monthly pay uses a factor of 12.
+      </p>
+
+      <!-- Section 3 -->
+      <h2>3. How Bonus Income Is Treated</h2>
+      <p>
+        A bonus is generally taxable employment income under the Income Tax Act. When an employer pays a
+        bonus, they must withhold income tax, CPP contributions, and EI premiums before disbursing the
+        payment. Unlike regular salary, which is taxed each pay period as part of a steady cycle, a bonus
+        is an irregular payment that requires a separate withholding calculation.
+      </p>
+      <p>
+        Under the CRA T4032 annualization method, the employer:
+      </p>
+      <ol>
+        <li>Takes the employee's regular pay for the current period</li>
+        <li>Adds the bonus to that period's pay</li>
+        <li>Multiplies the combined amount by the number of pay periods in the year to estimate annual income</li>
+        <li>Calculates the tax on that annualized amount</li>
+        <li>Subtracts the tax that would have been withheld on regular pay alone (without the bonus)</li>
+        <li>The difference is the tax withheld from the bonus</li>
+      </ol>
+      <p>
+        This method effectively applies the employee's combined marginal tax rate to the bonus. For most
+        Ontario employees, this produces a higher withholding rate than their average effective tax rate
+        on regular salary, because the bonus is stacked on top of existing income and taxed at the
+        bracket that the combined total falls into.
+      </p>
+
+      <!-- Section 4 -->
+      <h2>4. Federal and Ontario Tax Estimate</h2>
+      <p>
+        The calculator estimates tax withholding using 2026 federal and Ontario tax assumptions. Federal
+        income tax is calculated on taxable income using progressive brackets:
+      </p>
+      <div class="deduction-table-wrap">
+        <table class="deduction-table">
+          <caption>2026 Federal Income Tax Brackets</caption>
+          <thead>
+            <tr><th>Bracket</th><th>Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$0 – $58,523</td><td>14.0%</td></tr>
+            <tr><td>$58,523 – $117,047</td><td>20.5%</td></tr>
+            <tr><td>$117,047 – $169,849</td><td>26.0%</td></tr>
+            <tr><td>$169,849 – $239,381</td><td>29.0%</td></tr>
+            <tr><td>Over $239,381</td><td>33.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Ontario provincial income tax is calculated on the same taxable income:
+      </p>
+      <div class="deduction-table-wrap">
+        <table class="deduction-table">
+          <caption>2026 Ontario Income Tax Brackets</caption>
+          <thead>
+            <tr><th>Bracket</th><th>Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$0 – $53,891</td><td>5.05%</td></tr>
+            <tr><td>$53,891 – $107,785</td><td>9.15%</td></tr>
+            <tr><td>$107,785 – $150,000</td><td>11.16%</td></tr>
+            <tr><td>$150,000 – $220,000</td><td>12.16%</td></tr>
+            <tr><td>Over $220,000</td><td>13.16%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The annualization method applies these brackets to the projected annual income, then isolates
+        the marginal rate that applies to the bonus portion. Non-refundable credits (federal and Ontario
+        Basic Personal Amount, Canada Employment Amount, CPP base credit, EI credit) are factored into
+        the withholding calculation.
+      </p>
+
+      <!-- Section 5 -->
+      <h2>5. CPP and EI Treatment</h2>
+      <p>
+        CPP and EI may apply to bonus payments depending on year-to-date earnings and annual contribution
+        limits. The calculator accounts for these thresholds.
+      </p>
+      <h3>CPP Contributions</h3>
+      <p>
+        CPP contributions on a bonus follow the same pensionable earnings rules as regular pay. The
+        calculator models three CPP components for 2026:
+      </p>
+      <ul>
+        <li><strong>CPP base contribution</strong> — 4.95% on pensionable earnings between the basic exemption ($3,500) and the Year's Maximum Pensionable Earnings ($74,600). Maximum base contribution: $3,519.45.</li>
+        <li><strong>CPP first additional contribution</strong> — 1.00% on the same pensionable earnings range. Maximum: $711.00.</li>
+        <li><strong>CPP2 contribution</strong> — 4.00% on earnings between the YMPE ($74,600) and the YAMPE ($85,000). Maximum: $416.00.</li>
+      </ul>
+      <p>
+        If an employee's year-to-date salary has already reached the annual CPP maximums, the calculator
+        applies zero CPP deductions to the bonus. This threshold-aware behavior reflects real payroll
+        processing — once annual maximums are met, no further CPP is withheld.
+      </p>
+      <h3>EI Premiums</h3>
+      <p>
+        EI premiums are calculated on insurable earnings up to the maximum insurable earnings of $68,900
+        at a rate of 1.63%. Maximum annual premium: $1,123.07. As with CPP, if year-to-date EI premiums
+        have already reached the annual maximum, no further EI is withheld from the bonus.
+      </p>
+
+      <!-- Section 6 -->
+      <h2>6. Ontario Surtax and Ontario Health Premium</h2>
+      <p>
+        Ontario imposes additional levies that affect the total tax calculation:
+      </p>
+      <h3>Ontario Surtax</h3>
+      <p>
+        The Ontario surtax is an additional levy on basic Ontario tax. For 2026:
+      </p>
+      <ul>
+        <li>20% surtax on basic Ontario tax exceeding $5,818</li>
+        <li>36% surtax on basic Ontario tax exceeding $7,446</li>
+      </ul>
+      <p>
+        The surtax is included in the withholding calculation because it is part of the provincial tax
+        that determines the employee's marginal Ontario rate.
+      </p>
+      <h3>Ontario Health Premium</h3>
+      <p>
+        The Ontario Health Premium (OHP) is a provincial levy based on taxable income, collected
+        through the tax return rather than payroll. It follows a band schedule:
+      </p>
+      <div class="deduction-table-wrap">
+        <table class="deduction-table">
+          <caption>2026 Ontario Health Premium Schedule</caption>
+          <thead>
+            <tr><th>Taxable Income</th><th>OHP</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Up to $20,000</td><td>$0</td></tr>
+            <tr><td>$20,000 – $25,000</td><td>$300</td></tr>
+            <tr><td>$25,000 – $36,000</td><td>$450</td></tr>
+            <tr><td>$36,000 – $48,000</td><td>$600</td></tr>
+            <tr><td>$48,000 – $72,000</td><td>$750</td></tr>
+            <tr><td>$72,000 – $200,600</td><td>$750</td></tr>
+            <tr><td>Over $200,600</td><td>$900</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The OHP is factored into the calculator's total tax estimate but does not appear on paycheques.
+        It is calculated on gross income and added to Ontario tax after surtax.
+      </p>
+
+      <!-- Section 7 -->
+      <h2>7. What the Calculator Does Not Include</h2>
+      <ul>
+        <li><strong>Final T1 tax liability.</strong> This calculator estimates employer withholding only. Your actual tax owed is calculated on your full-year T1 return and may differ from the amount withheld on your bonus.</li>
+        <li><strong>Actual payroll withholding may differ from final tax owing.</strong> Withholding is a prepayment, not a final assessment. If your employer withheld more than you owe, the CRA refunds the difference at tax time.</li>
+        <li><strong>Employer payroll methods may vary.</strong> Some employers use alternative CRA-approved methods or payroll software that produces slightly different results than a simplified public calculator.</li>
+        <li><strong>Self-employment income, rental income, investment income, or capital gains.</strong> Only Ontario employment income is modeled.</li>
+        <li><strong>Complex TD1/TD1ON claim codes.</strong> The calculator uses standard claim amounts. Additional credits for dependants, disability, or tuition are not included.</li>
+        <li><strong>Multiple employers or income sources.</strong> If you have more than one job, CPP and EI maximums may be exceeded, requiring adjustments on your tax return.</li>
+        <li><strong>Non-resident situations.</strong> Different withholding rules apply to non-residents of Canada.</li>
+        <li><strong>This is informational only, not tax advice.</strong> Consult a CPA or tax advisor for personal tax planning.</li>
+      </ul>
+
+      <!-- Section 8 -->
+      <h2>8. Data Sources</h2>
+      <ul>
+        <li>CRA T4032 — Payroll Deductions Tables (January 2026)</li>
+        <li>CRA T4127 — Payroll Deductions Formulas (123rd edition, January 2026)</li>
+        <li>CRA — Tax rates and income brackets for individuals (2026)</li>
+        <li>Canada Pension Plan contribution rates and maximums — ESDC 2026 Order</li>
+        <li>Employment Insurance premium rates and maximums — ESDC 2026 Announcement</li>
+        <li>Ontario Ministry of Finance — 2026 Ontario tax rates and credits</li>
+        <li>Ontario Ministry of Finance — Ontario Health Premium schedule</li>
+      </ul>
+
+      <!-- Section 9 -->
+      <h2>9. Update Policy</h2>
+      <p>
+        This methodology is updated when new tax year rates are published by the CRA and Ontario
+        Ministry of Finance. Rates reflected here are for the 2026 tax year. If a future tax year
+        introduces bracket changes, new credits, or modified CPP/EI parameters, this page will be
+        revised accordingly.
+      </p>
+      <p><strong>Last updated:</strong> June 2026.</p>
+      <p><strong>Tax year:</strong> 2026.</p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    Calc-HQ.ca &mdash; Canadian payroll and tax reference calculators. Estimates only. Not tax or legal advice. &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/legal.html">Legal</a> &middot; <a href="/contact.html">Contact</a> &middot; <a href="/faq.html">FAQ</a> &middot; <a href="/methodology/">Methodologies</a>
+  </div>
+</footer>
+
+<script src="../../js/nav.js"></script>
+</body>
+</html>
