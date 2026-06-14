@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ontario Take-Home Pay Calculator Methodology | Calc-HQ.ca</title>
+  <meta name="description" content="Methodology for the Ontario Take-Home Pay Calculator. How federal and Ontario tax, CPP contributions, EI premiums, Ontario surtax, and Ontario Health Premium are applied to estimate take-home pay for 2026.">
+  <link rel="canonical" href="https://calc-hq.ca/methodology/ontario-take-home/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Ontario Take-Home Pay Calculator Methodology | Calc-HQ.ca">
+  <meta property="og:description" content="Methodology for the Ontario Take-Home Pay Calculator. How federal and Ontario tax, CPP contributions, EI premiums, Ontario surtax, and Ontario Health Premium are applied to estimate take-home pay for 2026.">
+  <meta property="og:url" content="https://calc-hq.ca/methodology/ontario-take-home/">
+  <meta property="og:site_name" content="Calc-HQ.ca">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ontario Take-Home Pay Calculator Methodology | Calc-HQ.ca">
+  <meta name="twitter:description" content="Methodology for the Ontario Take-Home Pay Calculator. How federal and Ontario tax, CPP contributions, EI premiums, Ontario surtax, and Ontario Health Premium are applied to estimate take-home pay for 2026.">
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "Ontario Take-Home Pay Calculator Methodology",
+    "description": "How the Ontario Take-Home Pay Calculator computes federal and Ontario income tax, CPP contributions, EI premiums, surtax, and Ontario Health Premium to estimate take-home pay for 2026.",
+    "url": "https://calc-hq.ca/methodology/ontario-take-home/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Calc-HQ.ca"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <a href="/" class="brand-link">
+        <span class="brand-name">🍁 Calc-HQ.ca</span>
+        <span class="brand-tagline">Canadian payroll &amp; tax calculators — CRA rates, 2026</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/legal.html">Legal</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobile-overlay"></div>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="/">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/faq.html">FAQ</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/legal.html">Legal</a>
+  <a href="/contact.html">Contact</a>
+</nav>
+
+<main>
+
+  <section class="content-section">
+    <div class="wrap">
+      <h1>Ontario Take-Home Pay Calculator — Methodology</h1>
+      <p>
+        This page documents how the <a href="https://ontariotakehomecalc.ca/">Ontario Take-Home Pay Calculator</a>
+        estimates annual and per-period take-home pay for Ontario employees in the 2026 tax year. All rates are
+        sourced from CRA and ESDC published tables.
+      </p>
+
+      <!-- Section 1 -->
+      <h2>1. What This Methodology Covers</h2>
+      <p>
+        This methodology applies to the Ontario Take-Home Pay Calculator at ontariotakehomecalc.ca. It documents
+        how the calculator estimates net take-home pay for Ontario residents receiving employment income
+        in the 2026 tax year.
+      </p>
+      <p>This methodology covers:</p>
+      <ul>
+        <li>Federal income tax brackets and the Basic Personal Amount</li>
+        <li>Ontario provincial income tax brackets and the Ontario BPA</li>
+        <li>CPP1 and CPP2 contributions</li>
+        <li>EI premiums</li>
+        <li>Ontario surtax</li>
+        <li>Ontario Health Premium</li>
+        <li>Pay frequency conversion</li>
+      </ul>
+      <p>This methodology does <strong>not</strong> cover self-employment income, Quebec or other provincial
+        calculations, RRSP deductions, dependant credits, non-resident withholding, multiple employer
+        situations, or provincial tax credits beyond those listed above.</p>
+
+      <!-- Section 2 -->
+      <h2>2. Inputs Used by the Calculator</h2>
+      <p>The calculator requires the following inputs:</p>
+      <ul>
+        <li><strong>Gross annual salary</strong> — your total employment income before deductions</li>
+        <li><strong>Pay frequency</strong> — how often you are paid (weekly, bi-weekly, semi-monthly, monthly, or annually)</li>
+      </ul>
+      <p>
+        The pay frequency determines how annual results are converted into per-period figures. The
+        calculator applies all deductions at the annual level first, then divides by the number of
+        pay periods.
+      </p>
+
+      <!-- Section 3 -->
+      <h2>3. Federal Income Tax</h2>
+      <p>
+        Federal tax is calculated using the 2026 progressive bracket structure. The calculator applies
+        each bracket rate to the portion of income that falls within that bracket range. The federal
+        Basic Personal Amount ($16,452 for incomes up to $181,440) is applied as a non-refundable
+        credit at the lowest bracket rate of 14%. For incomes above $181,440, the BPA phases down
+        on a straight-line basis to $14,829 at $258,482 and above.
+      </p>
+
+      <!-- Section 4 -->
+      <h2>4. Ontario Income Tax</h2>
+      <p>
+        Ontario provincial tax is calculated using the 2025/2026 Ontario bracket structure with rates
+        from 5.05% to 13.16%. The Ontario Basic Personal Amount ($12,989) is applied as a
+        non-refundable credit at the lowest Ontario rate of 5.05%. Ontario surtax is applied on
+        basic provincial tax: 20% on the portion exceeding $5,818 and 36% on the portion exceeding
+        $7,446.
+      </p>
+
+      <!-- Section 5 -->
+      <h2>5. CPP and CPP2 Contributions</h2>
+      <p>
+        CPP1 contributions are calculated at a combined employee rate of 5.95% on pensionable
+        earnings between the basic exemption ($3,500) and the Year's Maximum Pensionable Earnings
+        ($74,600), up to a maximum contribution of $4,230.45. CPP2 contributions apply at 4.00%
+        on earnings between the YMPE and the Year's Additional Maximum Pensionable Earnings
+        ($85,000), up to a maximum of $416.00.
+      </p>
+      <p>
+        The calculator treats CPP1 as a single combined rate. It does not separate the base
+        contribution (which generates a non-refundable tax credit) from the first additional
+        contribution (which is deductible from taxable income). As a result, CPP and EI
+        non-refundable credits are not applied against federal or Ontario tax, and CPP/EI
+        deductions from taxable income are not reflected in the bracket calculations.
+      </p>
+
+      <!-- Section 6 -->
+      <h2>6. EI Premiums</h2>
+      <p>
+        EI premiums are calculated at 1.63% on insurable earnings up to the Maximum Insurable
+        Earnings ($68,900), for a maximum annual premium of $1,123.07. EI premiums are included
+        in total deductions but are not deducted from taxable income before tax bracket
+        application, and no EI non-refundable credit is applied.
+      </p>
+
+      <!-- Section 7 -->
+      <h2>7. Ontario Health Premium</h2>
+      <p>
+        The Ontario Health Premium is applied as an additional charge based on taxable income
+        using the 2026 band schedule, ranging from $0 for incomes under $20,000 up to $900 for
+        incomes above $200,600. The OHP is included in total deductions alongside tax, CPP,
+        and EI.
+      </p>
+
+      <!-- Section 8 -->
+      <h2>8. Credits and Deductions Included</h2>
+      <ul>
+        <li>Federal Basic Personal Amount (with phaseout for high incomes)</li>
+        <li>Ontario Basic Personal Amount</li>
+      </ul>
+      <p>The following items are <strong>not</strong> applied:</p>
+      <ul>
+        <li>CPP base non-refundable credits (federal and Ontario)</li>
+        <li>EI non-refundable credits (federal and Ontario)</li>
+        <li>CPP first additional deduction from taxable income</li>
+        <li>CPP2 deduction from taxable income</li>
+        <li>EI deduction from taxable income</li>
+        <li>Canada Employment Amount</li>
+        <li>Ontario Tax Reduction</li>
+      </ul>
+
+      <!-- Section 9 -->
+      <h2>9. What Is Excluded</h2>
+      <p>
+        The calculator does not include every possible personal payroll or tax adjustment, such
+        as RRSP deductions, union dues, pension adjustments, taxable benefits, child care
+        expenses, moving expenses, tuition credits, or employer-specific deductions. These
+        exclusions are intentional simplifications for a general online take-home pay estimator.
+      </p>
+
+      <!-- Section 10 -->
+      <h2>10. Pay Frequency Handling</h2>
+      <p>
+        The calculator estimates annual tax and payroll deductions first, then converts the
+        result into pay-period amounts by dividing by the number of periods per year (52 for
+        weekly, 26 for bi-weekly, 24 for semi-monthly, 12 for monthly). Actual payroll
+        withholding can differ by pay period because CRA payroll calculations use cumulative
+        year-to-date amounts and mid-year CPP/EI maximum cutoffs. For this reason, annual
+        totals should be treated as the primary estimate, and per-period figures should be
+        treated as approximate.
+      </p>
+
+      <!-- Section 11 -->
+      <h2>11. Assumptions and Limitations</h2>
+      <ul>
+        <li>Tax year 2026 — all rates and thresholds reflect published CRA/ESDC/Ontario values</li>
+        <li>Ontario resident only — provincial calculations do not apply to other provinces</li>
+        <li>Employment income only — no self-employment, investment, rental, or other income types</li>
+        <li>Single employer assumption — CPP/EI annual maximums applied against one income source</li>
+        <li>Standard TD1/TD1ON claim codes only — no dependant, disability, or tuition credits</li>
+        <li>Simplified CPP model — CPP1 is treated as a combined 5.95% rate; base/additional split and resulting credits/deductions are not applied</li>
+        <li>Per-period figures are approximate — see Section 10</li>
+        <li>This is a payroll deduction estimate, not a final T1 tax return calculation</li>
+        <li>This is informational only, not tax advice. Consult a CPA or tax advisor for personal tax planning.</li>
+      </ul>
+
+      <!-- Section 12 -->
+      <h2>12. Sources and Update Date</h2>
+      <ul>
+        <li>CRA T4032-ON — Payroll Deductions Tables (January 2026)</li>
+        <li>CRA T4127 — Payroll Deductions Formulas (123rd edition, January 2026)</li>
+        <li>CRA — Tax rates and income brackets for individuals (2026)</li>
+        <li>ESDC — 2026 CPP Contribution Rate and Maximums Order</li>
+        <li>ESDC — 2026 EI Premium Rate Announcement</li>
+        <li>Ontario Ministry of Finance — 2026 Ontario tax rates and credits</li>
+        <li>Ontario Ministry of Finance — Ontario Health Premium schedule</li>
+        <li>ontario.ca — Ontario Health Premium</li>
+      </ul>
+      <p><strong>Last updated:</strong> June 2026.</p>
+      <p><strong>Tax year:</strong> 2026.</p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    Calc-HQ.ca &mdash; Canadian payroll and tax reference calculators. Estimates only. Not tax or legal advice. &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/legal.html">Legal</a> &middot; <a href="/contact.html">Contact</a> &middot; <a href="/faq.html">FAQ</a> &middot; <a href="/methodology/">Methodologies</a>
+  </div>
+</footer>
+
+<script src="../../js/nav.js"></script>
+</body>
+</html>
