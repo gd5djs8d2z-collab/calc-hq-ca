@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Employed Tax Calculator 2026 — CPP, HST &amp; Income Tax | calc-hq.ca</title>
+<meta name="description" content="Work out 2026 self-employed tax in Canada: income tax, CPP at the double rate, the $30,000 HST registration line, and how much to set aside. Ontario and Alberta.">
+<link rel="canonical" href="https://calc-hq.ca/payroll/self-employed-tax/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Self-Employed Tax Calculator 2026 — CPP, HST & Income Tax">
+<meta property="og:description" content="What a freelancer or contractor owes: tax, double CPP, and the HST threshold.">
+<meta property="og:url" content="https://calc-hq.ca/payroll/self-employed-tax/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Payroll & Take-Home","item":"https://calc-hq.ca/payroll/"},
+{"@type":"ListItem","position":3,"name":"Self-Employed Tax Calculator","item":"https://calc-hq.ca/payroll/self-employed-tax/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much tax will I pay on $40,000 self-employed?","acceptedAnswer":{"@type":"Answer","text":"On $40,000 of net self-employment income in Ontario for 2026, expect roughly $4,300 in income tax plus about $4,300 in CPP — self-employed people pay both the employee and employer halves of CPP, so the CPP bill is double an employee's. That leaves you setting aside somewhere near a quarter of the income. Enter your own figure above for a precise breakdown."}},
+{"@type":"Question","name":"Why is CPP double when you're self-employed?","acceptedAnswer":{"@type":"Answer","text":"An employee pays 5.95% CPP and their employer matches it. When you work for yourself you are both, so you pay the full 11.9% on pensionable earnings between $3,500 and $74,600, plus CPP2 above that. Half of what you pay is deductible from your income, which softens the hit at tax time."}},
+{"@type":"Question","name":"Do I have to charge HST when self-employed?","acceptedAnswer":{"@type":"Answer","text":"Once your revenue crosses $30,000 over four consecutive calendar quarters you must register for GST/HST and start charging it. Below $30,000 you're a small supplier and registration is optional. The calculator flags when your income reaches the threshold."}},
+{"@type":"Question","name":"Do self-employed people pay EI?","acceptedAnswer":{"@type":"Answer","text":"Not automatically — EI is not deducted from self-employment income. You can opt in to EI special benefits (like parental or sickness benefits) voluntarily through Service Canada, and then you pay the employee EI rate. Tick the opt-in box above to include it."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/payroll/">Payroll &amp; Take-Home</a><span class="sep">›</span>
+    <span>Self-Employed Tax</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Self-Employed Tax Calculator (2026)</h1>
+    <p class="lead">No employer means no one withholding tax for you — and a CPP bill at double the employee rate. Enter your net income to see what to set aside for tax and CPP, and when HST kicks in.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Self-employed tax calculator">
+    <div class="field input-money">
+      <label for="income">Net self-employment income
+        <span class="hint">Revenue minus business expenses, for the year</span>
+      </label>
+      <input class="input" id="income" type="text" inputmode="numeric" placeholder="45,000" value="45,000">
+    </div>
+    <div class="field">
+      <label for="province">Province</label>
+      <select class="input" id="province">
+        <option value="ON" selected>Ontario</option>
+        <option value="AB">Alberta</option>
+        <option value="BC">British Columbia (coming soon)</option>
+        <option value="QC">Quebec (coming soon)</option>
+      </select>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="ei">
+      <label for="ei">I've opted in to EI special benefits <span class="hint">Optional — parental/sickness coverage for the self-employed</span></label>
+    </div>
+    <button class="btn" id="go" type="button">Calculate what I owe</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Set aside for tax + CPP</p>
+      <p class="result-number" id="obligation">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="stub" hidden></div>
+  </section>
+
+  <section class="answer">
+    <h2>What self-employment really costs at tax time</h2>
+    <p>Two things make self-employed tax feel heavier than employment. First, nothing is withheld through the year, so the whole bill arrives at once — most people set aside 25–30% of net income to be safe. Second, CPP is doubled: you pay both the 5.95% employee share and the 5.95% employer share, up to the combined maximum, because you're both. Half of that CPP is deductible, which takes some of the sting out.</p>
+    <p>Watch the $30,000 line. Once your revenue passes $30,000 over four rolling quarters, you have to register for and charge GST/HST. Below it, registering is your choice. The calculator flags the threshold as your income crosses it.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much tax will I pay on $40,000 self-employed?</summary>
+      <p>On $40,000 net in Ontario for 2026, expect roughly $4,300 income tax plus about $4,300 CPP — the CPP is double an employee's because you pay both halves. Budget to set aside close to a quarter of the income. Enter your own figure above for the exact split.</p>
+    </details>
+    <details><summary>Why is CPP double when you're self-employed?</summary>
+      <p>An employee pays 5.95% and the employer matches it. Working for yourself, you're both, so you pay the full 11.9% on pensionable earnings from $3,500 to $74,600, plus CPP2 above that. Half is deductible from income, which softens it at tax time.</p>
+    </details>
+    <details><summary>Do I have to charge HST when self-employed?</summary>
+      <p>Once revenue crosses $30,000 over four consecutive calendar quarters you must register for GST/HST and charge it. Below $30,000 you're a small supplier and it's optional. The calculator flags when you reach the threshold.</p>
+    </details>
+    <details><summary>Do self-employed people pay EI?</summary>
+      <p>Not automatically — EI isn't deducted from self-employment income. You can opt in to EI special benefits through Service Canada and pay the employee rate. Tick the opt-in box above to include it.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Compare against an employee salary's net pay.</p></a>
+      <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>See how the CPP contribution is built up.</p></a>
+    </div>
+    <p class="disclaimer">Estimates for the 2026 tax year using published CRA and provincial figures. For general guidance only — confirm your own numbers with the CRA before relying on them.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/payroll/pay-raise/">Pay Raise</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcSelfEmployed, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
+import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+
+function run() {
+  const income = parseMoney(el('income').value);
+  const code = el('province').value;
+  const result = el('result'), stub = el('stub');
+
+  const stubMsg = isLiveProvince(code) ? null : provinceStub(code);
+  if (stubMsg) { result.hidden = true; stub.hidden = false; stub.textContent = stubMsg; return; }
+  stub.hidden = true;
+
+  const s = calcSelfEmployed(income, code, { optIntoEI: el('ei').checked });
+  el('obligation').textContent = formatCurrency(s.totalObligation);
+  const hst = s.mustRegisterHST
+    ? "You're over the $30,000 mark — you must register for and charge GST/HST."
+    : "You're under $30,000, so GST/HST registration is optional for now.";
+  el('reading').textContent =
+    `That's about ${(s.averageRate*100).toFixed(0)}% of ${formatCurrency(income)}, leaving ${formatCurrency(s.afterTax)} after tax and CPP. ${hst}`;
+
+  const rows = [
+    ['Federal income tax', s.federalTax],
+    ['Provincial income tax', s.provincialTax],
+    ['CPP (both halves)', s.cpp],
+  ];
+  if (s.ei > 0) rows.push(['EI (opted in)', s.ei]);
+  el('breakdown').innerHTML =
+    rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${formatCurrency(v)}</span></div>`).join('')
+    + `<div class="row total"><span>Total to set aside</span><span class="val">${formatCurrency(s.totalObligation)}</span></div>`;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['income','province','ei'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

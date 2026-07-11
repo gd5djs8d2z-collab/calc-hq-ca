@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commission Tax Calculator 2026 — How Much Is Commission Taxed? | calc-hq.ca</title>
+<meta name="description" content="How much is commission taxed in Ontario and Alberta? See the tax on commission earnings on top of your base pay for 2026 and what you actually keep.">
+<link rel="canonical" href="https://calc-hq.ca/tax-on-extra-income/commission/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Commission Tax Calculator 2026 — What You Keep">
+<meta property="og:description" content="The real tax on commission income, and the net that reaches you.">
+<meta property="og:url" content="https://calc-hq.ca/tax-on-extra-income/commission/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Tax on Extra Income","item":"https://calc-hq.ca/tax-on-extra-income/"},
+{"@type":"ListItem","position":3,"name":"Commission Tax Calculator","item":"https://calc-hq.ca/tax-on-extra-income/commission/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is commission taxed in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Commission is taxed at your marginal rate in Ontario — the top bracket your total income reaches — because it's added to your base pay. On a mid-range salary that's typically an effective 30–40% off the commission once federal tax, Ontario tax, CPP and EI are included. There's no flat commission tax rate; it depends on how high your total income climbs."}},
+{"@type":"Question","name":"What is the tax rate on commission income?","acceptedAnswer":{"@type":"Answer","text":"The same brackets that apply to salary apply to commission — it isn't taxed under a separate schedule. If your commission pushes your income into a higher bracket, only the portion above the threshold is taxed at the higher rate. The calculator applies the correct marginal rate to your commission automatically."}},
+{"@type":"Question","name":"Is commission taxed differently from salary?","acceptedAnswer":{"@type":"Answer","text":"The tax itself is the same, but withholding can differ. Employers may withhold commission using the bonus method or a flat estimate, so the paycheque can look over-taxed. At year end it all settles to your real marginal rate, and any over-withholding comes back as a refund."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/tax-on-extra-income/">Tax on Extra Income</a><span class="sep">›</span>
+    <span>Commission Tax</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Commission Tax Calculator (2026)</h1>
+    <p class="lead">Commission lands on top of your base pay, so it's taxed at your highest rate. Enter your base and your commission to see the tax that comes off and the amount you keep.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Commission tax calculator">
+    <div class="field input-money">
+      <label for="salary">Annual base salary
+        <span class="hint">Enter 0 if you're paid on commission only</span>
+      </label>
+      <input class="input" id="salary" type="text" inputmode="numeric" placeholder="55,000" value="55,000">
+    </div>
+    <div class="field input-money">
+      <label for="commission">Commission earnings (for the year)</label>
+      <input class="input" id="commission" type="text" inputmode="numeric" placeholder="20,000" value="20,000">
+    </div>
+    <div class="field">
+      <label for="province">Province</label>
+      <select class="input" id="province">
+        <option value="ON" selected>Ontario</option>
+        <option value="AB">Alberta</option>
+        <option value="BC">British Columbia (coming soon)</option>
+        <option value="QC">Quebec (coming soon)</option>
+      </select>
+    </div>
+    <button class="btn" id="go" type="button">Calculate commission take-home</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">You keep from commission</p>
+      <p class="result-number" id="net">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="stub" hidden></div>
+  </section>
+
+  <section class="answer">
+    <h2>What tax comes off commission</h2>
+    <p>Commission isn't taxed on its own schedule — it's added to your other income and taxed at your marginal rate. If your base salary already sits in the 9.15% Ontario bracket, your commission is taxed from there upward, plus federal tax and any CPP and EI room left before the caps. On a typical salary that's an effective 30–40% off the commission.</p>
+    <p>If you're paid commission only, set the base to zero and enter your total commission — the calculator then treats the whole amount as your income and applies the brackets from the bottom up. Either way, what you see is the real cost, not the sometimes-heavier amount payroll withholds up front.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much is commission taxed in Ontario?</summary>
+      <p>At your marginal rate — the top bracket your total income reaches — because it's added to your base pay. On a mid-range salary that's an effective 30–40% off once federal tax, Ontario tax, CPP and EI are included. There's no flat commission rate.</p>
+    </details>
+    <details><summary>What is the tax rate on commission income?</summary>
+      <p>The same brackets that apply to salary. If commission pushes you into a higher bracket, only the portion above the threshold is taxed at the higher rate. The calculator applies the right marginal rate for you.</p>
+    </details>
+    <details><summary>Is commission taxed differently from salary?</summary>
+      <p>The tax is the same; withholding can differ. Employers may withhold commission using the bonus method or a flat estimate, so the paycheque can look over-taxed. It settles to your real rate at year end, with any excess refunded.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/tax-on-extra-income/bonus/"><h3>Bonus Tax Calculator</h3><p>The same breakdown for a one-off bonus.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Net pay on your base salary.</p></a>
+    </div>
+    <p class="disclaimer">Estimates for the 2026 tax year using published CRA and provincial figures. For general guidance only — confirm your own numbers with the CRA before relying on them.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/tax-on-extra-income/commission/">Commission Tax</a></li>
+          <li><a href="/tax-on-extra-income/bonus/">Bonus Tax</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcExtraIncome, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
+import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+
+function run() {
+  const salary = parseMoney(el('salary').value);
+  const commission = parseMoney(el('commission').value);
+  const code = el('province').value;
+  const result = el('result'), stub = el('stub');
+
+  const stubMsg = isLiveProvince(code) ? null : provinceStub(code);
+  if (stubMsg) { result.hidden = true; stub.hidden = false; stub.textContent = stubMsg; return; }
+  stub.hidden = true;
+
+  const c = calcExtraIncome(salary, commission, code);
+  el('net').textContent = formatCurrency(c.net);
+  el('reading').textContent =
+    `About ${(c.effectiveRate*100).toFixed(0)}% comes off your ${formatCurrency(commission)} commission, leaving ${formatCurrency(c.net)}.`;
+
+  const rows = [
+    ['Commission earnings', c.extra],
+    ['Income tax', -c.incomeTax],
+    ['CPP', -c.cpp],
+    ['EI', -c.ei],
+  ];
+  el('breakdown').innerHTML =
+    rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${formatCurrency(Math.abs(v))}</span></div>`).join('')
+    + `<div class="row total"><span>Net commission</span><span class="val">${formatCurrency(c.net)}</span></div>`;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['salary','commission','province'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

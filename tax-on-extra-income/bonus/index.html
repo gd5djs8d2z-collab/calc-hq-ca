@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bonus Tax Calculator 2026 — How Much Is a Bonus Taxed in Canada? | calc-hq.ca</title>
+<meta name="description" content="See how much of your bonus is withheld and what you actually take home in 2026. Bonus withholding calculator for Ontario and Alberta with a full breakdown.">
+<link rel="canonical" href="https://calc-hq.ca/tax-on-extra-income/bonus/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bonus Tax Calculator 2026 — What You Keep">
+<meta property="og:description" content="How much a bonus is taxed in Canada, and the net amount that reaches your account.">
+<meta property="og:url" content="https://calc-hq.ca/tax-on-extra-income/bonus/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Tax on Extra Income","item":"https://calc-hq.ca/tax-on-extra-income/"},
+{"@type":"ListItem","position":3,"name":"Bonus Tax Calculator","item":"https://calc-hq.ca/tax-on-extra-income/bonus/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much are bonuses taxed in Canada?","acceptedAnswer":{"@type":"Answer","text":"A bonus is taxed at your marginal rate — the same rate as the top slice of your salary — because it stacks on the income you already earn. For most Canadians that lands somewhere between 25% and 45% once federal tax, provincial tax, CPP and EI are counted. There's no special 'bonus tax rate'; it just sits in your highest bracket."}},
+{"@type":"Question","name":"Why was my bonus taxed so much on the paycheque?","acceptedAnswer":{"@type":"Answer","text":"Payroll often uses the CRA 'bonus method', which annualizes the bonus to work out withholding, and it can withhold at a rate that looks higher than your average. If too much comes off, you get the difference back as a refund at tax time — the withholding is an estimate, not the final tax."}},
+{"@type":"Question","name":"How do I calculate the take-home on a bonus?","acceptedAnswer":{"@type":"Answer","text":"Work out your tax with and without the bonus, and the difference is what the bonus costs. This calculator does exactly that: enter your base salary and bonus amount, and it shows the income tax, CPP and EI on the bonus and the net amount you keep."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/tax-on-extra-income/">Tax on Extra Income</a><span class="sep">›</span>
+    <span>Bonus Tax</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Bonus Tax Calculator (2026)</h1>
+    <p class="lead">Got a bonus and watched a big slice vanish? Enter your salary and bonus to see exactly how much is withheld and what actually lands in your account.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Bonus tax calculator">
+    <div class="field input-money">
+      <label for="salary">Annual base salary</label>
+      <input class="input" id="salary" type="text" inputmode="numeric" placeholder="70,000" value="70,000">
+    </div>
+    <div class="field input-money">
+      <label for="bonus">Bonus amount</label>
+      <input class="input" id="bonus" type="text" inputmode="numeric" placeholder="10,000" value="10,000">
+    </div>
+    <div class="field">
+      <label for="province">Province</label>
+      <select class="input" id="province">
+        <option value="ON" selected>Ontario</option>
+        <option value="AB">Alberta</option>
+        <option value="BC">British Columbia (coming soon)</option>
+        <option value="QC">Quebec (coming soon)</option>
+      </select>
+    </div>
+    <button class="btn" id="go" type="button">Calculate bonus take-home</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">You keep from the bonus</p>
+      <p class="result-number" id="net">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="stub" hidden></div>
+  </section>
+
+  <section class="answer">
+    <h2>How much a bonus is really taxed</h2>
+    <p>There's no separate bonus tax rate. A bonus is added to the income you already earn, so it's taxed at your marginal rate — the top bracket your salary reaches. For most people that means keeping somewhere between 55% and 75% of the bonus after federal tax, provincial tax, and whatever CPP and EI room is left before the annual caps.</p>
+    <p>The paycheque can still look worse than that. Payroll uses the CRA bonus method to decide withholding, and it sometimes takes more than your true rate. Anything over-withheld comes back as a refund at tax time, so the number this calculator shows is the real cost of the bonus, not the scary paycheque version.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much are bonuses taxed in Canada?</summary>
+      <p>At your marginal rate — the same as the top slice of your salary — because the bonus stacks on income you already earn. For most Canadians that's 25–45% once federal tax, provincial tax, CPP and EI are counted. There's no special bonus rate.</p>
+    </details>
+    <details><summary>Why was my bonus taxed so much on the paycheque?</summary>
+      <p>Payroll often uses the CRA bonus method, which annualizes the bonus and can withhold at a rate higher than your average. Any excess comes back as a refund at tax time — withholding is an estimate, not the final tax.</p>
+    </details>
+    <details><summary>How do I calculate the take-home on a bonus?</summary>
+      <p>Work out your tax with and without the bonus; the difference is the cost. This calculator does that — enter base salary and bonus, and it shows the income tax, CPP and EI on the bonus and what you keep.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/tax-on-extra-income/commission/"><h3>Commission Tax Calculator</h3><p>The same idea for commission earnings.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Your net pay on the base salary itself.</p></a>
+    </div>
+    <p class="disclaimer">Estimates for the 2026 tax year using published CRA and provincial figures. For general guidance only — confirm your own numbers with the CRA before relying on them.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/tax-on-extra-income/bonus/">Bonus Tax</a></li>
+          <li><a href="/tax-on-extra-income/commission/">Commission Tax</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcExtraIncome, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
+import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+
+function run() {
+  const salary = parseMoney(el('salary').value);
+  const bonus = parseMoney(el('bonus').value);
+  const code = el('province').value;
+  const result = el('result'), stub = el('stub');
+
+  const stubMsg = isLiveProvince(code) ? null : provinceStub(code);
+  if (stubMsg) { result.hidden = true; stub.hidden = false; stub.textContent = stubMsg; return; }
+  stub.hidden = true;
+
+  const b = calcExtraIncome(salary, bonus, code);
+  el('net').textContent = formatCurrency(b.net);
+  el('reading').textContent =
+    `About ${(b.effectiveRate*100).toFixed(0)}% of your ${formatCurrency(bonus)} bonus is withheld, leaving ${formatCurrency(b.net)} in your pocket.`;
+
+  const rows = [
+    ['Bonus amount', b.extra],
+    ['Income tax', -b.incomeTax],
+    ['CPP', -b.cpp],
+    ['EI', -b.ei],
+  ];
+  el('breakdown').innerHTML =
+    rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${formatCurrency(Math.abs(v))}</span></div>`).join('')
+    + `<div class="row total"><span>Net bonus</span><span class="val">${formatCurrency(b.net)}</span></div>`;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['salary','bonus','province'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

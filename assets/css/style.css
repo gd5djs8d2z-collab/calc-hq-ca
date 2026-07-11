@@ -1,0 +1,433 @@
+/* ============================================================================
+   calc-hq.ca — site stylesheet
+   Built from the design brief: navy-led and credibility-first, warmed by a soft
+   canvas and generous whitespace. Trust leads (navy + structure); warmth is the
+   canvas, spacing, and copy — not soft colours or playful UI.
+   One family, one accent, muted throughout. No gradients, no neon.
+   ============================================================================ */
+
+/* ── Design tokens ───────────────────────────────────────────────────────── */
+:root {
+  /* Navy — the trust anchor. Deep and confident, never bright. */
+  --navy:        #15293e;
+  --navy-deep:   #0f1e2e;   /* footer, darker frames */
+  --navy-soft:   #2b4763;   /* hover / secondary navy */
+
+  /* Warm canvas — soft off-white sand. Never stark clinical white. */
+  --canvas:      #f3ede1;
+  --surface:     #fbf7ef;   /* the calculator card — warm near-white, lifts off canvas */
+
+  /* Ink — warm charcoal for body, not pure black. */
+  --ink:         #262019;
+  --muted:       #6f665a;   /* labels, hints, quiet meta */
+
+  /* One warm accent — muted amber/gold. Used sparingly: the hero result number. */
+  --accent:      #b56f3a;
+  --accent-deep: #98592b;
+
+  /* Hairlines / borders — warm, subtle, never heavy. */
+  --line:        #e4dcca;
+  --line-strong: #d6cbb3;
+
+  --focus:       rgba(21, 41, 62, 0.28);
+
+  /* Type — one modern neutral grotesk family, weight contrast does the work. */
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius:   9px;
+  --radius-sm: 7px;
+
+  /* Rhythm */
+  --wrap:      44rem;   /* tool pages — single focused column */
+  --wrap-wide: 68rem;   /* hubs, footer */
+  --gap:       1.5rem;
+}
+
+/* ── Reset & base ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 17px; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  color: var(--navy);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6em;
+}
+h1 { font-size: clamp(1.9rem, 5.2vw, 2.55rem); }
+h2 { font-size: clamp(1.35rem, 3.4vw, 1.7rem); }
+h3 { font-size: 1.12rem; }
+
+p { margin: 0 0 1rem; }
+a { color: var(--navy); text-decoration-color: var(--line-strong); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--accent); }
+strong { font-weight: 650; color: var(--ink); }
+
+/* ── Layout wrappers ─────────────────────────────────────────────────────── */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+.wrap-wide {
+  width: 100%;
+  max-width: var(--wrap-wide);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+main.wrap, main.wrap-wide { padding-bottom: 4rem; }
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.site-header {
+  background: var(--navy);
+  color: #eef2f6;
+}
+.header-inner {
+  max-width: var(--wrap-wide);
+  margin-inline: auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+.site-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-logo .logo-thin { font-weight: 300; opacity: 0.7; }
+.site-logo .logo-dot  { color: #9fb3c6; font-weight: 600; }
+
+.site-nav {
+  display: flex;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  color: rgba(255, 255, 255, 0.74);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.2rem 0;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { color: #fff; border-bottom-color: var(--accent); }
+
+/* ── Breadcrumb — quiet, small, out of the way ───────────────────────────── */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: 1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+}
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--navy); text-decoration: underline; }
+.breadcrumb .sep { color: var(--line-strong); margin: 0 0.4rem; }
+
+/* ── Page head ───────────────────────────────────────────────────────────── */
+.page-head { padding: 1.75rem 0 1.5rem; }
+.page-head h1 { margin-bottom: 0.4rem; }
+.lead {
+  font-size: 1.16rem;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 40ch;
+  margin: 0;
+}
+.page-head .lead { max-width: 52ch; }
+
+/* ── Calculator card — the hero. Framed, high on the page. ───────────────── */
+.calc-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--navy);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.5rem 2rem;
+  box-shadow: 0 1px 2px rgba(21, 41, 62, 0.05),
+              0 22px 40px -32px rgba(21, 41, 62, 0.55);
+}
+
+/* Fields */
+.field { margin-bottom: 1.15rem; }
+.field:last-of-type { margin-bottom: 1.4rem; }
+
+.field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.field .hint {
+  display: block;
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.72rem 0.9rem;
+  min-height: 3rem;                 /* comfortable tap target */
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.input::placeholder { color: #b3a992; }
+.input:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px var(--focus);
+}
+select.input {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2315293e' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Two-up field row on wider screens */
+.field-row { display: grid; gap: 1rem; }
+
+/* Checkbox field */
+.field.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.field.checkbox input { width: 1.15rem; height: 1.15rem; margin-top: 0.2rem; flex: none; }
+.field.checkbox label { margin: 0; font-weight: 500; color: var(--ink); }
+
+/* Primary button — navy, minimal, no gradient or heavy shadow */
+.btn {
+  display: inline-block;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.25rem;
+  min-height: 3.1rem;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+.btn:hover { background: var(--navy-soft); border-color: var(--navy-soft); }
+.btn:active { background: var(--navy-deep); }
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus); }
+
+/* ── Result block — the emphasis moment ──────────────────────────────────── */
+.result {
+  margin-top: 1.75rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+.result[hidden] { display: none; }
+.result-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 0.25rem;
+}
+.result-number {
+  font-size: clamp(2.6rem, 9vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--accent);              /* the single warm highlight */
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 0.5rem;
+}
+.result-reading {
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 1.25rem;
+  max-width: 46ch;
+}
+
+/* Breakdown rows */
+.breakdown { margin-top: 0.5rem; }
+.breakdown .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.98rem;
+}
+.breakdown .row span:first-child { color: var(--ink); }
+.breakdown .row .val {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.breakdown .row.total {
+  border-bottom: none;
+  border-top: 2px solid var(--navy);
+  margin-top: 0.35rem;
+  padding-top: 0.85rem;
+  font-weight: 700;
+}
+.breakdown .row.total span,
+.breakdown .row.total .val { color: var(--navy); }
+
+/* Stub notice (BC / QC not yet live) */
+.notice {
+  margin-top: 1.5rem;
+  padding: 1rem 1.15rem;
+  background: rgba(21, 41, 62, 0.04);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--navy-soft);
+  border-radius: var(--radius-sm);
+  font-size: 0.96rem;
+  color: var(--ink);
+}
+.notice[hidden] { display: none; }
+
+/* ── Content sections below the tool ─────────────────────────────────────── */
+.answer { margin-top: 3rem; }
+.answer h2 { margin-bottom: 0.7rem; }
+.answer p { max-width: 64ch; }
+
+/* FAQ — clean accordion, no playful chrome */
+.faq { margin-top: 3rem; }
+.faq h2 { margin-bottom: 1rem; }
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 0.25rem 0;
+}
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.85rem 2rem 0.85rem 0;
+  font-weight: 600;
+  color: var(--navy);
+  position: relative;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1;
+}
+.faq details[open] summary::after { content: "\2013"; } /* en-dash */
+.faq details p {
+  margin: 0 0 1rem;
+  max-width: 64ch;
+  color: var(--ink);
+}
+
+/* Related calculators */
+.related { margin-top: 3rem; }
+.related h2 { margin-bottom: 1rem; }
+
+.card-grid { display: grid; gap: 1rem; }
+
+.tool-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.25rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.12s ease, transform 0.12s ease;
+}
+.tool-card:hover { border-color: var(--navy-soft); transform: translateY(-2px); }
+.tool-card h3 { margin: 0 0 0.35rem; color: var(--navy); }
+.tool-card p { margin: 0; font-size: 0.95rem; color: var(--muted); }
+
+.disclaimer {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--navy-deep);
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 4rem;
+  padding: 2.75rem 0 2.25rem;
+  font-size: 0.94rem;
+}
+.footer-cols {
+  display: grid;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+.site-footer h4 {
+  color: #fff;
+  font-size: 0.98rem;
+  margin: 0 0 0.75rem;
+}
+.footer-brand {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.site-footer p { color: rgba(255, 255, 255, 0.7); max-width: 46ch; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin-bottom: 0.5rem; }
+.site-footer a { color: rgba(255, 255, 255, 0.78); text-decoration: none; }
+.site-footer a:hover { color: #fff; text-decoration: underline; text-decoration-color: var(--accent); }
+.footer-legal {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1.5rem;
+}
+.footer-legal p { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); max-width: 90ch; }
+
+/* ── Responsive — mobile-first scales up ─────────────────────────────────── */
+@media (min-width: 40rem) {
+  .calc-card { padding: 2.25rem 2.25rem 2.5rem; }
+  .btn { width: auto; min-width: 15rem; }
+  .field-row { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .footer-cols { grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; }
+}
+
+@media (min-width: 60rem) {
+  .page-head { padding-top: 2.5rem; }
+}

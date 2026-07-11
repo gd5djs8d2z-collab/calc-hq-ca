@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESA Termination Pay Calculator 2026 — Ontario Notice by Years of Service | calc-hq.ca</title>
+<meta name="description" content="How much termination pay are you owed in Ontario? Work out your statutory ESA notice — one week per year of service up to eight — and what it's worth in pay in lieu.">
+<link rel="canonical" href="https://calc-hq.ca/employment-standards/esa-termination/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ESA Termination Pay Calculator 2026 — Ontario Notice">
+<meta property="og:description" content="Your minimum statutory termination notice in Ontario, by length of service, and what it pays.">
+<meta property="og:url" content="https://calc-hq.ca/employment-standards/esa-termination/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Employment Standards","item":"https://calc-hq.ca/employment-standards/"},
+{"@type":"ListItem","position":3,"name":"ESA Termination Pay Calculator","item":"https://calc-hq.ca/employment-standards/esa-termination/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much termination pay am I owed in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Under Ontario's Employment Standards Act you're owed one week of notice, or pay in lieu of notice, for each completed year of service, up to a maximum of eight weeks. Under three months of service there's no entitlement; from three months to one year it's one week. So someone with five full years gets five weeks, and anyone with eight or more years is capped at eight. This is the statutory minimum only — common-law reasonable notice can be considerably more."}},
+{"@type":"Question","name":"How is ESA termination pay calculated?","acceptedAnswer":{"@type":"Answer","text":"Take your completed years of service, that's your number of weeks of notice (capped at eight). Multiply that by your regular weekly wage and you have the pay in lieu of notice the ESA guarantees. If your employer gives you working notice instead, you work through the notice period at your normal pay rather than receiving a lump sum."}},
+{"@type":"Question","name":"What is the difference between ESA termination pay and severance pay?","acceptedAnswer":{"@type":"Answer","text":"They're two separate ESA entitlements. Termination notice (one week per year, max eight) applies to almost everyone. Statutory severance pay is an additional amount that only applies when you have at least five years of service and your employer's payroll is $2.5 million or more, or a large group was let go. This calculator works out the termination notice, which is the part most people are owed."}},
+{"@type":"Question","name":"Is ESA notice the same as common-law reasonable notice?","acceptedAnswer":{"@type":"Answer","text":"No, and this is where many people are short-changed. The ESA minimum caps at eight weeks, but common-law reasonable notice — what a court would award a non-unionized employee dismissed without cause — often runs to a month per year of service or more, sometimes 18 to 24 months for long-serving senior staff. If you were let go, the ESA figure is your floor, not your ceiling. Speak to an employment lawyer before signing anything."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/employment-standards/">Employment Standards</a><span class="sep">›</span>
+    <span>ESA Termination Pay</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>ESA Termination Pay Calculator (2026)</h1>
+    <p class="lead">If your job in Ontario ended without cause, the Employment Standards Act sets the minimum notice you're owed — one week per year of service, capped at eight. Enter your length of service and weekly pay to see the statutory floor.</p>
+  </div>
+
+  <section class="calc-card" aria-label="ESA termination pay calculator">
+    <div class="field">
+      <label for="years">Completed years of service</label>
+      <input class="input" id="years" type="text" inputmode="numeric" placeholder="5" value="5">
+    </div>
+    <div class="field">
+      <label for="months">Additional months
+        <span class="hint">On top of the full years — for the under-one-year rule</span>
+      </label>
+      <input class="input" id="months" type="text" inputmode="numeric" placeholder="0" value="0">
+    </div>
+    <div class="field input-money">
+      <label for="wage">Regular weekly wage
+        <span class="hint">Your normal weekly pay, before deductions</span>
+      </label>
+      <input class="input" id="wage" type="text" inputmode="numeric" placeholder="1,200" value="1,200">
+    </div>
+    <button class="btn" id="go" type="button">Calculate my termination pay</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Statutory pay in lieu of notice</p>
+      <p class="result-number" id="pay">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>How Ontario's termination notice works</h2>
+    <p>The ESA rule is a ladder. Under three months of service you get nothing. From three months to just under a year, it's one week. After that it's one week of notice for every completed year of service — two years earns two weeks, six years earns six — until it stops at eight weeks. Reaching eight years locks in the maximum; extra service beyond that doesn't add to the statutory figure.</p>
+    <p>Your employer can hand you that time as working notice, where you stay on and get paid as normal through the period, or as a lump sum of pay in lieu — your weekly wage times the number of weeks. That lump sum is what this calculator shows. What it does not show is common-law reasonable notice, which is a separate and usually far larger entitlement decided case by case. Treat the number here as the legal minimum, and get advice before you accept a package built on it.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much termination pay am I owed in Ontario?</summary>
+      <p>One week of notice, or pay in lieu, per completed year of service, capped at eight weeks. Under three months you get nothing; three months to a year is one week. Five full years is five weeks; eight or more years caps at eight. This is the ESA minimum, not common-law notice.</p>
+    </details>
+    <details><summary>How is ESA termination pay calculated?</summary>
+      <p>Your completed years of service is your number of weeks (max eight). Multiply that by your regular weekly wage for the pay in lieu of notice. If you're given working notice instead, you keep working at normal pay rather than taking a lump sum.</p>
+    </details>
+    <details><summary>What's the difference between termination pay and severance pay?</summary>
+      <p>Two separate ESA entitlements. Termination notice (one week per year, max eight) covers almost everyone. Statutory severance is extra and only applies with five-plus years of service and an employer payroll of $2.5 million or more. This tool calculates the notice.</p>
+    </details>
+    <details><summary>Is ESA notice the same as common-law reasonable notice?</summary>
+      <p>No. The ESA minimum caps at eight weeks, but common-law reasonable notice often runs closer to a month per year of service, sometimes 18–24 months for long-serving senior staff. The ESA figure is your floor. Talk to an employment lawyer before signing a release.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/ei/"><h3>EI Calculator</h3><p>What you'd get in weekly benefits after the job ends.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Work out the weekly wage figure to enter above.</p></a>
+    </div>
+    <p class="disclaimer">Statutory ESA minimums only, for general information — not legal advice. Common-law reasonable notice is separate and often larger. Confirm your entitlement with the Ontario Ministry of Labour or an employment lawyer.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/employment-standards/esa-termination/">ESA Termination Pay</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { ONTARIO_ESA } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+function run() {
+  const years = Math.max(0, Math.floor(parseMoney(el('years').value)));
+  const months = Math.max(0, Math.floor(parseMoney(el('months').value)));
+  const wage = parseMoney(el('wage').value);
+
+  const weeks = ONTARIO_ESA.noticeWeeks(years, months);
+  const pay = weeks * wage;
+
+  el('pay').textContent = formatCurrency(pay);
+  const totalMonths = years * 12 + months;
+  let reading;
+  if (weeks === 0) {
+    reading = "Under three months of service, the ESA gives no termination notice yet.";
+  } else if (weeks >= ONTARIO_ESA.noticeCapWeeks) {
+    reading = `You're at the ${ONTARIO_ESA.noticeCapWeeks}-week ceiling — the ESA statutory notice doesn't grow past this, however long you stayed.`;
+  } else if (totalMonths < 12) {
+    reading = "Between three months and one year, the ESA guarantees one week of notice.";
+  } else {
+    reading = `That's ${weeks} weeks of notice — one for each completed year of service.`;
+  }
+  el('reading').textContent = reading;
+
+  el('breakdown').innerHTML =
+    `<div class="row"><span>Statutory notice</span><span class="val">${weeks} week${weeks === 1 ? '' : 's'}</span></div>`
+    + `<div class="row"><span>Regular weekly wage</span><span class="val">${formatCurrency(wage)}</span></div>`
+    + `<div class="row total"><span>Pay in lieu of notice</span><span class="val">${formatCurrency(pay)}</span></div>`;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['years','months','wage'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

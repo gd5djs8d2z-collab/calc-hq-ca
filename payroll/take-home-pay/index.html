@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Take-Home Pay Calculator 2026 — Net Pay After Tax (Ontario &amp; Alberta) | calc-hq.ca</title>
+<meta name="description" content="See your 2026 take-home pay after federal and provincial tax, CPP and EI. Ontario surtax and health premium included. Shows net pay per year, month and biweekly paycheque.">
+<link rel="canonical" href="https://calc-hq.ca/payroll/take-home-pay/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Take-Home Pay Calculator 2026 — Net Pay After Tax">
+<meta property="og:description" content="What actually lands in your account after tax, CPP and EI in 2026 — including the Ontario surtax most calculators skip.">
+<meta property="og:url" content="https://calc-hq.ca/payroll/take-home-pay/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Payroll & Take-Home","item":"https://calc-hq.ca/payroll/"},
+{"@type":"ListItem","position":3,"name":"Take-Home Pay Calculator","item":"https://calc-hq.ca/payroll/take-home-pay/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the Ontario surtax and when does it apply in 2026?","acceptedAnswer":{"@type":"Answer","text":"Ontario adds a surtax on top of your basic Ontario tax — not on your income. In 2026 you pay 20% on the portion of basic Ontario tax above $5,818, and another 36% on the portion above $7,446. Because it stacks on the tax rather than the income, it only starts biting around the low-six-figure salary range. This calculator applies both thresholds automatically."}},
+{"@type":"Question","name":"How do I work out my take-home pay per biweekly paycheque?","acceptedAnswer":{"@type":"Answer","text":"Take your annual net pay and divide by 26 to get the biweekly figure, or by 52 for weekly. On a biweekly schedule a $1,680 net paycheque works out to roughly $43,680 net per year before rounding. Set the pay frequency in the calculator and it shows the per-paycheque number for you."}},
+{"@type":"Question","name":"What gets deducted from my net pay in 2026?","acceptedAnswer":{"@type":"Answer","text":"Four things come off an employment paycheque: federal income tax, provincial income tax, CPP (5.95% up to $74,600 in pensionable earnings, plus CPP2 on earnings to $85,000), and EI (1.63% up to $68,900 of insurable earnings). In Ontario you may also owe the surtax and the Ontario Health Premium. This tool breaks out each line so you can see where the money goes."}},
+{"@type":"Question","name":"Does this calculate take-home pay on pension income?","acceptedAnswer":{"@type":"Answer","text":"Not exactly. This tool models employment income, where CPP and EI are withheld. Pension income (like CPP retirement or a workplace pension) isn't subject to CPP or EI, so its take-home is higher for the same gross. Use this for salary and wages; treat it as an upper-bound estimate for pension income."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/payroll/">Payroll &amp; Take-Home</a><span class="sep">›</span>
+    <span>Take-Home Pay</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Take-Home Pay Calculator (2026)</h1>
+    <p class="lead">Enter your salary and see what actually lands in your account after tax, CPP and EI — including the Ontario surtax and health premium most calculators leave out.</p>
+  </div>
+
+  <!-- 1. The calculator (the hero) -->
+  <section class="calc-card" aria-label="Take-home pay calculator">
+    <div class="field input-money">
+      <label for="salary">Annual gross salary</label>
+      <input class="input" id="salary" type="text" inputmode="numeric" placeholder="65,000" value="65,000">
+    </div>
+    <div class="field-row cols-2">
+      <div class="field">
+        <label for="province">Province</label>
+        <select class="input" id="province">
+          <option value="ON" selected>Ontario</option>
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia (coming soon)</option>
+          <option value="QC">Quebec (coming soon)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="frequency">Show pay per</label>
+        <select class="input" id="frequency">
+          <option value="26" selected>Bi-weekly (26/yr)</option>
+          <option value="24">Semi-monthly (24/yr)</option>
+          <option value="12">Monthly</option>
+          <option value="52">Weekly</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="go" type="button">Calculate take-home pay</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Your take-home pay</p>
+      <p class="result-number" id="net">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="stub" hidden></div>
+  </section>
+
+  <!-- 2. Plain-language answer block -->
+  <section class="answer">
+    <h2>What your take-home pay actually is</h2>
+    <p>Your take-home pay is your gross salary minus federal tax, provincial tax, CPP and EI. On a $65,000 Ontario salary in 2026, that lands a little over $50,000 net — roughly 22–24% comes off before it reaches you. The exact bite depends on your province and how far your income climbs into the higher brackets.</p>
+    <p>Two Ontario-specific line items catch people out. The <strong>surtax</strong> adds 20% and then 36% on top of your basic Ontario tax once it passes $5,818 and $7,446, and the <strong>Ontario Health Premium</strong> adds up to $600 once your income clears $20,000. Both are built into the number above, so what you see is closer to your real paycheque than a plain bracket calculator.</p>
+  </section>
+
+  <!-- 5. FAQ (mirrors JSON-LD) -->
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>What is the Ontario surtax and when does it apply in 2026?</summary>
+      <p>Ontario adds a surtax on top of your basic Ontario tax — not on your income. In 2026 you pay 20% on the portion of basic Ontario tax above $5,818, and another 36% on the portion above $7,446. Because it stacks on the tax rather than the income, it only starts biting around the low-six-figure salary range. This calculator applies both thresholds automatically.</p>
+    </details>
+    <details><summary>How do I work out my take-home pay per biweekly paycheque?</summary>
+      <p>Take your annual net pay and divide by 26 for biweekly, or by 52 for weekly. A $1,680 net biweekly paycheque is about $43,680 net per year before rounding. Set the pay frequency above and the calculator shows the per-paycheque number for you.</p>
+    </details>
+    <details><summary>What gets deducted from my net pay in 2026?</summary>
+      <p>Federal income tax, provincial income tax, CPP (5.95% up to $74,600 in pensionable earnings, plus CPP2 on earnings to $85,000), and EI (1.63% up to $68,900 of insurable earnings). In Ontario you may also owe the surtax and the Ontario Health Premium. The breakdown above splits out every line.</p>
+    </details>
+    <details><summary>Does this calculate take-home pay on pension income?</summary>
+      <p>Not exactly. This models employment income, where CPP and EI are withheld. Pension income isn't subject to CPP or EI, so its take-home is higher for the same gross. Use this for salary and wages, and treat it as an upper bound for pension income.</p>
+    </details>
+  </section>
+
+  <!-- 6. Related calculators (siblings in the same category) -->
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/payroll/pay-raise/"><h3>Pay Raise Calculator</h3><p>See how much of your next raise you actually keep after tax.</p></a>
+      <a class="tool-card" href="/payroll/self-employed-tax/"><h3>Self-Employed Tax Calculator</h3><p>CPP at the double rate, HST threshold, and tax set-aside for freelancers.</p></a>
+    </div>
+    <p class="disclaimer">Estimates for the 2026 tax year using published CRA and provincial figures. For general guidance only — confirm your own numbers with the CRA before relying on them.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcTakeHome, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
+import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+
+const freqLabel = { '52':'week', '26':'biweekly paycheque', '24':'semi-monthly paycheque', '12':'month' };
+
+function run() {
+  const gross = parseMoney(el('salary').value);
+  const code = el('province').value;
+  const result = el('result'), stub = el('stub');
+
+  const stubMsg = isLiveProvince(code) ? null : provinceStub(code);
+  if (stubMsg) { result.hidden = true; stub.hidden = false; stub.textContent = stubMsg; return; }
+  stub.hidden = true;
+
+  const t = calcTakeHome(gross, code);
+  const per = parseInt(el('frequency').value, 10);
+  const perPay = t.net / per;
+
+  el('net').textContent = formatCurrency(t.net);
+  el('reading').textContent =
+    `That's ${formatCurrency(perPay)} per ${freqLabel[String(per)]} — you keep ${(100 - t.averageRate*100).toFixed(0)}% of a ${formatCurrency(gross)} salary.`;
+
+  const rows = [
+    ['Gross salary', t.gross],
+    ['Federal tax', -t.federalTax],
+    ['Provincial tax', -t.provincialTax],
+    ['CPP', -t.cpp],
+    ['EI', -t.ei],
+  ];
+  let html = rows.map(([k,v]) =>
+    `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${formatCurrency(Math.abs(v))}</span></div>`).join('');
+  html += `<div class="row total"><span>Net take-home pay</span><span class="val">${formatCurrency(t.net)}</span></div>`;
+  el('breakdown').innerHTML = html;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['salary','province','frequency'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
