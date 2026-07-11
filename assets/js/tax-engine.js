@@ -85,13 +85,13 @@ function federalBPA(netIncome) {
   return b.max - (b.max - b.min) * frac;
 }
 
-function ontarioHealthPremium(taxableIncome, prov) {
+function ontarioHealthPremium(taxableIncome) {
   if (taxableIncome <= 20000) return 0;
   if (taxableIncome <= 36000) return Math.min(300, 0.06 * (taxableIncome - 20000));
   if (taxableIncome <= 48000) return Math.min(450, 300 + 0.06 * (taxableIncome - 36000));
-  if (taxableIncome <= 72000) return Math.min(600, 450 + 0.25 * (taxableIncome - 48000));
-  // [VERIFY] slabs above $72k not locked — hold at last confirmed level.
-  return prov.healthPremiumHeldMax;
+  if (taxableIncome <= 72000)  return Math.min(600, 450 + 0.25 * (taxableIncome - 48000));
+  if (taxableIncome <= 200000) return Math.min(750, 600 + 0.25 * (taxableIncome - 72000));
+  return Math.min(900, 750 + 0.25 * (taxableIncome - 200000)); // [CRA] T4032-ON 2026
 }
 
 function provincialTax(taxableIncome, code, { cppBase, eiPremium }) {
@@ -105,7 +105,7 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium }) {
   for (const t of (prov.surtax || [])) {
     if (basic > t.over) surtax += (basic - t.over) * t.rate;
   }
-  const health = code === 'ON' ? ontarioHealthPremium(taxableIncome, prov) : 0;
+  const health = code === 'ON' ? ontarioHealthPremium(taxableIncome) : 0;
   return { basic, surtax, health, total: basic + surtax + health };
 }
 

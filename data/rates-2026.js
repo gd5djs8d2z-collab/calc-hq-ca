@@ -108,18 +108,17 @@ export const PROVINCES = {
       { over: 5818, rate: 0.20 }, // [CRA] 20% on basic ON tax over $5,818
       { over: 7446, rate: 0.36 }, // [CRA] +36% on basic ON tax over $7,446 (cumulative)
     ],
-    // [CRA] Ontario Health Premium — flat slabs, added after tax. Lower tiers confirmed;
-    // upper tiers (>$72k up to the $900 max) truncated in source — [VERIFY] before ship.
-    // This build holds the premium at the last CONFIRMED level ($600) for income above
-    // $72,000 rather than inventing the $750/$900 slabs. Update when the slabs are locked.
+    // [CRA] Ontario Health Premium — flat slabs, added after tax. Full 2026 schedule
+    // per CRA T4032-ON: six bands, not indexed, topping out at $900 above ~$200,600.
     healthPremium: [
       { upTo: 20000, premium: 0 },
-      { upTo: 36000, formula: 'lesser(300, 0.06*(income-20000))' },  // [CRA]
-      { upTo: 48000, formula: 'lesser(450, 300+0.06*(income-36000))' }, // [CRA]
-      { upTo: 72000, formula: 'lesser(600, 450+0.25*(income-48000))' }, // [CRA]
-      // [VERIFY] $72,001–$200,000 → up to $750; >$200,000 → up to $900. Confirm slabs.
+      { upTo: 36000, formula: 'lesser(300, 0.06*(income-20000))' },     // [CRA]
+      { upTo: 48000, formula: 'lesser(450, 300+0.06*(income-36000))' },   // [CRA]
+      { upTo: 72000, formula: 'lesser(600, 450+0.25*(income-48000))' },   // [CRA]
+      { upTo: 200000, formula: 'lesser(750, 600+0.25*(income-72000))' },   // [CRA]
+      { upTo: Infinity, formula: 'lesser(900, 750+0.25*(income-200000))' }, // [CRA]
     ],
-    healthPremiumHeldMax: 600, // [VERIFY] conservative cap for income > $72,000
+    healthPremiumMax: 900, // [CRA] OHP tops out at $900
   },
 
   /* ALBERTA — BPA + first-bracket rate CRA-confirmed; thresholds 3P. */
