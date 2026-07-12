@@ -22,8 +22,8 @@
   --muted:       #6f665a;   /* labels, hints, quiet meta */
 
   /* One warm accent — muted amber/gold. Used sparingly: the hero result number. */
-  --accent:      #b56f3a;
-  --accent-deep: #98592b;
+  --accent:      #c8102e;
+  --accent-deep: #a30d25;
 
   /* Hairlines / borders — warm, subtle, never heavy. */
   --line:        #e4dcca;
