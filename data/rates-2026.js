@@ -45,9 +45,11 @@ export const FEDERAL = {
     phaseOutEnd: 258482,   // [CRA]
     creditRate: 0.14,      // credit = BPA * lowest rate
   },
-  // [CRA] Canada Employment Amount — credit value maxes at $210.14 (= CEA base * 14%).
-  // Pull the CEA base amount from T4032 Chart 1 if you model it explicitly. [VERIFY base]
+  // [CRA] Canada Employment Amount — credit value maxes at $210.14 (= CEA base × 14%).
+  // Base verified $1,501 from CRA T4032 (Rev.26): "the federal CEA is the lesser of
+  // $1,501 and employment income". Yukon parallels this credit at its lowest rate.
   canadaEmploymentAmountMaxCredit: 210.14,
+  canadaEmploymentAmountBase: 1501,
 };
 
 /* ── CPP / CPP2 (federal, all provinces except Quebec → see QPP note) ─────── */
@@ -288,6 +290,65 @@ export const PROVINCES = {
     healthPremium: [],
   },
 
+  /* ── TERRITORIES — verified 2026-07-13 against CRA T4032 (Rev. 26, Jan 1 2026),
+       one territorial table each. Yukon additionally cross-checked against yukon.ca
+       (rates + income-tested BPA match; no PEI-style lag). None has a surtax. */
+
+  /* YUKON — [CRA T4032-YT Rev.26 + yukon.ca]. Two Yukon-specific features:
+     (1) it uses the FEDERAL income-tested basic personal amount (max $16,452,
+     min $14,829, phasing between $181,440 and $258,482 of net income); and
+     (2) it grants a territorial Canada Employment Amount credit ($1,501 base at
+     the lowest rate) — both modelled below. Top rate 15% starts at $500,000. */
+  YT: {
+    name: 'Yukon',
+    indexation: 0.02,
+    brackets: [
+      { min: 0,      max: 58523,    rate: 0.0640 },
+      { min: 58523,  max: 117045,   rate: 0.0900 },
+      { min: 117045, max: 181440,   rate: 0.1090 },
+      { min: 181440, max: 500000,   rate: 0.1280 },
+      { min: 500000, max: Infinity, rate: 0.1500 },
+    ],
+    bpa: 16452, // reference (maximum); phase-out below governs the actual amount
+    bpaPhaseOut: { max: 16452, min: 14829, phaseOutStart: 181440, phaseOutEnd: 258482 },
+    bpaCreditRate: 0.064,
+    includesCanadaEmploymentAmount: true,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* NORTHWEST TERRITORIES — [CRA T4032-NT Rev.26]. Notably high flat BPA. No surtax. */
+  NT: {
+    name: 'Northwest Territories',
+    indexation: 0.02,
+    brackets: [
+      { min: 0,      max: 53003,    rate: 0.0590 },
+      { min: 53003,  max: 106009,   rate: 0.0860 },
+      { min: 106009, max: 172346,   rate: 0.1220 },
+      { min: 172346, max: Infinity, rate: 0.1405 },
+    ],
+    bpa: 18198,
+    bpaCreditRate: 0.059,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* NUNAVUT — [CRA T4032-NU Rev.26]. Highest BPA in Canada; lowest rates. No surtax. */
+  NU: {
+    name: 'Nunavut',
+    indexation: 0.02,
+    brackets: [
+      { min: 0,      max: 55801,    rate: 0.0400 },
+      { min: 55801,  max: 111602,   rate: 0.0700 },
+      { min: 111602, max: 181439,   rate: 0.0900 },
+      { min: 181439, max: Infinity, rate: 0.1150 },
+    ],
+    bpa: 19659,
+    bpaCreditRate: 0.04,
+    surtax: [],
+    healthPremium: [],
+  },
+
   /* QUEBEC — STUB. DO NOT auto-generate from the pattern above. Separate build. */
   QC: {
     name: 'Quebec',
@@ -304,19 +365,19 @@ export const PROVINCES = {
 };
 
 /* ── STILL TO ADD ────────────────────────────────────────────────────────── */
-// Territories YT, NT, NU (add each from its T4032 page using the AB shape).
-// Quebec (QC) needs QPP/QPIP/federal-abatement math — a separate build, stays gated.
+// Quebec (QC) only — it needs QPP/QPIP/federal-abatement math, a separate build,
+// and stays gated. Every other province and territory is now live.
 
 /* ── SHIP GATE ───────────────────────────────────────────────────────────── */
-// Which provinces the calculators are allowed to compute for in THIS build.
-// All ten provinces except Quebec are live. QC remains reference-only ("coming
-// soon") — QPP/QPIP/abatement not yet modelled.
+// Which jurisdictions the calculators are allowed to compute for in THIS build.
+// Everywhere except Quebec is live. QC remains reference-only ("coming soon") —
+// QPP/QPIP/abatement not yet modelled.
 export const PROVINCE_STATUS = {
-  ON: 'live', AB: 'live', BC: 'live', SK: 'live', MB: 'live',
-  NS: 'live', NB: 'live', NL: 'live', PE: 'live', QC: 'stub',
+  ON: 'live', AB: 'live', BC: 'live', SK: 'live', MB: 'live', NS: 'live',
+  NB: 'live', NL: 'live', PE: 'live', YT: 'live', NT: 'live', NU: 'live', QC: 'stub',
 };
-export const LIVE_PROVINCES = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE'];
-export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'QC'];
+export const LIVE_PROVINCES = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU'];
+export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU', 'QC'];
 
 /* ── ONTARIO EMPLOYMENT STANDARDS ACT — statutory termination notice ──────── */
 // [ESA] Ontario ESA s.57 — minimum notice / pay in lieu on termination. Statutory

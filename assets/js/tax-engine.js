@@ -107,10 +107,27 @@ function provincialTaxReduction(prov, netIncome) {
   return Math.max(0, tr.base - Math.max(0, netIncome - tr.threshold) * tr.rate);
 }
 
-function provincialTax(taxableIncome, code, { cppBase, eiPremium }) {
+/**
+ * Provincial basic personal amount. Flat for most jurisdictions; Yukon uses the
+ * federal income-tested BPA (max down to min across a net-income band), so a
+ * province may instead define `bpaPhaseOut`.
+ */
+function provincialBPA(prov, netIncome) {
+  const p = prov.bpaPhaseOut;
+  if (!p) return prov.bpa;
+  if (netIncome <= p.phaseOutStart) return p.max;
+  if (netIncome >= p.phaseOutEnd) return p.min;
+  const frac = (netIncome - p.phaseOutStart) / (p.phaseOutEnd - p.phaseOutStart);
+  return p.max - (p.max - p.min) * frac;
+}
+
+function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome }) {
   const prov = PROVINCES[code];
   let basic = bracketTax(taxableIncome, prov.brackets);
-  const credits = (prov.bpa + cppBase + eiPremium) * prov.bpaCreditRate;
+  // Credit base: BPA + CPP base + EI, plus (Yukon only) the Canada Employment Amount.
+  let creditBase = provincialBPA(prov, netIncome) + cppBase + eiPremium;
+  if (prov.includesCanadaEmploymentAmount) creditBase += FEDERAL.canadaEmploymentAmountBase;
+  const credits = creditBase * prov.bpaCreditRate;
   basic = Math.max(0, basic - credits);
 
   // Provincial tax reduction (e.g. BC's low-income reduction) — capped at tax payable.
@@ -144,7 +161,7 @@ export function calcTakeHome(gross, code) {
   // Enhanced CPP is deductible from taxable income.
   const taxable = Math.max(0, gross - cpp.enhanced);
   const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: ei.premium });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: ei.premium });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: ei.premium, netIncome: gross });
 
   const totalTax = fed + prov.total;
   const totalDeductions = totalTax + cpp.employee + ei.premium;
@@ -224,7 +241,7 @@ export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } 
   // Enhanced CPP (on the employee-equivalent share) is also deductible.
   const taxable = Math.max(0, netBusinessIncome - halfCppDeduction - cpp.enhanced);
   const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: ei.premium });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: ei.premium });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: ei.premium, netIncome: netBusinessIncome });
 
   const incomeTax = fed + prov.total;
   const totalObligation = incomeTax + cpp.total + ei.premium;
