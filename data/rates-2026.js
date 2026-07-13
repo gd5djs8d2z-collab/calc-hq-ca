@@ -190,19 +190,53 @@ export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'QC'];
 
 /* ── ONTARIO EMPLOYMENT STANDARDS ACT — statutory termination notice ──────── */
 // [ESA] Ontario ESA s.57 — minimum notice / pay in lieu on termination. Statutory
-// only; this is NOT common-law reasonable notice. Source:
+// only; this is NOT common-law reasonable notice. Verified 2026-07-12 against:
 // https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment
-// Rule: <3 months = 0; 3 months–<1 yr = 1 week; 1 week per completed year after that,
-// capped at 8 weeks (8+ years of service).
+// Official ladder (employee continuously employed 3+ months):
+//   < 3 months .............. 0 weeks (no ESA notice yet)
+//   3 months – < 1 year ..... 1 week
+//   1 year   – < 3 years .... 2 weeks
+//   3 years  – < 4 years .... 3 weeks
+//   4 years  – < 5 years .... 4 weeks
+//   5 years  – < 6 years .... 5 weeks
+//   6 years  – < 7 years .... 6 weeks
+//   7 years  – < 8 years .... 7 weeks
+//   8 years or more ......... 8 weeks (cap)
 export const ONTARIO_ESA = {
   noticeCapWeeks: 8,
   // Returns statutory notice weeks for a given length of service.
   noticeWeeks(years, months) {
     const totalMonths = years * 12 + months;
-    if (totalMonths < 3) return 0;
-    if (totalMonths < 12) return 1;
-    return Math.min(years, 8);
+    if (totalMonths < 3) return 0;   // no entitlement
+    if (totalMonths < 12) return 1;  // 3 months to just under a year
+    if (totalMonths < 36) return 2;  // 1 year to just under 3 years
+    return Math.min(years, 8);       // 3 years+: one week per completed year, cap 8
   },
-  // [ESA] Statutory severance pay (s.64) is a SEPARATE entitlement (payroll ≥ $2.5M and
-  // ≥5 years service). Surfaced in copy only — this build calculates notice, not severance.
+
+  // [ESA] Statutory SEVERANCE PAY (s.64) — a SEPARATE entitlement from notice above.
+  // Verified 2026-07-12 against:
+  // https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay
+  // Qualifies when the employee has 5+ years of employment AND either:
+  //   (a) the employer has a global payroll of at least $2.5 million; OR
+  //   (b) the employer severed 50+ employees in a 6-month period because all or part
+  //       of the business permanently closed.
+  // Amount = regular weekly wages × (completed years + completed months ÷ 12),
+  // to a maximum of 26 weeks.
+  severance: {
+    minYearsService: 5,
+    payrollThreshold: 2500000, // $2.5M global payroll
+    massTerminationEmployees: 50,
+    massTerminationMonths: 6,
+    maxWeeks: 26,
+    // Severance weeks for a qualifying employee (before the cap the caller may re-show).
+    weeks(years, months) {
+      const partial = Math.min(11, Math.max(0, Math.floor(months))) / 12;
+      return Math.min(years + partial, 26);
+    },
+    // True only when the 5-year service floor AND a payroll/mass-termination route are met.
+    qualifies(years, months, payrollAtLeast25M, massClosure) {
+      const totalMonths = years * 12 + months;
+      return totalMonths >= 60 && (payrollAtLeast25M || massClosure);
+    },
+  },
 };

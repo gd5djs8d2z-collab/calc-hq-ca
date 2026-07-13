@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Severance Pay Calculator 2026 — ESA s.64 (5+ Years, $2.5M Payroll) | calc-hq.ca</title>
+<meta name="description" content="Do you qualify for statutory severance pay in Ontario? Check the ESA s.64 test — five years' service and a $2.5M payroll — and estimate the weeks and dollars you're owed.">
+<link rel="canonical" href="https://calc-hq.ca/employment-standards/severance-pay/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ontario Severance Pay Calculator 2026 — ESA s.64">
+<meta property="og:description" content="Check whether you qualify for statutory severance pay in Ontario and estimate what it's worth.">
+<meta property="og:url" content="https://calc-hq.ca/employment-standards/severance-pay/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Employment Standards","item":"https://calc-hq.ca/employment-standards/"},
+{"@type":"ListItem","position":3,"name":"Severance Pay Calculator","item":"https://calc-hq.ca/employment-standards/severance-pay/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Who qualifies for statutory severance pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Under ESA s.64 you qualify when you've worked for the employer for five or more years and the employer has a global payroll of at least $2.5 million. There's a second route: you also qualify if the employer severed 50 or more employees in a six-month period because all or part of the business permanently closed, even below the payroll threshold. If you have under five years of service you don't get statutory severance at all — but you may still be owed termination notice, which is a separate entitlement."}},
+{"@type":"Question","name":"How is severance pay calculated in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Multiply your regular weekly wages by your length of service, counting each completed year plus any leftover completed months divided by twelve. Someone with seven years and six months gets 7.5 weeks of pay; ten years and three months gets 10.25 weeks. Statutory severance is capped at 26 weeks, so service beyond that stops adding to the ESA figure."}},
+{"@type":"Question","name":"What is the difference between severance pay and termination pay?","acceptedAnswer":{"@type":"Answer","text":"They're two separate ESA entitlements and you can be owed both at once. Termination notice — one to eight weeks depending on service — applies to almost everyone. Statutory severance pay is extra and only applies when you clear the s.64 test: five-plus years of service and a $2.5 million payroll, or a 50-employee closure. Notice compensates for the lost warning; severance compensates for the loss of a long-service job."}},
+{"@type":"Question","name":"Does the $2.5 million payroll mean Ontario payroll or the whole company?","acceptedAnswer":{"@type":"Answer","text":"It's the employer's total payroll, and courts have read that as the employer's global payroll — not just the Ontario portion. So an employer with a small Ontario office but a $2.5 million payroll across all its operations can still trigger statutory severance. If your employer is part of a larger organization, don't assume you're under the threshold. This is one of the details worth confirming with an employment lawyer."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/employment-standards/">Employment Standards</a><span class="sep">›</span>
+    <span>Severance Pay</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Ontario Severance Pay Calculator (2026)</h1>
+    <p class="lead">Statutory severance pay is a separate entitlement from termination notice, and it only kicks in past a specific threshold. Check whether you clear the ESA s.64 test, then see what the weeks are worth.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Ontario severance pay calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="years">Completed years of service</label>
+        <input class="input" id="years" type="text" inputmode="numeric" placeholder="7" value="7">
+      </div>
+      <div class="field">
+        <label for="months">Additional months
+          <span class="hint">Leftover completed months on top of the years</span>
+        </label>
+        <input class="input" id="months" type="text" inputmode="numeric" placeholder="6" value="6">
+      </div>
+    </div>
+    <div class="field input-money">
+      <label for="wage">Regular weekly wages
+        <span class="hint">Your normal weekly pay for a regular work week, before deductions</span>
+      </label>
+      <input class="input" id="wage" type="text" inputmode="numeric" placeholder="1,500" value="1,500">
+    </div>
+    <div class="field">
+      <label for="payroll">Employer's total payroll</label>
+      <select class="input" id="payroll">
+        <option value="yes">$2.5 million or more</option>
+        <option value="no">Under $2.5 million</option>
+        <option value="closure">Under $2.5M, but 50+ let go in a 6-month closure</option>
+        <option value="unsure">Not sure</option>
+      </select>
+    </div>
+    <button class="btn" id="go" type="button">Check my severance</button>
+
+    <div class="result" id="result" hidden>
+      <span class="eligibility" id="badge"></span>
+      <p class="result-label">Estimated statutory severance pay</p>
+      <p class="result-number" id="pay">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+
+    <div class="notice" id="unsure-note" hidden>
+      If you're not sure of the payroll size, ask your employer or check for it in a collective agreement or company filing. The threshold is the employer's <em>total</em> payroll — often read by courts as global payroll, not just the Ontario office — so a small local team can still be over the line.
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>The s.64 test, in plain terms</h2>
+    <p>Statutory severance pay isn't for everyone who loses a job. It's aimed at long-service employees at sizeable employers, and the Employment Standards Act sets two doors into it. You need five or more years with the employer, and then either of the following:</p>
+    <ul class="conditions">
+      <li>The employer has a payroll of <strong>$2.5 million or more</strong>. Courts have generally read this as the employer's <em>global</em> payroll, not only the Ontario part — so being at a small local branch of a larger company doesn't automatically put you under the threshold.</li>
+      <li>The employer <strong>severed 50 or more employees</strong> in a six-month period because all or part of the business permanently closed. This route can qualify you even if the payroll is under $2.5 million.</li>
+    </ul>
+    <p>Miss the five-year floor and there's no statutory severance — full stop. That doesn't mean you walk away with nothing: termination notice is a separate entitlement that starts at three months of service, and common-law reasonable notice can be larger still.</p>
+  </section>
+
+  <section class="answer">
+    <h2>How the amount is worked out</h2>
+    <p>The formula is straightforward once you qualify: your regular weekly wages times your length of service, where a part-year is counted by its completed months over twelve. Seven years and six months is 7.5 weeks; ten years and three months is 10.25 weeks. The ESA caps statutory severance at <strong>26 weeks</strong>, so once you pass 26 years of service the number stops climbing.</p>
+    <p>This sits on top of termination notice, not instead of it. A qualifying employee with long service can collect up to eight weeks of notice pay and up to 26 weeks of severance — two separate cheques the ESA treats as two separate rights. The calculator above estimates the severance half. Work out the notice half on the <a href="/employment-standards/esa-termination/">ESA termination pay calculator</a>.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Statutory floor vs. common-law — read this before you sign</h2>
+    <p>Everything above is the ESA <em>statutory</em> figure — the legislated minimum. It is not the ceiling. A non-unionized employee dismissed without cause is usually owed common-law reasonable notice instead, which is decided as a range, not a formula: a court weighs your age, your length of service, the seniority of your role, and how realistic it is to find comparable work. As a rough band that often works out between about three weeks and a month for every year of service and rarely runs past 24 months — frequently far more than the statutory severance number here.</p>
+    <p>An offer that pays only the ESA minimum, packaged with a release to sign, is common. Signing it typically closes the door on the larger common-law claim. If you've been given a package, treat this estimate as a starting reference and get an employment lawyer to look at the actual paperwork before you sign anything.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Who qualifies for statutory severance pay in Ontario?</summary>
+      <p>You need five or more years with the employer, plus either a payroll of $2.5 million or more, or a permanent closure that severed 50+ employees in six months. Under five years, there's no statutory severance — though you may still be owed termination notice.</p>
+    </details>
+    <details><summary>How is severance pay calculated?</summary>
+      <p>Regular weekly wages times length of service — each completed year, plus leftover completed months divided by twelve. Seven years six months is 7.5 weeks; the ESA caps the total at 26 weeks.</p>
+    </details>
+    <details><summary>What's the difference between severance pay and termination pay?</summary>
+      <p>Two separate ESA entitlements you can be owed at the same time. Termination notice (one to eight weeks by service) covers almost everyone; statutory severance is extra and only applies once you clear the s.64 test of five-plus years and a $2.5 million payroll.</p>
+    </details>
+    <details><summary>Does the $2.5 million payroll mean Ontario payroll or the whole company?</summary>
+      <p>The employer's total payroll, which courts have read as global — not just the Ontario portion. A small Ontario office inside a larger organization can still be over the threshold, so don't assume you're under it.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/employment-standards/esa-termination/"><h3>ESA Termination Pay Calculator</h3><p>The notice half — one to eight weeks by length of service.</p></a>
+      <a class="tool-card" href="/benefits/ei/"><h3>EI Calculator</h3><p>What you'd get in weekly benefits once the job ends.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Find the weekly wage figure to enter above.</p></a>
+    </div>
+    <p class="disclaimer">This is an estimate of the statutory ESA severance minimum only, for general information — not legal advice. Whether you qualify, whether the $2.5 million payroll test is met, and whether you're owed more under common law all depend on facts this tool can't see. If you've been handed a severance package or a release, get advice from an employment lawyer before you sign, and confirm your entitlement with the Ontario Ministry of Labour.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/employment-standards/esa-termination/">ESA Termination Pay</a></li>
+          <li><a href="/employment-standards/severance-pay/">Severance Pay</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a> · <a href="/contact/">Contact</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { ONTARIO_ESA } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const SEV = ONTARIO_ESA.severance;
+
+function run() {
+  const years = Math.max(0, Math.floor(parseMoney(el('years').value)));
+  const months = Math.max(0, Math.floor(parseMoney(el('months').value)));
+  const wage = parseMoney(el('wage').value);
+  const payroll = el('payroll').value;
+
+  el('unsure-note').hidden = payroll !== 'unsure';
+
+  const totalMonths = years * 12 + months;
+  const meetsService = totalMonths >= SEV.minYearsService * 12;
+  const payrollAtLeast = payroll === 'yes';
+  const massClosure = payroll === 'closure';
+  const qualifies = SEV.qualifies(years, months, payrollAtLeast, massClosure);
+
+  const badge = el('badge');
+  if (qualifies) {
+    const weeks = SEV.weeks(years, months);
+    const pay = weeks * wage;
+    const capped = years + Math.min(11, months) / 12 > SEV.maxWeeks;
+    const weeksLabel = Number.isInteger(weeks) ? `${weeks}` : weeks.toFixed(2).replace(/0$/, '');
+
+    badge.className = 'eligibility yes';
+    badge.textContent = 'Likely qualifies';
+    el('pay').textContent = formatCurrency(pay);
+    el('reading').textContent = capped
+      ? `You're past the ${SEV.maxWeeks}-week cap — statutory severance stops growing beyond ${SEV.maxWeeks} weeks of pay, however long you served.`
+      : `That's ${weeksLabel} weeks of pay — your service counted year by year, plus the part-year by the month.`;
+    el('breakdown').innerHTML =
+        `<div class="row"><span>Length of service</span><span class="val">${years} yr${years === 1 ? '' : 's'}${months ? ` ${months} mo` : ''}</span></div>`
+      + `<div class="row"><span>Severance weeks</span><span class="val">${weeksLabel} week${weeks === 1 ? '' : 's'}</span></div>`
+      + `<div class="row"><span>Regular weekly wages</span><span class="val">${formatCurrency(wage)}</span></div>`
+      + `<div class="row total"><span>Statutory severance pay</span><span class="val">${formatCurrency(pay)}</span></div>`;
+  } else {
+    badge.className = 'eligibility no';
+    badge.textContent = 'Does not qualify';
+    el('pay').textContent = formatCurrency(0);
+    el('breakdown').innerHTML = '';
+    let why;
+    if (!meetsService) {
+      why = "Statutory severance needs five or more years of service, and you're under that floor. You may still be owed termination notice, which starts at three months — check the ESA termination pay calculator.";
+    } else if (payroll === 'no') {
+      why = "You clear the five-year mark, but a payroll under $2.5 million doesn't meet the s.64 test — unless 50+ people were let go in a six-month closure. If that closure applies, pick that option above.";
+    } else {
+      why = "Pick your employer's payroll size above to check the s.64 threshold. Statutory severance needs both five years of service and a $2.5 million payroll (or a 50-employee closure).";
+    }
+    el('reading').textContent = why;
+  }
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['years','months','wage','payroll'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

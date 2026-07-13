@@ -321,6 +321,52 @@ select.input {
 .answer h2 { margin-bottom: 0.7rem; }
 .answer p { max-width: 64ch; }
 
+/* Callout — pulls one point out of the flow. Warm frame, navy edge, no colour noise. */
+.callout {
+  margin: 1.4rem 0 0;
+  padding: 1.1rem 1.25rem;
+  background: rgba(21, 41, 62, 0.04);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+.callout p { margin: 0; max-width: 60ch; }
+.callout p + p { margin-top: 0.7rem; }
+
+/* Conditions checklist — used to lay out the s.64 severance tests plainly. */
+.conditions { margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.conditions li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 1.6rem;
+  border-bottom: 1px solid var(--line);
+  max-width: 64ch;
+}
+.conditions li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.02rem;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 2px;
+  background: var(--navy-soft);
+}
+.conditions li:last-child { border-bottom: none; }
+
+/* Eligibility badge inside the result block. */
+.eligibility {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+.eligibility.yes { background: rgba(21, 41, 62, 0.08); color: var(--navy); }
+.eligibility.no  { background: rgba(200, 16, 46, 0.09); color: var(--accent-deep); }
+
 /* FAQ — clean accordion, no playful chrome */
 .faq { margin-top: 3rem; }
 .faq h2 { margin-bottom: 1rem; }
