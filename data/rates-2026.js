@@ -171,6 +171,123 @@ export const PROVINCES = {
     taxReduction: { base: 690, threshold: 25570, rate: 0.0356 },
   },
 
+  /* ── The following six provinces verified 2026-07-13 against CRA T4032 (Rev. 26,
+       effective Jan 1 2026) general-information pages, one per province. Each has NO
+       surtax and a FLAT basic personal amount (no income-testing). Their low-income
+       tax reductions (NB/NL/PE) live on the provincial 428 returns, are absent from
+       CRA payroll withholding, depend on FAMILY net income, and reduce to nil below
+       ~$40k — so they are NOT modelled here (out of scope for a single-earner
+       estimate; no effect at typical incomes). See handoff notes / commit message. */
+
+  /* SASKATCHEWAN — [CRA T4032-SK Rev.26]. BPA raised by the Saskatchewan
+     Affordability Act (+$500/yr for 4 years) on top of indexation. No surtax. */
+  SK: {
+    name: 'Saskatchewan',
+    indexation: 0.02,
+    brackets: [
+      { min: 0,      max: 54532,    rate: 0.1050 },
+      { min: 54532,  max: 155805,   rate: 0.1250 },
+      { min: 155805, max: Infinity, rate: 0.1450 },
+    ],
+    bpa: 20381,
+    bpaCreditRate: 0.105,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* MANITOBA — [CRA T4032-MB Rev.26]. BPA and bracket thresholds are FROZEN
+     (not indexed) for 2026 per provincial budget. Flat BPA, no surtax. */
+  MB: {
+    name: 'Manitoba',
+    indexation: 0, // thresholds frozen for 2026
+    brackets: [
+      { min: 0,      max: 47000,    rate: 0.1080 },
+      { min: 47000,  max: 100000,   rate: 0.1275 },
+      { min: 100000, max: Infinity, rate: 0.1740 },
+    ],
+    bpa: 15780,
+    bpaCreditRate: 0.108,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* NOVA SCOTIA — [CRA T4032-NS Rev.26]. As of 2025 the BPA is set at the maximum
+     for everyone (income-testing REMOVED); flat $11,932 for 2026. No surtax. */
+  NS: {
+    name: 'Nova Scotia',
+    indexation: 0.021,
+    brackets: [
+      { min: 0,      max: 30995,    rate: 0.0879 },
+      { min: 30995,  max: 61991,    rate: 0.1495 },
+      { min: 61991,  max: 97417,    rate: 0.1667 },
+      { min: 97417,  max: 157124,   rate: 0.1750 },
+      { min: 157124, max: Infinity, rate: 0.2100 },
+    ],
+    bpa: 11932,
+    bpaCreditRate: 0.0879,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* NEW BRUNSWICK — [CRA T4032-NB Rev.26]. Flat BPA, no surtax. */
+  NB: {
+    name: 'New Brunswick',
+    indexation: 0.02,
+    brackets: [
+      { min: 0,      max: 52333,    rate: 0.0940 },
+      { min: 52333,  max: 104666,   rate: 0.1400 },
+      { min: 104666, max: 193861,   rate: 0.1600 },
+      { min: 193861, max: Infinity, rate: 0.1950 },
+    ],
+    bpa: 13664,
+    bpaCreditRate: 0.094,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* NEWFOUNDLAND AND LABRADOR — [CRA T4032-NL Rev.26]. Eight brackets. No surtax. */
+  NL: {
+    name: 'Newfoundland and Labrador',
+    indexation: 0.02,
+    brackets: [
+      { min: 0,       max: 44678,     rate: 0.0870 },
+      { min: 44678,   max: 89354,     rate: 0.1450 },
+      { min: 89354,   max: 159528,    rate: 0.1580 },
+      { min: 159528,  max: 223340,    rate: 0.1780 },
+      { min: 223340,  max: 285319,    rate: 0.1980 },
+      { min: 285319,  max: 570638,    rate: 0.2080 },
+      { min: 570638,  max: 1141275,   rate: 0.2130 },
+      { min: 1141275, max: Infinity,  rate: 0.2180 },
+    ],
+    bpa: 11188,
+    bpaCreditRate: 0.087,
+    surtax: [],
+    healthPremium: [],
+  },
+
+  /* PRINCE EDWARD ISLAND — brackets from the PEI government site (princeedwardisland.ca,
+     updated 2026-06-22), reflecting Bill No 23 (2026 budget) which added the sixth
+     bracket (over $200,000 @ 20%) and set the fifth threshold at $142,520. CRA T4032-PE
+     Rev.26 still shows the pre-Bill-23 five-bracket table (top $142,250+ @ 19%) — it
+     predates the budget. Using the enacted PEI law. PEI's old surtax was REPLACED by
+     the multi-bracket system (no surtax). Flat BPA $15,000. */
+  PE: {
+    name: 'Prince Edward Island',
+    indexation: 0.018,
+    brackets: [
+      { min: 0,      max: 33928,    rate: 0.0950 },
+      { min: 33928,  max: 65820,    rate: 0.1347 },
+      { min: 65820,  max: 106890,   rate: 0.1660 },
+      { min: 106890, max: 142520,   rate: 0.1762 },
+      { min: 142520, max: 200000,   rate: 0.1900 },
+      { min: 200000, max: Infinity, rate: 0.2000 },
+    ],
+    bpa: 15000,
+    bpaCreditRate: 0.095,
+    surtax: [],
+    healthPremium: [],
+  },
+
   /* QUEBEC — STUB. DO NOT auto-generate from the pattern above. Separate build. */
   QC: {
     name: 'Quebec',
@@ -186,16 +303,20 @@ export const PROVINCES = {
   },
 };
 
-/* ── PROVINCES STILL TO ADD (Phase 2) ────────────────────────────────────── */
-// MB, SK, NS, NB, NL, PE, plus territories YT, NT, NU. Add each from its TD1/T4032
-// page using the ON/AB shape. Keep one primary source URL comment per province.
+/* ── STILL TO ADD ────────────────────────────────────────────────────────── */
+// Territories YT, NT, NU (add each from its T4032 page using the AB shape).
+// Quebec (QC) needs QPP/QPIP/federal-abatement math — a separate build, stays gated.
 
 /* ── SHIP GATE ───────────────────────────────────────────────────────────── */
 // Which provinces the calculators are allowed to compute for in THIS build.
-// QC remains reference-only ("coming soon") — QPP/QPIP/abatement not yet modelled.
-export const PROVINCE_STATUS = { ON: 'live', AB: 'live', BC: 'live', QC: 'stub' };
-export const LIVE_PROVINCES = ['ON', 'AB', 'BC'];
-export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'QC'];
+// All ten provinces except Quebec are live. QC remains reference-only ("coming
+// soon") — QPP/QPIP/abatement not yet modelled.
+export const PROVINCE_STATUS = {
+  ON: 'live', AB: 'live', BC: 'live', SK: 'live', MB: 'live',
+  NS: 'live', NB: 'live', NL: 'live', PE: 'live', QC: 'stub',
+};
+export const LIVE_PROVINCES = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE'];
+export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'QC'];
 
 /* ── ONTARIO EMPLOYMENT STANDARDS ACT — statutory termination notice ──────── */
 // [ESA] Ontario ESA s.57 — minimum notice / pay in lieu on termination. Statutory
