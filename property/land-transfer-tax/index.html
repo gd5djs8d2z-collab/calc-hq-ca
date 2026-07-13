@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Land Transfer Tax Calculator 2026 — Toronto Double LTT &amp; First-Time Rebates | calc-hq.ca</title>
+<meta name="description" content="Estimate your Ontario land transfer tax, plus Toronto's municipal LTT if you're buying in the city, with both first-time-buyer rebates applied. See your total closing tax.">
+<link rel="canonical" href="https://calc-hq.ca/property/land-transfer-tax/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ontario Land Transfer Tax Calculator 2026 — Toronto Double LTT">
+<meta property="og:description" content="Provincial and Toronto municipal LTT with both first-time-buyer rebates, in one total.">
+<meta property="og:url" content="https://calc-hq.ca/property/land-transfer-tax/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Property & Housing","item":"https://calc-hq.ca/property/"},
+{"@type":"ListItem","position":3,"name":"Land Transfer Tax Calculator","item":"https://calc-hq.ca/property/land-transfer-tax/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do you pay land transfer tax twice in Toronto?","acceptedAnswer":{"@type":"Answer","text":"Yes. A home in Toronto is hit with two land transfer taxes on closing: the Ontario provincial LTT and the City of Toronto municipal LTT (MLTT). They use the same bracket structure up to $3 million, so for most homes the municipal tax roughly doubles your provincial tax. A $900,000 Toronto home pays about $14,475 provincially and another $14,475 to the city — roughly $28,950 before any rebate. Buy the same house anywhere else in Ontario and you pay the provincial tax only."}},
+{"@type":"Question","name":"How much is land transfer tax in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Ontario charges 0.5% on the first $55,000 of the price, 1% from $55,000 to $250,000, 1.5% from $250,000 to $400,000, 2% from $400,000 to $2,000,000, and 2.5% above $2,000,000 on homes with one or two units. It's marginal, so each rate applies only to the slice of the price in that band. On a $600,000 home the provincial LTT works out to $8,475."}},
+{"@type":"Question","name":"What is the first-time home buyer land transfer tax rebate?","acceptedAnswer":{"@type":"Answer","text":"First-time buyers can claim a rebate against each land transfer tax. The Ontario rebate is up to $4,000, which fully covers the provincial tax on a home up to about $368,000. In Toronto, first-time buyers also get a separate municipal rebate of up to $4,475, which zeroes the municipal tax up to $400,000. A first-time buyer in Toronto can therefore claim both — up to $8,475 combined — while a first-time buyer elsewhere in Ontario claims the $4,000 provincial rebate only."}},
+{"@type":"Question","name":"Are the Toronto and Ontario first-time buyer rebates the same amount?","acceptedAnswer":{"@type":"Answer","text":"No, and this trips people up. The provincial rebate maxes out at $4,000; the Toronto municipal rebate maxes out at $4,475. They're claimed separately against their own tax, so a Toronto first-time buyer gets both, not one combined figure. This calculator applies each rebate to the correct tax so the total reflects exactly what you'd owe."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/property/">Property &amp; Housing</a><span class="sep">›</span>
+    <span>Land Transfer Tax</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Ontario Land Transfer Tax Calculator (2026)</h1>
+    <p class="lead">Buying in Toronto means paying land transfer tax twice — once to the province, once to the city — and the first-time-buyer rebates are two different amounts. This works out both taxes and both rebates so you see one honest total.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Land transfer tax calculator">
+    <div class="field input-money">
+      <label for="price">Purchase price
+        <span class="hint">The value of consideration — normally the price you agreed to pay</span>
+      </label>
+      <input class="input" id="price" type="text" inputmode="numeric" placeholder="900,000" value="900,000">
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="toronto" checked>
+      <label for="toronto">The property is in the City of Toronto (adds municipal LTT)</label>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="ftb">
+      <label for="ftb">I'm a first-time home buyer (applies the rebate(s))</label>
+    </div>
+    <button class="btn" id="go" type="button">Calculate my land transfer tax</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Total land transfer tax payable</p>
+      <p class="result-number" id="total">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>Why Toronto buyers pay twice</h2>
+    <p>Everywhere in Ontario you pay the provincial land transfer tax. Buy inside the City of Toronto and you also pay the city's Municipal Land Transfer Tax on top — a second bill, calculated separately, due the same day at closing. Up to $3 million the two use identical brackets, so the municipal tax essentially mirrors the provincial one and roughly doubles your total. That's the single biggest closing-cost surprise for Toronto buyers, and it's why a downtown condo carries far more tax than the same-priced house in Mississauga or Hamilton.</p>
+    <p>Both taxes are marginal. Each rate applies only to the portion of the price that falls inside its band — so the first $55,000 is always taxed at 0.5%, never your whole price at the top rate. The calculator adds up the bands for each tax and, in Toronto, sums the two.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The rates, band by band</h2>
+    <p>The Ontario provincial rates:</p>
+    <ul class="conditions">
+      <li>0.5% on the first $55,000</li>
+      <li>1.0% from $55,000 to $250,000</li>
+      <li>1.5% from $250,000 to $400,000</li>
+      <li>2.0% from $400,000 to $2,000,000</li>
+      <li>2.5% above $2,000,000 (homes with one or two units)</li>
+    </ul>
+    <p>Toronto's municipal rates match the province exactly up to $2,000,000, add a 2.5% band from $2M to $3M, and then climb for luxury homes under rates the city set on April 1, 2026: 4.40% from $3M–$4M, 5.45% from $4M–$5M, 6.50% from $5M–$10M, 7.55% from $10M–$20M, and 8.60% above $20M. So above $3 million a Toronto purchase costs sharply more than the provincial tax alone.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Two rebates, two different amounts</h2>
+    <p>First-time buyers get a rebate against each tax — and the amounts aren't the same. The <strong>provincial</strong> rebate is up to <strong>$4,000</strong>, which wipes out the Ontario LTT on a home up to about $368,000. The <strong>Toronto municipal</strong> rebate is up to <strong>$4,475</strong>, which clears the city LTT up to $400,000. They're claimed separately against their own tax, so a first-time buyer in Toronto collects <em>both</em> — as much as $8,475 off — while a first-time buyer anywhere else in Ontario gets the $4,000 provincial rebate only. Plenty of calculators apply a single rebate and quietly understate the benefit for Toronto buyers; this one applies each rebate to the tax it belongs to.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Do you pay land transfer tax twice in Toronto?</summary>
+      <p>Yes — the Ontario provincial LTT and the City of Toronto municipal LTT, both due at closing. Up to $3 million they share the same brackets, so the city tax roughly doubles the provincial one. Outside Toronto you pay the provincial tax only.</p>
+    </details>
+    <details><summary>How much is land transfer tax in Ontario?</summary>
+      <p>0.5% to $55,000, 1% to $250,000, 1.5% to $400,000, 2% to $2,000,000, and 2.5% above $2,000,000 on one- or two-unit homes. It's marginal — each rate hits only the slice of the price in that band. A $600,000 home is $8,475 provincially.</p>
+    </details>
+    <details><summary>What is the first-time buyer rebate?</summary>
+      <p>A refund of land transfer tax for qualifying first-time buyers: up to $4,000 provincially (full rebate to about $368,000) and, in Toronto, up to $4,475 municipally (full rebate to $400,000). A Toronto first-time buyer can claim both.</p>
+    </details>
+    <details><summary>Are the Toronto and Ontario rebates the same amount?</summary>
+      <p>No. The provincial rebate caps at $4,000, the Toronto rebate at $4,475, each against its own tax. A Toronto first-time buyer gets both — up to $8,475 combined — not a single figure.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>What your income looks like after tax when you're budgeting a mortgage.</p></a>
+      <a class="tool-card" href="/benefits/ccb/"><h3>Canada Child Benefit</h3><p>Monthly support that can factor into affordability.</p></a>
+      <a class="tool-card" href="/tax-on-extra-income/bonus/"><h3>Bonus Tax Calculator</h3><p>What a bonus earmarked for a down payment nets after tax.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only, using the Ontario provincial rates and the City of Toronto municipal rates in effect April 1, 2026, with statutory first-time-buyer rebates. It assumes a residential property with one or two single-family units and doesn't cover the Non-Resident Speculation Tax, commercial or multi-unit property, or partial rebates where not every buyer qualifies. Confirm your exact tax with your real estate lawyer, the Ontario Ministry of Finance, and the City of Toronto.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/property/land-transfer-tax/">Land Transfer Tax</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a> · <a href="/contact/">Contact</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { LTT } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+function run() {
+  const price = parseMoney(el('price').value);
+  const isToronto = el('toronto').checked;
+  const ftb = el('ftb').checked;
+
+  const r = LTT.estimate(price, isToronto, ftb);
+  el('total').textContent = formatCurrency(r.total);
+
+  let reading;
+  if (isToronto) {
+    reading = ftb
+      ? "Provincial and Toronto municipal LTT, less both first-time-buyer rebates."
+      : "Provincial and Toronto municipal LTT — the double hit Toronto buyers face.";
+  } else {
+    reading = ftb
+      ? "Ontario provincial LTT, less the first-time-buyer rebate."
+      : "Ontario provincial LTT. A Toronto address would add a second, municipal tax.";
+  }
+  el('reading').textContent = reading;
+
+  let rows =
+      `<div class="row"><span>Ontario provincial LTT</span><span class="val">${formatCurrency(r.provincial)}</span></div>`;
+  if (ftb) {
+    rows += `<div class="row"><span>Less provincial rebate</span><span class="val">${r.provincialRebate > 0 ? '−' + formatCurrency(r.provincialRebate) : formatCurrency(0)}</span></div>`;
+  }
+  if (isToronto) {
+    rows += `<div class="row"><span>Toronto municipal LTT</span><span class="val">${formatCurrency(r.municipal)}</span></div>`;
+    if (ftb) {
+      rows += `<div class="row"><span>Less Toronto rebate</span><span class="val">${r.municipalRebate > 0 ? '−' + formatCurrency(r.municipalRebate) : formatCurrency(0)}</span></div>`;
+    }
+  }
+  rows += `<div class="row total"><span>Total payable</span><span class="val">${formatCurrency(r.total)}</span></div>`;
+  el('breakdown').innerHTML = rows;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+el('price').addEventListener('change', run);
+['toronto','ftb'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

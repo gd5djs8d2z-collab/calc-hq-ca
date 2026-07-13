@@ -303,3 +303,76 @@ export const CCB = {
     return { annual, monthly: annual / 12, base, reduction };
   },
 };
+
+/* ── LAND TRANSFER TAX (LTT) — Ontario provincial + Toronto municipal ───────── */
+// Marginal brackets: each rate applies only to the portion of the price within that
+// band. Applies to residential property with one or two single-family residences —
+// the case for essentially every home buyer (the top provincial rate and Toronto's
+// high-value rates are limited to 1–2 SFR properties).
+//
+// ┌───────────────────────────────────────────────────────────────────────────┐
+// │ NOT CRA-indexed. These are statutory rates set by the Province and the City │
+// │ of Toronto; they change only by legislation/by-law, not annual indexation.  │
+// │ Re-verify against the official sources below whenever either government     │
+// │ amends its rates or first-time-buyer rebate.                                │
+// └───────────────────────────────────────────────────────────────────────────┘
+// Verified 2026-07-13 against official sources only (no blogs/aggregators):
+//  ONTARIO provincial LTT + FTB rebate — ontario.ca:
+//    https://www.ontario.ca/document/land-transfer-tax/calculating-land-transfer-tax
+//    https://www.ontario.ca/document/land-transfer-tax/land-transfer-tax-refunds-first-time-homebuyers
+//    (max first-time-buyer refund $4,000; full rebate up to ~$368,000.)
+//  TORONTO municipal LTT (MLTT) — the graduated high-value rates for 1–2 SFR took
+//  effect APRIL 1, 2026 (City Council 2025.EX28.1, By-law 132-2026). Confirmed on
+//  toronto.ca rates page AND the Council decision text:
+//    https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/municipal-land-transfer-tax-mltt-rates-and-fees/
+//    https://secure.toronto.ca/council/agenda-item.do?item=2025.EX28.1
+//    (Toronto FTB rebate max $4,475; full rebate up to $400,000 — toronto.ca rebate page.)
+export const LTT = {
+  // Ontario provincial — value of consideration bands. [ontario.ca]
+  ontarioBrackets: [
+    { upTo: 55000,     rate: 0.005 },
+    { upTo: 250000,    rate: 0.010 },
+    { upTo: 400000,    rate: 0.015 },
+    { upTo: 2000000,   rate: 0.020 },
+    { upTo: Infinity,  rate: 0.025 }, // over $2M, property with 1–2 SFR
+  ],
+  // Toronto MLTT — effective April 1, 2026 (1–2 SFR). [toronto.ca / 2025.EX28.1]
+  torontoBrackets: [
+    { upTo: 55000,     rate: 0.005 },
+    { upTo: 250000,    rate: 0.010 },
+    { upTo: 400000,    rate: 0.015 },
+    { upTo: 2000000,   rate: 0.020 },
+    { upTo: 3000000,   rate: 0.025 },
+    { upTo: 4000000,   rate: 0.044 },
+    { upTo: 5000000,   rate: 0.0545 },
+    { upTo: 10000000,  rate: 0.065 },
+    { upTo: 20000000,  rate: 0.0755 },
+    { upTo: Infinity,  rate: 0.086 },
+  ],
+  ontarioFtbRebateMax: 4000, // [ontario.ca] max provincial first-time-buyer refund
+  torontoFtbRebateMax: 4475, // [toronto.ca] max municipal first-time-buyer rebate
+  torontoRatesEffective: 'April 1, 2026',
+
+  // Marginal tax on a price over a bracket set.
+  tax(price, brackets) {
+    let tax = 0, prev = 0;
+    for (const b of brackets) {
+      if (price <= prev) break;
+      tax += (Math.min(price, b.upTo) - prev) * b.rate;
+      prev = b.upTo;
+    }
+    return tax;
+  },
+
+  // Full estimate. isToronto adds the municipal LTT; firstTimeBuyer applies each
+  // rebate (capped at that jurisdiction's max) against its own tax only.
+  estimate(price, isToronto, firstTimeBuyer) {
+    price = Math.max(0, price);
+    const provincial = this.tax(price, this.ontarioBrackets);
+    const municipal = isToronto ? this.tax(price, this.torontoBrackets) : 0;
+    const provincialRebate = firstTimeBuyer ? Math.min(provincial, this.ontarioFtbRebateMax) : 0;
+    const municipalRebate = firstTimeBuyer && isToronto ? Math.min(municipal, this.torontoFtbRebateMax) : 0;
+    const total = provincial + municipal - provincialRebate - municipalRebate;
+    return { provincial, municipal, provincialRebate, municipalRebate, total };
+  },
+};
