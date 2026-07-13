@@ -20,9 +20,10 @@
  *    https://www.canada.ca/en/revenue-agency/services/forms-publications/td1-personal-tax-credits-returns.html
  *  Federal indexation for 2026 = 2.0%. Lowest federal rate is 14% (first full year).
  *
- * SHIP STATUS FOR THIS BUILD: Ontario (ON) and Alberta (AB) are live. British
- * Columbia (BC) and Quebec (QC) are stubs — their figures are not locked, so the
- * calculators must NOT compute for them. See PROVINCE_STATUS / LIVE_PROVINCES below.
+ * SHIP STATUS FOR THIS BUILD: Ontario (ON), Alberta (AB) and British Columbia (BC)
+ * are live. Quebec (QC) remains a stub — its QPP/QPIP/abatement math is not yet
+ * modelled, so the calculators must NOT compute for it. See PROVINCE_STATUS /
+ * LIVE_PROVINCES below.
  */
 export const TAX_YEAR = 2026;
 
@@ -140,26 +141,34 @@ export const PROVINCES = {
     healthPremium: [], // Alberta has no health premium
   },
 
-  /* BRITISH COLUMBIA — STUB. BPA + lowest rate CRA-confirmed; THRESHOLDS NOT LOCKED.
-     Do not compute for BC in this build. */
+  /* BRITISH COLUMBIA — LIVE. All figures verified 2026-07-13 against gov.bc.ca:
+     Brackets + rates: https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates
+       (page "Last updated April 17, 2026", 2026 tax year table)
+     BPA + BC tax reduction credit:
+       https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic
+       (page "Last updated April 20, 2026")
+     2026 brackets indexed +2.2% (BC CPI); Budget 2026 pauses indexation 2027–2030. */
   BC: {
     name: 'British Columbia',
-    indexation: 0.022, // [CRA] 2.2% (then paused 2027–2030 per Budget 2026)
-    // [VERIFY] Lowest rate rose to 5.6% (from 5.06%) for 2026 — CONFIRMED.
-    // Bracket THRESHOLDS below are placeholders — pull exact 2026 numbers from:
-    // https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates
+    indexation: 0.022, // [BC] 2.2% for 2026 (paused 2027–2030 per Budget 2026)
     brackets: [
-      { min: 0,    max: null,     rate: 0.056 },  // [CRA rate] / [VERIFY threshold]
-      { min: null, max: null,     rate: 0.077 },  // [VERIFY]
-      { min: null, max: null,     rate: 0.105 },  // [VERIFY]
-      { min: null, max: null,     rate: 0.1229 }, // [VERIFY]
-      { min: null, max: null,     rate: 0.147 },  // [VERIFY]
-      { min: null, max: null,     rate: 0.168 },  // [VERIFY]
-      { min: null, max: Infinity, rate: 0.205 },  // [VERIFY count & rate]
+      { min: 0,      max: 50363,    rate: 0.0560 }, // [gov.bc.ca] lowest rate 5.06%→5.60% for 2026
+      { min: 50363,  max: 100728,   rate: 0.0770 }, // [gov.bc.ca]
+      { min: 100728, max: 115648,   rate: 0.1050 }, // [gov.bc.ca]
+      { min: 115648, max: 140430,   rate: 0.1229 }, // [gov.bc.ca]
+      { min: 140430, max: 190405,   rate: 0.1470 }, // [gov.bc.ca]
+      { min: 190405, max: 265545,   rate: 0.1680 }, // [gov.bc.ca]
+      { min: 265545, max: Infinity, rate: 0.2050 }, // [gov.bc.ca]
     ],
-    bpa: 13216, // [CRA] TD1BC 2026
-    bpaCreditRate: 0.056,
-    _note: 'BC brackets NOT shippable until thresholds verified against BC gov page.',
+    bpa: 13216,          // [gov.bc.ca] BC basic personal amount 2026
+    bpaCreditRate: 0.056, // credit valued at the lowest bracket rate
+    surtax: [],          // BC has no surtax
+    healthPremium: [],   // BC has no health premium (MSP premiums ended in 2020)
+    // [gov.bc.ca] BC TAX REDUCTION CREDIT — the low-income reduction most calculators miss.
+    // Non-refundable: reduces BC tax to a floor of zero, never below. Full base amount if
+    // net income ≤ threshold; reduced by rate × (net income − threshold); nil at $44,952.
+    // Budget 2026 raised the base from $575 to $690 for 2026–2030.
+    taxReduction: { base: 690, threshold: 25570, rate: 0.0356 },
   },
 
   /* QUEBEC — STUB. DO NOT auto-generate from the pattern above. Separate build. */
@@ -183,9 +192,9 @@ export const PROVINCES = {
 
 /* ── SHIP GATE ───────────────────────────────────────────────────────────── */
 // Which provinces the calculators are allowed to compute for in THIS build.
-// BC and QC are present above for reference only and must render as "coming soon".
-export const PROVINCE_STATUS = { ON: 'live', AB: 'live', BC: 'stub', QC: 'stub' };
-export const LIVE_PROVINCES = ['ON', 'AB'];
+// QC remains reference-only ("coming soon") — QPP/QPIP/abatement not yet modelled.
+export const PROVINCE_STATUS = { ON: 'live', AB: 'live', BC: 'live', QC: 'stub' };
+export const LIVE_PROVINCES = ['ON', 'AB', 'BC'];
 export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'QC'];
 
 /* ── ONTARIO EMPLOYMENT STANDARDS ACT — statutory termination notice ──────── */

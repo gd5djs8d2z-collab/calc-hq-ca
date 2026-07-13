@@ -94,11 +94,28 @@ function ontarioHealthPremium(taxableIncome) {
   return Math.min(900, 750 + 0.25 * (taxableIncome - 200000)); // [CRA] T4032-ON 2026
 }
 
+/**
+ * BC tax reduction credit — a non-refundable low-income reduction applied against
+ * provincial tax. Full base amount when net income is at/under the threshold, then
+ * reduced by rate × (net income − threshold); it can lower BC tax to zero but never
+ * below. netIncome here is the taxable-income proxy the engine already uses (≈ line
+ * 23600 for a simple employment case). Returns 0 when the province defines no reduction.
+ */
+function provincialTaxReduction(prov, netIncome) {
+  const tr = prov.taxReduction;
+  if (!tr) return 0;
+  return Math.max(0, tr.base - Math.max(0, netIncome - tr.threshold) * tr.rate);
+}
+
 function provincialTax(taxableIncome, code, { cppBase, eiPremium }) {
   const prov = PROVINCES[code];
   let basic = bracketTax(taxableIncome, prov.brackets);
   const credits = (prov.bpa + cppBase + eiPremium) * prov.bpaCreditRate;
   basic = Math.max(0, basic - credits);
+
+  // Provincial tax reduction (e.g. BC's low-income reduction) — capped at tax payable.
+  const reduction = Math.min(basic, provincialTaxReduction(prov, taxableIncome));
+  basic = Math.max(0, basic - reduction);
 
   // Ontario surtax on basic Ontario tax (cumulative tiers).
   let surtax = 0;
@@ -106,7 +123,7 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium }) {
     if (basic > t.over) surtax += (basic - t.over) * t.rate;
   }
   const health = code === 'ON' ? ontarioHealthPremium(taxableIncome) : 0;
-  return { basic, surtax, health, total: basic + surtax + health };
+  return { basic, surtax, health, taxReduction: reduction, total: basic + surtax + health };
 }
 
 function federalTax(taxableIncome, netIncome, { cppBase, eiPremium }) {
