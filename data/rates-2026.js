@@ -240,3 +240,66 @@ export const ONTARIO_ESA = {
     },
   },
 };
+
+/* ── CANADA CHILD BENEFIT (CCB) — federal, tax-free monthly benefit ─────────── */
+// ┌───────────────────────────────────────────────────────────────────────────┐
+// │ INDEXED ANNUALLY — DO NOT ASSUME THESE ARE CURRENT.                         │
+// │ Unlike the payroll tables above (which update every JANUARY), the CCB is    │
+// │ re-indexed to inflation every JULY and runs on a benefit year (July–June).  │
+// │ These figures are for the July 2026 → June 2027 benefit year, based on 2025 │
+// │ adjusted family net income (AFNI). When CRA publishes the next calculation  │
+// │ sheet, replace maxUnder6 / max6to17 / threshold1 / threshold2 below. The    │
+// │ reduction PERCENTAGES do not index — they've been fixed since 2016.         │
+// └───────────────────────────────────────────────────────────────────────────┘
+// Verified 2026-07-12:
+//  - Thresholds $38,237 / $82,847 confirmed on canada.ca "How much you can get":
+//    https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html
+//  - Formula + fixed percentages from the CRA calculation sheet (structure is the
+//    same each year; the 2026–27 sheet was not yet published at build time):
+//    https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/canada-child-benefit-calculation-sheets.html
+//  - Base amounts $8,157 (under 6) / $6,883 (6–17) are the 2025–26 CRA sheet values
+//    ($7,997 / $6,748) indexed +2.0% — the published 2026–27 indexation. [3P — re-confirm
+//    against the official 2026–27 calculation sheet when CRA posts it.]
+//
+// CRA method (from the calculation sheet): total base benefit minus a two-tier
+// reduction. Tier 1 applies to AFNI between the two thresholds; tier 2 applies to
+// AFNI above the second threshold, on top of the full tier-1 reduction accumulated
+// across the band. The "fixed" dollar amounts CRA prints for tier 2 (e.g. $3,061 for
+// one child in 2025–26) are exactly (threshold2 − threshold1) × tier1Rate, so we
+// derive them rather than hardcode — this stays correct after a threshold update.
+export const CCB = {
+  benefitYear: 'July 2026 – June 2027',
+  baseYear: 2025,
+  maxUnder6: 8157,   // [3P] per child under 6, per year
+  max6to17: 6883,    // [3P] per child aged 6–17, per year
+  threshold1: 38237, // [CRA] AFNI where the phase-out begins
+  threshold2: 82847, // [CRA] AFNI where the second, lower reduction rate takes over
+  // Reduction rates by number of eligible children (index 0 = 1 child … 3 = 4+).
+  // [CRA] Fixed since 2016 — these do NOT index.
+  tier1Rates: [0.07, 0.135, 0.19, 0.23],   // AFNI between threshold1 and threshold2
+  tier2Rates: [0.032, 0.057, 0.08, 0.095], // AFNI above threshold2
+
+  // Annual benefit reduction for a given AFNI and total number of children.
+  reduction(afni, numChildren) {
+    if (numChildren < 1 || afni <= this.threshold1) return 0;
+    const i = Math.min(numChildren, 4) - 1;
+    const band = this.threshold2 - this.threshold1;
+    const tier1 = Math.min(Math.max(afni - this.threshold1, 0), band) * this.tier1Rates[i];
+    const tier2 = Math.max(afni - this.threshold2, 0) * this.tier2Rates[i];
+    return tier1 + tier2;
+  },
+
+  // Full unreduced base benefit for the given mix of children.
+  baseBenefit(under6, age6to17) {
+    return under6 * this.maxUnder6 + age6to17 * this.max6to17;
+  },
+
+  // Estimated annual CCB (never negative). Returns { annual, monthly, base, reduction }.
+  annual(under6, age6to17, afni) {
+    const numChildren = under6 + age6to17;
+    const base = this.baseBenefit(under6, age6to17);
+    const reduction = this.reduction(afni, numChildren);
+    const annual = Math.max(0, base - reduction);
+    return { annual, monthly: annual / 12, base, reduction };
+  },
+};

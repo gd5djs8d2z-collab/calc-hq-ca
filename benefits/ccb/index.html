@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canada Child Benefit Calculator 2026 — CCB by Income &amp; Ages | calc-hq.ca</title>
+<meta name="description" content="Estimate your Canada Child Benefit for July 2026–June 2027. Enter your children's ages and adjusted family net income to see monthly and annual CCB, with the income phase-out done right.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/ccb/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Canada Child Benefit Calculator 2026 — CCB by Income & Ages">
+<meta property="og:description" content="Estimate your monthly and annual CCB with the income phase-out modelled correctly.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/ccb/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits & Deductions","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"Canada Child Benefit Calculator","item":"https://calc-hq.ca/benefits/ccb/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is the Canada Child Benefit per child in 2026?","acceptedAnswer":{"@type":"Answer","text":"For the July 2026 to June 2027 benefit year, the maximum is $8,157 per year ($679.75 a month) for each child under 6, and $6,883 per year ($573.58 a month) for each child aged 6 to 17. You only get the full amount if your adjusted family net income is $38,237 or less. Above that, the benefit is reduced on a sliding scale based on your income and how many children you have."}},
+{"@type":"Question","name":"At what income does the Canada Child Benefit start to decrease?","acceptedAnswer":{"@type":"Answer","text":"The CCB starts to phase out once your adjusted family net income (AFNI) passes $38,237. Between $38,237 and $82,847 the reduction is 7% of the income over $38,237 for one child, 13.5% for two, 19% for three, and 23% for four or more. Above $82,847 a fixed amount applies plus a lower rate — 3.2% for one child up to 9.5% for four or more — on the income over $82,847. Because the rate depends on the number of children, not their ages, this is the part most people can't work out on their own."}},
+{"@type":"Question","name":"What is adjusted family net income for the CCB?","acceptedAnswer":{"@type":"Answer","text":"Adjusted family net income is the net income of both you and your spouse or common-law partner combined, with a few adjustments — mainly subtracting any universal child care benefit and registered disability savings plan income you reported, and adding back any of those amounts that were repaid. If you're single, it's just your own adjusted net income. It's this figure, not your gross salary, that the CCB phase-out is based on."}},
+{"@type":"Question","name":"Does marital status change how much CCB I get?","acceptedAnswer":{"@type":"Answer","text":"Not directly — there's no separate rate for single versus married parents. What changes is whose income counts. If you have a spouse or common-law partner, the CCB uses your combined adjusted family net income, so a second income can push you further into the phase-out. If you're single, only your income counts. Two parents in a shared-custody arrangement each get 50% of what they'd receive with full custody, calculated on their own income."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits &amp; Deductions</a><span class="sep">›</span>
+    <span>Canada Child Benefit</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Canada Child Benefit Calculator (2026)</h1>
+    <p class="lead">The base amount is easy; the income phase-out is where estimates go wrong. Enter your children's ages and your adjusted family net income for a monthly and annual CCB figure for the July 2026–June 2027 benefit year.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Canada Child Benefit calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="under6">Children under 6</label>
+        <input class="input" id="under6" type="text" inputmode="numeric" placeholder="1" value="1">
+      </div>
+      <div class="field">
+        <label for="age6to17">Children aged 6–17</label>
+        <input class="input" id="age6to17" type="text" inputmode="numeric" placeholder="1" value="1">
+      </div>
+    </div>
+    <div class="field">
+      <label for="status">Marital status</label>
+      <select class="input" id="status">
+        <option value="couple">Married or common-law</option>
+        <option value="single">Single</option>
+      </select>
+    </div>
+    <div class="field input-money">
+      <label for="afni">Adjusted family net income
+        <span class="hint" id="afni-hint">You and your partner's combined net income (line 23600s added, with CCB adjustments)</span>
+      </label>
+      <input class="input" id="afni" type="text" inputmode="numeric" placeholder="65,000" value="65,000">
+    </div>
+    <button class="btn" id="go" type="button">Estimate my CCB</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Estimated monthly CCB</p>
+      <p class="result-number" id="monthly">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>What you'd get before the phase-out</h2>
+    <p>For the July 2026 to June 2027 benefit year, the maximum CCB is <strong>$8,157 a year for each child under 6</strong> and <strong>$6,883 a year for each child aged 6 to 17</strong> — about $679.75 and $573.58 a month respectively. Those are the full amounts, and you keep every dollar of them only while your adjusted family net income sits at or below <strong>$38,237</strong>. The benefit is tax-free and doesn't go on your return.</p>
+    <p>Ages matter for one thing: the base amount. A child costs the government more under 6, so that rate is higher. The day a child turns 6, their amount steps down to the 6-to-17 rate. Past 18, the CCB stops entirely.</p>
+  </section>
+
+  <section class="answer">
+    <h2>How the income phase-out actually works</h2>
+    <p>This is the part worth getting right. Above $38,237 the CRA claws back the benefit in two bands, and the rate depends on <em>how many</em> children you have — not their ages.</p>
+    <ul class="conditions">
+      <li><strong>Income from $38,237 to $82,847:</strong> the benefit drops by <strong>7%</strong> of every dollar over $38,237 for one child, <strong>13.5%</strong> for two, <strong>19%</strong> for three, and <strong>23%</strong> for four or more.</li>
+      <li><strong>Income above $82,847:</strong> a fixed reduction (the full amount clawed back across the first band) applies, plus a lower rate on the income over $82,847 — <strong>3.2%</strong> for one child, <strong>5.7%</strong> for two, <strong>8%</strong> for three, and <strong>9.5%</strong> for four or more.</li>
+    </ul>
+    <p>So a two-child family earning $65,000 doesn't lose 13.5% of their benefit — they lose 13.5% of the <em>$26,763</em> that sits above the first threshold, which is $3,613 off the year's total. That two-step structure, and the fact the rate keys off the number of children, is exactly what makes the CCB hard to eyeball. The calculator above runs the CRA's own formula line by line.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Whose income counts</h2>
+    <p>The phase-out runs on <em>adjusted family net income</em>, not your salary. For a couple that's both partners' net income combined, so a second earner pushes you deeper into the reduction. If you're single, only your income counts. There's no different CCB rate for single versus married parents — marital status only changes which incomes go into the AFNI number. In shared custody, each parent gets 50% of the full-custody amount, each calculated on their own income.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much is the Canada Child Benefit per child in 2026?</summary>
+      <p>For July 2026–June 2027, up to $8,157 a year ($679.75/month) per child under 6, and $6,883 a year ($573.58/month) per child aged 6–17. You get the full amount only if your adjusted family net income is $38,237 or less; above that it's reduced on a sliding scale.</p>
+    </details>
+    <details><summary>At what income does the CCB start to decrease?</summary>
+      <p>At $38,237 of adjusted family net income. From there to $82,847 the reduction is 7% (one child) up to 23% (four or more) of the income above $38,237. Above $82,847, a fixed amount plus a lower rate (3.2% to 9.5%) applies. The rate depends on the number of children, not their ages.</p>
+    </details>
+    <details><summary>What is adjusted family net income?</summary>
+      <p>Both partners' net income combined, minus any UCCB and RDSP income reported and plus any repaid, with a couple of other adjustments. If you're single, it's just your own adjusted net income. The phase-out is based on this figure, not gross pay.</p>
+    </details>
+    <details><summary>Does marital status change how much CCB I get?</summary>
+      <p>Not the rate — only whose income counts. A spouse or common-law partner's income is added to yours, which can push you further into the phase-out. Single parents have only their own income counted. Shared-custody parents each get 50% of the full-custody amount.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/benefits/ei/"><h3>EI Calculator</h3><p>Weekly benefit if you're between jobs.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Work out the net income that feeds your AFNI.</p></a>
+      <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>The federal deduction on your paycheque.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only, for the July 2026–June 2027 benefit year, using published CRA figures and the CRA calculation-sheet formula. It doesn't include the child disability benefit or provincial and territorial top-ups, and your actual payment depends on your assessed adjusted family net income. Confirm with the CRA or your My Account.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a> · <a href="/contact/">Contact</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { CCB } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+function run() {
+  const under6 = Math.max(0, Math.floor(parseMoney(el('under6').value)));
+  const age6to17 = Math.max(0, Math.floor(parseMoney(el('age6to17').value)));
+  const afni = parseMoney(el('afni').value);
+  const status = el('status').value;
+
+  el('afni-hint').textContent = status === 'single'
+    ? "Your own net income (line 23600), with the CCB adjustments"
+    : "You and your partner's combined net income (line 23600s added), with the CCB adjustments";
+
+  const numChildren = under6 + age6to17;
+  const r = CCB.annual(under6, age6to17, afni);
+
+  el('monthly').textContent = formatCurrency(r.monthly, { cents: true });
+
+  let reading;
+  if (numChildren === 0) {
+    reading = "Enter at least one child to see an estimate.";
+  } else if (r.reduction === 0) {
+    reading = `Your income is at or below the $${CCB.threshold1.toLocaleString('en-CA')} threshold, so you get the full amount for ${numChildren === 1 ? 'your child' : 'all ' + numChildren + ' children'}.`;
+  } else if (r.annual === 0) {
+    reading = "At this income the benefit has fully phased out for this family size.";
+  } else if (afni > CCB.threshold2) {
+    reading = `Your income is past the second threshold of $${CCB.threshold2.toLocaleString('en-CA')}, so the lower reduction rate applies on the part above it.`;
+  } else {
+    reading = `You're in the first phase-out band, losing a share of every dollar above $${CCB.threshold1.toLocaleString('en-CA')}.`;
+  }
+  el('reading').textContent = reading;
+
+  el('breakdown').innerHTML =
+      `<div class="row"><span>Maximum before phase-out</span><span class="val">${formatCurrency(r.base)}</span></div>`
+    + `<div class="row"><span>Income phase-out reduction</span><span class="val">${r.reduction > 0 ? '−' + formatCurrency(r.reduction) : formatCurrency(0)}</span></div>`
+    + `<div class="row total"><span>Estimated annual CCB</span><span class="val">${formatCurrency(r.annual)}</span></div>`
+    + `<div class="row"><span>Estimated monthly CCB</span><span class="val">${formatCurrency(r.monthly, { cents: true })}</span></div>`;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['under6','age6to17','afni','status'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
