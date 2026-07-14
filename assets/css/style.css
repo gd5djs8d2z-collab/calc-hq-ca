@@ -353,6 +353,30 @@ select.input {
 }
 .conditions li:last-child { border-bottom: none; }
 
+/* Comparison table — cumulative totals across ages. Scrolls inside its own box
+   on narrow screens so the page body never scrolls sideways. */
+.compare-table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.96rem; min-width: 26rem; }
+.compare-table th, .compare-table td {
+  text-align: right;
+  padding: 0.6rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+.compare-table thead th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--navy);
+}
+.compare-table tbody tr.highlight td { background: rgba(21, 41, 62, 0.05); font-weight: 650; }
+.compare-table .lead-60 { color: var(--accent-deep); }
+.compare-table .lead-65 { color: var(--navy); }
+
 /* Eligibility badge inside the result block. */
 .eligibility {
   display: inline-block;

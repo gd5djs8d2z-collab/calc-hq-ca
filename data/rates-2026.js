@@ -567,3 +567,53 @@ export const LTT = {
     return { provincial, municipal, provincialRebate, municipalRebate, total };
   },
 };
+
+/* ── CPP RETIREMENT PENSION — timing (start at 60 vs 65) ────────────────────── */
+// Federal, nationwide (CPP; Quebec's QPP is separate and NOT covered here).
+// Verified 2026-07-14 against canada.ca (ESDC):
+//   Adjustment rates — "When to start your retirement pension":
+//     https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/when-start.html
+//     "before age 65 … decrease by 0.6% each month (7.2%/yr), up to 36% at age 60;
+//      after age 65 … increase by 0.7% each month (8.4%/yr), up to 42% at age 70."
+//   Amounts — "How much you could receive":
+//     https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html
+//     Maximum at 65 (January 2026): $1,507.65/month.
+//     Average CPP pension at 65 (April 2026): $877.01/month.
+// The maximum/average are context only — the calculator REQUIRES the user's own
+// estimate from their Service Canada statement and never defaults to these.
+export const CPP_RETIREMENT = {
+  earlyReductionPerMonth: 0.006, // 0.6%/month for each month before 65
+  earlyMaxReduction: 0.36,       // 36% at age 60 (60 months early)
+  lateIncreasePerMonth: 0.007,   // 0.7%/month after 65 — reference only, not used on 60-vs-65
+  lateMaxIncrease: 0.42,         // 42% at age 70 — reference only
+  maxAt65Monthly: 1507.65,       // context only — do NOT prefill the input
+  averageAt65Monthly: 877.01,    // context only
+
+  // Monthly pension if started at `startAge` (60–65 for this page), given the
+  // amount payable at 65. Reduction is 0.6% × months-before-65.
+  monthlyAtStart(monthlyAt65, startAge) {
+    const monthsEarly = Math.max(0, Math.min(60, (65 - startAge) * 12));
+    return monthlyAt65 * (1 - this.earlyReductionPerMonth * monthsEarly);
+  },
+
+  // Break-even age for start-at-60 vs start-at-65, in years. The early starter
+  // banks (monthlyAt60 × 60) by age 65; after 65 the later, larger pension closes
+  // that lead at (monthlyAt65 − monthlyAt60) per month. Those catch-up months fall
+  // AFTER 65, so the break-even age is 65 + months/12 (NOT 60 + …). Note this comes
+  // out to ~73.9 regardless of the dollar amount — it's driven purely by the 36%
+  // reduction, since both the lead and the catch-up scale with the pension size.
+  breakEvenAge(monthlyAt65) {
+    const at60 = this.monthlyAtStart(monthlyAt65, 60);
+    const diff = monthlyAt65 - at60;
+    if (diff <= 0) return null;
+    const monthsAfter65 = (at60 * 60) / diff;
+    return 65 + monthsAfter65 / 12;
+  },
+
+  // Cumulative pension dollars collected by `atAge` if started at `startAge`
+  // (nominal, before inflation indexing, investment returns or tax).
+  cumulativeBy(monthlyAmount, startAge, atAge) {
+    const months = Math.max(0, (atAge - startAge) * 12);
+    return monthlyAmount * months;
+  },
+};

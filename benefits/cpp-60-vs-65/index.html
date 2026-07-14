@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPP at 60 vs 65 Calculator — Break-Even Age (2026) | calc-hq.ca</title>
+<meta name="description" content="Should you take CPP at 60 or wait until 65? Enter your own estimated pension and see your break-even age and the cumulative totals at 70, 75, 80, 85 and 90.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/cpp-60-vs-65/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CPP at 60 vs 65 Calculator — Break-Even Age (2026)">
+<meta property="og:description" content="Take CPP early at 60 or wait to 65? Find your break-even age and compare lifetime totals.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/cpp-60-vs-65/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits & Deductions","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"CPP at 60 vs 65 Calculator","item":"https://calc-hq.ca/benefits/cpp-60-vs-65/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is it better to take CPP at 60 or 65?","acceptedAnswer":{"@type":"Answer","text":"It depends on how long you expect to live and whether you need the money sooner. Taking CPP at 60 gives you five extra years of payments, but each cheque is 36% smaller for life. Waiting to 65 gives a larger cheque that eventually overtakes the early-start total. The crossover — the break-even age — falls at about 73 to 74. If you expect to live well past your mid-70s, waiting pays more in total; if your health, family history or cash needs point the other way, starting at 60 can be the better call. This isn't only a math question."}},
+{"@type":"Question","name":"How much less is CPP if you take it at 60?","acceptedAnswer":{"@type":"Answer","text":"Your pension drops by 0.6% for every month you start before 65 — 7.2% a year — which adds up to a 36% reduction if you start at exactly 60. So a pension that would be $1,000 a month at 65 becomes $640 a month at 60, and that reduced amount is permanent (it's still indexed to inflation, but it never resets to the un-reduced figure)."}},
+{"@type":"Question","name":"What is the CPP break-even age for taking it at 60 versus 65?","acceptedAnswer":{"@type":"Answer","text":"About 73.9 — just before age 74. What surprises people is that the break-even age is the same no matter how big your CPP is. Because both the head start you build by taking it early and the monthly catch-up the larger pension provides scale with your pension amount, they cancel out, leaving a break-even driven only by the 36% reduction. Your own dollar figure changes how much money is on the table at each age, but not the crossover age."}},
+{"@type":"Question","name":"What is the maximum CPP at 65 in 2026?","acceptedAnswer":{"@type":"Answer","text":"The maximum CPP retirement pension at age 65 is $1,507.65 a month as of January 2026, but very few people get it — you'd need roughly 40 years of contributions at or above the yearly maximum. The average CPP retirement pension at 65 was about $877 a month in April 2026. That's why this calculator asks for your own estimate from your My Service Canada Account rather than assuming a figure."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits &amp; Deductions</a><span class="sep">›</span>
+    <span>CPP at 60 vs 65</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>CPP at 60 vs 65 — Break-Even Calculator</h1>
+    <p class="lead">Taking CPP at 60 means five more years of cheques, each one 36% smaller. Waiting to 65 means a bigger cheque that catches up later. Enter your own estimated pension to see where the two cross over — and how the totals stack up if you live to 85 or beyond.</p>
+  </div>
+
+  <section class="calc-card" aria-label="CPP 60 vs 65 break-even calculator">
+    <div class="field input-money">
+      <label for="cpp65">Your estimated CPP at 65
+        <span class="hint">The monthly amount from your My Service Canada Account. For reference only: the 2026 maximum is $1,507.65/mo and the average new pension is about $877/mo — enter <em>your</em> figure, not these.</span>
+      </label>
+      <input class="input" id="cpp65" type="text" inputmode="numeric" placeholder="900">
+    </div>
+    <div class="field">
+      <label for="age">Plan to age
+        <span class="hint">How long you expect to draw the pension. Default 85.</span>
+      </label>
+      <input class="input" id="age" type="text" inputmode="numeric" placeholder="85" value="85">
+    </div>
+    <button class="btn" id="go" type="button">Show my break-even age</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Break-even age (start at 60 vs 65)</p>
+      <p class="result-number" id="breakeven">—</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="compare-table-wrap">
+        <table class="compare-table" id="compare" hidden>
+          <thead>
+            <tr><th>By age</th><th>Total if you start at 60</th><th>Total if you start at 65</th><th>Who's ahead</th></tr>
+          </thead>
+          <tbody id="compare-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="notice" id="need-input" hidden>
+      Enter your estimated monthly CPP at 65 to see your break-even age. You'll find it in your My Service Canada Account under "Canada Pension Plan" — it's an estimate based on your contributions so far.
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>How the 60-vs-65 choice works</h2>
+    <p>CPP lets you start any time from age 60 to 70. Start before 65 and your pension is cut by <strong>0.6% for every month early</strong> — 7.2% a year — so starting at exactly 60 locks in a <strong>36% smaller</strong> cheque for life. The trade is real money now versus more money later: at 60 you collect for five extra years before the person who waited gets anything, but from 65 on, their un-reduced pension is larger every single month and slowly erases your head start.</p>
+    <p>The point where the two lifetime totals meet is the break-even age. Live past it and waiting to 65 wins on total dollars; fall short of it and starting at 60 wins. The calculator above finds that age from your own numbers and then shows the running totals at 70, 75, 80, 85 and 90 so you can see the gap, not just the crossover.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Why the break-even age is the same for everyone</h2>
+    <p>Here's the part most people don't expect: the break-even age comes out to <strong>about 73.9</strong> — just before 74 — no matter how large or small your CPP is. The head start you bank by taking it early and the monthly catch-up the bigger pension gives after 65 both scale with your pension amount, so they cancel out. Only the 36% reduction drives the crossover. Your own figure changes <em>how many dollars</em> are on the table at each age — which is what the table shows — but not the age where the lines cross.</p>
+    <p>That means the honest version of this decision isn't really "run the math to find your number." The math gives roughly the same answer for everyone. The real question is whether you expect to be collecting past your mid-70s, and whether you need — or would rather have — the money in your 60s.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What this doesn't factor in</h2>
+    <p>This is a clean, before-everything-else comparison of the cheques themselves. It doesn't model income tax, the effect of CPP on income-tested benefits like the Guaranteed Income Supplement or OAS clawback, what you might earn by investing early payments, or your own health and family longevity. It uses today's dollars and doesn't try to guess future inflation adjustments — CPP is indexed, but that indexing lifts both the early and the later pension, so it barely moves the break-even. Treat the result as the starting point for a conversation, not the final word.</p>
+    <p>This page covers 60 versus 65 only. Deferring past 65 — up to age 70, where the pension is 42% <em>larger</em> — is a different decision with a later break-even, and we'll cover it on its own page.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Is it better to take CPP at 60 or 65?</summary>
+      <p>It depends on longevity and need. Taking it at 60 gives five extra years of payments at 36% less per cheque; waiting to 65 gives a bigger cheque that overtakes the early total at about age 73–74. Past that, waiting wins on total dollars; before it, starting early does. Health, family history and cash needs matter as much as the math.</p>
+    </details>
+    <details><summary>How much less is CPP if you take it at 60?</summary>
+      <p>36% less. The reduction is 0.6% per month before 65 (7.2% a year), and 60 months early works out to 36%. A $1,000 pension at 65 becomes $640 at 60 — permanently, though still indexed to inflation.</p>
+    </details>
+    <details><summary>What is the break-even age for CPP at 60 vs 65?</summary>
+      <p>About 73.9 — just before 74 — and it's the same regardless of your pension amount, because the reduction (36%) is what drives it, not the dollars. Your own figure changes the size of the gap at each age, not the crossover age.</p>
+    </details>
+    <details><summary>What is the maximum CPP at 65 in 2026?</summary>
+      <p>$1,507.65 a month as of January 2026, but few people qualify for it. The average CPP retirement pension at 65 was about $877 a month in April 2026. Use your own estimate from My Service Canada Account for this calculator, not the maximum.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>How your annual CPP contribution is built during your working years.</p></a>
+      <a class="tool-card" href="/benefits/ei/"><h3>EI Calculator</h3><p>Hours to qualify and what a weekly payment looks like.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Net pay after tax, CPP and EI in any province or territory.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only, using CPP adjustment rates and 2026 amounts published by Service Canada. It compares the pension cheques in today's dollars and does not account for income tax, GIS or OAS interactions, investment returns, or your personal longevity. This is general information, not financial advice — confirm your own numbers with Service Canada and consider speaking to a financial planner before deciding when to start CPP.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/benefits/cpp-60-vs-65/">CPP at 60 vs 65</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a> · <a href="/contact/">Contact</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { CPP_RETIREMENT } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const R = CPP_RETIREMENT;
+
+function run() {
+  const m65 = parseMoney(el('cpp65').value);
+  let planAge = Math.round(parseMoney(el('age').value)) || 85;
+  planAge = Math.max(66, Math.min(100, planAge));
+
+  const result = el('result'), need = el('need-input');
+  if (m65 <= 0) {
+    result.hidden = true;
+    need.hidden = false;
+    return;
+  }
+  need.hidden = true;
+
+  const m60 = R.monthlyAtStart(m65, 60);
+  const be = R.breakEvenAge(m65);
+  const beText = be.toFixed(1);
+
+  el('breakeven').textContent = `~${Math.round(be)}`;
+
+  const cum60 = R.cumulativeBy(m60, 60, planAge);
+  const cum65 = R.cumulativeBy(m65, 65, planAge);
+  const gap = cum65 - cum60;
+  const planWinner = gap >= 0 ? 'waiting until 65' : 'starting at 60';
+
+  el('reading').textContent =
+    `Your break-even is about age ${beText}. Live past it and waiting until 65 pays more in total; expect a shorter retirement and starting at 60 comes out ahead. By your planning age of ${planAge}, ${planWinner} leaves you roughly ${formatCurrency(Math.abs(gap))} ahead.`;
+
+  el('breakdown').innerHTML =
+      `<div class="row"><span>Monthly pension at 60 (36% less)</span><span class="val">${formatCurrency(m60, { cents: true })}</span></div>`
+    + `<div class="row"><span>Monthly pension at 65 (your estimate)</span><span class="val">${formatCurrency(m65, { cents: true })}</span></div>`
+    + `<div class="row total"><span>Difference per month</span><span class="val">${formatCurrency(m65 - m60, { cents: true })}</span></div>`;
+
+  // Milestone ages plus the planning age, de-duplicated and sorted.
+  const ages = Array.from(new Set([70, 75, 80, 85, 90, planAge]))
+    .filter(a => a > 65 && a <= 100).sort((a, b) => a - b);
+
+  el('compare-body').innerHTML = ages.map(a => {
+    const c60 = R.cumulativeBy(m60, 60, a);
+    const c65 = R.cumulativeBy(m65, 65, a);
+    const d = c65 - c60;
+    let ahead;
+    if (Math.abs(d) < 1) ahead = 'break-even';
+    else if (d > 0) ahead = `<span class="lead-65">65 by ${formatCurrency(d)}</span>`;
+    else ahead = `<span class="lead-60">60 by ${formatCurrency(-d)}</span>`;
+    const cls = a === planAge ? ' class="highlight"' : '';
+    return `<tr${cls}><td>${a}</td><td>${formatCurrency(c60)}</td><td>${formatCurrency(c65)}</td><td>${ahead}</td></tr>`;
+  }).join('');
+
+  el('compare').hidden = false;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['cpp65', 'age'].forEach(id => el(id).addEventListener('change', run));
+</script>
+</body>
+</html>
