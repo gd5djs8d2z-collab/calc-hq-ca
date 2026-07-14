@@ -216,6 +216,13 @@ select.input {
 
 /* Two-up field row on wider screens */
 .field-row { display: grid; gap: 1rem; }
+/* Bottom-align the inputs in a pair so a hint (or a longer label) on one field
+   doesn't push its box out of line with its neighbour. The grid stretches both
+   cells to equal height, and anchoring each input to the bottom lines the boxes
+   up. The margin-bottom override neutralises .field:last-of-type (which would
+   otherwise give the row's last field 0.25rem extra and offset it by ~4px). */
+.field-row .field { display: flex; flex-direction: column; margin-bottom: 1.15rem; }
+.field-row .field > .input { margin-top: auto; }
 
 /* Checkbox field */
 .field.checkbox {
