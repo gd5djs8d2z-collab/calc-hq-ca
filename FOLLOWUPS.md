@@ -1,0 +1,48 @@
+# Follow-ups
+
+Standalone technical debt / cleanup items, tracked separately from feature work.
+
+**Scheduling rule:** these are for **after the hub is complete**. Do NOT fold them into
+the Quebec build — that session stays clean (QPP / QPIP / 16.5% abatement + the inaugural
+constants audit only).
+
+---
+
+## 1. Ontario health premium — reconcile the duplication
+
+**What:** The Ontario Health Premium schedule exists in two places that can drift:
+- `assets/js/tax-engine.js` → `ontarioHealthPremium()` — the six bands **hardcoded** as
+  imperative code. **This is what the engine actually uses.**
+- `data/tax-constants-2026.js` → `provinces.ON.healthPremium` — the same six bands as
+  **formula-string data** (`"lesser(300, 0.06*(income-20000))"`, …). Currently unused by
+  the engine; documentation only.
+
+**Why deferred:** the string-formula data doesn't cleanly map onto the hardcoded function,
+so wiring the engine to read the data would be a real refactor (a small formula
+interpreter or restructured band data), not a safe mechanical swap.
+
+**Fix options:** either (a) drive `ontarioHealthPremium()` from the data so there's one
+source, or (b) drop the unused data array and keep the engine hardcode as the single
+source, moving its provenance into a comment. Pick one; don't leave both live.
+
+**Risk if ignored:** low today (values agree), but a future January update could change one
+and not the other.
+
+---
+
+## 2. Migrate benefit-program constants into the provenance file
+
+**What:** These still hold their constants inline in `data/rates-2026.js` (with their own
+source/verified comments), outside the `{ value, source_url, last_verified }` structure:
+`ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`.
+
+**Why deferred / why separate cadence:** they don't index on the January income-tax cycle —
+- CCB re-indexes every **July** (benefit year July–June),
+- LTT and ESA change only by **legislation**,
+- CPP-timing and EI mat/parental follow federal benefit updates.
+
+So they were intentionally left out of `tax-constants-2026.js` and the January audit.
+
+**Fix:** extend the provenance structure to cover them (possibly a sibling
+`benefit-constants-2026.js`), and add their cadences to `MAINTENANCE.md` so each gets a
+re-verification trigger appropriate to it (not the January one).
