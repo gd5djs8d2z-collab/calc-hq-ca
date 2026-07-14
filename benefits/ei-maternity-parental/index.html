@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EI Maternity &amp; Parental Benefits Calculator 2026 — Standard vs Extended | calc-hq.ca</title>
+<meta name="description" content="Estimate your EI maternity and parental benefits for 2026. Compare standard vs extended parental leave side by side — the weekly amount, the weeks, and the total for each.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/ei-maternity-parental/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EI Maternity & Parental Benefits Calculator 2026 — Standard vs Extended">
+<meta property="og:description" content="Standard vs extended parental leave, side by side: higher weekly for less time, or a smaller cheque stretched longer.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/ei-maternity-parental/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits & Deductions","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"EI Maternity & Parental Benefits Calculator","item":"https://calc-hq.ca/benefits/ei-maternity-parental/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the difference between standard and extended parental benefits?","acceptedAnswer":{"@type":"Answer","text":"They pay out roughly the same total, but over different lengths of time. Standard parental benefits pay 55% of your average weekly earnings (up to $729 a week in 2026) for up to 35 weeks — or 40 weeks if shared between two parents. Extended parental benefits pay a lower 33% (up to $437 a week in 2026) but for much longer: up to 61 weeks, or 69 weeks if shared. Because 61 weeks at 33% adds up to slightly more than 35 weeks at 55%, the extended total can even edge a little higher. The real decision is cash flow and time off, not total dollars: standard gives you more each week for about a year, extended stretches a smaller cheque over about 18 months."}},
+{"@type":"Question","name":"How much are EI maternity benefits in 2026?","acceptedAnswer":{"@type":"Answer","text":"Maternity benefits pay 55% of your average insurable weekly earnings, up to a maximum of $729 a week in 2026, for up to 15 weeks. They're only for the person who is pregnant or has given birth and can't be shared. Maternity is always paid at the 55% rate — choosing extended parental benefits afterward doesn't lower your maternity weeks."}},
+{"@type":"Question","name":"How many weeks of parental leave can two parents share?","acceptedAnswer":{"@type":"Answer","text":"If you share, the family can access up to 40 weeks of standard parental benefits or up to 69 weeks of extended — but one parent can't take more than 35 standard or 61 extended weeks. So sharing adds 5 standard or 8 extended weeks over what a single parent could claim, and those extra weeks go to the second parent, paid at their own earnings. Both parents have to choose the same option, standard or extended."}},
+{"@type":"Question","name":"Is there a waiting period for EI parental benefits?","acceptedAnswer":{"@type":"Answer","text":"Yes. There's a one-week unpaid waiting period at the start of your claim — Service Canada describes it as being like an insurance deductible. When you take maternity followed by parental benefits, you serve that waiting week only once. It means your first payment arrives about a week after your leave starts, so plan for that gap in cash flow."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits &amp; Deductions</a><span class="sep">›</span>
+    <span>EI Maternity &amp; Parental</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>EI Maternity &amp; Parental Benefits Calculator (2026)</h1>
+    <p class="lead">The big parental-leave decision isn't how much you get — it's how you take it. Standard pays more each week for about a year; extended pays less each week but stretches to about 18 months. Enter your earnings to see both side by side, in weekly dollars and total.</p>
+  </div>
+
+  <section class="calc-card" aria-label="EI maternity and parental benefits calculator">
+    <div class="field-row">
+      <div class="field input-money">
+        <label for="earnings">Your earnings before tax</label>
+        <input class="input" id="earnings" type="text" inputmode="numeric" placeholder="60,000">
+      </div>
+      <div class="field">
+        <label for="freq">Earnings are</label>
+        <select class="input" id="freq">
+          <option value="annual">Annual salary</option>
+          <option value="weekly">Average weekly</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="mix">Which benefits are you taking?</label>
+      <select class="input" id="mix">
+        <option value="both">Maternity + parental (I'm giving birth)</option>
+        <option value="parental">Parental only (partner, or adoption)</option>
+      </select>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="sharing">
+      <label for="sharing">We're sharing parental leave with a second parent (unlocks extra weeks)</label>
+    </div>
+    <button class="btn" id="go" type="button">Compare standard vs extended</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Standard vs extended parental — side by side</p>
+      <div class="option-cards">
+        <div class="option-card" id="card-std">
+          <div class="option-name">Standard parental · 55%</div>
+          <div class="option-weekly" id="std-weekly">$0</div>
+          <div class="option-sub"><span id="std-weeks">0</span> weeks off · about <span id="std-months">0</span> months</div>
+          <div class="option-total">Total ≈ <span id="std-total">$0</span></div>
+        </div>
+        <div class="option-card ext" id="card-ext">
+          <div class="option-name">Extended parental · 33%</div>
+          <div class="option-weekly" id="ext-weekly">$0</div>
+          <div class="option-sub"><span id="ext-weeks">0</span> weeks off · about <span id="ext-months">0</span> months</div>
+          <div class="option-total">Total ≈ <span id="ext-total">$0</span></div>
+        </div>
+      </div>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+
+    <div class="notice" id="need-input" hidden>
+      Enter your earnings before tax to compare standard and extended parental benefits.
+    </div>
+
+    <div class="notice" id="quebec-note">
+      <strong>Quebec residents:</strong> this calculator doesn't apply to you. Quebec runs its own Québec Parental Insurance Plan (QPIP) instead of federal EI, with different rates and a different number of weeks. Use QPIP's own figures.
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>What each benefit pays in 2026</h2>
+    <p>EI maternity and parental benefits replace part of your pay while you're off with a new child. Three pieces stack together:</p>
+    <ul class="conditions">
+      <li><strong>Maternity</strong> — for the person who gave birth, up to <strong>15 weeks</strong> at <strong>55%</strong> of average weekly earnings, to a maximum of <strong>$729/week</strong>. It can't be shared, and it's always paid at 55% even if you pick extended parental afterward.</li>
+      <li><strong>Standard parental</strong> — <strong>55%</strong> (max <strong>$729/week</strong>) for up to <strong>35 weeks</strong> for one parent, or <strong>40 weeks</strong> shared between two.</li>
+      <li><strong>Extended parental</strong> — <strong>33%</strong> (max <strong>$437/week</strong>) for up to <strong>61 weeks</strong> for one parent, or <strong>69 weeks</strong> shared.</li>
+    </ul>
+    <p>The weekly amount is 55% (or 33%) of your average insurable earnings, capped once your salary passes about $68,900 — the 2026 ceiling on insurable earnings. Above that, everyone gets the same maximum.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Why the totals come out close — and what actually decides it</h2>
+    <p>Standard looks more generous because the weekly cheque is bigger. But extended runs for far longer, and 61 weeks at 33% adds up to slightly <em>more</em> than 35 weeks at 55%. So the lifetime totals land within a few percent of each other — sometimes extended is even a touch higher. Choosing based on "which pays more" mostly misses the point.</p>
+    <p>What actually decides it:</p>
+    <ul class="conditions">
+      <li><strong>Standard suits you</strong> if you need more money each week to cover the bills, you're planning to return to work around the one-year mark, or your employer's top-up is built around the standard rate (most are).</li>
+      <li><strong>Extended suits you</strong> if you'd rather have more time at home than more cash each week, you can manage on the lower weekly amount, and staying home longer saves you a stretch of daycare.</li>
+    </ul>
+    <p>Two things to know before you commit: once you start receiving extended benefits you generally <strong>can't switch back to the standard rate</strong>, and if you're sharing, both parents must pick the same option. If you take extended but return to work early, the remaining weeks simply go unpaid — you don't get topped back up to the standard rate.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What this estimate leaves out</h2>
+    <p>This compares the EI cheques themselves, before anything else. <strong>EI benefits are taxable</strong> — tax is withheld and the payments go on your return, so your take-home is lower than the figures here. The estimate also doesn't include any employer top-up, and it doesn't apply the low-income Family Supplement (which can raise the rate for families with net income of $25,921 or less). It assumes a steady wage; Service Canada actually uses your "best weeks," so uneven pay can shift the number. When two parents share, the extra weeks are paid at the second parent's earnings, not yours. And there's a <strong>one-week unpaid waiting period</strong> at the start — your first payment lands about a week after your leave begins. Treat this as a planning estimate; Service Canada calculates the exact amount when you apply.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>What's the difference between standard and extended parental benefits?</summary>
+      <p>Same rough total, different length. Standard pays 55% (up to $729/week in 2026) for up to 35 weeks (40 shared); extended pays 33% (up to $437/week) for up to 61 weeks (69 shared). Extended can even total slightly more. The real choice is cash flow and time off: more per week for ~a year, or less per week for ~18 months.</p>
+    </details>
+    <details><summary>How much are EI maternity benefits in 2026?</summary>
+      <p>55% of average insurable weekly earnings, up to $729 a week, for up to 15 weeks. Only for the person who gave birth, and always paid at 55% — picking extended parental afterward doesn't reduce it.</p>
+    </details>
+    <details><summary>How many weeks of parental leave can two parents share?</summary>
+      <p>Up to 40 weeks standard or 69 weeks extended between them, but one parent can't take more than 35 standard or 61 extended. Sharing adds 5 or 8 weeks for the second parent, paid at their earnings. Both parents must choose the same option.</p>
+    </details>
+    <details><summary>Is there a waiting period for EI parental benefits?</summary>
+      <p>Yes — one unpaid week at the start of the claim, like an insurance deductible. You serve it once when combining maternity and parental. Your first payment arrives about a week after your leave starts.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/benefits/ei/"><h3>EI Calculator</h3><p>Regular EI: hours to qualify and the weekly benefit.</p></a>
+      <a class="tool-card" href="/benefits/ccb/"><h3>Canada Child Benefit</h3><p>Monthly tax-free support once the baby arrives.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Work out the net pay your leave replaces.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only, using EI maternity and parental benefit rates, weeks and 2026 maximums published by Service Canada. It shows benefits before tax (EI is taxable) and excludes employer top-ups and the Family Supplement. Not for Quebec residents, who use QPIP. This is general information, not financial advice — Service Canada determines your actual entitlement when you apply.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/benefits/ei-maternity-parental/">EI Maternity &amp; Parental</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+          <li><a href="/benefits/cpp-60-vs-65/">CPP at 60 vs 65</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a> · <a href="/contact/">Contact</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { EI_PARENTAL } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const P = EI_PARENTAL;
+const asMonths = (weeks) => Math.round(weeks / 4.345 * 10) / 10;
+
+function run() {
+  const raw = parseMoney(el('earnings').value);
+  const avgWeekly = el('freq').value === 'weekly' ? raw : raw / 52;
+  const includeMaternity = el('mix').value === 'both';
+  const sharing = el('sharing').checked;
+
+  const result = el('result'), need = el('need-input');
+  if (raw <= 0) {
+    result.hidden = true;
+    need.hidden = false;
+    return;
+  }
+  need.hidden = true;
+
+  const e = P.estimate(avgWeekly, includeMaternity, sharing);
+  const { standard: s, extended: x } = e;
+
+  el('std-weekly').textContent = formatCurrency(s.parentalWeekly);
+  el('std-weeks').textContent = s.totalWeeks;
+  el('std-months').textContent = asMonths(s.totalWeeks);
+  el('std-total').textContent = formatCurrency(s.total);
+
+  el('ext-weekly').textContent = formatCurrency(x.parentalWeekly);
+  el('ext-weeks').textContent = x.totalWeeks;
+  el('ext-months').textContent = asMonths(x.totalWeeks);
+  el('ext-total').textContent = formatCurrency(x.total);
+
+  const lo = Math.min(s.total, x.total), hi = Math.max(s.total, x.total);
+  const pct = lo > 0 ? Math.round((hi - lo) / lo * 100) : 0;
+  const higher = x.total >= s.total ? 'Extended even edges slightly higher' : 'Standard comes out slightly higher';
+  el('reading').textContent =
+    `Over the whole leave the two are close — ${formatCurrency(lo)} to ${formatCurrency(hi)}, within about ${pct}%. ${higher}. `
+    + `The real difference is the shape: Standard pays ${formatCurrency(s.parentalWeekly)} a week for ${s.totalWeeks} weeks (~${asMonths(s.totalWeeks)} months), Extended ${formatCurrency(x.parentalWeekly)} a week for ${x.totalWeeks} weeks (~${asMonths(x.totalWeeks)} months). Pick Standard for more cash each week and a shorter leave; Extended for more time off on a smaller cheque.`;
+
+  const rows = [];
+  if (includeMaternity) {
+    rows.push(`<div class="row"><span>Maternity (15 weeks @ 55%)</span><span class="val">${formatCurrency(e.maternityWeekly)}/wk</span></div>`);
+  }
+  rows.push(`<div class="row"><span>Standard parental (${s.parentalWeeks} weeks @ 55%)</span><span class="val">${formatCurrency(s.parentalWeekly)}/wk</span></div>`);
+  rows.push(`<div class="row"><span>Extended parental (${x.parentalWeeks} weeks @ 33%)</span><span class="val">${formatCurrency(x.parentalWeekly)}/wk</span></div>`);
+  rows.push(`<div class="row"><span>Unpaid waiting period</span><span class="val">1 week</span></div>`);
+  el('breakdown').innerHTML = rows.join('');
+
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['earnings', 'freq', 'mix', 'sharing'].forEach(id => el(id).addEventListener('change', run));
+</script>
+</body>
+</html>

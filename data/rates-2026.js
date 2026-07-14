@@ -617,3 +617,65 @@ export const CPP_RETIREMENT = {
     return monthlyAmount * months;
   },
 };
+
+/* ── EI MATERNITY & PARENTAL BENEFITS — federal, nationwide EXCEPT Quebec ────── */
+// Quebec runs its own QPIP (Québec Parental Insurance Plan) with different rates and
+// weeks — NOT modelled here. Verified 2026-07-14 against canada.ca (Service Canada):
+//   "What these benefits offer" (weeks table) —
+//     https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html
+//   "How much you could receive" (rates + 2026 weekly maximums) —
+//     https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html
+//   "After you apply" (1-week unpaid waiting period) —
+//     https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html
+// Official 2026 table:
+//   Maternity (birth parent only, not shareable): up to 15 weeks @ 55%, max $729/wk
+//   Standard parental: up to 40 wks shared / 35 wks one parent @ 55%, max $729/wk
+//   Extended parental: up to 69 wks shared / 61 wks one parent @ 33%, max $437/wk
+// Maternity is ALWAYS paid at 55% — the standard/extended choice only affects PARENTAL.
+export const EI_PARENTAL = {
+  standardRate: 0.55,
+  extendedRate: 0.33,
+  maxWeeklyStandard: 729, // [canada.ca] 2026 (= 55% of $68,900 MIE ÷ 52)
+  maxWeeklyExtended: 437, // [canada.ca] 2026 (= 33% of $68,900 MIE ÷ 52)
+  maternityWeeks: 15,
+  standardParental: { oneParent: 35, shared: 40 }, // sharing adds 5 weeks (2nd parent's)
+  extendedParental: { oneParent: 61, shared: 69 }, // sharing adds 8 weeks (2nd parent's)
+  waitingPeriodWeeks: 1, // one unpaid week at the start of the claim
+  familySupplementIncomeThreshold: 25921, // [canada.ca] Family Supplement (up to 80%) — NOT modelled
+
+  weeklyStandard(avgWeekly) {
+    return Math.min(Math.round(avgWeekly * this.standardRate), this.maxWeeklyStandard);
+  },
+  weeklyExtended(avgWeekly) {
+    return Math.min(Math.round(avgWeekly * this.extendedRate), this.maxWeeklyExtended);
+  },
+
+  // Compare the standard vs extended path. `includeMaternity` adds 15 maternity weeks
+  // (always at 55%); `sharing` unlocks the shared parental cap (extra weeks are the
+  // second parent's, estimated here at the same earnings). Totals are nominal, pre-tax.
+  estimate(avgWeekly, includeMaternity, sharing) {
+    const wStd = this.weeklyStandard(avgWeekly);
+    const wExt = this.weeklyExtended(avgWeekly);
+    const matWeeks = includeMaternity ? this.maternityWeeks : 0;
+    const stdParental = sharing ? this.standardParental.shared : this.standardParental.oneParent;
+    const extParental = sharing ? this.extendedParental.shared : this.extendedParental.oneParent;
+    const matPay = matWeeks * wStd; // maternity always at the 55% rate
+    return {
+      maternityWeekly: wStd,
+      standard: {
+        parentalWeekly: wStd,
+        maternityWeeks: matWeeks,
+        parentalWeeks: stdParental,
+        totalWeeks: matWeeks + stdParental,
+        total: matPay + stdParental * wStd,
+      },
+      extended: {
+        parentalWeekly: wExt,
+        maternityWeeks: matWeeks,
+        parentalWeeks: extParental,
+        totalWeeks: matWeeks + extParental,
+        total: matPay + extParental * wExt,
+      },
+    };
+  },
+};

@@ -353,6 +353,45 @@ select.input {
 }
 .conditions li:last-child { border-bottom: none; }
 
+/* Option cards — two choices side by side (e.g. Standard vs Extended parental). */
+.option-cards { display: grid; gap: 1rem; margin: 1.5rem 0 0.5rem; }
+.option-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--navy);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.25rem 1.35rem;
+}
+.option-card.ext { border-top-color: var(--accent); }
+.option-name {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+.option-weekly {
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.option-card.ext .option-weekly { color: var(--accent-deep); }
+.option-sub { font-size: 0.98rem; color: var(--ink); margin-top: 0.15rem; }
+.option-total {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  font-weight: 650;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.option-card.ext .option-total { color: var(--accent-deep); }
+@media (min-width: 40rem) { .option-cards { grid-template-columns: 1fr 1fr; } }
+
 /* Comparison table — cumulative totals across ages. Scrolls inside its own box
    on narrow screens so the page body never scrolls sideways. */
 .compare-table-wrap { overflow-x: auto; margin-top: 0.5rem; }
