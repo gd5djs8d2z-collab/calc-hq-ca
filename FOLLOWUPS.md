@@ -34,7 +34,7 @@ and not the other.
 
 **What:** These still hold their constants inline in `data/rates-2026.js` (with their own
 source/verified comments), outside the `{ value, source_url, last_verified }` structure:
-`ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`.
+`ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`, `QPIP_PARENTAL`.
 
 **Why deferred / why separate cadence:** they don't index on the January income-tax cycle —
 - CCB re-indexes every **July** (benefit year July–June),

@@ -23,7 +23,8 @@
 {"@type":"Question","name":"What is the difference between standard and extended parental benefits?","acceptedAnswer":{"@type":"Answer","text":"They pay out roughly the same total, but over different lengths of time. Standard parental benefits pay 55% of your average weekly earnings (up to $729 a week in 2026) for up to 35 weeks — or 40 weeks if shared between two parents. Extended parental benefits pay a lower 33% (up to $437 a week in 2026) but for much longer: up to 61 weeks, or 69 weeks if shared. Because 61 weeks at 33% adds up to slightly more than 35 weeks at 55%, the extended total can even edge a little higher. The real decision is cash flow and time off, not total dollars: standard gives you more each week for about a year, extended stretches a smaller cheque over about 18 months."}},
 {"@type":"Question","name":"How much are EI maternity benefits in 2026?","acceptedAnswer":{"@type":"Answer","text":"Maternity benefits pay 55% of your average insurable weekly earnings, up to a maximum of $729 a week in 2026, for up to 15 weeks. They're only for the person who is pregnant or has given birth and can't be shared. Maternity is always paid at the 55% rate — choosing extended parental benefits afterward doesn't lower your maternity weeks."}},
 {"@type":"Question","name":"How many weeks of parental leave can two parents share?","acceptedAnswer":{"@type":"Answer","text":"If you share, the family can access up to 40 weeks of standard parental benefits or up to 69 weeks of extended — but one parent can't take more than 35 standard or 61 extended weeks. So sharing adds 5 standard or 8 extended weeks over what a single parent could claim, and those extra weeks go to the second parent, paid at their own earnings. Both parents have to choose the same option, standard or extended."}},
-{"@type":"Question","name":"Is there a waiting period for EI parental benefits?","acceptedAnswer":{"@type":"Answer","text":"Yes. There's a one-week unpaid waiting period at the start of your claim — Service Canada describes it as being like an insurance deductible. When you take maternity followed by parental benefits, you serve that waiting week only once. It means your first payment arrives about a week after your leave starts, so plan for that gap in cash flow."}}]}
+{"@type":"Question","name":"Is there a waiting period for EI parental benefits?","acceptedAnswer":{"@type":"Answer","text":"Yes. There's a one-week unpaid waiting period at the start of your claim — Service Canada describes it as being like an insurance deductible. When you take maternity followed by parental benefits, you serve that waiting week only once. It means your first payment arrives about a week after your leave starts, so plan for that gap in cash flow. Quebec's QPIP has no waiting period at all."}},
+{"@type":"Question","name":"What if I work in Quebec — do I use this calculator?","acceptedAnswer":{"@type":"Answer","text":"Yes, but switch \"Where do you work?\" to Quebec — QPIP. Quebec workers claim from the Quebec Parental Insurance Plan, not EI. QPIP offers a Basic plan (longer, with the rate stepping from 70% down to 55%) and a Special plan (shorter, a flat 75%), caps benefits at $103,000 of earnings rather than $68,900, and has no unpaid waiting week. The calculator swaps in QPIP's weeks and rates when you pick Quebec."}}]}
 </script>
 </head>
 <body>
@@ -51,12 +52,12 @@
 <main class="wrap">
   <div class="page-head">
     <h1>EI Maternity &amp; Parental Benefits Calculator (2026)</h1>
-    <p class="lead">The big parental-leave decision isn't how much you get — it's how you take it. Standard pays more each week for about a year; extended pays less each week but stretches to about 18 months. Enter your earnings to see both side by side, in weekly dollars and total.</p>
+    <p class="lead">The big parental-leave decision isn't how much you get — it's how you take it. Standard pays more each week for about a year; extended pays less each week but stretches to about 18 months. Enter your earnings to see both side by side, in weekly dollars and total. Work in Quebec? Switch the plan to QPIP and compare its Basic and Special options instead.</p>
   </div>
 
   <section class="calc-card" aria-label="EI maternity and parental benefits calculator">
     <div class="field-row">
-      <div class="field">
+      <div class="field input-money">
         <label for="earnings">Your earnings before tax</label>
         <input class="input" id="earnings" type="text" inputmode="numeric" placeholder="60,000">
       </div>
@@ -69,29 +70,38 @@
       </div>
     </div>
     <div class="field">
+      <label for="system">Where do you work?
+        <span class="hint">Quebec has its own plan (QPIP); everywhere else uses federal EI</span>
+      </label>
+      <select class="input" id="system">
+        <option value="EI" selected>Outside Quebec — federal EI</option>
+        <option value="QPIP">Quebec — QPIP</option>
+      </select>
+    </div>
+    <div class="field">
       <label for="mix">Which benefits are you taking?</label>
       <select class="input" id="mix">
-        <option value="both">Maternity + parental (I'm giving birth)</option>
-        <option value="parental">Parental only (partner, or adoption)</option>
+        <option value="both">I'm the birth parent (maternity + parental)</option>
+        <option value="parental">Other parent (paternity/parental)</option>
       </select>
     </div>
     <div class="field checkbox">
       <input type="checkbox" id="sharing">
       <label for="sharing">We're sharing parental leave with a second parent (unlocks extra weeks)</label>
     </div>
-    <button class="btn" id="go" type="button">Compare standard vs extended</button>
+    <button class="btn" id="go" type="button">Compare the two plans</button>
 
     <div class="result" id="result" hidden>
-      <p class="result-label">Standard vs extended parental — side by side</p>
+      <p class="result-label" id="result-label">Standard vs extended parental — side by side</p>
       <div class="option-cards">
         <div class="option-card" id="card-std">
-          <div class="option-name">Standard parental · 55%</div>
+          <div class="option-name" id="name-std">Standard parental · 55%</div>
           <div class="option-weekly" id="std-weekly">$0</div>
           <div class="option-sub"><span id="std-weeks">0</span> weeks off · about <span id="std-months">0</span> months</div>
           <div class="option-total">Total ≈ <span id="std-total">$0</span></div>
         </div>
         <div class="option-card ext" id="card-ext">
-          <div class="option-name">Extended parental · 33%</div>
+          <div class="option-name" id="name-ext">Extended parental · 33%</div>
           <div class="option-weekly" id="ext-weekly">$0</div>
           <div class="option-sub"><span id="ext-weeks">0</span> weeks off · about <span id="ext-months">0</span> months</div>
           <div class="option-total">Total ≈ <span id="ext-total">$0</span></div>
@@ -102,12 +112,10 @@
     </div>
 
     <div class="notice" id="need-input" hidden>
-      Enter your earnings before tax to compare standard and extended parental benefits.
+      Enter your earnings before tax to compare the two benefit plans.
     </div>
 
-    <div class="notice" id="quebec-note">
-      <strong>Quebec residents:</strong> this calculator doesn't apply to you. Quebec runs its own Québec Parental Insurance Plan (QPIP) instead of federal EI, with different rates and a different number of weeks. Use QPIP's own figures.
-    </div>
+    <div class="notice" id="plan-note" hidden></div>
   </section>
 
   <section class="answer">
@@ -133,6 +141,17 @@
   </section>
 
   <section class="answer">
+    <h2>Quebec is different: QPIP, not EI</h2>
+    <p>If you work in Quebec you don't claim EI maternity or parental benefits — you claim from the <strong>Québec Parental Insurance Plan (QPIP)</strong>, which pays more weeks, at higher rates, off a much higher earnings ceiling. Switch "Where do you work?" above to <strong>Quebec — QPIP</strong> to run your own numbers. Three things set it apart:</p>
+    <ul class="conditions">
+      <li><strong>Two plans instead of standard/extended.</strong> The <strong>Basic</strong> plan runs longer at a stepped rate — for a birth parent, 18 weeks maternity at 70%, then 32 parental weeks (the first 7 at 70%, the rest at 55%). The <strong>Special</strong> plan is shorter but pays 75% the whole way through — 15 maternity weeks plus 25 parental. You choose once, and both parents are locked to the same plan.</li>
+      <li><strong>A higher ceiling.</strong> QPIP caps benefits at <strong>$103,000</strong> of insurable earnings in 2026, well above EI's $68,900 — so higher earners keep replacing more of their pay before hitting the max.</li>
+      <li><strong>No waiting period.</strong> EI makes you serve one unpaid week; QPIP doesn't. Your benefit is payable from the day your earnings stop, with no unpaid gap at the start.</li>
+    </ul>
+    <p>The other parent's exclusive weeks differ too — 5 paternity weeks under Basic, 3 under Special — and sharing adds a few shareable weeks to the household (4 under Basic, 3 under Special). QPIP also has its own adoption benefits with a different week structure; those aren't modelled here.</p>
+  </section>
+
+  <section class="answer">
     <h2>What this estimate leaves out</h2>
     <p>This compares the EI cheques themselves, before anything else. <strong>EI benefits are taxable</strong> — tax is withheld and the payments go on your return, so your take-home is lower than the figures here. The estimate also doesn't include any employer top-up, and it doesn't apply the low-income Family Supplement (which can raise the rate for families with net income of $25,921 or less). It assumes a steady wage; Service Canada actually uses your "best weeks," so uneven pay can shift the number. When two parents share, the extra weeks are paid at the second parent's earnings, not yours. And there's a <strong>one-week unpaid waiting period</strong> at the start — your first payment lands about a week after your leave begins. Treat this as a planning estimate; Service Canada calculates the exact amount when you apply.</p>
   </section>
@@ -149,7 +168,10 @@
       <p>Up to 40 weeks standard or 69 weeks extended between them, but one parent can't take more than 35 standard or 61 extended. Sharing adds 5 or 8 weeks for the second parent, paid at their earnings. Both parents must choose the same option.</p>
     </details>
     <details><summary>Is there a waiting period for EI parental benefits?</summary>
-      <p>Yes — one unpaid week at the start of the claim, like an insurance deductible. You serve it once when combining maternity and parental. Your first payment arrives about a week after your leave starts.</p>
+      <p>Yes — one unpaid week at the start of the claim, like an insurance deductible. You serve it once when combining maternity and parental. Your first payment arrives about a week after your leave starts. Quebec's QPIP has no waiting period at all.</p>
+    </details>
+    <details><summary>What if I work in Quebec — do I use this calculator?</summary>
+      <p>Yes, but switch "Where do you work?" to Quebec — QPIP. Quebec workers claim from the Québec Parental Insurance Plan, not EI. QPIP offers a Basic plan (longer, rate stepping 70%→55%) and a Special plan (shorter, a flat 75%), caps benefits at $103,000 of earnings rather than $68,900, and has no unpaid waiting week. The calculator swaps in QPIP's weeks and rates when you pick Quebec.</p>
     </details>
   </section>
 
@@ -160,7 +182,7 @@
       <a class="tool-card" href="/benefits/ccb/"><h3>Canada Child Benefit</h3><p>Monthly tax-free support once the baby arrives.</p></a>
       <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>Work out the net pay your leave replaces.</p></a>
     </div>
-    <p class="disclaimer">Estimate only, using EI maternity and parental benefit rates, weeks and 2026 maximums published by Service Canada. It shows benefits before tax (EI is taxable) and excludes employer top-ups and the Family Supplement. Not for Quebec residents, who use QPIP. This is general information, not financial advice — Service Canada determines your actual entitlement when you apply.</p>
+    <p class="disclaimer">Estimate only, using EI maternity and parental benefit rates, weeks and 2026 maximums published by Service Canada. It shows benefits before tax (both EI and QPIP are taxable) and excludes employer top-ups and the EI Family Supplement. Quebec figures use the QPIP Basic and Special plans; adoption benefits aren't modelled. This is general information, not financial advice — Service Canada (or, in Quebec, the RQAP) determines your actual entitlement when you apply.</p>
   </section>
 </main>
 
@@ -199,17 +221,83 @@
 </footer>
 
 <script type="module">
-import { EI_PARENTAL } from '/data/rates-2026.js';
+import { EI_PARENTAL, QPIP_PARENTAL } from '/data/rates-2026.js';
 import { formatCurrency } from '/assets/js/tax-engine.js';
 import { parseMoney, el } from '/assets/js/calc-ui.js';
 
-const P = EI_PARENTAL;
 const asMonths = (weeks) => Math.round(weeks / 4.345 * 10) / 10;
+
+function runEI(avgWeekly, isBirthParent, sharing) {
+  const e = EI_PARENTAL.estimate(avgWeekly, isBirthParent, sharing);
+  const { standard: s, extended: x } = e;
+
+  el('name-std').textContent = 'Standard parental · 55%';
+  el('name-ext').textContent = 'Extended parental · 33%';
+  el('std-weekly').textContent = formatCurrency(s.parentalWeekly);
+  el('ext-weekly').textContent = formatCurrency(x.parentalWeekly);
+  setCard('std', s.totalWeeks, s.total);
+  setCard('ext', x.totalWeeks, x.total);
+
+  const lo = Math.min(s.total, x.total), hi = Math.max(s.total, x.total);
+  const pct = lo > 0 ? Math.round((hi - lo) / lo * 100) : 0;
+  const higher = x.total >= s.total ? 'Extended even edges slightly higher' : 'Standard comes out slightly higher';
+  el('reading').textContent =
+    `Over the whole leave the two are close — ${formatCurrency(lo)} to ${formatCurrency(hi)}, within about ${pct}%. ${higher}. `
+    + `The real difference is the shape: Standard pays ${formatCurrency(s.parentalWeekly)} a week for ${s.totalWeeks} weeks (~${asMonths(s.totalWeeks)} months), Extended ${formatCurrency(x.parentalWeekly)} a week for ${x.totalWeeks} weeks (~${asMonths(x.totalWeeks)} months). Pick Standard for more cash each week and a shorter leave; Extended for more time off on a smaller cheque.`;
+
+  const rows = [];
+  if (isBirthParent) rows.push(row(`Maternity (15 weeks @ 55%)`, `${formatCurrency(e.maternityWeekly)}/wk`));
+  rows.push(row(`Standard parental (${s.parentalWeeks} weeks @ 55%)`, `${formatCurrency(s.parentalWeekly)}/wk`));
+  rows.push(row(`Extended parental (${x.parentalWeeks} weeks @ 33%)`, `${formatCurrency(x.parentalWeekly)}/wk`));
+  rows.push(row(`Unpaid waiting period`, `1 week`));
+  el('breakdown').innerHTML = rows.join('');
+
+  el('result-label').textContent = 'Standard vs extended parental — side by side';
+  el('plan-note').hidden = true;
+}
+
+function runQPIP(avgWeekly, isBirthParent, sharing) {
+  const q = QPIP_PARENTAL;
+  const e = q.estimate(avgWeekly, isBirthParent, sharing);
+  const { basic: b, special: s } = e;
+  const exclusive = isBirthParent ? 'maternity' : 'paternity';
+
+  el('name-std').textContent = `Basic plan · ${b.rateLabel}`;
+  el('name-ext').textContent = `Special plan · ${s.rateLabel}`;
+  el('std-weekly').textContent = formatCurrency(b.avgWeekly);
+  el('ext-weekly').textContent = formatCurrency(s.avgWeekly);
+  setCard('std', b.totalWeeks, b.total);
+  setCard('ext', s.totalWeeks, s.total);
+
+  el('reading').textContent =
+    `QPIP gives you two plans, and they're a real trade-off. The Basic plan runs longer — ${b.totalWeeks} weeks (~${asMonths(b.totalWeeks)} months) for about ${formatCurrency(b.total)}, but the rate steps down from 70% to 55% partway through, so it averages ${formatCurrency(b.avgWeekly)} a week. `
+    + `The Special plan is shorter and richer: ${s.totalWeeks} weeks (~${asMonths(s.totalWeeks)} months) all at 75%, about ${formatCurrency(s.avgWeekly)} a week, ${formatCurrency(s.total)} in total. Pick Basic for the longest possible leave; Special for the biggest weekly cheque over less time. You choose once, and both parents are locked to the same plan.`;
+
+  const rows = [
+    row(`${exclusive[0].toUpperCase() + exclusive.slice(1)} — Basic (${b.exclusiveWeeks} wk @ 70%)`, `${formatCurrency(q.weeklyAt(avgWeekly, 0.70))}/wk`),
+    row(`Basic parental — first 7 wk @ 70%, then @ 55%`, `${formatCurrency(q.weeklyAt(avgWeekly, 0.70))} → ${formatCurrency(q.weeklyAt(avgWeekly, 0.55))}/wk`),
+    row(`${exclusive[0].toUpperCase() + exclusive.slice(1)} + parental — Special (all @ 75%)`, `${formatCurrency(q.weeklyAt(avgWeekly, 0.75))}/wk`),
+    row(`Waiting period`, `None`),
+  ];
+  el('breakdown').innerHTML = rows.join('');
+
+  el('result-label').textContent = 'QPIP Basic vs Special plan — side by side';
+  el('plan-note').innerHTML =
+    `<strong>Reading QPIP:</strong> benefits are capped at the $103,000 maximum insurable earnings (higher than EI's $68,900), and unlike EI there's <strong>no unpaid waiting week</strong> — your first payment covers from the day your earnings stop. Adoption benefits follow a different week structure and aren't modelled here.`;
+  el('plan-note').hidden = false;
+}
+
+function setCard(k, weeks, total) {
+  el(`${k}-weeks`).textContent = weeks;
+  el(`${k}-months`).textContent = asMonths(weeks);
+  el(`${k}-total`).textContent = formatCurrency(total);
+}
+const row = (label, val) => `<div class="row"><span>${label}</span><span class="val">${val}</span></div>`;
 
 function run() {
   const raw = parseMoney(el('earnings').value);
   const avgWeekly = el('freq').value === 'weekly' ? raw : raw / 52;
-  const includeMaternity = el('mix').value === 'both';
+  const isBirthParent = el('mix').value === 'both';
   const sharing = el('sharing').checked;
 
   const result = el('result'), need = el('need-input');
@@ -220,40 +308,14 @@ function run() {
   }
   need.hidden = true;
 
-  const e = P.estimate(avgWeekly, includeMaternity, sharing);
-  const { standard: s, extended: x } = e;
-
-  el('std-weekly').textContent = formatCurrency(s.parentalWeekly);
-  el('std-weeks').textContent = s.totalWeeks;
-  el('std-months').textContent = asMonths(s.totalWeeks);
-  el('std-total').textContent = formatCurrency(s.total);
-
-  el('ext-weekly').textContent = formatCurrency(x.parentalWeekly);
-  el('ext-weeks').textContent = x.totalWeeks;
-  el('ext-months').textContent = asMonths(x.totalWeeks);
-  el('ext-total').textContent = formatCurrency(x.total);
-
-  const lo = Math.min(s.total, x.total), hi = Math.max(s.total, x.total);
-  const pct = lo > 0 ? Math.round((hi - lo) / lo * 100) : 0;
-  const higher = x.total >= s.total ? 'Extended even edges slightly higher' : 'Standard comes out slightly higher';
-  el('reading').textContent =
-    `Over the whole leave the two are close — ${formatCurrency(lo)} to ${formatCurrency(hi)}, within about ${pct}%. ${higher}. `
-    + `The real difference is the shape: Standard pays ${formatCurrency(s.parentalWeekly)} a week for ${s.totalWeeks} weeks (~${asMonths(s.totalWeeks)} months), Extended ${formatCurrency(x.parentalWeekly)} a week for ${x.totalWeeks} weeks (~${asMonths(x.totalWeeks)} months). Pick Standard for more cash each week and a shorter leave; Extended for more time off on a smaller cheque.`;
-
-  const rows = [];
-  if (includeMaternity) {
-    rows.push(`<div class="row"><span>Maternity (15 weeks @ 55%)</span><span class="val">${formatCurrency(e.maternityWeekly)}/wk</span></div>`);
-  }
-  rows.push(`<div class="row"><span>Standard parental (${s.parentalWeeks} weeks @ 55%)</span><span class="val">${formatCurrency(s.parentalWeekly)}/wk</span></div>`);
-  rows.push(`<div class="row"><span>Extended parental (${x.parentalWeeks} weeks @ 33%)</span><span class="val">${formatCurrency(x.parentalWeekly)}/wk</span></div>`);
-  rows.push(`<div class="row"><span>Unpaid waiting period</span><span class="val">1 week</span></div>`);
-  el('breakdown').innerHTML = rows.join('');
+  if (el('system').value === 'QPIP') runQPIP(avgWeekly, isBirthParent, sharing);
+  else runEI(avgWeekly, isBirthParent, sharing);
 
   result.hidden = false;
 }
 
 el('go').addEventListener('click', run);
-['earnings', 'freq', 'mix', 'sharing'].forEach(id => el(id).addEventListener('change', run));
+['earnings', 'freq', 'system', 'mix', 'sharing'].forEach(id => el(id).addEventListener('change', run));
 </script>
 </body>
 </html>

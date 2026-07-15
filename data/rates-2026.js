@@ -71,6 +71,18 @@ export const EI = {
   },
 };
 
+/* ── QPIP (Québec Parental Insurance Plan) — contribution side ────────────── */
+// Quebec workers pay this on top of the reduced federal EI rate (EI.quebec).
+export const QPIP = {
+  employeeRate: v(TC.qpip.employeeRate),
+  employerRate: v(TC.qpip.employerRate),
+  selfEmployedRate: v(TC.qpip.selfEmployedRate),
+  maxInsurableEarnings: v(TC.qpip.maxInsurableEarnings),
+  maxEmployeePremium: v(TC.qpip.maxEmployeePremium),
+  maxEmployerPremium: v(TC.qpip.maxEmployerPremium),
+  maxSelfEmployedPremium: v(TC.qpip.maxSelfEmployedPremium),
+};
+
 /* ── PROVINCES & TERRITORIES ─────────────────────────────────────────────── */
 // Derived from TC.provinces, reconstructing the exact shape the engine reads. Optional
 // fields (surtax, healthPremium, taxReduction, bpaPhaseOut, includesCanadaEmploymentAmount)
@@ -443,6 +455,69 @@ export const EI_PARENTAL = {
         totalWeeks: matWeeks + extParental,
         total: matPay + extParental * wExt,
       },
+    };
+  },
+};
+
+/* ── QPIP MATERNITY / PARENTAL BENEFITS — Quebec's replacement for federal EI ── */
+// Quebec residents use the Québec Parental Insurance Plan (QPIP), NOT federal EI. QPIP
+// has its own two-plan structure (Basic = longer, lower %; Special = shorter, higher %),
+// its own weeks/percentages per benefit type, its own MIE ($103,000, not EI's $68,900),
+// and NO waiting period (EI has one unpaid week). Verified 2026-07-15:
+//   Benefit weeks + percentages — quebec.ca "Choice of Plan and Types of Benefits":
+//     https://www.quebec.ca/en/family-and-support-for-individuals/pregnancy-parenthood/financial-support-pregnant-women-families/quebec-parental-insurance-plan/pregnancy-childbirth/choice-plan
+//   MIE $103,000 (2026) — quebec.ca "How is the benefit amount determined".
+// Official 2026 table:
+//   Basic  : maternity 18 wk @70%; paternity 5 wk @70%; parental 32 wk (7 @70% + 25 @55%);
+//            +4 shareable wk @55% when each parent takes ≥8 shareable weeks.
+//   Special: maternity 15 wk @75%; paternity 3 wk @75%; parental 25 wk @75%;
+//            +3 shareable wk @75% when each parent takes ≥6 shareable weeks.
+// NO-WAITING-PERIOD FLAG: modelled as 0 weeks. An explicit "no waiting period" sentence
+// was not located on the reachable RQAP/quebec.ca pages (the site migration redirects
+// several deep links to hubs); the benefit-start-date page shows benefits payable from the
+// interruption-of-earnings date with no unpaid week, consistent with QPIP's design. Adoption
+// benefits differ again (no maternity/paternity) and are NOT modelled — see gap list.
+export const QPIP_PARENTAL = {
+  maxInsurableEarnings: 103000,
+  waitingPeriodWeeks: 0, // QPIP has no waiting period (EI has 1 unpaid week)
+  basic: {   // long term, lower percentage
+    maternityWeeks: 18, paternityWeeks: 5, exclusiveRate: 0.70,
+    parentalWeeks1: 7, parentalRate1: 0.70, parentalWeeks2: 25, parentalRate2: 0.55,
+    sharedBonusWeeks: 4, sharedBonusRate: 0.55, rateLabel: '70% → 55%',
+  },
+  special: { // short term, higher percentage
+    maternityWeeks: 15, paternityWeeks: 3, exclusiveRate: 0.75,
+    parentalWeeks: 25, parentalRate: 0.75,
+    sharedBonusWeeks: 3, sharedBonusRate: 0.75, rateLabel: '75%',
+  },
+
+  // Weekly benefit at a given replacement rate, capped at the QPIP MIE (rounded to $1).
+  weeklyAt(avgWeekly, rate) {
+    return Math.round(Math.min(avgWeekly, this.maxInsurableEarnings / 52) * rate);
+  },
+
+  // Compare Basic vs Special for one parent. `isBirthParent` picks maternity (else
+  // paternity); `sharing` adds the shareable-parental bonus weeks (household). Totals are
+  // nominal and pre-tax. Adoption is out of scope (different weeks, no maternity/paternity).
+  estimate(avgWeekly, isBirthParent, sharing) {
+    const b = this.basic, s = this.special;
+    const bExcl = isBirthParent ? b.maternityWeeks : b.paternityWeeks;
+    const bBonusWk = sharing ? b.sharedBonusWeeks : 0;
+    const bWeeks = bExcl + b.parentalWeeks1 + b.parentalWeeks2 + bBonusWk;
+    const bTotal = bExcl * this.weeklyAt(avgWeekly, b.exclusiveRate)
+      + b.parentalWeeks1 * this.weeklyAt(avgWeekly, b.parentalRate1)
+      + b.parentalWeeks2 * this.weeklyAt(avgWeekly, b.parentalRate2)
+      + bBonusWk * this.weeklyAt(avgWeekly, b.sharedBonusRate);
+    const sExcl = isBirthParent ? s.maternityWeeks : s.paternityWeeks;
+    const sBonusWk = sharing ? s.sharedBonusWeeks : 0;
+    const sWeeks = sExcl + s.parentalWeeks + sBonusWk;
+    const sTotal = sExcl * this.weeklyAt(avgWeekly, s.exclusiveRate)
+      + (s.parentalWeeks + sBonusWk) * this.weeklyAt(avgWeekly, s.parentalRate);
+    return {
+      basic:   { totalWeeks: bWeeks, total: bTotal, avgWeekly: Math.round(bTotal / bWeeks),
+                 exclusiveWeeks: bExcl, parentalWeeks: b.parentalWeeks1 + b.parentalWeeks2 + bBonusWk, rateLabel: b.rateLabel },
+      special: { totalWeeks: sWeeks, total: sTotal, avgWeekly: Math.round(sTotal / sWeeks),
+                 exclusiveWeeks: sExcl, parentalWeeks: s.parentalWeeks + sBonusWk, rateLabel: s.rateLabel },
     };
   },
 };

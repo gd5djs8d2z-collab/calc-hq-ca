@@ -15,7 +15,7 @@
  *  This is a well-scoped estimate for employment income, not a full T1 return.
  */
 import {
-  FEDERAL, CPP, QPP, EI, PROVINCES, PROVINCE_STATUS, LIVE_PROVINCES,
+  FEDERAL, CPP, QPP, EI, QPIP, PROVINCES, PROVINCE_STATUS, LIVE_PROVINCES,
 } from '/data/rates-2026.js';
 
 // Quebec workers contribute to QPP, not CPP. Everyone else uses CPP.
@@ -69,6 +69,14 @@ export function calcEI(earnings, { quebec = false } = {}) {
                      : { rate: EI.rate,        max: EI.maxEmployeePremium };
   const premium = Math.min(Math.min(earnings, EI.maxInsurableEarnings) * cfg.rate, cfg.max);
   return { premium, rate: cfg.rate };
+}
+
+/* ── QPIP contribution (Quebec) — paid on top of the reduced federal EI rate ── */
+export function calcQPIP(earnings, { selfEmployed = false } = {}) {
+  const rate = selfEmployed ? QPIP.selfEmployedRate : QPIP.employeeRate;
+  const max = selfEmployed ? QPIP.maxSelfEmployedPremium : QPIP.maxEmployeePremium;
+  const premium = Math.min(Math.min(earnings, QPIP.maxInsurableEarnings) * rate, max);
+  return { premium, rate };
 }
 
 /* Weekly regular EI benefit estimate (55% of average weekly insurable earnings). */
@@ -159,15 +167,19 @@ function federalTax(taxableIncome, netIncome, { cppBase, eiPremium }) {
  * Returns gross, each deduction, net, and average rate.
  */
 export function calcTakeHome(gross, code) {
+  const isQC = code === 'QC';
   const cpp = calcCPP(gross, { plan: pensionPlan(code) }); // QPP for Quebec, CPP elsewhere
-  const ei = calcEI(gross);
+  // Quebec pays the REDUCED federal EI rate plus a QPIP premium; elsewhere, plain EI.
+  const ei = calcEI(gross, { quebec: isQC });
+  const qpip = isQC ? calcQPIP(gross) : { premium: 0 };
+  const eiTypePremium = ei.premium + qpip.premium;
   // Enhanced CPP is deductible from taxable income.
   const taxable = Math.max(0, gross - cpp.enhanced);
-  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: ei.premium });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: ei.premium, netIncome: gross });
+  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross });
 
   const totalTax = fed + prov.total;
-  const totalDeductions = totalTax + cpp.employee + ei.premium;
+  const totalDeductions = totalTax + cpp.employee + eiTypePremium;
   const net = gross - totalDeductions;
 
   return {
@@ -179,6 +191,7 @@ export function calcTakeHome(gross, code) {
     healthPremium: prov.health,
     cpp: cpp.employee,
     ei: ei.premium,
+    qpip: qpip.premium,
     totalTax,
     totalDeductions,
     net,
@@ -237,17 +250,21 @@ export function calcRaise(current, next, code) {
  * $30K HST registration threshold. Half of total CPP is deductible from income.
  */
 export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } = {}) {
+  const isQC = code === 'QC';
   const cpp = calcCPP(netBusinessIncome, { selfEmployed: true, plan: pensionPlan(code) });
   const halfCppDeduction = cpp.total / 2; // employer-half is deductible from income
-  const ei = optIntoEI ? calcEI(netBusinessIncome) : { premium: 0 };
+  const ei = optIntoEI ? calcEI(netBusinessIncome, { quebec: isQC }) : { premium: 0 };
+  // QPIP is MANDATORY for self-employed in Quebec (at the single self-employed rate).
+  const qpip = isQC ? calcQPIP(netBusinessIncome, { selfEmployed: true }) : { premium: 0 };
+  const eiTypePremium = ei.premium + qpip.premium;
 
   // Enhanced CPP (on the employee-equivalent share) is also deductible.
   const taxable = Math.max(0, netBusinessIncome - halfCppDeduction - cpp.enhanced);
-  const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: ei.premium });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: ei.premium, netIncome: netBusinessIncome });
+  const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: eiTypePremium });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: netBusinessIncome });
 
   const incomeTax = fed + prov.total;
-  const totalObligation = incomeTax + cpp.total + ei.premium;
+  const totalObligation = incomeTax + cpp.total + eiTypePremium;
 
   return {
     gross: netBusinessIncome,
@@ -256,6 +273,7 @@ export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } 
     provincialTax: prov.total,
     cpp: cpp.total,
     ei: ei.premium,
+    qpip: qpip.premium,
     totalObligation,
     afterTax: netBusinessIncome - totalObligation,
     averageRate: netBusinessIncome > 0 ? totalObligation / netBusinessIncome : 0,

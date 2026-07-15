@@ -37,6 +37,8 @@ const SRC = {
   fed:       T4032('on'),        // CRA T4032 "Chart 1" (federal) appears on every T4032 page
   cpp:       'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html',
   qpp:       'https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures',
+  qpip:      'https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings',
+  qpipPlans: 'https://www.quebec.ca/en/family-and-support-for-individuals/pregnancy-parenthood/financial-support-pregnant-women-families/quebec-parental-insurance-plan/pregnancy-childbirth/choice-plan',
   ei:        'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html',
   eiBenefit: 'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
@@ -122,6 +124,23 @@ export const TAX_CONSTANTS_2026 = {
       rate:               { value: 0.0130,  source_url: SRC.ei, last_verified: '2026-07-14' },
       maxEmployeePremium: { value: 895.70,  source_url: SRC.ei, last_verified: '2026-07-14' },
     },
+  },
+
+  /* ── QPIP (Québec Parental Insurance Plan) — REPLACES EI maternity/parental for QC ─ */
+  // Quebec workers pay REDUCED federal EI (1.30% above — because QPIP covers parental)
+  // PLUS a QPIP premium. QPIP has its own three contribution rates and its own (higher)
+  // maximum insurable earnings, all separate from EI's. Rates cut 13% for 2026. Verified
+  // 2026-07-15 against rqap.gouv.qc.ca "Premiums and maximum insurable earnings" (2026
+  // column). Benefit weeks/percentages (Basic vs Special plan) are NOT here — they live
+  // with the benefit calculators in rates-2026.js (QPIP_PARENTAL), like EI_PARENTAL.
+  qpip: {
+    employeeRate:          { value: 0.00430, source_url: SRC.qpip, last_verified: '2026-07-15' },
+    employerRate:          { value: 0.00602, source_url: SRC.qpip, last_verified: '2026-07-15' },
+    selfEmployedRate:      { value: 0.00764, source_url: SRC.qpip, last_verified: '2026-07-15' }, // single self-employed rate (unlike EI)
+    maxInsurableEarnings:  { value: 103000,  source_url: SRC.qpip, last_verified: '2026-07-15' }, // QPIP MIE, separate from EI's $68,900
+    maxEmployeePremium:    { value: 442.90,  source_url: SRC.qpip, last_verified: '2026-07-15' },
+    maxEmployerPremium:    { value: 620.06,  source_url: SRC.qpip, last_verified: '2026-07-15' },
+    maxSelfEmployedPremium:{ value: 786.92,  source_url: SRC.qpip, last_verified: '2026-07-15' },
   },
 
   /* ── PROVINCES & TERRITORIES (live jurisdictions only; Quebec added tomorrow) ─ */
