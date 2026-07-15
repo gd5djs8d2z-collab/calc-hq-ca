@@ -48,6 +48,7 @@ const SRC = {
   bcCredits: 'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic',
   peGov:     'https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax',
   yukon:     'https://yukon.ca/en/yukon-historical-tax-rates',
+  nlFin:     'https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -277,8 +278,13 @@ export const TAX_CONSTANTS_2026 = {
         { min: 285319,  max: 570638,    rate: 0.2080 },
         { min: 570638,  max: 1141275,   rate: 0.2130 },
         { min: 1141275, max: Infinity,  rate: 0.2180 },
-      ], source_url: T4032('nl'), last_verified: '2026-07-13' },
-      bpa: { value: 11188, source_url: T4032('nl'), last_verified: '2026-07-13' },
+      ], source_url: SRC.nlFin, last_verified: '2026-07-15' },
+      // AUDIT 2026-07-15: was $11,188 (the 2025 value — stale). NL Budget 2026 (Apr 29)
+      // raised the BPA to $13,094 effective Jan 1, 2026. This is the 2026 return / non-
+      // refundable-credit-table amount (gov.nl.ca/fin). NL is separately phasing toward a
+      // $15,000 exemption, delivered in-year via a prorated higher payroll BPA from July —
+      // but the amount claimed on the 2026 return is $13,094, which is what an annual calc uses.
+      bpa: { value: 13094, source_url: SRC.nlFin, last_verified: '2026-07-15' },
       bpaCreditRate: 0.087,
     },
 
