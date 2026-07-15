@@ -55,22 +55,33 @@
   </div>
 
   <section class="calc-card" aria-label="CPP 60 vs 65 break-even calculator">
-    <div class="field">
-      <label for="cpp65">Your estimated CPP at 65
-        <span class="hint">The monthly amount from your My Service Canada Account. For reference only: the 2026 maximum is $1,507.65/mo and the average new pension is about $877/mo — enter <em>your</em> figure, not these.</span>
+    <div class="field input-money">
+      <label for="cpp65">Your estimated monthly pension at 65
+        <span class="hint">From your My Service Canada Account (CPP) or Retraite Québec (QPP). The 2026 maximum is $1,507.65/mo for both — enter <em>your</em> figure, not the max.</span>
       </label>
       <input class="input" id="cpp65" type="text" inputmode="numeric" placeholder="900">
     </div>
-    <div class="field">
-      <label for="age">Plan to age
-        <span class="hint">How long you expect to draw the pension. Default 85.</span>
-      </label>
-      <input class="input" id="age" type="text" inputmode="numeric" placeholder="85" value="85">
+    <div class="field-row">
+      <div class="field">
+        <label for="plan">Which plan
+          <span class="hint">QPP if you contributed in Quebec</span>
+        </label>
+        <select class="input" id="plan">
+          <option value="CPP" selected>CPP — rest of Canada</option>
+          <option value="QPP">QPP — Quebec</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="age">Plan to age
+          <span class="hint">How long you expect to draw it. Default 85.</span>
+        </label>
+        <input class="input" id="age" type="text" inputmode="numeric" placeholder="85" value="85">
+      </div>
     </div>
     <button class="btn" id="go" type="button">Show my break-even age</button>
 
     <div class="result" id="result" hidden>
-      <p class="result-label">Break-even age (start at 60 vs 65)</p>
+      <p class="result-label" id="result-label">Break-even age (start at 60 vs 65)</p>
       <p class="result-number" id="breakeven">—</p>
       <p class="result-reading" id="reading"></p>
       <div class="breakdown" id="breakdown"></div>
@@ -96,9 +107,14 @@
   </section>
 
   <section class="answer">
-    <h2>Why the break-even age is the same for everyone</h2>
-    <p>Here's the part most people don't expect: the break-even age comes out to <strong>about 73.9</strong> — just before 74 — no matter how large or small your CPP is. The head start you bank by taking it early and the monthly catch-up the bigger pension gives after 65 both scale with your pension amount, so they cancel out. Only the 36% reduction drives the crossover. Your own figure changes <em>how many dollars</em> are on the table at each age — which is what the table shows — but not the age where the lines cross.</p>
-    <p>That means the honest version of this decision isn't really "run the math to find your number." The math gives roughly the same answer for everyone. The real question is whether you expect to be collecting past your mid-70s, and whether you need — or would rather have — the money in your 60s.</p>
+    <h2>Why the CPP break-even age is the same for everyone</h2>
+    <p>Here's the part most people don't expect: on <strong>CPP</strong>, the break-even age comes out to <strong>about 73.9</strong> — just before 74 — no matter how large or small your pension is. The head start you bank by taking it early and the monthly catch-up the bigger pension gives after 65 both scale with your pension amount, so they cancel out. Only the flat 36% reduction drives the crossover. Your own figure changes <em>how many dollars</em> are on the table at each age — which is what the table shows — but not the age where the lines cross.</p>
+    <p>That means, for CPP, the honest version of this decision isn't really "run the math to find your number." The math gives roughly the same answer for everyone. The real question is whether you expect to be collecting past your mid-70s, and whether you need — or would rather have — the money in your 60s.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Quebec is different: QPP moves the break-even</h2>
+    <p>If you contributed to the <strong>Québec Pension Plan</strong>, switch the plan above to QPP. Quebec's early-start reduction isn't a flat 0.6% a month like CPP — it <strong>slides between 0.5% and 0.6%</strong> depending on the size of your pension. Only someone at the maximum QPP pension takes the full 36% cut at 60 (and lands at the same ~74 break-even as CPP). A smaller QPP pension is cut less — as little as 30% at 60 — which actually pushes the break-even <em>later</em>, toward 76 or 77. So for QPP the "it's the same for everyone" rule doesn't hold: a modest pension makes taking it early relatively more attractive, because you give up less to do so. The late-start increase (0.7% a month) is the same as CPP.</p>
   </section>
 
   <section class="answer">
@@ -179,6 +195,8 @@ function run() {
   const m65 = parseMoney(el('cpp65').value);
   let planAge = Math.round(parseMoney(el('age').value)) || 85;
   planAge = Math.max(66, Math.min(100, planAge));
+  const isQPP = el('plan').value === 'QPP';
+  const plan = isQPP ? 'QPP' : 'CPP';
 
   const result = el('result'), need = el('need-input');
   if (m65 <= 0) {
@@ -188,22 +206,27 @@ function run() {
   }
   need.hidden = true;
 
-  const m60 = R.monthlyAtStart(m65, 60);
-  const be = R.breakEvenAge(m65);
+  const m60 = R.monthlyAtStart(m65, 60, plan);
+  const be = R.breakEvenAge(m65, plan);
   const beText = be.toFixed(1);
+  const cutPct = Math.round((1 - m60 / m65) * 100); // 36% for CPP; 30–36% for QPP by size
 
+  el('result-label').textContent = `Break-even age (start at 60 vs 65) — ${plan}`;
   el('breakeven').textContent = `~${Math.round(be)}`;
 
   const cum60 = R.cumulativeBy(m60, 60, planAge);
   const cum65 = R.cumulativeBy(m65, 65, planAge);
   const gap = cum65 - cum60;
   const planWinner = gap >= 0 ? 'waiting until 65' : 'starting at 60';
+  const qppNote = isQPP
+    ? ' Quebec’s early reduction slides with pension size, so this age isn’t the same for everyone — a smaller QPP pension pushes it later.'
+    : '';
 
   el('reading').textContent =
-    `Your break-even is about age ${beText}. Live past it and waiting until 65 pays more in total; expect a shorter retirement and starting at 60 comes out ahead. By your planning age of ${planAge}, ${planWinner} leaves you roughly ${formatCurrency(Math.abs(gap))} ahead.`;
+    `Your ${plan} break-even is about age ${beText}.${qppNote} Live past it and waiting until 65 pays more in total; expect a shorter retirement and starting at 60 comes out ahead. By your planning age of ${planAge}, ${planWinner} leaves you roughly ${formatCurrency(Math.abs(gap))} ahead.`;
 
   el('breakdown').innerHTML =
-      `<div class="row"><span>Monthly pension at 60 (36% less)</span><span class="val">${formatCurrency(m60, { cents: true })}</span></div>`
+      `<div class="row"><span>Monthly pension at 60 (${cutPct}% less)</span><span class="val">${formatCurrency(m60, { cents: true })}</span></div>`
     + `<div class="row"><span>Monthly pension at 65 (your estimate)</span><span class="val">${formatCurrency(m65, { cents: true })}</span></div>`
     + `<div class="row total"><span>Difference per month</span><span class="val">${formatCurrency(m65 - m60, { cents: true })}</span></div>`;
 
@@ -228,7 +251,7 @@ function run() {
 }
 
 el('go').addEventListener('click', run);
-['cpp65', 'age'].forEach(id => el(id).addEventListener('change', run));
+['cpp65', 'age', 'plan'].forEach(id => el(id).addEventListener('change', run));
 </script>
 </body>
 </html>

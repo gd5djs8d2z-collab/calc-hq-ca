@@ -36,6 +36,7 @@ const T4032 = (xx) =>
 const SRC = {
   fed:       T4032('on'),        // CRA T4032 "Chart 1" (federal) appears on every T4032 page
   cpp:       'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html',
+  qpp:       'https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures',
   ei:        'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html',
   eiBenefit: 'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
@@ -81,6 +82,31 @@ export const TAX_CONSTANTS_2026 = {
       maxContribution: { value: 416,    source_url: SRC.cpp, last_verified: '2026-07-13' },
     },
     // Structural CPP rule (not a rate-table value): the self-employed pay both halves.
+    selfEmployedMultiplier: 2,
+  },
+
+  /* ── QPP (Québec Pension Plan) — REPLACES CPP for Quebec workers ───────────── */
+  // QPP is separate from CPP and has its own schedule. The exemption ($3,500), MPE
+  // ($74,600), YAMPE ($85,000) and the second-additional tier (4%) are IDENTICAL to CPP,
+  // but the base rate DIVERGES: QPP base is 5.3% (vs CPP 4.95%), so QPP1 = 6.3% total (vs
+  // CPP 5.95%) and the QPP1 employee max is $4,479.30 (vs CPP $4,230.45). Verified
+  // 2026-07-15 against Retraite Québec "Québec Pension Plan Figures" (2026 table). The
+  // page's rate column labels the second tier "2%", but its dollar amounts ($416 employee
+  // / $832 self-employed on the $10,400 band) confirm 4% per side / 8% combined — same as
+  // CPP2. Field names below mirror the CPP block so the engine treats the two plans
+  // interchangeably (cpp2/enhancedCpp1Rate/baseCpp1Rate hold the QPP equivalents).
+  qpp: {
+    rate:                   { value: 0.063,   source_url: SRC.qpp, last_verified: '2026-07-15' }, // QPP1 total = base 5.3% + enhancement 1%
+    basicExemption:         { value: 3500,    source_url: SRC.qpp, last_verified: '2026-07-15' },
+    ympe:                   { value: 74600,   source_url: SRC.qpp, last_verified: '2026-07-15' },
+    maxEmployeeContribution:{ value: 4479.30, source_url: SRC.qpp, last_verified: '2026-07-15' }, // 6.3% × ($74,600−$3,500)
+    baseCpp1Rate:           { value: 0.053,   source_url: SRC.qpp, last_verified: '2026-07-15' }, // credit-eligible portion (QPP base plan)
+    enhancedCpp1Rate:       { value: 0.01,    source_url: SRC.qpp, last_verified: '2026-07-15' }, // income-deductible portion (first additional)
+    cpp2: {
+      rate:            { value: 0.04,   source_url: SRC.qpp, last_verified: '2026-07-15' }, // second additional (per side)
+      yampe:           { value: 85000,  source_url: SRC.qpp, last_verified: '2026-07-15' },
+      maxContribution: { value: 416,    source_url: SRC.qpp, last_verified: '2026-07-15' },
+    },
     selfEmployedMultiplier: 2,
   },
 

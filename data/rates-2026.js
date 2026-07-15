@@ -40,6 +40,23 @@ export const CPP = {
   baseCpp1Rate: v(TC.cpp.baseCpp1Rate),
 };
 
+/* ── QPP (Québec Pension Plan) — replaces CPP for Quebec ──────────────────── */
+// Same field shape as CPP so the engine's calcCPP() can take either plan object.
+export const QPP = {
+  rate: v(TC.qpp.rate),
+  basicExemption: v(TC.qpp.basicExemption),
+  ympe: v(TC.qpp.ympe),
+  maxEmployeeContribution: v(TC.qpp.maxEmployeeContribution),
+  cpp2: {
+    rate: v(TC.qpp.cpp2.rate),
+    yampe: v(TC.qpp.cpp2.yampe),
+    maxContribution: v(TC.qpp.cpp2.maxContribution),
+  },
+  selfEmployedMultiplier: TC.qpp.selfEmployedMultiplier,
+  enhancedCpp1Rate: v(TC.qpp.enhancedCpp1Rate),
+  baseCpp1Rate: v(TC.qpp.baseCpp1Rate),
+};
+
 /* ── EI ──────────────────────────────────────────────────────────────────── */
 export const EI = {
   rate: v(TC.ei.rate),
@@ -306,29 +323,54 @@ export const LTT = {
 //     Average CPP pension at 65 (April 2026): $877.01/month.
 // The maximum/average are context only — the calculator REQUIRES the user's own
 // estimate from their Service Canada statement and never defaults to these.
+// QPP branch verified 2026-07-15 against Retraite Québec:
+//   Adjustment factors — "Calculation of your retirement pension":
+//     https://www.retraitequebec.gouv.qc.ca/en/citizens/retirement-planning/applying-your-retirement-pension/retirement-pension-quebec-pension-plan/calculation-your-retirement-pension
+//     Before 65: pension decreases 0.5%–0.6% PER MONTH — a SLIDING factor, unlike CPP's
+//     flat 0.6%. It is 0.5% for a low pension, rising in proportion to 0.6% at the maximum:
+//     factor = 0.005 + 0.001 × (pension ÷ maximum pension), capped [0.005, 0.006].
+//     After 65: increases 0.7%/month (same as CPP).
+//   Max QPP pension at 65 (2026) = $1,507.65 (= CPP max) — "Benefit amounts and key data":
+//     https://www.retraitequebec.gouv.qc.ca/en/benefits-amounts-key-data
+//     (confirmed: at 60 = 64% of max → 36% reduction → 0.6%/month at the maximum pension).
+// Consequence: unlike CPP's constant ~73.9, the QPP break-even age VARIES with the pension
+// size — later for a smaller pension (less reduction), ~73.9 only at the maximum.
 export const CPP_RETIREMENT = {
-  earlyReductionPerMonth: 0.006, // 0.6%/month for each month before 65
-  earlyMaxReduction: 0.36,       // 36% at age 60 (60 months early)
+  earlyReductionPerMonth: 0.006, // CPP: flat 0.6%/month before 65
+  earlyMaxReduction: 0.36,       // CPP: 36% at age 60 (60 months early)
   lateIncreasePerMonth: 0.007,   // 0.7%/month after 65 — reference only, not used on 60-vs-65
   lateMaxIncrease: 0.42,         // 42% at age 70 — reference only
   maxAt65Monthly: 1507.65,       // context only — do NOT prefill the input
   averageAt65Monthly: 877.01,    // context only
-
-  // Monthly pension if started at `startAge` (60–65 for this page), given the
-  // amount payable at 65. Reduction is 0.6% × months-before-65.
-  monthlyAtStart(monthlyAt65, startAge) {
-    const monthsEarly = Math.max(0, Math.min(60, (65 - startAge) * 12));
-    return monthlyAt65 * (1 - this.earlyReductionPerMonth * monthsEarly);
+  qpp: {
+    maxAt65Monthly: 1507.65,     // [Retraite Québec] max QPP pension at 65, 2026
+    earlyReductionMin: 0.005,    // 0.5%/month for a low pension
+    earlyReductionMax: 0.006,    // 0.6%/month at the maximum pension
+    lateIncreasePerMonth: 0.007, // 0.7%/month after 65 (same as CPP)
   },
 
-  // Break-even age for start-at-60 vs start-at-65, in years. The early starter
-  // banks (monthlyAt60 × 60) by age 65; after 65 the later, larger pension closes
-  // that lead at (monthlyAt65 − monthlyAt60) per month. Those catch-up months fall
-  // AFTER 65, so the break-even age is 65 + months/12 (NOT 60 + …). Note this comes
-  // out to ~73.9 regardless of the dollar amount — it's driven purely by the 36%
-  // reduction, since both the lead and the catch-up scale with the pension size.
-  breakEvenAge(monthlyAt65) {
-    const at60 = this.monthlyAtStart(monthlyAt65, 60);
+  // Early monthly reduction factor. CPP is flat 0.6%; QPP slides 0.5%→0.6% with pension size.
+  earlyReductionFactor(monthlyAt65, plan = 'CPP') {
+    if (plan !== 'QPP') return this.earlyReductionPerMonth;
+    const q = this.qpp;
+    const ratio = Math.max(0, Math.min(1, monthlyAt65 / q.maxAt65Monthly));
+    return q.earlyReductionMin + (q.earlyReductionMax - q.earlyReductionMin) * ratio;
+  },
+
+  // Monthly pension if started at `startAge` (60–65 for this page), given the amount
+  // payable at 65. Reduction = (per-month factor) × months-before-65.
+  monthlyAtStart(monthlyAt65, startAge, plan = 'CPP') {
+    const monthsEarly = Math.max(0, Math.min(60, (65 - startAge) * 12));
+    return monthlyAt65 * (1 - this.earlyReductionFactor(monthlyAt65, plan) * monthsEarly);
+  },
+
+  // Break-even age for start-at-60 vs start-at-65, in years. The early starter banks
+  // (monthlyAt60 × 60) by age 65; after 65 the later, larger pension closes that lead at
+  // (monthlyAt65 − monthlyAt60) per month. Those catch-up months fall AFTER 65, so the
+  // break-even age is 65 + months/12. For CPP this is ~73.9 for everyone (flat 36%); for
+  // QPP it depends on the pension size (the reduction slides with it).
+  breakEvenAge(monthlyAt65, plan = 'CPP') {
+    const at60 = this.monthlyAtStart(monthlyAt65, 60, plan);
     const diff = monthlyAt65 - at60;
     if (diff <= 0) return null;
     const monthsAfter65 = (at60 * 60) / diff;

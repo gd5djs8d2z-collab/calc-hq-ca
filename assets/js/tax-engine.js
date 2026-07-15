@@ -15,8 +15,11 @@
  *  This is a well-scoped estimate for employment income, not a full T1 return.
  */
 import {
-  FEDERAL, CPP, EI, PROVINCES, PROVINCE_STATUS, LIVE_PROVINCES,
+  FEDERAL, CPP, QPP, EI, PROVINCES, PROVINCE_STATUS, LIVE_PROVINCES,
 } from '/data/rates-2026.js';
+
+// Quebec workers contribute to QPP, not CPP. Everyone else uses CPP.
+const pensionPlan = (code) => (code === 'QC' ? QPP : CPP);
 
 export { LIVE_PROVINCES, PROVINCE_STATUS, PROVINCES };
 
@@ -42,20 +45,20 @@ function bracketTax(income, brackets) {
   return tax;
 }
 
-/* ── CPP / CPP2 ──────────────────────────────────────────────────────────── */
-export function calcCPP(earnings, { selfEmployed = false } = {}) {
-  const pensionable1 = Math.max(0, Math.min(earnings, CPP.ympe) - CPP.basicExemption);
-  const cpp1 = Math.min(pensionable1 * CPP.rate, CPP.maxEmployeeContribution);
+/* ── CPP / CPP2 (or QPP / QPP2 for Quebec — same shape, pass `plan`) ───────── */
+export function calcCPP(earnings, { selfEmployed = false, plan = CPP } = {}) {
+  const pensionable1 = Math.max(0, Math.min(earnings, plan.ympe) - plan.basicExemption);
+  const cpp1 = Math.min(pensionable1 * plan.rate, plan.maxEmployeeContribution);
 
-  const pensionable2 = Math.max(0, Math.min(earnings, CPP.cpp2.yampe) - CPP.ympe);
-  const cpp2 = Math.min(pensionable2 * CPP.cpp2.rate, CPP.cpp2.maxContribution);
+  const pensionable2 = Math.max(0, Math.min(earnings, plan.cpp2.yampe) - plan.ympe);
+  const cpp2 = Math.min(pensionable2 * plan.cpp2.rate, plan.cpp2.maxContribution);
 
   const employee = cpp1 + cpp2;
-  const total = selfEmployed ? employee * CPP.selfEmployedMultiplier : employee;
+  const total = selfEmployed ? employee * plan.selfEmployedMultiplier : employee;
 
   // Split for tax treatment (based on the employee-share amounts).
-  const enhanced = cpp1 * (CPP.enhancedCpp1Rate / CPP.rate) + cpp2; // income deduction
-  const base = cpp1 * (CPP.baseCpp1Rate / CPP.rate);                // credit-eligible
+  const enhanced = cpp1 * (plan.enhancedCpp1Rate / plan.rate) + cpp2; // income deduction
+  const base = cpp1 * (plan.baseCpp1Rate / plan.rate);                // credit-eligible
 
   return { cpp1, cpp2, employee, total, enhanced, base };
 }
@@ -156,7 +159,7 @@ function federalTax(taxableIncome, netIncome, { cppBase, eiPremium }) {
  * Returns gross, each deduction, net, and average rate.
  */
 export function calcTakeHome(gross, code) {
-  const cpp = calcCPP(gross);
+  const cpp = calcCPP(gross, { plan: pensionPlan(code) }); // QPP for Quebec, CPP elsewhere
   const ei = calcEI(gross);
   // Enhanced CPP is deductible from taxable income.
   const taxable = Math.max(0, gross - cpp.enhanced);
@@ -234,7 +237,7 @@ export function calcRaise(current, next, code) {
  * $30K HST registration threshold. Half of total CPP is deductible from income.
  */
 export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } = {}) {
-  const cpp = calcCPP(netBusinessIncome, { selfEmployed: true });
+  const cpp = calcCPP(netBusinessIncome, { selfEmployed: true, plan: pensionPlan(code) });
   const halfCppDeduction = cpp.total / 2; // employer-half is deductible from income
   const ei = optIntoEI ? calcEI(netBusinessIncome) : { premium: 0 };
 

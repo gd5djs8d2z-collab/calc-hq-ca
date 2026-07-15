@@ -51,18 +51,29 @@
 <main class="wrap">
   <div class="page-head">
     <h1>CPP Calculator (2026)</h1>
-    <p class="lead">CPP is federal, so it's the same in every province. Enter your income and see exactly how your yearly contribution is built — from the $3,500 exemption up to the annual maximum.</p>
+    <p class="lead">CPP is federal — the same across the country, except in Quebec, which runs its own QPP at a higher rate. Enter your income, pick your plan, and see exactly how your yearly contribution is built, from the $3,500 exemption up to the annual maximum.</p>
   </div>
 
   <section class="calc-card" aria-label="CPP calculator">
-    <div class="field">
-      <label for="income">Annual employment income</label>
-      <input class="input" id="income" type="text" inputmode="numeric" placeholder="65,000" value="65,000">
+    <div class="field-row">
+      <div class="field input-money">
+        <label for="income">Annual employment income</label>
+        <input class="input" id="income" type="text" inputmode="numeric" placeholder="65,000" value="65,000">
+      </div>
+      <div class="field">
+        <label for="plan">Which plan
+          <span class="hint">Quebec workers pay QPP, not CPP</span>
+        </label>
+        <select class="input" id="plan">
+          <option value="CPP" selected>CPP — rest of Canada</option>
+          <option value="QPP">QPP — Quebec</option>
+        </select>
+      </div>
     </div>
-    <button class="btn" id="go" type="button">Calculate my CPP</button>
+    <button class="btn" id="go" type="button">Calculate my contribution</button>
 
     <div class="result" id="result" hidden>
-      <p class="result-label">Your 2026 CPP contribution</p>
+      <p class="result-label" id="result-label">Your 2026 CPP contribution</p>
       <p class="result-number" id="cpp">$0</p>
       <p class="result-reading" id="reading"></p>
       <div class="breakdown" id="breakdown"></div>
@@ -73,6 +84,11 @@
     <h2>How CPP is calculated</h2>
     <p>CPP takes 5.95% of your pensionable earnings — the slice of income between the $3,500 basic exemption and the $74,600 yearly maximum. Subtract $3,500 from your income (capped at $74,600), multiply by 5.95%, and that's your base contribution, up to $4,230.45. Your employer pays the same amount alongside you.</p>
     <p>Since 2024 there's a second tier. Earnings between $74,600 and $85,000 attract CPP2 at 4%, adding up to $416 more. So the most an employee contributes in 2026 is $4,646.45. Below $3,500 you pay nothing, and above $85,000 no further CPP applies.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Quebec is different: QPP, not CPP</h2>
+    <p>If you work in Quebec you pay into the <strong>Québec Pension Plan</strong> instead of CPP, and its rate is higher. The exemption ($3,500), the $74,600 ceiling, the $85,000 upper limit and the 4% second tier are all identical to CPP — but the base rate is <strong>6.3%</strong> versus CPP's 5.95%. That pushes the first-tier maximum to <strong>$4,479.30</strong> (against CPP's $4,230.45), so a Quebec employee's most-you'll-pay is <strong>$4,895.30</strong> once the $416 QPP2 is added. Switch the plan above to "QPP — Quebec" to see your Quebec numbers. Your employer still matches you, and the self-employed still pay both halves.</p>
   </section>
 
   <section class="faq">
@@ -137,27 +153,34 @@
 
 <script type="module">
 import { calcCPP, formatCurrency } from '/assets/js/tax-engine.js';
+import { CPP, QPP } from '/data/rates-2026.js';
 import { parseMoney, el } from '/assets/js/calc-ui.js';
 
 function run() {
   const income = parseMoney(el('income').value);
-  const c = calcCPP(income);
+  const isQPP = el('plan').value === 'QPP';
+  const plan = isQPP ? QPP : CPP;
+  const name = isQPP ? 'QPP' : 'CPP';
+  const tier1Rate = isQPP ? '6.3%' : '5.95%';       // QPP1 total 6.3% (base 5.3% + 1%) vs CPP 5.95%
+  const c = calcCPP(income, { plan });
+
+  el('result-label').textContent = `Your 2026 ${name} contribution`;
   el('cpp').textContent = formatCurrency(c.employee, { cents: true });
   el('reading').textContent =
-    `That's your share for 2026 — your employer contributes the same ${formatCurrency(c.employee, { cents: true })} alongside you.`;
+    `That's your ${name} share for 2026 — your employer contributes the same ${formatCurrency(c.employee, { cents: true })} alongside you.`;
 
   const rows = [
-    ['CPP1 (5.95% over $3,500)', c.cpp1],
-    ['CPP2 (4% above $74,600)', c.cpp2],
+    [`${name}1 (${tier1Rate} over $3,500)`, c.cpp1],
+    [`${name}2 (4% above $74,600)`, c.cpp2],
   ];
   el('breakdown').innerHTML =
     rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${formatCurrency(v, { cents: true })}</span></div>`).join('')
-    + `<div class="row total"><span>Your CPP contribution</span><span class="val">${formatCurrency(c.employee, { cents: true })}</span></div>`;
+    + `<div class="row total"><span>Your ${name} contribution</span><span class="val">${formatCurrency(c.employee, { cents: true })}</span></div>`;
   el('result').hidden = false;
 }
 
 el('go').addEventListener('click', run);
-el('income').addEventListener('change', run);
+['income', 'plan'].forEach(id => el(id).addEventListener('change', run));
 run();
 </script>
 </body>
