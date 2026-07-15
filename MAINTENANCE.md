@@ -36,13 +36,23 @@ for any future mid-year change: statute first, and note in a comment when the T4
 
 ---
 
-### Quebec — the inaugural run
+### Quebec — shipped (the inaugural run)
 
-Quebec is deliberately **not** in the constants file yet. It is added **tomorrow** as the
-first real exercise of this system: QPP (not CPP), QPIP (not federal EI parental), and the
-16.5% federal abatement, each verified against Revenu Québec + CRA and stamped with a
-`source_url` and `last_verified` the same way. If the framework holds up for Quebec, it
-holds up.
+Quebec is now fully wired and live, built in pieces through this system: QPP (not CPP),
+QPIP (not federal EI parental), the 16.5% federal abatement, and its own provincial
+brackets + BPA — each verified against Revenu Québec / CRA and stamped with `source_url`
+and `last_verified` (2026-07-15). The Quebec brackets/BPA index annually and are covered by
+the **January** income-tax audit alongside the other jurisdictions.
+
+**Scope boundary (Quebec provincial credits).** Only the basic personal amount is modelled,
+as a *bundled* credit base — per Revenu Québec (Line 350) Quebec's basic amount already
+embeds QPP / QPIP / EI, so those are NOT re-added on top the way they are for other
+provinces (`bpaBundlesContributions`). Deliberately **not** modelled: the **deduction for
+workers** (TP-1 line 201; 2026 max **$1,450**, a Quebec-only deduction, not a credit — worth
+about **$203** of provincial tax to essentially every employee) and all other non-refundable
+credits (age, living-alone, dependants, etc.). The worker-deduction omission makes the
+Quebec estimate run slightly high (~$200 of provincial tax) at most employment incomes —
+see FOLLOWUPS.md.
 
 ### Not yet migrated
 

@@ -76,7 +76,7 @@
           <option value="YT">Yukon</option>
           <option value="NT">Northwest Territories</option>
           <option value="NU">Nunavut</option>
-          <option value="QC">Quebec (coming soon)</option>
+          <option value="QC">Quebec</option>
         </select>
       </div>
       <div class="field">
@@ -196,9 +196,10 @@ function run() {
     ['Gross salary', t.gross],
     ['Federal tax', -t.federalTax],
     ['Provincial tax', -t.provincialTax],
-    ['CPP', -t.cpp],
+    [code === 'QC' ? 'QPP' : 'CPP', -t.cpp],
     ['EI', -t.ei],
   ];
+  if (t.qpip > 0) rows.push(['QPIP', -t.qpip]);
   let html = rows.map(([k,v]) =>
     `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${formatCurrency(Math.abs(v))}</span></div>`).join('');
   html += `<div class="row total"><span>Net take-home pay</span><span class="val">${formatCurrency(t.net)}</span></div>`;

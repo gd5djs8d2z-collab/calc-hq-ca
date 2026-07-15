@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Self-Employed Tax Calculator 2026 — CPP, HST &amp; Income Tax | calc-hq.ca</title>
-<meta name="description" content="Work out 2026 self-employed tax in Canada: income tax, CPP at the double rate, the $30,000 HST registration line, and how much to set aside. Every province and territory except Quebec.">
+<meta name="description" content="Work out 2026 self-employed tax in Canada: income tax, CPP at the double rate, the $30,000 HST registration line, and how much to set aside. Every province and territory, including Quebec.">
 <link rel="canonical" href="https://calc-hq.ca/payroll/self-employed-tax/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Self-Employed Tax Calculator 2026 — CPP, HST & Income Tax">
@@ -76,7 +76,7 @@
         <option value="YT">Yukon</option>
         <option value="NT">Northwest Territories</option>
         <option value="NU">Nunavut</option>
-        <option value="QC">Quebec (coming soon)</option>
+        <option value="QC">Quebec</option>
       </select>
     </div>
     <div class="field checkbox">
@@ -184,8 +184,9 @@ function run() {
   const rows = [
     ['Federal income tax', s.federalTax],
     ['Provincial income tax', s.provincialTax],
-    ['CPP (both halves)', s.cpp],
+    [code === 'QC' ? 'QPP (both halves)' : 'CPP (both halves)', s.cpp],
   ];
+  if (s.qpip > 0) rows.push(['QPIP (self-employed)', s.qpip]);
   if (s.ei > 0) rows.push(['EI (opted in)', s.ei]);
   el('breakdown').innerHTML =
     rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${formatCurrency(v)}</span></div>`).join('')

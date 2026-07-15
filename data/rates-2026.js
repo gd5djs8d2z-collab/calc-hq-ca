@@ -107,6 +107,7 @@ function buildProvince(p) {
   if (p.taxReduction) out.taxReduction = v(p.taxReduction);
   if (p.bpaPhaseOut) out.bpaPhaseOut = v(p.bpaPhaseOut);
   if (p.includesCanadaEmploymentAmount) out.includesCanadaEmploymentAmount = true;
+  if (p.bpaBundlesContributions) out.bpaBundlesContributions = true;
   return out;
 }
 
@@ -114,29 +115,14 @@ export const PROVINCES = Object.fromEntries(
   Object.entries(TC.provinces).map(([code, p]) => [code, buildProvince(p)])
 );
 
-/* QUEBEC — STUB. Not in the constants file yet; added tomorrow as the inaugural run of
-   this maintenance system (QPP / QPIP / 16.5% abatement). Kept here so PROVINCE_ORDER and
-   any lookup resolve, but the calculators must NOT compute for it. */
-PROVINCES.QC = {
-  name: 'Quebec',
-  _status: 'DEFERRED — build separately.',
-  _why: [
-    'Quebec uses QPP (not CPP) at a higher rate — separate contribution math.',
-    'Quebec has QPIP (parental insurance) on top of a reduced EI rate.',
-    'Quebec residents receive a 16.5% federal abatement — federal tax is reduced.',
-    'Quebec has its own brackets/BPA. CRA PDOC itself excludes Quebec.',
-  ],
-};
-
 /* ── SHIP GATE ───────────────────────────────────────────────────────────── */
-// Which jurisdictions the calculators are allowed to compute for in THIS build.
-// Everywhere except Quebec is live. QC remains reference-only ("coming soon") —
-// QPP/QPIP/abatement not yet modelled.
+// Which jurisdictions the calculators are allowed to compute for. All 13 are now live:
+// Quebec's QPP/QPIP/16.5% abatement and its own brackets/BPA are fully wired.
 export const PROVINCE_STATUS = {
   ON: 'live', AB: 'live', BC: 'live', SK: 'live', MB: 'live', NS: 'live',
-  NB: 'live', NL: 'live', PE: 'live', YT: 'live', NT: 'live', NU: 'live', QC: 'stub',
+  NB: 'live', NL: 'live', PE: 'live', YT: 'live', NT: 'live', NU: 'live', QC: 'live',
 };
-export const LIVE_PROVINCES = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU'];
+export const LIVE_PROVINCES = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU', 'QC'];
 export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU', 'QC'];
 
 /* ── ONTARIO EMPLOYMENT STANDARDS ACT — statutory termination notice ──────── */

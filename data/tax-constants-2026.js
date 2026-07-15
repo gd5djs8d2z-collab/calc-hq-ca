@@ -24,9 +24,9 @@
  *
  * SCOPE — federal income tax + CPP/CPP2/EI, and per-jurisdiction income-tax brackets/BPAs
  *   (+ Ontario surtax/health premium, BC tax reduction, Yukon's federal-linked BPA & CEA).
- *   Quebec is intentionally absent: it is added tomorrow as the inaugural run of this
- *   system (QPP / QPIP / 16.5% abatement). Benefit-program constants (CCB, EI mat/parental,
- *   CPP-timing, LTT, ESA) still live in rates-2026.js and are NOT yet migrated here.
+ *   Quebec is fully wired: its own brackets/BPA (bundled credit base), QPP, QPIP, and the
+ *   16.5% federal abatement. Benefit-program constants (CCB, EI mat/parental, CPP-timing,
+ *   LTT, ESA) still live in rates-2026.js and are NOT yet migrated here.
  */
 export const TAX_YEAR = 2026;
 
@@ -40,6 +40,8 @@ const SRC = {
   qpip:      'https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings',
   qpipPlans: 'https://www.quebec.ca/en/family-and-support-for-individuals/pregnancy-parenthood/financial-support-pregnant-women-families/quebec-parental-insurance-plan/pregnancy-childbirth/choice-plan',
   qcAbatement: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-44000-refundable-quebec-abatement.html',
+  qcRates:   'https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/',
+  qcBpa:     'https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/',
   ei:        'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html',
   eiBenefit: 'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
@@ -153,7 +155,7 @@ export const TAX_CONSTANTS_2026 = {
     federalAbatementRate:  { value: 0.165,   source_url: SRC.qcAbatement, last_verified: '2026-07-15' },
   },
 
-  /* ── PROVINCES & TERRITORIES (live jurisdictions only; Quebec added tomorrow) ─ */
+  /* ── PROVINCES & TERRITORIES (all 13 live; Quebec runs its own tax system) ──── */
   provinces: {
     ON: {
       name: 'Ontario', indexation: 0.019,
@@ -336,6 +338,27 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: T4032('nu'), last_verified: '2026-07-13' },
       bpa: { value: 19659, source_url: T4032('nu'), last_verified: '2026-07-13' }, // highest BPA in Canada
       bpaCreditRate: 0.04,
+    },
+
+    // QUEBEC — its own tax system (not the CRA collection agreement). Brackets + BPA
+    // from Revenu Québec, indexed 2.05% for 2026. NOTE: Quebec's basic amount is a
+    // BUNDLED credit base — per Revenu Québec (Line 350) it "takes into account"
+    // QPP, the health services fund, QPIP and EI, so the engine must NOT add the
+    // QPP/EI credits on top the way it does for other provinces (bpaBundlesContributions).
+    // Out of scope (flagged, not modelled): the deduction for workers (TP-1 line 201,
+    // a Quebec-only DEDUCTION, not a credit) and every other non-refundable credit
+    // beyond the basic amount (age, living-alone, dependants, etc.).
+    QC: {
+      name: 'Quebec', indexation: 0.0205,
+      brackets: { value: [
+        { min: 0,      max: 54345,    rate: 0.14 },
+        { min: 54345,  max: 108680,   rate: 0.19 },
+        { min: 108680, max: 132245,   rate: 0.24 },
+        { min: 132245, max: Infinity, rate: 0.2575 },
+      ], source_url: SRC.qcRates, last_verified: '2026-07-15' },
+      bpa: { value: 18952, source_url: SRC.qcBpa, last_verified: '2026-07-15' },
+      bpaCreditRate: 0.14,
+      bpaBundlesContributions: true, // basic amount already embeds QPP/QPIP/EI — don't re-add
     },
   },
 };

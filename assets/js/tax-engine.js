@@ -136,7 +136,10 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   const prov = PROVINCES[code];
   let basic = bracketTax(taxableIncome, prov.brackets);
   // Credit base: BPA + CPP base + EI, plus (Yukon only) the Canada Employment Amount.
-  let creditBase = provincialBPA(prov, netIncome) + cppBase + eiPremium;
+  // Quebec is the exception — its basic amount already bundles the QPP/QPIP/EI credits
+  // (Revenu Québec, Line 350), so the contribution amounts are NOT added on top.
+  let creditBase = provincialBPA(prov, netIncome);
+  if (!prov.bpaBundlesContributions) creditBase += cppBase + eiPremium;
   if (prov.includesCanadaEmploymentAmount) creditBase += FEDERAL.canadaEmploymentAmountBase;
   const credits = creditBase * prov.bpaCreditRate;
   basic = Math.max(0, basic - credits);
@@ -216,7 +219,8 @@ export function calcExtraIncome(base, extra, code) {
   const incomeTax = (withBoth.totalTax) - (withBase.totalTax);
   const cpp = withBoth.cpp - withBase.cpp;
   const ei = withBoth.ei - withBase.ei;
-  const totalWithheld = incomeTax + cpp + ei;
+  const qpip = withBoth.qpip - withBase.qpip; // 0 outside Quebec
+  const totalWithheld = incomeTax + cpp + ei + qpip;
   const net = extra - totalWithheld;
 
   return {
@@ -224,6 +228,7 @@ export function calcExtraIncome(base, extra, code) {
     incomeTax,
     cpp,
     ei,
+    qpip,
     totalWithheld,
     net,
     effectiveRate: extra > 0 ? totalWithheld / extra : 0,

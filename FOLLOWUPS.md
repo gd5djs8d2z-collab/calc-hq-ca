@@ -46,3 +46,26 @@ So they were intentionally left out of `tax-constants-2026.js` and the January a
 **Fix:** extend the provenance structure to cover them (possibly a sibling
 `benefit-constants-2026.js`), and add their cadences to `MAINTENANCE.md` so each gets a
 re-verification trigger appropriate to it (not the January one).
+
+---
+
+## 3. Quebec — model the deduction for workers (and other credits)
+
+**What:** The Quebec take-home / self-employed calc models only the basic personal amount
+(bundled credit base). It does **not** apply the **deduction for workers** (Revenu Québec
+TP-1 line 201; 2026 max **$1,450**), a near-universal Quebec-only *deduction* from provincial
+taxable income for anyone with employment/business income.
+
+**Impact:** the calc overstates Quebec provincial tax by ~$1,450 × 14% = **~$203** for most
+employees (understating net take-home by the same). Verified against Revenu Québec, flagged
+in the Quebec brackets/BPA build — intentionally out of scope there (that build was scoped to
+"BPA as a non-refundable credit"; the worker deduction is a deduction, not a credit).
+
+**Why deferred:** it needs a Quebec-specific *provincial* taxable base — the deduction
+reduces Quebec taxable income only, not federal, so the engine's single shared `taxable`
+can't carry it. Other Quebec non-refundable credits (age, living-alone, dependants, etc.)
+are also unmodelled but are situational, not near-universal like this one.
+
+**Fix:** give `provincialTax` an optional province-specific income adjustment (Quebec:
+subtract `min(0.06 × workIncome, 1450)` before the bracket step), stamped in the constants
+file with its Revenu Québec source + cadence.
