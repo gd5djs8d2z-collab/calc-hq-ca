@@ -155,6 +155,7 @@ main.wrap, main.wrap-wide { padding-bottom: 4rem; }
   margin: 0;
 }
 .page-head .lead { max-width: 52ch; }
+.updated { font-size: 0.9rem; color: var(--muted); margin-top: 0.6rem; }
 
 /* ── Calculator card — the hero. Framed, high on the page. ───────────────── */
 .calc-card {
@@ -533,6 +534,8 @@ select.input {
   padding-top: 1.5rem;
 }
 .footer-legal p { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); max-width: 90ch; }
+.footer-links { margin-bottom: 0.65rem; }
+.footer-links a { font-weight: 500; }
 
 /* ── Responsive — mobile-first scales up ─────────────────────────────────── */
 @media (min-width: 40rem) {
