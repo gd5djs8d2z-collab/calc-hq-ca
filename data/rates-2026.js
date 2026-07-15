@@ -83,6 +83,12 @@ export const QPIP = {
   maxSelfEmployedPremium: v(TC.qpip.maxSelfEmployedPremium),
 };
 
+/* ── QUEBEC — federal-side adjustments ───────────────────────────────────── */
+// Refundable Quebec abatement — 16.5% of BASIC federal tax (T1 line 42900 → 44000).
+export const QUEBEC = {
+  federalAbatementRate: v(TC.quebec.federalAbatementRate),
+};
+
 /* ── PROVINCES & TERRITORIES ─────────────────────────────────────────────── */
 // Derived from TC.provinces, reconstructing the exact shape the engine reads. Optional
 // fields (surtax, healthPremium, taxReduction, bpaPhaseOut, includesCanadaEmploymentAmount)

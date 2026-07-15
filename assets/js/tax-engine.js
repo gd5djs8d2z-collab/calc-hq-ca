@@ -15,7 +15,7 @@
  *  This is a well-scoped estimate for employment income, not a full T1 return.
  */
 import {
-  FEDERAL, CPP, QPP, EI, QPIP, PROVINCES, PROVINCE_STATUS, LIVE_PROVINCES,
+  FEDERAL, CPP, QPP, EI, QPIP, QUEBEC, PROVINCES, PROVINCE_STATUS, LIVE_PROVINCES,
 } from '/data/rates-2026.js';
 
 // Quebec workers contribute to QPP, not CPP. Everyone else uses CPP.
@@ -154,12 +154,17 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   return { basic, surtax, health, taxReduction: reduction, total: basic + surtax + health };
 }
 
-function federalTax(taxableIncome, netIncome, { cppBase, eiPremium }) {
+function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false }) {
   let tax = bracketTax(taxableIncome, FEDERAL.brackets);
   const credits =
     (federalBPA(netIncome) + cppBase + eiPremium) * FEDERAL.bpa.creditRate
     + FEDERAL.canadaEmploymentAmountMaxCredit;
-  return Math.max(0, tax - credits);
+  // "Basic federal tax" (T1 line 42900): bracket tax after non-refundable credits.
+  const basicFederal = Math.max(0, tax - credits);
+  // Refundable Quebec abatement (T1 line 44000 = line 42900 × 16.5%): Quebec residents
+  // reduce basic federal tax by 16.5%. No federal surtax exists in this engine, so the
+  // abatement applies directly to basicFederal — the exact CRA base, no interpolation.
+  return quebecAbatement ? basicFederal * (1 - QUEBEC.federalAbatementRate) : basicFederal;
 }
 
 /**
@@ -175,7 +180,7 @@ export function calcTakeHome(gross, code) {
   const eiTypePremium = ei.premium + qpip.premium;
   // Enhanced CPP is deductible from taxable income.
   const taxable = Math.max(0, gross - cpp.enhanced);
-  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium });
+  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC });
   const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross });
 
   const totalTax = fed + prov.total;
@@ -260,7 +265,7 @@ export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } 
 
   // Enhanced CPP (on the employee-equivalent share) is also deductible.
   const taxable = Math.max(0, netBusinessIncome - halfCppDeduction - cpp.enhanced);
-  const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: eiTypePremium });
+  const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC });
   const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: netBusinessIncome });
 
   const incomeTax = fed + prov.total;

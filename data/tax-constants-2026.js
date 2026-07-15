@@ -39,6 +39,7 @@ const SRC = {
   qpp:       'https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures',
   qpip:      'https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings',
   qpipPlans: 'https://www.quebec.ca/en/family-and-support-for-individuals/pregnancy-parenthood/financial-support-pregnant-women-families/quebec-parental-insurance-plan/pregnancy-childbirth/choice-plan',
+  qcAbatement: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-44000-refundable-quebec-abatement.html',
   ei:        'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html',
   eiBenefit: 'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
@@ -141,6 +142,15 @@ export const TAX_CONSTANTS_2026 = {
     maxEmployeePremium:    { value: 442.90,  source_url: SRC.qpip, last_verified: '2026-07-15' },
     maxEmployerPremium:    { value: 620.06,  source_url: SRC.qpip, last_verified: '2026-07-15' },
     maxSelfEmployedPremium:{ value: 786.92,  source_url: SRC.qpip, last_verified: '2026-07-15' },
+  },
+
+  /* ── QUEBEC — federal-side adjustments ──────────────────────────────────── */
+  // Refundable Quebec abatement: Quebec residents reduce BASIC federal tax (T1 line
+  // 42900) by 16.5% (T1 line 44000 = line 42900 × 16.5%). The 16.5 points = 13.5
+  // (Alternative Payments for Standing Programs) + 3 (Youth Allowances Recovery);
+  // stable for decades. Rate + base are direct CRA quotes, no interpretation.
+  quebec: {
+    federalAbatementRate:  { value: 0.165,   source_url: SRC.qcAbatement, last_verified: '2026-07-15' },
   },
 
   /* ── PROVINCES & TERRITORIES (live jurisdictions only; Quebec added tomorrow) ─ */
