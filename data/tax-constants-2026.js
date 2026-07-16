@@ -56,6 +56,9 @@ const SRC = {
   craFiling: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html',
   craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
   craInstalments: 'https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/income-tax-instalments/due-dates.html',
+  gis:       'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html',
+  gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
+  oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -411,5 +414,27 @@ export const TAX_CONSTANTS_2026 = {
     rrspContribution:   { value: '2026-03-02', source_url: SRC.craRrspDates,   last_verified: '2026-07-16' }, // for the 2025 tax year
     instalments:        { value: ['2026-03-16', '2026-06-15', '2026-09-15', '2026-12-15'],
                           source_url: SRC.craInstalments, last_verified: '2026-07-16' },
+  },
+
+  /* ── GUARANTEED INCOME SUPPLEMENT (GIS) — indexed QUARTERLY, NOT January ─────── */
+  // Maximum monthly amounts + annual income cut-offs by marital/cohabitation status,
+  // effective JULY–SEPTEMBER 2026 (Service Canada, confirmed live 2026-07-16 against the
+  // benefit-amount page). IMPORTANT: Service Canada has RETIRED the detailed per-income GIS
+  // rate tables in favour of its online estimator, so only the maxima and the cut-offs are
+  // published. The calculator models a LINEAR phase-out from the max (at $0 income) to $0
+  // (at the cut-off) — exact at both verified endpoints; the true curve is piecewise (base
+  // reduces $1 per $2, with a steeper top-up band at low income). Re-index EVERY QUARTER
+  // (Jan/Apr/Jul/Oct) — see MAINTENANCE.md. GIS never decreases quarter-to-quarter.
+  gis: {
+    effectiveQuarter: 'July–September 2026',
+    oasEligibilityAge:   { value: 65, source_url: SRC.gisEligibility, last_verified: '2026-07-16' },
+    // maxMonthly = maximum monthly GIS; incomeCutoff = annual income (couples: combined) at/above which GIS is $0.
+    single:          { value: { maxMonthly: 1123.17, incomeCutoff: 22800 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // single / widowed / divorced
+    spouseFullOAS:   { value: { maxMonthly: 676.09,  incomeCutoff: 30096 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse receives full OAS
+    spouseAllowance: { value: { maxMonthly: 676.09,  incomeCutoff: 42144 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse receives the Allowance
+    spouseNoOAS:     { value: { maxMonthly: 1123.17, incomeCutoff: 54624 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse does NOT receive OAS/Allowance
+    // Employment / net self-employment exemption: first $5,000 fully exempt, then 50% of the
+    // next $10,000 (max $10,000 exempt), PER PERSON. OAS and GIS themselves are excluded income.
+    employmentExemption: { value: { full: 5000, partialUpTo: 10000, partialRate: 0.5 }, source_url: SRC.oasPayments, last_verified: '2026-07-16' },
   },
 };

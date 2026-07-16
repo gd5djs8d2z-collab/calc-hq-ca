@@ -540,3 +540,49 @@ export const KEY_DATES = {
   rrspContribution: v(TC.taxDeadlines2026.rrspContribution),
   instalments: v(TC.taxDeadlines2026.instalments),
 };
+
+/* ── GUARANTEED INCOME SUPPLEMENT (GIS) ────────────────────────────────────── */
+// Derived from TC.gis (provenance-stamped, effective July–September 2026). GIS is indexed
+// QUARTERLY, so this re-verifies on a quarterly cadence, not the January one.
+// MODEL: Service Canada retired its per-income GIS rate tables (now an online estimator), so
+// only the maxima and income cut-offs are published. estimate() applies a LINEAR phase-out
+// from the maximum (at $0 countable income) to $0 (at the cut-off) — exact at both verified
+// endpoints. The true reduction is piecewise ($1 per $2 base, plus a steeper top-up band at
+// low income); this is a documented estimate, and the page tells users to confirm the exact
+// figure with the Service Canada Benefits Estimator.
+export const GIS = {
+  effectiveQuarter: TC.gis.effectiveQuarter,
+  oasEligibilityAge: v(TC.gis.oasEligibilityAge),
+  status: {
+    single: v(TC.gis.single),
+    spouseFullOAS: v(TC.gis.spouseFullOAS),
+    spouseAllowance: v(TC.gis.spouseAllowance),
+    spouseNoOAS: v(TC.gis.spouseNoOAS),
+  },
+  employmentExemption: v(TC.gis.employmentExemption),
+
+  // Countable employment/self-employment income after the exemption (per person):
+  // first $5,000 fully exempt, then 50% of the next $10,000.
+  netEmployment(emp) {
+    emp = Math.max(0, emp);
+    const e = this.employmentExemption;
+    const partialExempt = Math.min(Math.max(0, emp - e.full), e.partialUpTo) * e.partialRate;
+    return Math.max(0, emp - Math.min(emp, e.full) - partialExempt);
+  },
+
+  // Estimated monthly + annual GIS. countableIncome = income counted by the GIS test
+  // (couples: combined), already excluding OAS and net of the employment exemption.
+  estimate(statusKey, countableIncome) {
+    const s = this.status[statusKey];
+    if (!s) return null;
+    countableIncome = Math.max(0, countableIncome);
+    const fraction = Math.max(0, 1 - countableIncome / s.incomeCutoff);
+    const monthly = s.maxMonthly * fraction;
+    return {
+      monthly, annual: monthly * 12,
+      maxMonthly: s.maxMonthly, incomeCutoff: s.incomeCutoff,
+      reductionMonthly: s.maxMonthly - monthly,
+      atOrOverCutoff: countableIncome >= s.incomeCutoff,
+    };
+  },
+};

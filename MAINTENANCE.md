@@ -47,6 +47,21 @@ showed the pre-Bill-23 five-bracket table (top $142,250 @ 19%). We used the **en
 law** and recorded `source_url` as the PEI finance page, not the CRA table. Do the same
 for any future mid-year change: statute first, and note in a comment when the T4032 lags.
 
+## Rule 3 — Quarterly re-verification (GIS / OAS benefits)
+
+The **Guaranteed Income Supplement** (`gis` in `tax-constants-2026.js`, powering
+`/benefits/gis/`) is **NOT on the January cycle**. Old Age Security benefits — the OAS
+pension, GIS, and the Allowances — re-index to the CPI **every quarter: January, April,
+July, and October**. So GIS must be re-checked at the start of each quarter, and the
+`effectiveQuarter` string updated (currently `July–September 2026`).
+
+- Source: Service Canada "How much you could receive" (`SRC.gis`) publishes the four maxima
+  and income cut-offs each quarter. **The detailed per-income rate tables have been retired**
+  — the calculator models a linear phase-out between the max and the cut-off, so those two
+  numbers per status are what must stay current. GIS never decreases quarter-to-quarter.
+- The employment-income exemption ($5,000 + 50% of the next $10,000) and the 65+/OAS
+  eligibility rule change only by legislation — re-confirm, but they rarely move.
+
 ---
 
 ### Quebec — shipped (the inaugural run)

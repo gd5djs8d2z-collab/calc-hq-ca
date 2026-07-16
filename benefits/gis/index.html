@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GIS Calculator 2026 — Guaranteed Income Supplement Estimate | calc-hq.ca</title>
+<meta name="description" content="Estimate your 2026 Guaranteed Income Supplement (GIS). Handles all four marital-status categories, the OAS income exclusion and the employment-income exemption. July–September 2026 amounts.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/gis/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GIS Calculator 2026 — Guaranteed Income Supplement">
+<meta property="og:description" content="A current, accurate GIS estimate that handles the marital-status branching most calculators skip.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/gis/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits & Deductions","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"GIS Calculator","item":"https://calc-hq.ca/benefits/gis/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Who qualifies for the Guaranteed Income Supplement?","acceptedAnswer":{"@type":"Answer","text":"GIS is for low-income seniors who are 65 or older, receiving (or eligible for) the Old Age Security pension, living in Canada, and whose annual income is below the cut-off for their marital status. Because GIS is tied to OAS, you generally need to have lived in Canada for at least 10 years after age 18. You also have to file a tax return each year to keep receiving it."}},
+{"@type":"Question","name":"How much GIS will I get in 2026?","acceptedAnswer":{"@type":"Answer","text":"It depends on your income and your marital status. For the July to September 2026 quarter, a single person with little other income can receive up to $1,123.17 a month, phasing down to zero once annual income reaches about $22,800. Couples have lower per-person maximums and higher combined cut-offs. GIS is recalculated every July from your previous year's income and re-indexed every quarter."}},
+{"@type":"Question","name":"Does OAS count as income for GIS?","acceptedAnswer":{"@type":"Answer","text":"No. Your OAS pension and the GIS itself are excluded from the GIS income test. Most other income counts — CPP or QPP, private and employer pensions, RRSP and RRIF withdrawals, and investment income. Employment and self-employment income get a partial exemption: the first $5,000 is fully exempt, plus 50% of the next $10,000."}},
+{"@type":"Question","name":"Is the Guaranteed Income Supplement taxable?","acceptedAnswer":{"@type":"Answer","text":"No. GIS is a non-taxable benefit — you don't pay income tax on it and it isn't added to your taxable income. You still have to report it and file a return every year, because the amount for the next July-to-June period is calculated from the income on your tax return."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits &amp; Deductions</a><span class="sep">›</span>
+    <span>GIS Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>GIS Calculator (2026)</h1>
+    <p class="lead">Estimate your monthly Guaranteed Income Supplement — the non-taxable top-up to Old Age Security for low-income seniors. This one handles all four marital-status categories and the income rules most calculators skip. Amounts are for the <strong>July–September 2026</strong> quarter.</p>
+  </div>
+
+  <div class="notice" role="note">
+    <strong>Please read:</strong> this is an estimate for a retirement benefit, so the stakes are higher than a tax calculator. GIS eligibility and the exact amount are decided by Service Canada — confirm both with the official <a href="https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/benefits-estimator.html" rel="noopener" target="_blank">Old Age Security Benefits Estimator</a> before relying on any number here.
+  </div>
+
+  <section class="calc-card" aria-label="GIS calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="age">Your age</label>
+        <input class="input" id="age" type="text" inputmode="numeric" placeholder="68" value="68">
+      </div>
+      <div class="field">
+        <label for="status">Your situation
+          <span class="hint">GIS amounts differ by marital status</span>
+        </label>
+        <select class="input" id="status">
+          <option value="single" selected>Single, widowed or divorced</option>
+          <option value="spouseFullOAS">Couple — spouse gets full OAS</option>
+          <option value="spouseAllowance">Couple — spouse gets the Allowance</option>
+          <option value="spouseNoOAS">Couple — spouse does not get OAS</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="income">Your annual income <span class="hint">Excluding OAS and GIS — e.g. CPP, pensions, RRIF, investments</span></label>
+      <input class="input" id="income" type="text" inputmode="numeric" placeholder="9,000" value="9,000">
+    </div>
+    <div class="field">
+      <label for="employment">Your employment / self-employment income <span class="hint">Entered separately — the first $5,000 plus half the next $10,000 is exempt</span></label>
+      <input class="input" id="employment" type="text" inputmode="numeric" placeholder="0" value="0">
+    </div>
+
+    <div id="spouse-fields" hidden>
+      <div class="field">
+        <label for="spouse-income">Spouse's annual income <span class="hint">Excluding their OAS/GIS</span></label>
+        <input class="input" id="spouse-income" type="text" inputmode="numeric" placeholder="0" value="0">
+      </div>
+      <div class="field">
+        <label for="spouse-employment">Spouse's employment / self-employment income</label>
+        <input class="input" id="spouse-employment" type="text" inputmode="numeric" placeholder="0" value="0">
+      </div>
+    </div>
+
+    <button class="btn" id="go" type="button">Estimate my GIS</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Estimated monthly GIS</p>
+      <p class="result-number" id="monthly">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="ineligible" hidden></div>
+  </section>
+
+  <section class="answer">
+    <h2>What the GIS is, and who qualifies</h2>
+    <p>The Guaranteed Income Supplement is a monthly, <strong>non-taxable</strong> payment added to the Old Age Security (OAS) pension for seniors with low income. It's the part of the retirement system aimed squarely at people who don't have much beyond their public pensions. To receive it you have to meet four conditions: you're <strong>65 or older</strong>, you're receiving or eligible for the <strong>OAS pension</strong>, you <strong>live in Canada</strong> (with the usual OAS residency history — generally at least 10 years here after age 18), and your income is below the cut-off for your marital status.</p>
+    <p>One rule catches people every year: GIS isn't automatic to keep. It's recalculated each July from the income on your <strong>tax return</strong>, so you have to file every year even if you owe nothing — miss it and the payments can stop.</p>
+  </section>
+
+  <section class="answer">
+    <h2>How the income test and reduction work</h2>
+    <p>GIS starts at a maximum and comes down as your other income rises, reaching zero at a cut-off that depends on your situation. The income it looks at is your <strong>previous year's income</strong>, which is why a change like a large RRIF withdrawal shows up in your GIS the following July. Broadly, the base benefit is reduced by about <strong>$1 for every $2</strong> of income for a single person (couples are assessed on combined income), and a smaller "top-up" portion reduces faster over a low-income band — so the real curve steepens near the bottom.</p>
+    <p>Because Service Canada has retired its detailed per-income rate tables in favour of its own estimator, this calculator anchors to the two figures it still publishes — the <strong>maximum</strong> at zero income and the <strong>cut-off</strong> where GIS ends — and estimates a smooth reduction between them. That makes it accurate at both ends and a close guide in between; for an exact mid-range figure, use the official estimator linked above.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Marital status changes the whole calculation</h2>
+    <p>This is where simple calculators go wrong. There isn't one GIS table — there are four, and picking the right one matters more than any single dollar of income. For the July–September 2026 quarter:</p>
+    <ul class="conditions">
+      <li><strong>Single, widowed or divorced</strong> — up to <strong>$1,123.17</strong> a month, ending at about <strong>$22,800</strong> of annual income.</li>
+      <li><strong>Spouse receives the full OAS pension</strong> — up to <strong>$676.09</strong> a month each, ending at about <strong>$30,096</strong> of combined income.</li>
+      <li><strong>Spouse receives the Allowance</strong> — up to <strong>$676.09</strong> a month, ending at about <strong>$42,144</strong> of combined income.</li>
+      <li><strong>Spouse does not receive OAS or the Allowance</strong> — up to <strong>$1,123.17</strong> a month, ending at about <strong>$54,624</strong> of combined income.</li>
+    </ul>
+    <p>Notice the pattern: when both partners get OAS, each person's GIS maximum is lower but the household gets two of them; when only one partner is a senior, that person can receive the higher single-rate maximum against a much higher combined cut-off. Choosing the wrong category can throw an estimate off by hundreds of dollars a month.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The nuances that trip people up</h2>
+    <p><strong>OAS doesn't count against you.</strong> The single most common mistake is including the OAS pension in the income test — it's excluded, and so is the GIS itself. So is the one-time GST/HST credit and similar. What <em>does</em> count is CPP or QPP, workplace and private pensions, RRSP and RRIF withdrawals, and investment income.</p>
+    <p><strong>Work income gets a break.</strong> To reward seniors who keep working, the first <strong>$5,000</strong> of employment or net self-employment income is fully exempt, and <strong>half of the next $10,000</strong> is exempt too — so up to $10,000 of a $15,000 work income never touches your GIS. That's why this calculator asks for employment income on its own line: it applies the exemption before testing your income.</p>
+    <p><strong>It's tax-free, but tied to filing.</strong> GIS is not taxable and doesn't appear as taxable income, yet it depends entirely on your filed return. And because it re-indexes every quarter to inflation, the maximums rise through the year — the figures here are the current July–September 2026 amounts.</p>
+  </section>
+
+  <section class="answer">
+    <h2>A worked example</h2>
+    <p>Take a single 70-year-old whose only income besides OAS is $9,000 a year of CPP. Their countable income is $9,000 (OAS is excluded, and there's no employment income to exempt). Against the single maximum of $1,123.17 and the $22,800 cut-off, the estimate works out to roughly <strong>$680 a month</strong> — about $8,200 a year of GIS on top of their OAS. Add a $6,000-a-year part-time job and the exemption wipes out $5,500 of it (the first $5,000 plus half of the next $1,000), so only $500 is countable, and the GIS barely moves. That employment exemption is doing real work for seniors who stay in the labour force.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Who qualifies for the Guaranteed Income Supplement?</summary>
+      <p>Low-income seniors who are 65+, receiving or eligible for OAS, living in Canada (generally 10+ years here after 18), with income under the cut-off for their marital status. You must file a tax return every year to keep it.</p>
+    </details>
+    <details><summary>How much GIS will I get in 2026?</summary>
+      <p>It depends on income and marital status. For July–September 2026, a single person with little other income can get up to $1,123.17 a month, phasing to zero by about $22,800 of annual income. Couples have lower per-person maximums and higher combined cut-offs.</p>
+    </details>
+    <details><summary>Does OAS count as income for GIS?</summary>
+      <p>No — OAS and GIS are excluded from the income test. CPP/QPP, pensions, and RRSP/RRIF withdrawals do count. Employment income gets a partial exemption: the first $5,000 plus half the next $10,000.</p>
+    </details>
+    <details><summary>Is the Guaranteed Income Supplement taxable?</summary>
+      <p>No, GIS is non-taxable. But it's calculated from your filed tax return, so you still have to file every year — the amount for the coming year depends on the income you report.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related — seniors &amp; retirement</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/cpp-60-vs-65/"><h3>CPP at 60 vs 65</h3><p>Take CPP early or wait? Your break-even age and lifetime totals — CPP income counts toward the GIS test.</p></a>
+      <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>How your CPP contribution is built during your working years.</p></a>
+    </div>
+    <p class="disclaimer"><strong>Estimate only.</strong> GIS figures are for the July–September 2026 quarter (Service Canada) and re-index quarterly. This tool does not determine eligibility or your exact entitlement — Service Canada does. Confirm with the official Old Age Security Benefits Estimator or by contacting Service Canada before making any decision about your retirement income.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/benefits/gis/">GIS Calculator</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/cpp-60-vs-65/">CPP at 60 vs 65</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { GIS } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const fmt = (n, cents) => Math.round(cents ? n * 100 : n) / (cents ? 100 : 1);
+const money = (n, cents=false) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+const statusLabel = {
+  single: 'single', spouseFullOAS: 'couple (spouse gets OAS)',
+  spouseAllowance: 'couple (spouse gets the Allowance)', spouseNoOAS: 'couple (spouse has no OAS)',
+};
+
+function isCouple(k) { return k !== 'single'; }
+
+function run() {
+  const status = el('status').value;
+  const couple = isCouple(status);
+  el('spouse-fields').hidden = !couple;
+
+  const result = el('result'), bad = el('ineligible');
+  const age = parseMoney(el('age').value);
+
+  if (age > 0 && age < GIS.oasEligibilityAge) {
+    result.hidden = true; bad.hidden = false;
+    bad.innerHTML = `GIS requires you to be <strong>65 or older</strong> and receiving Old Age Security. At ${Math.floor(age)}, you're not yet eligible — this becomes available at 65.`;
+    return;
+  }
+  bad.hidden = true;
+
+  const netEmpYou = GIS.netEmployment(parseMoney(el('employment').value));
+  let countable = parseMoney(el('income').value) + netEmpYou;
+  if (couple) {
+    countable += parseMoney(el('spouse-income').value) + GIS.netEmployment(parseMoney(el('spouse-employment').value));
+  }
+
+  const e = GIS.estimate(status, countable);
+  el('monthly').textContent = money(e.monthly, true);
+
+  el('reading').textContent = e.atOrOverCutoff
+    ? `At ${money(countable)} of countable income, a ${statusLabel[status]} claimant is over the ${money(e.incomeCutoff)} cut-off — no GIS is payable at this income.`
+    : `About ${money(e.annual)} a year, on top of OAS. That's the ${money(e.maxMonthly, true)} monthly maximum reduced by ${money(e.reductionMonthly, true)} for ${money(countable)} of countable income.`;
+
+  const rows = [
+    [`Maximum monthly GIS (${statusLabel[status]})`, money(e.maxMonthly, true)],
+    ['Countable income (excl. OAS)', money(countable)],
+    ['Income cut-off for this status', money(e.incomeCutoff)],
+    ['Reduction', '−' + money(e.reductionMonthly, true)],
+  ];
+  let html = rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('');
+  html += `<div class="row total"><span>Estimated monthly GIS</span><span class="val">${money(e.monthly, true)}</span></div>`;
+  el('breakdown').innerHTML = html;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['age','status','income','employment','spouse-income','spouse-employment'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
