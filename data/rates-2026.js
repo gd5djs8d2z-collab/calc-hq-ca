@@ -108,6 +108,7 @@ function buildProvince(p) {
   if (p.bpaPhaseOut) out.bpaPhaseOut = v(p.bpaPhaseOut);
   if (p.includesCanadaEmploymentAmount) out.includesCanadaEmploymentAmount = true;
   if (p.bpaBundlesContributions) out.bpaBundlesContributions = true;
+  if (p.workerDeduction) out.workerDeduction = v(p.workerDeduction);
   return out;
 }
 

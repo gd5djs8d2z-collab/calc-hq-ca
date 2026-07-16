@@ -2,9 +2,9 @@
 
 Standalone technical debt / cleanup items, tracked separately from feature work.
 
-**Scheduling rule:** these are for **after the hub is complete**. Do NOT fold them into
-the Quebec build — that session stays clean (QPP / QPIP / 16.5% abatement + the inaugural
-constants audit only).
+**Scheduling rule:** these are standalone cleanups to pick up as capacity allows. The Quebec
+build (QPP / QPIP / 16.5% abatement / brackets + BPA / deduction for workers) and the
+inaugural constants audit are complete — no Quebec-specific modelling gaps remain.
 
 ---
 
@@ -49,23 +49,9 @@ re-verification trigger appropriate to it (not the January one).
 
 ---
 
-## 3. Quebec — model the deduction for workers (and other credits)
+## Done
 
-**What:** The Quebec take-home / self-employed calc models only the basic personal amount
-(bundled credit base). It does **not** apply the **deduction for workers** (Revenu Québec
-TP-1 line 201; 2026 max **$1,450**), a near-universal Quebec-only *deduction* from provincial
-taxable income for anyone with employment/business income.
-
-**Impact:** the calc overstates Quebec provincial tax by ~$1,450 × 14% = **~$203** for most
-employees (understating net take-home by the same). Verified against Revenu Québec, flagged
-in the Quebec brackets/BPA build — intentionally out of scope there (that build was scoped to
-"BPA as a non-refundable credit"; the worker deduction is a deduction, not a credit).
-
-**Why deferred:** it needs a Quebec-specific *provincial* taxable base — the deduction
-reduces Quebec taxable income only, not federal, so the engine's single shared `taxable`
-can't carry it. Other Quebec non-refundable credits (age, living-alone, dependants, etc.)
-are also unmodelled but are situational, not near-universal like this one.
-
-**Fix:** give `provincialTax` an optional province-specific income adjustment (Quebec:
-subtract `min(0.06 × workIncome, 1450)` before the bracket step), stamped in the constants
-file with its Revenu Québec source + cadence.
+- **Quebec — deduction for workers** (was item 3): implemented 2026-07-16. `provincialTax`
+  now subtracts `min(6% × eligible work income, $1,450)` from the Quebec taxable base in both
+  `calcTakeHome` and `calcSelfEmployed` (`workerDeduction` on `PROVINCES.QC`), verified against
+  Revenu Québec line 201 / Work Chart 201. This was the last Quebec-specific modelling gap.

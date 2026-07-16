@@ -42,6 +42,7 @@ const SRC = {
   qcAbatement: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-44000-refundable-quebec-abatement.html',
   qcRates:   'https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/',
   qcBpa:     'https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/',
+  qcWorkerDed: 'https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/how-to-complete-your-income-tax-return/line-by-line-help/201-to-260-net-income/line-201/',
   ei:        'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html',
   eiBenefit: 'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
@@ -351,9 +352,9 @@ export const TAX_CONSTANTS_2026 = {
     // BUNDLED credit base — per Revenu Québec (Line 350) it "takes into account"
     // QPP, the health services fund, QPIP and EI, so the engine must NOT add the
     // QPP/EI credits on top the way it does for other provinces (bpaBundlesContributions).
-    // Out of scope (flagged, not modelled): the deduction for workers (TP-1 line 201,
-    // a Quebec-only DEDUCTION, not a credit) and every other non-refundable credit
-    // beyond the basic amount (age, living-alone, dependants, etc.).
+    // The deduction for workers (TP-1 line 201) IS modelled — see workerDeduction below.
+    // Still out of scope: every other non-refundable credit beyond the basic amount
+    // (age, living-alone, dependants, etc.).
     QC: {
       name: 'Quebec', indexation: 0.0205,
       brackets: { value: [
@@ -365,6 +366,12 @@ export const TAX_CONSTANTS_2026 = {
       bpa: { value: 18952, source_url: SRC.qcBpa, last_verified: '2026-07-15' },
       bpaCreditRate: 0.14,
       bpaBundlesContributions: true, // basic amount already embeds QPP/QPIP/EI — don't re-add
+      // Deduction for workers (TP-1 line 201): 6% of eligible work income (employment +
+      // net business income, Work Chart 201), capped at $1,450 for 2026. A Quebec-only
+      // DEDUCTION from net income — it reduces the QC taxable base before bracket tax and
+      // does NOT affect federal tax. (Return page still shows the 2025 cap $1,420; the
+      // 2026 $1,450 is from Revenu Québec's Principal Changes for 2026, same lag as the BPA.)
+      workerDeduction: { value: { rate: 0.06, max: 1450 }, source_url: SRC.qcWorkerDed, last_verified: '2026-07-16' },
     },
   },
 };

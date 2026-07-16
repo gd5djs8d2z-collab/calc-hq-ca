@@ -44,15 +44,17 @@ brackets + BPA — each verified against Revenu Québec / CRA and stamped with `
 and `last_verified` (2026-07-15). The Quebec brackets/BPA index annually and are covered by
 the **January** income-tax audit alongside the other jurisdictions.
 
-**Scope boundary (Quebec provincial credits).** Only the basic personal amount is modelled,
-as a *bundled* credit base — per Revenu Québec (Line 350) Quebec's basic amount already
-embeds QPP / QPIP / EI, so those are NOT re-added on top the way they are for other
-provinces (`bpaBundlesContributions`). Deliberately **not** modelled: the **deduction for
-workers** (TP-1 line 201; 2026 max **$1,450**, a Quebec-only deduction, not a credit — worth
-about **$203** of provincial tax to essentially every employee) and all other non-refundable
-credits (age, living-alone, dependants, etc.). The worker-deduction omission makes the
-Quebec estimate run slightly high (~$200 of provincial tax) at most employment incomes —
-see FOLLOWUPS.md.
+**Scope boundary (Quebec provincial credits).** Two Quebec-specific items are modelled: the
+basic personal amount as a *bundled* credit base — per Revenu Québec (Line 350) Quebec's basic
+amount already embeds QPP / QPIP / EI, so those are NOT re-added on top the way they are for
+other provinces (`bpaBundlesContributions`) — and, added **2026-07-16**, the **deduction for
+workers** (TP-1 line 201): 6% of eligible work income (employment + net business income),
+capped at **$1,450** for 2026, subtracted from the Quebec taxable base before bracket tax in
+both `calcTakeHome` and `calcSelfEmployed` (Quebec-only; no federal effect). Its 2026 cap
+re-indexes each year alongside the brackets — re-verify in the January audit (Revenu Québec
+line 201 / the payroll Principal Changes page carry the current cap; the return page lags a
+year). Still **not** modelled: all other non-refundable credits (age, living-alone,
+dependants, etc.), which are situational rather than near-universal.
 
 ### Not yet migrated
 

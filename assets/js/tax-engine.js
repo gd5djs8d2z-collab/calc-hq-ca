@@ -132,9 +132,17 @@ function provincialBPA(prov, netIncome) {
   return p.max - (p.max - p.min) * frac;
 }
 
-function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome }) {
+function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0 }) {
   const prov = PROVINCES[code];
-  let basic = bracketTax(taxableIncome, prov.brackets);
+  // Quebec's deduction for workers (line 201): 6% of eligible work income (employment +
+  // net business income), capped, reduces the provincial taxable base only — never federal.
+  // Defined on Quebec alone; other jurisdictions leave provincialTaxable === taxableIncome.
+  let provincialTaxable = taxableIncome;
+  if (prov.workerDeduction && workIncome > 0) {
+    const wd = Math.min(prov.workerDeduction.rate * workIncome, prov.workerDeduction.max);
+    provincialTaxable = Math.max(0, taxableIncome - wd);
+  }
+  let basic = bracketTax(provincialTaxable, prov.brackets);
   // Credit base: BPA + CPP base + EI, plus (Yukon only) the Canada Employment Amount.
   // Quebec is the exception — its basic amount already bundles the QPP/QPIP/EI credits
   // (Revenu Québec, Line 350), so the contribution amounts are NOT added on top.
@@ -184,7 +192,7 @@ export function calcTakeHome(gross, code) {
   // Enhanced CPP is deductible from taxable income.
   const taxable = Math.max(0, gross - cpp.enhanced);
   const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross, workIncome: gross });
 
   const totalTax = fed + prov.total;
   const totalDeductions = totalTax + cpp.employee + eiTypePremium;
@@ -271,7 +279,7 @@ export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } 
   // Enhanced CPP (on the employee-equivalent share) is also deductible.
   const taxable = Math.max(0, netBusinessIncome - halfCppDeduction - cpp.enhanced);
   const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: netBusinessIncome });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: netBusinessIncome, workIncome: netBusinessIncome });
 
   const incomeTax = fed + prov.total;
   const totalObligation = incomeTax + cpp.total + eiTypePremium;
