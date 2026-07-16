@@ -514,3 +514,29 @@ export const QPIP_PARENTAL = {
     };
   },
 };
+
+/* ── KEY DATES & LIMITS (2026) — registered-account limits + CRA tax deadlines ── */
+// Derived from TC.registeredAccounts / TC.taxDeadlines2026 (provenance-stamped in
+// tax-constants-2026.js). The reference pages hardcode the figures in prose; the
+// tax-deadline countdown widget imports KEY_DATES so its dates can't drift from source.
+export const REGISTERED_LIMITS = {
+  tfsaAnnualLimit: v(TC.registeredAccounts.tfsaAnnualLimit),
+  tfsaCumulativeSince2009: v(TC.registeredAccounts.tfsaCumulativeSince2009),
+  rrspDollarLimit: v(TC.registeredAccounts.rrspDollarLimit),
+  rrspEarnedIncomePct: v(TC.registeredAccounts.rrspEarnedIncomePct),
+  fhsaAnnualLimit: v(TC.registeredAccounts.fhsaAnnualLimit),
+  fhsaLifetimeLimit: v(TC.registeredAccounts.fhsaLifetimeLimit),
+  respLifetimeLimit: v(TC.registeredAccounts.respLifetimeLimit),
+  cesgRate: v(TC.registeredAccounts.cesgRate),
+  cesgMaxPerYear: v(TC.registeredAccounts.cesgMaxPerYear),
+  cesgFullGrantContribution: v(TC.registeredAccounts.cesgFullGrantContribution),
+  cesgLifetimeMax: v(TC.registeredAccounts.cesgLifetimeMax),
+};
+
+export const KEY_DATES = {
+  personalFiling: v(TC.taxDeadlines2026.personalFiling),
+  payment: v(TC.taxDeadlines2026.payment),
+  selfEmployedFiling: v(TC.taxDeadlines2026.selfEmployedFiling),
+  rrspContribution: v(TC.taxDeadlines2026.rrspContribution),
+  instalments: v(TC.taxDeadlines2026.instalments),
+};

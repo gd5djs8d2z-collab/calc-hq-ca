@@ -50,6 +50,12 @@ const SRC = {
   peGov:     'https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax',
   yukon:     'https://yukon.ca/en/yukon-historical-tax-rates',
   nlFin:     'https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/',
+  craLimits: 'https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html',
+  fhsa:      'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html',
+  eduSavings:'https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html',
+  craFiling: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html',
+  craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
+  craInstalments: 'https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/income-tax-instalments/due-dates.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -373,5 +379,37 @@ export const TAX_CONSTANTS_2026 = {
       // 2026 $1,450 is from Revenu Québec's Principal Changes for 2026, same lag as the BPA.)
       workerDeduction: { value: { rate: 0.06, max: 1450 }, source_url: SRC.qcWorkerDed, last_verified: '2026-07-16' },
     },
+  },
+
+  /* ── REGISTERED-ACCOUNT LIMITS (2026) — for the Key Dates & Limits reference ──── */
+  // TFSA / RRSP / YMPE / YAMPE all confirmed on the CRA MP-RRSP-DPSP-TFSA limits table
+  // (SRC.craLimits, page updated 2025-12-01). FHSA is legislated (flat, not indexed).
+  // RESP has no annual cap; the CESG figures are the education-savings estimating page.
+  registeredAccounts: {
+    tfsaAnnualLimit:           { value: 7000,   source_url: SRC.craLimits,  last_verified: '2026-07-16' }, // unchanged since 2024
+    tfsaCumulativeSince2009:   { value: 109000, source_url: SRC.craLimits,  last_verified: '2026-07-16' }, // full room, eligible since 2009
+    rrspDollarLimit:           { value: 33810,  source_url: SRC.craLimits,  last_verified: '2026-07-16' }, // 2026 (was $32,490 in 2025)
+    rrspEarnedIncomePct:       { value: 0.18,   source_url: SRC.craLimits,  last_verified: '2026-07-16' }, // lesser of 18% of prior-year earned income or the dollar limit
+    fhsaAnnualLimit:           { value: 8000,   source_url: SRC.fhsa,       last_verified: '2026-07-16' }, // legislated, not indexed
+    fhsaLifetimeLimit:         { value: 40000,  source_url: SRC.fhsa,       last_verified: '2026-07-16' },
+    respLifetimeLimit:         { value: 50000,  source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // per beneficiary; no annual cap
+    cesgRate:                  { value: 0.20,   source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // basic grant = 20% of contributions
+    cesgMaxPerYear:            { value: 500,    source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // 20% of the first $2,500 contributed
+    cesgFullGrantContribution: { value: 2500,   source_url: SRC.eduSavings, last_verified: '2026-07-16' },
+    cesgLifetimeMax:           { value: 7200,   source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // per child
+  },
+
+  /* ── 2026 TAX DEADLINES (for filing the 2025 return) ──────────────────────── */
+  // Dates confirmed on the CRA "Filing due dates for the 2025 tax return" page (updated
+  // 2026-01-20) + the RRSP and instalment due-date pages. CRA rule: a due date on a
+  // weekend/holiday is met on the next business day — already applied where it shifts:
+  // RRSP (Mar 1 is a Sunday -> Mar 2) and instalment 1 (Mar 15 is a Sunday -> Mar 16).
+  taxDeadlines2026: {
+    personalFiling:     { value: '2026-04-30', source_url: SRC.craFiling,      last_verified: '2026-07-16' },
+    payment:            { value: '2026-04-30', source_url: SRC.craFiling,      last_verified: '2026-07-16' }, // balance owing (all individuals, incl. self-employed)
+    selfEmployedFiling: { value: '2026-06-15', source_url: SRC.craFiling,      last_verified: '2026-07-16' },
+    rrspContribution:   { value: '2026-03-02', source_url: SRC.craRrspDates,   last_verified: '2026-07-16' }, // for the 2025 tax year
+    instalments:        { value: ['2026-03-16', '2026-06-15', '2026-09-15', '2026-12-15'],
+                          source_url: SRC.craInstalments, last_verified: '2026-07-16' },
   },
 };

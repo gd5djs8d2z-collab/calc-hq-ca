@@ -22,6 +22,19 @@ Primary sources: CRA T4032 (federal Chart 1 + each province's Chart 2 + CPP/EI),
 CPP and EI rate/maximum pages, and each province's own finance/statute page. Bracket
 ceilings use `Infinity`, which is why the file is a JS module, not JSON.
 
+**Also in the January pass — the Key Dates & Limits constants** (`registeredAccounts` and
+`taxDeadlines2026` in `tax-constants-2026.js`, powering `/key-dates-limits/`). These are the
+whole point of that section, so they must be current:
+- **Contribution limits** — TFSA, RRSP dollar limit, YMPE/YAMPE all sit on one CRA table
+  (`SRC.craLimits`, the MP-RRSP-DPSP-TFSA-limits-YMPE page). FHSA ($8,000 / $40,000) and the
+  RESP/CESG figures are legislated and rarely move, but re-confirm. TFSA indexes to the nearest
+  $500 — watch for the year it finally steps up from $7,000.
+- **Tax deadlines** — re-stamp for the NEW tax year each January (rename the block to the new
+  year, update every date, and re-check the weekend/holiday roll: a deadline on a Sat/Sun/holiday
+  moves to the next business day, which is why 2026 has RRSP → Mar 2 and instalment 1 → Mar 16).
+  The two content pages hardcode these figures in prose, and the deadline countdown imports
+  `KEY_DATES` — update the constants and both flow through.
+
 ## Rule 2 — Budget-watch (ongoing, not scheduled)
 
 When a province or territory tables a **mid-year** tax change, verify against the
