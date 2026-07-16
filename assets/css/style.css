@@ -130,6 +130,20 @@ main.wrap, main.wrap-wide { padding-bottom: 4rem; }
 }
 .site-nav a:hover { color: #fff; border-bottom-color: var(--accent); }
 
+/* Language switcher (EN ↔ FR) — sits at the end of the header nav */
+.lang-switch { display: inline-flex; align-items: center; gap: 0.1rem; }
+.lang-switch a, .lang-switch span {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.1rem 0.45rem;
+  border-radius: 5px;
+  border-bottom: none;
+}
+.lang-switch a:hover { color: #fff; border-bottom: none; }
+.lang-switch [aria-current] { color: #fff; background: rgba(255, 255, 255, 0.14); }
+
 /* ── Breadcrumb — quiet, small, out of the way ───────────────────────────── */
 .breadcrumb {
   font-size: 0.85rem;

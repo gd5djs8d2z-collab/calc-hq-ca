@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculateur de salaire net au Québec 2026 — Impôt, RRQ, RQAP | calc-hq.ca</title>
+<meta name="description" content="Calculez votre salaire net au Québec en 2026 : impôt fédéral avec l'abattement de 16,5 %, impôt du Québec, RRQ, RQAP et assurance-emploi. Le vrai régime québécois, pas la formule fédérale.">
+<link rel="canonical" href="https://calc-hq.ca/fr/salaire-net-quebec/">
+<!-- hreflang : appariement bidirectionnel FR <-> EN (le tag réciproque est sur la page EN) -->
+<link rel="alternate" hreflang="fr-CA" href="https://calc-hq.ca/fr/salaire-net-quebec/">
+<link rel="alternate" hreflang="en-CA" href="https://calc-hq.ca/payroll/take-home-pay/">
+<link rel="alternate" hreflang="x-default" href="https://calc-hq.ca/payroll/take-home-pay/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:title" content="Calculateur de salaire net au Québec 2026">
+<meta property="og:description" content="Impôt fédéral (abattement de 16,5 %), impôt du Québec, RRQ, RQAP et assurance-emploi — le vrai calcul québécois.">
+<meta property="og:url" content="https://calc-hq.ca/fr/salaire-net-quebec/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Accueil","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Salaire net au Québec","item":"https://calc-hq.ca/fr/salaire-net-quebec/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"fr-CA","mainEntity":[
+{"@type":"Question","name":"Quelle est la différence entre le RRQ et le RPC?","acceptedAnswer":{"@type":"Answer","text":"Le RRQ (Régime de rentes du Québec) est le régime de retraite du Québec; le reste du Canada cotise plutôt au RPC. Les deux partagent l'exemption de 3 500 $ et le maximum des gains admissibles (74 600 $ en 2026), mais le taux du RRQ est plus élevé : 6,3 % contre 5,95 % pour le RPC. Un travailleur québécois cotise donc un peu plus, jusqu'à un maximum de 4 479,30 $ en 2026, sans compter le second volet sur les gains de 74 600 $ à 85 000 $."}},
+{"@type":"Question","name":"Pourquoi le taux d'assurance-emploi est-il plus bas au Québec?","acceptedAnswer":{"@type":"Answer","text":"Parce que le RQAP (Régime québécois d'assurance parentale) finance les prestations de maternité, de paternité et parentales au Québec, au lieu de l'assurance-emploi fédérale. Comme l'assurance-emploi couvre moins de choses au Québec, son taux y est réduit : 1,30 % en 2026, contre 1,63 % ailleurs au pays. En revanche, vous payez en plus la cotisation au RQAP, soit 0,430 % du salaire assurable."}},
+{"@type":"Question","name":"Qu'est-ce que l'abattement du Québec de 16,5 %?","acceptedAnswer":{"@type":"Answer","text":"C'est une réduction de 16,5 % de l'impôt fédéral de base accordée aux résidents du Québec, parce que la province administre elle-même certains programmes qu'Ottawa gère ailleurs au pays. Concrètement, votre impôt fédéral est calculé selon les paliers habituels, puis réduit de 16,5 %. À revenu égal, un résident du Québec paie donc moins d'impôt fédéral qu'ailleurs. Le calculateur applique l'abattement automatiquement."}},
+{"@type":"Question","name":"Qu'est-ce que la déduction pour travailleurs?","acceptedAnswer":{"@type":"Answer","text":"Revenu Québec permet de déduire 6 % de votre revenu de travail (revenu d'emploi ou d'entreprise), jusqu'à un maximum de 1 450 $ en 2026, de votre revenu imposable au provincial. Dès qu'on gagne plus d'environ 24 000 $, la déduction atteint son plafond de 1 450 $. Elle réduit votre impôt du Québec, mais pas votre impôt fédéral. Le calculateur l'applique pour vous."}}]}
+</script>
+</head>
+<body>
+<!-- CONTENU FRANÇAIS À FAIRE RÉVISER PAR UN LOCUTEUR NATIF AVANT PROMOTION (voir message de commit). -->
+<header class="site-header" lang="en">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <span class="lang-switch" lang="en">
+        <a href="/payroll/take-home-pay/" hreflang="en-CA">EN</a>
+        <span aria-current="page" hreflang="fr-CA" lang="fr">FR</span>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="/">Accueil</a><span class="sep">›</span>
+    <span>Salaire net au Québec</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Calculateur de salaire net au Québec (2026)</h1>
+    <p class="lead">Entrez votre salaire brut : vous verrez exactement ce qu'il vous reste une fois l'impôt fédéral, l'impôt du Québec, le RRQ, le RQAP et l'assurance-emploi retenus. La plupart des calculateurs se contentent de la formule fédérale et changent les étiquettes; celui-ci calcule le vrai régime québécois.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Calculateur de salaire net au Québec">
+    <div class="field">
+      <label for="salaire">Salaire brut annuel</label>
+      <input class="input" id="salaire" type="text" inputmode="numeric" placeholder="65 000" value="65 000">
+    </div>
+    <div class="field">
+      <label for="freq">Afficher la paie par</label>
+      <select class="input" id="freq">
+        <option value="26" selected>Aux deux semaines (26/an)</option>
+        <option value="24">Bimensuelle (24/an)</option>
+        <option value="12">Mensuelle</option>
+        <option value="52">Hebdomadaire</option>
+      </select>
+    </div>
+    <button class="btn" id="go" type="button">Calculer mon salaire net</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Votre salaire net</p>
+      <p class="result-number" id="net">0 $</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>Ce qui est retenu sur votre paie au Québec</h2>
+    <p>Au Québec, votre paie passe par un régime fiscal distinct du reste du Canada. Cinq retenues principales séparent votre salaire brut de votre salaire net, et ce calculateur les applique toutes avec les taux de 2026 :</p>
+    <ul class="conditions">
+      <li><strong>Impôt fédéral</strong> — calculé selon les paliers fédéraux, puis réduit par l'<strong>abattement du Québec de 16,5 %</strong>. Comme la province perçoit elle-même son impôt, Ottawa diminue l'impôt fédéral de base des résidents québécois; à revenu égal, vous payez donc moins d'impôt fédéral qu'ailleurs au pays.</li>
+      <li><strong>Impôt du Québec</strong> — les paliers de Revenu Québec (14 %, 19 %, 24 % et 25,75 % en 2026), après le montant personnel de base et la déduction pour travailleurs.</li>
+      <li><strong>RRQ (Régime de rentes du Québec)</strong> — l'équivalent québécois du RPC, mais à un taux plus élevé : 6,3 % sur les gains entre 3 500 $ et 74 600 $, plus le second volet jusqu'à 85 000 $.</li>
+      <li><strong>Assurance-emploi</strong> — au Québec, le taux est réduit à 1,30 % en 2026 (contre 1,63 % ailleurs), parce que le RQAP prend en charge les prestations parentales.</li>
+      <li><strong>RQAP (Régime québécois d'assurance parentale)</strong> — la cotisation de 0,430 % qui finance les prestations de maternité, de paternité et parentales du Québec.</li>
+    </ul>
+    <p>Revenu Québec accorde aussi une <strong>déduction pour travailleurs</strong> : 6 % de votre revenu de travail, jusqu'à un maximum de 1 450 $ en 2026, qui réduit votre revenu imposable au provincial. Le calculateur l'applique automatiquement — beaucoup d'outils l'oublient et surestiment ainsi votre impôt du Québec.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Un exemple concret : un salaire de 65 000 $</h2>
+    <p>Pour un salaire brut de 65 000 $ en 2026, le calculateur estime environ :</p>
+    <ul class="conditions">
+      <li>Impôt fédéral (après l'abattement de 16,5 %) : environ 5 234 $</li>
+      <li>Impôt du Québec : environ 6 587 $</li>
+      <li>RRQ : environ 3 875 $</li>
+      <li>Assurance-emploi : environ 845 $</li>
+      <li>RQAP : environ 280 $</li>
+    </ul>
+    <p>Le total des retenues tourne autour de 16 820 $, ce qui laisse un <strong>salaire net d'environ 48 180 $</strong> — vous gardez à peu près 74 % de votre salaire brut. À elle seule, la déduction pour travailleurs vous fait économiser près de 275 $ d'impôt du Québec sur ce revenu. Changez le montant ci-dessus pour voir votre propre situation.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Pourquoi ce calculateur est différent</h2>
+    <p>Beaucoup de calculateurs de « salaire net » reprennent la formule du reste du Canada et se contentent de renommer les lignes. Le Québec ne fonctionne pas ainsi, et les écarts s'additionnent :</p>
+    <ul class="conditions">
+      <li>on cotise au <strong>RRQ</strong>, pas au RPC, et à un taux plus élevé;</li>
+      <li>il y a le <strong>RQAP</strong>, et un taux d'assurance-emploi réduit en conséquence;</li>
+      <li>les résidents profitent de l'<strong>abattement fédéral de 16,5 %</strong>;</li>
+      <li>Revenu Québec accorde une <strong>déduction pour travailleurs</strong> que le fédéral n'a pas.</li>
+    </ul>
+    <p>Ce calculateur applique chacun de ces éléments, avec les taux et les seuils de 2026 vérifiés directement auprès de Revenu Québec, de Retraite Québec et de l'Agence du revenu du Canada.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Questions fréquentes</h2>
+    <details><summary>Quelle est la différence entre le RRQ et le RPC?</summary>
+      <p>Le RRQ est le régime de retraite du Québec; le reste du Canada cotise au RPC. Les deux partagent l'exemption de 3 500 $ et le maximum des gains admissibles (74 600 $ en 2026), mais le taux du RRQ est plus élevé : 6,3 % contre 5,95 %. Un travailleur québécois cotise donc un peu plus, jusqu'à 4 479,30 $ en 2026, sans compter le second volet sur les gains de 74 600 $ à 85 000 $.</p>
+    </details>
+    <details><summary>Pourquoi le taux d'assurance-emploi est-il plus bas au Québec?</summary>
+      <p>Parce que le RQAP finance les prestations de maternité, de paternité et parentales au Québec, au lieu de l'assurance-emploi fédérale. Comme l'assurance-emploi couvre moins de choses ici, son taux y est réduit : 1,30 % en 2026, contre 1,63 % ailleurs. En contrepartie, vous payez en plus la cotisation au RQAP (0,430 %).</p>
+    </details>
+    <details><summary>Qu'est-ce que l'abattement du Québec de 16,5 %?</summary>
+      <p>C'est une réduction de 16,5 % de l'impôt fédéral de base accordée aux résidents du Québec, parce que la province administre elle-même certains programmes gérés ailleurs par Ottawa. Votre impôt fédéral est calculé normalement, puis réduit de 16,5 %. À revenu égal, un Québécois paie donc moins d'impôt fédéral. Le calculateur en tient compte.</p>
+    </details>
+    <details><summary>Qu'est-ce que la déduction pour travailleurs?</summary>
+      <p>Revenu Québec permet de déduire 6 % de votre revenu de travail (emploi ou entreprise), jusqu'à 1 450 $ en 2026, de votre revenu imposable au provincial. Au-delà d'environ 24 000 $ de revenu, la déduction atteint son plafond de 1 450 $. Elle réduit votre impôt du Québec, pas votre impôt fédéral.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Autres calculateurs</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay (toutes les provinces)</h3><p>La version anglaise, pour le salaire net ailleurs au Canada.</p></a>
+      <a class="tool-card" href="/payroll/self-employed-tax/"><h3>Self-Employed Tax</h3><p>Pour les travailleurs autonomes — RRQ au taux double et impôt à mettre de côté.</p></a>
+    </div>
+    <p class="disclaimer">Estimations pour l'année d'imposition 2026, selon les données publiées par Revenu Québec, Retraite Québec et l'Agence du revenu du Canada. À titre indicatif seulement — validez vos chiffres auprès de Revenu Québec et de l'ARC avant de vous y fier.</p>
+  </section>
+</main>
+
+<footer class="site-footer" lang="en">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcTakeHome } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+// Formatage monétaire québécois : « 50 000 $ » (locale fr-CA).
+const fmt = (n) => Math.round(n).toLocaleString('fr-CA', {
+  style: 'currency', currency: 'CAD', minimumFractionDigits: 0, maximumFractionDigits: 0,
+});
+const freqLabel = { '52':'semaine', '26':'paie aux deux semaines', '24':'paie bimensuelle', '12':'mois' };
+
+function run() {
+  const brut = parseMoney(el('salaire').value);
+  const t = calcTakeHome(brut, 'QC'); // réutilise la logique Québec en production (RRQ, RQAP, abattement, déduction pour travailleurs)
+  const par = parseInt(el('freq').value, 10);
+  const parPaie = t.net / par;
+
+  el('net').textContent = fmt(t.net);
+  el('reading').textContent =
+    `C'est ${fmt(parPaie)} par ${freqLabel[String(par)]} — vous gardez ${(100 - t.averageRate*100).toFixed(0)} % d'un salaire de ${fmt(brut)}.`;
+
+  const rows = [
+    ['Salaire brut', t.gross],
+    ['Impôt fédéral', -t.federalTax],
+    ['Impôt du Québec', -t.provincialTax],
+    ['RRQ', -t.cpp],
+    ['Assurance-emploi', -t.ei],
+    ['RQAP', -t.qpip],
+  ];
+  let html = rows.map(([k,v]) =>
+    `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${fmt(Math.abs(v))}</span></div>`).join('');
+  html += `<div class="row total"><span>Salaire net</span><span class="val">${fmt(t.net)}</span></div>`;
+  el('breakdown').innerHTML = html;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['salaire','freq'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
