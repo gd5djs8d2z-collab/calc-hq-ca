@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculateur d'impôt du Québec 2026 — Paliers et taux marginal | calc-hq.ca</title>
+<meta name="description" content="Calculez votre impôt du Québec en 2026 : impôt fédéral après l'abattement de 16,5 % et les paliers provinciaux du Québec, avec votre taux marginal, votre taux moyen et le détail par palier.">
+<link rel="canonical" href="https://calc-hq.ca/fr/calculateur-impot-quebec/">
+<!-- hreflang : appariement bidirectionnel FR <-> EN (le tag réciproque est sur la page EN) -->
+<link rel="alternate" hreflang="fr-CA" href="https://calc-hq.ca/fr/calculateur-impot-quebec/">
+<link rel="alternate" hreflang="en-CA" href="https://calc-hq.ca/payroll/quebec-income-tax/">
+<link rel="alternate" hreflang="x-default" href="https://calc-hq.ca/payroll/quebec-income-tax/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:title" content="Calculateur d'impôt du Québec 2026 — Paliers et taux marginal">
+<meta property="og:description" content="Votre impôt du Québec en 2026, le taux marginal, le taux moyen et le détail par palier.">
+<meta property="og:url" content="https://calc-hq.ca/fr/calculateur-impot-quebec/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Accueil","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Impôt du Québec","item":"https://calc-hq.ca/fr/calculateur-impot-quebec/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"fr-CA","mainEntity":[
+{"@type":"Question","name":"Quels sont les paliers d'imposition du Québec pour 2026?","acceptedAnswer":{"@type":"Answer","text":"Les paliers provinciaux du Québec pour 2026 sont de 14 % sur le revenu imposable jusqu'à 54 345 $, 19 % de 54 345 $ à 108 680 $, 24 % de 108 680 $ à 132 245 $, et 25,75 % au-delà de 132 245 $. Ce sont les taux provinciaux seulement; l'impôt fédéral s'ajoute par-dessus, mais celui d'un résident du Québec est réduit par l'abattement du Québec de 16,5 %."}},
+{"@type":"Question","name":"Quelle est la différence entre le taux marginal et le taux moyen?","acceptedAnswer":{"@type":"Answer","text":"Votre taux marginal est l'impôt sur votre prochain dollar de revenu — le taux du palier que votre revenu a atteint. Votre taux moyen (ou effectif) est votre impôt total divisé par votre revenu total, et il est toujours plus bas, parce que vos premiers dollars sont imposés dans les paliers inférieurs. Par exemple, un revenu d'environ 65 000 $ au Québec a un taux marginal combiné dans la mi-trentaine (en pourcentage), mais un taux moyen plus près de 18 %."}},
+{"@type":"Question","name":"Comment l'impôt sur le revenu est-il calculé au Québec?","acceptedAnswer":{"@type":"Answer","text":"Deux couches s'additionnent : l'impôt fédéral et l'impôt provincial du Québec. Le Québec administre son régime fiscal séparément de l'ARC, il a donc ses propres paliers et son propre montant personnel de base. Comme la province gère des programmes qu'Ottawa administre ailleurs, l'impôt fédéral de base d'un résident du Québec est réduit par un abattement de 16,5 %. Ce calculateur applique les paliers fédéraux avec l'abattement, les paliers du Québec, le montant personnel de base et la déduction pour travailleurs pour afficher votre impôt total."}},
+{"@type":"Question","name":"Quel est le taux d'imposition le plus élevé au Québec en 2026?","acceptedAnswer":{"@type":"Answer","text":"Le taux marginal combiné le plus élevé pour 2026 est d'environ 53,3 %. C'est le taux provincial maximal du Québec de 25,75 % plus le taux fédéral maximal de 33 % réduit par l'abattement de 16,5 % (soit 27,6 % effectif), sur le revenu imposable au-delà de 258 482 $. Il ne s'applique qu'à la portion de revenu dans ce palier supérieur, pas à tout votre revenu."}}]}
+</script>
+</head>
+<body>
+<!-- CONTENU FRANÇAIS À FAIRE RÉVISER PAR UN LOCUTEUR NATIF AVANT PROMOTION (voir message de commit). -->
+<header class="site-header" lang="en">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+      <span class="lang-switch" lang="en">
+        <a href="/payroll/quebec-income-tax/" hreflang="en-CA">EN</a>
+        <span aria-current="page" hreflang="fr-CA" lang="fr">FR</span>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="/">Accueil</a><span class="sep">›</span>
+    <span>Impôt du Québec</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Calculateur d'impôt du Québec (2026)</h1>
+    <p class="lead">Voyez l'impôt sur un revenu au Québec — l'impôt fédéral après l'abattement de 16,5 % et les paliers provinciaux du Québec — avec votre taux marginal, votre taux moyen, et le détail de l'impôt palier par palier. Pour le salaire net après le RRQ, l'assurance-emploi et le RQAP, utilisez plutôt le <a href="/fr/salaire-net-quebec/">calculateur de salaire net</a>.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Calculateur d'impôt du Québec">
+    <div class="field input-money">
+      <label for="revenu">Revenu imposable annuel</label>
+      <input class="input" id="revenu" type="text" inputmode="numeric" placeholder="65 000" value="65 000">
+    </div>
+    <button class="btn" id="go" type="button">Calculer mon impôt</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Impôt sur le revenu 2026</p>
+      <p class="result-number" id="tax">0 $</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="need-input" hidden>Entrez votre revenu annuel pour voir votre impôt du Québec et votre taux marginal.</div>
+  </section>
+
+  <section>
+    <h2>Comment les paliers du Québec s'appliquent à votre revenu</h2>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Palier du Québec (2026)</th><th>Taux</th><th>Votre revenu ici</th><th>Impôt</th></tr>
+        </thead>
+        <tbody id="brackets"></tbody>
+      </table>
+    </div>
+    <p class="disclaimer">Les lignes des paliers montrent les taux provinciaux du Québec avant les crédits. Le montant personnel de base (18 952 $ en 2026) et la déduction pour travailleurs ramènent le total à l'impôt du Québec indiqué ci-dessus; l'impôt fédéral — réduit par l'abattement de 16,5 % — s'ajoute par-dessus.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Comment fonctionne l'impôt au Québec</h2>
+    <p>Un résident du Québec paie deux impôts sur le revenu : le fédéral et le provincial. Ce qui distingue le Québec du reste du Canada, c'est qu'il <strong>administre son propre régime fiscal</strong> au lieu de s'appuyer sur l'ARC : il fixe ses propres paliers, son propre montant personnel de base et ses propres crédits. Revenu Québec perçoit la part provinciale; l'ARC perçoit la part fédérale.</p>
+    <p>Comme le Québec gère plusieurs programmes qu'Ottawa administre ailleurs, ses résidents bénéficient de l'<strong>abattement fédéral de 16,5 %</strong> : l'ARC réduit leur impôt fédéral de base de 16,5 %. La couche fédérale est donc plus légère pour un Québécois que pour un Ontarien à revenu égal, tandis que la couche provinciale est plus lourde. Ce calculateur applique les deux, ainsi que le montant personnel de base et la déduction pour travailleurs, pour que le total reflète le vrai régime québécois plutôt qu'une formule fédérale rebaptisée.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Taux marginal et taux moyen — la confusion à éviter</h2>
+    <p>Votre <strong>taux marginal</strong> est l'impôt sur votre <em>prochain</em> dollar — le taux du palier que votre revenu a atteint, en combinant le fédéral et le Québec. Votre <strong>taux moyen (effectif)</strong> est votre impôt total divisé par votre revenu total, et il est toujours nettement plus bas, parce que vos premiers dollars sont imposés dans le palier de 14 % avant que le reste n'atteigne les paliers supérieurs.</p>
+    <p>L'écart est important au Québec. Un salaire d'environ 65 000 $ se situe dans un palier marginal combiné de la mi-trentaine (en pourcentage), alors que le taux moyen sur l'ensemble du revenu est plus près de 18 %. Savoir distinguer les deux est utile : le taux marginal vous dit à quel taux une augmentation ou un boni sera imposé, tandis que le taux moyen vous dit quelle part de votre revenu part réellement en impôt. Cet outil affiche les deux.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Les paliers 2026 du Québec, et le taux maximal</h2>
+    <p>Les paliers provinciaux du Québec pour 2026 sont de <strong>14 %</strong> jusqu'à 54 345 $, <strong>19 %</strong> jusqu'à 108 680 $, <strong>24 %</strong> jusqu'à 132 245 $, et <strong>25,75 %</strong> au-delà. Les seuils sont indexés chaque année; ils ont augmenté d'environ 2,05 % par rapport à 2025. Combiné aux paliers fédéraux (après l'abattement), le <strong>taux marginal combiné le plus élevé est d'environ 53,3 %</strong> sur le revenu de plus de 258 482 $ — un des taux maximaux les plus élevés au pays, même s'il ne touche que la portion de revenu dans ce palier.</p>
+    <p>Cette page porte sur l'impôt lui-même. Pour ce qui reste dans votre compte après le RRQ, le taux réduit d'assurance-emploi et le RQAP, voyez le <a href="/fr/salaire-net-quebec/">calculateur de salaire net</a>.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Questions fréquentes</h2>
+    <details><summary>Quels sont les paliers d'imposition du Québec pour 2026?</summary>
+      <p>14 % jusqu'à 54 345 $, 19 % de 54 345 $ à 108 680 $, 24 % de 108 680 $ à 132 245 $, et 25,75 % au-delà. Ce sont les taux provinciaux; l'impôt fédéral (réduit par l'abattement de 16,5 %) s'ajoute par-dessus.</p>
+    </details>
+    <details><summary>Quelle est la différence entre le taux marginal et le taux moyen?</summary>
+      <p>Le taux marginal est celui de votre prochain dollar — votre palier supérieur. Le taux moyen (effectif) est l'impôt total divisé par le revenu total, et il est plus bas parce que vos premiers dollars sont imposés dans les paliers inférieurs. Autour de 65 000 $, le taux marginal au Québec est dans la mi-trentaine tandis que le taux moyen est plus près de 18 %.</p>
+    </details>
+    <details><summary>Comment l'impôt sur le revenu est-il calculé au Québec?</summary>
+      <p>L'impôt fédéral (réduit par l'abattement du Québec de 16,5 %) plus les paliers provinciaux du Québec, après le montant personnel de base et la déduction pour travailleurs. Le Québec administre son régime séparément de l'ARC, d'où ses propres paliers et crédits.</p>
+    </details>
+    <details><summary>Quel est le taux d'imposition le plus élevé au Québec en 2026?</summary>
+      <p>Environ 53,3 % combiné au sommet — le 25,75 % du Québec plus le 33 % fédéral réduit par l'abattement — sur le revenu de plus de 258 482 $. Il ne s'applique qu'au revenu dans ce palier, pas à tout votre revenu.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Autres calculateurs</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/fr/salaire-net-quebec/"><h3>Salaire net au Québec</h3><p>Le salaire net après l'impôt, le RRQ, l'assurance-emploi et le RQAP.</p></a>
+      <a class="tool-card" href="/payroll/quebec-income-tax/"><h3>Quebec Income Tax (EN)</h3><p>The English version of this calculator.</p></a>
+    </div>
+    <p class="disclaimer">Estimations pour l'année d'imposition 2026, selon les paliers et le montant personnel de base publiés par Revenu Québec et les données fédérales de l'ARC. Modélise un revenu d'emploi. À titre indicatif seulement — validez vos chiffres auprès de Revenu Québec et de l'ARC avant de vous y fier.</p>
+  </section>
+</main>
+
+<footer class="site-footer" lang="en">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/payroll/quebec-income-tax/">Quebec Income Tax</a></li>
+          <li><a href="/fr/salaire-net-quebec/">Salaire net (Québec)</a></li>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcTakeHome } from '/assets/js/tax-engine.js';
+import { PROVINCES, FEDERAL, QUEBEC } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const fmt = (n, cents=false) => n.toLocaleString('fr-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+const pct = (r) => (r*100).toFixed(1).replace('.', ',') + ' %';
+const qcB = PROVINCES.QC.brackets, fedB = FEDERAL.brackets, abate = QUEBEC.federalAbatementRate;
+const rateAt = (inc, br) => { let r = 0; for (const b of br) { if (inc > b.min) r = b.rate; } return r; };
+
+function run() {
+  const revenu = parseMoney(el('revenu').value);
+  const need = el('need-input'), result = el('result');
+  if (revenu <= 0) { result.hidden = true; need.hidden = false; return; }
+  need.hidden = true;
+
+  const t = calcTakeHome(revenu, 'QC'); // réutilise le moteur Québec en production (abattement, paliers, MPB, déduction pour travailleurs)
+  const fed = t.federalTax, prov = t.provincialTax, total = fed + prov;
+  const marginal = rateAt(revenu, qcB) + rateAt(revenu, fedB) * (1 - abate);
+  const effective = total / revenu;
+
+  el('tax').textContent = fmt(total);
+  el('reading').textContent =
+    `Sur ${fmt(revenu)} de revenu au Québec, votre impôt 2026 est d'environ ${fmt(total)} — un taux moyen de ${pct(effective)}. Votre taux marginal est de ${pct(marginal)} : l'impôt fédéral et québécois combiné sur votre prochain dollar.`;
+
+  el('breakdown').innerHTML = [
+    ['Impôt fédéral (après l\'abattement de 16,5 %)', fmt(fed)],
+    ['Impôt du Québec', fmt(prov)],
+    ['Taux marginal (prochain dollar)', pct(marginal)],
+    ['Taux moyen (effectif)', pct(effective)],
+  ].map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('')
+   + `<div class="row total"><span>Impôt total sur le revenu</span><span class="val">${fmt(total)}</span></div>`;
+
+  let gross = 0;
+  const rows = qcB.map(b => {
+    const inBand = Math.max(0, Math.min(revenu, b.max) - b.min);
+    const tax = inBand * b.rate; gross += tax;
+    const range = b.max === Infinity ? `Plus de ${fmt(b.min)}` : `${fmt(b.min)} – ${fmt(b.max)}`;
+    return `<tr><td>${range}</td><td>${pct(b.rate)}</td><td>${fmt(inBand)}</td><td>${fmt(tax)}</td></tr>`;
+  }).join('');
+  const adjust = gross - prov;
+  el('brackets').innerHTML = rows
+    + `<tr class="highlight"><td colspan="3">Impôt des paliers du Québec (avant crédits)</td><td>${fmt(gross)}</td></tr>`
+    + `<tr><td colspan="3">Moins : montant personnel de base, déduction pour travailleurs et retenues</td><td>−${fmt(adjust)}</td></tr>`
+    + `<tr class="highlight"><td colspan="3">Impôt du Québec</td><td>${fmt(prov)}</td></tr>`;
+
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+el('revenu').addEventListener('change', run);
+run();
+</script>
+</body>
+</html>

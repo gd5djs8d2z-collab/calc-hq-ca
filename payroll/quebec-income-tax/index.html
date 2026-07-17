@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quebec Income Tax Calculator 2026 — Brackets &amp; Marginal Rate | calc-hq.ca</title>
+<meta name="description" content="Calculate your 2026 Quebec income tax: federal tax after the 16.5% abatement plus Quebec's provincial brackets, with your marginal and average tax rate and a per-bracket breakdown.">
+<link rel="canonical" href="https://calc-hq.ca/payroll/quebec-income-tax/">
+<link rel="alternate" hreflang="en-CA" href="https://calc-hq.ca/payroll/quebec-income-tax/">
+<link rel="alternate" hreflang="fr-CA" href="https://calc-hq.ca/fr/calculateur-impot-quebec/">
+<link rel="alternate" hreflang="x-default" href="https://calc-hq.ca/payroll/quebec-income-tax/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quebec Income Tax Calculator 2026 — Brackets & Marginal Rate">
+<meta property="og:description" content="Your 2026 Quebec income tax, marginal and average rate, and a per-bracket breakdown.">
+<meta property="og:url" content="https://calc-hq.ca/payroll/quebec-income-tax/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Payroll & Take-Home","item":"https://calc-hq.ca/payroll/"},
+{"@type":"ListItem","position":3,"name":"Quebec Income Tax Calculator","item":"https://calc-hq.ca/payroll/quebec-income-tax/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What are Quebec's income tax brackets for 2026?","acceptedAnswer":{"@type":"Answer","text":"Quebec's 2026 provincial brackets are 14% on taxable income up to $54,345, 19% from $54,345 to $108,680, 24% from $108,680 to $132,245, and 25.75% above $132,245. These are provincial rates only — federal tax is on top, though a Quebec resident's federal tax is reduced by the 16.5% Quebec abatement."}},
+{"@type":"Question","name":"What is the difference between marginal and effective tax rate?","acceptedAnswer":{"@type":"Answer","text":"Your marginal rate is the tax on your next dollar of income — the rate of the bracket your income has climbed into. Your effective (average) rate is your total income tax divided by your total income, and it's always lower because your first dollars are taxed in the lower brackets. For example, a Quebec income around $65,000 has a marginal rate in the mid-30s percent but an average rate closer to 18%."}},
+{"@type":"Question","name":"How is income tax calculated in Quebec?","acceptedAnswer":{"@type":"Answer","text":"Two layers stack: federal income tax and Quebec's own provincial income tax. Quebec runs its tax system separately from the CRA, so it has its own brackets and basic personal amount. Because Quebec administers programs Ottawa runs elsewhere, a Quebec resident's basic federal tax is reduced by a 16.5% abatement. This calculator applies the federal brackets with the abatement, Quebec's brackets, the basic personal amount and the deduction for workers to show your total income tax."}},
+{"@type":"Question","name":"What is the highest tax rate in Quebec in 2026?","acceptedAnswer":{"@type":"Answer","text":"The top combined marginal rate for 2026 is about 53.3%. That's Quebec's top provincial rate of 25.75% plus the top federal rate of 33% reduced by the 16.5% abatement (27.6% effective), on taxable income above $258,482. It only applies to the portion of income in that top band, not your whole income."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+      <span class="lang-switch">
+        <span aria-current="page" hreflang="en-CA">EN</span>
+        <a href="/fr/calculateur-impot-quebec/" hreflang="fr-CA" lang="fr">FR</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/payroll/">Payroll &amp; Take-Home</a><span class="sep">›</span>
+    <span>Quebec Income Tax</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Quebec Income Tax Calculator (2026)</h1>
+    <p class="lead">See the income tax on a Quebec salary — federal tax after the 16.5% abatement plus Quebec's own provincial brackets — with your marginal rate, your average rate, and how the tax builds up bracket by bracket. For net pay after CPP/QPP and EI, use the <a href="/payroll/take-home-pay/">take-home calculator</a> instead.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Quebec income tax calculator">
+    <div class="field input-money">
+      <label for="income">Annual taxable income</label>
+      <input class="input" id="income" type="text" inputmode="numeric" placeholder="65,000" value="65,000">
+    </div>
+    <button class="btn" id="go" type="button">Calculate my Quebec tax</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Total 2026 income tax</p>
+      <p class="result-number" id="tax">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="need-input" hidden>Enter your annual income to see your Quebec income tax and marginal rate.</div>
+  </section>
+
+  <section>
+    <h2>How Quebec's brackets apply to your income</h2>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Quebec bracket (2026)</th><th>Rate</th><th>Your income here</th><th>Tax</th></tr>
+        </thead>
+        <tbody id="brackets"></tbody>
+      </table>
+    </div>
+    <p class="disclaimer">The bracket rows show Quebec's provincial rates before credits. The basic personal amount ($18,952 for 2026) and the deduction for workers bring the total down to the Quebec tax shown above; federal tax — reduced by the 16.5% abatement — is added on top.</p>
+  </section>
+
+  <section class="answer">
+    <h2>How income tax works in Quebec</h2>
+    <p>A Quebec resident pays two income taxes: federal and provincial. What makes Quebec different from the rest of Canada is that it <strong>runs its own tax system</strong> rather than piggy-backing on the CRA, so it sets its own brackets, its own basic personal amount, and its own credits. Revenu Québec collects the provincial half; the CRA collects the federal half.</p>
+    <p>Because Quebec administers several programs that Ottawa delivers in other provinces, its residents get the <strong>16.5% federal abatement</strong> — the CRA reduces their basic federal tax by 16.5%. So the federal layer is lighter for a Quebecer than for someone in Ontario at the same income, while the provincial layer is heavier. This calculator applies both, along with the basic personal amount and the deduction for workers, so the total reflects the real Quebec system rather than a relabelled federal formula.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Marginal rate vs average rate — the number people confuse</h2>
+    <p>Your <strong>marginal rate</strong> is the tax on your <em>next</em> dollar — the rate of the bracket your income has reached, combining federal and Quebec. Your <strong>average (effective) rate</strong> is your total tax divided by your total income, and it's always noticeably lower, because your first dollars are taxed in the 14% band before any of your income reaches the higher ones.</p>
+    <p>The gap is wide in Quebec. A salary around $65,000 sits in a combined marginal bracket in the mid-30s percent, yet the average rate on the whole income is closer to 18%. Knowing which is which matters: the marginal rate tells you what a raise or a bonus will be taxed at, while the average rate tells you what share of your pay actually goes to income tax. This tool shows both.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Quebec's 2026 brackets, and the top rate</h2>
+    <p>Quebec's provincial brackets for 2026 are <strong>14%</strong> up to $54,345, <strong>19%</strong> to $108,680, <strong>24%</strong> to $132,245, and <strong>25.75%</strong> above that. The thresholds are indexed each year, so they rose about 2.05% from 2025. Stacked with the federal brackets (after the abatement), the <strong>top combined marginal rate is about 53.3%</strong> on income over $258,482 — one of the higher top rates in the country, though it only touches the portion of income in that top band.</p>
+    <p>This page is about the tax itself. For what actually lands in your account after QPP, the reduced EI rate and QPIP come off too, see the <a href="/payroll/take-home-pay/">take-home pay calculator</a> (or, in French, the <a href="/fr/salaire-net-quebec/">calculateur de salaire net</a>).</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>What are Quebec's income tax brackets for 2026?</summary>
+      <p>14% up to $54,345, 19% from $54,345 to $108,680, 24% from $108,680 to $132,245, and 25.75% above $132,245. These are provincial rates; federal tax (reduced by the 16.5% abatement) is on top.</p>
+    </details>
+    <details><summary>What's the difference between marginal and effective tax rate?</summary>
+      <p>Marginal is the rate on your next dollar — your top bracket. Effective (average) is your total tax divided by total income, and it's lower because your first dollars are taxed in the lower brackets. Around $65,000, a Quebec marginal rate is in the mid-30s percent while the average is closer to 18%.</p>
+    </details>
+    <details><summary>How is income tax calculated in Quebec?</summary>
+      <p>Federal tax (reduced by the 16.5% Quebec abatement) plus Quebec's own provincial brackets, after the basic personal amount and the deduction for workers. Quebec runs its tax system separately from the CRA, which is why it has its own brackets and credits.</p>
+    </details>
+    <details><summary>What is the highest tax rate in Quebec in 2026?</summary>
+      <p>About 53.3% combined at the top — Quebec's 25.75% plus the federal 33% reduced by the abatement — on income over $258,482. It applies only to income in that top band, not your whole income.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay (Quebec &amp; all provinces)</h3><p>Net pay after tax, QPP, the reduced EI rate and QPIP.</p></a>
+      <a class="tool-card" href="/fr/calculateur-impot-quebec/"><h3>Calculateur d'impôt du Québec</h3><p>La version française de cette page.</p></a>
+    </div>
+    <p class="disclaimer">Estimates for the 2026 tax year using Quebec brackets and the basic personal amount published by Revenu Québec and federal figures from the CRA. Models employment income. For general guidance only — confirm your own numbers with Revenu Québec and the CRA before relying on them.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/payroll/quebec-income-tax/">Quebec Income Tax</a></li>
+          <li><a href="/payroll/pay-raise/">Pay Raise</a></li>
+          <li><a href="/payroll/self-employed-tax/">Self-Employed Tax</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { calcTakeHome } from '/assets/js/tax-engine.js';
+import { PROVINCES, FEDERAL, QUEBEC } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n, cents=false) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+const pct = (r) => (r*100).toFixed(1) + '%';
+const qcB = PROVINCES.QC.brackets, fedB = FEDERAL.brackets, abate = QUEBEC.federalAbatementRate;
+const rateAt = (inc, br) => { let r = 0; for (const b of br) { if (inc > b.min) r = b.rate; } return r; };
+
+function run() {
+  const income = parseMoney(el('income').value);
+  const need = el('need-input'), result = el('result');
+  if (income <= 0) { result.hidden = true; need.hidden = false; return; }
+  need.hidden = true;
+
+  const t = calcTakeHome(income, 'QC'); // reuses the production Quebec engine (abatement, brackets, BPA, worker deduction)
+  const fed = t.federalTax, prov = t.provincialTax, total = fed + prov;
+  const marginal = rateAt(income, qcB) + rateAt(income, fedB) * (1 - abate);
+  const effective = total / income;
+
+  el('tax').textContent = money(total);
+  el('reading').textContent =
+    `On ${money(income)} of income in Quebec, your 2026 income tax is about ${money(total)} — an average rate of ${pct(effective)}. Your marginal rate is ${pct(marginal)}: the combined federal-and-Quebec tax on your next dollar.`;
+
+  el('breakdown').innerHTML = [
+    ['Federal tax (after 16.5% abatement)', money(fed)],
+    ['Quebec provincial tax', money(prov)],
+    ['Marginal rate (next dollar)', pct(marginal)],
+    ['Average (effective) rate', pct(effective)],
+  ].map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('')
+   + `<div class="row total"><span>Total income tax</span><span class="val">${money(total)}</span></div>`;
+
+  let gross = 0;
+  const rows = qcB.map(b => {
+    const inBand = Math.max(0, Math.min(income, b.max) - b.min);
+    const tax = inBand * b.rate; gross += tax;
+    const range = b.max === Infinity ? `Over ${money(b.min)}` : `${money(b.min)} – ${money(b.max)}`;
+    return `<tr><td>${range}</td><td>${pct(b.rate)}</td><td>${money(inBand)}</td><td>${money(tax)}</td></tr>`;
+  }).join('');
+  const adjust = gross - prov; // basic personal amount + deduction for workers + payroll base adjustments
+  el('brackets').innerHTML = rows
+    + `<tr class="highlight"><td colspan="3">Quebec bracket tax (before credits)</td><td>${money(gross)}</td></tr>`
+    + `<tr><td colspan="3">Less: basic personal amount, deduction for workers &amp; payroll deductions</td><td>−${money(adjust)}</td></tr>`
+    + `<tr class="highlight"><td colspan="3">Quebec provincial tax</td><td>${money(prov)}</td></tr>`;
+
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+el('income').addEventListener('change', run);
+run();
+</script>
+</body>
+</html>

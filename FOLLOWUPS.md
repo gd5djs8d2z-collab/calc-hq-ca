@@ -32,16 +32,17 @@ and not the other.
 
 ## 3. French section (`/fr/`) — localize the shared chrome
 
-**What:** The first French page (`/fr/salaire-net-quebec/`) reuses the **English** header nav
-and footer as-is (flagged in-page and in its commit). The page content, calculator UI, and
-FAQ are native Québec French, but the surrounding chrome is not.
+**What:** The French pages (`/fr/salaire-net-quebec/` and `/fr/calculateur-impot-quebec/`)
+reuse the **English** header nav and footer as-is (flagged in-page and in their commits). The
+page content, calculator UI, and FAQ are native Québec French, but the surrounding chrome is not.
 
 **Fix when more French pages exist:**
 - Localize the header nav (Paie, Revenu supplémentaire, Prestations, Emploi, Propriété) and the
   footer (À propos, Politique de confidentialité, Avis, Contact) for `/fr/` pages.
 - Add a `/fr/` section index so the bare `/fr/` path resolves instead of 404ing.
-- Have the French copy on `/fr/salaire-net-quebec/` reviewed by a native Québécois speaker
-  before promoting it (built as reviewable, not final).
+- **PENDING NATIVE-SPEAKER REVIEW:** the French copy on BOTH `/fr/` pages
+  (`salaire-net-quebec` and `calculateur-impot-quebec`) is built as reviewable, not final —
+  have a native Québécois speaker read it before actively promoting either page.
 
 **Why deferred:** localized chrome only pays off once there are several French pages; the nav
 links would also need French destination pages, which don't exist yet.
