@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hourly to Salary Calculator 2026 — Convert Wage to Annual Pay | calc-hq.ca</title>
+<meta name="description" content="Convert an hourly wage to an annual salary (and back), plus monthly, biweekly, weekly and daily pay. Set hours per week and weeks per year, with paid vacation handled. Gross pay.">
+<link rel="canonical" href="https://calc-hq.ca/payroll/hourly-to-salary/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hourly to Salary Calculator 2026 — Convert Wage to Annual Pay">
+<meta property="og:description" content="Turn an hourly rate into a yearly salary and the full pay ladder — monthly, biweekly, weekly, daily.">
+<meta property="og:url" content="https://calc-hq.ca/payroll/hourly-to-salary/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Payroll & Take-Home","item":"https://calc-hq.ca/payroll/"},
+{"@type":"ListItem","position":3,"name":"Hourly to Salary Calculator","item":"https://calc-hq.ca/payroll/hourly-to-salary/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do you convert an hourly wage to an annual salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply your hourly rate by the hours you work per week and the weeks you work per year. Full-time is usually 40 hours a week for 52 weeks, which is 2,080 hours — so an hourly wage times 2,080 gives the annual salary. For example, $25 an hour is $25 × 2,080 = $52,000 a year. Work fewer hours or fewer weeks and you lower the multiplier accordingly."}},
+{"@type":"Question","name":"What is $20 an hour annually?","acceptedAnswer":{"@type":"Answer","text":"At 40 hours a week for 52 weeks (2,080 hours), $20 an hour is $41,600 a year before tax. That's about $3,467 a month, $1,600 every two weeks, or $800 a week. Your take-home would be lower after income tax, CPP and EI."}},
+{"@type":"Question","name":"Should I use 52 weeks or fewer for weeks per year?","acceptedAnswer":{"@type":"Answer","text":"Use 52 weeks if your time off is paid — salaried employees and hourly workers with paid vacation are still paid across the whole year, so the full 52 weeks applies. Use fewer weeks only if your time off is unpaid: an hourly worker who takes two unpaid weeks actually earns 50 weeks of pay, so entering 50 gives a truer annual figure. This is the distinction that trips most people up."}},
+{"@type":"Question","name":"Does this calculator show my take-home pay?","acceptedAnswer":{"@type":"Answer","text":"No. This converts between hourly and salary as gross pay — the amount before any deductions. Income tax, CPP and EI still come off. For the net figure that actually lands in your account, use the take-home pay calculator, which applies federal and provincial tax, CPP and EI for your province."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/payroll/">Payroll &amp; Take-Home</a><span class="sep">›</span>
+    <span>Hourly to Salary</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Hourly to Salary Calculator (2026)</h1>
+    <p class="lead">Turn an hourly wage into a yearly salary — and monthly, biweekly, weekly and daily pay — from one number. Set your hours a week and weeks a year, and the paid-vacation catch is handled. These are <strong>gross</strong> figures, before tax; for net pay, use the <a href="/payroll/take-home-pay/">take-home pay calculator</a>.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Hourly to salary calculator">
+    <div class="field-row">
+      <div class="field input-money">
+        <label for="amount">Pay amount</label>
+        <input class="input" id="amount" type="text" inputmode="numeric" placeholder="25" value="25">
+      </div>
+      <div class="field">
+        <label for="per">This amount is per</label>
+        <select class="input" id="per">
+          <option value="hour" selected>Hour</option>
+          <option value="year">Year (salary)</option>
+          <option value="month">Month</option>
+          <option value="biweekly">Two weeks</option>
+          <option value="week">Week</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="hours">Hours per week</label>
+        <input class="input" id="hours" type="text" inputmode="numeric" placeholder="40" value="40">
+      </div>
+      <div class="field">
+        <label for="weeks">Weeks per year
+          <span class="hint">52 if your time off is paid; fewer if it's unpaid</span>
+        </label>
+        <input class="input" id="weeks" type="text" inputmode="numeric" placeholder="52" value="52">
+      </div>
+    </div>
+    <button class="btn" id="go" type="button">Convert</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Annual salary</p>
+      <p class="result-number" id="annual">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="need-input" hidden>Enter a pay amount, hours per week and weeks per year to convert.</div>
+  </section>
+
+  <section class="answer">
+    <h2>How to convert an hourly wage to a salary</h2>
+    <p>The whole conversion is one multiplication: <strong>hourly rate × hours per week × weeks per year</strong>. Full-time in Canada is usually 40 hours a week across 52 weeks, which is <strong>2,080 hours a year</strong> — so the quick version is <strong>hourly rate × 2,080</strong>. At $25 an hour that's $52,000; at $20 an hour it's $41,600. Change the hours or weeks and the annual figure moves with them, which is how a part-time or seasonal schedule gets costed correctly.</p>
+    <p>To go the other way — salary to hourly — divide the annual figure by those same 2,080 hours. A $60,000 salary is about $28.85 an hour full-time. The calculator does both directions: pick what your number is "per" and it fills in the rest of the ladder.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Paid vacation vs unpaid time off — the catch</h2>
+    <p>This is where hourly-to-salary math usually goes wrong. If your <strong>time off is paid</strong> — every salaried job and any hourly job with paid vacation — you're paid across the whole year, so you use the full <strong>52 weeks</strong>. Dropping to 50 to "account for two weeks off" would understate your salary, because those weeks are paid.</p>
+    <p>Only reduce the weeks when the time off is <strong>unpaid</strong>. An hourly worker who takes two unpaid weeks genuinely earns 50 weeks of pay, so entering 50 gives the real annual number. Same logic for seasonal or contract work: count the weeks you're actually paid for. Statutory holidays are usually paid, so they don't change the count.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The full pay ladder</h2>
+    <p>Once the annual figure is set, every other frequency is just that number divided into pay periods: <strong>monthly</strong> is annual ÷ 12, <strong>biweekly</strong> is ÷ 26, <strong>weekly</strong> is ÷ 52, and a <strong>daily</strong> rate is roughly ÷ 260 (a standard year of working days). The hourly rate is the annual divided by your yearly hours. The breakdown in the result shows all of them, so a single input answers "what's that per month?" and "what's that an hour?" at the same time.</p>
+    <p>Keep in mind these are <strong>gross</strong> — before income tax, CPP and EI. Two people on the same $60,000 salary take home different amounts depending on their province and situation. When you want the number that actually hits your bank account, the <a href="/payroll/take-home-pay/">take-home pay calculator</a> runs the deductions for all 13 provinces and territories, and the <a href="/payroll/pay-raise/">pay raise calculator</a> shows how much of an increase you'd keep.</p>
+  </section>
+
+  <section>
+    <h2>Common hourly rates as a salary</h2>
+    <p>Full-time at 40 hours a week for 52 weeks (2,080 hours a year), before tax:</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Hourly</th><th>Annual salary</th><th>Monthly</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$15 / hr</td><td>$31,200</td><td>$2,600</td></tr>
+          <tr><td>$17 / hr</td><td>$35,360</td><td>$2,947</td></tr>
+          <tr><td>$18 / hr</td><td>$37,440</td><td>$3,120</td></tr>
+          <tr><td>$20 / hr</td><td>$41,600</td><td>$3,467</td></tr>
+          <tr><td>$22 / hr</td><td>$45,760</td><td>$3,813</td></tr>
+          <tr><td>$25 / hr</td><td>$52,000</td><td>$4,333</td></tr>
+          <tr><td>$30 / hr</td><td>$62,400</td><td>$5,200</td></tr>
+          <tr><td>$35 / hr</td><td>$72,800</td><td>$6,067</td></tr>
+          <tr><td>$40 / hr</td><td>$83,200</td><td>$6,933</td></tr>
+          <tr><td>$45 / hr</td><td>$93,600</td><td>$7,800</td></tr>
+          <tr><td>$50 / hr</td><td>$104,000</td><td>$8,667</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">Gross pay at 2,080 hours a year. Change the hours or weeks in the calculator for part-time, seasonal or unpaid-leave schedules.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How do you convert an hourly wage to an annual salary?</summary>
+      <p>Multiply hourly rate × hours per week × weeks per year. Full-time is 40 × 52 = 2,080 hours, so hourly × 2,080 is the salary — e.g. $25/hr × 2,080 = $52,000. Fewer hours or weeks lowers the multiplier.</p>
+    </details>
+    <details><summary>What is $20 an hour annually?</summary>
+      <p>At 40 hours a week for 52 weeks, $20/hr is $41,600 a year gross — about $3,467 a month, $1,600 biweekly, or $800 a week. Take-home is lower after tax, CPP and EI.</p>
+    </details>
+    <details><summary>Should I use 52 weeks or fewer?</summary>
+      <p>52 if your time off is paid (salaried, or hourly with paid vacation) — you're paid all year. Use fewer weeks only for unpaid time off: two unpaid weeks means 50 paid weeks, so enter 50. Statutory holidays are usually paid.</p>
+    </details>
+    <details><summary>Does this show my take-home pay?</summary>
+      <p>No — it's gross pay, before deductions. For the net amount after income tax, CPP and EI, use the <a href="/payroll/take-home-pay/">take-home pay calculator</a>.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>The net pay on that salary after tax, CPP and EI — all provinces.</p></a>
+      <a class="tool-card" href="/payroll/pay-raise/"><h3>Pay Raise Calculator</h3><p>How much of a raise you actually keep after deductions.</p></a>
+    </div>
+    <p class="disclaimer">Plain gross-pay arithmetic — no tax applied. For general information only; your real annual pay depends on your actual hours, paid time off and any overtime.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/payroll/take-home-pay/">Take-Home Pay</a></li>
+          <li><a href="/payroll/hourly-to-salary/">Hourly to Salary</a></li>
+          <li><a href="/payroll/quebec-income-tax/">Quebec Income Tax</a></li>
+          <li><a href="/payroll/pay-raise/">Pay Raise</a></li>
+          <li><a href="/payroll/self-employed-tax/">Self-Employed Tax</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n, cents=false) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+const perLabel = { hour:'hour', year:'year', month:'month', biweekly:'two weeks', week:'week' };
+
+function run() {
+  const amt = parseMoney(el('amount').value);
+  const per = el('per').value;
+  const H = parseMoney(el('hours').value);
+  const W = parseMoney(el('weeks').value);
+  const result = el('result'), need = el('need-input');
+
+  if (amt <= 0 || H <= 0 || W <= 0) { result.hidden = true; need.hidden = false; return; }
+  need.hidden = true;
+
+  const annualHours = H * W;
+  // Convert whatever was entered to an annual figure first.
+  const toAnnual = { hour: amt * annualHours, year: amt, month: amt * 12, biweekly: amt * 26, week: amt * 52 };
+  const annual = toAnnual[per];
+  const hourly = annual / annualHours;
+
+  el('annual').textContent = money(annual);
+  el('reading').textContent =
+    `At ${H} hours a week for ${W} weeks (${annualHours.toLocaleString('en-CA')} hours a year), ${money(hourly, true)} an hour works out to ${money(annual)} a year — gross, before tax.`;
+
+  const rows = [
+    ['Annual salary', money(annual)],
+    ['Monthly', money(annual / 12, true)],
+    ['Biweekly (26/yr)', money(annual / 26, true)],
+    ['Weekly', money(annual / 52, true)],
+    ['Daily (~260 days)', money(annual / 260, true)],
+    ['Hourly', money(hourly, true)],
+  ];
+  el('breakdown').innerHTML = rows
+    .map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('');
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['amount','per','hours','weeks'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
