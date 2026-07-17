@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Vacation Pay Calculator 2026 — 4% and 6% Under the ESA | calc-hq.ca</title>
+<meta name="description" content="Calculate Ontario vacation pay under the Employment Standards Act: 4% of gross wages under 5 years of employment, 6% at 5 years or more. Enter your earnings and years of service.">
+<link rel="canonical" href="https://calc-hq.ca/employment-standards/vacation-pay/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ontario Vacation Pay Calculator 2026 — 4% and 6% Under the ESA">
+<meta property="og:description" content="Ontario ESA vacation pay: 4% of gross wages under 5 years, 6% at 5+ years.">
+<meta property="og:url" content="https://calc-hq.ca/employment-standards/vacation-pay/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Employment Standards","item":"https://calc-hq.ca/employment-standards/"},
+{"@type":"ListItem","position":3,"name":"Ontario Vacation Pay Calculator","item":"https://calc-hq.ca/employment-standards/vacation-pay/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is vacation pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Under the Ontario Employment Standards Act, vacation pay is at least 4% of the gross wages you earned in the vacation entitlement year if you have less than five years of employment, and at least 6% once you reach five or more years. On $50,000 of gross wages, that's $2,000 at 4% or $3,000 at 6%. An employment contract can provide more, but not less."}},
+{"@type":"Question","name":"When does vacation pay go from 4% to 6% in Ontario?","acceptedAnswer":{"@type":"Answer","text":"At five years of employment. Employees with less than five years earn 4% of gross wages as vacation pay and two weeks of vacation time; employees with five or more years earn 6% and three weeks. The jump happens once you complete five years with the same employer."}},
+{"@type":"Question","name":"What counts as gross wages for vacation pay?","acceptedAnswer":{"@type":"Answer","text":"Most of what you earn: regular wages, overtime pay, commissions, public holiday pay and non-discretionary bonuses all count as gross wages for vacation pay. Vacation pay itself is excluded from the base — you don't earn vacation pay on vacation pay. Tips paid directly by customers and purely discretionary bonuses are generally not included."}},
+{"@type":"Question","name":"Is vacation pay the same as vacation time?","acceptedAnswer":{"@type":"Answer","text":"No — the ESA gives two separate entitlements. Vacation time is the number of weeks off (two weeks under five years, three weeks at five or more). Vacation pay is the money — 4% or 6% of gross wages — that you're paid for that time. You earn vacation pay on all your wages as you go, even if you haven't yet completed a full year to be entitled to the time off."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/employment-standards/">Employment Standards</a><span class="sep">›</span>
+    <span>Vacation Pay</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Ontario Vacation Pay Calculator (2026)</h1>
+    <p class="lead">Ontario's Employment Standards Act sets vacation pay at <strong>4% of gross wages</strong> under five years of employment and <strong>6%</strong> at five years or more. Enter what you earned and your years of service to see the vacation pay owed — and the vacation time that goes with it.</p>
+  </div>
+
+  <div class="notice" role="note">
+    <strong>Ontario only.</strong> These are the Ontario ESA minimums. Other provinces and federally regulated jobs set their own vacation-pay rates and thresholds.
+  </div>
+
+  <section class="calc-card" aria-label="Ontario vacation pay calculator">
+    <div class="field-row">
+      <div class="field input-money">
+        <label for="gross">Gross wages
+          <span class="hint">Earned in the entitlement year, excluding vacation pay</span>
+        </label>
+        <input class="input" id="gross" type="text" inputmode="numeric" placeholder="50,000" value="50,000">
+      </div>
+      <div class="field">
+        <label for="years">Years of employment</label>
+        <input class="input" id="years" type="text" inputmode="numeric" placeholder="2" value="2">
+      </div>
+    </div>
+    <button class="btn" id="go" type="button">Calculate vacation pay</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Vacation pay owed</p>
+      <p class="result-number" id="vacpay">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="need-input" hidden>Enter your gross wages and years of employment to calculate.</div>
+  </section>
+
+  <section class="answer">
+    <h2>How Ontario vacation pay works</h2>
+    <p>Vacation pay is a percentage of the <strong>gross wages</strong> you earned during your vacation entitlement year — the 12-month period over which you accrue vacation. The rate is <strong>at least 4%</strong> if you have less than five years of employment and <strong>at least 6%</strong> once you hit five years. On $50,000 of earnings that's $2,000 or $3,000 respectively. These are floors: a contract or collective agreement can give more, never less.</p>
+    <p>You earn vacation pay on your wages <em>as you earn them</em> — even one hour of work accrues 4% (or 6%) of that hour's pay. That's why you're owed vacation pay on a final paycheque even if you leave before completing a full year, though you'd need to finish the year to be entitled to the vacation <em>time</em> itself.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The five-year jump, and what counts as wages</h2>
+    <p>The move from 4% to 6% happens at <strong>five years</strong> of employment with the same employer, and it comes with an extra week of time off — <strong>two weeks</strong> under five years, <strong>three weeks</strong> at five or more:</p>
+    <ul class="conditions">
+      <li><strong>Under 5 years:</strong> 4% vacation pay + 2 weeks vacation time.</li>
+      <li><strong>5 years or more:</strong> 6% vacation pay + 3 weeks vacation time.</li>
+    </ul>
+    <p>"Gross wages" is broad: regular pay, <strong>overtime</strong>, commissions, public-holiday pay and non-discretionary bonuses all count. What's excluded is vacation pay itself — you don't earn vacation pay on vacation pay — plus tips paid directly by customers and purely discretionary bonuses. Note the two entitlements are separate: <strong>vacation time</strong> is the weeks off; <strong>vacation pay</strong> is the money, and this calculator works out the money.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much is vacation pay in Ontario?</summary>
+      <p>At least 4% of gross wages under five years of employment, and at least 6% at five years or more. On $50,000 that's $2,000 or $3,000. A contract can give more, not less.</p>
+    </details>
+    <details><summary>When does it go from 4% to 6%?</summary>
+      <p>At five years with the same employer. Under five years: 4% and two weeks off. Five years or more: 6% and three weeks off.</p>
+    </details>
+    <details><summary>What counts as gross wages?</summary>
+      <p>Regular wages, overtime, commissions, public-holiday pay and non-discretionary bonuses. Excluded: vacation pay itself, tips paid directly by customers, and discretionary bonuses.</p>
+    </details>
+    <details><summary>Is vacation pay the same as vacation time?</summary>
+      <p>No. Vacation time is the weeks off (2 or 3); vacation pay is the 4% or 6% money for that time. You accrue the pay on all wages as you earn them.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>More Ontario employment tools</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/employment-standards/overtime-pay/"><h3>Overtime Pay Calculator</h3><p>Time-and-a-half after 44 hours a week.</p></a>
+      <a class="tool-card" href="/employment-standards/esa-termination/"><h3>Termination Pay</h3><p>Statutory notice by length of service.</p></a>
+      <a class="tool-card" href="/employment-standards/severance-pay/"><h3>Severance Pay</h3><p>ESA s.64 severance for qualifying employees.</p></a>
+    </div>
+    <p class="disclaimer">Estimate under the Ontario Employment Standards Act for general information only — not legal advice. Some jobs are exempt from the vacation-with-pay provisions and some contracts give more; confirm your situation with the Ministry of Labour.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/employment-standards/overtime-pay/">Overtime Pay</a></li>
+          <li><a href="/employment-standards/vacation-pay/">Vacation Pay</a></li>
+          <li><a href="/employment-standards/esa-termination/">Termination Pay</a></li>
+          <li><a href="/employment-standards/severance-pay/">Severance Pay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { ONTARIO_ESA } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const V = ONTARIO_ESA.vacation;
+const money = (n, cents=false) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+const pct = (r) => (r * 100).toFixed(0) + '%';
+
+function run() {
+  const gross = parseMoney(el('gross').value);
+  const years = parseMoney(el('years').value);
+  const result = el('result'), need = el('need-input');
+
+  if (gross <= 0 || years < 0) { result.hidden = true; need.hidden = false; return; }
+  need.hidden = true;
+
+  const rate = V.rate(years);
+  const weeks = V.weeks(years);
+  const vacpay = gross * rate;
+  const band = years >= V.yearsCutoff ? '5 years or more' : 'under 5 years';
+
+  el('vacpay').textContent = money(vacpay, true);
+  el('reading').textContent =
+    `At ${years} ${years === 1 ? 'year' : 'years'} of service (${band}), you earn ${pct(rate)} of ${money(gross)} in vacation pay — ${money(vacpay, true)} — plus ${weeks} weeks of vacation time.`;
+
+  el('breakdown').innerHTML = [
+    ['Gross wages', money(gross)],
+    ['Vacation pay rate', `${pct(rate)} (${band})`],
+    ['Vacation time', `${weeks} weeks`],
+  ].map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('')
+   + `<div class="row total"><span>Vacation pay owed</span><span class="val">${money(vacpay, true)}</span></div>`;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['gross','years'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

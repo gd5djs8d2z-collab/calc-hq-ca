@@ -177,6 +177,36 @@ export const ONTARIO_ESA = {
       return totalMonths >= 60 && (payrollAtLeast25M || massClosure);
     },
   },
+
+  // [ESA] OVERTIME PAY (s.22) — 1½× the regular rate for hours worked over 44 in a work
+  // WEEK (weekly basis; no daily overtime unless a contract says so). Verified 2026-07-17
+  // against: https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay
+  // Managers/supervisors and many occupations are exempt or have a different threshold —
+  // NOT modelled here; flagged in the page content.
+  overtime: {
+    thresholdHours: 44,
+    multiplier: 1.5,
+    // Split a week's hours into { regular, overtime } at the 44-hour line.
+    split(hours) {
+      const regular = Math.min(Math.max(0, hours), this.thresholdHours);
+      const overtime = Math.max(0, hours - this.thresholdHours);
+      return { regular, overtime };
+    },
+  },
+
+  // [ESA] VACATION PAY (s.35.2) — at least 4% of gross wages for employees with LESS than
+  // 5 years of employment, at least 6% at 5+ years; vacation TIME is 2 weeks (<5 yrs) /
+  // 3 weeks (5+ yrs). Gross wages exclude vacation pay itself. Verified 2026-07-17 against:
+  // https://www.ontario.ca/document/your-guide-employment-standards-act-0/vacation
+  vacation: {
+    yearsCutoff: 5,
+    rateUnder5: 0.04,
+    rate5Plus: 0.06,
+    weeksUnder5: 2,
+    weeks5Plus: 3,
+    rate(years)  { return years >= this.yearsCutoff ? this.rate5Plus : this.rateUnder5; },
+    weeks(years) { return years >= this.yearsCutoff ? this.weeks5Plus : this.weeksUnder5; },
+  },
 };
 
 /* ── CANADA CHILD BENEFIT (CCB) — federal, tax-free monthly benefit ─────────── */

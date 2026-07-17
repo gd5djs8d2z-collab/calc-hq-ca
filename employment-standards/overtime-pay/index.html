@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Overtime Pay Calculator 2026 — Time-and-a-Half After 44 Hours | calc-hq.ca</title>
+<meta name="description" content="Calculate Ontario overtime pay under the Employment Standards Act: 1½× your regular rate after 44 hours in a work week. Enter your rate and hours for the regular, overtime and total pay.">
+<link rel="canonical" href="https://calc-hq.ca/employment-standards/overtime-pay/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ontario Overtime Pay Calculator 2026 — Time-and-a-Half After 44 Hours">
+<meta property="og:description" content="Ontario ESA overtime: 1½× the regular rate after 44 hours a week. Regular, overtime and total pay.">
+<meta property="og:url" content="https://calc-hq.ca/employment-standards/overtime-pay/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Employment Standards","item":"https://calc-hq.ca/employment-standards/"},
+{"@type":"ListItem","position":3,"name":"Ontario Overtime Pay Calculator","item":"https://calc-hq.ca/employment-standards/overtime-pay/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"When does overtime start in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Under the Ontario Employment Standards Act, overtime for most employees begins after 44 hours in a work week — not 40. Hours worked beyond 44 in the week must be paid at the overtime rate. Overtime is calculated weekly, not daily: working more than a set number of hours in a single day does not by itself trigger overtime unless a contract or collective agreement says so."}},
+{"@type":"Question","name":"How much is overtime pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Overtime pay is 1½ times your regular rate of pay — 'time and a half.' If your regular rate is $25 an hour, your overtime rate is $37.50 for each hour worked over 44 in the week. An employee who works 50 hours at $25 gets 44 hours at $25 plus 6 hours at $37.50, for $1,100 plus $225 = $1,325 that week."}},
+{"@type":"Question","name":"Do salaried employees get overtime in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Often yes. Being paid a salary does not on its own remove the right to overtime — the exemption depends on the kind of work, not how you're paid. For a salaried employee entitled to overtime, the regular rate is worked out from the salary and the hours it's meant to cover, then hours over 44 in the week are paid at 1½ times that rate."}},
+{"@type":"Question","name":"Who is exempt from overtime pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Managers and supervisors are not entitled to overtime for managerial or supervisory work, and a number of occupations are either exempt from overtime or have a threshold higher than 44 hours — for example certain IT professionals, some sales roles and specific regulated professions. Averaging agreements can also change how overtime is counted. This calculator uses the standard 44-hour, time-and-a-half rule; check Ontario's special rule tool for your occupation."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/employment-standards/">Employment Standards</a><span class="sep">›</span>
+    <span>Overtime Pay</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Ontario Overtime Pay Calculator (2026)</h1>
+    <p class="lead">Under Ontario's Employment Standards Act, overtime kicks in after <strong>44 hours</strong> in a work week — not 40 — and pays <strong>time and a half</strong>. Enter your regular rate and the hours you worked to split out regular, overtime and total pay for the week.</p>
+  </div>
+
+  <div class="notice" role="note">
+    <strong>Ontario only.</strong> This applies the Ontario ESA rules. Other provinces and federally regulated jobs use different overtime thresholds and rates.
+  </div>
+
+  <section class="calc-card" aria-label="Ontario overtime pay calculator">
+    <div class="field-row">
+      <div class="field input-money">
+        <label for="rate">Regular hourly rate</label>
+        <input class="input" id="rate" type="text" inputmode="numeric" placeholder="25" value="25">
+      </div>
+      <div class="field">
+        <label for="hours">Hours worked this week</label>
+        <input class="input" id="hours" type="text" inputmode="numeric" placeholder="50" value="50">
+      </div>
+    </div>
+    <button class="btn" id="go" type="button">Calculate overtime pay</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Total pay this week</p>
+      <p class="result-number" id="total">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="need-input" hidden>Enter your hourly rate and hours worked to calculate.</div>
+  </section>
+
+  <section class="answer">
+    <h2>How Ontario overtime is calculated</h2>
+    <p>Ontario's rule is a <strong>weekly</strong> one: for most employees, every hour worked over <strong>44 in a work week</strong> is paid at <strong>1½ times the regular rate</strong>. At $25 an hour the overtime rate is $37.50, so a 50-hour week is 44 hours at $25 ($1,100) plus 6 hours at $37.50 ($225) — $1,325 in total. The first 44 hours are always paid at the regular rate; only the excess is boosted.</p>
+    <p>Crucially, it's <strong>not 40 hours</strong> — the federal figure and many other provinces use 40, but Ontario's ESA threshold is 44, which is the single most common mistake people make with Ontario overtime. And there's <strong>no daily overtime</strong> under the ESA: working a 13-hour day doesn't earn overtime on its own; what matters is the weekly total, unless your contract or an averaging agreement says otherwise.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Salary, and who's exempt</h2>
+    <p>Being paid a salary doesn't automatically cancel overtime. Whether you're entitled turns on the <em>kind of work</em> you do, not how you're paid — a salaried employee doing non-exempt work still earns overtime, calculated from the regular rate their salary implies.</p>
+    <p>Several groups fall outside the standard rule, and this calculator doesn't try to model them:</p>
+    <ul class="conditions">
+      <li><strong>Managers and supervisors</strong> don't get overtime for managerial or supervisory work (only-occasional other tasks don't change that).</li>
+      <li><strong>Certain occupations</strong> are exempt or have a threshold above 44 hours — some IT professionals, specific sales roles, and various regulated professions.</li>
+      <li><strong>Averaging agreements</strong> can spread hours over up to four weeks, changing how overtime is counted.</li>
+      <li>The <strong>"50% rule"</strong> applies when someone does two kinds of work, one covered and one exempt.</li>
+    </ul>
+    <p>If any of these might apply to you, Ontario's Employment Standards Self-Service and special rule tools are the place to confirm. This calculator uses the standard 44-hour, time-and-a-half rule that covers most hourly employees.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>When does overtime start in Ontario?</summary>
+      <p>After 44 hours in a work week for most employees — not 40. It's weekly, not daily: a long single day doesn't trigger overtime on its own unless your contract says so.</p>
+    </details>
+    <details><summary>How much is overtime pay in Ontario?</summary>
+      <p>1½ times your regular rate. At $25/hr the overtime rate is $37.50. A 50-hour week is 44 × $25 + 6 × $37.50 = $1,100 + $225 = $1,325.</p>
+    </details>
+    <details><summary>Do salaried employees get overtime?</summary>
+      <p>Often yes — salary alone doesn't remove the right. It depends on the kind of work. If entitled, the regular rate is derived from the salary and hours over 44 are paid at 1½ times it.</p>
+    </details>
+    <details><summary>Who is exempt from overtime?</summary>
+      <p>Managers and supervisors (for managerial work), and various occupations with an exemption or a higher threshold. Averaging agreements can also change the count. Check Ontario's special rule tool for your job.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>More Ontario employment tools</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/employment-standards/vacation-pay/"><h3>Vacation Pay Calculator</h3><p>4% or 6% of gross wages, by years of service.</p></a>
+      <a class="tool-card" href="/employment-standards/esa-termination/"><h3>Termination Pay</h3><p>Statutory notice by length of service.</p></a>
+      <a class="tool-card" href="/employment-standards/severance-pay/"><h3>Severance Pay</h3><p>ESA s.64 severance for qualifying employees.</p></a>
+    </div>
+    <p class="disclaimer">Estimate under the Ontario Employment Standards Act for general information only — not legal advice. Overtime exemptions, higher thresholds and averaging agreements can change the result; confirm your situation with the Ministry of Labour or Ontario's special rule tool.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/employment-standards/overtime-pay/">Overtime Pay</a></li>
+          <li><a href="/employment-standards/vacation-pay/">Vacation Pay</a></li>
+          <li><a href="/employment-standards/esa-termination/">Termination Pay</a></li>
+          <li><a href="/employment-standards/severance-pay/">Severance Pay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { ONTARIO_ESA } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const OT = ONTARIO_ESA.overtime;
+const money = (n, cents=true) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+
+function run() {
+  const rate = parseMoney(el('rate').value);
+  const hours = parseMoney(el('hours').value);
+  const result = el('result'), need = el('need-input');
+
+  if (rate <= 0 || hours <= 0) { result.hidden = true; need.hidden = false; return; }
+  need.hidden = true;
+
+  const { regular, overtime } = OT.split(hours);
+  const otRate = rate * OT.multiplier;
+  const regPay = regular * rate;
+  const otPay = overtime * otRate;
+  const total = regPay + otPay;
+
+  el('total').textContent = money(total, false);
+  el('reading').textContent = overtime > 0
+    ? `${hours} hours at ${money(rate)}/hr: ${regular} regular hours plus ${overtime} overtime hours at ${money(otRate)} (time and a half) — ${money(total, false)} gross for the week, ${money(otPay)} of it overtime.`
+    : `${hours} hours at ${money(rate)}/hr is ${money(total, false)} — no overtime, since you're at or under Ontario's 44-hour weekly threshold.`;
+
+  const rows = [
+    ['Regular hours', `${regular} × ${money(rate)}`, money(regPay)],
+    ['Overtime hours', `${overtime} × ${money(otRate)} (1.5×)`, money(otPay)],
+  ];
+  el('breakdown').innerHTML = rows
+    .map(([k,sub,v]) => `<div class="row"><span>${k}<br><span class="hint">${sub}</span></span><span class="val">${v}</span></div>`).join('')
+    + `<div class="row total"><span>Total pay this week</span><span class="val">${money(total, false)}</span></div>`;
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['rate','hours'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
