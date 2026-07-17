@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profit Margin Calculator — Margin, Markup &amp; Gross Profit | calc-hq.ca</title>
+<meta name="description" content="Calculate profit margin from cost and price: gross profit, profit margin % and the equivalent markup %, side by side. Or solve for the price from a target margin. Free, no sign-up.">
+<link rel="canonical" href="https://calc-hq.ca/business/profit-margin/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Profit Margin Calculator — Margin, Markup & Gross Profit">
+<meta property="og:description" content="Profit margin and the equivalent markup from cost and price, shown together.">
+<meta property="og:url" content="https://calc-hq.ca/business/profit-margin/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Business & Finance","item":"https://calc-hq.ca/business/"},
+{"@type":"ListItem","position":3,"name":"Profit Margin Calculator","item":"https://calc-hq.ca/business/profit-margin/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do you calculate profit margin?","acceptedAnswer":{"@type":"Answer","text":"Profit margin is gross profit divided by revenue, as a percentage: margin = (selling price − cost) ÷ selling price × 100. If an item costs $30 and sells for $40, the gross profit is $10 and the margin is $10 ÷ $40 = 25%. Margin is always measured against the selling price, not the cost."}},
+{"@type":"Question","name":"What is the difference between margin and markup?","acceptedAnswer":{"@type":"Answer","text":"They describe the same profit against different bases. Margin is profit as a percentage of the selling price; markup is profit as a percentage of the cost. The same $10 profit on a $30 cost, $40 price is a 25% margin but a 33.3% markup. Because the cost is smaller than the price, the markup percentage is always the larger of the two. Confusing them is the most common pricing mistake — a '30% markup' is only about a 23% margin."}},
+{"@type":"Question","name":"How do I find the selling price from a target margin?","acceptedAnswer":{"@type":"Answer","text":"Divide the cost by one minus the margin: price = cost ÷ (1 − margin). To hit a 40% margin on a $30 item, the price is $30 ÷ (1 − 0.40) = $30 ÷ 0.60 = $50. Note you don't just add 40% to the cost — that would be a 40% markup, which only gives about a 28.6% margin. Switch the calculator's known value to 'Profit margin %' to solve for the price directly."}},
+{"@type":"Question","name":"Is profit margin before or after tax?","acceptedAnswer":{"@type":"Answer","text":"This is gross profit margin — the margin on a single sale, before operating costs, overhead and income tax. It answers 'how much of the selling price is profit above what the item cost me.' Net profit margin, which subtracts all business expenses and tax, is a separate and lower figure calculated from your whole income statement."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/business/">Business</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/business/">Business &amp; Finance</a><span class="sep">›</span>
+    <span>Profit Margin</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Profit Margin Calculator</h1>
+    <p class="lead">Enter your cost and selling price to get gross profit, profit margin, and the equivalent markup — margin and markup side by side, so you never confuse the two. Or switch the known value to solve for the price from a target margin. Looking to price up from cost instead? Use the <a href="/business/markup/">markup calculator</a>.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Profit margin calculator">
+    <div class="field input-money">
+      <label for="cost">Cost <span class="hint">What the item costs you (per unit)</span></label>
+      <input class="input" id="cost" type="text" inputmode="numeric" placeholder="30" value="30">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="known">Also known</label>
+        <select class="input" id="known">
+          <option value="price" selected>Selling price</option>
+          <option value="margin">Profit margin %</option>
+          <option value="markup">Markup %</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="value" id="value-label">Selling price</label>
+        <input class="input" id="value" type="text" inputmode="numeric" placeholder="40" value="40">
+      </div>
+    </div>
+    <button class="btn" id="go" type="button">Calculate</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Profit margin</p>
+      <p class="result-number" id="margin">0%</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="need-input" hidden></div>
+  </section>
+
+  <section class="answer">
+    <h2>How to calculate profit margin</h2>
+    <p>Profit margin is your gross profit as a share of the <strong>selling price</strong>: <strong>margin = (price − cost) ÷ price</strong>. Sell a $30 item for $40 and the $10 profit is 25% of the $40 price — a 25% margin. It's the answer to "of every dollar a customer pays me, how much is profit?" Because it's measured against the price, margin can never exceed 100%.</p>
+    <p>To work backwards from a target — say you want a 40% margin on a $30 cost — divide the cost by one minus the margin: $30 ÷ 0.60 = <strong>$50</strong>. That's the part people get wrong: you don't add 40% to the cost (that's markup), you gross the cost up so profit is 40% of the final price. Set the known value above to "Profit margin %" and the calculator solves for the price.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Margin vs markup — the one to get right</h2>
+    <p>Margin and markup measure the <em>same</em> profit against <em>different</em> bases. Margin is profit ÷ price; markup is profit ÷ cost. Same $10 on that $30/$40 item: a <strong>25% margin</strong> but a <strong>33.3% markup</strong>. Since the cost is always smaller than the price, the markup percentage is always the bigger number — which is exactly why quoting "30%" without saying which one leads to mispricing.</p>
+    <ul class="conditions">
+      <li><strong>Margin</strong> answers: what fraction of the sale is profit? (profit ÷ price)</li>
+      <li><strong>Markup</strong> answers: how much did I add on top of cost? (profit ÷ cost)</li>
+    </ul>
+    <p>The calculator shows both for every input, and the table below converts between them. A rule of thumb: for the same item, markup is always higher than margin, and the gap widens as the numbers grow.</p>
+  </section>
+
+  <section>
+    <h2>Margin to markup — quick conversion</h2>
+    <p>The same profit, expressed each way (markup = margin ÷ (1 − margin)):</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Profit margin</th><th>Equivalent markup</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10%</td><td>11.1%</td></tr>
+          <tr><td>15%</td><td>17.6%</td></tr>
+          <tr><td>20%</td><td>25.0%</td></tr>
+          <tr><td>25%</td><td>33.3%</td></tr>
+          <tr><td>30%</td><td>42.9%</td></tr>
+          <tr><td>40%</td><td>66.7%</td></tr>
+          <tr><td>50%</td><td>100.0%</td></tr>
+          <tr><td>60%</td><td>150.0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">Reverse of this — markup to margin — is on the <a href="/business/markup/">markup calculator</a>.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How do you calculate profit margin?</summary>
+      <p>Margin = (selling price − cost) ÷ selling price × 100. A $30 item sold for $40 makes $10 profit, which is 25% of the $40 price — a 25% margin. Margin is always against the price, not the cost.</p>
+    </details>
+    <details><summary>What's the difference between margin and markup?</summary>
+      <p>Same profit, different base. Margin is profit ÷ price; markup is profit ÷ cost. $10 on a $30 cost / $40 price is a 25% margin but a 33.3% markup. Markup is always the larger percentage.</p>
+    </details>
+    <details><summary>How do I find the price from a target margin?</summary>
+      <p>Price = cost ÷ (1 − margin). For a 40% margin on a $30 cost: $30 ÷ 0.60 = $50. Don't just add 40% to cost — that's markup, and only about a 28.6% margin. Switch "Also known" to Profit margin % to solve it.</p>
+    </details>
+    <details><summary>Is this before or after tax?</summary>
+      <p>It's gross margin — the profit on a sale before overhead, operating costs and income tax. Net profit margin (after all expenses and tax) is a separate, lower figure from your full income statement.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/business/markup/"><h3>Markup Calculator</h3><p>Price up from cost by a markup %, and see the margin it produces.</p></a>
+      <a class="tool-card" href="/payroll/self-employed-tax/"><h3>Self-Employed Tax</h3><p>Once you have the profit, what to set aside for tax and CPP.</p></a>
+    </div>
+    <p class="disclaimer">Plain business arithmetic — currency-agnostic, no tax applied. Gross margin on a single sale; for general information only.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/business/profit-margin/">Profit Margin Calculator</a></li>
+          <li><a href="/business/markup/">Markup Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const pct = (r) => (r * 100).toFixed(1) + '%';
+const valueLabels = { price:'Selling price', margin:'Profit margin %', markup:'Markup %' };
+
+function solve(cost, known, val) {
+  let price;
+  if (known === 'price') price = val;
+  else if (known === 'margin') { const m = val / 100; if (m >= 1) return null; price = cost / (1 - m); }
+  else { const k = val / 100; price = cost * (1 + k); }
+  const profit = price - cost;
+  return { price, profit, margin: price !== 0 ? profit / price : 0, markup: cost !== 0 ? profit / cost : 0 };
+}
+
+function run() {
+  const cost = parseMoney(el('cost').value);
+  const known = el('known').value;
+  const val = parseMoney(el('value').value);
+  el('value-label').textContent = valueLabels[known];
+  const result = el('result'), need = el('need-input');
+
+  if (cost <= 0) { result.hidden = true; need.hidden = false; need.textContent = 'Enter a cost above zero to calculate.'; return; }
+  if (known === 'margin' && val >= 100) { result.hidden = true; need.hidden = false; need.textContent = 'A profit margin has to be under 100% — margin is measured against the selling price.'; return; }
+  if (val <= 0) { result.hidden = true; need.hidden = false; need.textContent = 'Enter the second value to calculate.'; return; }
+  need.hidden = true;
+
+  const r = solve(cost, known, val);
+  if (!r) { result.hidden = true; return; }
+
+  el('margin').textContent = pct(r.margin);
+  const lossNote = r.profit < 0 ? ' That’s a loss — the price is below cost.' : '';
+  el('reading').textContent =
+    `Selling at ${money(r.price)} on a ${money(cost)} cost makes ${money(r.profit)} gross profit — a ${pct(r.margin)} margin, which is the same as a ${pct(r.markup)} markup.${lossNote}`;
+
+  el('breakdown').innerHTML = [
+    ['Cost', money(cost)],
+    ['Selling price', money(r.price)],
+    ['Gross profit', money(r.profit)],
+    ['Profit margin', pct(r.margin)],
+    ['Markup', pct(r.markup)],
+  ].map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('');
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['cost','known','value'].forEach(id => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>
