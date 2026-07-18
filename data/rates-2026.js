@@ -616,3 +616,14 @@ export const GIS = {
     };
   },
 };
+
+/* ── BENEFIT PAYMENT DATES (2026) ──────────────────────────────────────────── */
+// Derived from TC.benefitPaymentDates2026 (provenance-stamped, CRA payment-dates page,
+// verified 2026-07-18). Powers the /key-dates-limits/ccb-payment-dates/ countdown, so the
+// dates can't drift from source. Re-verify every January when CRA publishes the new year.
+export const BENEFIT_PAYMENT_DATES = {
+  ccb: v(TC.benefitPaymentDates2026.ccb),
+  gstCredit: v(TC.benefitPaymentDates2026.gstCredit),
+  groceriesEssentials: v(TC.benefitPaymentDates2026.groceriesEssentials),
+  ontarioTrillium: v(TC.benefitPaymentDates2026.ontarioTrillium),
+};

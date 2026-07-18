@@ -34,6 +34,16 @@ whole point of that section, so they must be current:
   moves to the next business day, which is why 2026 has RRSP → Mar 2 and instalment 1 → Mar 16).
   The two content pages hardcode these figures in prose, and the deadline countdown imports
   `KEY_DATES` — update the constants and both flow through.
+- **Benefit payment dates** (`benefitPaymentDates2026` → `BENEFIT_PAYMENT_DATES`, powering
+  `/key-dates-limits/ccb-payment-dates/`) — CRA publishes a NEW calendar each year, so re-stamp
+  the whole block every January from the CRA "Payment dates for CRA administered benefits and
+  credits" page (`SRC.craBenefitDates`): CCB (monthly, ~20th), GST/HST credit, and the Ontario
+  Trillium/Canada PRO calendar. Dates shift when the usual day lands on a weekend/holiday (CRA
+  pays EARLIER, never later) and December is always early. **Watch the program names** — the
+  GST/HST credit was renamed the *Canada Groceries and Essentials Benefit* partway through 2026,
+  so the page splits Jan/Apr from Jul/Oct; check whether the old name is still in use.
+  NOTE: this page's date tables are STATIC HTML (for crawlability) with the constants used by the
+  countdown — update **both** the tables and the constants, or they'll drift.
 
 ## Rule 2 — Budget-watch (ongoing, not scheduled)
 

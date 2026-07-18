@@ -59,6 +59,7 @@ const SRC = {
   gis:       'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html',
   gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
   oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
+  craBenefitDates: 'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -86,10 +87,10 @@ export const TAX_CONSTANTS_2026 = {
 
   /* ── CPP / CPP2 (all provinces except Quebec, which uses QPP) ──────────────── */
   cpp: {
-    rate:                   { value: 0.0595,   source_url: SRC.cpp, last_verified: '2026-07-13' },
-    basicExemption:         { value: 3500,     source_url: SRC.cpp, last_verified: '2026-07-13' },
-    ympe:                   { value: 74600,    source_url: SRC.cpp, last_verified: '2026-07-13' }, // Year's Max Pensionable Earnings
-    maxEmployeeContribution:{ value: 4230.45,  source_url: SRC.cpp, last_verified: '2026-07-13' },
+    rate:                   { value: 0.0595,   source_url: SRC.cpp, last_verified: '2026-07-18' },
+    basicExemption:         { value: 3500,     source_url: SRC.cpp, last_verified: '2026-07-18' },
+    ympe:                   { value: 74600,    source_url: SRC.cpp, last_verified: '2026-07-18' }, // Year's Max Pensionable Earnings
+    maxEmployeeContribution:{ value: 4230.45,  source_url: SRC.cpp, last_verified: '2026-07-18' },
     baseCpp1Rate:           { value: 0.0495,   source_url: SRC.cpp, last_verified: '2026-07-13' }, // credit-eligible portion
     enhancedCpp1Rate:       { value: 0.01,     source_url: SRC.cpp, last_verified: '2026-07-13' }, // income-deductible portion
     cpp2: {
@@ -128,15 +129,15 @@ export const TAX_CONSTANTS_2026 = {
 
   /* ── EI (federal; Quebec pays a reduced rate + QPIP) ───────────────────────── */
   ei: {
-    rate:                 { value: 0.0163,  source_url: SRC.ei, last_verified: '2026-07-14' },
-    maxInsurableEarnings: { value: 68900,   source_url: SRC.ei, last_verified: '2026-07-14' },
-    maxEmployeePremium:   { value: 1123.07, source_url: SRC.ei, last_verified: '2026-07-14' },
+    rate:                 { value: 0.0163,  source_url: SRC.ei, last_verified: '2026-07-18' },
+    maxInsurableEarnings: { value: 68900,   source_url: SRC.ei, last_verified: '2026-07-18' },
+    maxEmployeePremium:   { value: 1123.07, source_url: SRC.ei, last_verified: '2026-07-18' },
     employerRate:         { value: 0.0228,  source_url: SRC.ei, last_verified: '2026-07-14' }, // = employee rate × 1.4
-    maxEmployerPremium:   { value: 1572.30, source_url: SRC.ei, last_verified: '2026-07-14' },
+    maxEmployerPremium:   { value: 1572.30, source_url: SRC.ei, last_verified: '2026-07-18' },
     benefitReplacementRate:{ value: 0.55,   source_url: SRC.eiBenefit, last_verified: '2026-07-14' }, // regular benefits = 55%
     quebec: {
-      rate:               { value: 0.0130,  source_url: SRC.ei, last_verified: '2026-07-14' },
-      maxEmployeePremium: { value: 895.70,  source_url: SRC.ei, last_verified: '2026-07-14' },
+      rate:               { value: 0.0130,  source_url: SRC.ei, last_verified: '2026-07-18' },
+      maxEmployeePremium: { value: 895.70,  source_url: SRC.ei, last_verified: '2026-07-18' },
     },
   },
 
@@ -395,11 +396,11 @@ export const TAX_CONSTANTS_2026 = {
     rrspEarnedIncomePct:       { value: 0.18,   source_url: SRC.craLimits,  last_verified: '2026-07-16' }, // lesser of 18% of prior-year earned income or the dollar limit
     fhsaAnnualLimit:           { value: 8000,   source_url: SRC.fhsa,       last_verified: '2026-07-16' }, // legislated, not indexed
     fhsaLifetimeLimit:         { value: 40000,  source_url: SRC.fhsa,       last_verified: '2026-07-16' },
-    respLifetimeLimit:         { value: 50000,  source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // per beneficiary; no annual cap
-    cesgRate:                  { value: 0.20,   source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // basic grant = 20% of contributions
-    cesgMaxPerYear:            { value: 500,    source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // 20% of the first $2,500 contributed
-    cesgFullGrantContribution: { value: 2500,   source_url: SRC.eduSavings, last_verified: '2026-07-16' },
-    cesgLifetimeMax:           { value: 7200,   source_url: SRC.eduSavings, last_verified: '2026-07-16' }, // per child
+    respLifetimeLimit:         { value: 50000,  source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // per beneficiary; no annual cap
+    cesgRate:                  { value: 0.20,   source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // basic grant = 20% of contributions
+    cesgMaxPerYear:            { value: 500,    source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // 20% of the first $2,500 contributed
+    cesgFullGrantContribution: { value: 2500,   source_url: SRC.eduSavings, last_verified: '2026-07-18' },
+    cesgLifetimeMax:           { value: 7200,   source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // per child
   },
 
   /* ── 2026 TAX DEADLINES (for filing the 2025 return) ──────────────────────── */
@@ -436,5 +437,25 @@ export const TAX_CONSTANTS_2026 = {
     // Employment / net self-employment exemption: first $5,000 fully exempt, then 50% of the
     // next $10,000 (max $10,000 exempt), PER PERSON. OAS and GIS themselves are excluded income.
     employmentExemption: { value: { full: 5000, partialUpTo: 10000, partialRate: 0.5 }, source_url: SRC.oasPayments, last_verified: '2026-07-16' },
+  },
+
+  /* ── BENEFIT PAYMENT DATES (2026) — CRA monthly payment calendars ─────────── */
+  // All four calendars confirmed live 2026-07-18 against the CRA "Payment dates for CRA
+  // administered benefits and credits" page (page date-modified 2026-07-09).
+  // NOTE: the GST/HST credit was RENAMED partway through 2026 — CRA lists Jan/Apr under
+  // "GST/HST credit" and Jul/Oct under "Canada Groceries and Essentials Benefit (formerly
+  // the GST/HST credit)". Both are kept separate below so the page can explain the change.
+  // These re-issue every year: re-verify the whole block each January (see MAINTENANCE.md).
+  benefitPaymentDates2026: {
+    ccb: { value: ['2026-01-20','2026-02-20','2026-03-20','2026-04-20','2026-05-20','2026-06-19',
+                   '2026-07-20','2026-08-20','2026-09-18','2026-10-20','2026-11-20','2026-12-11'],
+           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' },
+    gstCredit: { value: ['2026-01-05','2026-04-02'],
+           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // old name, first half of 2026
+    groceriesEssentials: { value: ['2026-07-03','2026-10-05'],
+           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // renamed program, from July 2026
+    ontarioTrillium: { value: ['2026-01-09','2026-02-10','2026-03-10','2026-04-10','2026-05-08','2026-06-10',
+                   '2026-07-10','2026-08-10','2026-09-10','2026-10-09','2026-11-10','2026-12-10'],
+           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // paid as "Canada PRO" on bank statements
   },
 };
