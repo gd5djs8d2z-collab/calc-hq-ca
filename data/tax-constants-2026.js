@@ -17,16 +17,30 @@
  *   source_url    — the primary government page it can be re-verified against.
  *   last_verified — ISO date it was last confirmed against source_url, OR the literal
  *                   "UNVERIFIED — pending Jan audit" when it has NOT been confirmed.
+ *   cadence       — OPTIONAL. When the value is expected to change, so the staleness
+ *                   checker knows when a stamp has gone stale. One of:
+ *                     'january'   — annual CRA/payroll indexation (THE DEFAULT when the
+ *                                   field is omitted; this is MAINTENANCE Rule 1).
+ *                     'july'      — re-indexed each July on a July–June benefit year (CCB).
+ *                     'quarterly' — re-indexed Jan/Apr/Jul/Oct (GIS/OAS, CPP averages).
+ *                     'statutory' — changes ONLY by legislation or by-law, never by
+ *                                   indexation. Never goes stale on a calendar; re-verify
+ *                                   when the governing statute is amended (MAINTENANCE Rule 2).
+ *                   A node inherits its block's `_cadence` when it has no cadence of its own.
  *
- * MAINTENANCE — see MAINTENANCE.md. Two rules: (1) re-verify every value each January;
+ * MAINTENANCE — see MAINTENANCE.md, five rules: (1) re-verify every value each January;
  *   (2) on a mid-year provincial tax change, verify against the ENACTED STATUTE, not the
- *   CRA T4032 table, which lags (PEI Bill No. 23 is the worked example).
+ *   CRA T4032 table, which lags (PEI Bill No. 23 is the worked example); (3) GIS/OAS
+ *   quarterly; (4) cadence tags + `scripts/check-constants.mjs`, which flags unstamped,
+ *   unsourced and stale values — run it before any audit; (5) CCB each July.
  *
  * SCOPE — federal income tax + CPP/CPP2/EI, and per-jurisdiction income-tax brackets/BPAs
  *   (+ Ontario surtax/health premium, BC tax reduction, Yukon's federal-linked BPA & CEA).
  *   Quebec is fully wired: its own brackets/BPA (bundled credit base), QPP, QPIP, and the
- *   16.5% federal abatement. Benefit-program constants (CCB, EI mat/parental, CPP-timing,
- *   LTT, ESA) still live in rates-2026.js and are NOT yet migrated here.
+ *   16.5% federal abatement. The benefit-program constants (ESA, CCB, LTT, CPP-timing,
+ *   EI mat/parental, QPIP mat/parental) are ALSO here — every one of them stamped. The
+ *   behaviour that consumes them (the `noticeWeeks`/`estimate`/`tax` methods) stays in
+ *   rates-2026.js; this file holds data only, never logic.
  */
 export const TAX_YEAR = 2026;
 
@@ -60,6 +74,23 @@ const SRC = {
   gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
   oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
   craBenefitDates: 'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html',
+  // ── Benefit-program sources (migrated out of rates-2026.js 2026-07-18) ──
+  esaTermination: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment',
+  esaSeverance:   'https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay',
+  esaOvertime:    'https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay',
+  esaVacation:    'https://www.ontario.ca/document/your-guide-employment-standards-act-0/vacation',
+  ccbHowMuch:     'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html',
+  ccbSheets:      'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/canada-child-benefit-calculation-sheets.html',
+  lttOntario:     'https://www.ontario.ca/document/land-transfer-tax/calculating-land-transfer-tax',
+  lttOntarioFtb:  'https://www.ontario.ca/document/land-transfer-tax/land-transfer-tax-refunds-first-time-homebuyers',
+  lttToronto:     'https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/municipal-land-transfer-tax-mltt-rates-and-fees/',
+  lttTorontoBylaw:'https://secure.toronto.ca/council/agenda-item.do?item=2025.EX28.1',
+  cppWhenStart:   'https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/when-start.html',
+  cppAmount:      'https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html',
+  qppCalculation: 'https://www.retraitequebec.gouv.qc.ca/en/citizens/retirement-planning/applying-your-retirement-pension/retirement-pension-quebec-pension-plan/calculation-your-retirement-pension',
+  qppFigures:     'https://www.retraitequebec.gouv.qc.ca/en/benefits-amounts-key-data',
+  eiMatParental:  'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html',
+  eiAfterApply:   'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -427,8 +458,9 @@ export const TAX_CONSTANTS_2026 = {
   // reduces $1 per $2, with a steeper top-up band at low income). Re-index EVERY QUARTER
   // (Jan/Apr/Jul/Oct) — see MAINTENANCE.md. GIS never decreases quarter-to-quarter.
   gis: {
-    effectiveQuarter: 'July–September 2026',
-    oasEligibilityAge:   { value: 65, source_url: SRC.gisEligibility, last_verified: '2026-07-16' },
+    _cadence: 'quarterly',
+    effectiveQuarter:    { value: 'July–September 2026', source_url: SRC.gis, last_verified: '2026-07-16' },
+    oasEligibilityAge:   { value: 65, source_url: SRC.gisEligibility, last_verified: '2026-07-16', cadence: 'statutory' },
     // maxMonthly = maximum monthly GIS; incomeCutoff = annual income (couples: combined) at/above which GIS is $0.
     single:          { value: { maxMonthly: 1123.17, incomeCutoff: 22800 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // single / widowed / divorced
     spouseFullOAS:   { value: { maxMonthly: 676.09,  incomeCutoff: 30096 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse receives full OAS
@@ -447,6 +479,7 @@ export const TAX_CONSTANTS_2026 = {
   // the GST/HST credit)". Both are kept separate below so the page can explain the change.
   // These re-issue every year: re-verify the whole block each January (see MAINTENANCE.md).
   benefitPaymentDates2026: {
+    _cadence: 'january', // the whole calendar re-issues each year
     ccb: { value: ['2026-01-20','2026-02-20','2026-03-20','2026-04-20','2026-05-20','2026-06-19',
                    '2026-07-20','2026-08-20','2026-09-18','2026-10-20','2026-11-20','2026-12-11'],
            source_url: SRC.craBenefitDates, last_verified: '2026-07-18' },
@@ -457,5 +490,201 @@ export const TAX_CONSTANTS_2026 = {
     ontarioTrillium: { value: ['2026-01-09','2026-02-10','2026-03-10','2026-04-10','2026-05-08','2026-06-10',
                    '2026-07-10','2026-08-10','2026-09-10','2026-10-09','2026-11-10','2026-12-10'],
            source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // paid as "Canada PRO" on bank statements
+  },
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     BENEFIT-PROGRAM CONSTANTS — migrated out of rates-2026.js on 2026-07-18.
+     Source URLs and verified dates below are carried over unchanged from the
+     inline comments they replace; nothing was re-verified in the move. The
+     methods that consume these (noticeWeeks, estimate, tax, …) stay in
+     rates-2026.js — this file holds data only.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  /* ── ONTARIO EMPLOYMENT STANDARDS ACT ─────────────────────────────────────── */
+  // Statutory minimums only — NOT common-law reasonable notice. Every value here
+  // changes only when the ESA is amended, so the whole block is 'statutory': it
+  // never goes stale on a calendar, but must be re-checked on any ESA amendment.
+  ontarioEsa: {
+    _cadence: 'statutory',
+    // s.57 notice ladder. Verified 2026-07-12. Official ladder (3+ months employed):
+    //   <3 mo = 0 wk · 3 mo–<1 yr = 1 wk · 1–<3 yr = 2 wk · then 1 wk per completed
+    //   year to a cap of 8 weeks at 8 years or more.
+    noticeLadder:   { value: [{ underMonths: 3, weeks: 0 }, { underMonths: 12, weeks: 1 }, { underMonths: 36, weeks: 2 }],
+                      source_url: SRC.esaTermination, last_verified: '2026-07-12' },
+    noticeCapWeeks: { value: 8, source_url: SRC.esaTermination, last_verified: '2026-07-12' },
+
+    // s.64 statutory SEVERANCE PAY — a SEPARATE entitlement from notice above.
+    // Verified 2026-07-12. Qualifies at 5+ years of employment AND either (a) global
+    // payroll of $2.5M+, or (b) 50+ employees severed in 6 months on a permanent
+    // closure. Amount = weekly wages × (completed years + completed months ÷ 12), max 26 wk.
+    severanceMinYearsService:      { value: 5,       source_url: SRC.esaSeverance, last_verified: '2026-07-12' },
+    severancePayrollThreshold:     { value: 2500000, source_url: SRC.esaSeverance, last_verified: '2026-07-12' }, // $2.5M global payroll
+    severanceMassTerminationCount: { value: 50,      source_url: SRC.esaSeverance, last_verified: '2026-07-12' },
+    severanceMassTerminationMonths:{ value: 6,       source_url: SRC.esaSeverance, last_verified: '2026-07-12' },
+    severanceMaxWeeks:             { value: 26,      source_url: SRC.esaSeverance, last_verified: '2026-07-12' },
+
+    // s.22 OVERTIME — 1½× the regular rate over 44 hours in a work WEEK (weekly basis;
+    // no daily overtime unless a contract says so). Verified 2026-07-17. Managers and
+    // many occupations are exempt or have a different threshold — NOT modelled.
+    overtimeThresholdHours: { value: 44,  source_url: SRC.esaOvertime, last_verified: '2026-07-17' },
+    overtimeMultiplier:     { value: 1.5, source_url: SRC.esaOvertime, last_verified: '2026-07-17' },
+
+    // s.35.2 VACATION — at least 4% of gross wages under 5 years of employment, 6% at
+    // 5+; vacation TIME is 2 weeks (<5 yr) / 3 weeks (5+ yr). Gross wages exclude
+    // vacation pay itself. Verified 2026-07-17.
+    vacationYearsCutoff: { value: 5,    source_url: SRC.esaVacation, last_verified: '2026-07-17' },
+    vacationRateUnder5:  { value: 0.04, source_url: SRC.esaVacation, last_verified: '2026-07-17' },
+    vacationRate5Plus:   { value: 0.06, source_url: SRC.esaVacation, last_verified: '2026-07-17' },
+    vacationWeeksUnder5: { value: 2,    source_url: SRC.esaVacation, last_verified: '2026-07-17' },
+    vacationWeeks5Plus:  { value: 3,    source_url: SRC.esaVacation, last_verified: '2026-07-17' },
+  },
+
+  /* ── CANADA CHILD BENEFIT (CCB) ───────────────────────────────────────────── */
+  // ┌───────────────────────────────────────────────────────────────────────────┐
+  // │ INDEXED EVERY JULY — NOT January. Runs on a July–June benefit year, so the  │
+  // │ block cadence is 'july'. These figures are the July 2026 → June 2027 year,  │
+  // │ based on 2025 adjusted family net income (AFNI). When CRA publishes the next │
+  // │ calculation sheet, replace the maxima and thresholds below. The reduction    │
+  // │ PERCENTAGES do not index — they've been fixed since 2016, so they are        │
+  // │ marked 'statutory' individually and are exempt from the July staleness check.│
+  // └───────────────────────────────────────────────────────────────────────────┘
+  // CRA method: total base benefit minus a two-tier reduction. Tier 1 applies to AFNI
+  // between the two thresholds; tier 2 applies above the second threshold on top of the
+  // full tier-1 reduction accumulated across the band. The "fixed" dollar amounts CRA
+  // prints for tier 2 are exactly (threshold2 − threshold1) × tier1Rate, so rates-2026.js
+  // derives them rather than hardcoding — this stays correct after a threshold update.
+  ccb: {
+    _cadence: 'july',
+    benefitYear: { value: 'July 2026 – June 2027', source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' },
+    baseYear:    { value: 2025,                    source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' },
+    // [3P] Base amounts are the 2025–26 CRA sheet values ($7,997 / $6,748) indexed +2.0%,
+    // the published 2026–27 indexation — NOT read off an official 2026–27 sheet, which
+    // was not yet published at build time. Re-confirm when CRA posts it.
+    maxUnder6:  { value: 8157,  source_url: SRC.ccbSheets,  last_verified: '2026-07-12' }, // [3P] per child under 6, per year
+    max6to17:   { value: 6883,  source_url: SRC.ccbSheets,  last_verified: '2026-07-12' }, // [3P] per child aged 6–17, per year
+    threshold1: { value: 38237, source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' }, // AFNI where the phase-out begins
+    threshold2: { value: 82847, source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' }, // AFNI where the lower reduction rate takes over
+    // Reduction rates by number of eligible children (index 0 = 1 child … 3 = 4+).
+    // Fixed since 2016 — these do NOT index, hence 'statutory'.
+    tier1Rates: { value: [0.07, 0.135, 0.19, 0.23],   source_url: SRC.ccbSheets, last_verified: '2026-07-12', cadence: 'statutory' }, // AFNI between threshold1 and threshold2
+    tier2Rates: { value: [0.032, 0.057, 0.08, 0.095], source_url: SRC.ccbSheets, last_verified: '2026-07-12', cadence: 'statutory' }, // AFNI above threshold2
+  },
+
+  /* ── LAND TRANSFER TAX (LTT) — Ontario provincial + Toronto municipal ─────── */
+  // Marginal brackets: each rate applies only to the portion of the price within that
+  // band. Applies to residential property with one or two single-family residences —
+  // the case for essentially every home buyer (the top provincial rate and Toronto's
+  // high-value rates are limited to 1–2 SFR properties).
+  // NOT CRA-indexed: statutory rates set by the Province and the City of Toronto, changed
+  // only by legislation/by-law — so the block is 'statutory', never stale on a calendar.
+  // Verified 2026-07-13 against official sources only (no blogs/aggregators). Ontario max
+  // first-time-buyer refund $4,000 clears the provincial LTT to ~$368,000; Toronto's
+  // $4,475 clears the municipal LTT to $400,000. Toronto's graduated high-value rates for
+  // 1–2 SFR took effect APRIL 1, 2026 (City Council 2025.EX28.1, By-law 132-2026).
+  ltt: {
+    _cadence: 'statutory',
+    ontarioBrackets: { value: [
+        { upTo: 55000,    rate: 0.005 },
+        { upTo: 250000,   rate: 0.010 },
+        { upTo: 400000,   rate: 0.015 },
+        { upTo: 2000000,  rate: 0.020 },
+        { upTo: Infinity, rate: 0.025 }, // over $2M, property with 1–2 SFR
+      ], source_url: SRC.lttOntario, last_verified: '2026-07-13' },
+    torontoBrackets: { value: [
+        { upTo: 55000,    rate: 0.005 },
+        { upTo: 250000,   rate: 0.010 },
+        { upTo: 400000,   rate: 0.015 },
+        { upTo: 2000000,  rate: 0.020 },
+        { upTo: 3000000,  rate: 0.025 },
+        { upTo: 4000000,  rate: 0.044 },
+        { upTo: 5000000,  rate: 0.0545 },
+        { upTo: 10000000, rate: 0.065 },
+        { upTo: 20000000, rate: 0.0755 },
+        { upTo: Infinity, rate: 0.086 },
+      ], source_url: SRC.lttToronto, last_verified: '2026-07-13' },
+    ontarioFtbRebateMax:  { value: 4000,   source_url: SRC.lttOntarioFtb,   last_verified: '2026-07-13' },
+    torontoFtbRebateMax:  { value: 4475,   source_url: SRC.lttToronto,      last_verified: '2026-07-13' },
+    torontoRatesEffective:{ value: 'April 1, 2026', source_url: SRC.lttTorontoBylaw, last_verified: '2026-07-13' },
+  },
+
+  /* ── CPP RETIREMENT PENSION — timing (start at 60 vs 65) ──────────────────── */
+  // Federal, nationwide (CPP); Quebec's QPP branch is modelled separately below.
+  // Verified 2026-07-14 against canada.ca (ESDC): "before age 65 … decrease by 0.6% each
+  // month (7.2%/yr), up to 36% at age 60; after age 65 … increase by 0.7% each month
+  // (8.4%/yr), up to 42% at age 70." Adjustment factors are set in the CPP Act, so they
+  // are 'statutory'; the dollar AMOUNTS move — the maximum re-indexes each January and
+  // the published average is refreshed through the year, so it is 'quarterly'.
+  // The maximum/average are CONTEXT ONLY — the calculator requires the user's own
+  // Service Canada estimate and never prefills from them.
+  // QPP branch verified 2026-07-15 against Retraite Québec: before 65 the pension
+  // decreases 0.5%–0.6% PER MONTH — a SLIDING factor, unlike CPP's flat 0.6%. It is 0.5%
+  // for a low pension, rising in proportion to 0.6% at the maximum. After 65: 0.7%/month,
+  // same as CPP. Max QPP pension at 65 (2026) = $1,507.65, equal to the CPP maximum.
+  // Consequence: unlike CPP's constant ~73.9, the QPP break-even age VARIES with pension size.
+  cppRetirement: {
+    _cadence: 'statutory',
+    earlyReductionPerMonth: { value: 0.006, source_url: SRC.cppWhenStart, last_verified: '2026-07-14' }, // flat 0.6%/month before 65
+    earlyMaxReduction:      { value: 0.36,  source_url: SRC.cppWhenStart, last_verified: '2026-07-14' }, // 36% at age 60 (60 months early)
+    lateIncreasePerMonth:   { value: 0.007, source_url: SRC.cppWhenStart, last_verified: '2026-07-14' }, // reference only, not used on 60-vs-65
+    lateMaxIncrease:        { value: 0.42,  source_url: SRC.cppWhenStart, last_verified: '2026-07-14' }, // reference only
+    maxAt65Monthly:         { value: 1507.65, source_url: SRC.cppAmount, last_verified: '2026-07-14', cadence: 'january' },   // January 2026 maximum
+    averageAt65Monthly:     { value: 877.01,  source_url: SRC.cppAmount, last_verified: '2026-07-14', cadence: 'quarterly' }, // April 2026 average
+    qppMaxAt65Monthly:      { value: 1507.65, source_url: SRC.qppFigures,     last_verified: '2026-07-15', cadence: 'january' },
+    qppEarlyReductionMin:   { value: 0.005,   source_url: SRC.qppCalculation, last_verified: '2026-07-15' }, // 0.5%/month for a low pension
+    qppEarlyReductionMax:   { value: 0.006,   source_url: SRC.qppCalculation, last_verified: '2026-07-15' }, // 0.6%/month at the maximum pension
+    qppLateIncreasePerMonth:{ value: 0.007,   source_url: SRC.qppCalculation, last_verified: '2026-07-15' },
+  },
+
+  /* ── EI MATERNITY & PARENTAL BENEFITS — federal, nationwide EXCEPT Quebec ─── */
+  // Quebec residents use QPIP (below), not this. Verified 2026-07-14 against canada.ca
+  // (Service Canada). Official 2026 table:
+  //   Maternity (birth parent only, not shareable): up to 15 weeks @ 55%, max $729/wk
+  //   Standard parental: up to 40 wks shared / 35 wks one parent @ 55%, max $729/wk
+  //   Extended parental: up to 69 wks shared / 61 wks one parent @ 33%, max $437/wk
+  // Maternity is ALWAYS paid at 55% — the standard/extended choice only affects PARENTAL.
+  // Weeks and replacement rates are set in the EI Act ('statutory'); the weekly MAXIMUMS
+  // and the Family Supplement threshold move with the MIE every January.
+  eiParental: {
+    _cadence: 'statutory',
+    standardRate:       { value: 0.55, source_url: SRC.eiBenefit, last_verified: '2026-07-14' },
+    extendedRate:       { value: 0.33, source_url: SRC.eiBenefit, last_verified: '2026-07-14' },
+    maxWeeklyStandard:  { value: 729,  source_url: SRC.eiBenefit, last_verified: '2026-07-14', cadence: 'january' }, // = 55% of $68,900 MIE ÷ 52
+    maxWeeklyExtended:  { value: 437,  source_url: SRC.eiBenefit, last_verified: '2026-07-14', cadence: 'january' }, // = 33% of $68,900 MIE ÷ 52
+    maternityWeeks:     { value: 15,   source_url: SRC.eiMatParental, last_verified: '2026-07-14' },
+    standardParental:   { value: { oneParent: 35, shared: 40 }, source_url: SRC.eiMatParental, last_verified: '2026-07-14' }, // sharing adds the 2nd parent's 5 weeks
+    extendedParental:   { value: { oneParent: 61, shared: 69 }, source_url: SRC.eiMatParental, last_verified: '2026-07-14' }, // sharing adds the 2nd parent's 8 weeks
+    waitingPeriodWeeks: { value: 1,    source_url: SRC.eiAfterApply, last_verified: '2026-07-14' }, // one unpaid week at the start of the claim
+    familySupplementIncomeThreshold: { value: 25921, source_url: SRC.eiBenefit, last_verified: '2026-07-14', cadence: 'january' }, // Family Supplement (up to 80%) — NOT modelled
+  },
+
+  /* ── QPIP MATERNITY / PARENTAL BENEFITS — Quebec's replacement for federal EI ── */
+  // Quebec residents use the Québec Parental Insurance Plan, NOT federal EI. QPIP has its
+  // own two-plan structure (Basic = longer, lower %; Special = shorter, higher %), its own
+  // weeks/percentages per benefit type, its own MIE ($103,000, not EI's $68,900), and NO
+  // waiting period (EI has one unpaid week). Verified 2026-07-15 against quebec.ca.
+  // Official 2026 table:
+  //   Basic  : maternity 18 wk @70%; paternity 5 wk @70%; parental 32 wk (7 @70% + 25 @55%);
+  //            +4 shareable wk @55% when each parent takes ≥8 shareable weeks.
+  //   Special: maternity 15 wk @75%; paternity 3 wk @75%; parental 25 wk @75%;
+  //            +3 shareable wk @75% when each parent takes ≥6 shareable weeks.
+  // NO-WAITING-PERIOD FLAG: modelled as 0 weeks. An explicit "no waiting period" sentence
+  // was NOT located on the reachable RQAP/quebec.ca pages (the site migration redirects
+  // several deep links to hubs); the benefit-start-date page shows benefits payable from
+  // the interruption-of-earnings date with no unpaid week, consistent with QPIP's design.
+  // Adoption benefits differ again (no maternity/paternity) and are NOT modelled.
+  qpipParental: {
+    _cadence: 'statutory',
+    maxInsurableEarnings: { value: 103000, source_url: SRC.qpip, last_verified: '2026-07-15', cadence: 'january' },
+    waitingPeriodWeeks:   { value: 0, source_url: SRC.qpipPlans, last_verified: '2026-07-15' }, // see NO-WAITING-PERIOD FLAG above
+    basic: { value: {   // long term, lower percentage
+        maternityWeeks: 18, paternityWeeks: 5, exclusiveRate: 0.70,
+        parentalWeeks1: 7, parentalRate1: 0.70, parentalWeeks2: 25, parentalRate2: 0.55,
+        sharedBonusWeeks: 4, sharedBonusRate: 0.55, rateLabel: '70% → 55%',
+      }, source_url: SRC.qpipPlans, last_verified: '2026-07-15' },
+    special: { value: { // short term, higher percentage
+        maternityWeeks: 15, paternityWeeks: 3, exclusiveRate: 0.75,
+        parentalWeeks: 25, parentalRate: 0.75,
+        sharedBonusWeeks: 3, sharedBonusRate: 0.75, rateLabel: '75%',
+      }, source_url: SRC.qpipPlans, last_verified: '2026-07-15' },
   },
 };

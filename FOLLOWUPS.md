@@ -50,26 +50,40 @@ links would also need French destination pages, which don't exist yet.
 
 ---
 
-## 2. Migrate benefit-program constants into the provenance file
+## 4. Stamp the remaining unstamped leaves in `provinces` / `cpp` / `qpp`
 
-**What:** These still hold their constants inline in `data/rates-2026.js` (with their own
-source/verified comments), outside the `{ value, source_url, last_verified }` structure:
-`ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`, `QPIP_PARENTAL`.
+**What:** `scripts/check-constants.mjs` (added 2026-07-18) reports **44 UNSTAMPED leaves** —
+bare values inside blocks that were never converted to provenance nodes. They split in two:
 
-**Why deferred / why separate cadence:** they don't index on the January income-tax cycle —
-- CCB re-indexes every **July** (benefit year July–June),
-- LTT and ESA change only by **legislation**,
-- CPP-timing and EI mat/parental follow federal benefit updates.
+- **Material — affects tax output, should be stamped:**
+  `provinces.<XX>.bpaCreditRate` (all 13 jurisdictions — the rate the BPA is credited at),
+  `provinces.ON.healthPremiumMax`, `cpp.selfEmployedMultiplier`, `qpp.selfEmployedMultiplier`.
+- **Structural — labels and model flags, arguably not sourceable facts:**
+  `provinces.<XX>.name`, `provinces.<XX>.indexation`, `provinces.QC.bpaBundlesContributions`,
+  `provinces.YT.includesCanadaEmploymentAmount`.
 
-So they were intentionally left out of `tax-constants-2026.js` and the January audit.
+**Why deferred:** found by the new checker while migrating item 2, but outside that task's
+scope. Not touched — the six-object migration was kept clean.
 
-**Fix:** extend the provenance structure to cover them (possibly a sibling
-`benefit-constants-2026.js`), and add their cadences to `MAINTENANCE.md` so each gets a
-re-verification trigger appropriate to it (not the January one).
+**Consequence today:** the checker exits 1 out of the box, so it cannot gate CI until these
+are resolved. Decide per group: stamp the material ones; for the structural ones either stamp
+them or give the checker an explicit "structural, not sourced" marker so it stops flagging
+them. Do **not** silence them wholesale — `bpaCreditRate` is a real tax constant.
 
 ---
 
 ## Done
+
+- **Migrate benefit-program constants into the provenance file** (was item 2): done
+  2026-07-18. `ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL` and
+  `QPIP_PARENTAL` now derive from `tax-constants-2026.js` (blocks `ontarioEsa`, `ccb`,
+  `ltt`, `cppRetirement`, `eiParental`, `qpipParental`) — **50 values** that were inline
+  literals are now stamped nodes. Provenance nodes gained an optional `cadence` field
+  (`january` / `july` / `quarterly` / `statutory`, block-level default via `_cadence`), so
+  the non-January cycles that justified deferring this are now expressed in the data rather
+  than in prose. `rates-2026.js` keeps behaviour only. Engine output byte-identical
+  (ON $50,555.75 / QC $48,180.31 at $65k, all 13 jurisdictions unchanged). Verified by
+  `scripts/check-constants.mjs`, which also surfaced new item 4.
 
 - **Quebec — deduction for workers** (was item 3): implemented 2026-07-16. `provincialTax`
   now subtracts `min(6% × eligible work income, $1,450)` from the Quebec taxable base in both

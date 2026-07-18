@@ -1,11 +1,15 @@
 # Tax-constant maintenance
 
-Every income-tax / payroll constant on calc-hq.ca lives once, with provenance, in
+Every income-tax / payroll constant on calc-hq.ca — and, since 2026-07-18, every
+benefit-program constant too — lives once, with provenance, in
 [`data/tax-constants-2026.js`](data/tax-constants-2026.js). Each value carries
-`{ value, source_url, last_verified }`. `data/rates-2026.js` derives the runtime objects
-(`FEDERAL`, `CPP`, `EI`, `PROVINCES`) from it — so you change a number in **one** place.
+`{ value, source_url, last_verified }` plus an optional `cadence` (Rule 4).
+`data/rates-2026.js` derives the runtime objects (`FEDERAL`, `CPP`, `EI`, `PROVINCES`,
+`ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`, `QPIP_PARENTAL`) from it and
+holds **behaviour only** — so you change a number in **one** place.
 
-Two standing rules keep it honest.
+Five standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
+July); Rule 2 is event-driven; Rule 4 is the automated check that tells you which is due.
 
 ## Rule 1 — Annual January re-verification
 
@@ -94,13 +98,51 @@ line 201 / the payroll Principal Changes page carry the current cap; the return 
 year). Still **not** modelled: all other non-refundable credits (age, living-alone,
 dependants, etc.), which are situational rather than near-universal.
 
-### Not yet migrated
+## Rule 4 — Cadence tags + the automated checker
 
-Benefit-program constants (CCB, EI maternity/parental, CPP-timing, Land Transfer Tax, ESA)
-still live inline in `rates-2026.js` with their own source/verified comments. They are out
-of scope for the January income-tax audit (different cadences — e.g. CCB re-indexes in
-**July**, LTT/ESA change only by legislation). Migrating them into the same provenance
-structure is a sensible follow-up.
+As of **2026-07-18** the benefit-program constants (ESA, CCB, LTT, CPP-timing, EI
+maternity/parental, QPIP maternity/parental) live in `tax-constants-2026.js` like everything
+else — they are no longer inline in `rates-2026.js`. Because they do **not** all follow the
+January cycle, every provenance node can carry a `cadence`:
+
+| cadence | meaning | who uses it |
+|---|---|---|
+| `january` | annual CRA/payroll indexation — **the default** when omitted | Rule 1: brackets, BPAs, CPP/EI, contribution limits, EI/QPIP weekly maxima and MIEs, CPP max at 65 |
+| `july` | re-indexed each July on a July–June benefit year | Rule 5: CCB maxima + AFNI thresholds |
+| `quarterly` | re-indexed Jan/Apr/Jul/Oct | Rule 3: GIS/OAS, the published CPP average |
+| `statutory` | changes only by legislation/by-law — **never stale on a calendar** | Rule 2: ESA, LTT, CCB reduction percentages, CPP/QPP adjustment factors, EI/QPIP weeks and rates |
+
+A block sets a default with `_cadence`; an individual node overrides it with `cadence`. This
+matters — e.g. within `ccb` the dollar maxima are `july` but the reduction percentages are
+`statutory` (fixed since 2016), so only the maxima are chased each July.
+
+**The checker:** `scripts/check-constants.mjs` walks the whole tree and flags `UNSTAMPED`
+(a bare value with no provenance), `NO-SOURCE`, `UNVERIFIED`, and `STALE` (the cadence rolled
+over since `last_verified`). Run it at the start of every audit, before touching anything:
+
+```
+node scripts/check-constants.mjs                    # or --as-of YYYY-MM-DD, --verbose
+```
+
+There is no Node runtime on the build machine, so it is also importable in a browser console
+against the dev server: `(await import('/scripts/check-constants.mjs')).report()`.
+
+It exits non-zero when anything is flagged. **It currently exits 1** on 44 pre-existing
+`UNSTAMPED` leaves in `provinces` / `cpp` / `qpp` (see FOLLOWUPS item 4) — clear those before
+wiring it into CI as a gate.
+
+## Rule 5 — July re-verification (CCB)
+
+The **Canada child benefit** (`ccb`, powering `/benefits/ccb/`) runs on a **July–June benefit
+year** and re-indexes every **July**, using the *previous* calendar year's adjusted family net
+income. Each July, re-check `maxUnder6`, `max6to17`, `threshold1`, `threshold2` and the
+`benefitYear` / `baseYear` labels against the CRA calculation sheet (`SRC.ccbSheets`) and the
+"How much you can get" page (`SRC.ccbHowMuch`). The `tier1Rates` / `tier2Rates` percentages are
+`statutory` and do **not** move.
+
+**Open flag:** `maxUnder6` / `max6to17` are marked `[3P]` — they are the 2025–26 sheet values
+indexed +2.0%, not read off an official 2026–27 sheet, which CRA had not published at build
+time. Confirm them against the real sheet at the first opportunity.
 
 ---
 

@@ -7,8 +7,11 @@
  * every calculator consume. To change a tax number, edit tax-constants-2026.js, not here.
  *
  * The benefit-program objects lower down (ONTARIO_ESA, CCB, LTT, CPP_RETIREMENT,
- * EI_PARENTAL) still hold their constants inline — they are NOT yet migrated to the
- * provenance file (a follow-up). Each carries its own source + verified-date comments.
+ * EI_PARENTAL, QPIP_PARENTAL) are derived the same way as of 2026-07-18 — every constant
+ * they hold now lives in tax-constants-2026.js with a source_url, last_verified date and
+ * update cadence, so the staleness checker (scripts/check-constants.mjs) can see it.
+ * What stays here is BEHAVIOUR ONLY: the ladders, phase-outs and estimate() methods.
+ * To change a number, edit tax-constants-2026.js. Do not reintroduce literals here.
  */
 import { TAX_CONSTANTS_2026 as TC, TAX_YEAR } from './tax-constants-2026.js';
 export { TAX_YEAR };
@@ -126,66 +129,57 @@ export const PROVINCE_STATUS = {
 export const LIVE_PROVINCES = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU', 'QC'];
 export const PROVINCE_ORDER = ['ON', 'AB', 'BC', 'SK', 'MB', 'NS', 'NB', 'NL', 'PE', 'YT', 'NT', 'NU', 'QC'];
 
-/* ── ONTARIO EMPLOYMENT STANDARDS ACT — statutory termination notice ──────── */
-// [ESA] Ontario ESA s.57 — minimum notice / pay in lieu on termination. Statutory
-// only; this is NOT common-law reasonable notice. Verified 2026-07-12 against:
-// https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment
-// Official ladder (employee continuously employed 3+ months):
+/* ── ONTARIO EMPLOYMENT STANDARDS ACT ─────────────────────────────────────── */
+// Statutory minimums only — NOT common-law reasonable notice. All values derived from
+// TC.ontarioEsa (stamped: ontario.ca ESA guide, statutory cadence). Behaviour only here.
+// s.57 notice ladder (employee continuously employed 3+ months):
 //   < 3 months .............. 0 weeks (no ESA notice yet)
 //   3 months – < 1 year ..... 1 week
 //   1 year   – < 3 years .... 2 weeks
-//   3 years  – < 4 years .... 3 weeks
-//   4 years  – < 5 years .... 4 weeks
-//   5 years  – < 6 years .... 5 weeks
-//   6 years  – < 7 years .... 6 weeks
-//   7 years  – < 8 years .... 7 weeks
-//   8 years or more ......... 8 weeks (cap)
+//   3 years+ ................ 1 week per completed year, cap 8 at 8 years or more
+const ESA = TC.ontarioEsa;
 export const ONTARIO_ESA = {
-  noticeCapWeeks: 8,
+  noticeLadder:   v(ESA.noticeLadder),
+  noticeCapWeeks: v(ESA.noticeCapWeeks),
   // Returns statutory notice weeks for a given length of service.
   noticeWeeks(years, months) {
     const totalMonths = years * 12 + months;
-    if (totalMonths < 3) return 0;   // no entitlement
-    if (totalMonths < 12) return 1;  // 3 months to just under a year
-    if (totalMonths < 36) return 2;  // 1 year to just under 3 years
-    return Math.min(years, 8);       // 3 years+: one week per completed year, cap 8
+    for (const step of this.noticeLadder) {
+      if (totalMonths < step.underMonths) return step.weeks;
+    }
+    return Math.min(years, this.noticeCapWeeks); // 3 years+: one week per completed year
   },
 
-  // [ESA] Statutory SEVERANCE PAY (s.64) — a SEPARATE entitlement from notice above.
-  // Verified 2026-07-12 against:
-  // https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay
-  // Qualifies when the employee has 5+ years of employment AND either:
-  //   (a) the employer has a global payroll of at least $2.5 million; OR
-  //   (b) the employer severed 50+ employees in a 6-month period because all or part
-  //       of the business permanently closed.
-  // Amount = regular weekly wages × (completed years + completed months ÷ 12),
-  // to a maximum of 26 weeks.
+  // Statutory SEVERANCE PAY (s.64) — a SEPARATE entitlement from notice above. Qualifies
+  // when the employee has 5+ years of employment AND either (a) the employer has a global
+  // payroll of at least $2.5M, or (b) the employer severed 50+ employees in a 6-month
+  // period because all or part of the business permanently closed. Amount = regular weekly
+  // wages × (completed years + completed months ÷ 12), to a maximum of 26 weeks.
   severance: {
-    minYearsService: 5,
-    payrollThreshold: 2500000, // $2.5M global payroll
-    massTerminationEmployees: 50,
-    massTerminationMonths: 6,
-    maxWeeks: 26,
+    minYearsService:          v(ESA.severanceMinYearsService),
+    payrollThreshold:         v(ESA.severancePayrollThreshold),
+    massTerminationEmployees: v(ESA.severanceMassTerminationCount),
+    massTerminationMonths:    v(ESA.severanceMassTerminationMonths),
+    maxWeeks:                 v(ESA.severanceMaxWeeks),
     // Severance weeks for a qualifying employee (before the cap the caller may re-show).
     weeks(years, months) {
       const partial = Math.min(11, Math.max(0, Math.floor(months))) / 12;
-      return Math.min(years + partial, 26);
+      return Math.min(years + partial, this.maxWeeks);
     },
-    // True only when the 5-year service floor AND a payroll/mass-termination route are met.
+    // True only when the service floor AND a payroll/mass-termination route are met.
     qualifies(years, months, payrollAtLeast25M, massClosure) {
       const totalMonths = years * 12 + months;
-      return totalMonths >= 60 && (payrollAtLeast25M || massClosure);
+      return totalMonths >= this.minYearsService * 12 && (payrollAtLeast25M || massClosure);
     },
   },
 
-  // [ESA] OVERTIME PAY (s.22) — 1½× the regular rate for hours worked over 44 in a work
-  // WEEK (weekly basis; no daily overtime unless a contract says so). Verified 2026-07-17
-  // against: https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay
-  // Managers/supervisors and many occupations are exempt or have a different threshold —
-  // NOT modelled here; flagged in the page content.
+  // OVERTIME PAY (s.22) — 1½× the regular rate for hours worked over 44 in a work WEEK
+  // (weekly basis; no daily overtime unless a contract says so). Managers/supervisors and
+  // many occupations are exempt or have a different threshold — NOT modelled here;
+  // flagged in the page content.
   overtime: {
-    thresholdHours: 44,
-    multiplier: 1.5,
+    thresholdHours: v(ESA.overtimeThresholdHours),
+    multiplier:     v(ESA.overtimeMultiplier),
     // Split a week's hours into { regular, overtime } at the 44-hour line.
     split(hours) {
       const regular = Math.min(Math.max(0, hours), this.thresholdHours);
@@ -194,40 +188,24 @@ export const ONTARIO_ESA = {
     },
   },
 
-  // [ESA] VACATION PAY (s.35.2) — at least 4% of gross wages for employees with LESS than
-  // 5 years of employment, at least 6% at 5+ years; vacation TIME is 2 weeks (<5 yrs) /
-  // 3 weeks (5+ yrs). Gross wages exclude vacation pay itself. Verified 2026-07-17 against:
-  // https://www.ontario.ca/document/your-guide-employment-standards-act-0/vacation
+  // VACATION PAY (s.35.2) — at least 4% of gross wages for employees with LESS than 5
+  // years of employment, at least 6% at 5+ years; vacation TIME is 2 weeks (<5 yrs) /
+  // 3 weeks (5+ yrs). Gross wages exclude vacation pay itself.
   vacation: {
-    yearsCutoff: 5,
-    rateUnder5: 0.04,
-    rate5Plus: 0.06,
-    weeksUnder5: 2,
-    weeks5Plus: 3,
+    yearsCutoff: v(ESA.vacationYearsCutoff),
+    rateUnder5:  v(ESA.vacationRateUnder5),
+    rate5Plus:   v(ESA.vacationRate5Plus),
+    weeksUnder5: v(ESA.vacationWeeksUnder5),
+    weeks5Plus:  v(ESA.vacationWeeks5Plus),
     rate(years)  { return years >= this.yearsCutoff ? this.rate5Plus : this.rateUnder5; },
     weeks(years) { return years >= this.yearsCutoff ? this.weeks5Plus : this.weeksUnder5; },
   },
 };
 
 /* ── CANADA CHILD BENEFIT (CCB) — federal, tax-free monthly benefit ─────────── */
-// ┌───────────────────────────────────────────────────────────────────────────┐
-// │ INDEXED ANNUALLY — DO NOT ASSUME THESE ARE CURRENT.                         │
-// │ Unlike the payroll tables above (which update every JANUARY), the CCB is    │
-// │ re-indexed to inflation every JULY and runs on a benefit year (July–June).  │
-// │ These figures are for the July 2026 → June 2027 benefit year, based on 2025 │
-// │ adjusted family net income (AFNI). When CRA publishes the next calculation  │
-// │ sheet, replace maxUnder6 / max6to17 / threshold1 / threshold2 below. The    │
-// │ reduction PERCENTAGES do not index — they've been fixed since 2016.         │
-// └───────────────────────────────────────────────────────────────────────────┘
-// Verified 2026-07-12:
-//  - Thresholds $38,237 / $82,847 confirmed on canada.ca "How much you can get":
-//    https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html
-//  - Formula + fixed percentages from the CRA calculation sheet (structure is the
-//    same each year; the 2026–27 sheet was not yet published at build time):
-//    https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/canada-child-benefit-calculation-sheets.html
-//  - Base amounts $8,157 (under 6) / $6,883 (6–17) are the 2025–26 CRA sheet values
-//    ($7,997 / $6,748) indexed +2.0% — the published 2026–27 indexation. [3P — re-confirm
-//    against the official 2026–27 calculation sheet when CRA posts it.]
+// Constants + provenance: TC.ccb (cadence 'july' — the CCB re-indexes every JULY on a
+// July–June benefit year, NOT in January like the payroll tables above; the reduction
+// percentages are marked 'statutory' because they have been fixed since 2016).
 //
 // CRA method (from the calculation sheet): total base benefit minus a two-tier
 // reduction. Tier 1 applies to AFNI between the two thresholds; tier 2 applies to
@@ -236,16 +214,16 @@ export const ONTARIO_ESA = {
 // one child in 2025–26) are exactly (threshold2 − threshold1) × tier1Rate, so we
 // derive them rather than hardcode — this stays correct after a threshold update.
 export const CCB = {
-  benefitYear: 'July 2026 – June 2027',
-  baseYear: 2025,
-  maxUnder6: 8157,   // [3P] per child under 6, per year
-  max6to17: 6883,    // [3P] per child aged 6–17, per year
-  threshold1: 38237, // [CRA] AFNI where the phase-out begins
-  threshold2: 82847, // [CRA] AFNI where the second, lower reduction rate takes over
+  benefitYear: v(TC.ccb.benefitYear),
+  baseYear:    v(TC.ccb.baseYear),
+  maxUnder6:   v(TC.ccb.maxUnder6),   // [3P] per child under 6, per year
+  max6to17:    v(TC.ccb.max6to17),    // [3P] per child aged 6–17, per year
+  threshold1:  v(TC.ccb.threshold1),  // AFNI where the phase-out begins
+  threshold2:  v(TC.ccb.threshold2),  // AFNI where the second, lower reduction rate takes over
   // Reduction rates by number of eligible children (index 0 = 1 child … 3 = 4+).
-  // [CRA] Fixed since 2016 — these do NOT index.
-  tier1Rates: [0.07, 0.135, 0.19, 0.23],   // AFNI between threshold1 and threshold2
-  tier2Rates: [0.032, 0.057, 0.08, 0.095], // AFNI above threshold2
+  // Fixed since 2016 — these do NOT index.
+  tier1Rates:  v(TC.ccb.tier1Rates),  // AFNI between threshold1 and threshold2
+  tier2Rates:  v(TC.ccb.tier2Rates),  // AFNI above threshold2
 
   // Annual benefit reduction for a given AFNI and total number of children.
   reduction(afni, numChildren) {
@@ -278,48 +256,17 @@ export const CCB = {
 // the case for essentially every home buyer (the top provincial rate and Toronto's
 // high-value rates are limited to 1–2 SFR properties).
 //
-// ┌───────────────────────────────────────────────────────────────────────────┐
-// │ NOT CRA-indexed. These are statutory rates set by the Province and the City │
-// │ of Toronto; they change only by legislation/by-law, not annual indexation.  │
-// │ Re-verify against the official sources below whenever either government     │
-// │ amends its rates or first-time-buyer rebate.                                │
-// └───────────────────────────────────────────────────────────────────────────┘
-// Verified 2026-07-13 against official sources only (no blogs/aggregators):
-//  ONTARIO provincial LTT + FTB rebate — ontario.ca:
-//    https://www.ontario.ca/document/land-transfer-tax/calculating-land-transfer-tax
-//    https://www.ontario.ca/document/land-transfer-tax/land-transfer-tax-refunds-first-time-homebuyers
-//    (max first-time-buyer refund $4,000; full rebate up to ~$368,000.)
-//  TORONTO municipal LTT (MLTT) — the graduated high-value rates for 1–2 SFR took
-//  effect APRIL 1, 2026 (City Council 2025.EX28.1, By-law 132-2026). Confirmed on
-//  toronto.ca rates page AND the Council decision text:
-//    https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/municipal-land-transfer-tax-mltt-rates-and-fees/
-//    https://secure.toronto.ca/council/agenda-item.do?item=2025.EX28.1
-//    (Toronto FTB rebate max $4,475; full rebate up to $400,000 — toronto.ca rebate page.)
+// Constants + provenance: TC.ltt (cadence 'statutory' — these are rates set by the
+// Province and the City of Toronto and change only by legislation/by-law, never by annual
+// indexation; re-verify whenever either government amends its rates or its FTB rebate).
 export const LTT = {
-  // Ontario provincial — value of consideration bands. [ontario.ca]
-  ontarioBrackets: [
-    { upTo: 55000,     rate: 0.005 },
-    { upTo: 250000,    rate: 0.010 },
-    { upTo: 400000,    rate: 0.015 },
-    { upTo: 2000000,   rate: 0.020 },
-    { upTo: Infinity,  rate: 0.025 }, // over $2M, property with 1–2 SFR
-  ],
-  // Toronto MLTT — effective April 1, 2026 (1–2 SFR). [toronto.ca / 2025.EX28.1]
-  torontoBrackets: [
-    { upTo: 55000,     rate: 0.005 },
-    { upTo: 250000,    rate: 0.010 },
-    { upTo: 400000,    rate: 0.015 },
-    { upTo: 2000000,   rate: 0.020 },
-    { upTo: 3000000,   rate: 0.025 },
-    { upTo: 4000000,   rate: 0.044 },
-    { upTo: 5000000,   rate: 0.0545 },
-    { upTo: 10000000,  rate: 0.065 },
-    { upTo: 20000000,  rate: 0.0755 },
-    { upTo: Infinity,  rate: 0.086 },
-  ],
-  ontarioFtbRebateMax: 4000, // [ontario.ca] max provincial first-time-buyer refund
-  torontoFtbRebateMax: 4475, // [toronto.ca] max municipal first-time-buyer rebate
-  torontoRatesEffective: 'April 1, 2026',
+  // Ontario provincial — value of consideration bands.
+  ontarioBrackets: v(TC.ltt.ontarioBrackets),
+  // Toronto MLTT — graduated high-value rates for 1–2 SFR, effective April 1, 2026.
+  torontoBrackets: v(TC.ltt.torontoBrackets),
+  ontarioFtbRebateMax:   v(TC.ltt.ontarioFtbRebateMax), // max provincial first-time-buyer refund
+  torontoFtbRebateMax:   v(TC.ltt.torontoFtbRebateMax), // max municipal first-time-buyer rebate
+  torontoRatesEffective: v(TC.ltt.torontoRatesEffective),
 
   // Marginal tax on a price over a bracket set.
   tax(price, brackets) {
@@ -347,41 +294,29 @@ export const LTT = {
 
 /* ── CPP RETIREMENT PENSION — timing (start at 60 vs 65) ────────────────────── */
 // Federal, nationwide (CPP; Quebec's QPP is separate and NOT covered here).
-// Verified 2026-07-14 against canada.ca (ESDC):
-//   Adjustment rates — "When to start your retirement pension":
-//     https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/when-start.html
-//     "before age 65 … decrease by 0.6% each month (7.2%/yr), up to 36% at age 60;
-//      after age 65 … increase by 0.7% each month (8.4%/yr), up to 42% at age 70."
-//   Amounts — "How much you could receive":
-//     https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html
-//     Maximum at 65 (January 2026): $1,507.65/month.
-//     Average CPP pension at 65 (April 2026): $877.01/month.
-// The maximum/average are context only — the calculator REQUIRES the user's own
-// estimate from their Service Canada statement and never defaults to these.
-// QPP branch verified 2026-07-15 against Retraite Québec:
-//   Adjustment factors — "Calculation of your retirement pension":
-//     https://www.retraitequebec.gouv.qc.ca/en/citizens/retirement-planning/applying-your-retirement-pension/retirement-pension-quebec-pension-plan/calculation-your-retirement-pension
-//     Before 65: pension decreases 0.5%–0.6% PER MONTH — a SLIDING factor, unlike CPP's
-//     flat 0.6%. It is 0.5% for a low pension, rising in proportion to 0.6% at the maximum:
-//     factor = 0.005 + 0.001 × (pension ÷ maximum pension), capped [0.005, 0.006].
-//     After 65: increases 0.7%/month (same as CPP).
-//   Max QPP pension at 65 (2026) = $1,507.65 (= CPP max) — "Benefit amounts and key data":
-//     https://www.retraitequebec.gouv.qc.ca/en/benefits-amounts-key-data
-//     (confirmed: at 60 = 64% of max → 36% reduction → 0.6%/month at the maximum pension).
+// Constants + provenance: TC.cppRetirement. Adjustment factors are set in the CPP Act
+// (cadence 'statutory'); the CPP maximum re-indexes each January and the published
+// average is refreshed through the year (cadence 'quarterly').
+// QPP differs: before 65 the pension decreases 0.5%–0.6% PER MONTH — a SLIDING factor,
+// unlike CPP's flat 0.6%. It is 0.5% for a low pension, rising in proportion to 0.6% at
+// the maximum: factor = 0.005 + 0.001 × (pension ÷ maximum pension), capped [0.005, 0.006].
+// After 65 it increases 0.7%/month, same as CPP.
+// The maximum/average are context only — the calculator REQUIRES the user's own estimate
+// from their Service Canada statement and never defaults to these.
 // Consequence: unlike CPP's constant ~73.9, the QPP break-even age VARIES with the pension
 // size — later for a smaller pension (less reduction), ~73.9 only at the maximum.
 export const CPP_RETIREMENT = {
-  earlyReductionPerMonth: 0.006, // CPP: flat 0.6%/month before 65
-  earlyMaxReduction: 0.36,       // CPP: 36% at age 60 (60 months early)
-  lateIncreasePerMonth: 0.007,   // 0.7%/month after 65 — reference only, not used on 60-vs-65
-  lateMaxIncrease: 0.42,         // 42% at age 70 — reference only
-  maxAt65Monthly: 1507.65,       // context only — do NOT prefill the input
-  averageAt65Monthly: 877.01,    // context only
+  earlyReductionPerMonth: v(TC.cppRetirement.earlyReductionPerMonth), // CPP: flat 0.6%/month before 65
+  earlyMaxReduction:      v(TC.cppRetirement.earlyMaxReduction),      // CPP: 36% at age 60 (60 months early)
+  lateIncreasePerMonth:   v(TC.cppRetirement.lateIncreasePerMonth),   // after 65 — reference only, not used on 60-vs-65
+  lateMaxIncrease:        v(TC.cppRetirement.lateMaxIncrease),        // at age 70 — reference only
+  maxAt65Monthly:         v(TC.cppRetirement.maxAt65Monthly),         // context only — do NOT prefill the input
+  averageAt65Monthly:     v(TC.cppRetirement.averageAt65Monthly),     // context only
   qpp: {
-    maxAt65Monthly: 1507.65,     // [Retraite Québec] max QPP pension at 65, 2026
-    earlyReductionMin: 0.005,    // 0.5%/month for a low pension
-    earlyReductionMax: 0.006,    // 0.6%/month at the maximum pension
-    lateIncreasePerMonth: 0.007, // 0.7%/month after 65 (same as CPP)
+    maxAt65Monthly:       v(TC.cppRetirement.qppMaxAt65Monthly),
+    earlyReductionMin:    v(TC.cppRetirement.qppEarlyReductionMin),    // for a low pension
+    earlyReductionMax:    v(TC.cppRetirement.qppEarlyReductionMax),    // at the maximum pension
+    lateIncreasePerMonth: v(TC.cppRetirement.qppLateIncreasePerMonth), // after 65 (same as CPP)
   },
 
   // Early monthly reduction factor. CPP is flat 0.6%; QPP slides 0.5%→0.6% with pension size.
@@ -422,28 +357,21 @@ export const CPP_RETIREMENT = {
 
 /* ── EI MATERNITY & PARENTAL BENEFITS — federal, nationwide EXCEPT Quebec ────── */
 // Quebec runs its own QPIP (Québec Parental Insurance Plan) with different rates and
-// weeks — NOT modelled here. Verified 2026-07-14 against canada.ca (Service Canada):
-//   "What these benefits offer" (weeks table) —
-//     https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html
-//   "How much you could receive" (rates + 2026 weekly maximums) —
-//     https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html
-//   "After you apply" (1-week unpaid waiting period) —
-//     https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html
-// Official 2026 table:
-//   Maternity (birth parent only, not shareable): up to 15 weeks @ 55%, max $729/wk
-//   Standard parental: up to 40 wks shared / 35 wks one parent @ 55%, max $729/wk
-//   Extended parental: up to 69 wks shared / 61 wks one parent @ 33%, max $437/wk
+// weeks — modelled separately below, not here.
+// Constants + provenance: TC.eiParental. Weeks and replacement rates are set in the EI Act
+// (cadence 'statutory'); the weekly MAXIMUMS and the Family Supplement threshold move with
+// the MIE every January (cadence 'january').
 // Maternity is ALWAYS paid at 55% — the standard/extended choice only affects PARENTAL.
 export const EI_PARENTAL = {
-  standardRate: 0.55,
-  extendedRate: 0.33,
-  maxWeeklyStandard: 729, // [canada.ca] 2026 (= 55% of $68,900 MIE ÷ 52)
-  maxWeeklyExtended: 437, // [canada.ca] 2026 (= 33% of $68,900 MIE ÷ 52)
-  maternityWeeks: 15,
-  standardParental: { oneParent: 35, shared: 40 }, // sharing adds 5 weeks (2nd parent's)
-  extendedParental: { oneParent: 61, shared: 69 }, // sharing adds 8 weeks (2nd parent's)
-  waitingPeriodWeeks: 1, // one unpaid week at the start of the claim
-  familySupplementIncomeThreshold: 25921, // [canada.ca] Family Supplement (up to 80%) — NOT modelled
+  standardRate:       v(TC.eiParental.standardRate),
+  extendedRate:       v(TC.eiParental.extendedRate),
+  maxWeeklyStandard:  v(TC.eiParental.maxWeeklyStandard), // = 55% of the MIE ÷ 52
+  maxWeeklyExtended:  v(TC.eiParental.maxWeeklyExtended), // = 33% of the MIE ÷ 52
+  maternityWeeks:     v(TC.eiParental.maternityWeeks),
+  standardParental:   v(TC.eiParental.standardParental), // sharing adds 5 weeks (2nd parent's)
+  extendedParental:   v(TC.eiParental.extendedParental), // sharing adds 8 weeks (2nd parent's)
+  waitingPeriodWeeks: v(TC.eiParental.waitingPeriodWeeks), // one unpaid week at the start of the claim
+  familySupplementIncomeThreshold: v(TC.eiParental.familySupplementIncomeThreshold), // up to 80% — NOT modelled
 
   weeklyStandard(avgWeekly) {
     return Math.min(Math.round(avgWeekly * this.standardRate), this.maxWeeklyStandard);
@@ -486,33 +414,15 @@ export const EI_PARENTAL = {
 // Quebec residents use the Québec Parental Insurance Plan (QPIP), NOT federal EI. QPIP
 // has its own two-plan structure (Basic = longer, lower %; Special = shorter, higher %),
 // its own weeks/percentages per benefit type, its own MIE ($103,000, not EI's $68,900),
-// and NO waiting period (EI has one unpaid week). Verified 2026-07-15:
-//   Benefit weeks + percentages — quebec.ca "Choice of Plan and Types of Benefits":
-//     https://www.quebec.ca/en/family-and-support-for-individuals/pregnancy-parenthood/financial-support-pregnant-women-families/quebec-parental-insurance-plan/pregnancy-childbirth/choice-plan
-//   MIE $103,000 (2026) — quebec.ca "How is the benefit amount determined".
-// Official 2026 table:
-//   Basic  : maternity 18 wk @70%; paternity 5 wk @70%; parental 32 wk (7 @70% + 25 @55%);
-//            +4 shareable wk @55% when each parent takes ≥8 shareable weeks.
-//   Special: maternity 15 wk @75%; paternity 3 wk @75%; parental 25 wk @75%;
-//            +3 shareable wk @75% when each parent takes ≥6 shareable weeks.
-// NO-WAITING-PERIOD FLAG: modelled as 0 weeks. An explicit "no waiting period" sentence
-// was not located on the reachable RQAP/quebec.ca pages (the site migration redirects
-// several deep links to hubs); the benefit-start-date page shows benefits payable from the
-// interruption-of-earnings date with no unpaid week, consistent with QPIP's design. Adoption
-// benefits differ again (no maternity/paternity) and are NOT modelled — see gap list.
+// and NO waiting period (EI has one unpaid week).
+// Constants + provenance: TC.qpipParental. Weeks and percentages are 'statutory'; the MIE
+// re-indexes each January. The NO-WAITING-PERIOD FLAG and the adoption-benefits scope gap
+// are documented on the constants block.
 export const QPIP_PARENTAL = {
-  maxInsurableEarnings: 103000,
-  waitingPeriodWeeks: 0, // QPIP has no waiting period (EI has 1 unpaid week)
-  basic: {   // long term, lower percentage
-    maternityWeeks: 18, paternityWeeks: 5, exclusiveRate: 0.70,
-    parentalWeeks1: 7, parentalRate1: 0.70, parentalWeeks2: 25, parentalRate2: 0.55,
-    sharedBonusWeeks: 4, sharedBonusRate: 0.55, rateLabel: '70% → 55%',
-  },
-  special: { // short term, higher percentage
-    maternityWeeks: 15, paternityWeeks: 3, exclusiveRate: 0.75,
-    parentalWeeks: 25, parentalRate: 0.75,
-    sharedBonusWeeks: 3, sharedBonusRate: 0.75, rateLabel: '75%',
-  },
+  maxInsurableEarnings: v(TC.qpipParental.maxInsurableEarnings),
+  waitingPeriodWeeks:   v(TC.qpipParental.waitingPeriodWeeks), // QPIP has none (EI has 1 unpaid week)
+  basic:   v(TC.qpipParental.basic),   // long term, lower percentage
+  special: v(TC.qpipParental.special), // short term, higher percentage
 
   // Weekly benefit at a given replacement rate, capped at the QPIP MIE (rounded to $1).
   weeklyAt(avgWeekly, rate) {
@@ -581,7 +491,7 @@ export const KEY_DATES = {
 // low income); this is a documented estimate, and the page tells users to confirm the exact
 // figure with the Service Canada Benefits Estimator.
 export const GIS = {
-  effectiveQuarter: TC.gis.effectiveQuarter,
+  effectiveQuarter: v(TC.gis.effectiveQuarter),
   oasEligibilityAge: v(TC.gis.oasEligibilityAge),
   status: {
     single: v(TC.gis.single),
