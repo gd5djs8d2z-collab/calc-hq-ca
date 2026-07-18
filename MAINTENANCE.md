@@ -203,6 +203,46 @@ reduction rate is wrong — run it every July.
 
 ---
 
+## Redirects — how to move a URL on this site
+
+**Verified working 2026-07-18** against the live site, not assumed. This site is served by
+**Cloudflare Workers Static Assets**, not Cloudflare Pages — `wrangler.jsonc` declares an
+assets-only Worker (`assets.directory: "./"`, no `main` script), and `calc-hq-ca.pages.dev`
+does not resolve. Deploys happen automatically on push to `main`, landing in roughly a minute.
+
+Redirects go in **`_redirects` at the repo root** (the assets directory). One rule per line:
+
+```
+/old/path/            /new/path/            301
+/old/section/*        /new/section/:splat   301
+```
+
+What was confirmed live, with the test rules since removed:
+
+| Behaviour | Result |
+|---|---|
+| Plain `301` | Works — `301` + correct `Location`, follows to `200` in one hop |
+| Wildcard `*` with `:splat` | Works — `/x/contribution-limits/` → `/key-dates-limits/contribution-limits/` |
+| Query strings | Preserved across the redirect |
+| `_redirects` served publicly? | **No** — a request for `/_redirects` returns 404 |
+| Real pages during the test | Unaffected, all `200` |
+
+**Redirects beat real files.** Cloudflare: *"Redirects are always followed, regardless of
+whether or not an asset matches the incoming request."* Convenient — you don't have to delete
+the old file for the redirect to fire — but it means a careless rule can shadow a live page.
+Redirect **from** a path you have actually retired, and never point a rule at itself; there is
+no documented loop protection.
+
+**Limits:** 2,000 static rules, 100 dynamic (wildcard/placeholder), 2,100 total, 1,000
+characters per line. Past that, use Cloudflare Bulk Redirects.
+
+**Caching caveat when testing.** A 404 fetched before the rule deploys gets cached at the
+edge and will keep returning 404 for a while afterwards. Test with a cache-busting query
+string (`?cb=123`) or `Cache-Control: no-cache`, and re-test a few times before concluding a
+rule is broken — this produced a false negative during the original verification.
+
+---
+
 # AUDIT LOG
 
 ## 2026-07-15 — Inaugural full audit (all live jurisdictions + benefits)
