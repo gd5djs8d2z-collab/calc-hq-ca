@@ -1,0 +1,20 @@
+# Cloudflare Workers Static Assets redirect rules.
+#
+# Format:  <from>  <to>  <status>      — one rule per line, whitespace-separated.
+# Lines starting with # are comments. Blank lines are ignored.
+#
+# This file lives at the repo root because wrangler.jsonc sets assets.directory
+# to "./". It is parsed by Workers and is NOT served as a public asset.
+#
+# IMPORTANT — redirects beat real files. Cloudflare: "Redirects are always
+# followed, regardless of whether or not an asset matches the incoming request."
+# So a bad rule can shadow a live page. Always redirect FROM a path you have
+# actually removed, and never point a rule at itself.
+#
+# Limits: 2,000 static rules, 100 dynamic (wildcard/placeholder), 2,100 total,
+# 1,000 characters per line.
+
+# --- MECHANISM TEST (temporary — remove once verified) -----------------------
+# Both source paths are deliberately fake so no real URL is touched.
+/_redirect-mechanism-test  /key-dates-limits/  301
+/_redirect-splat-test/*    /key-dates-limits/:splat  301
