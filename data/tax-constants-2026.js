@@ -74,6 +74,9 @@ const SRC = {
   gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
   oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
   craBenefitDates: 'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html',
+  // The whole-of-government benefits calendar — the one page carrying BOTH the Service
+  // Canada pension dates (CPP / OAS / GIS) and the CRA benefit dates in a single place.
+  benefitsCalendar: 'https://www.canada.ca/en/services/benefits/calendar.html',
   // ── Benefit-program sources (migrated out of rates-2026.js 2026-07-18) ──
   esaTermination: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment',
   esaSeverance:   'https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay',
@@ -505,6 +508,24 @@ export const TAX_CONSTANTS_2026 = {
     ontarioTrillium: { value: ['2026-01-09','2026-02-10','2026-03-10','2026-04-10','2026-05-08','2026-06-10',
                    '2026-07-10','2026-08-10','2026-09-10','2026-10-09','2026-11-10','2026-12-10'],
            source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // paid as "Canada PRO" on bank statements
+
+    // ── Service Canada pensions: CPP, OAS, GIS ────────────────────────────────
+    // ONE schedule covers all three. Confirmed 2026-07-18 on the whole-of-government
+    // benefits calendar (page date-modified 2026-06-12), where:
+    //   - the "Canada Pension Plan" and "Old Age Security" 2026 lists are IDENTICAL, and
+    //     Service Canada publishes them as a single "2026 CPP and OAS printable version" PDF;
+    //   - the Old Age Security entry states it "Includes Old Age Security pension (OAS),
+    //     Guaranteed Income Supplement (GIS), allowance and allowance for the Survivor" —
+    //     so GIS is paid on the OAS dates and has no separate calendar.
+    // The CPP list likewise covers the retirement pension plus disability, children's and
+    // survivor benefits.
+    // Deliberately stored ONCE rather than as three identical copies that could drift.
+    // IF SERVICE CANADA EVER PUBLISHES DIFFERENT CPP AND OAS DATES, split this into
+    // separate `cpp` and `oasGis` nodes at that point — do not edit one set of dates and
+    // assume the other followed.
+    cppOasGis: { value: ['2026-01-28','2026-02-25','2026-03-27','2026-04-28','2026-05-27','2026-06-26',
+                   '2026-07-29','2026-08-27','2026-09-25','2026-10-28','2026-11-26','2026-12-22'],
+           source_url: SRC.benefitsCalendar, last_verified: '2026-07-18' },
   },
 
   /* ══════════════════════════════════════════════════════════════════════════

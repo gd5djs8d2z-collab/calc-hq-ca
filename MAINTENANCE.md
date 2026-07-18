@@ -48,6 +48,13 @@ whole point of that section, so they must be current:
   so the page splits Jan/Apr from Jul/Oct; check whether the old name is still in use.
   NOTE: this page's date tables are STATIC HTML (for crawlability) with the constants used by the
   countdown — update **both** the tables and the constants, or they'll drift.
+  **Also re-stamp `cppOasGis`** (added 2026-07-18) — the single Service Canada schedule shared by
+  CPP, OAS, GIS, the Allowance and the Allowance for the Survivor, sourced from the
+  whole-of-government benefits calendar (`SRC.benefitsCalendar`) rather than the CRA page. It is
+  stored ONCE because the CPP and OAS calendars were identical for 2026 and Service Canada
+  publishes them as one PDF. **Check that assumption every January** — if the two ever diverge,
+  split the constant into separate `cpp` and `oasGis` nodes rather than editing one and assuming
+  the other followed.
 
 ## Rule 2 — Budget-watch (ongoing, not scheduled)
 

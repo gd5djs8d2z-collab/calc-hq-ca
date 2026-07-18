@@ -536,4 +536,6 @@ export const BENEFIT_PAYMENT_DATES = {
   gstCredit: v(TC.benefitPaymentDates2026.gstCredit),
   groceriesEssentials: v(TC.benefitPaymentDates2026.groceriesEssentials),
   ontarioTrillium: v(TC.benefitPaymentDates2026.ontarioTrillium),
+  // One Service Canada schedule shared by CPP, OAS and GIS — see the constants block.
+  cppOasGis: v(TC.benefitPaymentDates2026.cppOasGis),
 };
