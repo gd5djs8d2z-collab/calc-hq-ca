@@ -127,22 +127,51 @@ node scripts/check-constants.mjs                    # or --as-of YYYY-MM-DD, --v
 There is no Node runtime on the build machine, so it is also importable in a browser console
 against the dev server: `(await import('/scripts/check-constants.mjs')).report()`.
 
-It exits non-zero when anything is flagged. **It currently exits 1** on 44 pre-existing
-`UNSTAMPED` leaves in `provinces` / `cpp` / `qpp` (see FOLLOWUPS item 4) — clear those before
-wiring it into CI as a gate.
+It exits non-zero when anything is flagged. **As of 2026-07-18 it PASSES with exit 0** —
+162 stamped values, 0 issues — so it is safe to wire into CI as a gate.
+
+**Structural exemptions.** Four leaf names are allowed to be bare values because they are
+labels or model flags, not sourceable facts: `name`, `indexation`,
+`bpaBundlesContributions`, `includesCanadaEmploymentAmount`. They are listed by exact key in
+`STRUCTURAL_EXEMPT` — an allowlist, **not** a blanket "ignore unstamped" switch, and the
+report prints how many were exempted so they stay visible.
+
+A second list, `NEVER_EXEMPT`, names the material constants (`bpaCreditRate`,
+`healthPremiumMax`, `selfEmployedMultiplier`, `bpa`, `brackets`, …). **The module throws on
+import if any key appears in both lists**, so the exemption mechanism can never be widened to
+hide a real figure. If you add a new material constant, add it to `NEVER_EXEMPT`.
+
+**Cross-field invariants.** `invariants()` checks relationships a per-value stamp can't:
+currently that `bpaCreditRate === brackets[0].rate` for all 13 jurisdictions, since CRA values
+non-refundable credits at the lowest rate ("multiply the total on line 17 by the lowest
+provincial tax rate", T4032). This is the January failure mode it exists to catch — updating a
+bracket table and forgetting the credit rate would mis-state tax for every filer in that
+jurisdiction, with both values still looking properly stamped.
 
 ## Rule 5 — July re-verification (CCB)
 
 The **Canada child benefit** (`ccb`, powering `/benefits/ccb/`) runs on a **July–June benefit
 year** and re-indexes every **July**, using the *previous* calendar year's adjusted family net
 income. Each July, re-check `maxUnder6`, `max6to17`, `threshold1`, `threshold2` and the
-`benefitYear` / `baseYear` labels against the CRA calculation sheet (`SRC.ccbSheets`) and the
-"How much you can get" page (`SRC.ccbHowMuch`). The `tier1Rates` / `tier2Rates` percentages are
-`statutory` and do **not** move.
+`benefitYear` / `baseYear` labels. The `tier1Rates` / `tier2Rates` percentages are `statutory`
+and do **not** move.
 
-**Open flag:** `maxUnder6` / `max6to17` are marked `[3P]` — they are the 2025–26 sheet values
-indexed +2.0%, not read off an official 2026–27 sheet, which CRA had not published at build
-time. Confirm them against the real sheet at the first opportunity.
+**Use the right source — this cost us a false alarm on 2026-07-18.** Three canada.ca pages
+look like they should carry the CCB maxima. Only one does:
+
+- **`SRC.craIndexation` — the CRA indexation chart. USE THIS.** Its "Canada child benefit
+  (CCB)" table publishes the base maxima, both thresholds and the base phase-out amounts for
+  the *current* year, alongside the indexation rate applied.
+- `SRC.ccbSheets` (calculation sheets) — **lags a full benefit year.** On 2026-07-18 the newest
+  sheet was still July 2025–June 2026. Do not read the maxima here and do not conclude from its
+  absence that the figures are unpublished. It remains the source for `tier2Rates`, which the
+  indexation chart does not carry.
+- `SRC.ccbHowMuch` — carries the two thresholds but **no longer states the maxima at all**.
+
+**Free cross-check:** the indexation chart's "Base phase out amount" rows must equal
+`(threshold2 − threshold1) × tier1Rate` for 1/2/3/4+ children. On 2026-07-18 that reproduced
+$3,123 / $6,022 / $8,476 / $10,260 exactly. If it ever doesn't, either a threshold or a
+reduction rate is wrong — run it every July.
 
 ---
 

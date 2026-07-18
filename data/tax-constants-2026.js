@@ -81,6 +81,10 @@ const SRC = {
   esaVacation:    'https://www.ontario.ca/document/your-guide-employment-standards-act-0/vacation',
   ccbHowMuch:     'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html',
   ccbSheets:      'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/canada-child-benefit-calculation-sheets.html',
+  // CRA indexation chart — the ONLY canada.ca page that publishes the CCB base maxima and
+  // phase-out amounts for the CURRENT benefit year. The calculation-sheet page lags a full
+  // year and the CCB "how much" page no longer states the maxima at all.
+  craIndexation:  'https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html',
   lttOntario:     'https://www.ontario.ca/document/land-transfer-tax/calculating-land-transfer-tax',
   lttOntarioFtb:  'https://www.ontario.ca/document/land-transfer-tax/land-transfer-tax-refunds-first-time-homebuyers',
   lttToronto:     'https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/municipal-land-transfer-tax-mltt-rates-and-fees/',
@@ -129,8 +133,10 @@ export const TAX_CONSTANTS_2026 = {
       yampe:           { value: 85000,  source_url: SRC.cpp, last_verified: '2026-07-13' }, // Year's Additional Max Pensionable Earnings
       maxContribution: { value: 416,    source_url: SRC.cpp, last_verified: '2026-07-13' },
     },
-    // Structural CPP rule (not a rate-table value): the self-employed pay both halves.
-    selfEmployedMultiplier: 2,
+    // The self-employed pay both halves. Confirmed 2026-07-18 on the CRA rate table: the
+    // 2026 "maximum annual self-employed contribution" ($8,460.90) is exactly twice the
+    // "maximum annual employee and employer contribution" ($4,230.45).
+    selfEmployedMultiplier: { value: 2, source_url: SRC.cpp, last_verified: '2026-07-18', cadence: 'statutory' },
   },
 
   /* ── QPP (Québec Pension Plan) — REPLACES CPP for Quebec workers ───────────── */
@@ -155,7 +161,11 @@ export const TAX_CONSTANTS_2026 = {
       yampe:           { value: 85000,  source_url: SRC.qpp, last_verified: '2026-07-15' },
       maxContribution: { value: 416,    source_url: SRC.qpp, last_verified: '2026-07-15' },
     },
-    selfEmployedMultiplier: 2,
+    // Confirmed 2026-07-18 on the Retraite Québec figures page: "Self-employed workers pay
+    // both shares of the contribution, that is, the employer's share and the worker's
+    // share" — and numerically, the self-employed base contribution ($7,536 at 10.6%) is
+    // exactly twice the worker's ($3,768 at 5.3%).
+    selfEmployedMultiplier: { value: 2, source_url: SRC.qpp, last_verified: '2026-07-18', cadence: 'statutory' },
   },
 
   /* ── EI (federal; Quebec pays a reduced rate + QPIP) ───────────────────────── */
@@ -210,7 +220,10 @@ export const TAX_CONSTANTS_2026 = {
         { min: 220000, max: Infinity, rate: 0.1316 },
       ], source_url: T4032('on'), last_verified: '2026-07-14' },
       bpa: { value: 12989, source_url: T4032('on'), last_verified: '2026-07-14' },
-      bpaCreditRate: 0.0505,
+      // Non-refundable credits are valued at the LOWEST provincial rate (CRA T4032,
+      // "Multiply the total on line 17 by the lowest provincial tax rate"), so this is
+      // brackets[0].rate by definition — check-constants.mjs enforces that invariant.
+      bpaCreditRate: { value: 0.0505, source_url: T4032('on'), last_verified: '2026-07-14' },
       // Surtax on BASIC Ontario tax (after BPA credit): 20% over $5,818, +36% over $7,446.
       surtax: { value: [ { over: 5818, rate: 0.20 }, { over: 7446, rate: 0.36 } ],
                 source_url: T4032('on'), last_verified: '2026-07-14' },
@@ -226,7 +239,9 @@ export const TAX_CONSTANTS_2026 = {
         { upTo: 200000,   formula: 'lesser(750, 600+0.25*(income-72000))' },
         { upTo: Infinity, formula: 'lesser(900, 750+0.25*(income-200000))' },
       ], source_url: T4032('on'), last_verified: '2026-07-14' },
-      healthPremiumMax: 900,
+      // Top band cap, confirmed 2026-07-18 on T4032-ON: "when taxable income is greater
+      // than $200,000, the premium is the lesser of (i) $900 and (ii) $750 plus 25%..."
+      healthPremiumMax: { value: 900, source_url: T4032('on'), last_verified: '2026-07-18' },
     },
 
     AB: {
@@ -240,7 +255,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 370220, max: Infinity, rate: 0.15 },
       ], source_url: T4032('ab'), last_verified: '2026-07-14' },
       bpa: { value: 22769, source_url: T4032('ab'), last_verified: '2026-07-14' },
-      bpaCreditRate: 0.08,
+      bpaCreditRate: { value: 0.08, source_url: T4032('ab'), last_verified: '2026-07-14' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     BC: {
@@ -255,7 +270,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 265545, max: Infinity, rate: 0.2050 },
       ], source_url: SRC.bcRates, last_verified: '2026-07-13' },
       bpa: { value: 13216, source_url: SRC.bcCredits, last_verified: '2026-07-13' },
-      bpaCreditRate: 0.056,
+      bpaCreditRate: { value: 0.056, source_url: SRC.bcRates, last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
       // BC tax reduction credit — non-refundable low-income reduction (Budget 2026 raised
       // the base to $690). Reduces BC tax to a floor of zero; nil at $44,952.
       taxReduction: { value: { base: 690, threshold: 25570, rate: 0.0356 },
@@ -270,7 +285,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 155805, max: Infinity, rate: 0.1450 },
       ], source_url: T4032('sk'), last_verified: '2026-07-13' },
       bpa: { value: 20381, source_url: T4032('sk'), last_verified: '2026-07-13' }, // Saskatchewan Affordability Act + indexation
-      bpaCreditRate: 0.105,
+      bpaCreditRate: { value: 0.105, source_url: T4032('sk'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     MB: {
@@ -281,7 +296,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 100000, max: Infinity, rate: 0.1740 },
       ], source_url: T4032('mb'), last_verified: '2026-07-13' },
       bpa: { value: 15780, source_url: T4032('mb'), last_verified: '2026-07-13' },
-      bpaCreditRate: 0.108,
+      bpaCreditRate: { value: 0.108, source_url: T4032('mb'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     NS: {
@@ -294,7 +309,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 157124, max: Infinity, rate: 0.2100 },
       ], source_url: T4032('ns'), last_verified: '2026-07-13' },
       bpa: { value: 11932, source_url: T4032('ns'), last_verified: '2026-07-13' }, // income-testing removed in 2025 — now flat
-      bpaCreditRate: 0.0879,
+      bpaCreditRate: { value: 0.0879, source_url: T4032('ns'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     NB: {
@@ -306,7 +321,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 193861, max: Infinity, rate: 0.1950 },
       ], source_url: T4032('nb'), last_verified: '2026-07-13' },
       bpa: { value: 13664, source_url: T4032('nb'), last_verified: '2026-07-13' },
-      bpaCreditRate: 0.094,
+      bpaCreditRate: { value: 0.094, source_url: T4032('nb'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     NL: {
@@ -327,7 +342,7 @@ export const TAX_CONSTANTS_2026 = {
       // $15,000 exemption, delivered in-year via a prorated higher payroll BPA from July —
       // but the amount claimed on the 2026 return is $13,094, which is what an annual calc uses.
       bpa: { value: 13094, source_url: SRC.nlFin, last_verified: '2026-07-15' },
-      bpaCreditRate: 0.087,
+      bpaCreditRate: { value: 0.087, source_url: SRC.nlFin, last_verified: '2026-07-15' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     PE: {
@@ -344,7 +359,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 200000, max: Infinity, rate: 0.2000 },
       ], source_url: SRC.peGov, last_verified: '2026-07-13' },
       bpa: { value: 15000, source_url: SRC.peGov, last_verified: '2026-07-13' },
-      bpaCreditRate: 0.095,
+      bpaCreditRate: { value: 0.095, source_url: SRC.peGov, last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     YT: {
@@ -360,7 +375,7 @@ export const TAX_CONSTANTS_2026 = {
       bpa: { value: 16452, source_url: T4032('yt'), last_verified: '2026-07-13' },
       bpaPhaseOut: { value: { max: 16452, min: 14829, phaseOutStart: 181440, phaseOutEnd: 258482 },
                      source_url: SRC.yukon, last_verified: '2026-07-13' },
-      bpaCreditRate: 0.064,
+      bpaCreditRate: { value: 0.064, source_url: T4032('yt'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
       includesCanadaEmploymentAmount: true, // Yukon grants a territorial CEA credit
     },
 
@@ -373,7 +388,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 172346, max: Infinity, rate: 0.1405 },
       ], source_url: T4032('nt'), last_verified: '2026-07-13' },
       bpa: { value: 18198, source_url: T4032('nt'), last_verified: '2026-07-13' },
-      bpaCreditRate: 0.059,
+      bpaCreditRate: { value: 0.059, source_url: T4032('nt'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     NU: {
@@ -385,7 +400,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 181439, max: Infinity, rate: 0.1150 },
       ], source_url: T4032('nu'), last_verified: '2026-07-13' },
       bpa: { value: 19659, source_url: T4032('nu'), last_verified: '2026-07-13' }, // highest BPA in Canada
-      bpaCreditRate: 0.04,
+      bpaCreditRate: { value: 0.04, source_url: T4032('nu'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     // QUEBEC — its own tax system (not the CRA collection agreement). Brackets + BPA
@@ -405,7 +420,7 @@ export const TAX_CONSTANTS_2026 = {
         { min: 132245, max: Infinity, rate: 0.2575 },
       ], source_url: SRC.qcRates, last_verified: '2026-07-15' },
       bpa: { value: 18952, source_url: SRC.qcBpa, last_verified: '2026-07-15' },
-      bpaCreditRate: 0.14,
+      bpaCreditRate: { value: 0.14, source_url: SRC.qcRates, last_verified: '2026-07-15' }, // = brackets[0].rate (Quebec's own conversion rate)
       bpaBundlesContributions: true, // basic amount already embeds QPP/QPIP/EI — don't re-add
       // Deduction for workers (TP-1 line 201): 6% of eligible work income (employment +
       // net business income, Work Chart 201), capped at $1,450 for 2026. A Quebec-only
@@ -555,19 +570,24 @@ export const TAX_CONSTANTS_2026 = {
   // derives them rather than hardcoding — this stays correct after a threshold update.
   ccb: {
     _cadence: 'july',
-    benefitYear: { value: 'July 2026 – June 2027', source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' },
-    baseYear:    { value: 2025,                    source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' },
-    // [3P] Base amounts are the 2025–26 CRA sheet values ($7,997 / $6,748) indexed +2.0%,
-    // the published 2026–27 indexation — NOT read off an official 2026–27 sheet, which
-    // was not yet published at build time. Re-confirm when CRA posts it.
-    maxUnder6:  { value: 8157,  source_url: SRC.ccbSheets,  last_verified: '2026-07-12' }, // [3P] per child under 6, per year
-    max6to17:   { value: 6883,  source_url: SRC.ccbSheets,  last_verified: '2026-07-12' }, // [3P] per child aged 6–17, per year
-    threshold1: { value: 38237, source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' }, // AFNI where the phase-out begins
-    threshold2: { value: 82847, source_url: SRC.ccbHowMuch, last_verified: '2026-07-12' }, // AFNI where the lower reduction rate takes over
+    benefitYear: { value: 'July 2026 – June 2027', source_url: SRC.ccbHowMuch, last_verified: '2026-07-18' },
+    baseYear:    { value: 2025,                    source_url: SRC.ccbHowMuch, last_verified: '2026-07-18' },
+    // CONFIRMED PUBLISHED 2026-07-18 against the CRA indexation chart, "Canada child
+    // benefit (CCB)" table, 2026 column — NOT derived. (These were previously flagged [3P]
+    // as 2025–26 sheet values indexed +2.0%; that derivation turned out to land exactly on
+    // CRA's published 2026 figure, and the flag is now cleared.)
+    maxUnder6:  { value: 8157,  source_url: SRC.craIndexation, last_verified: '2026-07-18' }, // "CCB (base benefit, child under age 6)"
+    max6to17:   { value: 6883,  source_url: SRC.craIndexation, last_verified: '2026-07-18' }, // "CCB (base benefit, child aged 6 to 17)"
+    threshold1: { value: 38237, source_url: SRC.craIndexation, last_verified: '2026-07-18' }, // "Adjusted family net income at which phase out begins" (also on ccbHowMuch)
+    threshold2: { value: 82847, source_url: SRC.craIndexation, last_verified: '2026-07-18' }, // "Second phase out threshold" (also on ccbHowMuch)
     // Reduction rates by number of eligible children (index 0 = 1 child … 3 = 4+).
     // Fixed since 2016 — these do NOT index, hence 'statutory'.
-    tier1Rates: { value: [0.07, 0.135, 0.19, 0.23],   source_url: SRC.ccbSheets, last_verified: '2026-07-12', cadence: 'statutory' }, // AFNI between threshold1 and threshold2
-    tier2Rates: { value: [0.032, 0.057, 0.08, 0.095], source_url: SRC.ccbSheets, last_verified: '2026-07-12', cadence: 'statutory' }, // AFNI above threshold2
+    // CROSS-CHECKED 2026-07-18: the indexation chart's "Base phase out amount" rows equal
+    // (threshold2 − threshold1) × tier1Rate for all four family sizes — $3,123 / $6,022 /
+    // $8,476 / $10,260 — confirming both these rates and the decision to derive those
+    // dollar amounts rather than hardcode them.
+    tier1Rates: { value: [0.07, 0.135, 0.19, 0.23],   source_url: SRC.craIndexation, last_verified: '2026-07-18', cadence: 'statutory' }, // AFNI between threshold1 and threshold2
+    tier2Rates: { value: [0.032, 0.057, 0.08, 0.095], source_url: SRC.ccbSheets,     last_verified: '2026-07-12', cadence: 'statutory' }, // AFNI above threshold2 — from the calculation sheet; not on the indexation chart
   },
 
   /* ── LAND TRANSFER TAX (LTT) — Ontario provincial + Toronto municipal ─────── */

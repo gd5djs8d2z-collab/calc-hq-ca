@@ -38,7 +38,7 @@ export const CPP = {
     yampe: v(TC.cpp.cpp2.yampe),
     maxContribution: v(TC.cpp.cpp2.maxContribution),
   },
-  selfEmployedMultiplier: TC.cpp.selfEmployedMultiplier,
+  selfEmployedMultiplier: v(TC.cpp.selfEmployedMultiplier),
   enhancedCpp1Rate: v(TC.cpp.enhancedCpp1Rate),
   baseCpp1Rate: v(TC.cpp.baseCpp1Rate),
 };
@@ -55,7 +55,7 @@ export const QPP = {
     yampe: v(TC.qpp.cpp2.yampe),
     maxContribution: v(TC.qpp.cpp2.maxContribution),
   },
-  selfEmployedMultiplier: TC.qpp.selfEmployedMultiplier,
+  selfEmployedMultiplier: v(TC.qpp.selfEmployedMultiplier),
   enhancedCpp1Rate: v(TC.qpp.enhancedCpp1Rate),
   baseCpp1Rate: v(TC.qpp.baseCpp1Rate),
 };
@@ -102,11 +102,11 @@ function buildProvince(p) {
     indexation: p.indexation,
     brackets: v(p.brackets),
     bpa: v(p.bpa),
-    bpaCreditRate: p.bpaCreditRate,
+    bpaCreditRate: v(p.bpaCreditRate),
     surtax: p.surtax ? v(p.surtax) : [],
     healthPremium: p.healthPremium ? v(p.healthPremium) : [],
   };
-  if (p.healthPremiumMax !== undefined) out.healthPremiumMax = p.healthPremiumMax;
+  if (p.healthPremiumMax !== undefined) out.healthPremiumMax = v(p.healthPremiumMax);
   if (p.taxReduction) out.taxReduction = v(p.taxReduction);
   if (p.bpaPhaseOut) out.bpaPhaseOut = v(p.bpaPhaseOut);
   if (p.includesCanadaEmploymentAmount) out.includesCanadaEmploymentAmount = true;
@@ -216,8 +216,8 @@ export const ONTARIO_ESA = {
 export const CCB = {
   benefitYear: v(TC.ccb.benefitYear),
   baseYear:    v(TC.ccb.baseYear),
-  maxUnder6:   v(TC.ccb.maxUnder6),   // [3P] per child under 6, per year
-  max6to17:    v(TC.ccb.max6to17),    // [3P] per child aged 6–17, per year
+  maxUnder6:   v(TC.ccb.maxUnder6),   // per child under 6, per year
+  max6to17:    v(TC.ccb.max6to17),    // per child aged 6–17, per year
   threshold1:  v(TC.ccb.threshold1),  // AFNI where the phase-out begins
   threshold2:  v(TC.ccb.threshold2),  // AFNI where the second, lower reduction rate takes over
   // Reduction rates by number of eligible children (index 0 = 1 child … 3 = 4+).

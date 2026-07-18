@@ -50,29 +50,20 @@ links would also need French destination pages, which don't exist yet.
 
 ---
 
-## 4. Stamp the remaining unstamped leaves in `provinces` / `cpp` / `qpp`
-
-**What:** `scripts/check-constants.mjs` (added 2026-07-18) reports **44 UNSTAMPED leaves** —
-bare values inside blocks that were never converted to provenance nodes. They split in two:
-
-- **Material — affects tax output, should be stamped:**
-  `provinces.<XX>.bpaCreditRate` (all 13 jurisdictions — the rate the BPA is credited at),
-  `provinces.ON.healthPremiumMax`, `cpp.selfEmployedMultiplier`, `qpp.selfEmployedMultiplier`.
-- **Structural — labels and model flags, arguably not sourceable facts:**
-  `provinces.<XX>.name`, `provinces.<XX>.indexation`, `provinces.QC.bpaBundlesContributions`,
-  `provinces.YT.includesCanadaEmploymentAmount`.
-
-**Why deferred:** found by the new checker while migrating item 2, but outside that task's
-scope. Not touched — the six-object migration was kept clean.
-
-**Consequence today:** the checker exits 1 out of the box, so it cannot gate CI until these
-are resolved. Decide per group: stamp the material ones; for the structural ones either stamp
-them or give the checker an explicit "structural, not sourced" marker so it stops flagging
-them. Do **not** silence them wholesale — `bpaCreditRate` is a real tax constant.
-
 ---
 
 ## Done
+
+- **Stamp the material unstamped leaves** (was item 4): done 2026-07-18, same day it was
+  filed. `bpaCreditRate` × 13, `provinces.ON.healthPremiumMax` and `cpp`/`qpp
+  .selfEmployedMultiplier` are now stamped nodes, each verified against a primary source:
+  CRA T4032 states credits are valued at "the lowest provincial tax rate"; T4032-ON confirms
+  the $900 health-premium cap; the CRA CPP table shows the self-employed maximum
+  ($8,460.90) is exactly 2× the employee maximum ($4,230.45), and Retraite Québec says
+  self-employed workers "pay both shares". The four structural leaves (`name`, `indexation`,
+  `bpaBundlesContributions`, `includesCanadaEmploymentAmount`) are exempted by an explicit
+  allowlist guarded by a `NEVER_EXEMPT` collision check. **The checker now exits 0 and can
+  gate CI.**
 
 - **Migrate benefit-program constants into the provenance file** (was item 2): done
   2026-07-18. `ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL` and
