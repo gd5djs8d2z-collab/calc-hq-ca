@@ -14,7 +14,12 @@
 # Limits: 2,000 static rules, 100 dynamic (wildcard/placeholder), 2,100 total,
 # 1,000 characters per line.
 
-# --- MECHANISM TEST (temporary — remove once verified) -----------------------
-# Both source paths are deliberately fake so no real URL is touched.
-/_redirect-mechanism-test  /key-dates-limits/  301
-/_redirect-splat-test/*    /key-dates-limits/:splat  301
+# --- ACTIVE RULES ------------------------------------------------------------
+# None currently. Add one rule per line, e.g.:
+#   /key-dates-limits/ccb-payment-dates/  /key-dates-limits/benefit-payment-dates/  301
+#
+# VERIFIED WORKING on this deploy 2026-07-18 (see MAINTENANCE.md):
+#   - plain 301                 /from /to 301
+#   - wildcard + :splat         /old/*  /new/:splat  301
+#   - query strings are preserved through the redirect
+#   - this file is not served publicly (/\_redirects returns 404)
