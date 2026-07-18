@@ -128,7 +128,28 @@ There is no Node runtime on the build machine, so it is also importable in a bro
 against the dev server: `(await import('/scripts/check-constants.mjs')).report()`.
 
 It exits non-zero when anything is flagged. **As of 2026-07-18 it PASSES with exit 0** —
-162 stamped values, 0 issues — so it is safe to wire into CI as a gate.
+162 stamped values, 0 issues.
+
+**It is wired into CI** at `.github/workflows/check-constants.yml`, which runs it on every
+push to `main`, on pull requests, **on the 1st of every month**, and on manual dispatch. The
+report is written to the run's job summary.
+
+The **monthly schedule is the important trigger**, not the push one. `STALE` is time-based:
+a value goes stale because a January / July / quarterly boundary passed, not because anyone
+edited a file. A push-only gate would never fire for the failure it most exists to catch.
+Running on the 1st means the Jan / Apr / Jul / Oct rollovers surface within days, and a
+failing scheduled run emails the repo owner.
+
+Two limits to know:
+- **It gates the repo, not the deploy.** Cloudflare serves the static assets independently of
+  GitHub Actions, so a red run does not stop a push to `main` from going live. To make it a
+  true gate, enable branch protection on `main` requiring the `check-constants` check, and
+  work through pull requests.
+- **The repo intentionally has no `package.json`.** `data/*.js` are ESM, so Node needs
+  `{"type":"module"}` to parse them — but committing that to the root risks Cloudflare
+  auto-detecting a Node build for what is a pure static-asset deploy. The CI job writes a
+  throwaway one into its own checkout instead. If you ever add a real `package.json`, drop
+  that step and add `"type": "module"` to it.
 
 **Structural exemptions.** Four leaf names are allowed to be bare values because they are
 labels or model flags, not sourceable facts: `name`, `indexation`,

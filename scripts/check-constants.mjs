@@ -220,5 +220,8 @@ if (typeof process !== 'undefined' && process.argv?.[1]?.endsWith('check-constan
     asOf: asOfArg ? new Date(`${asOfArg}T00:00:00Z`) : new Date(),
     verbose: argv.includes('--verbose'),
   });
-  process.exit(r.flagged.length || r.violations.length ? 1 : 0);
+  // Set exitCode rather than calling process.exit(): console.log to a PIPE is asynchronous,
+  // and process.exit() can truncate it mid-write. CI pipes this through `tee`, so exiting
+  // eagerly would risk losing the very report we exit non-zero to draw attention to.
+  process.exitCode = r.flagged.length || r.violations.length ? 1 : 0;
 }

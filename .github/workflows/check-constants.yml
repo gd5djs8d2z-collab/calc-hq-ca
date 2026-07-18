@@ -1,0 +1,67 @@
+# Tax-constant stamp + staleness gate.
+#
+# Runs scripts/check-constants.mjs, which fails when any constant in
+# data/tax-constants-2026.js is UNSTAMPED, NO-SOURCE, UNVERIFIED, STALE, or violates a
+# cross-field invariant. See MAINTENANCE.md Rule 4.
+#
+# WHY THE SCHEDULE MATTERS MORE THAN THE PUSH TRIGGER
+#   STALE is time-based, not diff-based: a value goes stale because a January / July /
+#   quarterly boundary passed, not because anyone edited a file. A push-only gate would
+#   therefore never fire for the failure it most needs to catch. The monthly cron is the
+#   part of this workflow that actually enforces the maintenance rules; it lands on the
+#   1st, so the Jan/Apr/Jul/Oct rollovers are caught within days.
+#
+# A failing scheduled run emails the repo owner (GitHub's default for scheduled workflows).
+#
+# NOTE ON package.json: the repo deliberately has none. data/*.js use ESM syntax, so Node
+# needs {"type":"module"} to parse them — but committing a package.json to the repo root
+# risks Cloudflare auto-detecting a Node build for what is a pure static-asset deploy
+# (see wrangler.jsonc). So the CI job writes a throwaway one into its own checkout instead.
+
+name: check-constants
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 12 1 * *'   # 12:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Mark the checkout as ESM (not committed — see note above)
+        run: echo '{"type":"module","private":true}' > package.json
+
+      - name: Run the constants check
+        id: check
+        run: |
+          set -o pipefail
+          node scripts/check-constants.mjs | tee report.txt
+
+      - name: Publish the report to the job summary
+        if: always()
+        run: |
+          {
+            echo '## Tax-constant stamp + staleness check'
+            echo
+            echo '```'
+            cat report.txt 2>/dev/null || echo 'checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.check.outcome }}' != 'success' ]; then
+              echo
+              echo 'Failing values must be re-verified against their `source_url` and re-stamped.'
+              echo 'See MAINTENANCE.md — Rule 1 (January), Rule 3 (quarterly), Rule 5 (July).'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
