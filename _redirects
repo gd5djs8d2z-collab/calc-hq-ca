@@ -22,4 +22,4 @@
 #   - plain 301                 /from /to 301
 #   - wildcard + :splat         /old/*  /new/:splat  301
 #   - query strings are preserved through the redirect
-#   - this file is not served publicly (/\_redirects returns 404)
+#   - this file is not served publicly (a request for /_redirects returns 404)
