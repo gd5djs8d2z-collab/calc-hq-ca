@@ -73,6 +73,10 @@ const SRC = {
   gis:       'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html',
   gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
   oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
+  oasAmount:      'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/benefit-amount.html',
+  oasEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/eligibility.html',
+  oasWhenStart:   'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/when-start.html',
+  oasRecoveryTax: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html',
   craBenefitDates: 'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html',
   // The whole-of-government benefits calendar — the one page carrying BOTH the Service
   // Canada pension dates (CPP / OAS / GIS) and the CRA benefit dates in a single place.
@@ -487,6 +491,58 @@ export const TAX_CONSTANTS_2026 = {
     // Employment / net self-employment exemption: first $5,000 fully exempt, then 50% of the
     // next $10,000 (max $10,000 exempt), PER PERSON. OAS and GIS themselves are excluded income.
     employmentExemption: { value: { full: 5000, partialUpTo: 10000, partialRate: 0.5 }, source_url: SRC.oasPayments, last_verified: '2026-07-16' },
+  },
+
+  /* ── OLD AGE SECURITY (OAS) — pension amount + recovery tax (clawback) ────── */
+  // TWO different clocks run here, which is the single most confusing thing about OAS:
+  //   1. The PENSION AMOUNT re-indexes QUARTERLY (Jan/Apr/Jul/Oct), like GIS — these are
+  //      the July–September 2026 figures. Bump them together with GIS (MAINTENANCE Rule 3).
+  //   2. The RECOVERY TAX runs on a JULY–JUNE period keyed to the PRIOR calendar year's
+  //      income. The current period is July 2026–June 2027, assessed on 2025 income against
+  //      the 2025 threshold. Those nodes carry cadence 'july' individually.
+  // Rates and residency rules are statutory and don't move on either clock.
+  //
+  // All values confirmed live 2026-07-18 across four canada.ca pages, which agree:
+  //   "Old Age Security payment amounts"  — max $751.97 (65–74) / $827.17 (75+), Jul–Sep 2026
+  //   "How much you could receive"        — same maxima; "partial pension based on how long
+  //                                          you lived in Canada (years lived in Canada ÷ 40)";
+  //                                          "Each January, April, July, and October pension
+  //                                          amounts are increased"; 10% bump at 75
+  //   "Do you qualify"                    — 10 years' residence in Canada / 20 years abroad
+  //   "OAS pension recovery tax"          — the recovery-period table below, and the 15% rate
+  oas: {
+    _cadence: 'quarterly',
+    effectiveQuarter: { value: 'July–September 2026', source_url: SRC.oasPayments, last_verified: '2026-07-18' },
+    // Maximum monthly pension at full (40-year) residence, before any recovery tax.
+    maxMonthly65to74: { value: 751.97, source_url: SRC.oasPayments, last_verified: '2026-07-18' },
+    maxMonthly75plus: { value: 827.17, source_url: SRC.oasPayments, last_verified: '2026-07-18' },
+    // Automatic 10% increase the month after the 75th birthday (permanent, since July 2022).
+    // Stored for display/explanation — the 75+ maximum above already includes it.
+    age75IncreaseRate: { value: 0.10, source_url: SRC.oasAmount, last_verified: '2026-07-18', cadence: 'statutory' },
+
+    // Residence: full pension at 40 years after age 18; otherwise years ÷ 40.
+    fullResidenceYears:        { value: 40, source_url: SRC.oasAmount,      last_verified: '2026-07-18', cadence: 'statutory' },
+    minResidenceInCanada:      { value: 10, source_url: SRC.oasEligibility, last_verified: '2026-07-18', cadence: 'statutory' },
+    minResidenceOutsideCanada: { value: 20, source_url: SRC.oasEligibility, last_verified: '2026-07-18', cadence: 'statutory' },
+
+    // Deferral: 0.6%/month (7.2%/yr) after 65, to a maximum of 36% at age 70.
+    deferralIncreasePerMonth: { value: 0.006, source_url: SRC.oasWhenStart, last_verified: '2026-07-18', cadence: 'statutory' },
+    deferralMaxIncrease:      { value: 0.36,  source_url: SRC.oasWhenStart, last_verified: '2026-07-18', cadence: 'statutory' },
+    deferralMaxAge:           { value: 70,    source_url: SRC.oasWhenStart, last_verified: '2026-07-18', cadence: 'statutory' },
+    startAge:                 { value: 65,    source_url: SRC.oasWhenStart, last_verified: '2026-07-18', cadence: 'statutory' },
+
+    // Recovery tax (clawback). 15% of net world income above the minimum threshold.
+    recoveryRate:        { value: 0.15,  source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'statutory' },
+    recoveryPeriod:      { value: 'July 2026 – June 2027', source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
+    recoveryIncomeYear:  { value: 2025,   source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
+    recoveryThreshold:   { value: 93454,  source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
+    // "Maximum income recovery threshold" — the income at which OAS is fully clawed back.
+    // PUBLISHED figures, not derived: canada.ca notes they are "based on maximum OAS pension
+    // amounts", so they apply to someone on the full pension. The calculator therefore caps
+    // an individual's repayment at their OWN annual OAS rather than recomputing this ceiling
+    // — see the note on OAS.estimate() in rates-2026.js.
+    fullRecoveryCeiling65to74: { value: 152062, source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
+    fullRecoveryCeiling75plus: { value: 157923, source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
   },
 
   /* ── BENEFIT PAYMENT DATES (2026) — CRA monthly payment calendars ─────────── */

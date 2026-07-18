@@ -70,11 +70,30 @@ for any future mid-year change: statute first, and note in a comment when the T4
 
 ## Rule 3 — Quarterly re-verification (GIS / OAS benefits)
 
-The **Guaranteed Income Supplement** (`gis` in `tax-constants-2026.js`, powering
-`/benefits/gis/`) is **NOT on the January cycle**. Old Age Security benefits — the OAS
-pension, GIS, and the Allowances — re-index to the CPI **every quarter: January, April,
-July, and October**. So GIS must be re-checked at the start of each quarter, and the
-`effectiveQuarter` string updated (currently `July–September 2026`).
+The **Guaranteed Income Supplement** (`gis`, powering `/benefits/gis/`) and the **Old Age
+Security pension** (`oas`, powering `/benefits/oas/`) are **NOT on the January cycle**. Old
+Age Security benefits — the OAS pension, GIS, and the Allowances — re-index to the CPI
+**every quarter: January, April, July, and October**. Both blocks must be re-checked at the
+start of each quarter and **bumped together**; each carries its own `effectiveQuarter` string
+(both currently `July–September 2026`), and both are stamped on-page.
+
+**OAS specifically** (`SRC.oasPayments` / `SRC.oasAmount`) — two figures move quarterly:
+`maxMonthly65to74` and `maxMonthly75plus`. The 75+ amount is 10% higher and that relationship
+is fixed, so it is a useful sanity check: the ratio must stay exactly 1.1.
+
+**The OAS recovery tax runs on a different clock and must not be bumped quarterly.** The
+threshold and both ceilings are set per **July–June recovery period**, keyed to the *previous*
+calendar year's income, so those nodes carry `cadence: 'july'` individually and are chased in
+the July pass, not the quarterly one:
+
+- `recoveryThreshold`, `fullRecoveryCeiling65to74`, `fullRecoveryCeiling75plus`,
+  `recoveryPeriod`, `recoveryIncomeYear` — all from the recovery-period table on
+  `SRC.oasRecoveryTax`, which publishes three periods at once. Each July, move to the next row.
+- That table's forward row is flagged by Service Canada as an **estimate** from January to
+  September and final only from October — so a July update takes an estimate. Re-confirm in
+  October.
+- `recoveryRate` (15%), the deferral increments and the residency rules are statutory and
+  never move on either clock.
 
 - Source: Service Canada "How much you could receive" (`SRC.gis`) publishes the four maxima
   and income cut-offs each quarter. **The detailed per-income rate tables have been retired**

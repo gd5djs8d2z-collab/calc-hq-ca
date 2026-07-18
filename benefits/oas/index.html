@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OAS Calculator 2026 — How Much Is OAS &amp; the Clawback | calc-hq.ca</title>
+<meta name="description" content="How much OAS you'd get and how much the recovery tax claws back — from one set of inputs. 2026 maximums for 65–74 and 75+, the $93,454 threshold, partial pensions and deferral to 70.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/oas/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OAS Calculator 2026 — Amount &amp; Clawback in One Tool">
+<meta property="og:description" content="Your gross OAS and the recovery tax against it, side by side, from the same inputs.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/oas/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"OAS Calculator","item":"https://calc-hq.ca/benefits/oas/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is OAS per month in 2026?","acceptedAnswer":{"@type":"Answer","text":"For July to September 2026 the maximum Old Age Security pension is $751.97 a month if you are 65 to 74, and $827.17 a month if you are 75 or over — the older band is 10% higher, an increase that has applied automatically since July 2022. Those are maximums: you only get the full amount with 40 years of residence in Canada after age 18, and the amount is reduced by the recovery tax if your net world income is high enough. OAS is re-indexed to the cost of living every January, April, July and October."}},
+{"@type":"Question","name":"What is the OAS clawback threshold for 2026?","acceptedAnswer":{"@type":"Answer","text":"For the July 2026 to June 2027 payment period, the recovery tax starts once your 2025 net world income passes $93,454. You repay 15 cents of every dollar above that. OAS is fully clawed back at $152,062 of income if you are 65 to 74, or $157,923 if you are 75 or over. Note the lag: this period's clawback is assessed on your 2025 income, not your current income."}},
+{"@type":"Question","name":"How is the OAS clawback calculated?","acceptedAnswer":{"@type":"Answer","text":"Take your net world income, subtract the threshold, and multiply by 15%. Using the government's own example: on $100,000 of 2025 income, $100,000 − $93,454 = $6,546, and 15% of $6,546 is $981.90 to repay over the July 2026 to June 2027 period. The repayment is spread across your monthly payments as a recovery tax deduction rather than billed as a lump sum, and it can never exceed the OAS you actually received."}},
+{"@type":"Question","name":"Do I get full OAS if I have not lived in Canada for 40 years?","acceptedAnswer":{"@type":"Answer","text":"No — you get a partial pension calculated as your years of residence in Canada after age 18 divided by 40. Twenty years of residence pays half the maximum. You need at least 10 years of residence to receive OAS while living in Canada, or 20 years if you live outside Canada. Time spent in a country with a social security agreement with Canada may count toward the requirement."}},
+{"@type":"Question","name":"Is it worth deferring OAS to 70?","acceptedAnswer":{"@type":"Answer","text":"Deferring past 65 raises the pension by 0.6% for each month you wait — 7.2% a year, to a maximum of 36% at age 70. On the July to September 2026 maximum that turns $751.97 a month into $1,022.68. It is worth considering if you are healthy, expect a long retirement, or are still working and would only see the money clawed back anyway. There is no benefit to deferring past 70, and no benefit at all if you qualify for the Guaranteed Income Supplement, which you cannot receive while your OAS is deferred."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits</a><span class="sep">›</span>
+    <span>OAS Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>OAS Calculator (2026)</h1>
+    <p class="lead">Two questions, one set of inputs: <strong>how much OAS you'd actually get</strong>, and <strong>how much of it the recovery tax takes back</strong>. Most calculators do one or the other — you need both numbers to know what lands in your account.</p>
+  </div>
+
+  <section class="calc-card" aria-label="OAS amount and clawback calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="age">Your age</label>
+        <input class="input" id="age" type="text" inputmode="numeric" placeholder="68" value="68">
+      </div>
+      <div class="field">
+        <label for="residence">Years lived in Canada after 18
+          <span class="hint">40 years earns the full pension</span>
+        </label>
+        <input class="input" id="residence" type="text" inputmode="numeric" placeholder="40" value="40">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="income">Your net world income
+        <span class="hint">For the current period this is your <strong>2025</strong> income — line 23600, before any OAS repayment</span>
+      </label>
+      <input class="input" id="income" type="text" inputmode="numeric" placeholder="95,000" value="95,000">
+    </div>
+
+    <div class="field">
+      <label for="start">If you deferred, what age did you start OAS?
+        <span class="hint">Leave at 65 if you took it as soon as you qualified</span>
+      </label>
+      <select class="input" id="start">
+        <option value="65" selected>65 — took it right away</option>
+        <option value="66">66 — deferred 1 year (+7.2%)</option>
+        <option value="67">67 — deferred 2 years (+14.4%)</option>
+        <option value="68">68 — deferred 3 years (+21.6%)</option>
+        <option value="69">69 — deferred 4 years (+28.8%)</option>
+        <option value="70">70 — deferred 5 years (+36%)</option>
+      </select>
+    </div>
+
+    <button class="btn" id="go" type="button">Calculate my OAS</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">What you'd actually receive</p>
+      <p class="result-number" id="net-monthly">—</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="ineligible" hidden></div>
+  </section>
+
+  <section class="answer">
+    <p><strong>How much is OAS?</strong> For <span id="quarter-inline">July–September 2026</span> the maximum is <strong>$751.97 a month</strong> at ages 65 to 74, and <strong>$827.17 a month</strong> from 75 — the older band is permanently 10% higher. Both are maximums, payable only with 40 years of residence in Canada after 18, and both are reduced by the recovery tax once your net world income passes <strong>$93,454</strong>. The amount re-indexes every January, April, July and October.</p>
+  </section>
+
+  <section>
+    <h2>The two numbers people mix up</h2>
+    <p>OAS has a maximum and a clawback, and they answer different questions. The maximum tells you the ceiling. The clawback tells you how much of that ceiling survives your income. Almost every calculator online gives you one and leaves you to work out the other — which is why people arrive at a number that turns out to be wrong once the recovery tax lands.</p>
+    <p>The mechanics are simple enough once separated. Your <em>gross</em> pension comes from three things: your age band, your years of residence, and whether you deferred. Your <em>net</em> pension is that figure minus 15% of every dollar of net world income above the threshold. The calculator above runs both from the same inputs so the two can't drift apart.</p>
+  </section>
+
+  <section>
+    <h2>The clawback: threshold, rate and the point of no return</h2>
+    <p>For the <strong>July 2026 to June 2027</strong> payment period the recovery tax starts at <strong>$93,454</strong> of net world income, and the rate is a flat <strong>15%</strong> of the excess. The government's own worked example: on $100,000 of income, $100,000 − $93,454 = $6,546, and 15% of that is <strong>$981.90</strong> repayable across the period.</p>
+    <p>Keep going up the income scale and the repayment eventually swallows the whole pension. That happens at <strong>$152,062</strong> for ages 65 to 74, and <strong>$157,923</strong> at 75 and over — the 75+ figure is higher precisely because there's more pension to claw back.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Recovery period</th><th>Income year</th><th>Clawback starts</th><th>Fully gone (65–74)</th><th>Fully gone (75+)</th></tr></thead>
+        <tbody>
+          <tr><td>July 2025 – June 2026</td><td>2024</td><td>$90,997</td><td>$148,451</td><td>$154,196</td></tr>
+          <tr class="highlight"><td>July 2026 – June 2027</td><td>2025</td><td>$93,454</td><td>$152,062</td><td>$157,923</td></tr>
+          <tr><td>July 2027 – June 2028</td><td>2026</td><td>$95,323</td><td>$155,109</td><td>$161,088</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">The July 2027 row is published by Service Canada as an estimate until October of the current tax year, when the figures are finalised.</p>
+  </section>
+
+  <section>
+    <h2>Why the clawback uses income you earned last year</h2>
+    <p>This is the part that catches people out. The recovery tax period runs <strong>July to June</strong>, not January to December, and it's assessed on the <strong>previous calendar year's</strong> income. The payments you receive from July 2026 through June 2027 are reduced based on what you earned in <strong>2025</strong>.</p>
+    <p>The practical consequences are worth planning around. A one-off spike in income — selling a property, a large RRIF withdrawal, unlocking a LIRA — doesn't hit your OAS in the year you take it. It hits the following July, by which time your income may be back to normal and the deduction feels like it came from nowhere. Retiring works in your favour the same way in reverse: the year your employment income stops, your OAS stays reduced until the following July catches up with reality.</p>
+    <p>The repayment isn't billed as a lump sum either. Service Canada divides it across the twelve monthly payments as a recovery tax deduction, so a clawback shows up as a smaller cheque rather than a bill.</p>
+  </section>
+
+  <section>
+    <h2>Partial pensions: the 40-year rule</h2>
+    <p>Full OAS requires <strong>40 years of residence in Canada after age 18</strong>. Below that you get a partial pension worked out as your years of residence divided by 40 — so 20 years pays half the maximum, 30 years pays three-quarters. The fraction is locked in when your pension starts.</p>
+    <p>There's a floor: you need at least <strong>10 years</strong> of residence to collect OAS while living in Canada, or <strong>20 years</strong> if you're living abroad. Time in a country with a social security agreement with Canada may count toward meeting the minimum.</p>
+    <p>Partial pensions interact with the clawback in a way the published ceilings don't capture: with less pension to recover, your OAS reaches zero at a lower income than the $152,062 headline figure. The calculator above accounts for this by capping your repayment at the pension you actually receive.</p>
+  </section>
+
+  <section>
+    <h2>Deferring to 70</h2>
+    <p>You can't start OAS before 65, but you can delay it to 70. Each month you wait adds <strong>0.6%</strong> — 7.2% a year, capping at <strong>36%</strong> at age 70. On the current maximum that's the difference between $751.97 and $1,022.68 a month, for life, indexed.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Start age</th><th>Increase</th><th>Maximum monthly (Jul–Sep 2026)</th></tr></thead>
+        <tbody>
+          <tr><td>65</td><td>—</td><td>$751.97</td></tr>
+          <tr><td>66</td><td>7.2%</td><td>$806.11</td></tr>
+          <tr><td>67</td><td>14.4%</td><td>$860.25</td></tr>
+          <tr><td>68</td><td>21.6%</td><td>$914.40</td></tr>
+          <tr><td>69</td><td>28.8%</td><td>$968.54</td></tr>
+          <tr><td>70</td><td>36%</td><td>$1,022.68</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Deferral is worth a hard look if you're still working past 65 with income above the threshold — you'd be handing back a chunk of the pension anyway, so taking a permanently larger one later can be the better trade. It's the wrong move if you're eligible for the <a href="/benefits/gis/">Guaranteed Income Supplement</a>, which you can't receive while OAS is deferred, or if your health or cash needs argue for money now. Nothing accrues past 70.</p>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <details><summary>How much is OAS per month in 2026?</summary>
+      <p>Maximum $751.97 a month at 65–74 and $827.17 at 75+, for July–September 2026. Both assume 40 years of residence and no clawback, and both re-index quarterly.</p>
+    </details>
+    <details><summary>What is the OAS clawback threshold for 2026?</summary>
+      <p>$93,454 of 2025 net world income for the July 2026 – June 2027 period. Above that you repay 15% of the excess, and OAS is gone entirely at $152,062 (65–74) or $157,923 (75+).</p>
+    </details>
+    <details><summary>How is the OAS clawback calculated?</summary>
+      <p>(Net world income − threshold) × 15%. On $100,000: ($100,000 − $93,454) × 0.15 = $981.90 for the period, taken as a monthly deduction rather than a bill. It can never exceed the OAS you actually received.</p>
+    </details>
+    <details><summary>Do I get full OAS without 40 years in Canada?</summary>
+      <p>No — it's years of residence after 18 divided by 40. You need 10 years minimum living in Canada, 20 if you live abroad.</p>
+    </details>
+    <details><summary>Is OAS taxable?</summary>
+      <p>Yes. OAS is taxable income and goes on your return. GIS, by contrast, is not taxable. The recovery tax is separate from and on top of ordinary income tax.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related — seniors &amp; retirement</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/gis/"><h3>GIS Calculator</h3><p>The income-tested top-up that rides alongside OAS — and that you give up by deferring.</p></a>
+      <a class="tool-card" href="/benefits/cpp-60-vs-65/"><h3>CPP at 60 vs 65</h3><p>The other big timing decision, with your break-even age.</p></a>
+      <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>How your CPP contribution is built during your working years.</p></a>
+      <a class="tool-card" href="/key-dates-limits/ccb-payment-dates/"><h3>Benefit Payment Dates</h3><p>Every 2026 OAS, CPP and GIS payment date — one shared schedule.</p></a>
+    </div>
+    <p class="disclaimer"><strong>Estimate only.</strong> OAS amounts are the <span id="quarter-disc">July–September 2026</span> maximums from Service Canada and re-index quarterly; recovery-tax figures are for the July 2026 – June 2027 period. This tool does not determine your eligibility or exact entitlement — Service Canada does. Confirm with the official Old Age Security Benefits Estimator before making a decision about your retirement income.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/benefits/oas/">OAS Calculator</a></li>
+          <li><a href="/benefits/gis/">GIS Calculator</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/cpp-60-vs-65/">CPP at 60 vs 65</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { OAS } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n, cents=false) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+
+// Stamp the effective quarter from the constants so the prose can't drift from the data.
+for (const id of ['quarter-inline','quarter-disc']) {
+  const node = el(id); if (node) node.textContent = OAS.effectiveQuarter;
+}
+
+function run() {
+  const age = parseMoney(el('age').value);
+  const residence = parseMoney(el('residence').value);
+  const income = parseMoney(el('income').value);
+  const startAge = Number(el('start').value);
+  const result = el('result'), bad = el('ineligible');
+
+  if (age > 0 && age < OAS.startAge) {
+    result.hidden = true; bad.hidden = false;
+    bad.innerHTML = `OAS starts at <strong>65</strong> at the earliest — unlike CPP, there's no early option. At ${Math.floor(age)}, you're not yet eligible. If you're weighing early retirement income, the <a href="/benefits/cpp-60-vs-65/">CPP at 60 vs 65</a> calculator covers the decision you <em>can</em> make now.`;
+    return;
+  }
+  if (residence > 0 && residence < OAS.minResidenceInCanada) {
+    result.hidden = true; bad.hidden = false;
+    bad.innerHTML = `You need at least <strong>${OAS.minResidenceInCanada} years</strong> of residence in Canada after age 18 to receive OAS while living here (${OAS.minResidenceOutsideCanada} if you live abroad). At ${Math.floor(residence)} years, no pension is payable — though time in a country with a social security agreement with Canada may count toward the minimum.`;
+    return;
+  }
+  bad.hidden = true;
+
+  const e = OAS.estimate({ age, residenceYears: residence, netWorldIncome: income, startAge });
+
+  el('net-monthly').textContent = money(e.netMonthly, true);
+
+  const band = age >= 75 ? '75 and over' : '65 to 74';
+  if (e.fullyClawedBack) {
+    el('reading').textContent = `At ${money(income)} of net world income, the recovery tax takes back the entire pension — nothing is payable for the ${OAS.recoveryPeriod} period.`;
+  } else if (e.repaymentAnnual > 0) {
+    el('reading').textContent = `${money(e.netAnnual, true)} a year, after the recovery tax claws back ${money(e.repaymentAnnual, true)} of a ${money(e.grossAnnual, true)} gross pension.`;
+  } else {
+    el('reading').textContent = `${money(e.netAnnual, true)} a year, with no clawback — your income is below the ${money(e.threshold)} threshold.`;
+  }
+
+  const rows = [
+    [`Maximum monthly OAS (age ${band})`, money(e.maxMonthly, true)],
+  ];
+  if (e.partialPension) {
+    rows.push([`Residence factor (${Math.floor(residence)} of ${OAS.fullResidenceYears} years)`, `× ${(e.residenceFactor).toFixed(3)}`]);
+  }
+  if (e.deferralFactor > 1) {
+    rows.push([`Deferral to age ${startAge}`, `+${Math.round((e.deferralFactor - 1) * 1000) / 10}%`]);
+  }
+  rows.push(
+    ['<strong>Gross OAS — monthly</strong>', `<strong>${money(e.grossMonthly, true)}</strong>`],
+    ['Gross OAS — annual', money(e.grossAnnual, true)],
+    [`Net world income (${OAS.recoveryIncomeYear})`, money(income)],
+    [`Recovery tax threshold`, money(e.threshold)],
+    ['Income above the threshold', money(e.excessIncome)],
+    [`Recovery tax at ${Math.round(OAS.recoveryRate * 100)}%`, `− ${money(e.repaymentAnnual, true)} a year`],
+    ['Clawback per month', `− ${money(e.repaymentMonthly, true)}`],
+    ['<strong>Net OAS — annual</strong>', `<strong>${money(e.netAnnual, true)}</strong>`],
+    [`OAS fully clawed back at (age ${band}, full pension)`, money(e.publishedCeiling)],
+  );
+
+  el('breakdown').innerHTML = rows
+    .map(([k, val]) => `<div class="row"><span>${k}</span><span class="val">${val}</span></div>`)
+    .join('');
+  result.hidden = false;
+}
+
+el('go').addEventListener('click', run);
+for (const id of ['age','residence','income','start']) {
+  el(id).addEventListener('input', run);
+  el(id).addEventListener('change', run);
+}
+run();
+</script>
+</body>
+</html>

@@ -531,6 +531,99 @@ export const GIS = {
 // Derived from TC.benefitPaymentDates2026 (provenance-stamped, CRA payment-dates page,
 // verified 2026-07-18). Powers the /key-dates-limits/ccb-payment-dates/ countdown, so the
 // dates can't drift from source. Re-verify every January when CRA publishes the new year.
+/* ── OLD AGE SECURITY — pension amount + recovery tax ────────────────────────── */
+// Constants + provenance: TC.oas. The pension amount re-indexes QUARTERLY (block cadence),
+// while the recovery-tax threshold and ceilings run on a July–June period keyed to the prior
+// calendar year's income (per-node cadence 'july'). Rates and residency rules are statutory.
+export const OAS = {
+  effectiveQuarter:  v(TC.oas.effectiveQuarter),
+  maxMonthly65to74:  v(TC.oas.maxMonthly65to74),
+  maxMonthly75plus:  v(TC.oas.maxMonthly75plus),
+  age75IncreaseRate: v(TC.oas.age75IncreaseRate),
+
+  fullResidenceYears:        v(TC.oas.fullResidenceYears),
+  minResidenceInCanada:      v(TC.oas.minResidenceInCanada),
+  minResidenceOutsideCanada: v(TC.oas.minResidenceOutsideCanada),
+
+  startAge:                 v(TC.oas.startAge),
+  deferralMaxAge:           v(TC.oas.deferralMaxAge),
+  deferralIncreasePerMonth: v(TC.oas.deferralIncreasePerMonth),
+  deferralMaxIncrease:      v(TC.oas.deferralMaxIncrease),
+
+  recoveryRate:       v(TC.oas.recoveryRate),
+  recoveryPeriod:     v(TC.oas.recoveryPeriod),
+  recoveryIncomeYear: v(TC.oas.recoveryIncomeYear),
+  recoveryThreshold:  v(TC.oas.recoveryThreshold),
+  fullRecoveryCeiling65to74: v(TC.oas.fullRecoveryCeiling65to74),
+  fullRecoveryCeiling75plus: v(TC.oas.fullRecoveryCeiling75plus),
+
+  // The 75+ maximum already includes the automatic 10% increase.
+  maxMonthlyForAge(age) {
+    return age >= 75 ? this.maxMonthly75plus : this.maxMonthly65to74;
+  },
+
+  // Residence factor: full pension at 40 years after 18, otherwise years ÷ 40, capped at 1.
+  residenceFactor(years) {
+    return Math.min(Math.max(0, years) / this.fullResidenceYears, 1);
+  },
+
+  // Deferral uplift: 0.6% per month deferred past 65, capped at 36% (age 70).
+  deferralFactor(startAge) {
+    const months = Math.max(0, Math.min(this.deferralMaxAge, startAge) - this.startAge) * 12;
+    return 1 + Math.min(months * this.deferralIncreasePerMonth, this.deferralMaxIncrease);
+  },
+
+  // Published "maximum income recovery threshold" — the income at which a FULL pension is
+  // entirely clawed back. Kept as the published figure rather than derived; see below.
+  fullRecoveryCeiling(age) {
+    return age >= 75 ? this.fullRecoveryCeiling75plus : this.fullRecoveryCeiling65to74;
+  },
+
+  /**
+   * One input set, two outputs: gross OAS and the recovery tax against it.
+   *
+   * NOTE on the ceiling. canada.ca's published ceilings are "based on maximum OAS pension
+   * amounts", so they describe someone on the full 40-year pension. Rather than recompute a
+   * ceiling that would disagree with the published number, repayment is computed as
+   * 15% x (income - threshold) and then CAPPED at the person's own annual OAS — which is the
+   * real-world limit (you cannot repay more than you received). For a full pension the two
+   * approaches agree closely; for a partial or deferred pension the cap is what binds.
+   */
+  estimate({ age, residenceYears, netWorldIncome, startAge = null }) {
+    age = Math.max(0, age);
+    netWorldIncome = Math.max(0, netWorldIncome);
+
+    const maxMonthly = this.maxMonthlyForAge(age);
+    const resFactor = this.residenceFactor(residenceYears);
+    const defFactor = startAge ? this.deferralFactor(startAge) : 1;
+
+    const grossMonthly = maxMonthly * resFactor * defFactor;
+    const grossAnnual = grossMonthly * 12;
+
+    const excess = Math.max(0, netWorldIncome - this.recoveryThreshold);
+    const uncappedRepayment = excess * this.recoveryRate;
+    const repaymentAnnual = Math.min(uncappedRepayment, grossAnnual);
+
+    const netAnnual = Math.max(0, grossAnnual - repaymentAnnual);
+
+    return {
+      maxMonthly, residenceFactor: resFactor, deferralFactor: defFactor,
+      grossMonthly, grossAnnual,
+      threshold: this.recoveryThreshold,
+      excessIncome: excess,
+      repaymentAnnual, repaymentMonthly: repaymentAnnual / 12,
+      netAnnual, netMonthly: netAnnual / 12,
+      fullyClawedBack: repaymentAnnual >= grossAnnual && grossAnnual > 0,
+      // Income at which THIS person's pension hits zero (their own cap), alongside the
+      // published ceiling for a full pension.
+      ownZeroIncome: this.recoveryThreshold + grossAnnual / this.recoveryRate,
+      publishedCeiling: this.fullRecoveryCeiling(age),
+      partialPension: resFactor < 1,
+      belowMinimumResidence: residenceYears < this.minResidenceInCanada,
+    };
+  },
+};
+
 export const BENEFIT_PAYMENT_DATES = {
   ccb: v(TC.benefitPaymentDates2026.ccb),
   gstCredit: v(TC.benefitPaymentDates2026.gstCredit),
