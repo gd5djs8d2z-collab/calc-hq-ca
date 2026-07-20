@@ -1,0 +1,1658 @@
+[
+  {
+    "key": "federal.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 58523,
+        "rate": 0.14
+      },
+      {
+        "min": 58523,
+        "max": 117045,
+        "rate": 0.205
+      },
+      {
+        "min": 117045,
+        "max": 181440,
+        "rate": 0.26
+      },
+      {
+        "min": 181440,
+        "max": 258482,
+        "rate": 0.29
+      },
+      {
+        "min": 258482,
+        "max": "Infinity",
+        "rate": 0.33
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "federal.bpa",
+    "value": {
+      "max": 16452,
+      "min": 14829,
+      "phaseOutStart": 181440,
+      "phaseOutEnd": 258482,
+      "creditRate": 0.14
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "federal.canadaEmploymentAmountMaxCredit",
+    "value": 210.14,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "federal.canadaEmploymentAmountBase",
+    "value": 1501,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.rate",
+    "value": 0.0595,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.basicExemption",
+    "value": 3500,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.ympe",
+    "value": 74600,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.maxEmployeeContribution",
+    "value": 4230.45,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.baseCpp1Rate",
+    "value": 0.0495,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.enhancedCpp1Rate",
+    "value": 0.01,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.cpp2.rate",
+    "value": 0.04,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.cpp2.yampe",
+    "value": 85000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.cpp2.maxContribution",
+    "value": 416,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.rate",
+    "value": 0.063,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.basicExemption",
+    "value": 3500,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.ympe",
+    "value": 74600,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.maxEmployeeContribution",
+    "value": 4479.3,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.baseCpp1Rate",
+    "value": 0.053,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.enhancedCpp1Rate",
+    "value": 0.01,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.cpp2.rate",
+    "value": 0.04,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.cpp2.yampe",
+    "value": 85000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpp.cpp2.maxContribution",
+    "value": 416,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.rate",
+    "value": 0.0163,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.maxInsurableEarnings",
+    "value": 68900,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.maxEmployeePremium",
+    "value": 1123.07,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.employerRate",
+    "value": 0.0228,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.maxEmployerPremium",
+    "value": 1572.3,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.benefitReplacementRate",
+    "value": 0.55,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.quebec.rate",
+    "value": 0.013,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.quebec.maxEmployeePremium",
+    "value": 895.7,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.employeeRate",
+    "value": 0.0043,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.employerRate",
+    "value": 0.00602,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.selfEmployedRate",
+    "value": 0.00764,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.maxInsurableEarnings",
+    "value": 103000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.maxEmployeePremium",
+    "value": 442.9,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.maxEmployerPremium",
+    "value": 620.06,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "qpip.maxSelfEmployedPremium",
+    "value": 786.92,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "quebec.federalAbatementRate",
+    "value": 0.165,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-44000-refundable-quebec-abatement.html",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 53891,
+        "rate": 0.0505
+      },
+      {
+        "min": 53891,
+        "max": 107785,
+        "rate": 0.0915
+      },
+      {
+        "min": 107785,
+        "max": 150000,
+        "rate": 0.1116
+      },
+      {
+        "min": 150000,
+        "max": 220000,
+        "rate": 0.1216
+      },
+      {
+        "min": 220000,
+        "max": "Infinity",
+        "rate": 0.1316
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.bpa",
+    "value": 12989,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.bpaCreditRate",
+    "value": 0.0505,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.surtax",
+    "value": [
+      {
+        "over": 5818,
+        "rate": 0.2
+      },
+      {
+        "over": 7446,
+        "rate": 0.36
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.healthPremium",
+    "value": [
+      {
+        "upTo": 20000,
+        "premium": 0
+      },
+      {
+        "upTo": 36000,
+        "formula": "lesser(300, 0.06*(income-20000))"
+      },
+      {
+        "upTo": 48000,
+        "formula": "lesser(450, 300+0.06*(income-36000))"
+      },
+      {
+        "upTo": 72000,
+        "formula": "lesser(600, 450+0.25*(income-48000))"
+      },
+      {
+        "upTo": 200000,
+        "formula": "lesser(750, 600+0.25*(income-72000))"
+      },
+      {
+        "upTo": "Infinity",
+        "formula": "lesser(900, 750+0.25*(income-200000))"
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.healthPremiumMax",
+    "value": 900,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.AB.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 61200,
+        "rate": 0.08
+      },
+      {
+        "min": 61200,
+        "max": 154259,
+        "rate": 0.1
+      },
+      {
+        "min": 154259,
+        "max": 185111,
+        "rate": 0.12
+      },
+      {
+        "min": 185111,
+        "max": 246813,
+        "rate": 0.13
+      },
+      {
+        "min": 246813,
+        "max": 370220,
+        "rate": 0.14
+      },
+      {
+        "min": 370220,
+        "max": "Infinity",
+        "rate": 0.15
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032ab-jan/t4032ab-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.AB.bpa",
+    "value": 22769,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032ab-jan/t4032ab-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.AB.bpaCreditRate",
+    "value": 0.08,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032ab-jan/t4032ab-january-general-information.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.BC.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 50363,
+        "rate": 0.056
+      },
+      {
+        "min": 50363,
+        "max": 100728,
+        "rate": 0.077
+      },
+      {
+        "min": 100728,
+        "max": 115648,
+        "rate": 0.105
+      },
+      {
+        "min": 115648,
+        "max": 140430,
+        "rate": 0.1229
+      },
+      {
+        "min": 140430,
+        "max": 190405,
+        "rate": 0.147
+      },
+      {
+        "min": 190405,
+        "max": 265545,
+        "rate": 0.168
+      },
+      {
+        "min": 265545,
+        "max": "Infinity",
+        "rate": 0.205
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.BC.bpa",
+    "value": 13216,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.BC.bpaCreditRate",
+    "value": 0.056,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.BC.taxReduction",
+    "value": {
+      "base": 690,
+      "threshold": 25570,
+      "rate": 0.0356
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.SK.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 54532,
+        "rate": 0.105
+      },
+      {
+        "min": 54532,
+        "max": 155805,
+        "rate": 0.125
+      },
+      {
+        "min": 155805,
+        "max": "Infinity",
+        "rate": 0.145
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032sk-jan/t4032sk-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.SK.bpa",
+    "value": 20381,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032sk-jan/t4032sk-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.SK.bpaCreditRate",
+    "value": 0.105,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032sk-jan/t4032sk-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.MB.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 47000,
+        "rate": 0.108
+      },
+      {
+        "min": 47000,
+        "max": 100000,
+        "rate": 0.1275
+      },
+      {
+        "min": 100000,
+        "max": "Infinity",
+        "rate": 0.174
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032mb-jan/t4032mb-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.MB.bpa",
+    "value": 15780,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032mb-jan/t4032mb-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.MB.bpaCreditRate",
+    "value": 0.108,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032mb-jan/t4032mb-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NS.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 30995,
+        "rate": 0.0879
+      },
+      {
+        "min": 30995,
+        "max": 61991,
+        "rate": 0.1495
+      },
+      {
+        "min": 61991,
+        "max": 97417,
+        "rate": 0.1667
+      },
+      {
+        "min": 97417,
+        "max": 157124,
+        "rate": 0.175
+      },
+      {
+        "min": 157124,
+        "max": "Infinity",
+        "rate": 0.21
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032ns-jan/t4032ns-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NS.bpa",
+    "value": 11932,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032ns-jan/t4032ns-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NS.bpaCreditRate",
+    "value": 0.0879,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032ns-jan/t4032ns-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NB.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 52333,
+        "rate": 0.094
+      },
+      {
+        "min": 52333,
+        "max": 104666,
+        "rate": 0.14
+      },
+      {
+        "min": 104666,
+        "max": 193861,
+        "rate": 0.16
+      },
+      {
+        "min": 193861,
+        "max": "Infinity",
+        "rate": 0.195
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nb-jan/t4032nb-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NB.bpa",
+    "value": 13664,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nb-jan/t4032nb-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NB.bpaCreditRate",
+    "value": 0.094,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nb-jan/t4032nb-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NL.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 44678,
+        "rate": 0.087
+      },
+      {
+        "min": 44678,
+        "max": 89354,
+        "rate": 0.145
+      },
+      {
+        "min": 89354,
+        "max": 159528,
+        "rate": 0.158
+      },
+      {
+        "min": 159528,
+        "max": 223340,
+        "rate": 0.178
+      },
+      {
+        "min": 223340,
+        "max": 285319,
+        "rate": 0.198
+      },
+      {
+        "min": 285319,
+        "max": 570638,
+        "rate": 0.208
+      },
+      {
+        "min": 570638,
+        "max": 1141275,
+        "rate": 0.213
+      },
+      {
+        "min": 1141275,
+        "max": "Infinity",
+        "rate": 0.218
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NL.bpa",
+    "value": 13094,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NL.bpaCreditRate",
+    "value": 0.087,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 33928,
+        "rate": 0.095
+      },
+      {
+        "min": 33928,
+        "max": 65820,
+        "rate": 0.1347
+      },
+      {
+        "min": 65820,
+        "max": 106890,
+        "rate": 0.166
+      },
+      {
+        "min": 106890,
+        "max": 142520,
+        "rate": 0.1762
+      },
+      {
+        "min": 142520,
+        "max": 200000,
+        "rate": 0.19
+      },
+      {
+        "min": 200000,
+        "max": "Infinity",
+        "rate": 0.2
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.bpa",
+    "value": 15000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.bpaCreditRate",
+    "value": 0.095,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.YT.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 58523,
+        "rate": 0.064
+      },
+      {
+        "min": 58523,
+        "max": 117045,
+        "rate": 0.09
+      },
+      {
+        "min": 117045,
+        "max": 181440,
+        "rate": 0.109
+      },
+      {
+        "min": 181440,
+        "max": 500000,
+        "rate": 0.128
+      },
+      {
+        "min": 500000,
+        "max": "Infinity",
+        "rate": 0.15
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032yt-jan/t4032yt-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.YT.bpa",
+    "value": 16452,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032yt-jan/t4032yt-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.YT.bpaPhaseOut",
+    "value": {
+      "max": 16452,
+      "min": 14829,
+      "phaseOutStart": 181440,
+      "phaseOutEnd": 258482
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://yukon.ca/en/yukon-historical-tax-rates",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.YT.bpaCreditRate",
+    "value": 0.064,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032yt-jan/t4032yt-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NT.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 53003,
+        "rate": 0.059
+      },
+      {
+        "min": 53003,
+        "max": 106009,
+        "rate": 0.086
+      },
+      {
+        "min": 106009,
+        "max": 172346,
+        "rate": 0.122
+      },
+      {
+        "min": 172346,
+        "max": "Infinity",
+        "rate": 0.1405
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nt-jan/t4032nt-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NT.bpa",
+    "value": 18198,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nt-jan/t4032nt-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NT.bpaCreditRate",
+    "value": 0.059,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nt-jan/t4032nt-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NU.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 55801,
+        "rate": 0.04
+      },
+      {
+        "min": 55801,
+        "max": 111602,
+        "rate": 0.07
+      },
+      {
+        "min": 111602,
+        "max": 181439,
+        "rate": 0.09
+      },
+      {
+        "min": 181439,
+        "max": "Infinity",
+        "rate": 0.115
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nu-jan/t4032nu-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NU.bpa",
+    "value": 19659,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nu-jan/t4032nu-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NU.bpaCreditRate",
+    "value": 0.04,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nu-jan/t4032nu-january-general-information.html",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.QC.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 54345,
+        "rate": 0.14
+      },
+      {
+        "min": 54345,
+        "max": 108680,
+        "rate": 0.19
+      },
+      {
+        "min": 108680,
+        "max": 132245,
+        "rate": 0.24
+      },
+      {
+        "min": 132245,
+        "max": "Infinity",
+        "rate": 0.2575
+      }
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.QC.bpa",
+    "value": 18952,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.QC.bpaCreditRate",
+    "value": 0.14,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.QC.workerDeduction",
+    "value": {
+      "rate": 0.06,
+      "max": 1450
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/how-to-complete-your-income-tax-return/line-by-line-help/201-to-260-net-income/line-201/",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.tfsaAnnualLimit",
+    "value": 7000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.tfsaCumulativeSince2009",
+    "value": 109000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.rrspDollarLimit",
+    "value": 33810,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.rrspEarnedIncomePct",
+    "value": 0.18,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.fhsaAnnualLimit",
+    "value": 8000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.fhsaLifetimeLimit",
+    "value": 40000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.respLifetimeLimit",
+    "value": 50000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.cesgRate",
+    "value": 0.2,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.cesgMaxPerYear",
+    "value": 500,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.cesgFullGrantContribution",
+    "value": 2500,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "registeredAccounts.cesgLifetimeMax",
+    "value": 7200,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "taxDeadlines2026.personalFiling",
+    "value": "2026-04-30",
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "taxDeadlines2026.payment",
+    "value": "2026-04-30",
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "taxDeadlines2026.selfEmployedFiling",
+    "value": "2026-06-15",
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "taxDeadlines2026.rrspContribution",
+    "value": "2026-03-02",
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "taxDeadlines2026.instalments",
+    "value": [
+      "2026-03-16",
+      "2026-06-15",
+      "2026-09-15",
+      "2026-12-15"
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/income-tax-instalments/due-dates.html",
+    "verified_at": "2026-07-16",
+    "cadence": "january"
+  },
+  {
+    "key": "gis.effectiveQuarter",
+    "value": "July–September 2026",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.single",
+    "value": {
+      "maxMonthly": 1123.17,
+      "incomeCutoff": 22800
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.spouseFullOAS",
+    "value": {
+      "maxMonthly": 676.09,
+      "incomeCutoff": 30096
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.spouseAllowance",
+    "value": {
+      "maxMonthly": 676.09,
+      "incomeCutoff": 42144
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.spouseNoOAS",
+    "value": {
+      "maxMonthly": 1123.17,
+      "incomeCutoff": 54624
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.employmentExemption",
+    "value": {
+      "full": 5000,
+      "partialUpTo": 10000,
+      "partialRate": 0.5
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.effectiveQuarter",
+    "value": "July–September 2026",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-07-18",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.maxMonthly65to74",
+    "value": 751.97,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-07-18",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.maxMonthly75plus",
+    "value": 827.17,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-07-18",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.recoveryPeriod",
+    "value": "July 2026 – June 2027",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryIncomeYear",
+    "value": 2025,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryThreshold",
+    "value": 93454,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.fullRecoveryCeiling65to74",
+    "value": 152062,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.fullRecoveryCeiling75plus",
+    "value": 157923,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "benefitPaymentDates2026.ccb",
+    "value": [
+      "2026-01-20",
+      "2026-02-20",
+      "2026-03-20",
+      "2026-04-20",
+      "2026-05-20",
+      "2026-06-19",
+      "2026-07-20",
+      "2026-08-20",
+      "2026-09-18",
+      "2026-10-20",
+      "2026-11-20",
+      "2026-12-11"
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "benefitPaymentDates2026.gstCredit",
+    "value": [
+      "2026-01-05",
+      "2026-04-02"
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "benefitPaymentDates2026.groceriesEssentials",
+    "value": [
+      "2026-07-03",
+      "2026-10-05"
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "benefitPaymentDates2026.ontarioTrillium",
+    "value": [
+      "2026-01-09",
+      "2026-02-10",
+      "2026-03-10",
+      "2026-04-10",
+      "2026-05-08",
+      "2026-06-10",
+      "2026-07-10",
+      "2026-08-10",
+      "2026-09-10",
+      "2026-10-09",
+      "2026-11-10",
+      "2026-12-10"
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "benefitPaymentDates2026.cppOasGis",
+    "value": [
+      "2026-01-28",
+      "2026-02-25",
+      "2026-03-27",
+      "2026-04-28",
+      "2026-05-27",
+      "2026-06-26",
+      "2026-07-29",
+      "2026-08-27",
+      "2026-09-25",
+      "2026-10-28",
+      "2026-11-26",
+      "2026-12-22"
+    ],
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/calendar.html",
+    "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "ccb.benefitYear",
+    "value": "July 2026 – June 2027",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "ccb.baseYear",
+    "value": 2025,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "ccb.maxUnder6",
+    "value": 8157,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "ccb.max6to17",
+    "value": 6883,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "ccb.threshold1",
+    "value": 38237,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "ccb.threshold2",
+    "value": 82847,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html",
+    "verified_at": "2026-07-18",
+    "cadence": "july"
+  },
+  {
+    "key": "cppRetirement.maxAt65Monthly",
+    "value": 1507.65,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "cppRetirement.averageAt65Monthly",
+    "value": 877.01,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html",
+    "verified_at": "2026-07-14",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "cppRetirement.qppMaxAt65Monthly",
+    "value": 1507.65,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.retraitequebec.gouv.qc.ca/en/benefits-amounts-key-data",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  },
+  {
+    "key": "eiParental.maxWeeklyStandard",
+    "value": 729,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "eiParental.maxWeeklyExtended",
+    "value": 437,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "eiParental.familySupplementIncomeThreshold",
+    "value": 25921,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html",
+    "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "qpipParental.maxInsurableEarnings",
+    "value": 103000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
+    "verified_at": "2026-07-15",
+    "cadence": "january"
+  }
+]

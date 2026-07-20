@@ -1,8 +1,13 @@
-# Tax-constant stamp + staleness gate.
+# Tax-constant stamp + staleness gate, plus the value-change audit-trail gate.
 #
 # Runs scripts/check-constants.mjs, which fails when any constant in
 # data/tax-constants-2026.js is UNSTAMPED, NO-SOURCE, UNVERIFIED, STALE, or violates a
 # cross-field invariant. See MAINTENANCE.md Rule 4.
+#
+# Then runs scripts/check-history.mjs, which fails when data/constant-history.json (the
+# append-only value-change history) has drifted from the live stamps — a missing/duplicate
+# in-force row, a value that no longer deep-equals the live constant, or a stale source_url.
+# Regenerate the file with `node scripts/gen-history.mjs` when it flags drift.
 #
 # WHY THE SCHEDULE MATTERS MORE THAN THE PUSH TRIGGER
 #   STALE is time-based, not diff-based: a value goes stale because a January / July /
@@ -50,6 +55,13 @@ jobs:
           set -o pipefail
           node scripts/check-constants.mjs | tee report.txt
 
+      - name: Run the history check
+        id: checkhistory
+        if: always()   # always evaluate the audit trail, even if the constants step already failed
+        run: |
+          set -o pipefail
+          node scripts/check-history.mjs | tee history-report.txt
+
       - name: Publish the report to the job summary
         if: always()
         run: |
@@ -63,5 +75,16 @@ jobs:
               echo
               echo 'Failing values must be re-verified against their `source_url` and re-stamped.'
               echo 'See MAINTENANCE.md — Rule 1 (January), Rule 3 (quarterly), Rule 5 (July).'
+            fi
+            echo
+            echo '## Constant-history audit-trail check'
+            echo
+            echo '```'
+            cat history-report.txt 2>/dev/null || echo 'history checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkhistory.outcome }}' != 'success' ]; then
+              echo
+              echo 'The history file (data/constant-history.json) has drifted from the live stamps.'
+              echo 'Regenerate it with `node scripts/gen-history.mjs` and commit the result.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"
