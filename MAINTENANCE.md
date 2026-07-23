@@ -321,3 +321,34 @@ T4032 and Revenu Québec tables.
 - **PEI** — CRA T4032-PE payroll table and many calculators still surface the old 3-bracket (9.8/13.8/16.7) structure; the enacted 6-bracket statute governs.
 - **NL** — the $15,000 exemption phase-in: re-check the 2027 return BPA (it should land at $15,000).
 - **CCB** — 2026–27 amounts now official; next re-index is **July 2027**.
+
+## 2026-07-23 — BC lowest-rate correction (out-of-cycle, data-entry error)
+
+**Found.** British Columbia's lowest bracket rate was stored as `0.0560` in **both**
+`provinces.BC.brackets[0].rate` and `provinces.BC.bpaCreditRate` — a dropped-zero transcription
+of the true **5.06% (`0.0506`)**. The other six BC bracket rates were already correct. This had
+shipped in the live payroll calculators, so every BC take-home result was computing the first
+bracket at 5.6% instead of 5.06%.
+
+**Verified** against two primary sources: `gov.bc.ca` personal income tax rates ("$0 to $49,279 —
+**5.06%**") and CRA **T4032BC** ("Multiply the total on line 17 by **5.06% × 0.0506**"). Corrected
+both nodes to `0.0506`, bumped `last_verified` to 2026-07-23, and regenerated
+`constant-history.json` (the file is a regenerator, not an accumulator — the git diff is the audit
+trail). **check-constants and check-history both PASS**; the `bpaCreditRate === brackets[0].rate`
+invariant still holds because both fields were corrected together.
+
+**Regression (BC only, all other jurisdictions byte-identical).** Provincial tax falls / net rises:
+about **+$79/yr at $30k**, peaking **~+$182/yr around $51k**, then decaying to a **+$175.52/yr floor
+above ~$75k**. The delta is `0.0054 × (min(taxable, $50,363) − creditBase)` where
+`creditBase = BPA + base-CPP + EI` — it climbs as the first bracket fills, then shrinks as the
+payroll-contribution credits (also valued at the lowest rate) cap out.
+
+**Why the gate missed it — this is the important part.** `check-constants` verifies **provenance
+hygiene** (stamped / sourced / dated / within-cadence) plus one cross-field invariant
+(`bpaCreditRate === brackets[0].rate`). The value was fully stamped and fresh, and the invariant
+was **satisfied** because both fields held the *same* wrong number. **A wrong-but-plausible,
+internally-consistent, freshly-stamped rate passes every offline check.** The gate cannot catch a
+value that is wrong against its external source — only re-verification against the primary document
+does. A full sweep of all 13 jurisdictions' lowest rates against CRA T4032 confirmed **BC was the
+only error**. Lesson for the January (Rule 1) pass: re-open the source for the rate, don't trust a
+green checker — the checker only proves the *stamp* is well-formed, never that the *number* is right.

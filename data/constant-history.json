@@ -551,7 +551,7 @@
       {
         "min": 0,
         "max": 50363,
-        "rate": 0.056
+        "rate": 0.0506
       },
       {
         "min": 50363,
@@ -587,7 +587,7 @@
     "effective_from": "2026-01-01",
     "effective_to": null,
     "source_url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates",
-    "verified_at": "2026-07-13",
+    "verified_at": "2026-07-23",
     "cadence": "january"
   },
   {
@@ -601,11 +601,11 @@
   },
   {
     "key": "provinces.BC.bpaCreditRate",
-    "value": 0.056,
+    "value": 0.0506,
     "effective_from": "2026-01-01",
     "effective_to": null,
     "source_url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates",
-    "verified_at": "2026-07-13",
+    "verified_at": "2026-07-23",
     "cadence": "january"
   },
   {

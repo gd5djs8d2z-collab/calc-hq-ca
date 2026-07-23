@@ -268,16 +268,16 @@ export const TAX_CONSTANTS_2026 = {
     BC: {
       name: 'British Columbia', indexation: 0.022,
       brackets: { value: [
-        { min: 0,      max: 50363,    rate: 0.0560 },
+        { min: 0,      max: 50363,    rate: 0.0506 },
         { min: 50363,  max: 100728,   rate: 0.0770 },
         { min: 100728, max: 115648,   rate: 0.1050 },
         { min: 115648, max: 140430,   rate: 0.1229 },
         { min: 140430, max: 190405,   rate: 0.1470 },
         { min: 190405, max: 265545,   rate: 0.1680 },
         { min: 265545, max: Infinity, rate: 0.2050 },
-      ], source_url: SRC.bcRates, last_verified: '2026-07-13' },
+      ], source_url: SRC.bcRates, last_verified: '2026-07-23' }, // 2026-07-23: brackets[0] corrected 0.0560→0.0506 (dropped-zero data-entry error); re-verified all 7 rates vs gov.bc.ca tax-rates + CRA T4032BC ("multiply line 17 by 5.06% × 0.0506")
       bpa: { value: 13216, source_url: SRC.bcCredits, last_verified: '2026-07-13' },
-      bpaCreditRate: { value: 0.056, source_url: SRC.bcRates, last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
+      bpaCreditRate: { value: 0.0506, source_url: SRC.bcRates, last_verified: '2026-07-23' }, // = brackets[0].rate (lowest-rate rule); corrected 0.056→0.0506 with the bracket fix above
       // BC tax reduction credit — non-refundable low-income reduction (Budget 2026 raised
       // the base to $690). Reduces BC tax to a floor of zero; nil at $44,952.
       taxReduction: { value: { base: 690, threshold: 25570, rate: 0.0356 },
