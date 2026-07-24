@@ -322,6 +322,53 @@ T4032 and Revenu Québec tables.
 - **NL** — the $15,000 exemption phase-in: re-check the 2027 return BPA (it should land at $15,000).
 - **CCB** — 2026–27 amounts now official; next re-index is **July 2027**.
 
+## 2026-07-24 — The Alberta near-miss: current-year rates applied to historical years
+
+Caught during the DTC build, before it shipped. Worth recording because it is a **different**
+failure from the BC one and would have been **larger**.
+
+**What almost happened.** The DTC values a disability amount at each jurisdiction's LOWEST rate
+*for that tax year*. The generator that emits the retroactive (2016–2025) constants was about to
+use the **2026** rate table — the one verified against CRA T4032 — for every historical year.
+That table has **Alberta at 8%**, because AB cut its lowest bracket from 10% to 8% **for 2026**.
+Applying 8% to 2016–2025 would have understated every Alberta retroactive DTC claim by **2
+percentage points on ~$150,000 of cumulative disability amounts — roughly $3,000 per claimant**,
+far larger than the NB/PEI rate drift (~$170) that prompted the check.
+
+**Why no gate would have caught it.** Every value would have been individually correct-looking and
+correctly stamped: 8% *is* Alberta's real lowest rate, sourced from the CRA T4032, freshly
+verified. `check-constants` validates provenance hygiene, not the *pairing* of a rate with a tax
+year. `check-history` compares stored values to live stamps — both would agree. Only the domain
+fact "a closed tax year uses that year's rate" catches it, and nothing in the repo encodes that.
+
+**The general rule this establishes.** *A verified value is only correct in the context it was
+verified for.* A rate confirmed for 2026 is evidence about 2026 and nothing else. When a constant
+is indexed by year, jurisdiction, or period, the **index is part of the value** — re-verify the
+pairing, not just the number. The same trap produced the stale-page bug found the same day (see
+below): canada.ca's own archived guides for 2024/2025 served **2022** content, and the values were
+internally consistent and plausible there too.
+
+**A third variant, caught at commit time — the mid-year snapshot.** Saskatchewan's DTC row for
+2017 was stamped at **11%**, taken from the CRA "Tax rates and income brackets" page captured
+**2017-07-17** and correctly labelled tax year 2017. It was still wrong. SK cut its rate a half
+point **effective July 1, 2017**, and Saskatchewan's own backgrounder states *"the 2017 rates
+reflect the impact of the half point reduction midway through the 2017 taxation year"* — so the
+settled **annual** rate for the 2017 return is a blend, while the capture showed the **pre-cut**
+rate from 16 days earlier. Note what passed here: a real government page, right jurisdiction,
+right tax year label, plausible value. **For a jurisdiction that changes a rate mid-year, a
+snapshot is only valid if taken after the year closed.** The blended figure would have been our
+own arithmetic, not a published number, so 2017 was recorded as a gap alongside SK 2016 and 2018
+rather than computed — the same reason a per-year-derivation approach was rejected earlier.
+
+**Two detections that worked, keep them:**
+- **Year-label check** — read the tax year the source page *declares* ("New for Ontario for 2022")
+  and assert it matches the year being requested. This caught both the 2024/2025 stale guides and
+  a mislabeled NT 2022 page that serves 2023 content.
+- **Monotonicity check** — indexed amounts never decrease year-over-year. This caught the stale
+  2024/2025 values, which appeared to "drop" back to 2022 levels. Note it only catches
+  *decreases*: Saskatchewan's genuine +28% jump in 2025 passed silently and had to be corroborated
+  separately (its whole credit table moved in lockstep — confirmed real).
+
 ## 2026-07-23 — BC lowest-rate correction (out-of-cycle, data-entry error)
 
 **Found.** British Columbia's lowest bracket rate was stored as `0.0560` in **both**

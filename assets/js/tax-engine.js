@@ -132,7 +132,7 @@ function provincialBPA(prov, netIncome) {
   return p.max - (p.max - p.min) * frac;
 }
 
-function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0 }) {
+function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0, extraCredit = 0 }) {
   const prov = PROVINCES[code];
   // Quebec's deduction for workers (line 201): 6% of eligible work income (employment +
   // net business income), capped, reduces the provincial taxable base only — never federal.
@@ -149,6 +149,11 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   let creditBase = provincialBPA(prov, netIncome);
   if (!prov.bpaBundlesContributions) creditBase += cppBase + eiPremium;
   if (prov.includesCanadaEmploymentAmount) creditBase += FEDERAL.canadaEmploymentAmountBase;
+  // extraCredit: additional non-refundable credit amounts valued at the lowest rate — e.g.
+  // the provincial disability amount (DTC). Added to the base BEFORE surtax so an Ontario
+  // surtax rides on the reduced provincial tax automatically. Defaults to 0, so every
+  // existing caller's output is unchanged.
+  creditBase += extraCredit;
   const credits = creditBase * prov.bpaCreditRate;
   basic = Math.max(0, basic - credits);
 
@@ -165,10 +170,14 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   return { basic, surtax, health, taxReduction: reduction, total: basic + surtax + health };
 }
 
-function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false }) {
+function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false, extraCredit = 0 }) {
   let tax = bracketTax(taxableIncome, FEDERAL.brackets);
+  // extraCredit: additional non-refundable credit valued at the lowest federal rate — e.g.
+  // the federal disability amount (DTC). Applied to basic federal tax before the Quebec
+  // abatement below, so a Quebec resident's DTC is correctly netted by the 16.5% abatement.
+  // Defaults to 0 → existing callers unchanged.
   const credits =
-    (federalBPA(netIncome) + cppBase + eiPremium) * FEDERAL.bpa.creditRate
+    (federalBPA(netIncome) + cppBase + eiPremium + extraCredit) * FEDERAL.bpa.creditRate
     + FEDERAL.canadaEmploymentAmountMaxCredit;
   // "Basic federal tax" (T1 line 42900): bracket tax after non-refundable credits.
   const basicFederal = Math.max(0, tax - credits);
@@ -182,7 +191,7 @@ function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatem
  * Full annual take-home for employment income.
  * Returns gross, each deduction, net, and average rate.
  */
-export function calcTakeHome(gross, code) {
+export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvincialCredit = 0 } = {}) {
   const isQC = code === 'QC';
   const cpp = calcCPP(gross, { plan: pensionPlan(code) }); // QPP for Quebec, CPP elsewhere
   // Quebec pays the REDUCED federal EI rate plus a QPIP premium; elsewhere, plain EI.
@@ -191,8 +200,12 @@ export function calcTakeHome(gross, code) {
   const eiTypePremium = ei.premium + qpip.premium;
   // Enhanced CPP is deductible from taxable income.
   const taxable = Math.max(0, gross - cpp.enhanced);
-  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross, workIncome: gross });
+  // extraFederal/ProvincialCredit: optional non-refundable credit AMOUNTS (e.g. the disability
+  // amount) folded into each jurisdiction's credit base at the lowest rate. Both default to 0,
+  // so calcTakeHome(gross, code) is byte-identical to before. The DTC page uses the difference
+  // method — one call with, one without — to read a correctly capped, surtax-aware benefit.
+  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC, extraCredit: extraFederalCredit });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross, workIncome: gross, extraCredit: extraProvincialCredit });
 
   const totalTax = fed + prov.total;
   const totalDeductions = totalTax + cpp.employee + eiTypePremium;

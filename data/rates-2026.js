@@ -624,6 +624,122 @@ export const OAS = {
   },
 };
 
+/* ── DISABILITY TAX CREDIT (DTC) ────────────────────────────────────────────── */
+// Constants + provenance: TC.dtc. Behaviour only here, per this file's contract.
+//
+// THE FORMULA, and the mistake it exists to avoid. The DTC is a NON-REFUNDABLE credit valued
+// at each jurisdiction's LOWEST bracket rate — NOT the claimant's marginal rate:
+//     federal    = federal disability amount x federal lowest rate FOR THAT YEAR
+//                  (+ under-18 supplement, less the attendant/childcare expense reduction)
+//     provincial = provincial disability amount x that jurisdiction's lowest rate FOR THAT YEAR
+// Every rate is per-year: the federal rate was 15% through 2024, 14.5% in 2025 and 14% from
+// 2026, and Alberta cut its provincial lowest rate 10% -> 8% for 2026 ONLY. Using a current
+// rate for a historical year is the single largest error available here (MAINTENANCE.md).
+//
+// THREE MODELLING DECISIONS, all surfaced on /benefits/dtc/:
+//   1. NON-REFUNDABLE means capped at tax payable. For the CURRENT year the page runs the real
+//      tax engine (calcTakeHome with extraFederalCredit/extraProvincialCredit) so the cap, the
+//      Ontario surtax and the Quebec abatement all fall out correctly. For RETRO years there is
+//      no historical engine in this repo, so those are amount x rate and the page states the
+//      "assumes enough tax payable in each year" assumption prominently.
+//   2. TRANSFER to a supporting person is the normal path when the claimant's own income is too
+//      low to use the credit. Flagged on-page, and `unusableWithoutTransfer` marks it.
+//   3. RETRO IS CAPPED AT 10 YEARS (maxRetroactiveYears) — the CRA reassessment limit. The year
+//      list is derived, never taken as free input.
+//
+// GAPS are absent keys, never zeros: NT 2022, SK 2016/2018 and PE 2023/2024 have no primary
+// source, and no province publishes its under-18 supplement outside a PDF-only worksheet.
+// yearsFor() reports them so the page can list what it could not compute.
+export const DTC = {
+  currentTaxYear:      v(TC.dtc.currentTaxYear),
+  maxRetroactiveYears: v(TC.dtc.maxRetroactiveYears),
+  earliestYear:        v(TC.dtc.earliestYear),
+
+  // Raw per-year nodes. Absent key === documented gap.
+  federalYear(year)            { return TC.dtc.federal[`y${year}`]?.value ?? null; },
+  provincialYear(code, year)   { return TC.dtc.provincial[code]?.[`y${year}`]?.value ?? null; },
+
+  // The earliest year a claim filed for `currentTaxYear` can still reach: the 10-year window is
+  // inclusive of the current year, and never runs past the earliest year we hold data for.
+  earliestClaimableYear() {
+    return Math.max(this.earliestYear, this.currentTaxYear - this.maxRetroactiveYears + 1);
+  },
+
+  // Every year in the retro window, oldest first.
+  claimableYears() {
+    const out = [];
+    for (let y = this.earliestClaimableYear(); y <= this.currentTaxYear; y++) out.push(y);
+    return out;
+  },
+
+  /**
+   * Value of the credit for ONE tax year, at that year's rates.
+   * `under18` adds the federal supplement, reduced dollar-for-dollar by attendant/childcare
+   * expenses above that year's threshold (the reduction cannot push the supplement below zero).
+   * No provincial supplement is applied — see the gap note above.
+   * Returns null when the year is a documented gap for this jurisdiction.
+   */
+  yearValue(year, code, { under18 = false, careExpenses = 0 } = {}) {
+    const f = this.federalYear(year);
+    if (!f) return null;
+    const p = this.provincialYear(code, year);
+
+    let federalBase = f.amount;
+    let supplement = 0, supplementReduction = 0;
+    if (under18) {
+      supplementReduction = Math.min(f.supplement, Math.max(0, careExpenses - f.careThreshold));
+      supplement = Math.max(0, f.supplement - supplementReduction);
+      federalBase += supplement;
+    }
+    const federal = federalBase * f.rate;
+    const provincial = p ? p.amount * p.rate : null;
+
+    return {
+      year,
+      federalAmount: f.amount, federalRate: f.rate,
+      supplement, supplementReduction,
+      federal,
+      provincialAmount: p?.amount ?? null, provincialRate: p?.rate ?? null,
+      provincial,
+      total: federal + (provincial ?? 0),
+      provincialGap: !p,        // jurisdiction has no sourced value for this year
+    };
+  },
+
+  /**
+   * Full estimate across a claim window.
+   * `approvedFromYear` is the earliest year the claimant is DTC-approved for; it is clamped to
+   * the 10-year window rather than trusted. Returns per-year rows plus totals, and the list of
+   * years that could not be computed so the page can name them.
+   */
+  estimate({ code, approvedFromYear, under18 = false, careExpenses = 0 } = {}) {
+    const from = Math.max(this.earliestClaimableYear(),
+                          Math.min(approvedFromYear ?? this.currentTaxYear, this.currentTaxYear));
+    const rows = [], gapYears = [];
+    for (let y = from; y <= this.currentTaxYear; y++) {
+      const r = this.yearValue(y, code, { under18, careExpenses });
+      if (!r) { gapYears.push({ year: y, what: 'federal' }); continue; }
+      if (r.provincialGap) gapYears.push({ year: y, what: 'provincial' });
+      rows.push(r);
+    }
+    const current = rows.find((r) => r.year === this.currentTaxYear) ?? null;
+    const retroRows = rows.filter((r) => r.year !== this.currentTaxYear);
+    const sum = (xs, k) => xs.reduce((t, r) => t + (r[k] ?? 0), 0);
+    return {
+      fromYear: from, toYear: this.currentTaxYear,
+      years: rows, gapYears,
+      current,
+      currentTotal: current?.total ?? 0,
+      retroTotal: sum(retroRows, 'total'),
+      retroYears: retroRows.length,
+      federalTotal: sum(rows, 'federal'),
+      provincialTotal: sum(rows, 'provincial'),
+      total: sum(rows, 'total'),
+      clampedToWindow: (approvedFromYear ?? from) < from,
+    };
+  },
+};
+
 export const BENEFIT_PAYMENT_DATES = {
   ccb: v(TC.benefitPaymentDates2026.ccb),
   gstCredit: v(TC.benefitPaymentDates2026.gstCredit),

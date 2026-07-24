@@ -1654,5 +1654,14 @@
     "source_url": "https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings",
     "verified_at": "2026-07-15",
     "cadence": "january"
+  },
+  {
+    "key": "dtc.currentTaxYear",
+    "value": 2025,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html",
+    "verified_at": "2026-07-24",
+    "cadence": "january"
   }
 ]

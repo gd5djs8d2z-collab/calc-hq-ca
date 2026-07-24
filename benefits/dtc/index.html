@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disability Tax Credit Calculator — Current Year &amp; 10 Years Back | calc-hq.ca</title>
+<meta name="description" content="What the Disability Tax Credit is actually worth — this year, and backdated up to 10 years. Federal and provincial amounts at each year's own lowest tax rate, with the eligibility checklist.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/dtc/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Disability Tax Credit Calculator — Current Year &amp; Retroactive">
+<meta property="og:description" content="The DTC is worth more backdated than most people expect. Ten years, federal plus provincial, at each year's real rate.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/dtc/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"Disability Tax Credit Calculator","item":"https://calc-hq.ca/benefits/dtc/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is the Disability Tax Credit worth?","acceptedAnswer":{"@type":"Answer","text":"For 2025 the federal disability amount is $10,138, and it is valued at the lowest federal tax rate of 14.5% — about $1,470 off your federal tax. Your province adds its own disability amount at its own lowest rate, which for Ontario is $10,298 at 5.05%, roughly $520 more. Combined, a typical adult claim is worth about $1,900 to $2,300 a year depending on the province. The credit is non-refundable, so it can only reduce tax you actually owe."}},
+{"@type":"Question","name":"How many years can the Disability Tax Credit be backdated?","acceptedAnswer":{"@type":"Answer","text":"Up to 10 years. When the CRA approves Form T2201 it can reassess prior returns within the 10-year window, so an approval today can reach back to the 2016 tax year. Because the credit is worth roughly $1,600 to $2,300 in each of those years, a full retroactive approval commonly pays out $15,000 to $22,000 at once. You do not file ten separate adjustments — ticking the box on the T2201 asks the CRA to reassess all eligible years."}},
+{"@type":"Question","name":"Is the Disability Tax Credit refundable?","acceptedAnswer":{"@type":"Answer","text":"No. The DTC is non-refundable: it reduces tax payable but never creates a refund on its own. If you owed no tax in a year, the credit is worth nothing to you in that year. This is why the transfer to a supporting person matters — an unused amount can be transferred to a spouse, common-law partner, parent, grandparent, child, sibling, aunt, uncle, niece or nephew who supported you, and it reduces their tax instead."}},
+{"@type":"Question","name":"Who qualifies for the Disability Tax Credit?","acceptedAnswer":{"@type":"Answer","text":"You may qualify if a severe and prolonged impairment, expected to last at least 12 months, means one of the following: you are blind even with correction; you are markedly restricted at least 90% of the time in speaking, hearing, walking, eliminating, feeding, dressing, or mental functions for everyday life; you are significantly restricted in two or more of those areas with a cumulative effect equivalent to a marked restriction; or you need life-sustaining therapy at least two times a week averaging 14 hours a week. A medical practitioner must certify Form T2201 and the CRA decides."}},
+{"@type":"Question","name":"What is the difference between the Child Disability Benefit and the Canada Disability Benefit?","acceptedAnswer":{"@type":"Answer","text":"They are different programs that share the initials CDB. The Child Disability Benefit is a monthly, tax-free supplement paid with the Canada Child Benefit for a child under 18 who is approved for the Disability Tax Credit. The Canada Disability Benefit is a separate federal payment for working-age adults with disabilities. Both use DTC approval as their gateway, which is why the Disability Tax Credit is worth applying for even if you owe no tax."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits</a><span class="sep">›</span>
+    <span>Disability Tax Credit Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Disability Tax Credit Calculator</h1>
+    <p class="lead">What the DTC is worth to you <strong>this year</strong> — and, if you were approved for earlier years too, what the <strong>backdated</strong> claim adds up to. The retroactive number is the one people underestimate: approval can reach back <strong>10 years</strong>.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Disability tax credit calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="prov">Province or territory</label>
+        <select class="input" id="prov"></select>
+      </div>
+      <div class="field">
+        <label for="from">Approved back to which tax year?
+          <span class="hint">Leave at the current year if you're only claiming now</span>
+        </label>
+        <select class="input" id="from"></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="income">Your income for <span id="cy-label">the current year</span>
+        <span class="hint">Used to check how much tax you actually owe — the credit can't exceed it</span>
+      </label>
+      <input class="input" id="income" type="text" inputmode="numeric" placeholder="55,000" value="55,000">
+    </div>
+
+    <div class="field">
+      <label class="check"><input type="checkbox" id="under18"> The person with the disability is <strong>under 18</strong></label>
+      <span class="hint">Adds the federal supplement for children</span>
+    </div>
+
+    <div class="field" id="care-field" hidden>
+      <label for="care">Attendant care or childcare expenses claimed for that child
+        <span class="hint">Expenses above the year's threshold reduce the supplement dollar for dollar</span>
+      </label>
+      <input class="input" id="care" type="text" inputmode="numeric" placeholder="0" value="0">
+    </div>
+
+    <button class="btn" id="go" type="button">Calculate the credit</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label" id="headline-label">What the credit is worth</p>
+      <p class="result-number" id="headline">—</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="notes" hidden></div>
+  </section>
+
+  <section class="answer">
+    <p><strong>How much is the DTC worth?</strong> For <span id="a-year">2025</span> the federal disability amount is <strong id="a-fed">$10,138</strong>, valued at the lowest federal rate of <strong id="a-rate">14.5%</strong> — about <strong id="a-fedval">$1,470</strong> off your federal tax. Your province adds its own amount at its own lowest rate on top. A typical adult claim runs roughly <strong>$1,600–$2,300 a year</strong>, and because approval can be backdated 10 years, a full retroactive claim commonly pays <strong>$15,000–$22,000</strong> in one reassessment.</p>
+  </section>
+
+  <section>
+    <h2>The mistake almost every DTC estimate makes</h2>
+    <p>The disability amount is not a refund and it is not multiplied by your tax bracket. It is a <strong>non-refundable credit valued at the lowest rate</strong> — 14.5% federally for 2025, and each province's own bottom rate provincially. Someone earning $250,000 and someone earning $45,000 get the <em>same</em> federal credit, because both are calculated at 14.5%. Estimates that apply a marginal rate overstate the credit for anyone above the first bracket, often by two or three times.</p>
+    <p>The rates also move by year, which matters for a backdated claim. The federal lowest rate was <strong>15% through 2024</strong>, <strong>14.5% in 2025</strong> and <strong>14% from 2026</strong>. Alberta cut its provincial bottom rate from 10% to 8% for 2026 only. Each year in the table below is calculated at that year's own rates, not today's.</p>
+  </section>
+
+  <section>
+    <h2>Non-refundable: the part that decides whether you see any money</h2>
+    <p>A non-refundable credit can reduce your tax to zero but never past it. If you owed no tax in a year, the DTC is worth <strong>nothing to you</strong> in that year — the calculator shows this directly, because it runs your income through the real tax calculation rather than assuming the full amount lands.</p>
+    <p>This is not a dead end. An unused disability amount can be <strong>transferred to a supporting person</strong>: a spouse or common-law partner, or a parent, grandparent, child, sibling, aunt, uncle, niece or nephew who supported you. The credit then reduces <em>their</em> tax. For a child claim this is the normal path — a child rarely has tax to offset, so the amount usually moves to a parent. If the calculator tells you the credit is going unused, the transfer is the next step, not the end.</p>
+    <p class="disclaimer"><strong>How the years differ.</strong> The current year is run through the full tax calculation, so it accounts for tax payable, the Ontario surtax and Quebec's federal abatement. Earlier years are shown as amount × that year's rate — this site does not carry historical bracket tables — so those <strong>assume you had enough tax payable in each year to absorb the credit</strong>. If your income was low in some of those years, the real retroactive figure will be smaller.</p>
+  </section>
+
+  <section id="eligibility">
+    <h2>Do you qualify? The eligibility checklist</h2>
+    <p>The DTC is not a diagnosis test. The CRA asks about <strong>effects</strong>, not conditions: a medical practitioner certifies Form <strong>T2201</strong>, and the impairment must be <strong>severe and prolonged</strong> — expected to last at least 12 months. You may qualify if any one of the following is true.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Category</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Blindness</strong></td><td>Visual acuity of 20/200 or less in both eyes, or a field of vision of 20 degrees or less — <em>even with correction</em>.</td></tr>
+          <tr><td><strong>Markedly restricted</strong></td><td>In at least one basic activity of daily living, <strong>all or substantially all of the time</strong> (taken as ~90%), even with therapy and devices.</td></tr>
+          <tr><td><strong>Significantly restricted</strong></td><td>In <strong>two or more</strong> of those activities at once, where the cumulative effect is equivalent to a single marked restriction.</td></tr>
+          <tr><td><strong>Life-sustaining therapy</strong></td><td>Needed at least <strong>2 times a week</strong>, averaging <strong>14 hours a week</strong>. (Before 2021 the test was 3 times a week — relevant to backdated claims.)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The basic activities of daily living are <strong>speaking, hearing, walking, eliminating (bowel or bladder), feeding, dressing,</strong> and <strong>mental functions necessary for everyday life</strong>. Mental functions is the one most often overlooked — it covers attention, memory, judgement, problem-solving, goal-setting, regulation of behaviour and emotion, and adaptive functioning.</p>
+    <p class="disclaimer">This checklist is a guide to whether applying is worth your time. It is not a determination — only the CRA's approval of a certified T2201 grants the credit, and a practitioner's certification is required either way.</p>
+  </section>
+
+  <section>
+    <h2>Backdating: why the retroactive number is so large</h2>
+    <p>When the CRA approves a T2201 it can reassess prior returns within a <strong>10-year</strong> window, so an approval today reaches back to the <span id="earliest-year">2016</span> tax year. You do not file ten separate adjustments — the T2201 asks whether you want prior years reassessed, and approval flows through them in one go.</p>
+    <p>At roughly $1,600–$2,300 per year across federal and provincial credits, a full ten-year approval lands as a single payment in the <strong>$15,000–$22,000</strong> range. The same tax-payable rule applies to each year separately, though: years where you owed no tax contribute nothing unless the amount was transferred to a supporting person.</p>
+  </section>
+
+  <section>
+    <h2>CDB means two different things — check which one you want</h2>
+    <p>Two federal programs share the initials, and confusing them wastes time:</p>
+    <ul>
+      <li><strong>Child Disability Benefit</strong> — a monthly, tax-free supplement paid alongside the <a href="/benefits/ccb/">Canada Child Benefit</a> for a child under 18 approved for the DTC. Child-only, income-tested.</li>
+      <li><strong>Canada Disability Benefit</strong> — a separate federal payment for working-age adults with disabilities, new in 2026.</li>
+    </ul>
+    <p>Both use <strong>DTC approval as the gateway</strong>, which is the practical reason to apply even if you owe no tax and the credit itself is worth nothing to you directly. This page calculates the <strong>Disability Tax Credit</strong> — the credit that unlocks the others.</p>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <details><summary>How much is the Disability Tax Credit worth?</summary>
+      <p>For 2025, about $1,470 federally (the $10,138 amount at 14.5%) plus your province's own amount at its own lowest rate — roughly $1,600–$2,300 a year combined, depending where you live.</p>
+    </details>
+    <details><summary>How far back can it be backdated?</summary>
+      <p>Ten years. An approval today can reach the <span id="earliest-year-2">2016</span> tax year, commonly paying $15,000–$22,000 in one reassessment.</p>
+    </details>
+    <details><summary>Is the DTC refundable?</summary>
+      <p>No. It reduces tax payable and never creates a refund by itself. With no tax owing it is worth nothing to you directly — but it can be transferred to a supporting person, and it still unlocks the Child Disability Benefit and the Canada Disability Benefit.</p>
+    </details>
+    <details><summary>Can I transfer it to a family member?</summary>
+      <p>Yes. Any amount you can't use can go to a spouse or common-law partner, or to a parent, grandparent, child, sibling, aunt, uncle, niece or nephew who supported you. For children this is the normal route.</p>
+    </details>
+    <details><summary>Does the DTC affect my other benefits?</summary>
+      <p>It doesn't reduce them. DTC approval is what makes you eligible for the Child Disability Benefit, the Canada Disability Benefit and an RDSP — the credit is a gateway as much as a tax saving.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related — benefits &amp; credits</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/ccb/"><h3>Canada Child Benefit</h3><p>The monthly child payment — and the Child Disability Benefit rides on top of it once the DTC is approved.</p></a>
+      <a class="tool-card" href="/benefits/gis/"><h3>GIS Calculator</h3><p>The income-tested top-up for low-income seniors, alongside OAS.</p></a>
+      <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>How your CPP contribution is built during your working years.</p></a>
+      <a class="tool-card" href="/benefits/oas/"><h3>OAS Calculator</h3><p>Old Age Security and how much the recovery tax claws back.</p></a>
+    </div>
+    <p class="disclaimer"><strong>Estimate only.</strong> Federal amounts come from the CRA indexation chart; provincial amounts from each year's CRA Information Guide. This tool does not determine eligibility — a medical practitioner certifies Form T2201 and the CRA decides. Confirm your own figures with the CRA before relying on them.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/benefits/dtc/">Disability Tax Credit</a></li>
+          <li><a href="/benefits/oas/">OAS Calculator</a></li>
+          <li><a href="/benefits/gis/">GIS Calculator</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+          <li><a href="/benefits/ei/">EI Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { DTC, PROVINCES, PROVINCE_ORDER } from '/data/rates-2026.js';
+import { calcTakeHome } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n, cents=true) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
+const CY = DTC.currentTaxYear;
+
+// Populate the province and year selects from the data, so neither can drift from it.
+el('prov').innerHTML = PROVINCE_ORDER.map((c) => `<option value="${c}">${PROVINCES[c].name}</option>`).join('');
+el('from').innerHTML = DTC.claimableYears().slice().reverse()
+  .map((y) => `<option value="${y}"${y === CY ? ' selected' : ''}>${y}${y === CY ? ' — only this year' : ''}</option>`).join('');
+
+// Stamp the current year and the federal figures into the prose from the constants.
+const fed = DTC.federalYear(CY);
+el('cy-label').textContent = CY;
+el('a-year').textContent = CY;
+el('a-fed').textContent = money(fed.amount, false);
+el('a-rate').textContent = `${(fed.rate * 100).toFixed(1)}%`;
+el('a-fedval').textContent = money(fed.amount * fed.rate, false);
+for (const id of ['earliest-year','earliest-year-2']) {
+  const n = el(id); if (n) n.textContent = DTC.earliestClaimableYear();
+}
+
+function run() {
+  const code = el('prov').value;
+  const fromYear = Number(el('from').value);
+  const income = parseMoney(el('income').value);
+  const under18 = el('under18').checked;
+  const care = under18 ? parseMoney(el('care').value) : 0;
+  el('care-field').hidden = !under18;
+
+  const e = DTC.estimate({ code, approvedFromYear: fromYear, under18, careExpenses: care });
+  const cur = e.current;
+
+  // CURRENT YEAR through the real engine: this is what makes the tax-payable cap, the Ontario
+  // surtax and Quebec's abatement come out right, instead of assuming amount x rate lands.
+  const withoutCredit = calcTakeHome(income, code);
+  const withCredit = calcTakeHome(income, code, {
+    extraFederalCredit: cur.federalAmount + cur.supplement,
+    extraProvincialCredit: cur.provincialAmount ?? 0,
+  });
+  const actualCurrent = Math.max(0, withoutCredit.totalTax - withCredit.totalTax);
+  const uncappedCurrent = cur.total;
+  const unusable = uncappedCurrent - actualCurrent;
+
+  const totalWithActual = actualCurrent + e.retroTotal;
+  el('headline').textContent = money(totalWithActual);
+  el('headline-label').textContent = e.retroYears > 0
+    ? `Estimated total — ${CY} plus ${e.retroYears} backdated year${e.retroYears === 1 ? '' : 's'}`
+    : `Estimated credit for ${CY}`;
+
+  if (e.retroYears > 0) {
+    el('reading').textContent = `${money(actualCurrent)} for ${CY}, plus about ${money(e.retroTotal)} across ${e.retroYears} earlier year${e.retroYears === 1 ? '' : 's'} back to ${e.fromYear}.`;
+  } else {
+    el('reading').textContent = `${money(actualCurrent)} off your ${CY} tax bill.`;
+  }
+
+  const rows = [];
+  rows.push([`<strong>${CY} — federal disability amount</strong>`, `${money(cur.federalAmount, false)} × ${(cur.federalRate*100).toFixed(1)}%`]);
+  if (under18 && cur.supplement > 0) {
+    rows.push([`${CY} — under-18 supplement`, `+ ${money(cur.supplement, false)}`]);
+    if (cur.supplementReduction > 0) {
+      rows.push([`Supplement reduced by care expenses`, `− ${money(cur.supplementReduction, false)}`]);
+    }
+  }
+  rows.push([`${CY} — federal credit`, money(cur.federal)]);
+  if (cur.provincial != null) {
+    rows.push([`${CY} — ${PROVINCES[code].name} amount`, `${money(cur.provincialAmount, false)} × ${(cur.provincialRate*100).toFixed(2)}%`]);
+    rows.push([`${CY} — provincial credit`, money(cur.provincial)]);
+  } else {
+    rows.push([`${CY} — ${PROVINCES[code].name} amount`, `<em>not published yet</em>`]);
+  }
+  rows.push([`<strong>${CY} — credit you can actually use</strong>`, `<strong>${money(actualCurrent)}</strong>`]);
+  if (e.retroYears > 0) {
+    rows.push([`Backdated ${e.fromYear}–${CY - 1} (${e.retroYears} year${e.retroYears === 1 ? '' : 's'})`, money(e.retroTotal)]);
+    rows.push([`<strong>Estimated total</strong>`, `<strong>${money(totalWithActual)}</strong>`]);
+  }
+  el('breakdown').innerHTML = rows
+    .map(([k, val]) => `<div class="row"><span>${k}</span><span class="val">${val}</span></div>`).join('');
+  el('result').hidden = false;
+
+  // Notices: the tax-payable cap (with the transfer route), and any year we could not compute.
+  const notes = [];
+  if (unusable > 1) {
+    notes.push(actualCurrent < 1
+      ? `<strong>At ${money(income, false)} of income you owe no tax, so the credit gives you nothing directly this year.</strong> That is what "non-refundable" means — but the amount can be <strong>transferred to a supporting person</strong> (spouse, parent, grandparent, child, sibling, aunt, uncle, niece or nephew who supported you) and reduce their tax instead. DTC approval also unlocks the Child Disability Benefit, the Canada Disability Benefit and an RDSP regardless of your tax.`
+      : `Your ${CY} tax bill only absorbs ${money(actualCurrent)} of a ${money(uncappedCurrent)} credit — <strong>${money(unusable)} goes unused</strong>. The unused part can be <strong>transferred to a supporting person</strong> rather than lost.`);
+  }
+  if (e.gapYears.length) {
+    const years = [...new Set(e.gapYears.map((g) => g.year))].sort();
+    notes.push(`<strong>Not included:</strong> the provincial amount for ${years.join(', ')} — the CRA has not published a figure we could verify for ${PROVINCES[code].name} in ${years.length === 1 ? 'that year' : 'those years'}, so ${years.length === 1 ? 'it is' : 'they are'} left out rather than guessed. The federal portion for ${years.length === 1 ? 'that year' : 'those years'} is included, so your real total is slightly higher.`);
+  }
+  if (e.retroYears > 0) {
+    notes.push(`Backdated years are shown as the amount at that year's own rate and <strong>assume you had enough tax payable in each year</strong> to use the credit. Only the ${CY} figure is checked against real tax owing.`);
+  }
+  el('notes').innerHTML = notes.map((n) => `<p>${n}</p>`).join('');
+  el('notes').hidden = notes.length === 0;
+}
+
+el('go').addEventListener('click', run);
+for (const id of ['prov','from','income','under18','care']) {
+  const n = el(id);
+  n.addEventListener('input', run);
+  n.addEventListener('change', run);
+}
+run();
+</script>
+</body>
+</html>

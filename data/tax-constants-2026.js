@@ -102,6 +102,18 @@ const SRC = {
   qppFigures:     'https://www.retraitequebec.gouv.qc.ca/en/benefits-amounts-key-data',
   eiMatParental:  'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html',
   eiAfterApply:   'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html',
+  // ── Disability tax credit (DTC) ──
+  // The indexation chart is the ONE page carrying the federal disability amount, the under-18
+  // supplement and the attendant/childcare reduction threshold together, per year. It shows a
+  // ~4-year rolling window, so earlier years come from archived captures of this same URL —
+  // each value read from ITS OWN tax-year column, never from the snapshot's date.
+  dtcIndexation:  'https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html',
+  // Per-jurisdiction, per-year provincial disability amount + that year's lowest bracket rate:
+  // the CRA Information Guide (Form 5XXX-PC) published with each year's tax package.
+  dtcGuide:       'https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package.html',
+  dtcAmounts:     'https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html',
+  // 10-year reassessment limit for a retroactive DTC claim (taxpayer relief / T1-ADJ window).
+  dtcRetro:       'https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -783,5 +795,222 @@ export const TAX_CONSTANTS_2026 = {
         parentalWeeks: 25, parentalRate: 0.75,
         sharedBonusWeeks: 3, sharedBonusRate: 0.75, rateLabel: '75%',
       }, source_url: SRC.qpipPlans, last_verified: '2026-07-15' },
+  },
+
+  /* ── DISABILITY TAX CREDIT (DTC) — federal + provincial disability amounts ──── */
+  // The DTC is a NON-REFUNDABLE credit. The disability AMOUNT is multiplied by each
+  // jurisdiction's LOWEST bracket rate for THAT TAX YEAR — never the marginal rate, and
+  // never the current year's rate applied backwards (see the Alberta near-miss in
+  // MAINTENANCE.md: AB cut 10%→8% for 2026 only). It can only reduce tax payable to zero.
+  //
+  // CURRENT YEAR = 2025. CRA had not published the 2026 PROVINCIAL packages when this was
+  // built, so the calculator treats 2025 as the current year and the retroactive window is
+  // 2016–2025 (exactly the 10-year CRA reassessment limit). Federal 2026 IS published and
+  // is stamped below, ready for when the provincial side catches up.
+  //
+  // Cadence: historical years are 'statutory' — a CLOSED tax year's amount is immutable and
+  // can never go stale. Only currentTaxYear carries 'january': it is the tripwire that fires
+  // each New Year to prompt adding the new year's row.
+  //
+  // GAPS are represented by an ABSENT year key, never by a guessed number. The engine skips
+  // absent years and the page lists them explicitly. See MAINTENANCE.md for each one.
+  dtc: {
+    _cadence: 'statutory',
+    currentTaxYear:      { value: 2025, source_url: SRC.dtcAmounts, last_verified: '2026-07-24', cadence: 'january' },
+    maxRetroactiveYears: { value: 10,   source_url: SRC.dtcRetro,   last_verified: '2026-07-24' },
+    earliestYear:        { value: 2016, source_url: SRC.dtcRetro,   last_verified: '2026-07-24' },
+
+    // ── FEDERAL, per tax year (CRA indexation chart) ─────────────────────────
+    // amount        = base disability amount (T1 line 31600)
+    // supplement    = MAXIMUM supplement for a claimant under 18
+    // careThreshold = attendant/childcare expenses above which the supplement is reduced
+    // rate          = the FEDERAL lowest rate for that year: 15% through 2024, 14.5% in the
+    //                 2025 transition year, 14% from 2026 (confirmed on CRA T4032).
+    federal: {
+      y2016: { value: { amount: 8001, supplement: 4667, careThreshold: 2734, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2017: { value: { amount: 8113, supplement: 4733, careThreshold: 2772, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2018: { value: { amount: 8235, supplement: 4804, careThreshold: 2814, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2019: { value: { amount: 8416, supplement: 4909, careThreshold: 2875, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2020: { value: { amount: 8576, supplement: 5003, careThreshold: 2930, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2021: { value: { amount: 8662, supplement: 5053, careThreshold: 2959, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2022: { value: { amount: 8870, supplement: 5174, careThreshold: 3030, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2023: { value: { amount: 9428, supplement: 5500, careThreshold: 3221, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2024: { value: { amount: 9872, supplement: 5758, careThreshold: 3373, rate: 0.15 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2025: { value: { amount: 10138, supplement: 5914, careThreshold: 3464, rate: 0.145 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+      y2026: { value: { amount: 10341, supplement: 6032, careThreshold: 3533, rate: 0.14 },
+             source_url: SRC.dtcIndexation, last_verified: '2026-07-24' },
+    },
+
+    // ── PROVINCIAL / TERRITORIAL, per jurisdiction per tax year ──────────────
+    // amount = base disability amount on that year's Form 428 (line 58440; line 5844 before
+    //          2019), from the CRA Information Guide FOR THAT YEAR.
+    // rate   = that jurisdiction's lowest bracket rate FOR THAT YEAR.
+    // NO provincial under-18 supplement is stored: every Information Guide defers it to
+    // Worksheet XX428, which canada.ca publishes as PDF ONLY. Documented gap — a child claim
+    // therefore computes the provincial portion on the BASE amount, which UNDERSTATES it.
+    // Yukon mirrors the FEDERAL amount — its own guide states Yukon's non-refundable credits
+    // 'are the same as those for the federal non-refundable tax credits' — valued at YT 6.4%.
+    provincial: {
+      ON: { // Ontario
+        y2016: { value: { amount: 8088, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 8217, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 8365, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 8549, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 8712, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 8790, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 9001, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 9586, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 10017, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 10298, rate: 0.0505 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      BC: { // British Columbia
+        y2016: { value: { amount: 7521, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 7656, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 7809, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 8012, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 8212, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 8303, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 8477, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 8986, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 9435, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 9699, rate: 0.0506 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      AB: { // Alberta
+        y2016: { value: { amount: 14232, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 14417, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 14590, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 14940, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 14940, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 14940, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 15284, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 16201, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 16882, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 17219, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      SK: { // Saskatchewan
+        // y2016 — GAP: no primary source for the lowest rate (see MAINTENANCE.md). Omitted, not guessed.
+        // y2017 — GAP: SK cut its rate a half point EFFECTIVE JULY 1, 2017, so the 2017 ANNUAL
+        //   rate is a blend. Saskatchewan's own backgrounder: "the 2017 rates reflect the impact
+        //   of the half point reduction midway through the 2017 taxation year." The CRA rates
+        //   page captured 2017-07-17 still showed the PRE-CUT 11% — a mid-year snapshot, not the
+        //   settled annual rate — so it must NOT be used. The blended figure would be our own
+        //   arithmetic, not a published value, so the year is omitted rather than computed.
+        // y2018 — GAP: no primary source for the lowest rate (see MAINTENANCE.md). Omitted, not guessed.
+        y2019: { value: { amount: 9464, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 9464, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 9559, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 9789, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 10405, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 10894, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 13986, rate: 0.105 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      MB: { // Manitoba
+        y2016: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 6180, rate: 0.108 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      NS: { // Nova Scotia
+        y2016: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 7341, rate: 0.0879 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      NB: { // New Brunswick
+        y2016: { value: { amount: 7900, rate: 0.0968 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 8011, rate: 0.0968 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 8131, rate: 0.0968 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 8310, rate: 0.0968 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 8468, rate: 0.0968 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 8552, rate: 0.094 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 8757, rate: 0.094 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 9309, rate: 0.094 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 9747, rate: 0.094 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 10010, rate: 0.094 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      NL: { // Newfoundland and Labrador
+        y2016: { value: { amount: 5939, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 6058, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 6240, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 6352, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 6409, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 6435, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 6615, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 7005, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 7299, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 7467, rate: 0.087 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      PE: { // Prince Edward Island
+        y2016: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 6890, rate: 0.098 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        // y2023 — GAP: no primary source for the lowest rate (see MAINTENANCE.md). Omitted, not guessed.
+        // y2024 — GAP: no primary source for the lowest rate (see MAINTENANCE.md). Omitted, not guessed.
+        y2025: { value: { amount: 6890, rate: 0.095 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      YT: { // Yukon
+        y2016: { value: { amount: 8001, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 8113, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 8235, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 8416, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 8576, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 8662, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 8870, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 9428, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 9872, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 10138, rate: 0.064 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      NT: { // Northwest Territories
+        y2016: { value: { amount: 11419, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 11579, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 11753, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 12011, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 12239, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 12362, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        // y2022 — GAP: CRA's archived 2022 NT guide declares 'New for 2023' and repeats
+        //   the 2023 figure. No primary source for the true 2022 amount; omitted, not guessed.
+        y2023: { value: { amount: 13456, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 14088, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 14469, rate: 0.059 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+      NU: { // Nunavut
+        y2016: { value: { amount: 12947, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2017: { value: { amount: 13128, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2018: { value: { amount: 13325, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2019: { value: { amount: 13618, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2020: { value: { amount: 13877, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2021: { value: { amount: 14016, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2022: { value: { amount: 14352, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2023: { value: { amount: 15256, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2024: { value: { amount: 15973, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        y2025: { value: { amount: 16405, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+      },
+    },
   },
 };

@@ -24,7 +24,7 @@
  *
  * Exits 1 when anything is UNSTAMPED, NO-SOURCE, UNVERIFIED or STALE — so it can gate CI.
  */
-import { TAX_CONSTANTS_2026 } from '../data/tax-constants-2026.js';
+import { TAX_CONSTANTS_2026, TAX_YEAR } from '../data/tax-constants-2026.js';
 
 const DEFAULT_CADENCE = 'january';
 const CADENCES = ['january', 'july', 'quarterly', 'statutory'];
@@ -137,7 +137,7 @@ function issues(rec, asOf) {
  * Cross-field invariants — things that must hold between constants, which a per-value stamp
  * cannot catch. Returns an array of violation strings.
  */
-export function invariants(root = TAX_CONSTANTS_2026) {
+export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
   const bad = [];
   for (const [code, p] of Object.entries(root.provinces ?? {})) {
     const brackets = p.brackets?.value;
@@ -148,6 +148,33 @@ export function invariants(root = TAX_CONSTANTS_2026) {
     // silently under/over-state tax for every filer in that jurisdiction.
     if (credit !== brackets[0].rate) {
       bad.push(`provinces.${code}: bpaCreditRate ${credit} !== brackets[0].rate ${brackets[0].rate}`);
+    }
+  }
+
+  // ── DTC year/rate pairing ────────────────────────────────────────────────────
+  // The DTC values a disability amount at the lowest rate FOR THAT TAX YEAR. Two ways to get
+  // that wrong, both of which look perfectly stamped per-value:
+  //   1. Applying the CURRENT year's rate to historical years. This is the Alberta near-miss
+  //      (AB cut 10% -> 8% for 2026 ONLY); see MAINTENANCE.md 2026-07-24.
+  //   2. Letting the CURRENT-year DTC rate drift from the live bracket table it must equal.
+  // (1) can't be checked offline for closed years — the source is the archive, not this file.
+  // (2) can, and is checked here — but ONLY for the tax year the bracket tables actually
+  // describe. `provinces.*.brackets` is the TAX_YEAR table (2026); dtc.currentTaxYear is the
+  // latest year with published PROVINCIAL amounts (2025 while CRA lags). Comparing across
+  // those two years is exactly the year/rate mix-up this invariant exists to catch: Alberta's
+  // 2025 DTC rate is 10% and its 2026 bracket is 8%, and BOTH are right. So compare only when
+  // the years coincide — which they will once the 2026 provincial packages land and the
+  // y2026 rows are added.
+  const dtc = root.dtc;
+  if (dtc?.provincial && root.provinces && taxYear != null) {
+    for (const [code, years] of Object.entries(dtc.provincial)) {
+      const node = years?.[`y${taxYear}`];          // the DTC row FOR THE BRACKET TABLE'S YEAR
+      const dtcRate = node?.value?.rate;
+      const live = root.provinces[code]?.brackets?.value?.[0]?.rate;
+      if (typeof dtcRate !== 'number' || typeof live !== 'number') continue;
+      if (dtcRate !== live) {
+        bad.push(`dtc.provincial.${code}.y${taxYear}: rate ${dtcRate} !== provinces.${code}.brackets[0].rate ${live}`);
+      }
     }
   }
   return bad;
