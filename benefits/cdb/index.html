@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Child Disability Benefit Calculator — How Much CDB You Get | calc-hq.ca</title>
+<meta name="description" content="Your monthly Child Disability Benefit from your adjusted family net income and the number of DTC-approved children. July 2026–June 2027 figures, plus the two backdated years CRA pays automatically.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/cdb/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Child Disability Benefit Calculator — Monthly CDB Amount">
+<meta property="og:description" content="The CCB supplement for a DTC-approved child, worked out from your AFNI — plus the two prior years CRA pays automatically.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/cdb/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"Child Disability Benefit Calculator","item":"https://calc-hq.ca/benefits/cdb/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is the Child Disability Benefit?","acceptedAnswer":{"@type":"Answer","text":"For July 2026 to June 2027 the maximum is $3,480 a year — $290.00 a month — for each child approved for the disability tax credit. You get the full amount if your adjusted family net income is $82,847 or less. Above that it is reduced by 3.2% of the excess if one child qualifies, or 5.7% if two or more qualify. With one eligible child the benefit reaches zero at about $191,597 of income."}},
+{"@type":"Question","name":"Do I have to apply for the Child Disability Benefit?","acceptedAnswer":{"@type":"Answer","text":"No. If you already receive the Canada child benefit and your child is approved for the disability tax credit, the CRA calculates the CDB automatically and adds it to your monthly CCB payment. There is no separate application. The step that does require an application is the disability tax credit itself — Form T2201, certified by a medical practitioner."}},
+{"@type":"Question","name":"Is the Child Disability Benefit backdated?","acceptedAnswer":{"@type":"Answer","text":"Yes. On a first approval the CRA automatically calculates the current benefit year and the two previous benefit years. For years before that you send a written request to your tax centre. This is a shorter window than the disability tax credit itself, which can be reassessed up to 10 years back."}},
+{"@type":"Question","name":"Is the Child Disability Benefit the same as the Canada Disability Benefit?","acceptedAnswer":{"@type":"Answer","text":"No — they are different programs that share the initials CDB. The Child Disability Benefit is a monthly, tax-free supplement paid with the Canada child benefit for a child under 18 approved for the disability tax credit. The Canada Disability Benefit is a separate federal payment for working-age adults. This calculator covers the child benefit."}},
+{"@type":"Question","name":"Does the Child Disability Benefit reduce my Canada child benefit?","acceptedAnswer":{"@type":"Answer","text":"No. The two are calculated independently from the same adjusted family net income and then added together in one monthly payment. The CCB uses a two-tier phase-out based on all your children; the CDB uses a single-tier phase-out based only on the children approved for the disability tax credit. Neither reduces the other."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits</a><span class="sep">›</span>
+    <span>Child Disability Benefit Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Child Disability Benefit Calculator</h1>
+    <p class="lead">The <strong>monthly</strong> top-up paid with your Canada child benefit for each child approved for the <a href="/benefits/dtc/">disability tax credit</a>. Enter your family income and how many children qualify — the calculator also shows the <strong>two earlier years</strong> the CRA pays automatically on a first approval.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Child disability benefit calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="children">Children approved for the DTC
+          <span class="hint">Only children the CRA has approved — not all your children</span>
+        </label>
+        <select class="input" id="children">
+          <option value="1" selected>1 child</option>
+          <option value="2">2 children</option>
+          <option value="3">3 children</option>
+          <option value="4">4 children</option>
+          <option value="5">5 children</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="afni">Adjusted family net income
+          <span class="hint">Both partners' line 23600 combined, from the <strong id="base-year">2025</strong> return</span>
+        </label>
+        <input class="input" id="afni" type="text" inputmode="numeric" placeholder="70,000" value="70,000">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="check"><input type="checkbox" id="showprior"> Show the <strong>two earlier benefit years</strong> the CRA pays automatically</label>
+    </div>
+
+    <div class="notice" id="prior-warning" hidden>
+      <p><strong>Read this before using the backdated total.</strong> Each earlier benefit year is
+      assessed on <strong>that year's own adjusted family net income</strong> — the
+      <span id="w-base-years">2023 and 2024</span> returns, not the figure you entered above.
+      This calculator applies your one income to all three years, so the total below is only
+      accurate if your income barely moved.</p>
+      <p>If your income <em>changed</em> — a parent left work to provide care, a return to work, a
+      separation, a one-off payout — the real backdated amount will differ, sometimes sharply.
+      Lower income in an earlier year means <strong>more</strong> benefit than shown here, not less.
+      Treat the total as a rough scale, and confirm each year in your CRA My Account.</p>
+    </div>
+
+    <button class="btn" id="go" type="button">Calculate my CDB</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label" id="headline-label">Your Child Disability Benefit</p>
+      <p class="result-number" id="headline">—</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="notes" hidden></div>
+  </section>
+
+  <section class="answer">
+    <p><strong>How much is the CDB?</strong> For <span id="a-year">July 2026 – June 2027</span> the maximum is <strong id="a-max">$3,480</strong> a year — <strong id="a-monthly">$290.00</strong> a month — for <em>each</em> child approved for the DTC. You get the full amount while adjusted family net income stays at or under <strong id="a-threshold">$82,847</strong>. Above that it drops by <strong>3.2%</strong> of the excess with one eligible child, or <strong>5.7%</strong> with two or more.</p>
+  </section>
+
+  <section>
+    <h2>The DTC approval is the whole gate</h2>
+    <p>There is no CDB application. If you already get the Canada child benefit and your child is approved for the disability tax credit, the CRA works out the supplement and adds it to your monthly payment automatically.</p>
+    <p>So the entire question is whether the child is <strong>DTC-approved</strong> — Form T2201, certified by a medical practitioner and accepted by the CRA. That single approval also opens the door to a Registered Disability Savings Plan and, for the child's own tax return later, the disability amount itself. If you haven't been through that step, start with the <a href="/benefits/dtc/">Disability Tax Credit calculator</a>, which covers the eligibility criteria and what the credit is worth on its own.</p>
+  </section>
+
+  <section>
+    <h2>How the reduction works — and where it differs from the CCB</h2>
+    <p>The CDB has a <strong>single</strong> phase-out: one threshold, one rate. Take your adjusted family net income, subtract <span id="t-threshold">$82,847</span>, multiply the excess by your rate, and subtract that from the maximum.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Children approved for the DTC</th><th>Reduction rate</th><th>Maximum (all eligible children)</th></tr></thead>
+        <tbody id="rate-table"></tbody>
+      </table>
+    </div>
+    <p>The rate has only <strong>two</strong> steps — one child, or two <em>or more</em>. A family with three approved children uses the same 5.7% as a family with two. This is the detail most estimates get wrong, because the Canada child benefit's own second-tier phase-out looks almost identical but keeps climbing (8% at three children, 9.5% at four or more). Borrowing the CCB's ladder here would overstate the reduction for larger families.</p>
+    <p>The other thing to watch: <strong>"eligible children" means DTC-approved children only</strong>. Four children with one approval is a one-child claim at 3.2%, even though the CCB side of your payment counts all four.</p>
+  </section>
+
+  <section>
+    <h2>It does not come out of your CCB</h2>
+    <p>The two benefits are worked out independently from the same income figure, then added together into one deposit. The CCB runs a two-tier phase-out across all your children; the CDB runs its single-tier phase-out across only the approved ones. Neither reduces the other, so the supplement is genuinely on top.</p>
+    <p>They also share a payment schedule — the CDB arrives with the CCB, on the <a href="/key-dates-limits/ccb-payment-dates/">same monthly dates</a>. Both re-index every July using the previous year's income, so your amount changes each July even if nothing about your family did. Use the <a href="/benefits/ccb/">Canada Child Benefit calculator</a> for the base payment.</p>
+  </section>
+
+  <section>
+    <h2>The two backdated years</h2>
+    <p>On a first CDB approval the CRA automatically calculates the <strong>current benefit year and the two previous ones</strong>, and pays the difference. Older years are still possible, but you have to send a written request to your tax centre rather than getting it automatically.</p>
+    <p>That is a much shorter window than the disability tax credit itself, which the CRA can reassess up to <strong>10 years</strong> back. The two often arrive together after a T2201 approval — a retroactive DTC reassessment on the parent's returns, and a retroactive CDB top-up on the child benefit — which is why the totals can look surprisingly large.</p>
+    <p><strong>Each of those years is assessed on its own income, and that is the catch.</strong> The benefit year running July 2024 – June 2025 uses your <strong>2023</strong> adjusted family net income; July 2025 – June 2026 uses <strong>2024</strong>. A backdated estimate that applies today's income to all three years — including the one above, unless you work each year out separately — will be wrong for any family whose circumstances changed. That is not a rare case: a disability diagnosis in a young child often coincides with a parent reducing hours or leaving work, which pushes income <em>down</em> in exactly the years being backdated. Lower income then means a <em>larger</em> retroactive payment than a flat estimate suggests. The direction of the error is at least in your favour, but the size of it is not something to plan around — check each year in My Account.</p>
+  </section>
+
+  <section>
+    <h2>CDB means two different programs — check which one you want</h2>
+    <p>Two federal programs share the initials, and they are not related:</p>
+    <ul>
+      <li><strong>Child Disability Benefit</strong> — this page. A monthly, tax-free CCB supplement for a child <em>under 18</em> approved for the DTC. Income-tested on adjusted family net income.</li>
+      <li><strong>Canada Disability Benefit</strong> — a separate federal payment for <em>working-age adults</em> with disabilities, with its own application and its own estimator on the government's site.</li>
+    </ul>
+    <p>Both use DTC approval as a gateway, which is the source of most of the confusion. If the person with the disability is an adult, this is not the right calculator.</p>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <details><summary>How much is the Child Disability Benefit?</summary>
+      <p>Up to $3,480 a year ($290.00 a month) per approved child for July 2026 – June 2027, full amount while adjusted family net income is $82,847 or less, then reduced by 3.2% (one child) or 5.7% (two or more) of the excess.</p>
+    </details>
+    <details><summary>Do I need to apply?</summary>
+      <p>No. With the CCB in place and the child DTC-approved, the CRA adds it automatically. The application that matters is Form T2201 for the disability tax credit.</p>
+    </details>
+    <details><summary>How far back is it paid?</summary>
+      <p>The current benefit year plus the two previous ones, automatically. Earlier years need a written request to your tax centre.</p>
+    </details>
+    <details><summary>Does it reduce my Canada child benefit?</summary>
+      <p>No. They're calculated separately from the same income and added together in one payment.</p>
+    </details>
+    <details><summary>Is it taxable?</summary>
+      <p>No. Like the CCB, the CDB is tax-free and doesn't go on your return as income.</p>
+    </details>
+    <details><summary>At what income does it stop?</summary>
+      <p>With one approved child, at roughly $191,597 of adjusted family net income. With more approved children the maximum is larger and the rate is higher, so the zero point shifts — the calculator shows yours.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related — disability &amp; family benefits</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/dtc/"><h3>Disability Tax Credit</h3><p>The approval that unlocks this benefit — and what the credit itself is worth, backdated up to 10 years.</p></a>
+      <a class="tool-card" href="/benefits/ccb/"><h3>Canada Child Benefit</h3><p>The base monthly payment the CDB is added to.</p></a>
+      <a class="tool-card" href="/key-dates-limits/ccb-payment-dates/"><h3>CCB Payment Dates</h3><p>Every 2026 payment date — the CDB arrives on the same schedule.</p></a>
+      <a class="tool-card" href="/benefits/ei-maternity-parental/"><h3>EI Maternity &amp; Parental</h3><p>Standard vs extended leave, side by side.</p></a>
+    </div>
+    <p class="disclaimer"><strong>Estimate only.</strong> Figures are the CRA's published maxima and thresholds for each benefit year shown. Your actual payment depends on your assessed adjusted family net income and on the CRA's approval of Form T2201. Confirm with the CRA or your My Account.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/benefits/dtc/">Disability Tax Credit</a></li>
+          <li><a href="/benefits/cdb/">Child Disability Benefit</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/oas/">OAS Calculator</a></li>
+          <li><a href="/benefits/gis/">GIS Calculator</a></li>
+          <li><a href="/benefits/cpp/">CPP Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { CDB } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n, cents = true) => n.toLocaleString('en-CA',
+  { style: 'currency', currency: 'CAD', minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
+
+const CUR = CDB.currentBenefitYearStart;
+const cy = CDB.yearData(CUR);
+
+// Stamp the prose from the constants so it can't drift from the data.
+el('base-year').textContent = cy.baseYear;
+el('a-year').textContent = cy.benefitYear;
+el('a-max').textContent = money(cy.maxPerChild, false);
+el('a-monthly').textContent = money(cy.maxPerChild / 12);
+for (const id of ['a-threshold', 't-threshold']) el(id).textContent = money(cy.threshold, false);
+
+// Rate table, built from the constants — shows the two-step rate and the per-family maximum.
+el('rate-table').innerHTML = [1, 2, 3, 4].map((n) => {
+  const rate = CDB.rateFor(n);
+  const label = n === 4 ? '4 or more' : String(n);
+  return `<tr${n >= 2 ? ' class="highlight"' : ''}><td>${label}</td>` +
+         `<td>${(rate * 100).toFixed(1)}%</td>` +
+         `<td>${money(cy.maxPerChild * n, false)}</td></tr>`;
+}).join('');
+
+function run() {
+  const children = Number(el('children').value);
+  const afni = parseMoney(el('afni').value);
+  const showPrior = el('showprior').checked;
+
+  const e = CDB.estimate({ eligibleChildren: children, afni });
+  const cur = e.current;
+
+  el('headline').textContent = showPrior ? money(e.total) : money(cur.monthly);
+  el('headline-label').textContent = showPrior
+    ? `Estimated total — ${cy.benefitYear} plus the ${e.priorYears} earlier years`
+    : 'Your Child Disability Benefit, per month';
+
+  if (showPrior) {
+    el('reading').textContent =
+      `${money(cur.annual)} for ${cur.benefitYear}, plus ${money(e.priorTotal)} across the ${e.priorYears} earlier benefit years.`;
+  } else if (cur.fullyPhasedOut) {
+    el('reading').textContent =
+      `At ${money(afni, false)} of adjusted family net income the benefit is fully phased out for ${children} approved child${children === 1 ? '' : 'ren'}.`;
+  } else {
+    el('reading').textContent =
+      `${money(cur.annual)} a year for ${cur.benefitYear}, paid monthly with your Canada child benefit.`;
+  }
+
+  const rows = [
+    [`Maximum per approved child`, money(cur.maxPerChild, false)],
+    [`Children approved for the DTC`, `× ${children}`],
+    [`<strong>Maximum before reduction</strong>`, `<strong>${money(cur.base, false)}</strong>`],
+    [`Adjusted family net income (${cur.baseYear})`, money(afni, false)],
+    [`Reduction threshold`, money(cur.threshold, false)],
+    [`Income above the threshold`, money(Math.max(0, afni - cur.threshold), false)],
+    [`Reduction rate (${children === 1 ? 'one child' : 'two or more children'})`, `${(cur.rate * 100).toFixed(1)}%`],
+    [`Reduction`, `− ${money(cur.reduction)}`],
+    [`<strong>CDB — annual</strong>`, `<strong>${money(cur.annual)}</strong>`],
+    [`<strong>CDB — monthly</strong>`, `<strong>${money(cur.monthly)}</strong>`],
+    [`Fully phased out at`, money(cur.zeroAtIncome, false)],
+  ];
+  if (showPrior) {
+    for (const r of e.years.filter((x) => x.startYear !== CUR)) {
+      rows.push([`${r.benefitYear} (on ${r.baseYear} income)`, money(r.annual)]);
+    }
+    rows.push([`<strong>Estimated total</strong>`, `<strong>${money(e.total)}</strong>`]);
+  }
+  el('breakdown').innerHTML = rows
+    .map(([k, val]) => `<div class="row"><span>${k}</span><span class="val">${val}</span></div>`).join('');
+  el('result').hidden = false;
+
+  // The same-AFNI assumption is shown UP FRONT, next to the control that creates it — the
+  // families most likely to want a backdated total are exactly those whose income changed
+  // across those years, which is when the assumption breaks.
+  el('prior-warning').hidden = !showPrior;
+  el('w-base-years').textContent = e.years
+    .filter((r) => r.startYear !== CUR).map((r) => r.baseYear).join(' and ');
+
+  const notes = [];
+  if (showPrior) {
+    notes.push(`The CRA calculates these ${e.priorYears} earlier years <strong>automatically</strong> on a first approval. ` +
+      `Years before that need a written request to your tax centre.`);
+  }
+  if (children >= 2) {
+    notes.push(`With two or more approved children the rate is <strong>5.7%</strong> and does not rise further — ` +
+      `three or four approved children use the same 5.7%. (The Canada child benefit's own phase-out does keep climbing; ` +
+      `they are different ladders.)`);
+  }
+  if (e.gapYears.length) {
+    notes.push(`<strong>Not included:</strong> ${e.gapYears.join(', ')} — no published CRA figures we could verify for ` +
+      `${e.gapYears.length === 1 ? 'that benefit year' : 'those benefit years'}, so ` +
+      `${e.gapYears.length === 1 ? 'it is' : 'they are'} left out rather than estimated.`);
+  }
+  el('notes').innerHTML = notes.map((n) => `<p>${n}</p>`).join('');
+  el('notes').hidden = notes.length === 0;
+}
+
+el('go').addEventListener('click', run);
+for (const id of ['children', 'afni', 'showprior']) {
+  el(id).addEventListener('input', run);
+  el(id).addEventListener('change', run);
+}
+run();
+</script>
+</body>
+</html>

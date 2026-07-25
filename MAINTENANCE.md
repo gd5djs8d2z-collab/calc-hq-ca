@@ -220,6 +220,38 @@ look like they should carry the CCB maxima. Only one does:
 $3,123 / $6,022 / $8,476 / $10,260 exactly. If it ever doesn't, either a threshold or a
 reduction rate is wrong — run it every July.
 
+### Also on the July cycle — the CHILD disability benefit (`cdb`, added 2026-07-25)
+
+The **child disability benefit** (`cdb`, powering `/benefits/cdb/`) is a CCB supplement and runs
+on the **same July–June benefit year**, so it is chased in the same July pass. Re-check
+`years.y<current>` (`maxPerChild`, `threshold`, the `benefitYear` / `baseYear` labels) and bump
+`currentBenefitYearStart` — that node is the tripwire that goes STALE each July to prompt adding
+the new year. Closed years are `statutory` and must not be edited.
+
+**Name collision — confirm this every time.** "CDB" is *also* the adult **Canada Disability
+Benefit**, a separate working-age program with its own estimator. Our `cdb` block is the
+**CHILD** benefit only. Check the page title before reading any figure off it.
+
+- **Source:** `SRC.cdb` states the maximum, the threshold and both rates in one paragraph, and
+  **declares its own benefit period** ("For the period of July X to June Y") — attribute values
+  to *that* stated period, never to the URL or the retrieval date. The indexation chart's own
+  **"Child disability benefit (CDB)"** section corroborates the maximum and threshold, and its
+  `YYYY` column maps to the **July YYYY–June YYYY+1** benefit year (verified across 2023–2026
+  against archived captures of `SRC.cdb`).
+- **The reduction rates (3.2% / 5.7%) are `statutory` — and that was EARNED, not assumed.**
+  Archived captures declaring four different benefit years (Jul2023 → Jul2026) all state the same
+  two rates. They are **not** on the indexation chart, so if CRA ever restates them it will only
+  show on `SRC.cdb`.
+- **Never point `cdb` at the `ccb` nodes.** Its reduction is **single-tier with only two rate
+  brackets** (one child / two *or more*), where `ccb.tier2Rates` has four (8% at three children).
+  Reusing the CCB array would overstate the reduction for families with 3+ approved children.
+  Note also that "eligible children" means **DTC-approved** children, not all children.
+- **Invariant:** `invariants()` asserts `cdb.years.y<current>.threshold === ccb.threshold2` — the
+  two figures have coincided in every published year but are published separately, so this
+  catches a future divergence instead of assuming it away. It compares **only when both blocks
+  describe the same benefit year**, so a July window where one is updated before the other does
+  not produce a false alarm.
+
 ---
 
 ## Redirects — how to move a URL on this site
