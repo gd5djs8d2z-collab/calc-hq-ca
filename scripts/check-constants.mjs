@@ -177,6 +177,33 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
       }
     }
   }
+
+  // ── CDB / CCB threshold coincidence ─────────────────────────────────────────
+  // The child disability benefit's phase-out threshold and the CCB's SECOND threshold have
+  // been the same number in every published benefit year (2023-2026), but CRA publishes them
+  // as separate figures in separate sections. They are stamped separately (the CDB block must
+  // never reference the ccb nodes — its reduction is single-tier with only two rate brackets,
+  // where the CCB's tier 2 has four). This asserts they stay equal so a future DIVERGENCE is
+  // caught rather than silently assumed away.
+  //
+  // Compared ONLY when both blocks describe the SAME benefit year. Comparing a CDB threshold
+  // for one benefit year against a CCB threshold for another is the year/value mix-up that
+  // MAINTENANCE.md records as the Alberta near-miss — the check would be meaningless and, in
+  // the July window where one block is updated before the other, actively misleading.
+  const cdb = root.cdb, ccb = root.ccb;
+  if (cdb?.years && ccb?.threshold2) {
+    const startYear = cdb.currentBenefitYearStart?.value;
+    const cdbYear = cdb.years?.[`y${startYear}`]?.value;
+    const cdbLabel = cdbYear?.benefitYear;
+    const ccbLabel = ccb.benefitYear?.value;
+    if (cdbLabel && ccbLabel && cdbLabel === ccbLabel) {
+      if (cdbYear.threshold !== ccb.threshold2.value) {
+        bad.push(`cdb.years.y${startYear}.threshold ${cdbYear.threshold} !== ccb.threshold2 ` +
+          `${ccb.threshold2.value} (both describe ${cdbLabel}) — if CRA genuinely split these ` +
+          `figures, update this invariant deliberately; do not "fix" one value to match.`);
+      }
+    }
+  }
   return bad;
 }
 

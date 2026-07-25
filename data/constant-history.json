@@ -1663,5 +1663,28 @@
     "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html",
     "verified_at": "2026-07-24",
     "cadence": "january"
+  },
+  {
+    "key": "cdb.currentBenefitYearStart",
+    "value": 2026,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html",
+    "verified_at": "2026-07-25",
+    "cadence": "july"
+  },
+  {
+    "key": "cdb.years.y2026",
+    "value": {
+      "benefitYear": "July 2026 – June 2027",
+      "baseYear": 2025,
+      "maxPerChild": 3480,
+      "threshold": 82847
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html",
+    "verified_at": "2026-07-25",
+    "cadence": "july"
   }
 ]

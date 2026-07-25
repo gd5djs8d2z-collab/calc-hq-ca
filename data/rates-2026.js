@@ -740,6 +740,101 @@ export const DTC = {
   },
 };
 
+/* ── CHILD DISABILITY BENEFIT (CDB) ─────────────────────────────────────────── */
+// Constants + provenance: TC.cdb. Behaviour only here, per this file's contract.
+//
+// WHICH CDB: the CHILD disability benefit — the CCB supplement for a child under 18 approved
+// for the DTC. NOT the adult "Canada Disability Benefit" that shares the initials.
+//
+// THE FORMULA. Single-tier, unlike the two-tier CCB it is paid alongside:
+//     base      = maxPerChild x number of DTC-ELIGIBLE children
+//     reduction = rate x max(0, AFNI - threshold)
+//     annual    = max(0, base - reduction)
+// where rate is 3.2% for ONE eligible child and 5.7% for TWO OR MORE. Note there are only
+// those two brackets — a family with three eligible children still uses 5.7%, which is why
+// this must never borrow CCB.tier2Rates (four brackets, 8% at three children).
+//
+// "Eligible children" means DTC-APPROVED children, not every child in the family: four kids
+// with one DTC approval is a one-child CDB claim at 3.2%.
+//
+// RELATIONSHIP TO THE CCB: computed independently on the same AFNI, then added to the CCB
+// payment. Neither reduces the other, so a household figure is CCB.annual(...) + CDB.annual(...).
+//
+// BACKDATING: CRA automatically calculates the current benefit year plus `autoPriorYears`
+// previous ones on a first approval (older years need a written request) — a much shorter
+// window than the DTC's ten years, and the reason claimableYears() is only three long.
+export const CDB = {
+  currentBenefitYearStart: v(TC.cdb.currentBenefitYearStart),
+  autoPriorYears:          v(TC.cdb.autoCalculatedPriorYears),
+  rateOneChild:            v(TC.cdb.rateOneChild),
+  rateTwoPlusChildren:     v(TC.cdb.rateTwoPlusChildren),
+
+  // Per-benefit-year data, keyed by START year (2026 = July 2026 – June 2027).
+  // Returns null for a year we hold no sourced figures for — callers surface that as a gap.
+  yearData(startYear) { return TC.cdb.years[`y${startYear}`]?.value ?? null; },
+
+  // The reduction rate for a given count of DTC-eligible children.
+  rateFor(eligibleChildren) {
+    return eligibleChildren >= 2 ? this.rateTwoPlusChildren : this.rateOneChild;
+  },
+
+  // Benefit years CRA auto-calculates on a first approval, oldest first.
+  claimableYears() {
+    const out = [];
+    for (let y = this.currentBenefitYearStart - this.autoPriorYears; y <= this.currentBenefitYearStart; y++) {
+      if (this.yearData(y)) out.push(y);
+    }
+    return out;
+  },
+
+  /**
+   * CDB for ONE benefit year. `afni` is adjusted family net income from that year's BASE year
+   * (July 2026–June 2027 runs on 2025 AFNI). Returns null when the year has no sourced data.
+   */
+  annual(startYear, eligibleChildren, afni) {
+    const y = this.yearData(startYear);
+    if (!y || eligibleChildren < 1) return null;
+    afni = Math.max(0, afni);
+    const rate = this.rateFor(eligibleChildren);
+    const base = y.maxPerChild * eligibleChildren;
+    const reduction = Math.min(base, rate * Math.max(0, afni - y.threshold));
+    const annual = Math.max(0, base - reduction);
+    return {
+      startYear, benefitYear: y.benefitYear, baseYear: y.baseYear,
+      maxPerChild: y.maxPerChild, threshold: y.threshold,
+      eligibleChildren, rate, base, reduction,
+      annual, monthly: annual / 12,
+      fullyPhasedOut: annual === 0,
+      // AFNI at which this family's CDB reaches zero.
+      zeroAtIncome: y.threshold + base / rate,
+    };
+  },
+
+  /**
+   * The current year plus the auto-calculated previous years. `afni` is used for every year
+   * unless `afniByYear` supplies a per-year figure (income usually differs year to year, so
+   * the page collects one number and says so).
+   */
+  estimate({ eligibleChildren = 1, afni = 0, afniByYear = null } = {}) {
+    const rows = [], gapYears = [];
+    for (const y of this.claimableYears()) {
+      const income = afniByYear?.[y] ?? afni;
+      const r = this.annual(y, eligibleChildren, income);
+      if (r) rows.push(r); else gapYears.push(y);
+    }
+    const current = rows.find((r) => r.startYear === this.currentBenefitYearStart) ?? null;
+    const prior = rows.filter((r) => r.startYear !== this.currentBenefitYearStart);
+    return {
+      years: rows, gapYears, current,
+      currentAnnual: current?.annual ?? 0,
+      currentMonthly: current?.monthly ?? 0,
+      priorTotal: prior.reduce((t, r) => t + r.annual, 0),
+      priorYears: prior.length,
+      total: rows.reduce((t, r) => t + r.annual, 0),
+    };
+  },
+};
+
 export const BENEFIT_PAYMENT_DATES = {
   ccb: v(TC.benefitPaymentDates2026.ccb),
   gstCredit: v(TC.benefitPaymentDates2026.gstCredit),

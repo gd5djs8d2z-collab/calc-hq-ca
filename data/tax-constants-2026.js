@@ -114,6 +114,16 @@ const SRC = {
   dtcAmounts:     'https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html',
   // 10-year reassessment limit for a retroactive DTC claim (taxpayer relief / T1-ADJ window).
   dtcRetro:       'https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html',
+  // ── Child disability benefit (CDB) ──
+  // NAME COLLISION: this is the CHILD disability benefit — the CCB supplement for a child
+  // under 18 approved for the DTC, paid monthly with the CCB. It is NOT the adult
+  // "Canada Disability Benefit" (also abbreviated CDB), a separate working-age program
+  // with its own estimator on service.canada.ca. Confirmed by reading both pages: this one
+  // is titled "Child disability benefit" and requires CCB + DTC eligibility.
+  cdb:            'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html',
+  // The CCB "how payments are calculated" page corroborates the CDB maximum and states that
+  // the CDB is added to the CCB payment (they are computed independently, then summed).
+  ccbCalc:        'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -1011,6 +1021,73 @@ export const TAX_CONSTANTS_2026 = {
         y2024: { value: { amount: 15973, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
         y2025: { value: { amount: 16405, rate: 0.04 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
       },
+    },
+  },
+
+  /* ── CHILD DISABILITY BENEFIT (CDB) — the CCB supplement for a DTC-approved child ── */
+  // NAME COLLISION, read this first. "CDB" here is the CHILD disability benefit: a tax-free
+  // MONTHLY supplement paid with the Canada child benefit for a child under 18 who is approved
+  // for the disability tax credit. It is NOT the adult "Canada Disability Benefit", a separate
+  // working-age program that shares the initials and has its own government estimator. Both
+  // source pages were read to confirm which program each describes.
+  //
+  // JULY–JUNE BENEFIT YEAR, like the CCB (MAINTENANCE Rule 5) — NOT the January cycle. The
+  // maximum and the phase-out threshold re-index every July, using the PREVIOUS calendar
+  // year's adjusted family net income (July 2026–June 2027 runs on 2025 AFNI).
+  //
+  // THE REDUCTION IS SINGLE-TIER, which is where this differs from the CCB it rides on:
+  //   reduction = rate x max(0, AFNI - threshold),  rate = 3.2% (ONE eligible child)
+  //                                                        5.7% (TWO OR MORE eligible children)
+  // The CCB by contrast is TWO-tier (7/13.5/19/23% between its two thresholds, then
+  // 3.2/5.7/8/9.5% above the second). The two are computed INDEPENDENTLY on the same AFNI and
+  // then added together; neither reduces the other.
+  //
+  // ⚠ DO NOT REUSE ccb.tier2Rates HERE, and do not point this block at ccb.threshold2.
+  //   - ccb.tier2Rates has FOUR brackets (1/2/3/4+ children). The CDB has only TWO: "one
+  //     child" and "two or MORE". A family with 3 DTC-eligible children uses 5.7%, where the
+  //     CCB would use 8% — reusing the CCB array would overstate the reduction for 3+ children.
+  //   - "eligible children" means DTC-APPROVED children, not all children in the family.
+  //   - cdb threshold and ccb.threshold2 happen to be the same number in every published year
+  //     (2023-2026), but they are separate published figures in separate sections of the CRA
+  //     indexation chart. They are stamped separately here, and invariants() asserts they stay
+  //     equal FOR THE SAME BENEFIT YEAR so a future divergence is caught rather than assumed.
+  //
+  // Verified 2026-07-25 against three independent primary sources that agree: the CRA child
+  // disability benefit page (SRC.cdb), the CRA indexation chart's own "Child disability
+  // benefit (CDB)" section (SRC.craIndexation), and the CCB calculation page (SRC.ccbCalc).
+  // Each prior year below was read from an ARCHIVED capture of SRC.cdb and attributed to the
+  // benefit period THE DOCUMENT DECLARES ("For the period of July X to June Y"), never to the
+  // snapshot date — and each independently matches the indexation chart's column for that year.
+  cdb: {
+    _cadence: 'july',
+    // Tripwire: goes STALE each July so the new benefit year gets added (same role as
+    // dtc.currentTaxYear on the January cycle).
+    currentBenefitYearStart: { value: 2026, source_url: SRC.cdb, last_verified: '2026-07-25' },
+    // CRA automatically calculates the current benefit year plus this many previous years on a
+    // first CDB approval; older years need a written request. Drives the backdated view.
+    autoCalculatedPriorYears: { value: 2, source_url: SRC.cdb, last_verified: '2026-07-25', cadence: 'statutory' },
+
+    // Reduction rates. 'statutory' is EARNED, not inherited from the CCB precedent: read from
+    // archived captures of SRC.cdb declaring four DIFFERENT benefit years (Jul2023–Jun2024,
+    // Jul2024–Jun2025, Jul2025–Jun2026, Jul2026–Jun2027) — 3.2% / 5.7% in every one.
+    // Re-confirm if CRA ever restates them; they are NOT on the indexation chart.
+    rateOneChild:        { value: 0.032, source_url: SRC.cdb, last_verified: '2026-07-25', cadence: 'statutory' },
+    rateTwoPlusChildren: { value: 0.057, source_url: SRC.cdb, last_verified: '2026-07-25', cadence: 'statutory' },
+
+    // Per benefit year, keyed by the START year (y2026 = July 2026 – June 2027).
+    // maxPerChild = annual maximum per DTC-eligible child; threshold = AFNI above which the
+    // benefit is reduced; baseYear = the tax year whose AFNI is used.
+    // Closed years are 'statutory' (immutable once the year has ended); the CURRENT year
+    // inherits the block's 'july' cadence so it is chased each July.
+    years: {
+      y2023: { value: { benefitYear: 'July 2023 – June 2024', baseYear: 2022, maxPerChild: 3173, threshold: 75537 },
+               source_url: SRC.cdb, last_verified: '2026-07-25', cadence: 'statutory' },
+      y2024: { value: { benefitYear: 'July 2024 – June 2025', baseYear: 2023, maxPerChild: 3322, threshold: 79087 },
+               source_url: SRC.cdb, last_verified: '2026-07-25', cadence: 'statutory' },
+      y2025: { value: { benefitYear: 'July 2025 – June 2026', baseYear: 2024, maxPerChild: 3411, threshold: 81222 },
+               source_url: SRC.cdb, last_verified: '2026-07-25', cadence: 'statutory' },
+      y2026: { value: { benefitYear: 'July 2026 – June 2027', baseYear: 2025, maxPerChild: 3480, threshold: 82847 },
+               source_url: SRC.cdb, last_verified: '2026-07-25' },
     },
   },
 };
