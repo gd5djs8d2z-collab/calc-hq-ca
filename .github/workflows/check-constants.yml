@@ -9,6 +9,13 @@
 # in-force row, a value that no longer deep-equals the live constant, or a stale source_url.
 # Regenerate the file with `node scripts/gen-history.mjs` when it flags drift.
 #
+# Finally runs scripts/test-invariants.mjs, the NEGATIVE tests for the cross-field invariants.
+# This covers something the first step structurally cannot: check-constants passing proves the
+# current data is consistent, not that invariants() would actually CATCH inconsistent data. The
+# tests corrupt a clone of the constants and assert each invariant fires — and that it stays
+# quiet where firing would be a false alarm (e.g. comparing two different benefit years).
+# Without this step an invariant could silently rot into a no-op and every run would stay green.
+#
 # WHY THE SCHEDULE MATTERS MORE THAN THE PUSH TRIGGER
 #   STALE is time-based, not diff-based: a value goes stale because a January / July /
 #   quarterly boundary passed, not because anyone edited a file. A push-only gate would
@@ -62,6 +69,13 @@ jobs:
           set -o pipefail
           node scripts/check-history.mjs | tee history-report.txt
 
+      - name: Run the invariant negative tests
+        id: checkinvariants
+        if: always()   # a green constants run proves nothing about whether the gate CAN fail
+        run: |
+          set -o pipefail
+          node scripts/test-invariants.mjs | tee invariant-report.txt
+
       - name: Publish the report to the job summary
         if: always()
         run: |
@@ -86,5 +100,18 @@ jobs:
               echo
               echo 'The history file (data/constant-history.json) has drifted from the live stamps.'
               echo 'Regenerate it with `node scripts/gen-history.mjs` and commit the result.'
+            fi
+            echo
+            echo '## Cross-field invariant negative tests'
+            echo
+            echo '```'
+            cat invariant-report.txt 2>/dev/null || echo 'invariant tests did not produce output — they likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkinvariants.outcome }}' != 'success' ]; then
+              echo
+              echo 'An invariant no longer fires on corrupt input, or now fires on valid input.'
+              echo 'A green check-constants run does NOT cover this: it proves the current data passes,'
+              echo 'not that the gate would catch bad data. Fix invariants() in scripts/check-constants.mjs'
+              echo 'rather than relaxing the test.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"
