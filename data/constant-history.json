@@ -1686,5 +1686,41 @@
     "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html",
     "verified_at": "2026-07-25",
     "cadence": "july"
+  },
+  {
+    "key": "rdsp.currentYear",
+    "value": 2026,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html",
+    "verified_at": "2026-07-26",
+    "cadence": "january"
+  },
+  {
+    "key": "rdsp.grantThreshold",
+    "value": 117045,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html",
+    "verified_at": "2026-07-26",
+    "cadence": "january"
+  },
+  {
+    "key": "rdsp.bondFullThreshold",
+    "value": 38237,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html",
+    "verified_at": "2026-07-26",
+    "cadence": "january"
+  },
+  {
+    "key": "rdsp.bondZeroThreshold",
+    "value": 58523,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html",
+    "verified_at": "2026-07-26",
+    "cadence": "january"
   }
 ]

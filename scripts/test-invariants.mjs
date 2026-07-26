@@ -88,6 +88,53 @@ check('dtc: real data is clean',
     only(invariants(c, TAX_YEAR), 'dtc.').length, 1);
 }
 
+/* ── Invariant 3: the three RDSP threshold linkages ──────────────────────────
+ * Each RDSP threshold equals a figure stamped elsewhere, by legislated linkage. They are
+ * three SEPARATE checks so a failure names which linkage broke — so each is corrupted
+ * individually here, and each must produce exactly one violation naming its own key. */
+check('rdsp: real data is clean',
+  only(invariants(base, TAX_YEAR), 'rdsp.').length, 0);
+
+for (const [key, partner] of [
+  ['grantThreshold', 'federal.brackets[1].max'],
+  ['bondZeroThreshold', 'federal.brackets[0].max'],
+  ['bondFullThreshold', 'ccb.threshold1'],
+]) {
+  const c = structuredClone(base);
+  c.rdsp[key].value += 1;
+  const v = only(invariants(c, TAX_YEAR), 'rdsp.');
+  check(`rdsp: ${key} de-linking fires exactly one violation`, v.length, 1);
+  // and it must be the RIGHT one — a single lumped check would pass the count test above
+  // while pointing at the wrong linkage, which is the whole reason these are separate.
+  check(`rdsp: ${key} violation names ${partner}`,
+    v.length === 1 && v[0].includes(`rdsp.${key}`) && v[0].includes(partner), true);
+}
+
+{ // corrupting the PARTNER side must fire too, and name the same pair
+  const c = structuredClone(base);
+  c.federal.brackets.value[0].max += 1;
+  const v = only(invariants(c, TAX_YEAR), 'rdsp.');
+  check('rdsp: partner-side change (federal bracket 0) fires', v.length, 1);
+  check('rdsp: partner-side violation names bondZeroThreshold',
+    v.length === 1 && v[0].includes('bondZeroThreshold'), true);
+}
+
+{ // all three at once -> three distinct violations, not one merged message
+  const c = structuredClone(base);
+  c.rdsp.grantThreshold.value += 1;
+  c.rdsp.bondZeroThreshold.value += 1;
+  c.rdsp.bondFullThreshold.value += 1;
+  check('rdsp: three simultaneous de-linkings report three violations',
+    only(invariants(c, TAX_YEAR), 'rdsp.').length, 3);
+}
+
+{ // absent block must not throw
+  const c = structuredClone(base);
+  delete c.rdsp;
+  check('rdsp: missing block does not throw',
+    only(invariants(c, TAX_YEAR), 'rdsp.').length, 0);
+}
+
 /* ── report ─────────────────────────────────────────────────────────────────── */
 const failed = results.filter((r) => !r.ok);
 const lines = ['cross-field invariant negative tests', ''];

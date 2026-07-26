@@ -204,6 +204,41 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
       }
     }
   }
+  // ── RDSP threshold linkages — THREE SEPARATE checks, one per pair ───────────
+  // The Canada Disability Savings Act keys its income thresholds off Income Tax Act amounts,
+  // so each RDSP threshold equals a figure already stamped elsewhere in this file. The RDSP
+  // block stamps its own values independently (it never references another block's nodes);
+  // these assert the linkages still hold.
+  //
+  // Kept as three checks rather than one loop so a failure NAMES WHICH LINKAGE BROKE — the
+  // grant tier boundary, the bond's nil point, and the bond's full-amount point are set by
+  // different provisions and can move independently.
+  //
+  // IF ONE FIRES: verify against the Canada Disability Savings Act and re-read the ESDC
+  // "how much" page for the affected threshold. Do NOT edit one value to match the other —
+  // these are separately sourced on purpose, and silently syncing them destroys the only
+  // signal that a linkage changed. A genuine legislative de-linking means deleting the
+  // specific check here, deliberately, with a note.
+  const rdsp = root.rdsp;
+  if (rdsp) {
+    const fedBrackets = root.federal?.brackets?.value;
+    const pairs = [
+      ['grantThreshold', rdsp.grantThreshold?.value, 'federal.brackets[1].max', fedBrackets?.[1]?.max,
+        'grant 300%/200% tier boundary'],
+      ['bondZeroThreshold', rdsp.bondZeroThreshold?.value, 'federal.brackets[0].max', fedBrackets?.[0]?.max,
+        'income at which the bond reaches nil'],
+      ['bondFullThreshold', rdsp.bondFullThreshold?.value, 'ccb.threshold1', root.ccb?.threshold1?.value,
+        'income up to which the full bond is paid'],
+    ];
+    for (const [ourKey, ourVal, theirKey, theirVal, what] of pairs) {
+      if (typeof ourVal !== 'number' || typeof theirVal !== 'number') continue;
+      if (ourVal !== theirVal) {
+        bad.push(`rdsp.${ourKey} ${ourVal} !== ${theirKey} ${theirVal} — the ${what} has ` +
+          `de-linked. Verify against the Canada Disability Savings Act; do NOT edit one value ` +
+          `to match the other.`);
+      }
+    }
+  }
   return bad;
 }
 

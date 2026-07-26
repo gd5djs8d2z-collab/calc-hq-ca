@@ -835,6 +835,135 @@ export const CDB = {
   },
 };
 
+/* ── RDSP — Canada Disability Savings GRANT + BOND ──────────────────────────── */
+// Constants + provenance: TC.rdsp. Behaviour only here, per this file's contract.
+//
+// SCOPE, deliberately narrow: "how much government money goes into the plan this year".
+// NO growth projection, NO rate of return, NO year-by-year balance. If a future change starts
+// reaching for those, it belongs in a different tool.
+//
+// GRANT, on family income from TWO years earlier:
+//   income <= grantThreshold : 300% on the first $500, then 200% on the next $1,000
+//                              -> $1,500 of contributions attracts the full $3,500
+//   income >  grantThreshold : 100% on the first $1,000 -> $1,000 max
+// BOND, no contribution required:
+//   income <= bondFullThreshold : $1,000
+//   between the thresholds      : straight-line proration (see note below)
+//   income >= bondZeroThreshold : nil
+//
+// THE BOND PHASE-OUT IS THE PUBLISHED ESTIMATOR'S METHOD. canada.ca's prose says only that the
+// amount "decreases" as income rises; its own inline estimator computes a straight line, and
+// that is what this reproduces. Exact at both endpoints by construction. The page says so.
+//
+// CARRY-FORWARD IS NOT MODELLED. Up to 10 prior DTC-approved years of unused room can lift a
+// single year's ceiling to $10,500 grant / $11,000 bond, but the amount depends on DTC status,
+// income, contributions made and grant already paid in EACH of those years — not derivable
+// from anything this tool can ask. canada.ca's own estimator excludes it too, and ESDC mails
+// the real figure on a Statement of Entitlement every February. Excluding it is exact for
+// anyone with no unused room and understates for everyone else; it never overstates.
+//
+// AGE: the grant's "December 31 of the year the beneficiary turns 49" cut-off is sourced. The
+// BOND's cut-off is NOT separately stated by canada.ca and one timeboxed check of the Act did
+// not find it. The same boundary is applied to the bond as a DOCUMENTED ASSUMPTION, flagged
+// through `bondAgeIsAssumption` so the page can surface it as a gap.
+export const RDSP = {
+  currentYear:          v(TC.rdsp.currentYear),
+  incomeBaseYearOffset: v(TC.rdsp.incomeBaseYearOffset),
+
+  grantThreshold:    v(TC.rdsp.grantThreshold),
+  bondFullThreshold: v(TC.rdsp.bondFullThreshold),
+  bondZeroThreshold: v(TC.rdsp.bondZeroThreshold),
+
+  grantTier1Rate:         v(TC.rdsp.grantTier1Rate),
+  grantTier1Contribution: v(TC.rdsp.grantTier1Contribution),
+  grantTier2Rate:         v(TC.rdsp.grantTier2Rate),
+  grantTier2Contribution: v(TC.rdsp.grantTier2Contribution),
+  grantHighIncomeRate:         v(TC.rdsp.grantHighIncomeRate),
+  grantHighIncomeContribution: v(TC.rdsp.grantHighIncomeContribution),
+  contributionForMaxGrant:     v(TC.rdsp.contributionForMaxGrant),
+  maxAnnualGrant:              v(TC.rdsp.maxAnnualGrant),
+
+  maxAnnualBond: v(TC.rdsp.maxAnnualBond),
+
+  lifetimeGrant:        v(TC.rdsp.lifetimeGrant),
+  lifetimeBond:         v(TC.rdsp.lifetimeBond),
+  lifetimeContribution: v(TC.rdsp.lifetimeContribution),
+
+  carryForwardYears:    v(TC.rdsp.carryForwardYears),
+  carryForwardMaxGrant: v(TC.rdsp.carryForwardMaxGrant),
+  carryForwardMaxBond:  v(TC.rdsp.carryForwardMaxBond),
+
+  grantEndAge:          v(TC.rdsp.grantEndAge),
+  bondEndAge:           v(TC.rdsp.bondEndAgeAssumed),
+  bondAgeIsAssumption:  v(TC.rdsp.bondEndAgeIsAssumption),
+
+  // The tax year whose income is assessed for the current entitlement year.
+  incomeBaseYear() { return this.currentYear - this.incomeBaseYearOffset; },
+
+  // Grants and bonds stop after December 31 of the year the beneficiary turns this age, so
+  // eligibility is by AGE AT YEAR END, not birthday-to-date.
+  eligibleByAge(ageAtYearEnd) { return ageAtYearEnd <= this.grantEndAge; },
+
+  /** Matching grant on a contribution, at the rates set by family income. */
+  grant(familyIncome, contribution) {
+    familyIncome = Math.max(0, familyIncome);
+    contribution = Math.max(0, contribution);
+    if (familyIncome > this.grantThreshold) {
+      // 100% on the first $1,000.
+      const matched = Math.min(contribution, this.grantHighIncomeContribution);
+      return { amount: matched * this.grantHighIncomeRate, highIncome: true,
+               matchedContribution: matched,
+               maxForIncome: this.grantHighIncomeContribution * this.grantHighIncomeRate,
+               contributionForMax: this.grantHighIncomeContribution };
+    }
+    const t1 = Math.min(contribution, this.grantTier1Contribution);
+    const t2 = Math.min(Math.max(0, contribution - this.grantTier1Contribution), this.grantTier2Contribution);
+    return { amount: t1 * this.grantTier1Rate + t2 * this.grantTier2Rate, highIncome: false,
+             tier1Contribution: t1, tier1Grant: t1 * this.grantTier1Rate,
+             tier2Contribution: t2, tier2Grant: t2 * this.grantTier2Rate,
+             matchedContribution: t1 + t2,
+             maxForIncome: this.maxAnnualGrant,
+             contributionForMax: this.contributionForMaxGrant };
+  },
+
+  /** Bond for a family income. Straight-line proration between the thresholds — the method
+   *  canada.ca's own estimator uses; the prose states only that the amount decreases. */
+  bond(familyIncome) {
+    familyIncome = Math.max(0, familyIncome);
+    if (familyIncome <= this.bondFullThreshold) return { amount: this.maxAnnualBond, prorated: false };
+    if (familyIncome >= this.bondZeroThreshold) return { amount: 0, prorated: false };
+    const span = this.bondZeroThreshold - this.bondFullThreshold;
+    return { amount: (this.bondZeroThreshold - familyIncome) / span * this.maxAnnualBond,
+             prorated: true };
+  },
+
+  /**
+   * One year's government money. `ageAtYearEnd` gates both streams; `contribution` drives only
+   * the grant. Returns the pieces plus the unmatched portion of the contribution, since paying
+   * in more than `contributionForMax` earns nothing extra and locks the money in.
+   */
+  estimate({ familyIncome = 0, contribution = 0, ageAtYearEnd = null } = {}) {
+    const eligible = ageAtYearEnd === null ? true : this.eligibleByAge(ageAtYearEnd);
+    const g = this.grant(familyIncome, contribution);
+    const b = this.bond(familyIncome);
+    const grantAmount = eligible ? g.amount : 0;
+    const bondAmount = eligible ? b.amount : 0;
+    const unmatched = Math.max(0, contribution - g.matchedContribution);
+    return {
+      eligible, ageAtYearEnd,
+      incomeBaseYear: this.incomeBaseYear(),
+      grant: grantAmount, bond: bondAmount, total: grantAmount + bondAmount,
+      detail: { ...g, bondProrated: b.prorated },
+      unmatchedContribution: unmatched,
+      contributionForMaxGrant: g.contributionForMax,
+      shortfallToMaxGrant: Math.max(0, g.contributionForMax - contribution),
+      maxGrantForIncome: g.maxForIncome,
+      // Government money per dollar contributed — the number that actually motivates.
+      returnPerDollar: contribution > 0 ? grantAmount / contribution : null,
+    };
+  },
+};
+
 export const BENEFIT_PAYMENT_DATES = {
   ccb: v(TC.benefitPaymentDates2026.ccb),
   gstCredit: v(TC.benefitPaymentDates2026.gstCredit),

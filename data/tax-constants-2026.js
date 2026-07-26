@@ -124,6 +124,15 @@ const SRC = {
   // The CCB "how payments are calculated" page corroborates the CDB maximum and states that
   // the CDB is added to the CCB payment (they are computed independently, then summed).
   ccbCalc:        'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html',
+  // ── RDSP: Canada Disability Savings Grant + Bond ──
+  // The ESDC "How much you could get in grants and bonds" page is the single primary source
+  // that carries the matching tiers, both bond thresholds, every lifetime limit and the age
+  // cut-off in one place — AND ships the government's own estimator inline as JavaScript, so
+  // the tier logic can be read as code rather than inferred from prose. It states the calendar
+  // year it describes ("For the 2026 calendar year"), which is what values are attributed to.
+  rdspHowMuch:    'https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html',
+  rdspOverview:   'https://www.canada.ca/en/employment-social-development/programs/disability/savings.html',
+  rdspCra:        'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp.html',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -1089,5 +1098,104 @@ export const TAX_CONSTANTS_2026 = {
       y2026: { value: { benefitYear: 'July 2026 – June 2027', baseYear: 2025, maxPerChild: 3480, threshold: 82847 },
                source_url: SRC.cdb, last_verified: '2026-07-25' },
     },
+  },
+
+  /* ── RDSP — Canada Disability Savings GRANT (CDSG) + BOND (CDSB) ──────────── */
+  // SCOPE: this block answers "how much government money goes into the plan this year".
+  // It deliberately does NOT model growth, rates of return, or year-by-year balances.
+  //
+  // DTC approval is the gate: no DTC, no RDSP, so no grant and no bond.
+  //
+  // FAMILY INCOME IS LAGGED TWO YEARS. The 2026 entitlement is assessed on the income
+  // reported on the 2024 return (incomeBaseYearOffset). Under 19 the test uses the parents'/
+  // guardians' combined income; from the year the beneficiary turns 19 it is their own income
+  // plus a spouse's. That switch is a page-content matter, not a number, so it is not stamped.
+  //
+  // CADENCE — both halves EARNED from archived captures, each attributed to the calendar year
+  // the DOCUMENT declares ("For the 20XX calendar year"), never the snapshot date:
+  //   * The three income thresholds MOVE every year and the source says outright they are
+  //     "indexed annually by the CRA" — so 'january':
+  //         2024: 36,502 / 55,867 / 111,733
+  //         2025: 37,487 / 57,375 / 114,750
+  //         2026: 38,237 / 58,523 / 117,045
+  //   * The match rates, annual maxima, lifetime limits, contribution cap, carry-forward
+  //     ceilings and the age cut-off are IDENTICAL in every declared year 2022-2026 — so
+  //     'statutory'. They change only if the Canada Disability Savings Act is amended.
+  //
+  // THE THRESHOLDS COINCIDE WITH THREE FIGURES ALREADY IN THIS FILE, by legislated linkage
+  // (the Act keys off Income Tax Act amounts), NOT by accident:
+  //     grantThreshold     === federal.brackets[1].max
+  //     bondZeroThreshold  === federal.brackets[0].max
+  //     bondFullThreshold  === ccb.threshold1
+  // They are stamped INDEPENDENTLY here — this block never references another block's nodes —
+  // and invariants() asserts each pair separately so a divergence names which linkage broke.
+  // IF ONE FIRES: verify against the Canada Disability Savings Act. Do NOT edit one value to
+  // match the other; the whole point is that the two are sourced separately.
+  //
+  // Verified 2026-07-26 against SRC.rdspHowMuch (page date-modified 2026-07-10), whose prose
+  // and whose inline estimator JavaScript agree exactly on every figure below.
+  rdsp: {
+    _cadence: 'statutory',
+    // Tripwire: goes STALE each January so the indexed thresholds get re-checked.
+    currentYear:           { value: 2026, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26', cadence: 'january' },
+    incomeBaseYearOffset:  { value: 2,    source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+
+    // ── Income thresholds (indexed annually by the CRA — 'january') ──────────
+    grantThreshold:    { value: 117045, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26', cadence: 'january' },
+    bondFullThreshold: { value: 38237,  source_url: SRC.rdspHowMuch, last_verified: '2026-07-26', cadence: 'january' },
+    bondZeroThreshold: { value: 58523,  source_url: SRC.rdspHowMuch, last_verified: '2026-07-26', cadence: 'january' },
+
+    // ── Grant matching tiers ────────────────────────────────────────────────
+    // At or below grantThreshold: 300% on the first $500 contributed, then 200% on the next
+    // $1,000 — so $1,500 of contributions attracts the full $3,500. Above grantThreshold:
+    // 100% on the first $1,000. Read from the estimator source as well as the prose.
+    grantTier1Rate:        { value: 3, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    grantTier1Contribution:{ value: 500, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    grantTier2Rate:        { value: 2, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    grantTier2Contribution:{ value: 1000, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    grantHighIncomeRate:        { value: 1, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    grantHighIncomeContribution:{ value: 1000, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    contributionForMaxGrant:    { value: 1500, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    maxAnnualGrant:             { value: 3500, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+
+    // ── Bond ────────────────────────────────────────────────────────────────
+    // No contribution required. Full amount at or below bondFullThreshold, nil at or above
+    // bondZeroThreshold, and a PRORATED amount between the two.
+    // THE PHASE-OUT FORMULA IS THE PUBLISHED ESTIMATOR'S METHOD, not a statutory quotation:
+    // canada.ca's prose only says the amount "decreases" as income rises, while its inline
+    // estimator computes a straight line —
+    //     bond = (bondZeroThreshold - income) / (bondZeroThreshold - bondFullThreshold) * 1000
+    // We use the same straight line and SAY SO on-page, since it is what the government's own
+    // tool returns. Exact at both endpoints by construction.
+    maxAnnualBond:     { value: 1000, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    bondPhaseOutModel: { value: 'linear', source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+
+    // ── Lifetime limits ─────────────────────────────────────────────────────
+    lifetimeGrant:        { value: 70000,  source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    lifetimeBond:         { value: 20000,  source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    lifetimeContribution: { value: 200000, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+
+    // ── Carry-forward: NOT MODELLED, deliberately. Stamped so the page can state it. ──
+    // Unused grant/bond room from up to 10 prior DTC-approved years can be claimed later,
+    // raising a single year's ceiling to $10,500 (grant) / $11,000 (bond). It is excluded
+    // because it is not derivable from anything a calculator can ask: it depends on DTC status,
+    // family income, contributions made and grant already paid IN EACH of ten prior years.
+    // canada.ca's own estimator excludes it for the same reason, and ESDC mails the actual
+    // figure on a Statement of Entitlement each February. Excluding it makes the result exact
+    // for anyone with no unused room and CONSERVATIVE (understated) for everyone else.
+    carryForwardYears:   { value: 10,    source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    carryForwardMaxGrant:{ value: 10500, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    carryForwardMaxBond: { value: 11000, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+
+    // ── Age cut-off ─────────────────────────────────────────────────────────
+    // SOURCED for the GRANT: "paid up until December 31 of the year the beneficiary turns 49".
+    // NOT SEPARATELY SOURCED FOR THE BOND — canada.ca states the cut-off only in the grant
+    // sentence, and one timeboxed check of the Canada Disability Savings Act did not find the
+    // bond's cut-off plainly stated (s.7 gives the 10-year window and the $20,000 lifetime cap,
+    // no age). The engine applies the SAME boundary to the bond as a documented ASSUMPTION and
+    // the page surfaces it as a gap. Do not promote it to a sourced fact without the citation.
+    grantEndAge:            { value: 49, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    bondEndAgeAssumed:      { value: 49, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
+    bondEndAgeIsAssumption: { value: true, source_url: SRC.rdspHowMuch, last_verified: '2026-07-26' },
   },
 };
