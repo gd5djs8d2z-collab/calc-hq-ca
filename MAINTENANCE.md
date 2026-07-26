@@ -56,6 +56,48 @@ whole point of that section, so they must be current:
   split the constant into separate `cpp` and `oasGis` nodes rather than editing one and assuming
   the other followed.
 
+**Also in the January pass — the RDSP grant/bond thresholds** (`rdsp`, powering `/benefits/rdsp/`,
+added 2026-07-26). Three income thresholds are indexed annually by the CRA and must be re-read
+each January from `SRC.rdspHowMuch`:
+- `grantThreshold` — the 300%/200% vs 100% matching boundary
+- `bondZeroThreshold` — income at which the bond reaches nil
+- `bondFullThreshold` — income up to which the full bond is paid
+
+Bump `currentYear` at the same time; it is the tripwire that goes STALE each January to force
+this check. Everything else in the block (match rates, $3,500/$1,000 annual maxima, $70,000 /
+$20,000 / $200,000 lifetime limits, the $10,500 / $11,000 carry-forward ceilings, the age-49
+cut-off) is `statutory` — EARNED, not assumed: archived captures declaring 2022 through 2026 all
+state identical figures, while the three thresholds moved every year.
+
+**Read the source's declared year, not the URL.** `SRC.rdspHowMuch` states "For the 20XX calendar
+year" in-text; attribute values to that. It also ships the government's own estimator as inline
+JavaScript (`const phaseOut = …, firstThreshold = …, secondThreshold = …`), which is the most
+reliable machine-readable form of the thresholds and tier logic — read it as well as the prose.
+
+**Three separate invariants guard the linkages** to figures stamped elsewhere in this file:
+`rdsp.grantThreshold === federal.brackets[1].max`, `rdsp.bondZeroThreshold ===
+federal.brackets[0].max`, `rdsp.bondFullThreshold === ccb.threshold1`. They are separate so a
+failure names which linkage broke. **If one fires, verify against the Canada Disability Savings
+Act — do NOT edit one value to match the other.** They are separately sourced on purpose, and
+syncing them silently destroys the only signal that a linkage changed.
+
+**Two things deliberately NOT modelled**, both surfaced on-page rather than guessed:
+- **Carry-forward** (10 prior DTC-approved years, raising a single year's ceiling to $10,500 /
+  $11,000). Not derivable from anything a calculator can ask — it needs DTC status, income,
+  contributions and grant paid in each of ten years. canada.ca's own estimator excludes it too,
+  and ESDC mails the real figure on a Statement of Entitlement each February. Excluding it is
+  exact for anyone with no unused room and understates for everyone else; it never overstates.
+- **The bond's age cut-off.** canada.ca states the December-31-of-age-49 cut-off only for the
+  GRANT. A timeboxed check of the Act did not find the bond's stated (s.7 gives the 10-year
+  window and the $20,000 cap, no age). The engine applies the same boundary to the bond as a
+  documented assumption flagged by `bondEndAgeIsAssumption`, and the page says so. If you ever
+  find the citation, promote it and drop the flag.
+
+The **bond phase-out between the two thresholds is the published estimator's straight line**, not
+a statutory quotation — canada.ca's prose says only that the amount "decreases". Our engine
+reproduces the government estimator exactly (verified: zero divergence across 63 income ×
+contribution combinations), and the page states that this is what it is doing.
+
 ## Rule 2 — Budget-watch (ongoing, not scheduled)
 
 When a province or territory tables a **mid-year** tax change, verify against the

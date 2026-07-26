@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RDSP Grant &amp; Bond Calculator — How Much the Government Adds | calc-hq.ca</title>
+<meta name="description" content="How much Canada Disability Savings Grant and Bond your RDSP gets this year, from family income and what you contribute. 2026 thresholds, the $1,500 that earns $3,500, and the bond you get without contributing.">
+<link rel="canonical" href="https://calc-hq.ca/benefits/rdsp/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RDSP Grant &amp; Bond Calculator — Government Money In">
+<meta property="og:description" content="$1,500 contributed can attract $3,500 in grant. And the bond needs no contribution at all.">
+<meta property="og:url" content="https://calc-hq.ca/benefits/rdsp/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Government Benefits","item":"https://calc-hq.ca/benefits/"},
+{"@type":"ListItem","position":3,"name":"RDSP Grant &amp; Bond Calculator","item":"https://calc-hq.ca/benefits/rdsp/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is the Canada Disability Savings Grant?","acceptedAnswer":{"@type":"Answer","text":"If family income is $117,045 or less for 2026, the government pays $3 for every $1 on your first $500 and $2 for every $1 on the next $1,000 — so a $1,500 contribution attracts the maximum $3,500 grant. Above $117,045 the match is $1 for $1 on the first $1,000, for a maximum of $1,000. The lifetime grant limit is $70,000, and grants are paid until December 31 of the year the beneficiary turns 49."}},
+{"@type":"Question","name":"Can I get RDSP money without contributing?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Canada Disability Savings Bond requires no contribution at all. For 2026, family income of $38,237 or less gets the full $1,000 a year, and a reduced amount is paid up to $58,523, above which no bond is paid. The lifetime bond limit is $20,000. You still have to open an RDSP and apply — the money does not arrive on its own."}},
+{"@type":"Question","name":"Which year of income is used for the RDSP grant and bond?","acceptedAnswer":{"@type":"Answer","text":"Family income from two years earlier. Your 2026 grant and bond are assessed on the income reported on your 2024 tax return. Until December 31 of the year the beneficiary turns 18, it is the parents' or guardians' combined income; from the year they turn 19 it is the beneficiary's own income plus a spouse's, and the beneficiary must have filed returns for the two previous years."}},
+{"@type":"Question","name":"Do I need the disability tax credit for an RDSP?","acceptedAnswer":{"@type":"Answer","text":"Yes. Approval for the disability tax credit is the gate — without it you cannot open an RDSP, and no grant or bond can be paid. The same approval also unlocks the child disability benefit for a child under 18. If you have not applied, Form T2201 certified by a medical practitioner is the starting point."}},
+{"@type":"Question","name":"What is RDSP carry-forward?","acceptedAnswer":{"@type":"Answer","text":"Unused grant and bond room from up to 10 previous years in which the beneficiary was approved for the disability tax credit can still be claimed. In a catch-up year the ceiling rises to $10,500 of grant and $11,000 of bond, well above the usual $3,500 and $1,000. The exact amount depends on your disability tax credit status, income and contributions in each of those years, so ESDC sends a Statement of Entitlement every February with your actual figure."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/benefits/">Government Benefits</a><span class="sep">›</span>
+    <span>RDSP Grant &amp; Bond Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>RDSP Grant &amp; Bond Calculator</h1>
+    <p class="lead">How much the government puts into a Registered Disability Savings Plan this year — the <strong>matching grant</strong> on what you contribute, plus the <strong>bond</strong>, which needs no contribution at all. At the best rate, <strong>$1,500 in attracts $3,500</strong>.</p>
+  </div>
+
+  <section class="calc-card" aria-label="RDSP grant and bond calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="income">Family income
+          <span class="hint">From the <strong id="base-year">2024</strong> return — the RDSP always looks back two years</span>
+        </label>
+        <input class="input" id="income" type="text" inputmode="numeric" placeholder="45,000" value="45,000">
+      </div>
+      <div class="field">
+        <label for="contribution">Your contribution this year
+          <span class="hint">Leave at 0 to see bond only — no contribution is needed for the bond</span>
+        </label>
+        <input class="input" id="contribution" type="text" inputmode="numeric" placeholder="1,500" value="1,500">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="age">Beneficiary's age on December 31
+        <span class="hint">Grants and bonds stop after the year the beneficiary turns <span id="end-age">49</span></span>
+      </label>
+      <input class="input" id="age" type="text" inputmode="numeric" placeholder="12" value="12">
+    </div>
+
+    <button class="btn" id="go" type="button">Calculate grant &amp; bond</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Government money into the plan this year</p>
+      <p class="result-number" id="headline">—</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+    <div class="notice" id="notes" hidden></div>
+  </section>
+
+  <section class="notice" id="carryforward-note">
+    <p><strong>This is the standard-year answer. It excludes carry-forward, and that is deliberate.</strong>
+    If the beneficiary was approved for the disability tax credit in earlier years but the plan
+    was not open — or was open but under-contributed — unused grant and bond room from up to
+    <strong id="cf-years">10</strong> past years is still claimable. In a catch-up year the
+    ceiling rises to <strong id="cf-grant">$10,500</strong> of grant and
+    <strong id="cf-bond">$11,000</strong> of bond, far above the usual
+    <span id="cf-normal">$3,500 and $1,000</span>.</p>
+    <p>No calculator can work that figure out. It depends on the disability tax credit status,
+    family income, contributions made and grant already paid in <em>each</em> of ten separate
+    years. <strong>The government's own estimator excludes carry-forward for exactly this
+    reason</strong> — and ESDC instead mails a <strong>Statement of Entitlement every
+    February</strong> stating what you can actually receive. That letter, not this page, is your
+    real number if you have catching up to do.</p>
+    <p>So read the figure below as a <strong>floor</strong>: exactly right if you have no unused
+    room, and understated — never overstated — if you do.</p>
+  </section>
+
+  <section class="answer">
+    <p><strong>How much does the government add?</strong> For <span id="a-year">2026</span>, family income at or under <strong id="a-grant-thr">$117,045</strong> earns <strong>$3 for every $1</strong> on the first $500 and <strong>$2 for every $1</strong> on the next $1,000 — a <strong id="a-max-contrib">$1,500</strong> contribution attracts the full <strong id="a-max-grant">$3,500</strong> grant. Above that income the match is $1 for $1 on the first $1,000. Separately, family income at or under <strong id="a-bond-thr">$38,237</strong> receives the full <strong id="a-max-bond">$1,000</strong> bond with <em>no contribution required</em>.</p>
+  </section>
+
+  <section>
+    <h2>The disability tax credit is the gate</h2>
+    <p>An RDSP cannot be opened without <a href="/benefits/dtc/">disability tax credit</a> approval, and no grant or bond is paid without it. That single approval is what unlocks the plan, the matching grant and the bond — which is why it is worth pursuing even for someone who owes no tax and gets nothing from the credit itself.</p>
+    <p>For a child under 18, the same approval also triggers the <a href="/benefits/cdb/">Child Disability Benefit</a>, a monthly payment on top of the Canada child benefit. A family with a DTC-approved child is usually eligible for all three at once: the credit, the monthly child benefit, and this plan.</p>
+  </section>
+
+  <section>
+    <h2>The grant: why $1,500 is the number that matters</h2>
+    <p>The match is tiered, and the first dollars are worth the most. Below the income threshold the first $500 is matched <strong>three to one</strong> and the next $1,000 <strong>two to one</strong>. Past $1,500 of contributions in a year, the matching stops entirely.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>You contribute</th><th>Grant (income at or under threshold)</th><th>Per dollar</th></tr></thead>
+        <tbody id="tier-table"></tbody>
+      </table>
+    </div>
+    <p>Contributing more than <span id="p-max-contrib">$1,500</span> in a year does not earn another cent of grant. Worse, those unmatched dollars are still locked into the plan under the same withdrawal rules — take money out too early and grant and bond can have to be repaid. If you have more to put in, spreading it across years attracts far more government money than one large deposit.</p>
+  </section>
+
+  <section>
+    <h2>The bond: money for opening the plan</h2>
+    <p>The bond is the part people miss. It requires <strong>no contribution whatsoever</strong> — if family income is low enough, opening the plan and applying is the entire action. Full amount at or under <span id="p-bond-full">$38,237</span>, nothing at or above <span id="p-bond-zero">$58,523</span>, and a reduced amount in between, up to a lifetime <span id="p-life-bond">$20,000</span>.</p>
+    <p class="disclaimer"><strong>How the in-between amount is worked out here.</strong> canada.ca states only that the bond "decreases" as income rises between the two thresholds — it does not publish the formula in prose. Its own estimator computes a <strong>straight line</strong> between the two, and this calculator reproduces that same straight line, so results match the government tool exactly at every income. It is exact at both endpoints by construction. For a figure you can act on, use your Statement of Entitlement.</p>
+  </section>
+
+  <section>
+    <h2>Two years back, and whose income counts</h2>
+    <p>The RDSP always assesses <strong>family income from two years earlier</strong>: your <span id="p-base-year">2024</span> return sets your <span id="p-year">2026</span> grant and bond. A change in circumstances takes two years to show up, in both directions.</p>
+    <p>Whose income counts changes with age. Until December 31 of the year the beneficiary turns 18, it is the <strong>parents' or guardians' combined</strong> income. From the year they turn 19 it is the <strong>beneficiary's own</strong> income plus a spouse's — which is why a beneficiary whose family income was too high as a child often qualifies for the maximum grant and full bond as an adult. The beneficiary must have filed returns for the two previous years for the right amount to be paid.</p>
+  </section>
+
+  <section>
+    <h2>Limits and the age cut-off</h2>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Limit</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Lifetime grant</td><td id="l-grant">$70,000</td></tr>
+          <tr><td>Lifetime bond</td><td id="l-bond">$20,000</td></tr>
+          <tr><td>Lifetime contributions</td><td id="l-contrib">$200,000</td></tr>
+          <tr><td>Maximum grant in a normal year</td><td id="l-annual-grant">$3,500</td></tr>
+          <tr><td>Maximum bond in a normal year</td><td id="l-annual-bond">$1,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Grants are paid <strong>until December 31 of the year the beneficiary turns <span id="p-end-age">49</span></strong>. Contributions themselves are allowed until the year they turn 59, but the matching stops at 49 — so the years before that birthday are the ones that carry all the value.</p>
+    <p class="disclaimer"><strong>One gap we won't paper over.</strong> canada.ca states the December-31-of-age-<span id="p-end-age-2">49</span> cut-off explicitly for the <em>grant</em>, but never states it separately for the <em>bond</em>, and a check of the Canada Disability Savings Act did not find the bond's cut-off plainly set out either. This calculator applies the same boundary to both, which we believe is right but have not been able to source. If the beneficiary is near or past that age, confirm the bond position with ESDC rather than relying on the figure here.</p>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <details><summary>How much is the grant?</summary>
+      <p>Up to $3,500 a year — $3 per $1 on the first $500 and $2 per $1 on the next $1,000, if family income is at or under $117,045 for 2026. Above that, $1 per $1 to a $1,000 maximum. Lifetime cap $70,000.</p>
+    </details>
+    <details><summary>Can I get money without contributing?</summary>
+      <p>Yes — the bond, up to $1,000 a year and $20,000 over a lifetime, with no contribution required. You still have to open the plan and apply.</p>
+    </details>
+    <details><summary>Why is my old income being used?</summary>
+      <p>The RDSP assesses family income from two years back. Your 2026 amounts come from the 2024 return.</p>
+    </details>
+    <details><summary>What happens at 19?</summary>
+      <p>The income test switches from the parents' combined income to the beneficiary's own (plus a spouse's). Many beneficiaries qualify for far more from that year onward.</p>
+    </details>
+    <details><summary>What is carry-forward worth?</summary>
+      <p>Up to $10,500 of grant and $11,000 of bond in a single catch-up year, drawing on up to 10 prior DTC-approved years. Your Statement of Entitlement each February gives your actual figure — this page excludes it.</p>
+    </details>
+    <details><summary>Does this calculator project my plan's growth?</summary>
+      <p>No, deliberately. It answers how much government money goes in this year. It makes no assumption about investment returns and does not model a balance over time.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related — disability benefits</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/dtc/"><h3>Disability Tax Credit</h3><p>The approval that makes an RDSP possible at all — and what the credit is worth, backdated up to 10 years.</p></a>
+      <a class="tool-card" href="/benefits/cdb/"><h3>Child Disability Benefit</h3><p>The monthly payment for a DTC-approved child under 18, on top of the Canada child benefit.</p></a>
+      <a class="tool-card" href="/benefits/ccb/"><h3>Canada Child Benefit</h3><p>The base monthly child payment.</p></a>
+      <a class="tool-card" href="/key-dates-limits/contribution-limits/"><h3>Contribution Limits</h3><p>TFSA, RRSP, FHSA and RESP limits for the current year.</p></a>
+    </div>
+    <p class="disclaimer"><strong>Estimate only.</strong> Figures are ESDC's published 2026 grant and bond rules. Your actual entitlement — including any carry-forward — comes from your Statement of Entitlement and from ESDC, not from this page. This tool does not determine eligibility; disability tax credit approval and an open RDSP are required.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/benefits/dtc/">Disability Tax Credit</a></li>
+          <li><a href="/benefits/cdb/">Child Disability Benefit</a></li>
+          <li><a href="/benefits/rdsp/">RDSP Grant &amp; Bond</a></li>
+          <li><a href="/benefits/ccb/">Canada Child Benefit</a></li>
+          <li><a href="/benefits/oas/">OAS Calculator</a></li>
+          <li><a href="/benefits/gis/">GIS Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { RDSP } from '/data/rates-2026.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const money = (n, cents = true) => n.toLocaleString('en-CA',
+  { style: 'currency', currency: 'CAD', minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
+
+// Stamp every figure in the prose from the constants so nothing can drift from the data.
+const stamp = {
+  'base-year': RDSP.incomeBaseYear(), 'p-base-year': RDSP.incomeBaseYear(),
+  'a-year': RDSP.currentYear, 'p-year': RDSP.currentYear,
+  'end-age': RDSP.grantEndAge, 'p-end-age': RDSP.grantEndAge, 'p-end-age-2': RDSP.grantEndAge,
+  'cf-years': RDSP.carryForwardYears,
+  'cf-grant': money(RDSP.carryForwardMaxGrant, false), 'cf-bond': money(RDSP.carryForwardMaxBond, false),
+  'cf-normal': `${money(RDSP.maxAnnualGrant, false)} and ${money(RDSP.maxAnnualBond, false)}`,
+  'a-grant-thr': money(RDSP.grantThreshold, false),
+  'a-max-contrib': money(RDSP.contributionForMaxGrant, false), 'p-max-contrib': money(RDSP.contributionForMaxGrant, false),
+  'a-max-grant': money(RDSP.maxAnnualGrant, false),
+  'a-bond-thr': money(RDSP.bondFullThreshold, false), 'p-bond-full': money(RDSP.bondFullThreshold, false),
+  'a-max-bond': money(RDSP.maxAnnualBond, false),
+  'p-bond-zero': money(RDSP.bondZeroThreshold, false),
+  'l-grant': money(RDSP.lifetimeGrant, false), 'l-bond': money(RDSP.lifetimeBond, false),
+  'p-life-bond': money(RDSP.lifetimeBond, false),
+  'l-contrib': money(RDSP.lifetimeContribution, false),
+  'l-annual-grant': money(RDSP.maxAnnualGrant, false), 'l-annual-bond': money(RDSP.maxAnnualBond, false),
+};
+for (const [id, val] of Object.entries(stamp)) {
+  const n = el(id); if (n) n.textContent = val;
+}
+
+// Tier table, built from the constants.
+el('tier-table').innerHTML = [250, 500, 1000, 1500, 2500].map((c) => {
+  const g = RDSP.grant(0, c);
+  const best = c === RDSP.contributionForMaxGrant;
+  return `<tr${best ? ' class="highlight"' : ''}><td>${money(c, false)}</td>` +
+         `<td>${money(g.amount, false)}</td>` +
+         `<td>${(g.amount / c).toFixed(2)}×</td></tr>`;
+}).join('');
+
+function run() {
+  const income = parseMoney(el('income').value);
+  const contribution = parseMoney(el('contribution').value);
+  const ageRaw = el('age').value.trim();
+  const age = ageRaw === '' ? null : parseMoney(ageRaw);
+
+  const e = RDSP.estimate({ familyIncome: income, contribution, ageAtYearEnd: age });
+
+  el('headline').textContent = money(e.total);
+  if (!e.eligible) {
+    el('reading').textContent =
+      `At ${Math.floor(age)} on December 31, the beneficiary is past the year they turned ${RDSP.grantEndAge} — no grant or bond is payable.`;
+  } else if (contribution === 0) {
+    el('reading').textContent = e.bond > 0
+      ? `${money(e.bond)} of bond, with no contribution at all. Contributing ${money(e.contributionForMaxGrant, false)} would add ${money(RDSP.grant(income, e.contributionForMaxGrant).amount)} of grant.`
+      : `No bond at this income, and no grant without a contribution.`;
+  } else {
+    el('reading').textContent =
+      `${money(e.grant)} grant + ${money(e.bond)} bond on a ${money(contribution, false)} contribution` +
+      (e.returnPerDollar ? ` — ${e.returnPerDollar.toFixed(2)}× your money in matching alone.` : '.');
+  }
+
+  const d = e.detail;
+  const rows = [];
+  rows.push([`Family income (${e.incomeBaseYear} return)`, money(income, false)]);
+  if (d.highIncome) {
+    rows.push([`Above the ${money(RDSP.grantThreshold, false)} grant threshold`, `match ${RDSP.grantHighIncomeRate}:1`]);
+    rows.push([`Matched contribution`, money(d.matchedContribution, false)]);
+  } else {
+    if (d.tier1Contribution > 0) rows.push([`First ${money(RDSP.grantTier1Contribution, false)} matched ${RDSP.grantTier1Rate}:1`, `${money(d.tier1Contribution, false)} → ${money(d.tier1Grant)}`]);
+    if (d.tier2Contribution > 0) rows.push([`Next ${money(RDSP.grantTier2Contribution, false)} matched ${RDSP.grantTier2Rate}:1`, `${money(d.tier2Contribution, false)} → ${money(d.tier2Grant)}`]);
+  }
+  rows.push([`<strong>Grant</strong>`, `<strong>${money(e.grant)}</strong>`]);
+  rows.push([`Bond${d.bondProrated ? ' (prorated for income)' : ''}`, money(e.bond)]);
+  rows.push([`<strong>Total government money</strong>`, `<strong>${money(e.total)}</strong>`]);
+  if (e.unmatchedContribution > 0) rows.push([`Contribution earning no grant`, money(e.unmatchedContribution, false)]);
+  if (e.shortfallToMaxGrant > 0 && e.eligible) rows.push([`To reach the maximum grant, add`, money(e.shortfallToMaxGrant, false)]);
+  el('breakdown').innerHTML = rows
+    .map(([k, val]) => `<div class="row"><span>${k}</span><span class="val">${val}</span></div>`).join('');
+  el('result').hidden = false;
+
+  const notes = [];
+  if (e.unmatchedContribution > 0 && e.eligible) {
+    notes.push(`<strong>${money(e.unmatchedContribution, false)} of your contribution earns no grant.</strong> ` +
+      `Matching stops after ${money(e.contributionForMaxGrant, false)} in a year. Those extra dollars are still ` +
+      `locked into the plan under the same withdrawal rules — spreading them across future years would attract more grant.`);
+  }
+  if (e.eligible && e.shortfallToMaxGrant > 0 && contribution > 0) {
+    notes.push(`Adding <strong>${money(e.shortfallToMaxGrant, false)}</strong> more would take you to the full ` +
+      `${money(e.maxGrantForIncome, false)} of grant available at this income.`);
+  }
+  if (e.eligible && contribution === 0 && e.bond > 0) {
+    notes.push(`You get this bond <strong>without contributing anything</strong> — but only if the plan is open and ` +
+      `you have applied for the bond. It does not arrive automatically.`);
+  }
+  if (age !== null && age >= RDSP.grantEndAge - 1 && RDSP.bondAgeIsAssumption) {
+    notes.push(`<strong>Age caution.</strong> The grant's cut-off at December 31 of the year the beneficiary turns ` +
+      `${RDSP.grantEndAge} is stated by ESDC. The <em>bond's</em> cut-off is not stated separately, so the same ` +
+      `boundary is applied here as an assumption. At this age, confirm the bond position with ESDC.`);
+  }
+  el('notes').innerHTML = notes.map((n) => `<p>${n}</p>`).join('');
+  el('notes').hidden = notes.length === 0;
+}
+
+el('go').addEventListener('click', run);
+for (const id of ['income', 'contribution', 'age']) {
+  el(id).addEventListener('input', run);
+  el(id).addEventListener('change', run);
+}
+run();
+</script>
+</body>
+</html>
