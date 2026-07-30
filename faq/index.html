@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — How calc-hq.ca's Numbers Are Sourced and Verified | calc-hq.ca</title>
+<meta name="description" content="Where calc-hq.ca's figures come from, how re-verification against CRA and Service Canada works, why a result can differ from the CRA's own calculator, and what's modelled versus excluded.">
+<link rel="canonical" href="https://calc-hq.ca/faq/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FAQ — How calc-hq.ca's Numbers Are Sourced and Verified">
+<meta property="og:description" content="Where the figures come from, how re-verification works, and why a result can differ from the CRA's own calculator.">
+<meta property="og:url" content="https://calc-hq.ca/faq/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"FAQ","item":"https://calc-hq.ca/faq/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Where do calc-hq.ca's numbers come from?","acceptedAnswer":{"@type":"Answer","text":"Every constant — each tax bracket, basic personal amount, CPP/EI rate and maximum, and benefit figure — is stored once with its own source_url and last_verified date, tracing back to the primary government publisher: the CRA's T4032 payroll tables and rate pages, Revenu Québec and Retraite Québec for Quebec-specific figures, Service Canada for benefit amounts and payment dates, and each province's or territory's own finance ministry for its brackets and credits. Nothing is copied from another calculator or a tax blog."}},
+{"@type":"Question","name":"How often are the figures re-verified?","acceptedAnswer":{"@type":"Answer","text":"On a fixed schedule tied to when each figure actually changes, not a fixed calendar date for everything. Federal and provincial brackets, CPP/EI, and contribution limits are re-checked every January when they index. The Canada Child Benefit and Child Disability Benefit re-index every July. OAS and GIS are re-checked quarterly, since Old Age Security amounts move with the CPI four times a year. Anything that only changes by legislation is re-verified when that legislation changes, not on a calendar at all. An automated script checks every stamped value for staleness against its own schedule and runs on every code push, every pull request, and on the 1st of each month."}},
+{"@type":"Question","name":"Why doesn't my result match the CRA's own calculator?","acceptedAnswer":{"@type":"Answer","text":"Each calculator here models a standard case — typical employment or self-employment income with the credits and contributions that apply to nearly everyone — using published rates and thresholds. The CRA's calculators and your actual return can also account for credits, deductions, and prior-year details specific to you: medical expenses, donations, an RRSP deduction, provincial credits beyond the basic personal amount, and so on. A gap between the two isn't a bug in either tool; it means something in your full picture isn't part of the standard case being modelled. Where the two disagree, the CRA is the authority."}},
+{"@type":"Question","name":"What does calc-hq.ca deliberately not model?","acceptedAnswer":{"@type":"Answer","text":"Anything that depends on a full return or a history the calculator has no way to ask for. Examples stated on their own pages: the RDSP calculator excludes carry-forward, since it depends on disability tax credit status, income, and contributions in each of up to ten prior years; the OAS recovery tax and GIS model the published maxima and cut-offs rather than a full clawback reconstruction. Where something is excluded, the calculator says so on the page rather than silently guessing at a number."}},
+{"@type":"Question","name":"Does calc-hq.ca store what I enter?","acceptedAnswer":{"@type":"Answer","text":"No. There are no accounts and no forms that submit anywhere. The numbers you type — income, family details, contributions — are used only in your browser to compute a result, and they disappear when you close or refresh the page. See the privacy policy for what is involved in running the site itself, including advertising cookies."}},
+{"@type":"Question","name":"How do I report a wrong number?","acceptedAnswer":{"@type":"Answer","text":"Use the contact page. Include which calculator, the input you used, and the source you're comparing against — that's enough to re-check the underlying constant against its primary source."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap-wide">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <span>FAQ</span>
+  </nav>
+</div>
+
+<main class="wrap-wide">
+  <div class="page-head">
+    <h1>Frequently Asked Questions</h1>
+    <p class="lead">Questions about the site as a whole — where the figures come from, how they're kept current, and what's in scope. For a specific calculator's own mechanics, see the FAQ section on that calculator's page.</p>
+  </div>
+
+  <section class="answer">
+    <h2>What calc-hq.ca is</h2>
+    <p>Plain-language Canadian payroll, tax, and benefit calculators, built on published federal, provincial, and territorial figures for the 2026 tax year. What it isn't: tax, legal, or financial advice, or a substitute for the CRA, Revenu Québec, or Service Canada. Every calculator models a standard case and says so — for anything you're about to act on, confirm with the authority that administers it. Details on the <a href="/disclaimer/">disclaimer page</a>.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Where the figures come from</h2>
+    <p>Every constant — a bracket threshold, a rate, a basic personal amount, a contribution ceiling, a benefit maximum — is stored with the <strong>primary government source</strong> that publishes it and the <strong>date it was last confirmed</strong> against that source: the CRA's T4032 tables and rate pages, Revenu Québec and Retraite Québec for Quebec's brackets, QPP, and QPIP, Service Canada for benefit amounts and payment calendars, and each province's or territory's own finance ministry for its own brackets and credits. Not an aggregator, not another calculator, not last year's number carried forward unchecked.</p>
+  </section>
+
+  <section class="answer">
+    <h2>How re-verification works</h2>
+    <p>Each constant is checked on the schedule it actually follows, not one blanket date. Federal and provincial brackets, basic personal amounts, CPP/CPP2, EI, and contribution limits index every January. The Canada Child Benefit and Child Disability Benefit re-index every July on their benefit year. OAS and GIS move with the CPI and are re-checked quarterly. Figures set only by legislation are re-verified when the law changes — a provincial budget takes priority over a federal table that hasn't caught up. An automated script flags anything unsourced, unconfirmed, or overdue, running on every change to the site and, separately, on the 1st of every month, to catch a constant gone stale simply because a calendar boundary passed.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Why a result might not match the CRA's own calculator</h2>
+    <p>Each calculator models a standard case — typical employment or self-employment income and the credits and contributions that apply broadly — using current published rates. The CRA's own tools and your actual return can go further: an RRSP deduction, medical expenses, donations, a provincial credit beyond the basic personal amount. A gap usually means something in your full situation sits outside the standard case, not that either tool is wrong. Where the two disagree, the CRA is the authority.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What's modelled, and what's deliberately excluded</h2>
+    <p>In scope: federal tax plus all thirteen provincial and territorial bracket tables, CPP/CPP2, EI, QPP and QPIP for Quebec, and the benefit programs each calculator names — CCB, CDB, the RDSP grant and bond, the disability tax credit, GIS, OAS, and EI/QPIP maternity and parental benefits, among others. Deliberately excluded is anything needing a multi-year history or a full return to answer honestly: the RDSP calculator leaves out carry-forward, which depends on disability tax credit status, income, and contributions in each of up to ten earlier years. Where something is excluded, the page says so rather than approximating it.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What happens to what you type in</h2>
+    <p>Nothing is sent anywhere or stored. There are no accounts and no forms — every number you enter is used only in your browser to produce a result, gone when you leave or refresh the page. The <a href="/privacy-policy/">privacy policy</a> covers what running the site itself involves, including the advertising cookies Google AdSense sets.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Finding the right calculator</h2>
+    <p>The header and <a href="/">homepage</a> group calculators into six categories — Payroll, Tax on Extra Income, Benefits, Employment Standards, Property, and Key Dates &amp; Limits — plus a French-language section for Quebec take-home pay and income tax. Start from the category closest to your question.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Reporting an error</h2>
+    <p>Use the <a href="/contact/">contact page</a> and include which calculator, the input you used, and the source you're comparing against — enough to re-check the constant behind it against its primary source.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Where do calc-hq.ca's numbers come from?</summary>
+      <p>The CRA's T4032 tables and rate pages, Revenu Québec and Retraite Québec for Quebec figures, Service Canada for benefit amounts and payment dates, and each province's or territory's own finance ministry — never an aggregator or another calculator.</p>
+    </details>
+    <details><summary>How often are the figures re-verified?</summary>
+      <p>January for brackets, CPP/EI, and contribution limits; July for the CCB and CDB; quarterly for OAS and GIS; on legislative change for anything statutory. An automated check runs on every push and on the 1st of each month.</p>
+    </details>
+    <details><summary>Why doesn't my result match the CRA's own calculator?</summary>
+      <p>Each page models a standard case using published rates. Your actual return can include credits, deductions, and details a general calculator doesn't ask about. Where the two disagree, the CRA is the authority.</p>
+    </details>
+    <details><summary>What does calc-hq.ca deliberately not model?</summary>
+      <p>Anything needing a multi-year history or a full return — RDSP carry-forward is the stated example. Each page says explicitly what it excludes rather than approximating it.</p>
+    </details>
+    <details><summary>Does calc-hq.ca store what I enter?</summary>
+      <p>No. No accounts, no forms, nothing sent off your browser. Your inputs are gone when you close or refresh the page.</p>
+    </details>
+    <details><summary>How do I report a wrong number?</summary>
+      <p>Through the <a href="/contact/">contact page</a>, with the calculator, your input, and the source you're checking against.</p>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a> · <a href="/faq/">FAQ</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
