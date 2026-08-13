@@ -30,29 +30,23 @@ and not the other.
 
 ---
 
-## 3. French section (`/fr/`) — localize the shared chrome
-
-**What:** The French pages (`/fr/salaire-net-quebec/` and `/fr/calculateur-impot-quebec/`)
-reuse the **English** header nav and footer as-is (flagged in-page and in their commits). The
-page content, calculator UI, and FAQ are native Québec French, but the surrounding chrome is not.
-
-**Fix when more French pages exist:**
-- Localize the header nav (Paie, Revenu supplémentaire, Prestations, Emploi, Propriété) and the
-  footer (À propos, Politique de confidentialité, Avis, Contact) for `/fr/` pages.
-- ~~Add a `/fr/` section index so the bare `/fr/` path resolves instead of 404ing.~~ **DONE** —
-  `/fr/index.html` built (paired with `/` via reciprocal hreflang); bare `/fr/` now resolves.
-- **PENDING NATIVE-SPEAKER REVIEW:** the French copy on ALL THREE `/fr/` pages
-  (`/fr/` index, `salaire-net-quebec`, `calculateur-impot-quebec`) is built as reviewable, not
-  final — have a native Québécois speaker read it before actively promoting the section.
-
-**Why deferred:** localized chrome only pays off once there are several French pages; the nav
-links would also need French destination pages, which don't exist yet.
-
----
-
 ---
 
 ## Done
+
+- **Localize the French section (`/fr/`) chrome** (was item 3): done 2026-08-12. Header nav
+  (Paie, Revenu supplémentaire, Prestations, Emploi, Propriété, Dates clés) and footer
+  (column headings, link labels, tagline, disclaimer) are now French on all three `/fr/`
+  pages, with the stray `lang="en"` overrides removed now that the chrome matches the page's
+  `fr-CA`. Also fixed a real hreflang bug found in the same pass: `/fr/salaire-net-quebec/`
+  and `/payroll/take-home-pay/` carried a reciprocal `hreflang`/toggle pair despite not being
+  content-equivalent (Quebec-only vs. all-provinces) — removed on both sides, leaving a plain
+  related-calculator link instead. The genuinely correct pair (`/payroll/quebec-income-tax/`
+  ↔ `/fr/calculateur-impot-quebec/`) was untouched. Added a sitewide footer `Français` link
+  and a homepage card so `/fr/` has more than one inbound link from the English site.
+  **PENDING NATIVE-SPEAKER REVIEW still stands** — this pass only touched chrome and linking,
+  not the French page copy itself; still have a native Québécois speaker read the content
+  before actively promoting the section.
 
 - **Stamp the material unstamped leaves** (was item 4): done 2026-07-18, same day it was
   filed. `bpaCreditRate` × 13, `provinces.ON.healthPremiumMax` and `cpp`/`qpp
