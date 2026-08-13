@@ -15,8 +15,7 @@
 # 1,000 characters per line.
 
 # --- ACTIVE RULES ------------------------------------------------------------
-# None currently. Add one rule per line, e.g.:
-#   /key-dates-limits/ccb-payment-dates/  /key-dates-limits/benefit-payment-dates/  301
+/fr/  /fr/salaire-net-quebec/  301
 #
 # VERIFIED WORKING on this deploy 2026-07-18 (see MAINTENANCE.md):
 #   - plain 301                 /from /to 301
