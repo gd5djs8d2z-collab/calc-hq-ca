@@ -16,9 +16,81 @@
 
 # --- ACTIVE RULES ------------------------------------------------------------
 /fr/  /fr/salaire-net-quebec/  301
+
+# Inbound links from retired satellite sites (older page template). These paths
+# have never existed in this repo — grep confirms zero internal links to any of
+# them, so these mask nothing. Search Console 404s, 2026-08-15.
+#
+# Extensionless bare paths (/about, /faq) are handled natively by
+# assets.html_handling = "auto-trailing-slash" in wrangler.jsonc, not here.
+# Listed below only where the target is NOT the trailing-slash version.
+/privacy       /privacy-policy/  301
+/privacy.html  /privacy-policy/  301
+/legal         /disclaimer/      301
+/legal.html    /disclaimer/      301
+/terms         /disclaimer/      301
+/terms.html    /disclaimer/      301
+/faq           /faq/             301
+/contact.html  /contact/         301
+/about.html    /about/           301
+/methodology/  /faq/             301
+/methodology/termination-pay/  /employment-standards/esa-termination/  301
+/ontario-raise-calculator/     /payroll/pay-raise/                     301
 #
 # VERIFIED WORKING on this deploy 2026-07-18 (see MAINTENANCE.md):
 #   - plain 301                 /from /to 301
 #   - wildcard + :splat         /old/*  /new/:splat  301
 #   - query strings are preserved through the redirect
 #   - this file is not served publicly (a request for /_redirects returns 404)
+
+# Trailing-slash normalisation, as explicit 301s.
+#
+# assets.html_handling does this natively but answers 307 (temporary), which
+# does not consolidate the URL or pass link equity. These rules override it
+# with a permanent 301. Enumerated rather than wildcarded: _redirects has no
+# regex, and the only matching wildcard (/* -> /:splat/) would also rewrite
+# /sitemap.xml and turn /about/ into /about//.
+#
+# MAINTENANCE: one line per page. Add a rule when you add a page.
+# `node scripts/check-redirects.mjs` fails if a page is missing one, and also
+# catches a rule that shadows a live page, loops, or chains into another rule.
+/about                                         /about/                                        301
+/benefits                                      /benefits/                                     301
+/benefits/ccb                                  /benefits/ccb/                                 301
+/benefits/cdb                                  /benefits/cdb/                                 301
+/benefits/cpp-60-vs-65                         /benefits/cpp-60-vs-65/                        301
+/benefits/cpp                                  /benefits/cpp/                                 301
+/benefits/dtc                                  /benefits/dtc/                                 301
+/benefits/ei-maternity-parental                /benefits/ei-maternity-parental/               301
+/benefits/ei                                   /benefits/ei/                                  301
+/benefits/gis                                  /benefits/gis/                                 301
+/benefits/oas                                  /benefits/oas/                                 301
+/benefits/rdsp                                 /benefits/rdsp/                                301
+/business                                      /business/                                     301
+/business/markup                               /business/markup/                              301
+/business/profit-margin                        /business/profit-margin/                       301
+/contact                                       /contact/                                      301
+/disclaimer                                    /disclaimer/                                   301
+/employment-standards                          /employment-standards/                         301
+/employment-standards/esa-termination          /employment-standards/esa-termination/         301
+/employment-standards/overtime-pay             /employment-standards/overtime-pay/            301
+/employment-standards/severance-pay            /employment-standards/severance-pay/           301
+/employment-standards/vacation-pay             /employment-standards/vacation-pay/            301
+/fr/calculateur-impot-quebec                   /fr/calculateur-impot-quebec/                  301
+/fr/salaire-net-quebec                         /fr/salaire-net-quebec/                        301
+/key-dates-limits                              /key-dates-limits/                             301
+/key-dates-limits/ccb-payment-dates            /key-dates-limits/ccb-payment-dates/           301
+/key-dates-limits/contribution-limits          /key-dates-limits/contribution-limits/         301
+/key-dates-limits/tax-deadlines                /key-dates-limits/tax-deadlines/               301
+/payroll                                       /payroll/                                      301
+/payroll/hourly-to-salary                      /payroll/hourly-to-salary/                     301
+/payroll/pay-raise                             /payroll/pay-raise/                            301
+/payroll/quebec-income-tax                     /payroll/quebec-income-tax/                    301
+/payroll/self-employed-tax                     /payroll/self-employed-tax/                    301
+/payroll/take-home-pay                         /payroll/take-home-pay/                        301
+/privacy-policy                                /privacy-policy/                               301
+/property                                      /property/                                     301
+/property/land-transfer-tax                    /property/land-transfer-tax/                   301
+/tax-on-extra-income                           /tax-on-extra-income/                          301
+/tax-on-extra-income/bonus                     /tax-on-extra-income/bonus/                    301
+/tax-on-extra-income/commission                /tax-on-extra-income/commission/               301

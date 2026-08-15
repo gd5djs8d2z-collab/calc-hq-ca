@@ -3,6 +3,15 @@
   "compatibility_date": "2026-01-01",
   "assets": {
     "directory": "./",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Sends extensionless paths to the trailing-slash version (/about -> /about/)
+    // when a directory index exists. Real files (/sitemap.xml, /robots.txt,
+    // /ads.txt, /assets/**) match exactly and are never rewritten. This is the
+    // platform default; pinned here so the behaviour is intentional, not implied.
+    //
+    // NOTE: this answers 307, not 301 — temporary, so it neither consolidates the
+    // URL nor passes link equity. _redirects carries an explicit 301 per page to
+    // override it; this setting is the fallback for anything not listed there.
+    "html_handling": "auto-trailing-slash"
   }
 }
