@@ -9,12 +9,19 @@
 # in-force row, a value that no longer deep-equals the live constant, or a stale source_url.
 # Regenerate the file with `node scripts/gen-history.mjs` when it flags drift.
 #
-# Finally runs scripts/test-invariants.mjs, the NEGATIVE tests for the cross-field invariants.
+# Then runs scripts/test-invariants.mjs, the NEGATIVE tests for the cross-field invariants.
 # This covers something the first step structurally cannot: check-constants passing proves the
 # current data is consistent, not that invariants() would actually CATCH inconsistent data. The
 # tests corrupt a clone of the constants and assert each invariant fires — and that it stays
 # quiet where firing would be a false alarm (e.g. comparing two different benefit years).
 # Without this step an invariant could silently rot into a no-op and every run would stay green.
+#
+# Finally runs scripts/check-redirects.mjs, the gate on _redirects. Cloudflare follows a
+# redirect "regardless of whether or not an asset matches the incoming request", so a rule
+# whose SOURCE is a live page shadows that page while still returning HTTP 200 — invisible
+# to a link checker. It also fails when a page in sitemap.xml has no extensionless 301,
+# which would leave it answering 307 (temporary, consolidates nothing) from
+# assets.html_handling instead. See the header of _redirects.
 #
 # WHY THE SCHEDULE MATTERS MORE THAN THE PUSH TRIGGER
 #   STALE is time-based, not diff-based: a value goes stale because a January / July /
@@ -76,6 +83,13 @@ jobs:
           set -o pipefail
           node scripts/test-invariants.mjs | tee invariant-report.txt
 
+      - name: Run the redirect check
+        id: checkredirects
+        if: always()   # _redirects is the one file where a typo removes a live page
+        run: |
+          set -o pipefail
+          node scripts/check-redirects.mjs | tee redirect-report.txt
+
       - name: Publish the report to the job summary
         if: always()
         run: |
@@ -113,5 +127,19 @@ jobs:
               echo 'A green check-constants run does NOT cover this: it proves the current data passes,'
               echo 'not that the gate would catch bad data. Fix invariants() in scripts/check-constants.mjs'
               echo 'rather than relaxing the test.'
+            fi
+            echo
+            echo '## Redirect table check'
+            echo
+            echo '```'
+            cat redirect-report.txt 2>/dev/null || echo 'redirect checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkredirects.outcome }}' != 'success' ]; then
+              echo
+              echo '_redirects has a rule that shadows a live page, loops, chains, or touches a'
+              echo 'reserved path — or a page in sitemap.xml has no extensionless 301 and would'
+              echo 'answer 307 instead. Cloudflare follows redirects even when a real asset matches,'
+              echo 'so a bad SOURCE takes a live page off the site while still returning HTTP 200.'
+              echo 'Fix the rule in _redirects; do not relax the checker.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"
