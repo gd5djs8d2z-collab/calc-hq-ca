@@ -135,6 +135,79 @@ for (const [key, partner] of [
     only(invariants(c, TAX_YEAR), 'rdsp.').length, 0);
 }
 
+/* ── Invariant 4: EI regular-benefit figures derived from the MIE ────────────────
+ * repaymentThreshold = 1.25 × MIE and maxWeeklyBenefit = round(MIE × 55% / 52). Both are
+ * plausible-looking numbers that go stale silently when the MIE is re-indexed each January.
+ * The first test below reproduces the ACTUAL defect found on eicalc.ca in August 2026: a
+ * $79,000 repayment threshold, correct for 2024, carried forward two years unnoticed. */
+check('ei: real data is clean',
+  only(invariants(base, TAX_YEAR), 'ei.').length, 0);
+
+{ // the real-world stale value: 2024's threshold (1.25 × $63,200) against a 2026 MIE
+  const c = structuredClone(base);
+  c.ei.repaymentThreshold.value = 79000;
+  check('ei: the eicalc.ca $79,000 stale clawback threshold fires',
+    only(invariants(c, TAX_YEAR), 'ei.repaymentThreshold').length, 1);
+}
+
+{ // a January MIE bump with the derived threshold left behind must fire
+  const c = structuredClone(base);
+  c.ei.maxInsurableEarnings.value = 71000;
+  check('ei: MIE moving without repaymentThreshold fires',
+    only(invariants(c, TAX_YEAR), 'ei.repaymentThreshold').length, 1);
+}
+
+{ // a $1 drift in the weekly cap must fire
+  const c = structuredClone(base);
+  c.ei.maxWeeklyBenefit.value += 1;
+  check('ei: maxWeeklyBenefit drifting from the MIE fires',
+    only(invariants(c, TAX_YEAR), 'ei.maxWeeklyBenefit').length, 1);
+}
+
+{ // floor instead of round would give 694 for 2025's MIE — assert round is what's enforced
+  const c = structuredClone(base);
+  c.ei.maxInsurableEarnings.value = 65700;      // 2025 MIE
+  c.ei.repaymentThreshold.value = 65700 * 1.25; // keep the other invariant quiet
+  c.ei.maxWeeklyBenefit.value = 695;            // Service Canada's published 2025 figure
+  check('ei: published 2025 weekly max ($695) reconciles by round, not floor',
+    only(invariants(c, TAX_YEAR), 'ei.maxWeeklyBenefit').length, 0);
+}
+
+{ // a dropped row in the 41-row duration matrix must fire
+  const c = structuredClone(base);
+  c.ei.benefitWeeksTable.value.splice(10, 1);
+  check('ei: a dropped duration-matrix row fires',
+    only(invariants(c, TAX_YEAR), 'ei.benefitWeeksTable').length, 1);
+}
+
+{ // a short (ragged) row must fire
+  const c = structuredClone(base);
+  c.ei.benefitWeeksTable.value[5].pop();
+  check('ei: a short duration-matrix row fires',
+    only(invariants(c, TAX_YEAR), 'ei.benefitWeeksTable').length, 1);
+}
+
+{ // a week count above the 45-week statutory ceiling must fire
+  const c = structuredClone(base);
+  c.ei.benefitWeeksTable.value[0][13] = 46;
+  check('ei: a duration above benefitWeeksMax fires',
+    only(invariants(c, TAX_YEAR), 'ei.benefitWeeksTable').length, 1);
+}
+
+{ // hoursBands and bestWeeks drifting apart must fire
+  const c = structuredClone(base);
+  c.ei.hoursBands.value[3][0] = 9.5;
+  check('ei: hoursBands and bestWeeks describing different bands fires',
+    only(invariants(c, TAX_YEAR), 'ei.hoursBands').length, 1);
+}
+
+{ // absent block must not throw
+  const c = structuredClone(base);
+  delete c.ei;
+  check('ei: missing block does not throw',
+    only(invariants(c, TAX_YEAR), 'ei.').length, 0);
+}
+
 /* ── report ─────────────────────────────────────────────────────────────────── */
 const failed = results.filter((r) => !r.ok);
 const lines = ['cross-field invariant negative tests', ''];

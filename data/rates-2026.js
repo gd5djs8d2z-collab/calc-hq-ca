@@ -355,6 +355,89 @@ export const CPP_RETIREMENT = {
   },
 };
 
+/* ── EI REGULAR BENEFITS — eligibility, weekly rate and duration ──────────────── */
+// Constants + provenance: TC.ei. Added 2026-08-16 when /benefits/ei/ absorbed the eicalc.ca
+// satellite. BEHAVIOUR ONLY here — every number comes from tax-constants-2026.js.
+//
+// The regional unemployment RATE is an INPUT to all three lookups, never a stored constant:
+// it is StatCan Labour Force Survey output revised monthly, so it is passed in by the caller
+// (who got it from Service Canada's region lookup) rather than baked into this codebase.
+//
+// BAND CONVENTION: each band is [inclusiveMaxRate, value], read low to high, first match
+// wins. "6% and under" → 700 hours; a rate of exactly 6.0 takes that band, 6.1 takes the next.
+export const EI_REGULAR = {
+  hoursBands:        v(TC.ei.hoursBands),
+  bestWeeks:         v(TC.ei.bestWeeks),
+  benefitWeeksBands: v(TC.ei.benefitWeeksBands),
+  benefitWeeksTable: v(TC.ei.benefitWeeksTable),
+  benefitWeeksMin:   v(TC.ei.benefitWeeksMin),
+  benefitWeeksMax:   v(TC.ei.benefitWeeksMax),
+  replacementRate:   v(TC.ei.benefitReplacementRate),
+  maxWeekly:         v(TC.ei.maxWeeklyBenefit),
+  maxInsurableEarnings: v(TC.ei.maxInsurableEarnings),
+  waitingPeriodWeeks:   v(TC.ei.waitingPeriodWeeks),
+  qualifyingPeriodWeeks:    v(TC.ei.qualifyingPeriodWeeks),
+  qualifyingPeriodMaxWeeks: v(TC.ei.qualifyingPeriodMaxWeeks),
+  familySupplementThreshold: v(TC.ei.familySupplementThreshold),
+  familySupplementMaxRate:   v(TC.ei.familySupplementMaxRate),
+  repaymentThreshold:   v(TC.ei.repaymentThreshold),
+  repaymentRate:        v(TC.ei.repaymentRate),
+  workingRetention:     v(TC.ei.workingWhileOnClaimRetention),
+  workingThreshold:     v(TC.ei.workingWhileOnClaimThreshold),
+
+  /** Insurable hours needed to qualify at `rate` (%). */
+  hoursRequired(rate) {
+    return this.hoursBands.find(([max]) => rate <= max)[1];
+  },
+  /** The divisor — how many best weeks the weekly rate is averaged over at `rate` (%). */
+  bestWeeksFor(rate) {
+    return this.bestWeeks.find(([max]) => rate <= max)[1];
+  },
+  /** Weekly benefit from average weekly insurable earnings, capped at the published maximum. */
+  weeklyBenefit(avgWeekly) {
+    return Math.min(Math.round(avgWeekly * this.replacementRate * 100) / 100, this.maxWeekly);
+  },
+  /**
+   * Weeks payable, from the 41×12 Service Canada matrix. Returns 0 when the hours don't
+   * qualify at that rate — which is the matrix's own way of saying "below the threshold",
+   * so it agrees with hoursRequired() by construction rather than by a second rule.
+   */
+  weeksPayable(hours, rate) {
+    const row = this.benefitWeeksTable.find(([lo, hi]) => hours >= lo && hours <= hi);
+    if (!row) return 0;
+    const col = this.benefitWeeksBands.findIndex((max) => rate <= max);
+    return row[col + 2];
+  },
+  /**
+   * Full estimate for one claim. `hours` = insurable hours in the qualifying period,
+   * `rate` = the region's unemployment rate (%), `avgWeekly` = average insurable weekly
+   * earnings over the best weeks. Totals are nominal and pre-tax; EI is taxable income.
+   */
+  estimate(hours, rate, avgWeekly) {
+    const required = this.hoursRequired(rate);
+    const eligible = hours >= required;
+    const weekly = this.weeklyBenefit(avgWeekly);
+    const weeks = eligible ? this.weeksPayable(hours, rate) : 0;
+    return {
+      eligible,
+      hoursRequired: required,
+      hoursShort: eligible ? 0 : required - hours,
+      bestWeeks: this.bestWeeksFor(rate),
+      weekly,
+      atCap: weekly >= this.maxWeekly,
+      weeks,
+      total: weeks * weekly,
+    };
+  },
+  /** Benefit repayment ("clawback"): 30% of the lesser of income above the threshold and
+   *  the regular benefits received. Exemptions (first claim in 10 years, special benefits
+   *  only) are rules, not arithmetic, and are explained on the page rather than modelled. */
+  repayment(netIncome, regularBenefitsReceived) {
+    const excess = Math.max(0, netIncome - this.repaymentThreshold);
+    return Math.round(Math.min(excess, regularBenefitsReceived) * this.repaymentRate * 100) / 100;
+  },
+};
+
 /* ── EI MATERNITY & PARENTAL BENEFITS — federal, nationwide EXCEPT Quebec ────── */
 // Quebec runs its own QPIP (Québec Parental Insurance Plan) with different rates and
 // weeks — modelled separately below, not here.

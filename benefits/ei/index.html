@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EI Calculator 2026 — Eligibility, Hours &amp; How Much You'll Get | calc-hq.ca</title>
-<meta name="description" content="How many hours do you need for EI, who's eligible, and how much will you get? See the 2026 EI eligibility rules and estimate your weekly benefit and premium.">
+<meta name="description" content="How many hours do you need for EI, who's eligible, and how much will you get? See the 2026 EI eligibility rules and estimate your weekly benefit, weeks payable and total.">
 <link rel="canonical" href="https://calc-hq.ca/benefits/ei/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="EI Calculator 2026 — Eligibility, Hours & Payments">
-<meta property="og:description" content="EI hours to qualify, who's eligible, and an estimate of your weekly benefit.">
+<meta property="og:description" content="EI hours to qualify, who's eligible, and an estimate of your weekly benefit and how long it lasts.">
 <meta property="og:url" content="https://calc-hq.ca/benefits/ei/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -26,7 +26,12 @@
 {"@type":"Question","name":"How many hours do you need for EI in Canada?","acceptedAnswer":{"@type":"Answer","text":"You generally need between 420 and 700 hours of insurable employment in the last 52 weeks to qualify for EI regular benefits. The exact number depends on the unemployment rate in your region — where jobs are scarce and unemployment is high, the threshold drops toward 420 hours; where unemployment is low, it rises toward 700. Service Canada sets the figure for your economic region each month."}},
 {"@type":"Question","name":"What are the eligibility requirements for EI in Canada?","acceptedAnswer":{"@type":"Answer","text":"To claim EI regular benefits you must have lost your job through no fault of your own, have worked enough insurable hours in the last 52 weeks (420–700 depending on your region), have had EI premiums deducted, and be ready and able to work. You also need to have been without work and pay for at least seven consecutive days."}},
 {"@type":"Question","name":"How much will I get from EI?","acceptedAnswer":{"@type":"Answer","text":"EI regular benefits pay 55% of your average weekly insurable earnings, up to a maximum. With 2026 maximum insurable earnings of $68,900, the most you can receive is about $729 a week. Enter your income above and the calculator estimates your weekly benefit."}},
-{"@type":"Question","name":"How much EI is deducted from my pay?","acceptedAnswer":{"@type":"Answer","text":"EI premiums are 1.63% of your insurable earnings in 2026, up to a maximum premium of $1,123.07 on the first $68,900 you earn. Once you hit that cap, no more EI comes off for the rest of the year."}}]}
+{"@type":"Question","name":"How much EI is deducted from my pay?","acceptedAnswer":{"@type":"Answer","text":"EI premiums are 1.63% of your insurable earnings in 2026, up to a maximum premium of $1,123.07 on the first $68,900 you earn. Once you hit that cap, no more EI comes off for the rest of the year."}},
+{"@type":"Question","name":"How many weeks of EI can you get?","acceptedAnswer":{"@type":"Answer","text":"Between 14 and 45 weeks. Service Canada reads the number off a table with 41 rows of insurable hours and 12 columns of regional unemployment rate: more hours and a higher regional rate both push the number up. The rate used is the one in force when you file, and the number of weeks doesn't change if you move afterward."}},
+{"@type":"Question","name":"What is the EI family supplement?","acceptedAnswer":{"@type":"Answer","text":"If your net family income is $25,921 or less, you have children, and you or your spouse receive the Canada Child Benefit, the family supplement can raise your benefit rate to as much as 80% of your average insurable earnings. It tapers as income rises and reaches nil at $25,921. If both spouses claim EI at the same time, only one can receive it — usually the one with the lower benefit rate."}},
+{"@type":"Question","name":"Do you have to pay EI back at tax time?","acceptedAnswer":{"@type":"Answer","text":"You may. If your 2026 net income from all sources exceeds $86,125, you repay 30% of the lesser of your income above that threshold and the total regular benefits you were paid. The threshold is 1.25 times the year's maximum insurable earnings, so it moves every January. You're exempt if you received less than a week of regular benefits in the previous 10 tax years, or if you were paid only special benefits such as maternity, parental or sickness."}},
+{"@type":"Question","name":"Can you work while on EI?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once you've served the waiting period, you keep 50 cents of your EI benefits for every dollar you earn, until your earnings reach 90% of the weekly insurable earnings your benefit rate was based on. Above that point, earnings come off dollar for dollar. Work a full working week and you're treated as employed for that week and paid no benefits, whatever you earned."}},
+{"@type":"Question","name":"Does severance pay delay EI?","acceptedAnswer":{"@type":"Answer","text":"Yes. Severance, termination pay, vacation pay and similar amounts paid on separation are allocated to the weeks following your last day, as though you were still being paid. Benefits start after that allocation runs out, so a large payout pushes your start date back. It delays your benefits rather than reducing them — the number of weeks you're entitled to doesn't change."}}]}
 </script>
 </head>
 <body>
@@ -55,17 +60,31 @@
 <main class="wrap">
   <div class="page-head">
     <h1>EI Calculator (2026)</h1>
-    <p class="lead">Two questions matter with EI: do you qualify, and how much would you get? Enter your insurable earnings for a weekly benefit estimate — and read the hours rule below, because it changes with where you live.</p>
+    <p class="lead">Three questions matter with EI: do you qualify, how much would you get, and for how long? All three turn on the unemployment rate in your region. Enter your hours, earnings and regional rate for an estimate.</p>
   </div>
 
   <section class="calc-card" aria-label="EI benefit calculator">
-    <div class="field">
-      <label for="income">Annual insurable earnings
-        <span class="hint">Your gross employment income, up to $68,900 counts</span>
-      </label>
-      <input class="input" id="income" type="text" inputmode="numeric" placeholder="50,000" value="50,000">
+    <div class="field-row">
+      <div class="field">
+        <label for="income">Annual insurable earnings
+          <span class="hint">Gross employment income, up to $<span data-ei="maxInsurableEarnings"></span> counts</span>
+        </label>
+        <input class="input" id="income" type="text" inputmode="numeric" placeholder="50,000" value="50,000">
+      </div>
+      <div class="field">
+        <label for="hours">Insurable hours
+          <span class="hint">All jobs, last 52 weeks</span>
+        </label>
+        <input class="input" id="hours" type="text" inputmode="numeric" placeholder="1,200" value="1,200">
+      </div>
     </div>
-    <button class="btn" id="go" type="button">Estimate my EI benefit</button>
+    <div class="field">
+      <label for="rate">Unemployment rate in your region (%)
+        <span class="hint">Service Canada sets this monthly — <a href="https://srv129.services.gc.ca/ei_regions/eng/postalcode_search.aspx" rel="noopener">look yours up by postal code</a></span>
+      </label>
+      <input class="input" id="rate" type="text" inputmode="decimal" placeholder="7.5" value="7.5">
+    </div>
+    <button class="btn" id="go" type="button">Estimate my EI</button>
 
     <div class="result" id="result" hidden>
       <p class="result-label">Estimated weekly EI benefit</p>
@@ -73,12 +92,84 @@
       <p class="result-reading" id="reading"></p>
       <div class="breakdown" id="breakdown"></div>
     </div>
+
+    <div class="notice" id="ineligible" hidden></div>
   </section>
 
   <section class="answer">
-    <h2>How many hours you need, and what you'd get</h2>
-    <p>To qualify for EI regular benefits you need between <strong>420 and 700 insurable hours</strong> in the last 52 weeks. There's no single number because it's tied to your region's unemployment rate: where unemployment is high, the bar drops toward 420 hours; where it's low, it climbs toward 700. Service Canada publishes the figure for each economic region every month, so check the current one for your area.</p>
-    <p>If you qualify, EI regular benefits pay <strong>55% of your average weekly insurable earnings</strong>, capped by the 2026 maximum insurable earnings of $68,900 — a ceiling of about $729 a week. The estimate above applies that 55% to your income; your actual benefit depends on your best weeks of earnings and your region.</p>
+    <h2>The hours you need depend on where you live</h2>
+    <p>There's no single hours figure for EI. Service Canada sets a threshold for each of the 62 economic regions from that region's unemployment rate, and republishes it every month. Where work is scarce the bar drops; where unemployment is low it climbs. The rate that counts is the one in force <strong>when you file your claim</strong> — not when you were laid off, and not where you used to live.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Regional unemployment rate</th><th>Insurable hours to qualify</th><th>Best weeks used</th></tr></thead>
+        <tbody id="bands-body"></tbody>
+      </table>
+    </div>
+    <p>Each step up the table cuts 35 hours off the threshold and one week off the averaging period. That second column matters as much as the first, and it's covered below.</p>
+    <p>The hours have to fall inside your <strong>qualifying period</strong>: the 52 weeks before your claim starts, or the stretch since your last claim if that's shorter. It can stretch to <span data-ei="qualifyingPeriodMaxWeeks"></span> weeks if you weren't in insurable employment and weren't drawing EI. Hours are counted as hours actually worked, so part-time and irregular work counts in full — three years of 12-hour weeks gets you to the same place as eight months of full-time.</p>
+    <p class="disclaimer">If you've received a notice of violation on a previous claim, your threshold is higher than the table above — from 875 up to 1,400 hours depending on the severity. The calculator doesn't model that.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What you'd get a week, and why "best weeks" matters</h2>
+    <p>EI regular benefits replace <strong>55%</strong> of your average weekly insurable earnings, capped at <strong>$<span data-ei="maxWeeklyBenefit"></span> a week</strong> in 2026. The cap bites once you're earning about $1,325 a week — above that, extra earnings don't raise the benefit.</p>
+    <p>The word doing the work in that sentence is <em>average</em>. Service Canada doesn't average your whole year. It takes your <strong>best weeks</strong> — the weeks in your qualifying period where you earned the most — adds those up, and divides by the number in the third column of the table above. In a high-unemployment region that's 14 weeks; in a low-unemployment one it's 22.</p>
+    <p>That asymmetry favours anyone whose earnings were uneven. If you worked a heavy stretch and then tapered off, a 14-week divisor captures the heavy stretch and ignores the taper. The estimate above divides your annual figure by 52, which is the right answer for steady year-round earnings and a conservative one if your income was lumpy — your real rate will likely be higher.</p>
+    <p>Once set, the weekly rate is fixed for the life of the claim. It doesn't rise if the region's rate changes, and it doesn't fall.</p>
+    <div class="callout">
+      <p><strong>The family supplement.</strong> If your net family income is <strong>$<span data-ei="familySupplementThreshold"></span></strong> or less, you have children, and you or your spouse receive the Canada Child Benefit, your rate can climb from 55% to as much as <strong><span data-ei="familySupplementMaxRate"></span></strong> of average insurable earnings. It tapers as income rises and hits nil at the threshold. If both spouses are on EI at once only one can take it, and it's normally worth more to the spouse with the lower rate.</p>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>How long it lasts: the 41 × 12 table</h2>
+    <p>Duration isn't a formula — it's a lookup. Service Canada publishes a table with <strong>41 rows</strong> of insurable hours and <strong>12 columns</strong> of regional unemployment rate, and your entitlement is the cell where your row meets your column. The floor is <strong><span data-ei="benefitWeeksMin"></span> weeks</strong>, the ceiling <strong><span data-ei="benefitWeeksMax"></span></strong>.</p>
+    <p>Two things push the number up, and they stack. More hours moves you down the rows; a worse regional rate moves you right across the columns. Someone with 700 hours in a region at 5% gets 14 weeks. The same 700 hours in a region at 16% gets 36. Note also that the columns run past the point where the hours table stops moving: hours bottom out at 420 above 13%, but weeks keep climbing to the "16% and more" column.</p>
+    <p>A slice of the table, showing the gradient in both directions:</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr id="matrix-head"></tr></thead>
+        <tbody id="matrix-body"></tbody>
+      </table>
+    </div>
+    <p class="disclaimer">Selected rows and columns from the full 41 × 12 table. The calculator above reads the complete table, including the rows and rate bands not shown here.</p>
+    <p>A zero means those hours don't qualify at that rate at all — the table and the hours threshold are two views of the same rule. The number of weeks is locked when your benefit period begins and doesn't change if you move to another region afterward.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Two worked examples</h2>
+    <p>Both use a regional rate as a given. Look up your own before applying either pattern to yourself.</p>
+    <ul class="conditions">
+      <li><strong>A laid-off analyst — region at 8.1%, 700 hours, $900 a week.</strong> The 8.1–9.0% band needs 595 hours, so 700 qualifies with room to spare. The weekly benefit is 55% of $900 = <strong>$495</strong>. The table's 700–734 row against the 8.1–9.0% column gives <strong>20 weeks</strong>. Total before tax: <strong>$9,900</strong>. The divisor here is 19 best weeks, so if those $900 weeks were the good ones out of a patchier year, the real rate would come in above $495.</li>
+      <li><strong>A seasonal plant worker — region at 10.6%, 600 hours, $750 a week.</strong> The 10.1–11.0% band needs 525 hours, so 600 qualifies. The benefit is 55% of $750 = <strong>$412.50</strong>. The 595–629 row against the 10.1–11.0% column gives <strong>22 weeks</strong> — two more than the analyst got on a hundred more hours, because the regional rate is doing the work. Total: <strong>$9,075</strong>.</li>
+    </ul>
+    <p>The near-miss is worth seeing too. At 500 hours in a region at 8.2%, the threshold is still 595 — you're 95 hours short, about two and a half full-time weeks, and the answer is no benefits at all rather than reduced ones. EI has no partial entitlement below the threshold.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Money that moves your claim</h2>
+    <p><strong>Severance delays it.</strong> Severance, termination pay, vacation pay and similar separation money are <em>allocated</em> to the weeks after your last day, as though your employer had kept paying you. Divide the payout by your normal weekly earnings and that's roughly how many weeks it covers; benefits begin when the allocation runs out. This pushes your start date back — it doesn't cut the number of weeks you're entitled to. Apply as soon as you're separated regardless, because the claim date is set by when you file.</p>
+    <p><strong>Part-time work reduces it, but you keep more than you lose.</strong> Once past the waiting period, you keep <strong>50 cents</strong> of benefits for every dollar you earn, until earnings reach <strong>90%</strong> of the weekly insurable earnings your rate was built from. Past that point, earnings come off dollar for dollar. On a $500 benefit built from $909 of weekly earnings, picking up $300 of work costs you $150 of EI and leaves you $650 for the week instead of $500. The exception: work a full working week and you're counted as employed for that week and paid nothing, however little it paid.</p>
+    <p>There's also the <strong>one-week waiting period</strong> at the start of every claim — unpaid, and served once per benefit period, not once per job.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Paying some of it back at tax time</h2>
+    <p>EI is taxable, and tax is withheld at source. Separately from that, high earners repay part of what they received. If your 2026 net income from all sources tops <strong>$<span data-ei="repaymentThreshold"></span></strong>, you repay <strong>30%</strong> of the lesser of your income above that line and the total regular benefits you were paid.</p>
+    <p>That threshold isn't a round number someone chose — it's <strong>1.25 × the year's maximum insurable earnings</strong>, so it moves every January with the MIE. On $95,000 of net income and $12,000 of benefits, the excess is $8,875, which is less than the benefits received, so the repayment is 30% of $8,875 = <strong>$2,662.50</strong>.</p>
+    <p>Two exemptions matter. You don't repay anything if you were paid less than a week of regular benefits in the previous 10 tax years — which covers most first-time claimants — or if you received only <em>special</em> benefits such as maternity, parental, sickness or compassionate care. Mix regular and special benefits in one year and the regular portion can still be clawed back.</p>
+  </section>
+
+  <section class="answer">
+    <h2>When you don't qualify</h2>
+    <p>Hours are only half of it. EI regular benefits are for people who lost work through no fault of their own, so the reason for the separation is tested independently of the hours.</p>
+    <ul class="conditions">
+      <li><strong>Quitting</strong> disqualifies you unless you had <em>just cause</em> — a significant change to your duties or pay, harassment, an unsafe workplace, or relocating with a spouse or common-law partner, among others.</li>
+      <li><strong>Dismissal for misconduct</strong> disqualifies you. Being let go because the business is downsizing does not: that's a shortage of work, and it qualifies.</li>
+      <li><strong>A labour dispute</strong> — a strike or lockout you're taking part in — suspends entitlement.</li>
+      <li><strong>Self-employment</strong> isn't insurable, so it builds no hours toward regular benefits. Self-employed people can opt in voluntarily, at least 12 months before claiming, but only for special benefits — never for regular unemployment benefits.</li>
+    </ul>
+    <p>One rule that's often quoted out of date: the higher hours requirement for people entering or re-entering the workforce was <strong>abolished in July 2016</strong>. A first job or a return after years away uses the same regional threshold as everyone else.</p>
   </section>
 
   <section class="faq">
@@ -90,20 +181,37 @@
       <p>You must have lost your job through no fault of your own, worked enough insurable hours (420–700 by region), had EI premiums deducted, and be ready and able to work — plus have gone at least seven consecutive days without work and pay.</p>
     </details>
     <details><summary>How much will I get from EI?</summary>
-      <p>EI regular benefits pay 55% of your average weekly insurable earnings, up to about $729 a week in 2026 (based on $68,900 maximum insurable earnings). Enter your income above for an estimate.</p>
+      <p>EI regular benefits pay 55% of your average weekly insurable earnings, up to about $<span data-ei="maxWeeklyBenefit"></span> a week in 2026 (based on $<span data-ei="maxInsurableEarnings"></span> maximum insurable earnings). Enter your income above for an estimate.</p>
     </details>
     <details><summary>How much EI is deducted from my pay?</summary>
-      <p>EI premiums are 1.63% of insurable earnings in 2026, capped at $1,123.07 on the first $68,900. After that cap, no more EI comes off for the rest of the year.</p>
+      <p>EI premiums are <span data-ei="premiumRate"></span> of insurable earnings in 2026, capped at $<span data-ei="maxEmployeePremium"></span> on the first $<span data-ei="maxInsurableEarnings"></span>. After that cap, no more EI comes off for the rest of the year.</p>
+    </details>
+    <details><summary>How many weeks of EI can you get?</summary>
+      <p>Between <span data-ei="benefitWeeksMin"></span> and <span data-ei="benefitWeeksMax"></span> weeks, read off a 41-row by 12-column table: more insurable hours and a higher regional unemployment rate both increase it. The rate used is the one in force when you file, and the answer is locked once your benefit period starts.</p>
+    </details>
+    <details><summary>What is the EI family supplement?</summary>
+      <p>If your net family income is $<span data-ei="familySupplementThreshold"></span> or less, you have children, and you or your spouse receive the Canada Child Benefit, it can raise your rate from 55% to as much as <span data-ei="familySupplementMaxRate"></span> of average insurable earnings. Only one spouse can claim it when both are on EI.</p>
+    </details>
+    <details><summary>Do you have to pay EI back at tax time?</summary>
+      <p>If your 2026 net income exceeds $<span data-ei="repaymentThreshold"></span> you repay 30% of the lesser of the excess and the regular benefits you received. You're exempt if you had less than a week of regular benefits in the previous 10 tax years, or received only special benefits like maternity or sickness.</p>
+    </details>
+    <details><summary>Can you work while on EI?</summary>
+      <p>Yes — you keep 50 cents of benefits per dollar earned, up to 90% of the weekly insurable earnings your rate was based on. Above that, earnings are deducted dollar for dollar. A full working week means no benefits for that week regardless of the amount.</p>
+    </details>
+    <details><summary>Does severance pay delay EI?</summary>
+      <p>Yes. Severance, termination and vacation pay are allocated to the weeks after your last day, and benefits start once that allocation ends. It delays your start date without reducing the weeks you're entitled to. File as soon as you're separated anyway.</p>
     </details>
   </section>
 
   <section class="related">
     <h2>Related calculators</h2>
     <div class="card-grid cols-2">
+      <a class="tool-card" href="/benefits/ei-maternity-parental/"><h3>EI Maternity &amp; Parental</h3><p>The special-benefit side: 15 weeks maternity, standard or extended parental.</p></a>
       <a class="tool-card" href="/benefits/cpp/"><h3>CPP Calculator</h3><p>The other federal deduction on your paycheque.</p></a>
       <a class="tool-card" href="/employment-standards/esa-termination/"><h3>ESA Termination Pay</h3><p>What you're owed when a job in Ontario ends.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay</h3><p>What lands in your account once EI, CPP and tax come off.</p></a>
     </div>
-    <p class="disclaimer">Estimates for the 2026 tax year using published Service Canada figures. EI eligibility and amounts depend on your region and work history — confirm with Service Canada.</p>
+    <p class="disclaimer">Estimates for the 2026 tax year using published Service Canada figures. EI eligibility and amounts depend on your region, your reason for separation and your work history — confirm with Service Canada before relying on a number. Regional unemployment rates change monthly; look yours up rather than reusing one you've seen quoted.</p>
   </section>
 </main>
 
@@ -145,29 +253,129 @@
 </footer>
 
 <script type="module">
-import { calcEIBenefit, calcEI, formatCurrency } from '/assets/js/tax-engine.js';
+import { EI_REGULAR as EIR, EI } from '/data/rates-2026.js';
+import { calcEI, formatCurrency, formatPercent } from '/assets/js/tax-engine.js';
 import { parseMoney, el } from '/assets/js/calc-ui.js';
 
+/* ── Every figure on this page comes from the provenance-stamped pack ──────────
+ * Nothing below is a literal. The prose spans, the three tables and the estimate
+ * all read TAX_CONSTANTS_2026 through EI_REGULAR, so a January re-index of the MIE
+ * moves the page without anyone editing HTML. (The JSON-LD block in <head> is the
+ * one exception — crawlers read it as raw text, so it can't be filled at runtime.)
+ */
+const money = (n) => n.toLocaleString('en-CA');
+const cents = (n) => n.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const FILL = {
+  maxInsurableEarnings: money(EIR.maxInsurableEarnings),
+  maxEmployeePremium: cents(EI.maxEmployeePremium),
+  premiumRate: formatPercent(EI.rate, 2),
+  replacementRate: formatPercent(EIR.replacementRate, 0),
+  maxWeeklyBenefit: money(EIR.maxWeekly),
+  familySupplementThreshold: money(EIR.familySupplementThreshold),
+  familySupplementMaxRate: `${Math.round(EIR.familySupplementMaxRate * 100)}%`,
+  repaymentThreshold: money(EIR.repaymentThreshold),
+  benefitWeeksMin: EIR.benefitWeeksMin,
+  benefitWeeksMax: EIR.benefitWeeksMax,
+  qualifyingPeriodMaxWeeks: EIR.qualifyingPeriodMaxWeeks,
+};
+// A data-ei key with no entry in FILL renders as an empty gap in a sentence — silent, and
+// invisible to any grep, because the missing thing leaves nothing behind to search for.
+// (That is exactly how qualifyingPeriodMaxWeeks shipped blank during this page's build: the
+// constant was stamped in the pack but never exposed on EI_REGULAR.) Fail loudly instead.
+for (const node of document.querySelectorAll('[data-ei]')) {
+  const val = FILL[node.dataset.ei];
+  if (val === undefined) {
+    console.error(`ei: no value for data-ei="${node.dataset.ei}" — check EI_REGULAR exports it.`);
+    continue;
+  }
+  node.textContent = val;
+}
+
+/* Band labels from the pack's own [inclusiveMaxRate, value] pairs, so a band edit in
+ * tax-constants-2026.js relabels the tables rather than leaving stale headings. */
+function bandLabel(edges, i) {
+  const hi = edges[i];
+  if (i === 0) return `${hi}% and under`;
+  const lo = (edges[i - 1] + 0.1).toFixed(1);
+  return hi === Infinity ? `More than ${edges[i - 1]}%` : `${lo}% to ${hi}%`;
+}
+
+// Table 1 — hours to qualify + best-weeks divisor, sharing one set of nine bands.
+const hoursEdges = EIR.hoursBands.map(([max]) => max);
+el('bands-body').innerHTML = EIR.hoursBands.map(([, hours], i) =>
+  `<tr><td>${bandLabel(hoursEdges, i)}</td><td>${hours} hours</td><td>${EIR.bestWeeks[i][1]} weeks</td></tr>`
+).join('');
+
+// Table 2 — a slice of the 41×12 duration matrix. Rows and columns are sampled by
+// INDEX into the real table, never retyped, so the cells can't drift from the pack.
+const COL_SAMPLE = [0, 2, 4, 6, 8, 11];      // 6% and under → 16% and more
+const ROW_SAMPLE = [0, 5, 8, 14, 20, 26, 32, 40];
+const bandEdges = EIR.benefitWeeksBands;
+el('matrix-head').innerHTML = '<th>Insurable hours</th>' +
+  COL_SAMPLE.map((c) => `<th>${bandLabel(bandEdges, c)}</th>`).join('');
+el('matrix-body').innerHTML = ROW_SAMPLE.map((r) => {
+  const row = EIR.benefitWeeksTable[r];
+  const label = row[1] === Infinity ? `${money(row[0])} and up` : `${money(row[0])}–${money(row[1])}`;
+  return `<tr><td>${label}</td>` +
+    COL_SAMPLE.map((c) => `<td>${row[c + 2] === 0 ? '—' : row[c + 2]}</td>`).join('') + '</tr>';
+}).join('');
+
+/* ── The estimate ──────────────────────────────────────────────────────────── */
 function run() {
   const income = parseMoney(el('income').value);
-  const b = calcEIBenefit(income);
+  const hours = parseMoney(el('hours').value);
+  const rate = parseFloat(String(el('rate').value).replace(/[^0-9.]/g, ''));
+  if (!Number.isFinite(rate) || rate < 0) {
+    el('result').hidden = true;
+    el('ineligible').hidden = false;
+    el('ineligible').textContent = 'Enter your region’s unemployment rate to see an estimate.';
+    return;
+  }
+
+  // Annual → weekly over 52. Service Canada uses the best-weeks divisor instead, which
+  // can only ever raise the rate, so this is the conservative reading of the same rule.
+  const est = EIR.estimate(hours, rate, income / 52);
   const premium = calcEI(income).premium;
 
-  el('weekly').textContent = formatCurrency(b.weekly, { cents: true });
-  const atCap = b.weekly >= b.weeklyMax - 0.01;
-  el('reading').textContent = atCap
-    ? `You're at the 2026 ceiling — the most EI regular benefits pay is ${formatCurrency(b.weeklyMax, { cents: true })} a week.`
-    : `That's 55% of your weekly earnings. The 2026 maximum is ${formatCurrency(b.weeklyMax, { cents: true })} a week.`;
+  // Below the threshold EI pays nothing at all — there is no reduced entitlement. So the
+  // hero number is $0, not the 55% figure: showing what they'd get if they qualified as
+  // the headline would read as an award. It stays available in the breakdown instead.
+  el('weekly').textContent = est.eligible ? formatCurrency(est.weekly, { cents: true }) : '$0';
+  el('reading').textContent = !est.eligible
+    ? `Not eligible yet. A region at ${rate}% needs ${est.hoursRequired} insurable hours and you've entered ${hours.toLocaleString('en-CA')}.`
+    : est.atCap
+      ? `You're at the 2026 ceiling of ${formatCurrency(EIR.maxWeekly, { cents: true })} a week, for ${est.weeks} weeks.`
+      : `That's ${FILL.replacementRate} of your weekly earnings, payable for ${est.weeks} weeks.`;
 
-  el('breakdown').innerHTML =
-    `<div class="row"><span>Estimated weekly benefit (55%)</span><span class="val">${formatCurrency(b.weekly, { cents: true })}</span></div>`
-    + `<div class="row"><span>Weekly maximum (2026)</span><span class="val">${formatCurrency(b.weeklyMax, { cents: true })}</span></div>`
-    + `<div class="row"><span>Your annual EI premium (1.63%)</span><span class="val">${formatCurrency(premium, { cents: true })}</span></div>`;
+  const rows = [
+    ['Hours you need at this rate', `${est.hoursRequired} hours`],
+    ['Hours you entered', `${hours.toLocaleString('en-CA')} hours`],
+    ['Best weeks used to average earnings', `${est.bestWeeks} weeks`],
+  ];
+  if (est.eligible) {
+    rows.push(
+      [`Estimated weekly benefit (${FILL.replacementRate})`, formatCurrency(est.weekly, { cents: true })],
+      ['Weeks payable', `${est.weeks} weeks`],
+      ['Estimated total before tax', formatCurrency(est.total, { cents: true })],
+    );
+  } else {
+    rows.push(['Weekly benefit if you reached the threshold', formatCurrency(est.weekly, { cents: true })]);
+  }
+  rows.push([`Your annual EI premium (${FILL.premiumRate})`, formatCurrency(premium, { cents: true })]);
+  el('breakdown').innerHTML = rows
+    .map(([k, v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('');
+
   el('result').hidden = false;
+  el('ineligible').hidden = est.eligible;
+  if (!est.eligible) {
+    el('ineligible').textContent =
+      `${est.hoursShort} more insurable hours — about ${Math.ceil(est.hoursShort / 35)} weeks of full-time ` +
+      `work at 35 hours — would reach the ${est.hoursRequired}-hour threshold for a region at ${rate}%.`;
+  }
 }
 
 el('go').addEventListener('click', run);
-el('income').addEventListener('change', run);
+for (const id of ['income', 'hours', 'rate']) el(id).addEventListener('change', run);
 run();
 </script>
 </body>

@@ -302,6 +302,24 @@
     "cadence": "january"
   },
   {
+    "key": "ei.maxWeeklyBenefit",
+    "value": 729,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html",
+    "verified_at": "2026-08-16",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.repaymentThreshold",
+    "value": 86125,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html",
+    "verified_at": "2026-08-16",
+    "cadence": "january"
+  },
+  {
     "key": "qpip.employeeRate",
     "value": 0.0043,
     "effective_from": "2026-01-01",

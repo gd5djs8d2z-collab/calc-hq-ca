@@ -239,6 +239,86 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
       }
     }
   }
+
+  // ── EI regular-benefit linkages ─────────────────────────────────────────────
+  // Two EI figures are DERIVED from the maximum insurable earnings, which is re-indexed every
+  // January. Stamped on their own they look fine forever — a stale derived value is a
+  // plausible number with a valid source_url and a recent-looking date, which is exactly why
+  // per-value stamping cannot catch it.
+  //
+  // THIS IS NOT HYPOTHETICAL. The eicalc.ca satellite absorbed into /benefits/ei/ on
+  // 2026-08-16 was serving a $79,000 repayment threshold — correct for 2024 (1.25 × $63,200),
+  // wrong by $7,125 for 2026. Nothing in that codebase could see it, because the number was a
+  // bare literal in the page HTML with no link to the MIE it derives from. These two checks
+  // are that link.
+  //
+  // IF ONE FIRES: re-read the Service Canada page in the affected node's source_url and fix
+  // the DERIVED value (repaymentThreshold / maxWeeklyBenefit). Do NOT "fix" it by editing
+  // maxInsurableEarnings or the multiple — those are the primary figures, and bending one to
+  // silence this check destroys the only signal that a derived value went stale.
+  const ei = root.ei;
+  if (ei) {
+    const mie = ei.maxInsurableEarnings?.value;
+    const multiple = ei.repaymentMieMultiple?.value;
+    const threshold = ei.repaymentThreshold?.value;
+    if ([mie, multiple, threshold].every((x) => typeof x === 'number')) {
+      const expected = mie * multiple;
+      if (threshold !== expected) {
+        bad.push(`ei.repaymentThreshold ${threshold} !== ${multiple} × maxInsurableEarnings ` +
+          `${mie} = ${expected} — the clawback threshold has gone stale against the MIE.`);
+      }
+    }
+    // Service Canada publishes the weekly maximum rounded to the dollar. Round-to-nearest
+    // reproduces the published figure for 2024 ($668), 2025 ($695) and 2026 ($729); floor
+    // does not (it gives $694 for 2025), so the rounding mode here is load-bearing.
+    const rate = ei.benefitReplacementRate?.value;
+    const weeklyMax = ei.maxWeeklyBenefit?.value;
+    if ([mie, rate, weeklyMax].every((x) => typeof x === 'number')) {
+      const expected = Math.round((mie * rate) / 52);
+      if (weeklyMax !== expected) {
+        bad.push(`ei.maxWeeklyBenefit ${weeklyMax} !== round(maxInsurableEarnings ${mie} × ` +
+          `${rate} / 52) = ${expected} — the weekly cap has gone stale against the MIE.`);
+      }
+    }
+    // Shape checks on the three ported tables. A transcription slip — a dropped row, a short
+    // row, a week count above the 45-week statutory ceiling — produces a table that still
+    // looks like a table and still stamps clean, but silently mis-answers a lookup.
+    const bands = ei.benefitWeeksBands?.value;
+    const table = ei.benefitWeeksTable?.value;
+    const weeksMax = ei.benefitWeeksMax?.value;
+    if (Array.isArray(bands) && Array.isArray(table)) {
+      if (table.length !== 41) {
+        bad.push(`ei.benefitWeeksTable has ${table.length} rows, expected 41 (Service Canada's ` +
+          `published hour bands, 420-454 through 1820+).`);
+      }
+      const width = bands.length + 2;                  // hoursMin + hoursMax + one per band
+      const ragged = table.filter((r) => !Array.isArray(r) || r.length !== width);
+      if (ragged.length) {
+        bad.push(`ei.benefitWeeksTable: ${ragged.length} row(s) are not ${width} wide ` +
+          `(hoursMin, hoursMax + ${bands.length} rate bands) — first bad row starts ` +
+          `${JSON.stringify(ragged[0]?.slice?.(0, 2) ?? ragged[0])}.`);
+      }
+      if (typeof weeksMax === 'number') {
+        const over = table.filter((r) => Array.isArray(r) && r.slice(2).some((w) => w > weeksMax));
+        if (over.length) {
+          bad.push(`ei.benefitWeeksTable: ${over.length} row(s) contain a week count above ` +
+            `benefitWeeksMax ${weeksMax} — first at hours ${over[0][0]}.`);
+        }
+      }
+    }
+    // hoursBands and bestWeeks are indexed by the SAME nine rate bands. If one table's
+    // boundaries are edited and the other's are not, every lookup above the edit silently
+    // reads the wrong row of one table while reading the right row of the other.
+    const hb = ei.hoursBands?.value, bw = ei.bestWeeks?.value;
+    if (Array.isArray(hb) && Array.isArray(bw)) {
+      const hbEdges = hb.map((r) => r[0]).join(',');
+      const bwEdges = bw.map((r) => r[0]).join(',');
+      if (hbEdges !== bwEdges) {
+        bad.push(`ei.hoursBands and ei.bestWeeks describe different rate bands ` +
+          `(${hbEdges} vs ${bwEdges}) — they are indexed by the same nine bands and must match.`);
+      }
+    }
+  }
   return bad;
 }
 

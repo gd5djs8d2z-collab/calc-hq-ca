@@ -59,6 +59,16 @@ const SRC = {
   qcWorkerDed: 'https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/how-to-complete-your-income-tax-return/line-by-line-help/201-to-260-net-income/line-201/',
   ei:        'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html',
   eiBenefit: 'https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html',
+  // ── EI REGULAR benefits (added 2026-08-16 when /benefits/ei/ absorbed eicalc.ca) ──
+  // Three DIFFERENT Service Canada pages, deliberately kept apart. The qualifying-hours
+  // table lives only on the eligibility page; the best-weeks divisor, the 41×12 duration
+  // matrix and the family supplement live only on the benefit-amount page; the repayment
+  // threshold lives only on the ESDC repayment page. Stamping all three to one URL would
+  // point a future re-verifier at a page that does not carry the number.
+  eiQualify:   'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/eligibility.html',
+  eiAmount:    'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html',
+  eiRepayment: 'https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/reports/repayment.html',
+  eiWorking:   'https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/working-while-claim.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
   bcCredits: 'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic',
   peGov:     'https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax',
@@ -218,6 +228,123 @@ export const TAX_CONSTANTS_2026 = {
       rate:               { value: 0.0130,  source_url: SRC.ei, last_verified: '2026-07-18' },
       maxEmployeePremium: { value: 895.70,  source_url: SRC.ei, last_verified: '2026-07-18' },
     },
+
+    /* ── EI REGULAR benefits: eligibility, duration and claim rules ─────────────
+     * Added 2026-08-16 when /benefits/ei/ absorbed the eicalc.ca satellite. Every figure
+     * below was read from the Service Canada page named in its source_url, NOT copied from
+     * the satellite — which had drifted: it carried a $79,000 repayment threshold, the 2024
+     * figure (1.25 × the 2024 MIE of $63,200), two years stale. The `repaymentThreshold`
+     * invariant in check-constants.mjs now makes that specific rot impossible to reintroduce.
+     *
+     * CADENCE: almost all of this is 'statutory' — the hour thresholds, the best-weeks
+     * divisors and the duration matrix are set by the Employment Insurance Act and its
+     * Regulations, and do NOT move with January indexation. Only the two figures derived
+     * from the maximum insurable earnings (maxWeeklyBenefit, repaymentThreshold) are
+     * 'january'. familySupplementThreshold LOOKS indexable but is not: it has been frozen
+     * at $25,921 since the family supplement was introduced in 1997.
+     *
+     * The regional unemployment RATES that index these tables are deliberately absent. They
+     * are StatCan Labour Force Survey output revised monthly, not an annual constant — there
+     * is no cadence here that could keep them honest, so /benefits/ei/ links to Service
+     * Canada's region lookup instead of restating them. Do not add them to this file.
+     */
+    // Insurable hours needed to qualify, by regional unemployment rate. [maxRate, hours] —
+    // maxRate is the INCLUSIVE upper bound of the band ("6% and under" = 700 hours). The
+    // published table also carries four penalty columns for claimants with a notice of
+    // violation (up to 1,400 hours); those are out of scope for an estimator and omitted.
+    hoursBands: {
+      value: [
+        [6,        700], [7,  665], [8,  630], [9,  595], [10, 560],
+        [11,       525], [12, 490], [13, 455], [Infinity, 420],
+      ],
+      source_url: SRC.eiQualify, last_verified: '2026-08-16', cadence: 'statutory',
+    },
+    // The divisor: how many "best weeks" of earnings the weekly rate is averaged over.
+    // [maxRate, weeks] — same inclusive-upper-bound convention as hoursBands.
+    bestWeeks: {
+      value: [
+        [6,        22], [7,  21], [8,  20], [9,  19], [10, 18],
+        [11,       17], [12, 16], [13, 15], [Infinity, 14],
+      ],
+      source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory',
+    },
+    // Column headers of the duration matrix: INCLUSIVE upper bound of each rate band.
+    // Twelve bands, not nine — hours bottom out at 420 above 13%, but benefit WEEKS keep
+    // climbing to the "16% and more" column, so the two tables are indexed differently.
+    benefitWeeksBands: {
+      value: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, Infinity],
+      source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory',
+    },
+    // "Number of weeks of EI regular benefits payable by regional rate of unemployment" —
+    // 41 rows × 12 columns. Row = [hoursMin, hoursMax, ...12 week counts] aligned to
+    // benefitWeeksBands. A 0 means the hours in that row don't qualify at that rate.
+    // Transcribed from the Service Canada table and diffed cell-by-cell against it.
+    benefitWeeksTable: {
+      value: [
+        [420,  454,   0,  0,  0,  0,  0,  0,  0,  0, 26, 28, 30, 32],
+        [455,  489,   0,  0,  0,  0,  0,  0,  0, 24, 26, 28, 30, 32],
+        [490,  524,   0,  0,  0,  0,  0,  0, 23, 25, 27, 29, 31, 33],
+        [525,  559,   0,  0,  0,  0,  0, 21, 23, 25, 27, 29, 31, 33],
+        [560,  594,   0,  0,  0,  0, 20, 22, 24, 26, 28, 30, 32, 34],
+        [595,  629,   0,  0,  0, 18, 20, 22, 24, 26, 28, 30, 32, 34],
+        [630,  664,   0,  0, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35],
+        [665,  699,   0, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35],
+        [700,  734,  14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36],
+        [735,  769,  14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36],
+        [770,  804,  15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37],
+        [805,  839,  15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37],
+        [840,  874,  16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38],
+        [875,  909,  16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38],
+        [910,  944,  17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
+        [945,  979,  17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39],
+        [980,  1014, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40],
+        [1015, 1049, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40],
+        [1050, 1084, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41],
+        [1085, 1119, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41],
+        [1120, 1154, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42],
+        [1155, 1189, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42],
+        [1190, 1224, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43],
+        [1225, 1259, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43],
+        [1260, 1294, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44],
+        [1295, 1329, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44],
+        [1330, 1364, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45],
+        [1365, 1399, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45],
+        [1400, 1434, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 45],
+        [1435, 1469, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 45],
+        [1470, 1504, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 45, 45],
+        [1505, 1539, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 45, 45],
+        [1540, 1574, 28, 30, 32, 34, 36, 38, 40, 42, 44, 45, 45, 45],
+        [1575, 1609, 29, 31, 33, 35, 37, 39, 41, 43, 45, 45, 45, 45],
+        [1610, 1644, 30, 32, 34, 36, 38, 40, 42, 44, 45, 45, 45, 45],
+        [1645, 1679, 31, 33, 35, 37, 39, 41, 43, 45, 45, 45, 45, 45],
+        [1680, 1714, 32, 34, 36, 38, 40, 42, 44, 45, 45, 45, 45, 45],
+        [1715, 1749, 33, 35, 37, 39, 41, 43, 45, 45, 45, 45, 45, 45],
+        [1750, 1784, 34, 36, 38, 40, 42, 44, 45, 45, 45, 45, 45, 45],
+        [1785, 1819, 35, 37, 39, 41, 43, 45, 45, 45, 45, 45, 45, 45],
+        [1820, Infinity, 36, 38, 40, 42, 44, 45, 45, 45, 45, 45, 45, 45],
+      ],
+      source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory',
+    },
+    benefitWeeksMin: { value: 14, source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory' },
+    benefitWeeksMax: { value: 45, source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory' },
+    // 55% of the MIE spread over 52 weeks, rounded to the dollar. Service Canada publishes
+    // the rounded figure; the maxWeeklyBenefit invariant asserts it still reconciles.
+    maxWeeklyBenefit: { value: 729, source_url: SRC.eiAmount, last_verified: '2026-08-16' },
+    // Frozen at $25,921 since 1997 — NOT indexed, hence statutory rather than january.
+    familySupplementThreshold: { value: 25921, source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory' },
+    familySupplementMaxRate:   { value: 0.80,  source_url: SRC.eiAmount, last_verified: '2026-08-16', cadence: 'statutory' },
+    // Benefit repayment ("clawback"): 30% of the lesser of net income above the threshold
+    // and total regular benefits received. Threshold = 1.25 × MIE, so it moves every January.
+    repaymentThreshold:   { value: 86125, source_url: SRC.eiRepayment, last_verified: '2026-08-16' },
+    repaymentRate:        { value: 0.30,  source_url: SRC.eiRepayment, last_verified: '2026-08-16', cadence: 'statutory' },
+    repaymentMieMultiple: { value: 1.25,  source_url: SRC.eiRepayment, last_verified: '2026-08-16', cadence: 'statutory' },
+    // Working while on claim: keep 50c of benefits per dollar earned, until earnings reach
+    // 90% of the weekly insurable earnings the rate was built from; above that, dollar-for-dollar.
+    workingWhileOnClaimRetention: { value: 0.50, source_url: SRC.eiWorking, last_verified: '2026-08-16', cadence: 'statutory' },
+    workingWhileOnClaimThreshold: { value: 0.90, source_url: SRC.eiWorking, last_verified: '2026-08-16', cadence: 'statutory' },
+    waitingPeriodWeeks:      { value: 1,   source_url: SRC.eiAmount,  last_verified: '2026-08-16', cadence: 'statutory' },
+    qualifyingPeriodWeeks:   { value: 52,  source_url: SRC.eiQualify, last_verified: '2026-08-16', cadence: 'statutory' },
+    qualifyingPeriodMaxWeeks:{ value: 104, source_url: SRC.eiQualify, last_verified: '2026-08-16', cadence: 'statutory' },
   },
 
   /* ── QPIP (Québec Parental Insurance Plan) — REPLACES EI maternity/parental for QC ─ */
