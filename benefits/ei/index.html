@@ -22,25 +22,27 @@
 {"@type":"ListItem","position":3,"name":"EI Calculator","item":"https://calc-hq.ca/benefits/ei/"}]}
 </script>
 <!--
-  KNOWN DRIFT SURFACE — the figures in the FAQPage block below are LITERALS, and nothing
-  currently checks them.
+  KNOWN DRIFT SURFACE — the figures on this page are LITERALS, and nothing checks them.
 
-  Everything visible on this page is filled at runtime from data/tax-constants-2026.js via
-  the data-ei spans, so a January re-index moves the page with no HTML edit. JSON-LD cannot
-  work that way: crawlers read it as raw text, so it can't be script-filled. That leaves the
-  schema needing a manual touch each January that the rendered page does not — which is
-  EXACTLY the mechanism that rotted eicalc.ca ($79,000 clawback threshold, correct for 2024,
-  carried two years). The difference is that these numbers are cosmetic-to-wrong in search
-  results rather than wrong in a calculation, and check-constants' invariants cannot see them
-  because they live in HTML, not in the pack.
+  This page briefly rendered its figures from data/tax-constants-2026.js at runtime. That
+  guaranteed they could not drift, but it left the SERVER HTML incomplete: a plain fetch got
+  "capped at $ a week" and two tables with headers and no rows. Converted back to literals
+  2026-08-16 to match take-home-pay and the rest of the site, which is the house convention.
 
-  Figures duplicated here that move with the MIE every January:
+  The trade-off is explicit: complete, crawlable HTML in exchange for the same unchecked
+  drift risk every other page carries. That is the risk that rotted eicalc.ca ($79,000
+  clawback threshold, correct for 2024, carried two years). check-constants.mjs cannot see
+  any of it, because these numbers live in HTML rather than in the pack.
+
+  Figures duplicated here (prose, FAQ and the JSON-LD block) that move every January:
     $68,900 (MIE) · $729 (weekly max) · $1,123.07 (max premium) · 1.63% (premium rate)
     · $86,125 (repayment threshold)
-  Frozen, so lower risk: $25,921 (family supplement) · 80% · 55% · 30% · 50c/90% · 14-45 weeks.
+  Statutory/frozen, lower risk: $25,921 · 80% · 55% · 30% · 50c/90% · 14-45 weeks · 420-700
+  hours · the best-weeks divisors · the duration-matrix cells.
 
-  WHEN UPDATING: change the pack, then grep this block for the old value. A gate that would
-  make that unnecessary is scoped in FOLLOWUPS.md ("JSON-LD schema figures vs the pack").
+  The CALCULATOR still reads the pack — only the displayed copy is literal.
+  WHEN UPDATING: change the pack, then grep this file for the old value. The gate that would
+  make that unnecessary is scoped in FOLLOWUPS.md item 2.
 -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -88,7 +90,7 @@
     <div class="field-row">
       <div class="field">
         <label for="income">Annual insurable earnings
-          <span class="hint">Gross employment income, up to $<span data-ei="maxInsurableEarnings"></span> counts</span>
+          <span class="hint">Gross employment income, up to $68,900 counts</span>
         </label>
         <input class="input" id="income" type="text" inputmode="numeric" placeholder="50,000" value="50,000">
       </div>
@@ -123,34 +125,53 @@
     <div class="compare-table-wrap">
       <table class="compare-table">
         <thead><tr><th>Regional unemployment rate</th><th>Insurable hours to qualify</th><th>Best weeks used</th></tr></thead>
-        <tbody id="bands-body"></tbody>
+        <tbody>
+          <tr><td>6% and under</td><td>700 hours</td><td>22 weeks</td></tr>
+          <tr><td>6.1% to 7%</td><td>665 hours</td><td>21 weeks</td></tr>
+          <tr><td>7.1% to 8%</td><td>630 hours</td><td>20 weeks</td></tr>
+          <tr><td>8.1% to 9%</td><td>595 hours</td><td>19 weeks</td></tr>
+          <tr><td>9.1% to 10%</td><td>560 hours</td><td>18 weeks</td></tr>
+          <tr><td>10.1% to 11%</td><td>525 hours</td><td>17 weeks</td></tr>
+          <tr><td>11.1% to 12%</td><td>490 hours</td><td>16 weeks</td></tr>
+          <tr><td>12.1% to 13%</td><td>455 hours</td><td>15 weeks</td></tr>
+          <tr><td>More than 13%</td><td>420 hours</td><td>14 weeks</td></tr>
+        </tbody>
       </table>
     </div>
     <p>Each step up the table cuts 35 hours off the threshold and one week off the averaging period. That second column matters as much as the first, and it's covered below.</p>
-    <p>The hours have to fall inside your <strong>qualifying period</strong>: the 52 weeks before your claim starts, or the stretch since your last claim if that's shorter. It can stretch to <span data-ei="qualifyingPeriodMaxWeeks"></span> weeks if you weren't in insurable employment and weren't drawing EI. Hours are counted as hours actually worked, so part-time and irregular work counts in full — three years of 12-hour weeks gets you to the same place as eight months of full-time.</p>
+    <p>The hours have to fall inside your <strong>qualifying period</strong>: the 52 weeks before your claim starts, or the stretch since your last claim if that's shorter. It can stretch to 104 weeks if you weren't in insurable employment and weren't drawing EI. Hours are counted as hours actually worked, so part-time and irregular work counts in full — three years of 12-hour weeks gets you to the same place as eight months of full-time.</p>
     <p class="disclaimer">If you've received a notice of violation on a previous claim, your threshold is higher than the table above — from 875 up to 1,400 hours depending on the severity. The calculator doesn't model that.</p>
   </section>
 
   <section class="answer">
     <h2>What you'd get a week, and why "best weeks" matters</h2>
-    <p>EI regular benefits replace <strong>55%</strong> of your average weekly insurable earnings, capped at <strong>$<span data-ei="maxWeeklyBenefit"></span> a week</strong> in 2026. The cap bites once you're earning about $1,325 a week — above that, extra earnings don't raise the benefit.</p>
+    <p>EI regular benefits replace <strong>55%</strong> of your average weekly insurable earnings, capped at <strong>$729 a week</strong> in 2026. The cap bites once you're earning about $1,325 a week — above that, extra earnings don't raise the benefit.</p>
     <p>The word doing the work in that sentence is <em>average</em>. Service Canada doesn't average your whole year. It takes your <strong>best weeks</strong> — the weeks in your qualifying period where you earned the most — adds those up, and divides by the number in the third column of the table above. In a high-unemployment region that's 14 weeks; in a low-unemployment one it's 22.</p>
     <p>That asymmetry favours anyone whose earnings were uneven. If you worked a heavy stretch and then tapered off, a 14-week divisor captures the heavy stretch and ignores the taper. The estimate above divides your annual figure by 52, which is the right answer for steady year-round earnings and a conservative one if your income was lumpy — your real rate will likely be higher.</p>
     <p>Once set, the weekly rate is fixed for the life of the claim. It doesn't rise if the region's rate changes, and it doesn't fall.</p>
     <div class="callout">
-      <p><strong>The family supplement.</strong> If your net family income is <strong>$<span data-ei="familySupplementThreshold"></span></strong> or less, you have children, and you or your spouse receive the Canada Child Benefit, your rate can climb from 55% to as much as <strong><span data-ei="familySupplementMaxRate"></span></strong> of average insurable earnings. It tapers as income rises and hits nil at the threshold. If both spouses are on EI at once only one can take it, and it's normally worth more to the spouse with the lower rate.</p>
+      <p><strong>The family supplement.</strong> If your net family income is <strong>$25,921</strong> or less, you have children, and you or your spouse receive the Canada Child Benefit, your rate can climb from 55% to as much as <strong>80%</strong> of average insurable earnings. It tapers as income rises and hits nil at the threshold. If both spouses are on EI at once only one can take it, and it's normally worth more to the spouse with the lower rate.</p>
     </div>
   </section>
 
   <section class="answer">
     <h2>How long it lasts: the 41 × 12 table</h2>
-    <p>Duration isn't a formula — it's a lookup. Service Canada publishes a table with <strong>41 rows</strong> of insurable hours and <strong>12 columns</strong> of regional unemployment rate, and your entitlement is the cell where your row meets your column. The floor is <strong><span data-ei="benefitWeeksMin"></span> weeks</strong>, the ceiling <strong><span data-ei="benefitWeeksMax"></span></strong>.</p>
+    <p>Duration isn't a formula — it's a lookup. Service Canada publishes a table with <strong>41 rows</strong> of insurable hours and <strong>12 columns</strong> of regional unemployment rate, and your entitlement is the cell where your row meets your column. The floor is <strong>14 weeks</strong>, the ceiling <strong>45</strong>.</p>
     <p>Two things push the number up, and they stack. More hours moves you down the rows; a worse regional rate moves you right across the columns. Someone with 700 hours in a region at 5% gets 14 weeks. The same 700 hours in a region at 16% gets 36. Note also that the columns run past the point where the hours table stops moving: hours bottom out at 420 above 13%, but weeks keep climbing to the "16% and more" column.</p>
     <p>A slice of the table, showing the gradient in both directions:</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
-        <thead><tr id="matrix-head"></tr></thead>
-        <tbody id="matrix-body"></tbody>
+        <thead><tr><th>Insurable hours</th><th>6% and under</th><th>7.1% to 8%</th><th>9.1% to 10%</th><th>11.1% to 12%</th><th>13.1% to 14%</th><th>More than 16%</th></tr></thead>
+        <tbody>
+          <tr><td>420–454</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>32</td></tr>
+          <tr><td>595–629</td><td>—</td><td>—</td><td>20</td><td>24</td><td>28</td><td>34</td></tr>
+          <tr><td>700–734</td><td>14</td><td>18</td><td>22</td><td>26</td><td>30</td><td>36</td></tr>
+          <tr><td>910–944</td><td>17</td><td>21</td><td>25</td><td>29</td><td>33</td><td>39</td></tr>
+          <tr><td>1,120–1,154</td><td>20</td><td>24</td><td>28</td><td>32</td><td>36</td><td>42</td></tr>
+          <tr><td>1,330–1,364</td><td>23</td><td>27</td><td>31</td><td>35</td><td>39</td><td>45</td></tr>
+          <tr><td>1,540–1,574</td><td>28</td><td>32</td><td>36</td><td>40</td><td>44</td><td>45</td></tr>
+          <tr><td>1,820 and up</td><td>36</td><td>40</td><td>44</td><td>45</td><td>45</td><td>45</td></tr>
+        </tbody>
       </table>
     </div>
     <p class="disclaimer">Selected rows and columns from the full 41 × 12 table. The calculator above reads the complete table, including the rows and rate bands not shown here.</p>
@@ -176,7 +197,7 @@
 
   <section class="answer">
     <h2>Paying some of it back at tax time</h2>
-    <p>EI is taxable, and tax is withheld at source. Separately from that, high earners repay part of what they received. If your 2026 net income from all sources tops <strong>$<span data-ei="repaymentThreshold"></span></strong>, you repay <strong>30%</strong> of the lesser of your income above that line and the total regular benefits you were paid.</p>
+    <p>EI is taxable, and tax is withheld at source. Separately from that, high earners repay part of what they received. If your 2026 net income from all sources tops <strong>$86,125</strong>, you repay <strong>30%</strong> of the lesser of your income above that line and the total regular benefits you were paid.</p>
     <p>That threshold isn't a round number someone chose — it's <strong>1.25 × the year's maximum insurable earnings</strong>, so it moves every January with the MIE. On $95,000 of net income and $12,000 of benefits, the excess is $8,875, which is less than the benefits received, so the repayment is 30% of $8,875 = <strong>$2,662.50</strong>.</p>
     <p>Two exemptions matter. You don't repay anything if you were paid less than a week of regular benefits in the previous 10 tax years — which covers most first-time claimants — or if you received only <em>special</em> benefits such as maternity, parental, sickness or compassionate care. Mix regular and special benefits in one year and the regular portion can still be clawed back.</p>
   </section>
@@ -202,19 +223,19 @@
       <p>You must have lost your job through no fault of your own, worked enough insurable hours (420–700 by region), had EI premiums deducted, and be ready and able to work — plus have gone at least seven consecutive days without work and pay.</p>
     </details>
     <details><summary>How much will I get from EI?</summary>
-      <p>EI regular benefits pay 55% of your average weekly insurable earnings, up to about $<span data-ei="maxWeeklyBenefit"></span> a week in 2026 (based on $<span data-ei="maxInsurableEarnings"></span> maximum insurable earnings). Enter your income above for an estimate.</p>
+      <p>EI regular benefits pay 55% of your average weekly insurable earnings, up to about $729 a week in 2026 (based on $68,900 maximum insurable earnings). Enter your income above for an estimate.</p>
     </details>
     <details><summary>How much EI is deducted from my pay?</summary>
-      <p>EI premiums are <span data-ei="premiumRate"></span> of insurable earnings in 2026, capped at $<span data-ei="maxEmployeePremium"></span> on the first $<span data-ei="maxInsurableEarnings"></span>. After that cap, no more EI comes off for the rest of the year.</p>
+      <p>EI premiums are 1.63% of insurable earnings in 2026, capped at $1,123.07 on the first $68,900. After that cap, no more EI comes off for the rest of the year.</p>
     </details>
     <details><summary>How many weeks of EI can you get?</summary>
-      <p>Between <span data-ei="benefitWeeksMin"></span> and <span data-ei="benefitWeeksMax"></span> weeks, read off a 41-row by 12-column table: more insurable hours and a higher regional unemployment rate both increase it. The rate used is the one in force when you file, and the answer is locked once your benefit period starts.</p>
+      <p>Between 14 and 45 weeks, read off a 41-row by 12-column table: more insurable hours and a higher regional unemployment rate both increase it. The rate used is the one in force when you file, and the answer is locked once your benefit period starts.</p>
     </details>
     <details><summary>What is the EI family supplement?</summary>
-      <p>If your net family income is $<span data-ei="familySupplementThreshold"></span> or less, you have children, and you or your spouse receive the Canada Child Benefit, it can raise your rate from 55% to as much as <span data-ei="familySupplementMaxRate"></span> of average insurable earnings. Only one spouse can claim it when both are on EI.</p>
+      <p>If your net family income is $25,921 or less, you have children, and you or your spouse receive the Canada Child Benefit, it can raise your rate from 55% to as much as 80% of average insurable earnings. Only one spouse can claim it when both are on EI.</p>
     </details>
     <details><summary>Do you have to pay EI back at tax time?</summary>
-      <p>If your 2026 net income exceeds $<span data-ei="repaymentThreshold"></span> you repay 30% of the lesser of the excess and the regular benefits you received. You're exempt if you had less than a week of regular benefits in the previous 10 tax years, or received only special benefits like maternity or sickness.</p>
+      <p>If your 2026 net income exceeds $86,125 you repay 30% of the lesser of the excess and the regular benefits you received. You're exempt if you had less than a week of regular benefits in the previous 10 tax years, or received only special benefits like maternity or sickness.</p>
     </details>
     <details><summary>Can you work while on EI?</summary>
       <p>Yes — you keep 50 cents of benefits per dollar earned, up to 90% of the weekly insurable earnings your rate was based on. Above that, earnings are deducted dollar for dollar. A full working week means no benefits for that week regardless of the amount.</p>
@@ -274,72 +295,9 @@
 </footer>
 
 <script type="module">
-import { EI_REGULAR as EIR, EI } from '/data/rates-2026.js';
-import { calcEI, formatCurrency, formatPercent } from '/assets/js/tax-engine.js';
+import { EI_REGULAR as EIR } from '/data/rates-2026.js';
+import { calcEI, formatCurrency } from '/assets/js/tax-engine.js';
 import { parseMoney, el } from '/assets/js/calc-ui.js';
-
-/* ── Every figure on this page comes from the provenance-stamped pack ──────────
- * Nothing below is a literal. The prose spans, the three tables and the estimate
- * all read TAX_CONSTANTS_2026 through EI_REGULAR, so a January re-index of the MIE
- * moves the page without anyone editing HTML. (The JSON-LD block in <head> is the
- * one exception — crawlers read it as raw text, so it can't be filled at runtime.)
- */
-const money = (n) => n.toLocaleString('en-CA');
-const cents = (n) => n.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-const FILL = {
-  maxInsurableEarnings: money(EIR.maxInsurableEarnings),
-  maxEmployeePremium: cents(EI.maxEmployeePremium),
-  premiumRate: formatPercent(EI.rate, 2),
-  replacementRate: formatPercent(EIR.replacementRate, 0),
-  maxWeeklyBenefit: money(EIR.maxWeekly),
-  familySupplementThreshold: money(EIR.familySupplementThreshold),
-  familySupplementMaxRate: `${Math.round(EIR.familySupplementMaxRate * 100)}%`,
-  repaymentThreshold: money(EIR.repaymentThreshold),
-  benefitWeeksMin: EIR.benefitWeeksMin,
-  benefitWeeksMax: EIR.benefitWeeksMax,
-  qualifyingPeriodMaxWeeks: EIR.qualifyingPeriodMaxWeeks,
-};
-// A data-ei key with no entry in FILL renders as an empty gap in a sentence — silent, and
-// invisible to any grep, because the missing thing leaves nothing behind to search for.
-// (That is exactly how qualifyingPeriodMaxWeeks shipped blank during this page's build: the
-// constant was stamped in the pack but never exposed on EI_REGULAR.) Fail loudly instead.
-for (const node of document.querySelectorAll('[data-ei]')) {
-  const val = FILL[node.dataset.ei];
-  if (val === undefined) {
-    console.error(`ei: no value for data-ei="${node.dataset.ei}" — check EI_REGULAR exports it.`);
-    continue;
-  }
-  node.textContent = val;
-}
-
-/* Band labels from the pack's own [inclusiveMaxRate, value] pairs, so a band edit in
- * tax-constants-2026.js relabels the tables rather than leaving stale headings. */
-function bandLabel(edges, i) {
-  const hi = edges[i];
-  if (i === 0) return `${hi}% and under`;
-  const lo = (edges[i - 1] + 0.1).toFixed(1);
-  return hi === Infinity ? `More than ${edges[i - 1]}%` : `${lo}% to ${hi}%`;
-}
-
-// Table 1 — hours to qualify + best-weeks divisor, sharing one set of nine bands.
-const hoursEdges = EIR.hoursBands.map(([max]) => max);
-el('bands-body').innerHTML = EIR.hoursBands.map(([, hours], i) =>
-  `<tr><td>${bandLabel(hoursEdges, i)}</td><td>${hours} hours</td><td>${EIR.bestWeeks[i][1]} weeks</td></tr>`
-).join('');
-
-// Table 2 — a slice of the 41×12 duration matrix. Rows and columns are sampled by
-// INDEX into the real table, never retyped, so the cells can't drift from the pack.
-const COL_SAMPLE = [0, 2, 4, 6, 8, 11];      // 6% and under → 16% and more
-const ROW_SAMPLE = [0, 5, 8, 14, 20, 26, 32, 40];
-const bandEdges = EIR.benefitWeeksBands;
-el('matrix-head').innerHTML = '<th>Insurable hours</th>' +
-  COL_SAMPLE.map((c) => `<th>${bandLabel(bandEdges, c)}</th>`).join('');
-el('matrix-body').innerHTML = ROW_SAMPLE.map((r) => {
-  const row = EIR.benefitWeeksTable[r];
-  const label = row[1] === Infinity ? `${money(row[0])} and up` : `${money(row[0])}–${money(row[1])}`;
-  return `<tr><td>${label}</td>` +
-    COL_SAMPLE.map((c) => `<td>${row[c + 2] === 0 ? '—' : row[c + 2]}</td>`).join('') + '</tr>';
-}).join('');
 
 /* ── The estimate ──────────────────────────────────────────────────────────── */
 function run() {
@@ -366,7 +324,7 @@ function run() {
     ? `Not eligible yet. A region at ${rate}% needs ${est.hoursRequired} insurable hours and you've entered ${hours.toLocaleString('en-CA')}.`
     : est.atCap
       ? `You're at the 2026 ceiling of ${formatCurrency(EIR.maxWeekly, { cents: true })} a week, for ${est.weeks} weeks.`
-      : `That's ${FILL.replacementRate} of your weekly earnings, payable for ${est.weeks} weeks.`;
+      : `That's 55% of your weekly earnings, payable for ${est.weeks} weeks.`;
 
   const rows = [
     ['Hours you need at this rate', `${est.hoursRequired} hours`],
@@ -375,14 +333,14 @@ function run() {
   ];
   if (est.eligible) {
     rows.push(
-      [`Estimated weekly benefit (${FILL.replacementRate})`, formatCurrency(est.weekly, { cents: true })],
+      ['Estimated weekly benefit (55%)', formatCurrency(est.weekly, { cents: true })],
       ['Weeks payable', `${est.weeks} weeks`],
       ['Estimated total before tax', formatCurrency(est.total, { cents: true })],
     );
   } else {
     rows.push(['Weekly benefit if you reached the threshold', formatCurrency(est.weekly, { cents: true })]);
   }
-  rows.push([`Your annual EI premium (${FILL.premiumRate})`, formatCurrency(premium, { cents: true })]);
+  rows.push(['Your annual EI premium (1.63%)', formatCurrency(premium, { cents: true })]);
   el('breakdown').innerHTML = rows
     .map(([k, v]) => `<div class="row"><span>${k}</span><span class="val">${v}</span></div>`).join('');
 

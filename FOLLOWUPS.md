@@ -30,17 +30,21 @@ and not the other.
 
 ---
 
-## 2. JSON-LD schema figures vs the pack — an unchecked drift surface
+## 2. Page figures vs the pack — an unchecked drift surface
 
-**What:** Figures inside `<script type="application/ld+json">` FAQPage blocks are literals,
-and nothing verifies them against `data/tax-constants-2026.js`. Opened 2026-08-16 with the
-eicalc.ca port; `benefits/ei/index.html` is the worst case (5 MIE-linked figures), but every
-page with a FAQPage block has some.
+**What:** Constants restated in page HTML — prose, FAQ answers and `application/ld+json`
+blocks — are literals, and nothing verifies them against `data/tax-constants-2026.js`. Opened
+2026-08-16 with the eicalc.ca port. `benefits/ei/` and `benefits/cpp/` carry the most
+January-linked figures, but this is site-wide: `payroll/take-home-pay/` restates the surtax
+thresholds, YMPE, MIE and rates the same way.
 
-**Why it can't be fixed the usual way:** the rendered page solved this — all visible figures
-are filled at runtime from the pack via `data-ei` spans, so a January re-index needs no HTML
-edit. JSON-LD can't work that way: crawlers read it as raw text, so it can't be script-filled.
-The schema therefore needs a manual January touch the visible page does not.
+**Why the obvious fix doesn't work.** `/benefits/ei/` was briefly built to fill every figure
+from the pack at runtime, which did eliminate the drift — but it left the SERVER HTML
+incomplete: a plain fetch got `capped at $ a week` and two tables with headers and no rows.
+Reverted to literals 2026-08-16 to match the rest of the site. Prerendering at build time is
+also out: the repo deliberately ships no `package.json` (see the CI workflow header — it
+would risk Cloudflare auto-detecting a Node build for a pure static deploy). So the figures
+stay literal, and the only way to make them safe is to check them.
 
 **Why it matters:** this is the exact mechanism that rotted eicalc.ca — a figure with no link
 to the constant it derives from, going stale silently. Lower severity here (wrong in a search
