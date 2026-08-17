@@ -240,6 +240,92 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
     }
   }
 
+  // ── CPP / QPP contribution arithmetic ───────────────────────────────────────
+  // Every maximum in these two blocks is DERIVED from a ceiling and a rate, and the ceilings
+  // are re-indexed to average wage growth each January. A January that moves the YMPE but
+  // leaves maxEmployeeContribution behind produces a stamped, sourced, recently-verified
+  // number that is simply wrong — the same shape of failure as the EI clawback below, and
+  // one nothing in this repo could previously detect.
+  //
+  // CPP and QPP have identical structure (ceiling, exemption, base+enhanced split, a second
+  // tier), so they are checked by one loop. QPP is NOT a copy of CPP — its rate is 6.3% to
+  // CPP's 5.95% — which is exactly why the check must be per-plan arithmetic rather than a
+  // cross-plan equality.
+  //
+  // IF ONE FIRES: re-read the CRA (or Retraite Québec) rate table and fix the DERIVED
+  // maximum. Do not adjust a ceiling or a rate to silence it — those are the published
+  // inputs, and bending one destroys the signal.
+  for (const plan of ['cpp', 'qpp']) {
+    const P = root[plan];
+    if (!P) continue;
+    const num = (x) => (typeof x === 'number' ? x : null);
+    const ympe = num(P.ympe?.value), ex = num(P.basicExemption?.value);
+    const rate = num(P.rate?.value), maxEmp = num(P.maxEmployeeContribution?.value);
+
+    if (ympe !== null && ex !== null && rate !== null && maxEmp !== null) {
+      const expected = Math.round((ympe - ex) * rate * 100) / 100;
+      if (maxEmp !== expected) {
+        bad.push(`${plan}.maxEmployeeContribution ${maxEmp} !== (ympe ${ympe} − basicExemption ` +
+          `${ex}) × rate ${rate} = ${expected} — a derived maximum has gone stale against ` +
+          `the ceiling.`);
+      }
+    }
+    // The base/enhanced split must reconstitute the headline rate. These two feed the tax
+    // engine separately (base is credit-eligible, enhanced is income-deductible), so a
+    // split that no longer sums is a real mis-calculation, not just untidy bookkeeping.
+    const base = num(P.baseCpp1Rate?.value), enh = num(P.enhancedCpp1Rate?.value);
+    if (base !== null && enh !== null && rate !== null) {
+      const sum = Math.round((base + enh) * 1e6) / 1e6;
+      if (sum !== rate) {
+        bad.push(`${plan}: baseCpp1Rate ${base} + enhancedCpp1Rate ${enh} = ${sum} !== ` +
+          `rate ${rate} — the credit-eligible / income-deductible split no longer sums to ` +
+          `the contribution rate.`);
+      }
+    }
+    // Second tier: flat rate across the YMPE→YAMPE band, so the maximum is exact.
+    const yampe = num(P.cpp2?.yampe?.value), r2 = num(P.cpp2?.rate?.value);
+    const max2 = num(P.cpp2?.maxContribution?.value);
+    if (ympe !== null && yampe !== null && r2 !== null && max2 !== null) {
+      const expected2 = Math.round((yampe - ympe) * r2 * 100) / 100;
+      if (max2 !== expected2) {
+        bad.push(`${plan}.cpp2.maxContribution ${max2} !== (yampe ${yampe} − ympe ${ympe}) × ` +
+          `rate ${r2} = ${expected2} — the second-tier maximum has gone stale.`);
+      }
+    }
+    // Optional leaves — only CPP stamps these today, so check them where present rather
+    // than forcing QPP to carry figures nobody has verified at a primary source.
+    const contributory = num(P.maxContributoryEarnings?.value);
+    if (contributory !== null && ympe !== null && ex !== null && contributory !== ympe - ex) {
+      bad.push(`${plan}.maxContributoryEarnings ${contributory} !== ympe ${ympe} − ` +
+        `basicExemption ${ex} = ${ympe - ex}.`);
+    }
+    const mult = num(P.selfEmployedMultiplier?.value);
+    const maxSE = num(P.maxSelfEmployedContribution?.value);
+    if (maxSE !== null && maxEmp !== null && mult !== null) {
+      const expectedSE = Math.round(maxEmp * mult * 100) / 100;
+      if (maxSE !== expectedSE) {
+        bad.push(`${plan}.maxSelfEmployedContribution ${maxSE} !== maxEmployeeContribution ` +
+          `${maxEmp} × selfEmployedMultiplier ${mult} = ${expectedSE}.`);
+      }
+    }
+    const seRate2 = num(P.cpp2?.selfEmployedRate?.value);
+    if (seRate2 !== null && r2 !== null && mult !== null) {
+      const expected = Math.round(r2 * mult * 1e6) / 1e6;
+      if (seRate2 !== expected) {
+        bad.push(`${plan}.cpp2.selfEmployedRate ${seRate2} !== cpp2.rate ${r2} × ` +
+          `selfEmployedMultiplier ${mult} = ${expected}.`);
+      }
+    }
+    const maxSE2 = num(P.cpp2?.maxSelfEmployedContribution?.value);
+    if (maxSE2 !== null && max2 !== null && mult !== null) {
+      const expected = Math.round(max2 * mult * 100) / 100;
+      if (maxSE2 !== expected) {
+        bad.push(`${plan}.cpp2.maxSelfEmployedContribution ${maxSE2} !== cpp2.maxContribution ` +
+          `${max2} × selfEmployedMultiplier ${mult} = ${expected}.`);
+      }
+    }
+  }
+
   // ── EI regular-benefit linkages ─────────────────────────────────────────────
   // Two EI figures are DERIVED from the maximum insurable earnings, which is re-indexed every
   // January. Stamped on their own they look fine forever — a stale derived value is a

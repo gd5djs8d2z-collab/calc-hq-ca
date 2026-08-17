@@ -122,6 +122,24 @@
     "cadence": "january"
   },
   {
+    "key": "cpp.maxContributoryEarnings",
+    "value": 71100,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-08-16",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.maxSelfEmployedContribution",
+    "value": 8460.9,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
+    "verified_at": "2026-08-16",
+    "cadence": "january"
+  },
+  {
     "key": "cpp.cpp2.rate",
     "value": 0.04,
     "effective_from": "2026-01-01",
@@ -146,6 +164,24 @@
     "effective_to": null,
     "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html",
     "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.cpp2.selfEmployedRate",
+    "value": 0.08,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html",
+    "verified_at": "2026-08-16",
+    "cadence": "january"
+  },
+  {
+    "key": "cpp.cpp2.maxSelfEmployedContribution",
+    "value": 832,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html",
+    "verified_at": "2026-08-16",
     "cadence": "january"
   },
   {

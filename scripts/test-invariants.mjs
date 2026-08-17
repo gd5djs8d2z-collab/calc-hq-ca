@@ -135,7 +135,87 @@ for (const [key, partner] of [
     only(invariants(c, TAX_YEAR), 'rdsp.').length, 0);
 }
 
-/* ── Invariant 4: EI regular-benefit figures derived from the MIE ────────────────
+/* ── Invariant 4: CPP / QPP contribution arithmetic ──────────────────────────────
+ * Every maximum in these blocks is derived from a ceiling re-indexed each January. The
+ * cases below are the realistic January failure: the YMPE moves, a derived figure doesn't.
+ * Checked for BOTH plans — QPP has the same structure at a different rate (6.3% vs 5.95%),
+ * so a check that only understood CPP would leave Quebec silently unguarded. */
+for (const plan of ['cpp', 'qpp']) {
+  check(`${plan}: real data is clean`,
+    only(invariants(base, TAX_YEAR), `${plan}.`).length +
+    only(invariants(base, TAX_YEAR), `${plan}:`).length, 0);
+
+  { // the January failure: ceiling moves, derived maximum left behind
+    const c = structuredClone(base);
+    c[plan].ympe.value = 78000;
+    check(`${plan}: YMPE moving without maxEmployeeContribution fires`,
+      only(invariants(c, TAX_YEAR), `${plan}.maxEmployeeContribution`).length, 1);
+  }
+
+  { // a one-cent drift in the derived maximum
+    const c = structuredClone(base);
+    c[plan].maxEmployeeContribution.value += 0.01;
+    check(`${plan}: a 1c drift in maxEmployeeContribution fires`,
+      only(invariants(c, TAX_YEAR), `${plan}.maxEmployeeContribution`).length, 1);
+  }
+
+  { // base/enhanced split no longer summing to the headline rate
+    const c = structuredClone(base);
+    c[plan].enhancedCpp1Rate.value = 0.011;
+    check(`${plan}: base+enhanced not summing to rate fires`,
+      only(invariants(c, TAX_YEAR), `${plan}:`).length, 1);
+  }
+
+  { // second-tier maximum stale against a moved YAMPE
+    const c = structuredClone(base);
+    c[plan].cpp2.yampe.value = 88000;
+    check(`${plan}: YAMPE moving without cpp2.maxContribution fires`,
+      only(invariants(c, TAX_YEAR), `${plan}.cpp2.maxContribution`).length, 1);
+  }
+
+  { // absent block must not throw
+    const c = structuredClone(base);
+    delete c[plan];
+    check(`${plan}: missing block does not throw`,
+      only(invariants(c, TAX_YEAR), `${plan}`).length, 0);
+  }
+}
+
+{ // CPP-only leaves: contributory earnings must track the ceiling less the exemption
+  const c = structuredClone(base);
+  c.cpp.maxContributoryEarnings.value = 71000;
+  check('cpp: maxContributoryEarnings de-linked from ympe − exemption fires',
+    only(invariants(c, TAX_YEAR), 'cpp.maxContributoryEarnings').length, 1);
+}
+
+{ // self-employed maximum must stay exactly double the employee side
+  const c = structuredClone(base);
+  c.cpp.maxSelfEmployedContribution.value = 8000;
+  check('cpp: maxSelfEmployedContribution not double the employee max fires',
+    only(invariants(c, TAX_YEAR), 'cpp.maxSelfEmployedContribution').length, 1);
+}
+
+{ // same for the second tier's self-employed rate and maximum
+  const c = structuredClone(base);
+  c.cpp.cpp2.selfEmployedRate.value = 0.07;
+  check('cpp: cpp2.selfEmployedRate not double cpp2.rate fires',
+    only(invariants(c, TAX_YEAR), 'cpp.cpp2.selfEmployedRate').length, 1);
+}
+{
+  const c = structuredClone(base);
+  c.cpp.cpp2.maxSelfEmployedContribution.value = 800;
+  check('cpp: cpp2.maxSelfEmployedContribution not double cpp2.max fires',
+    only(invariants(c, TAX_YEAR), 'cpp.cpp2.maxSelfEmployedContribution').length, 1);
+}
+
+{ // QPP lacks the optional self-employed leaves today — their absence must stay silent,
+  // so adding them later is a deliberate act rather than a way to fix a failing build.
+  const c = structuredClone(base);
+  check('qpp: absent optional self-employed leaves stay quiet',
+    only(invariants(c, TAX_YEAR), 'qpp.maxSelfEmployedContribution').length, 0);
+}
+
+/* ── Invariant 5: EI regular-benefit figures derived from the MIE ────────────────
  * repaymentThreshold = 1.25 × MIE and maxWeeklyBenefit = round(MIE × 55% / 52). Both are
  * plausible-looking numbers that go stale silently when the MIE is re-indexed each January.
  * The first test below reproduces the ACTUAL defect found on eicalc.ca in August 2026: a

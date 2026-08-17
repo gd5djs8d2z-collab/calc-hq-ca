@@ -50,6 +50,13 @@ const T4032 = (xx) =>
 const SRC = {
   fed:       T4032('on'),        // CRA T4032 "Chart 1" (federal) appears on every T4032 page
   cpp:       'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html',
+  // ── CPP contribution detail (added 2026-08-16 when /benefits/cpp/ absorbed cppcalc.ca) ──
+  // The CPP1 rates page above does NOT carry the CPP2 tier — CRA publishes the second
+  // additional contribution on its own page, and the self-employed CPP2 rate/maximum appear
+  // only there. Kept separate so a re-verifier lands on the page that holds the number.
+  cpp2:         'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html',
+  cppContrib:   'https://www.canada.ca/en/services/benefits/publicpensions/cpp/contributions.html',
+  cppAmountFactors: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/amount.html',
   qpp:       'https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures',
   qpip:      'https://www.rqap.gouv.qc.ca/en/about-the-plan/general-information/premiums-and-maximum-insurable-earnings',
   qpipPlans: 'https://www.quebec.ca/en/family-and-support-for-individuals/pregnancy-parenthood/financial-support-pregnant-women-families/quebec-parental-insurance-plan/pregnancy-childbirth/choice-plan',
@@ -176,11 +183,34 @@ export const TAX_CONSTANTS_2026 = {
     maxEmployeeContribution:{ value: 4230.45,  source_url: SRC.cpp, last_verified: '2026-07-18' },
     baseCpp1Rate:           { value: 0.0495,   source_url: SRC.cpp, last_verified: '2026-07-13' }, // credit-eligible portion
     enhancedCpp1Rate:       { value: 0.01,     source_url: SRC.cpp, last_verified: '2026-07-13' }, // income-deductible portion
+    // CRA publishes this as its own column ("maximum contributory earnings"): the slice of
+    // income CPP1 actually applies to. Stamped rather than derived so the maxEmployee-
+    // Contribution invariant has an independent third figure to reconcile against.
+    maxContributoryEarnings:{ value: 71100, source_url: SRC.cpp, last_verified: '2026-08-16' },
+    maxSelfEmployedContribution:{ value: 8460.90, source_url: SRC.cpp, last_verified: '2026-08-16' },
     cpp2: {
       rate:            { value: 0.04,   source_url: SRC.cpp, last_verified: '2026-07-13' },
       yampe:           { value: 85000,  source_url: SRC.cpp, last_verified: '2026-07-13' }, // Year's Additional Max Pensionable Earnings
       maxContribution: { value: 416,    source_url: SRC.cpp, last_verified: '2026-07-13' },
+      // Self-employed pay both sides of CPP2 as well. CRA states the rate and maximum only
+      // on the CPP2 page (SRC.cpp2), not on the CPP1 rates table.
+      selfEmployedRate:            { value: 0.08, source_url: SRC.cpp2, last_verified: '2026-08-16' },
+      maxSelfEmployedContribution: { value: 832,  source_url: SRC.cpp2, last_verified: '2026-08-16' },
     },
+    /* ── Contribution lifecycle + pension-calculation rules ─────────────────────
+     * Ported 2026-08-16 from cppcalc.ca, each figure re-read at the Service Canada page
+     * named below. Unlike the eicalc.ca port, NO drift was found in the satellite's
+     * numbers — its config.js held every figure it displayed, so there was nothing living
+     * loose in the markup to rot. All statutory: set by the CPP Act, not January indexation. */
+    contributionStopAge:  { value: 70, source_url: SRC.cppContrib, last_verified: '2026-08-16', cadence: 'statutory' },
+    cpt30MinAge:          { value: 65, source_url: SRC.cppContrib, last_verified: '2026-08-16', cadence: 'statutory' },
+    // "excluding up to 8 years of your lowest earnings (when calculating the CPP base
+    // component)" — the general drop-out, stated by Service Canada as a year count. The
+    // underlying rule is 17% of the contributory period; 8 years is its cap and the only
+    // form the consumer page publishes, so that is what is stamped here.
+    generalDropoutMaxYears:{ value: 8,  source_url: SRC.cppAmountFactors, last_verified: '2026-08-16', cadence: 'statutory' },
+    // The ENHANCED component uses a different rule: best 40 years, no drop-out.
+    enhancedBestYears:     { value: 40, source_url: SRC.cppAmountFactors, last_verified: '2026-08-16', cadence: 'statutory' },
     // The self-employed pay both halves. Confirmed 2026-07-18 on the CRA rate table: the
     // 2026 "maximum annual self-employed contribution" ($8,460.90) is exactly twice the
     // "maximum annual employee and employer contribution" ($4,230.45).

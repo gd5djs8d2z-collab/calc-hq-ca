@@ -21,12 +21,40 @@
 {"@type":"ListItem","position":2,"name":"Government Benefits & Deductions","item":"https://calc-hq.ca/benefits/"},
 {"@type":"ListItem","position":3,"name":"CPP Calculator","item":"https://calc-hq.ca/benefits/cpp/"}]}
 </script>
+<!--
+  KNOWN DRIFT SURFACE — the figures on this page are LITERALS, and nothing checks them.
+
+  Site convention (see payroll/take-home-pay/): the constants pack drives the CALCULATOR,
+  while prose, FAQ and JSON-LD restate the figures as literals so the server HTML is complete
+  for readers and crawlers that do not run JS.
+
+  The cost is that these copies can go stale against data/tax-constants-2026.js, and
+  check-constants.mjs cannot see them because they live in HTML rather than in the pack.
+  The eicalc.ca satellite died of exactly this ($79,000 clawback threshold, correct for 2024,
+  carried two years). Note that cppcalc.ca did NOT drift — its config held every number it
+  displayed. The difference is not diligence, it is whether the number lives in the data.
+
+  Figures duplicated here that move every January (all derived from the YMPE):
+    $74,600 (YMPE) · $85,000 (YAMPE) · $71,100 (contributory) · $4,230.45 · $416 · $4,646.45
+    · $8,460.90 · $832 · $9,292.90 · QPP $4,479.30 / $4,895.30
+  Statutory/frozen: $3,500 · 5.95% · 4% · 11.90% · 8% · 6.3% · ages 65/70 · 8 drop-out years.
+
+  invariants() in scripts/check-constants.mjs now reconciles every one of those maxima
+  against its ceiling and rate IN THE PACK, so the pack itself cannot drift. Keeping this
+  page in step with the pack is still manual.
+  WHEN UPDATING: change the pack, then grep this file for the old value. FOLLOWUPS.md item 2.
+-->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"How is CPP calculated?","acceptedAnswer":{"@type":"Answer","text":"CPP is 5.95% of your pensionable earnings between the $3,500 basic exemption and the year's maximum pensionable earnings of $74,600 in 2026. Take your income up to $74,600, subtract $3,500, and multiply by 5.95% — that's your base CPP contribution, up to a maximum of $4,230.45. Earnings above $74,600 up to $85,000 add a second tier, CPP2, at 4%."}},
 {"@type":"Question","name":"How do I calculate my CPP contributions for 2026?","acceptedAnswer":{"@type":"Answer","text":"Subtract the $3,500 exemption from your income (capped at $74,600), multiply by 5.95% for CPP1, then add 4% of any earnings between $74,600 and $85,000 for CPP2. The combined employee maximum for 2026 is $4,646.45. Enter your income above and the calculator shows each part."}},
 {"@type":"Question","name":"What is the maximum CPP contribution in 2026?","acceptedAnswer":{"@type":"Answer","text":"For an employee, the maximum base CPP1 contribution is $4,230.45 and the maximum CPP2 is $416, for a combined maximum of $4,646.45. Your employer matches it. Self-employed people pay both halves, so their maximum is double."}},
-{"@type":"Question","name":"Does CPP come off every dollar I earn?","acceptedAnswer":{"@type":"Answer","text":"No. The first $3,500 each year is exempt, and earnings above $85,000 don't attract any further CPP. So CPP only applies to the band between $3,500 and $85,000, which is why high earners stop paying it partway through the year."}}]}
+{"@type":"Question","name":"Does CPP come off every dollar I earn?","acceptedAnswer":{"@type":"Answer","text":"No. The first $3,500 each year is exempt, and earnings above $85,000 don't attract any further CPP. So CPP only applies to the band between $3,500 and $85,000, which is why high earners stop paying it partway through the year."}},
+{"@type":"Question","name":"How much CPP do self-employed people pay in 2026?","acceptedAnswer":{"@type":"Answer","text":"Self-employed people pay both the employee and employer halves, so 11.90% on CPP1 pensionable earnings to a maximum of $8,460.90, plus 8% on the CPP2 band to a maximum of $832 — $9,292.90 in all. Contributions are based on net business income after expenses. Half of the total, the employer-equivalent portion, is deductible on line 22200 of your return."}},
+{"@type":"Question","name":"Why is the CPP on my T4 different from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Employers calculate CPP each pay period rather than once a year, applying the rate and a per-period slice of the exemption to each period's earnings and rounding the result. Those roundings accumulate, so box 16 of your T4 can differ from an annual estimate by a few dollars. Larger gaps usually mean partial-year employment, more than one employer, or a CPT30 election."}},
+{"@type":"Question","name":"What happens if I have two employers in the same year?","acceptedAnswer":{"@type":"Answer","text":"Each employer deducts CPP from zero, with no visibility into the other. If your combined income passes the ceiling you will over-contribute. The overpayment is not lost — the CRA credits it when you file, either increasing your refund or reducing your balance owing."}},
+{"@type":"Question","name":"When do CPP contributions stop?","acceptedAnswer":{"@type":"Answer","text":"Contributions stop automatically at age 70, even if you keep working. Between 65 and 70, if you're already receiving a CPP retirement pension, you can choose to stop by filing form CPT30 with your employer; it takes effect the following month. Before 65 there is no way to opt out."}},
+{"@type":"Question","name":"What income is not pensionable for CPP?","acceptedAnswer":{"@type":"Answer","text":"CPP applies to employment income and net self-employment income only. Investment income, capital gains, rental income and pension payments are not pensionable, so they build no CPP entitlement and attract no contributions no matter how large they are."}}]}
 </script>
 </head>
 <body>
@@ -55,7 +83,7 @@
 <main class="wrap">
   <div class="page-head">
     <h1>CPP Calculator (2026)</h1>
-    <p class="lead">CPP is federal — the same across the country, except in Quebec, which runs its own QPP at a higher rate. Enter your income, pick your plan, and see exactly how your yearly contribution is built, from the $3,500 exemption up to the annual maximum.</p>
+    <p class="lead">CPP is federal — the same across the country, except in Quebec, which runs its own QPP at a higher rate. Enter your income, pick your plan and whether you’re employed or self-employed, and see how the yearly contribution is built — from the $3,500 exemption up to the annual maximum.</p>
   </div>
 
   <section class="calc-card" aria-label="CPP calculator">
@@ -74,6 +102,15 @@
         </select>
       </div>
     </div>
+    <div class="field">
+      <label for="type">Employment type
+        <span class="hint">The self-employed pay both halves — there's no employer to match them</span>
+      </label>
+      <select class="input" id="type">
+        <option value="employee" selected>Employed — T4 employee</option>
+        <option value="self">Self-employed</option>
+      </select>
+    </div>
     <button class="btn" id="go" type="button">Calculate my contribution</button>
 
     <div class="result" id="result" hidden>
@@ -88,11 +125,59 @@
     <h2>How CPP is calculated</h2>
     <p>CPP takes 5.95% of your pensionable earnings — the slice of income between the $3,500 basic exemption and the $74,600 yearly maximum. Subtract $3,500 from your income (capped at $74,600), multiply by 5.95%, and that's your base contribution, up to $4,230.45. Your employer pays the same amount alongside you.</p>
     <p>Since 2024 there's a second tier. Earnings between $74,600 and $85,000 attract CPP2 at 4%, adding up to $416 more. So the most an employee contributes in 2026 is $4,646.45. Below $3,500 you pay nothing, and above $85,000 no further CPP applies.</p>
+    <p>Two figures do all the work, and both are reset every January against average wage growth: the $74,600 ceiling and the $85,000 upper limit. The $3,500 exemption is the exception — it has been frozen at that level for years and isn't indexed, so it quietly shrinks in real terms each year. The government sets all three each October for the following calendar year.</p>
+    <p>The 5.95% is itself two rates stacked. <strong>4.95%</strong> is base CPP, which earns you a non-refundable tax credit; the remaining <strong>1.00%</strong> is the enhancement introduced in 2019, which is deducted from income instead. CPP2 is treated the same way as the enhancement. You don't have to do anything with that split, but it's why CPP shows up in two different places on a return.</p>
+  </section>
+
+  <section class="answer">
+    <h2>If you're self-employed, you pay both halves</h2>
+    <p>There's no employer to match you, so you pay the employee and employer shares together: <strong>11.90%</strong> on CPP1 pensionable earnings to a maximum of <strong>$8,460.90</strong>, plus <strong>8%</strong> on the CPP2 band to a maximum of <strong>$832</strong>. At or above $85,000 of net income that's <strong>$9,292.90</strong> for the year.</p>
+    <p>Two things soften it. Contributions are based on <strong>net</strong> business income — after expenses, not gross billings. And half the total, the employer-equivalent portion, is deductible on <strong>line 22200</strong> of your return, which reduces your taxable income. The other half earns the usual credit and deduction split.</p>
+    <p>Worth pricing in before you set a contract rate: a T4 job includes roughly $4,230 of employer CPP that never appears on your payslip but is part of what you cost. An equivalent contract rate has to cover it, because as a contractor you pay it yourself.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr><th>Net income</th><th>Employee pays</th><th>Employer pays</th><th>Self-employed pays</th></tr></thead>
+        <tbody>
+          <tr><td>$3,500 or less</td><td>$0</td><td>$0</td><td>$0</td></tr>
+          <tr><td>$30,000</td><td>$1,576.75</td><td>$1,576.75</td><td>$3,153.50</td></tr>
+          <tr><td>$50,000</td><td>$2,766.75</td><td>$2,766.75</td><td>$5,533.50</td></tr>
+          <tr><td>$74,600</td><td>$4,230.45</td><td>$4,230.45</td><td>$8,460.90</td></tr>
+          <tr class="highlight"><td>$85,000 and up</td><td>$4,646.45</td><td>$4,646.45</td><td>$9,292.90</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">CPP1 plus CPP2, 2026 rates. The calculator above works out any income between these rows.</p>
   </section>
 
   <section class="answer">
     <h2>Quebec is different: QPP, not CPP</h2>
     <p>If you work in Quebec you pay into the <strong>Québec Pension Plan</strong> instead of CPP, and its rate is higher. The exemption ($3,500), the $74,600 ceiling, the $85,000 upper limit and the 4% second tier are all identical to CPP — but the base rate is <strong>6.3%</strong> versus CPP's 5.95%. That pushes the first-tier maximum to <strong>$4,479.30</strong> (against CPP's $4,230.45), so a Quebec employee's most-you'll-pay is <strong>$4,895.30</strong> once the $416 QPP2 is added. Switch the plan above to "QPP — Quebec" to see your Quebec numbers. Your employer still matches you, and the self-employed still pay both halves.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Why your T4 won't match this exactly</h2>
+    <p>This page works out a full year in one step. Your employer doesn't — payroll calculates CPP every pay period, applying the rate and a per-period slice of the $3,500 exemption to that period's earnings, then rounding. Twenty-six of those roundings accumulate, so <strong>box 16 of your T4</strong> can sit a few dollars either side of an annual estimate. That's normal.</p>
+    <p>Bigger gaps usually have a specific cause:</p>
+    <ul class="conditions">
+      <li><strong>You didn't work the full year.</strong> A mid-year start or finish means fewer pay periods and less exemption used, so contributions come in under the annual figure.</li>
+      <li><strong>You had two employers.</strong> Each deducts from zero, with no visibility into the other. Combined income above the ceiling means you over-contribute — but nothing is lost: the CRA credits the excess when you file, as a larger refund or a smaller balance owing. Changing jobs mid-year does the same thing.</li>
+      <li><strong>A CPT30 election is in effect.</strong> Contributions stop from the month after filing, so the year is part-contributed.</li>
+    </ul>
+    <p>For an estimate, enter your total expected income from every source — the annual maximum is what it is regardless of how many employers paid you.</p>
+  </section>
+
+  <section class="answer">
+    <h2>When contributions stop, and what isn't pensionable</h2>
+    <p>Contributions stop automatically at <strong>age 70</strong>, whether or not you're still working. Between <strong>65 and 70</strong> you can stop early if you're already receiving a CPP retirement pension, by filing <strong>form CPT30</strong> with your employer — it takes effect the month after you file. Before 65 there's no opting out.</p>
+    <p>Carrying on past 65 isn't wasted, though. Every year you contribute while receiving your pension earns a <strong>post-retirement benefit</strong>, paid from the following year and for life on top of your existing pension. Stopping is a real trade-off rather than an obvious win.</p>
+    <p>CPP applies to employment income and net self-employment income, and nothing else. <strong>Investment income, capital gains, rental income and pension payments are not pensionable</strong> — they attract no contributions and build no entitlement, however large they are. Someone living on dividends contributes nothing to CPP and accrues nothing.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What the contributions actually buy</h2>
+    <p>CPP isn't a savings account with your name on it. Contributions don't sit in an individual fund — they buy entitlement to a monthly pension worked out from your average pensionable earnings across your working life. Years near the ceiling pull that average up; years of low or no earnings pull it down.</p>
+    <p>Gaps are partly forgiven. For the base component, Service Canada excludes <strong>up to 8 years</strong> of your lowest earnings from the calculation, which covers time spent studying, unemployed or raising children. The enhanced component works differently: it uses your <strong>best 40 years</strong>. Neither is something you apply for.</p>
+    <p>Hitting the annual maximum isn't a penalty, and deductions stopping in November doesn't mean you've overpaid — it means the year's contribution is complete. Where the pension itself is concerned, when you start it matters as much as what you paid in: see <a href="/benefits/cpp-60-vs-65/">CPP at 60 vs 65</a> for the reduction, the increase and the break-even.</p>
   </section>
 
   <section class="faq">
@@ -108,6 +193,21 @@
     </details>
     <details><summary>Does CPP come off every dollar I earn?</summary>
       <p>No. The first $3,500 each year is exempt and earnings above $85,000 attract no further CPP, so it only applies to the band in between. That's why high earners stop paying partway through the year.</p>
+    </details>
+    <details><summary>How much CPP do self-employed people pay in 2026?</summary>
+      <p>Both halves: 11.90% on CPP1 pensionable earnings to a maximum of $8,460.90, plus 8% on the CPP2 band to a maximum of $832 — $9,292.90 in all. It's charged on net business income after expenses, and half the total is deductible on line 22200.</p>
+    </details>
+    <details><summary>Why is the CPP on my T4 different from this estimate?</summary>
+      <p>Payroll calculates CPP each pay period and rounds, so the roundings accumulate and box 16 can differ by a few dollars. Larger gaps usually mean partial-year employment, two employers, or a CPT30 election.</p>
+    </details>
+    <details><summary>What happens if I have two employers in the same year?</summary>
+      <p>Each deducts from zero without seeing the other, so combined income above the ceiling means you over-contribute. The CRA credits the excess when you file — a bigger refund or a smaller balance owing.</p>
+    </details>
+    <details><summary>When do CPP contributions stop?</summary>
+      <p>Automatically at 70. Between 65 and 70 you can stop early by filing form CPT30, but only if you're already receiving a CPP retirement pension. Before 65 there's no opting out.</p>
+    </details>
+    <details><summary>What income is not pensionable for CPP?</summary>
+      <p>Investment income, capital gains, rental income and pension payments. CPP applies to employment and net self-employment income only, so none of those build entitlement or attract contributions.</p>
     </details>
   </section>
 
@@ -167,31 +267,46 @@ import { calcCPP, formatCurrency } from '/assets/js/tax-engine.js';
 import { CPP, QPP } from '/data/rates-2026.js';
 import { parseMoney, el } from '/assets/js/calc-ui.js';
 
+const pct = (r) => `${(r * 100).toFixed(2).replace(/\.?0+$/, '')}%`;
+
 function run() {
   const income = parseMoney(el('income').value);
   const isQPP = el('plan').value === 'QPP';
+  const selfEmployed = el('type').value === 'self';
   const plan = isQPP ? QPP : CPP;
   const name = isQPP ? 'QPP' : 'CPP';
-  const tier1Rate = isQPP ? '6.3%' : '5.95%';       // QPP1 total 6.3% (base 5.3% + 1%) vs CPP 5.95%
-  const c = calcCPP(income, { plan });
+  const mult = selfEmployed ? plan.selfEmployedMultiplier : 1;
+  const c = calcCPP(income, { plan, selfEmployed });
 
-  el('result-label').textContent = `Your 2026 ${name} contribution`;
-  el('cpp').textContent = formatCurrency(c.employee, { cents: true });
-  el('reading').textContent =
-    `That's your ${name} share for 2026 — your employer contributes the same ${formatCurrency(c.employee, { cents: true })} alongside you.`;
+  // calcCPP returns the employee share plus `total`, which is the share × the multiplier.
+  // The self-employed pay `total`; an employee pays `employee` and the employer matches it.
+  const yours = selfEmployed ? c.total : c.employee;
+
+  el('result-label').textContent =
+    `Your 2026 ${name} contribution${selfEmployed ? ' (self-employed)' : ''}`;
+  el('cpp').textContent = formatCurrency(yours, { cents: true });
+  // Below the exemption nothing is payable, and "your employer contributes the same $0.00"
+  // reads as a glitch rather than an answer. Say why instead.
+  el('reading').textContent = yours === 0
+    ? `Nothing is payable — the first ${formatCurrency(plan.basicExemption)} of earnings each year is exempt, and you're at or below it.`
+    : selfEmployed
+      ? `That's both halves — there's no employer to match you. Half of it, ${formatCurrency(yours / 2, { cents: true })}, is deductible on line 22200.`
+      : `That's your ${name} share for 2026 — your employer contributes the same ${formatCurrency(c.employee, { cents: true })} alongside you.`;
 
   const rows = [
-    [`${name}1 (${tier1Rate} over $3,500)`, c.cpp1],
-    [`${name}2 (4% above $74,600)`, c.cpp2],
+    [`${name}1 (${pct(plan.rate * mult)} over $3,500)`, c.cpp1 * mult],
+    [`${name}2 (${pct(plan.cpp2.rate * mult)} above ${formatCurrency(plan.ympe)})`, c.cpp2 * mult],
   ];
+  if (!selfEmployed) rows.push([`Your employer also pays`, c.employee]);
   el('breakdown').innerHTML =
     rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${formatCurrency(v, { cents: true })}</span></div>`).join('')
-    + `<div class="row total"><span>Your ${name} contribution</span><span class="val">${formatCurrency(c.employee, { cents: true })}</span></div>`;
+    + `<div class="row total"><span>${selfEmployed ? `Your ${name} contribution` : `Credited to your ${name} record`}</span>`
+    + `<span class="val">${formatCurrency(selfEmployed ? yours : c.employee * 2, { cents: true })}</span></div>`;
   el('result').hidden = false;
 }
 
 el('go').addEventListener('click', run);
-['income', 'plan'].forEach(id => el(id).addEventListener('change', run));
+['income', 'plan', 'type'].forEach(id => el(id).addEventListener('change', run));
 run();
 </script>
 </body>
