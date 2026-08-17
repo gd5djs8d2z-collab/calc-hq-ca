@@ -30,6 +30,53 @@ and not the other.
 
 ---
 
+## 2. JSON-LD schema figures vs the pack — an unchecked drift surface
+
+**What:** Figures inside `<script type="application/ld+json">` FAQPage blocks are literals,
+and nothing verifies them against `data/tax-constants-2026.js`. Opened 2026-08-16 with the
+eicalc.ca port; `benefits/ei/index.html` is the worst case (5 MIE-linked figures), but every
+page with a FAQPage block has some.
+
+**Why it can't be fixed the usual way:** the rendered page solved this — all visible figures
+are filled at runtime from the pack via `data-ei` spans, so a January re-index needs no HTML
+edit. JSON-LD can't work that way: crawlers read it as raw text, so it can't be script-filled.
+The schema therefore needs a manual January touch the visible page does not.
+
+**Why it matters:** this is the exact mechanism that rotted eicalc.ca — a figure with no link
+to the constant it derives from, going stale silently. Lower severity here (wrong in a search
+result, not in a calculation) but the same failure mode, and `check-constants.mjs` structurally
+cannot see it because the numbers live in HTML rather than in the pack.
+
+**What a check would take** (roughly 60–90 lines, `scripts/check-schema.mjs`):
+1. Walk `**/index.html`, regex out each `application/ld+json` block, `JSON.parse` it. This
+   also gives a free JSON-LD validity gate, which nothing currently does.
+2. Concatenate the `Question.name` + `acceptedAnswer.text` strings and scan for money and
+   percent tokens (`/\$[\d,]+(?:\.\d{2})?|\d+(?:\.\d+)?%/g`).
+3. Build the expected set from the pack: for each figure, the formatted forms it may legally
+   appear as (`68900` → `$68,900`; `0.0163` → `1.63%`). Formatting variance is the fiddly
+   part — decide up front whether `$729` and `$729.00` are both acceptable.
+4. Fail on any token that looks like a tracked constant but matches no current pack value.
+   Report `file:line`, the stale token, and the expected one.
+
+**The judgement call that makes or breaks it:** a naive "every number in the schema must be
+in the pack" rule drowns in false positives — worked-example figures (`$900`, `$495`,
+`$9,900`), statutory rates (`55%`, `30%`, `50 cents`, `90%`) and counts (`14`, `45`, `41`,
+`420`, `700`) are all legitimately literal. Two workable options:
+- **(a) Denylist by value** — only flag tokens matching a *previous* pack value (needs
+  `constant-history.json`, which already stores exactly that). Precise, near-zero false
+  positives, and catches real staleness by construction. **Recommended.**
+- **(b) Explicit annotation** — mark checked figures in the schema (e.g. a sibling HTML
+  comment listing the pack keys a block depends on) and verify only those. Simpler logic,
+  but it's opt-in, so a new page silently isn't covered.
+
+Option (a) reuses machinery that exists and would have caught the $79,000 threshold the day
+the 2025 MIE landed. Add it to the CI workflow as a fifth step alongside `check-redirects`.
+
+**Risk if ignored:** a stale figure in search results and rich snippets, diverging from a
+page that itself stays correct — the hardest kind to notice, since the page looks right.
+
+---
+
 ---
 
 ## Done
