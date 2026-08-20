@@ -33,8 +33,19 @@
 /faq           /faq/             301
 /contact.html  /contact/         301
 /about.html    /about/           301
-/methodology/  /faq/             301
+#
+# /methodology/<topic>/ is a PATTERN, not a fixed set. The retired satellites cite
+# calc-hq.ca as their authority source at /methodology/ URLs that were never built
+# here, so new variants keep surfacing. Enumerating them failed: the 2026-08-15 fix
+# mapped only /methodology/ and /methodology/termination-pay/, and Google crawled
+# /methodology/ontario-income-tax/ on 2026-08-18 — that 404 is what failed the
+# Search Console validation. A wildcard catches the whole shape instead.
+#
+# ORDER IS LOAD-BEARING: _redirects matches top-down and the first hit wins, so the
+# specific rule must stay ABOVE the wildcard or the wildcard swallows it and
+# /methodology/termination-pay/ lands on /faq/ instead of the ESA page.
 /methodology/termination-pay/  /employment-standards/esa-termination/  301
+/methodology/*                 /faq/                                   301
 /ontario-raise-calculator/     /payroll/pay-raise/                     301
 #
 # VERIFIED WORKING on this deploy 2026-07-18 (see MAINTENANCE.md):
