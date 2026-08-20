@@ -30,60 +30,34 @@ and not the other.
 
 ---
 
-## 2. Page figures vs the pack — an unchecked drift surface
-
-**What:** Constants restated in page HTML — prose, FAQ answers and `application/ld+json`
-blocks — are literals, and nothing verifies them against `data/tax-constants-2026.js`. Opened
-2026-08-16 with the eicalc.ca port. `benefits/ei/` and `benefits/cpp/` carry the most
-January-linked figures, but this is site-wide: `payroll/take-home-pay/` restates the surtax
-thresholds, YMPE, MIE and rates the same way.
-
-**Why the obvious fix doesn't work.** `/benefits/ei/` was briefly built to fill every figure
-from the pack at runtime, which did eliminate the drift — but it left the SERVER HTML
-incomplete: a plain fetch got `capped at $ a week` and two tables with headers and no rows.
-Reverted to literals 2026-08-16 to match the rest of the site. Prerendering at build time is
-also out: the repo deliberately ships no `package.json` (see the CI workflow header — it
-would risk Cloudflare auto-detecting a Node build for a pure static deploy). So the figures
-stay literal, and the only way to make them safe is to check them.
-
-**Why it matters:** this is the exact mechanism that rotted eicalc.ca — a figure with no link
-to the constant it derives from, going stale silently. Lower severity here (wrong in a search
-result, not in a calculation) but the same failure mode, and `check-constants.mjs` structurally
-cannot see it because the numbers live in HTML rather than in the pack.
-
-**What a check would take** (roughly 60–90 lines, `scripts/check-schema.mjs`):
-1. Walk `**/index.html`, regex out each `application/ld+json` block, `JSON.parse` it. This
-   also gives a free JSON-LD validity gate, which nothing currently does.
-2. Concatenate the `Question.name` + `acceptedAnswer.text` strings and scan for money and
-   percent tokens (`/\$[\d,]+(?:\.\d{2})?|\d+(?:\.\d+)?%/g`).
-3. Build the expected set from the pack: for each figure, the formatted forms it may legally
-   appear as (`68900` → `$68,900`; `0.0163` → `1.63%`). Formatting variance is the fiddly
-   part — decide up front whether `$729` and `$729.00` are both acceptable.
-4. Fail on any token that looks like a tracked constant but matches no current pack value.
-   Report `file:line`, the stale token, and the expected one.
-
-**The judgement call that makes or breaks it:** a naive "every number in the schema must be
-in the pack" rule drowns in false positives — worked-example figures (`$900`, `$495`,
-`$9,900`), statutory rates (`55%`, `30%`, `50 cents`, `90%`) and counts (`14`, `45`, `41`,
-`420`, `700`) are all legitimately literal. Two workable options:
-- **(a) Denylist by value** — only flag tokens matching a *previous* pack value (needs
-  `constant-history.json`, which already stores exactly that). Precise, near-zero false
-  positives, and catches real staleness by construction. **Recommended.**
-- **(b) Explicit annotation** — mark checked figures in the schema (e.g. a sibling HTML
-  comment listing the pack keys a block depends on) and verify only those. Simpler logic,
-  but it's opt-in, so a new page silently isn't covered.
-
-Option (a) reuses machinery that exists and would have caught the $79,000 threshold the day
-the 2025 MIE landed. Add it to the CI workflow as a fifth step alongside `check-redirects`.
-
-**Risk if ignored:** a stale figure in search results and rich snippets, diverging from a
-page that itself stays correct — the hardest kind to notice, since the page looks right.
-
----
-
----
-
 ## Done
+
+- **Page figures vs the pack — JSON-LD drift gate** (was item 2): done 2026-08-20.
+  `scripts/check-schema.mjs` parses every `application/ld+json` block in the repo (72 blocks
+  across 43 files) and fails on two things: a block that no longer parses, and a money/percent
+  figure matching a value the pack has since moved off. Retired values come from
+  `data/constant-history.json`, so the rule is near-zero-false-positive — worked examples
+  ($900, $495) and statutory rates (55%, 30%) are never candidates. Per-block annotation was
+  rejected: it is opt-in, so a new page would be silently uncovered.
+
+  **The gate needed a second fix to be real.** `gen-history.mjs` wrote `effective_to: null`
+  unconditionally and never read the existing file, so every run DISCARDED prior rows — 144
+  in-force, zero superseded, and no "what did this used to be" to check against. Added
+  `mergeHistory()`, which carries superseded rows forward, closes an in-force row when its
+  value or source changes, and keeps an unchanged row verbatim (preserving its original
+  `effective_from`, and keeping the generator byte-identical on unchanged stamps). Verified
+  idempotent; `check-history` already tolerated superseded rows, so nothing else moved.
+
+  Until a tracked value actually changes the RETIRED rule has nothing to match and the
+  checker SAYS SO rather than showing a clean pass — a silently no-op gate is worse than
+  none. `scripts/test-schema.mjs` (24 cases) is what proves it fires: it replays the real
+  eicalc.ca defect, and an end-to-end run against the repo with a synthetic superseded row
+  flagged `benefits/ei/index.html:55: $79,000 is a retired value of ei.repaymentThreshold
+  (now 86125)`. Both are hard-failing CI steps.
+
+  Known limitation, deliberate and asserted by a test: bare integers are not tokenised. Only
+  `$`-prefixed and `%`-suffixed figures are scanned, because counts (41 rows, 420 hours,
+  8 drop-out years) would otherwise collide with any retired small value.
 
 - **Localize the French section (`/fr/`) chrome** (was item 3): done 2026-08-12. Header nav
   (Paie, Revenu supplémentaire, Prestations, Emploi, Propriété, Dates clés) and footer

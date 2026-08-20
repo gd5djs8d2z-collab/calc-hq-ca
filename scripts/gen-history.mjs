@@ -23,7 +23,7 @@
  * Touches data/constant-history.json ONLY. Never writes tax-constants-2026.js, rates-2026.js,
  * or any calculator.
  */
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { collect, STRUCTURAL_EXEMPT } from './check-constants.mjs';
 
 const HISTORY_PATH = new URL('../data/constant-history.json', import.meta.url);
@@ -110,6 +110,82 @@ export function buildHistory(records = collect()) {
   return { rows, skipped };
 }
 
+/** Structural deep-equality for stored (already Infinity-encoded) values. */
+function sameValue(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+/**
+ * MERGE the freshly-built rows onto the rows already on disk, so the file is a real
+ * append-only audit trail rather than a snapshot of "now".
+ *
+ * WHY THIS EXISTS
+ *   buildHistory() alone stamps every row effective_to:null and never reads the existing
+ *   file, so each run DISCARDED whatever came before. The file therefore only ever held
+ *   in-force rows — 144 of them, zero superseded — and the "what did this value used to be"
+ *   question it exists to answer could never be asked. scripts/check-schema.mjs needs
+ *   exactly that answer (it flags page figures matching a RETIRED pack value), so without
+ *   this merge that gate has nothing to match against and passes vacuously forever.
+ *
+ * RULES
+ *   - a prior in-force row whose value AND source_url still match is kept VERBATIM, which
+ *     preserves its original effective_from. An unchanged value has been in force since it
+ *     first landed, not since it was last re-verified — and keeping the row byte-identical
+ *     is also what keeps this script idempotent.
+ *   - a prior in-force row that no longer matches is CLOSED (effective_to = the new row's
+ *     effective_from) and the new row is appended after it.
+ *   - already-superseded rows are carried forward untouched, including rows for keys that
+ *     no longer exist in the pack. An audit trail must not lose entries because someone
+ *     renamed or deleted a constant.
+ *
+ * Ordering is deterministic: keys in collect() order, each key's rows oldest-first, then
+ * any orphaned keys (superseded-only) in sorted key order.
+ */
+export function mergeHistory(freshRows, existingRows = []) {
+  const priorByKey = new Map();
+  for (const row of existingRows) {
+    if (!priorByKey.has(row.key)) priorByKey.set(row.key, []);
+    priorByKey.get(row.key).push(row);
+  }
+
+  const out = [];
+  const seenKeys = new Set();
+  let closed = 0, added = 0, unchanged = 0;
+
+  for (const fresh of freshRows) {
+    seenKeys.add(fresh.key);
+    const prior = priorByKey.get(fresh.key) ?? [];
+    const past = prior.filter((r) => r.effective_to !== null);
+    const inForce = prior.find((r) => r.effective_to === null);
+
+    past.sort((a, b) => String(a.effective_from).localeCompare(String(b.effective_from)));
+    out.push(...past);
+
+    if (inForce && sameValue(inForce.value, fresh.value) && inForce.source_url === fresh.source_url) {
+      out.push(inForce);                       // verbatim — preserves effective_from
+      unchanged++;
+    } else {
+      if (inForce) {
+        out.push({ ...inForce, effective_to: fresh.effective_from });
+        closed++;
+      }
+      out.push(fresh);
+      added++;
+    }
+  }
+
+  // Keys that vanished from the pack: keep every row, closing any still marked in-force so
+  // the file never claims a deleted constant is current.
+  const orphanKeys = [...priorByKey.keys()].filter((k) => !seenKeys.has(k)).sort();
+  for (const key of orphanKeys) {
+    const rows = [...priorByKey.get(key)]
+      .sort((a, b) => String(a.effective_from).localeCompare(String(b.effective_from)));
+    for (const r of rows) out.push(r);
+  }
+
+  return { rows: out, stats: { unchanged, added, closed, orphanKeys: orphanKeys.length } };
+}
+
 /** Byte-for-byte the file's serialization: 2-space indent, trailing newline. */
 export function serialize(rows) {
   return JSON.stringify(rows, null, 2) + '\n';
@@ -118,7 +194,10 @@ export function serialize(rows) {
 // ---- CLI entry point (writes the file; no-op when imported) --------------------------
 if (typeof process !== 'undefined' && process.argv?.[1]?.endsWith('gen-history.mjs')) {
   const all = collect();
-  const { rows, skipped } = buildHistory(all);
+  const { rows: fresh, skipped } = buildHistory(all);
+  // Merge onto what is already on disk so superseded rows survive (see mergeHistory).
+  const existing = existsSync(HISTORY_PATH) ? JSON.parse(readFileSync(HISTORY_PATH, 'utf8')) : [];
+  const { rows, stats } = mergeHistory(fresh, existing);
   writeFileSync(HISTORY_PATH, serialize(rows));
 
   const stampedCount = stampedLeaves(all).length;
@@ -135,6 +214,10 @@ if (typeof process !== 'undefined' && process.argv?.[1]?.endsWith('gen-history.m
   lines.push('');
   lines.push('rows by effective_from / cadence:');
   for (const [k, n] of Object.entries(byBucket).sort()) lines.push(`  ${String(n).padStart(4)}  ${k}`);
+  lines.push('');
+  lines.push(`merge: ${stats.unchanged} unchanged, ${stats.added} new, ${stats.closed} superseded` +
+    (stats.orphanKeys ? `, ${stats.orphanKeys} orphaned key(s) preserved` : ''));
+  lines.push(`superseded rows now retained: ${rows.filter((r) => r.effective_to !== null).length}`);
   lines.push('');
   lines.push(`Infinity-bearing leaves stored as "${INFINITY_SENTINEL}" sentinel: ${infRows.length}`);
   lines.push('');

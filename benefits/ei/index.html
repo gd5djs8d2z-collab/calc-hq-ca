@@ -41,8 +41,9 @@
   hours · the best-weeks divisors · the duration-matrix cells.
 
   The CALCULATOR still reads the pack — only the displayed copy is literal.
-  WHEN UPDATING: change the pack, then grep this file for the old value. The gate that would
-  make that unnecessary is scoped in FOLLOWUPS.md item 2.
+  WHEN UPDATING: change the pack, then grep this file for the old value.
+  scripts/check-schema.mjs now gates this: it fails CI if a figure in the ld+json block below
+  matches a value the pack has since moved off (as tracked in data/constant-history.json).
 -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

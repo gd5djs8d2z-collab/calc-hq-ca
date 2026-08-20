@@ -90,6 +90,20 @@ jobs:
           set -o pipefail
           node scripts/check-redirects.mjs | tee redirect-report.txt
 
+      - name: Run the JSON-LD schema figure check
+        id: checkschema
+        if: always()   # JSON-LD figures are literals the pack cannot reach at runtime
+        run: |
+          set -o pipefail
+          node scripts/check-schema.mjs | tee schema-report.txt
+
+      - name: Run the schema-check negative tests
+        id: testschema
+        if: always()   # the RETIRED rule is dormant until a value moves — prove it still fires
+        run: |
+          set -o pipefail
+          node scripts/test-schema.mjs | tee schema-test-report.txt
+
       - name: Publish the report to the job summary
         if: always()
         run: |
@@ -141,5 +155,31 @@ jobs:
               echo 'answer 307 instead. Cloudflare follows redirects even when a real asset matches,'
               echo 'so a bad SOURCE takes a live page off the site while still returning HTTP 200.'
               echo 'Fix the rule in _redirects; do not relax the checker.'
+            fi
+            echo
+            echo '## JSON-LD schema figure check'
+            echo
+            echo '```'
+            cat schema-report.txt 2>/dev/null || echo 'schema checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkschema.outcome }}' != 'success' ]; then
+              echo
+              echo 'A figure inside an application/ld+json block matches a value the pack has since'
+              echo 'moved off, or a block no longer parses. JSON-LD is read as raw text by crawlers,'
+              echo 'so it cannot be filled from the pack at runtime — these literals need a manual'
+              echo 'update whenever the constant they mirror changes. Fix the page, not the checker.'
+            fi
+            echo
+            echo '## Schema-check negative tests'
+            echo
+            echo '```'
+            cat schema-test-report.txt 2>/dev/null || echo 'schema tests did not produce output — they likely failed to load'
+            echo '```'
+            if [ '${{ steps.testschema.outcome }}' != 'success' ]; then
+              echo
+              echo 'check-schema no longer fires on a retired figure, or now fires on a valid one.'
+              echo 'Its RETIRED rule is dormant while constant-history.json holds no superseded rows,'
+              echo 'so a green check-schema run alone does not prove the gate works — these tests are'
+              echo 'what proves it. Fix scripts/check-schema.mjs rather than relaxing the tests.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"

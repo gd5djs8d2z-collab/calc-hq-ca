@@ -42,7 +42,9 @@
   invariants() in scripts/check-constants.mjs now reconciles every one of those maxima
   against its ceiling and rate IN THE PACK, so the pack itself cannot drift. Keeping this
   page in step with the pack is still manual.
-  WHEN UPDATING: change the pack, then grep this file for the old value. FOLLOWUPS.md item 2.
+  WHEN UPDATING: change the pack, then grep this file for the old value.
+  scripts/check-schema.mjs gates the ld+json half: it fails CI if a figure there matches a
+  value the pack has since moved off (as tracked in data/constant-history.json).
 -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
