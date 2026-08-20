@@ -44,7 +44,12 @@
 # ORDER IS LOAD-BEARING: _redirects matches top-down and the first hit wins, so the
 # specific rule must stay ABOVE the wildcard or the wildcard swallows it and
 # /methodology/termination-pay/ lands on /faq/ instead of the ESA page.
+#
+# The bare /methodology (no trailing slash) needs its OWN rule: /methodology/* does
+# not match the slashless form, and assets.html_handling cannot rescue it because no
+# asset exists at that path, so without this line it answers 404.
 /methodology/termination-pay/  /employment-standards/esa-termination/  301
+/methodology                   /faq/                                   301
 /methodology/*                 /faq/                                   301
 /ontario-raise-calculator/     /payroll/pay-raise/                     301
 #
