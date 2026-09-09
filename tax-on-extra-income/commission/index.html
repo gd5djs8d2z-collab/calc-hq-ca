@@ -25,7 +25,10 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"How much is commission taxed in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Commission is taxed at your marginal rate in Ontario — the top bracket your total income reaches — because it's added to your base pay. On a mid-range salary that's typically an effective 30–40% off the commission once federal tax, Ontario tax, CPP and EI are included. There's no flat commission tax rate; it depends on how high your total income climbs."}},
 {"@type":"Question","name":"What is the tax rate on commission income?","acceptedAnswer":{"@type":"Answer","text":"The same brackets that apply to salary apply to commission — it isn't taxed under a separate schedule. If your commission pushes your income into a higher bracket, only the portion above the threshold is taxed at the higher rate. The calculator applies the correct marginal rate to your commission automatically."}},
-{"@type":"Question","name":"Is commission taxed differently from salary?","acceptedAnswer":{"@type":"Answer","text":"The tax itself is the same, but withholding can differ. Employers may withhold commission using the bonus method or a flat estimate, so the paycheque can look over-taxed. At year end it all settles to your real marginal rate, and any over-withholding comes back as a refund."}}]}
+{"@type":"Question","name":"Is commission taxed differently from salary?","acceptedAnswer":{"@type":"Answer","text":"The tax itself is the same, but withholding can differ. Employers may withhold commission using the bonus method or a flat estimate, so the paycheque can look over-taxed. At year end it all settles to your real marginal rate, and any over-withholding comes back as a refund."}},
+{"@type":"Question","name":"Should I file a TD1X?","acceptedAnswer":{"@type":"Answer","text":"Worth it if you claim employment expenses, or if your months are uneven enough that single cheques get withheld at a rate the year won't justify. It evens out withholding and pulls the expense deduction forward. The trade: the estimate is yours, so guess high and you'll owe in April."}},
+{"@type":"Question","name":"When is the TD1X deadline?","acceptedAnswer":{"@type":"Answer","text":"January 31 if you're staying with the same employer. Otherwise within one month of starting a new job, of your TD1 credit amounts changing, or of your estimated income or expenses shifting sharply. You can cancel it mid-year in writing."}},
+{"@type":"Question","name":"What expenses can a commission employee deduct?","acceptedAnswer":{"@type":"Answer","text":"The costs of earning the commission, set out in Guide T4044 and claimed on Form T777. Your employer must sign Form T2200 confirming the job required you to pay them. TD1X gets those expenses into your withholding during the year rather than at refund time."}}]}
 </script>
 </head>
 <body>
@@ -98,9 +101,51 @@
   </section>
 
   <section class="answer">
-    <h2>What tax comes off commission</h2>
-    <p>Commission isn't taxed on its own schedule — it's added to your other income and taxed at your marginal rate. If your base salary already sits in the 9.15% Ontario bracket, your commission is taxed from there upward, plus federal tax and any room left for <a href="/benefits/cpp/">CPP contributions</a> and <a href="/benefits/ei/">EI premiums</a> before the caps. On a typical salary that's an effective 30–40% off the commission — steeper than the blended rate on your <a href="/payroll/take-home-pay/">base salary take-home</a>, because the commission sits entirely at the top.</p>
-    <p>If you're paid commission only, set the base to zero and enter your total commission — the calculator then treats the whole amount as your income and applies the brackets from the bottom up. Either way, what you see is the real cost, not the sometimes-heavier amount payroll withholds up front. All of this assumes you're an employee on a T4; commission earned as an independent contractor works differently — no EI, both halves of CPP, and expenses you can deduct — and that's what the <a href="/payroll/self-employed-tax/">self-employed tax calculator</a> works out.</p>
+    <h2>Your employer is working from a decision tree</h2>
+    <p>Commission gets its own line on your T4 — box 42 — but that's a reporting label, not a rate; the brackets that catch it are the ones behind your <a href="/payroll/take-home-pay/">regular take-home pay</a>. What makes the deductions unpredictable is that CRA gives your employer three separate withholding routes, and which one you land on turns on paperwork and timing rather than the size of the cheque.</p>
+    <ul class="conditions">
+      <li><strong>Commission on a set schedule, no expense claim.</strong> CRA's instruction is to add it to your basic pay and withhold as though the whole thing were salary.</li>
+      <li><strong>Commission that arrives irregularly, or in amounts that swing.</strong> The employer is pointed at the <a href="/tax-on-extra-income/bonus/">bonus or irregular-payments method</a> — CRA's example is a salesperson paid twice one month and not at all the next.</li>
+      <li><strong>You filed Form TD1X.</strong> A different formula takes over, built on your estimate of the whole year rather than on whatever arrived this period.</li>
+    </ul>
+    <p>The first two set your rate from one pay period. The third looks at the year, and it's the one you have to ask for. All three assume a T4 employee — commission earned as a contractor runs through the <a href="/payroll/self-employed-tax/">self-employed tax calculator</a>.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The form that prices the year, not the month</h2>
+    <p>TD1X is the <em>Statement of Commission Income and Expenses for Payroll Tax Deductions</em>. You give payroll two numbers: what you expect to bring in this year, and what you expect to spend earning it. Your employer takes the annual tax on the net of those and holds back each payment's proportional slice — CRA's formula divides that annual tax by how many times your estimated yearly total divides into the cheque in hand. Withholding stops reacting to individual months: a dead February and a quarter that closed three deals give up the same share.</p>
+    <p>The form sets its own deadlines: <strong>January 31</strong> with the same employer as last year, otherwise within a month of starting a new job, of a change to your TD1 credits, or of your estimated income or expenses shifting sharply. If you were on commission last year, last year's actual figures will do. Cancel it any time in writing and withholding reverts to your TD1 claim amount. Being a CRA form, it does nothing in Quebec — Revenu Québec runs its own paperwork.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The expense line is the half that changes the total</h2>
+    <p>Everything above is timing. The expense box isn't — commission employees can deduct what it costs them to earn the commission, and that comes off the year's tax for good. Two forms gate it: your employer signs <strong>T2200</strong>, certifying the job required you to cover those costs, and you claim on <strong>T777</strong>, with Guide T4044 setting out what qualifies. TD1X replaces neither; it just lands the deduction in your withholding from January instead of as a refund the following spring.</p>
+    <p>The estimate is yours, and it cuts both ways: claim expenses you don't incur, or out-earn your projection, and too little was held back — a balance owing in April.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What CPP does to an uneven month</h2>
+    <p>CPP tightens it further, in a way peculiar to commission: on irregular payments CRA has the employer prorate the $3,500 basic exemption by the days since your last commission payment, so two payments close together leave the second with a sliver of exemption and <a href="/benefits/cpp/">5.95%</a> on nearly the whole amount. <a href="/benefits/ei/">EI</a> is the quiet part — "the same manner as you would for regular salary," 1.63% to $68,900.</p>
+  </section>
+
+  <section class="answer">
+    <h2>One cheque, two versions of the year</h2>
+    <p>With no TD1X on file, the rate for each payment is set from that payment alone — and unlike a one-off bonus, that happens again every time you're paid. A rep on a $55,000 Ontario base closes a strong March and earns $12,000 in commission. Payroll adds that to the $4,583 of base and multiplies by twelve:</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th></th><th>March, annualized</th><th>The year as filed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Income the rate is set from</td><td>$199,000</td><td>$75,000</td></tr>
+          <tr><td>Top federal bracket reached</td><td>29%</td><td>20.5%</td></tr>
+          <tr><td>Top Ontario bracket reached</td><td>12.16%</td><td>9.15%</td></tr>
+          <tr><td>Ontario surtax</td><td>Both tiers</td><td>None</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Withholding follows the left column: income tax on that March pay is about <strong>$5,206</strong>, roughly $4,608 of it down to the commission — <strong>38.4%</strong>. With a TD1X estimating $75,000 it would have been about <strong>$2,809</strong>: same pay, same employer, some $2,400 less held back, because payroll was pricing the year instead of the month.</p>
+    <p>Over twelve months that rep earns $20,000 of commission costing $5,527 in income tax — 27.6%, not 38.4%. With $1,182 of CPP and $227 of EI, it gives up $6,935 and leaves $13,065. March's excess isn't gone; you're lending it to CRA until you file.</p>
   </section>
 
   <section class="faq">
@@ -109,10 +154,19 @@
       <p>At your marginal rate — the top bracket your total income reaches — because it's added to your base pay. On a mid-range salary that's an effective 30–40% off once federal tax, Ontario tax, CPP and EI are included. There's no flat commission rate.</p>
     </details>
     <details><summary>What is the tax rate on commission income?</summary>
-      <p>The same brackets that apply to salary. If commission pushes you into a higher bracket, only the portion above the threshold is taxed at the higher rate. The calculator applies the right marginal rate for you.</p>
+      <p>The same brackets that apply to salary — if commission pushes you into a higher bracket, only the portion above the threshold is taxed at the higher rate.</p>
     </details>
     <details><summary>Is commission taxed differently from salary?</summary>
       <p>The tax is the same; withholding can differ. Employers may withhold commission using the bonus method or a flat estimate, so the paycheque can look over-taxed. It settles to your real rate at year end, with any excess refunded.</p>
+    </details>
+    <details><summary>Should I file a TD1X?</summary>
+      <p>Worth it if you claim employment expenses, or if your months are uneven enough that single cheques get withheld at a rate the year won't justify. It evens out withholding and pulls the expense deduction forward. The trade: the estimate is yours, so guess high and you'll owe in April.</p>
+    </details>
+    <details><summary>When is the TD1X deadline?</summary>
+      <p>January 31 if you're staying with the same employer. Otherwise within one month of starting a new job, of your TD1 credit amounts changing, or of your estimated income or expenses shifting sharply. You can cancel it mid-year in writing.</p>
+    </details>
+    <details><summary>What expenses can a commission employee deduct?</summary>
+      <p>The costs of earning the commission, set out in Guide T4044 and claimed on Form T777. Your employer must sign Form T2200 confirming the job required you to pay them. TD1X gets those expenses into your withholding during the year rather than at refund time.</p>
     </details>
   </section>
 
