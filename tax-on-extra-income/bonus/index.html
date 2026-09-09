@@ -25,7 +25,10 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"How much are bonuses taxed in Canada?","acceptedAnswer":{"@type":"Answer","text":"A bonus is taxed at your marginal rate — the same rate as the top slice of your salary — because it stacks on the income you already earn. For most Canadians that lands somewhere between 25% and 45% once federal tax, provincial tax, CPP and EI are counted. There's no special 'bonus tax rate'; it just sits in your highest bracket."}},
 {"@type":"Question","name":"Why was my bonus taxed so much on the paycheque?","acceptedAnswer":{"@type":"Answer","text":"Payroll often uses the CRA 'bonus method', which annualizes the bonus to work out withholding, and it can withhold at a rate that looks higher than your average. If too much comes off, you get the difference back as a refund at tax time — the withholding is an estimate, not the final tax."}},
-{"@type":"Question","name":"How do I calculate the take-home on a bonus?","acceptedAnswer":{"@type":"Answer","text":"Work out your tax with and without the bonus, and the difference is what the bonus costs. This calculator does exactly that: enter your base salary and bonus amount, and it shows the income tax, CPP and EI on the bonus and the net amount you keep."}}]}
+{"@type":"Question","name":"How do I calculate the take-home on a bonus?","acceptedAnswer":{"@type":"Answer","text":"Work out your tax with and without the bonus, and the difference is what the bonus costs. This calculator does exactly that: enter your base salary and bonus amount, and it shows the income tax, CPP and EI on the bonus and the net amount you keep."}},
+{"@type":"Question","name":"Is a bonus taxed at a flat 30% in Canada?","acceptedAnswer":{"@type":"Answer","text":"No. The flat lump-sum withholding rates apply to RRSP withdrawals, retiring allowances and payments out of an RPP, DPSP or RRIF. A bonus is employment income and goes through the CRA bonus method, which uses your own brackets."}},
+{"@type":"Question","name":"Do CPP and EI come off a bonus?","acceptedAnswer":{"@type":"Answer","text":"Both. CPP is deducted at 5.95%, and when the bonus is paid on a separate cheque the $3,500 basic exemption isn't applied to it, so the rate hits the whole amount. EI is deducted at 1.63% until your earnings for the year reach $68,900."}},
+{"@type":"Question","name":"Can I put my bonus into an RRSP to reduce the tax?","acceptedAnswer":{"@type":"Answer","text":"If your employer transfers the bonus straight into your RRSP, CRA's formula lets payroll subtract that contribution before working out the tax, so less is withheld at source instead of coming back as a refund. CPP and EI still apply to the full amount, and you need the room."}}]}
 </script>
 </head>
 <body>
@@ -97,8 +100,48 @@
 
   <section class="answer">
     <h2>How much a bonus is really taxed</h2>
-    <p>There's no separate bonus tax rate. A bonus is added to the income you already earn, so it's taxed at your marginal rate — the top bracket your salary reaches, not the blended rate behind your <a href="/payroll/take-home-pay/">regular take-home pay</a>. For most people that means keeping somewhere between 55% and 75% of the bonus after federal tax, provincial tax, and whatever room is left for <a href="/benefits/cpp/">CPP contributions</a> and <a href="/benefits/ei/">EI premiums</a> before the annual caps.</p>
-    <p>The paycheque can still look worse than that. Payroll uses the CRA bonus method to decide withholding, and it sometimes takes more than your true rate. Anything over-withheld comes back as a refund at tax time, so the number this calculator shows is the real cost of the bonus, not the scary paycheque version. A bonus is also a one-off — if you're weighing one against a permanent increase, a <a href="/payroll/pay-raise/">pay raise</a> keeps paying into every cheque that follows.</p>
+    <p>There's no separate bonus tax rate. A bonus is added to the income you already earn, so it's taxed at your marginal rate — the top bracket your salary reaches, not the blended rate behind your <a href="/payroll/take-home-pay/">regular take-home pay</a>. Most people keep between 55% and 75% of it after federal tax, provincial tax, <a href="/benefits/cpp/">CPP</a> and <a href="/benefits/ei/">EI</a>.</p>
+    <p>The paycheque can still look worse than that, because withholding is an estimate rather than the final tax. A bonus is also a one-off: if you're weighing one against a permanent increase, a <a href="/payroll/pay-raise/">pay raise</a> keeps paying into every cheque that follows.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What payroll actually does with the money</h2>
+    <p>CRA publishes the arithmetic in its Payroll Deductions Formulas (T4127), and it's plainer than the stub makes it look. Your employer works out the annual tax on your income <em>with</em> the bonus, then <em>without</em> it, and withholds the gap. CRA's wording: the difference "will be the tax on the current bonus." The calculator above runs the same subtraction.</p>
+    <p>Two details underneath the method account for most of the surprise:</p>
+    <ul class="conditions">
+      <li><strong>The annual income is a projection, not a fact.</strong> Payroll can't know what you'll have earned by December, so it takes your pay for the current period and multiplies by the pay periods in the year. The bonus is deliberately kept out of it — CRA defines that income factor as gross remuneration which "does not include bonuses, retroactive pay increases, or other non-periodic payments."</li>
+      <li><strong>CPP skips the basic exemption on a separate cheque.</strong> The $3,500 CPP basic exemption is sliced across your pay periods and used up by regular pay. When a bonus arrives on its own cheque, CRA's instruction is to apply the 5.95% rate to the whole payment, with nothing sheltered.</li>
+    </ul>
+    <p>EI is the simple one. A bonus counts as insurable earnings, so 1.63% comes off — but only up to $68,900 of earnings for the year. Past that ceiling nothing more is taken, which is why a November bonus often carries no EI.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Why it feels like the bonus got singled out</h2>
+    <p>What you're reacting to is the distance between your <em>average</em> rate and your <em>marginal</em> one. Salary is taxed in layers — the first slice at 14% federally, the next at 20.5%, with personal credits pulling the result down. A bonus gets none of those lower layers. It stacks on income already taxed, so every dollar is charged at the highest rate you've reached. A salary that gives up 23% to deductions can hand a bonus over at 35%, and both numbers are right.</p>
+    <p>Withholding can overshoot on top of that. The method itself is sound, but a payroll system that folds the bonus into one period's regular pay and annualizes the total projects a salary you don't earn: $10,000 in a single biweekly cheque reads as $260,000 of extra income once multiplied by 26. Tax comes off at that imaginary bracket. Nothing is lost — the return you file settles the real figure.</p>
+    <p>One thing is definitely not happening: the flat lump-sum withholding rates. Those cover RRSP withdrawals, retiring allowances, and payments out of an RPP, DPSP or RRIF. A bonus isn't on that list, so anyone quoting a flat 30% is citing a rule that doesn't reach it.</p>
+  </section>
+
+  <section class="answer">
+    <h2>Worked example: a $10,000 bonus on a $70,000 Ontario salary</h2>
+    <p>Run the subtraction the way payroll does. Income tax on $70,000 of Ontario employment income is $11,134; on $80,000 it's $14,128. The gap — $2,994 — is what the bonus is responsible for. CPP and EI then settle against their own ceilings:</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Taken from the bonus</th><th>Amount</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Federal tax</td><td>$1,964</td><td>Sits in the 20.5% bracket ($58,523–$117,045)</td></tr>
+          <tr><td>Ontario tax</td><td>$880</td><td>Sits in the 9.15% bracket ($53,891–$107,785)</td></tr>
+          <tr><td>Ontario Health Premium</td><td>$150</td><td>Crossing $72,000 steps the premium from $600 to $750</td></tr>
+          <tr><td>CPP</td><td>$490</td><td>CPP1 tops out mid-bonus at $74,600, then CPP2 takes 4%</td></tr>
+          <tr><td>EI</td><td>$0</td><td>The salary already passed the $68,900 ceiling</td></tr>
+          <tr><td><strong>Left in your pocket</strong></td><td><strong>$6,516</strong></td><td>34.8% withheld, 65.2% kept</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The salary on its own gives up 23.2% of gross to income tax, CPP and EI. The bonus gives up 34.8%. Same person, same year, same rules — the bonus has no low brackets left to sit in, and it clips the health premium band past $72,000.</p>
+    <p>Timing shifts which cheque carries the deduction, not the annual total. Pay the same bonus in February and CPP comes off it in full, then stops earlier on the salary later in the year.</p>
   </section>
 
   <section class="faq">
@@ -111,6 +154,15 @@
     </details>
     <details><summary>How do I calculate the take-home on a bonus?</summary>
       <p>Work out your tax with and without the bonus; the difference is the cost. This calculator does that — enter base salary and bonus, and it shows the income tax, CPP and EI on the bonus and what you keep.</p>
+    </details>
+    <details><summary>Is a bonus taxed at a flat 30% in Canada?</summary>
+      <p>No. The flat lump-sum withholding rates apply to RRSP withdrawals, retiring allowances and payments out of an RPP, DPSP or RRIF. A bonus is employment income and goes through the CRA bonus method, which uses your own brackets.</p>
+    </details>
+    <details><summary>Do CPP and EI come off a bonus?</summary>
+      <p>Both. CPP is deducted at 5.95%, and when the bonus is paid on a separate cheque the $3,500 basic exemption isn't applied to it, so the rate hits the whole amount. EI is deducted at 1.63% until your earnings for the year reach $68,900.</p>
+    </details>
+    <details><summary>Can I put my bonus into an RRSP to reduce the tax?</summary>
+      <p>If your employer transfers the bonus straight into your RRSP, CRA's formula lets payroll subtract that contribution before working out the tax, so less is withheld at source instead of coming back as a refund. CPP and EI still apply to the full amount, and you need the room.</p>
     </details>
   </section>
 
