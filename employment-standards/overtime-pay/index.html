@@ -23,10 +23,12 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"When does overtime start in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Under the Ontario Employment Standards Act, overtime for most employees begins after 44 hours in a work week — not 40. Hours worked beyond 44 in the week must be paid at the overtime rate. Overtime is calculated weekly, not daily: working more than a set number of hours in a single day does not by itself trigger overtime unless a contract or collective agreement says so."}},
+{"@type":"Question","name":"When does overtime start in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Once a work week passes 44 hours, for most employees — not 40. It's weekly, not daily: a long single day doesn't trigger overtime on its own unless your contract says so."}},
 {"@type":"Question","name":"How much is overtime pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Overtime pay is 1½ times your regular rate of pay — 'time and a half.' If your regular rate is $25 an hour, your overtime rate is $37.50 for each hour worked over 44 in the week. An employee who works 50 hours at $25 gets 44 hours at $25 plus 6 hours at $37.50, for $1,100 plus $225 = $1,325 that week."}},
 {"@type":"Question","name":"Do salaried employees get overtime in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Often yes. Being paid a salary does not on its own remove the right to overtime — the exemption depends on the kind of work, not how you're paid. For a salaried employee entitled to overtime, the regular rate is worked out from the salary and the hours it's meant to cover, then hours over 44 in the week are paid at 1½ times that rate."}},
-{"@type":"Question","name":"Who is exempt from overtime pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Managers and supervisors are not entitled to overtime for managerial or supervisory work, and a number of occupations are either exempt from overtime or have a threshold higher than 44 hours — for example certain IT professionals, some sales roles and specific regulated professions. Averaging agreements can also change how overtime is counted. This calculator uses the standard 44-hour, time-and-a-half rule; check Ontario's special rule tool for your occupation."}}]}
+{"@type":"Question","name":"Who is exempt from overtime pay in Ontario?","acceptedAnswer":{"@type":"Answer","text":"Managers and supervisors are not entitled to overtime for managerial or supervisory work, and a number of occupations are either exempt from overtime or have a threshold higher than 44 hours — for example certain IT professionals, some sales roles and specific regulated professions. Averaging agreements can also change how overtime is counted. This calculator uses the standard 44-hour, time-and-a-half rule; check Ontario's special rule tool for your occupation."}},
+{"@type":"Question","name":"Is overtime calculated per pay period or per week?","acceptedAnswer":{"@type":"Answer","text":"Per work week — a fixed run of seven days — never per pay period. Fifty hours one week and thirty-eight the next is six hours of overtime on a biweekly cheque, even though the two weeks average 44. Only a written averaging agreement, for a set period of two to four weeks, changes that."}},
+{"@type":"Question","name":"Can my employer give me time off instead of overtime pay?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you agree in writing or electronically. Each overtime hour becomes one and a half hours of paid time off at your regular rate, to be taken within three months of the week it was earned, or within twelve months if you've agreed to that too. If your job ends before you take it, the banked hours are paid out as overtime pay."}}]}
 </script>
 </head>
 <body>
@@ -55,7 +57,7 @@
 <main class="wrap">
   <div class="page-head">
     <h1>Ontario Overtime Pay Calculator (2026)</h1>
-    <p class="lead">Under Ontario's Employment Standards Act, overtime kicks in after <strong>44 hours</strong> in a work week — not 40 — and pays <strong>time and a half</strong>. Enter your regular rate and the hours you worked to split out regular, overtime and total pay for the week.</p>
+    <p class="lead">Under Ontario's Employment Standards Act, overtime starts once a work week passes <strong>44 hours</strong> — not 40 — and pays <strong>time and a half</strong>. Enter your regular rate and the hours you worked to split out regular, overtime and total pay for the week.</p>
   </div>
 
   <div class="notice" role="note">
@@ -85,28 +87,44 @@
   </section>
 
   <section class="answer">
-    <h2>How Ontario overtime is calculated</h2>
-    <p>Ontario's rule is a <strong>weekly</strong> one: for most employees, every hour worked over <strong>44 in a work week</strong> is paid at <strong>1½ times the regular rate</strong>. At $25 an hour the overtime rate is $37.50, so a 50-hour week is 44 hours at $25 ($1,100) plus 6 hours at $37.50 ($225) — $1,325 in total. The first 44 hours are always paid at the regular rate; only the excess is boosted. That $1,325 is gross: <a href="/payroll/take-home-pay/">what reaches your account</a> is lower once tax, CPP and EI come off.</p>
-    <p>Crucially, it's <strong>not 40 hours</strong> — the federal figure and many other provinces use 40, but Ontario's ESA threshold is 44, which is the single most common mistake people make with Ontario overtime. And there's <strong>no daily overtime</strong> under the ESA: working a 13-hour day doesn't earn overtime on its own; what matters is the weekly total, unless your contract or an averaging agreement says otherwise.</p>
-  </section>
+    <h2>The pay period isn't the week</h2>
+    <p>Fifty hours one week, thirty-eight the next. On a biweekly cheque that's 88 hours, an average of 44, and a stub that shows no overtime — and it's wrong. The Act counts by the work week, a fixed run of seven days, never by the pay period. The 50-hour week carries six hours over the line, and at $25 an hour those six are paid at $37.50: $1,325 for that week, then $950 for the short one, $2,275 across the cheque instead of $2,200. The $75 is the extra half on six hours, and the light week that follows doesn't cancel it.</p>
+    <p>That is the whole mechanism: everything over 44 in the week at one and a half times the regular rate, everything up to 44 at the regular rate. The ESA guide's own example is a 53-hour week at $25 — $1,100 plus 9 hours at $37.50, $1,437.50 — and the calculator reproduces it. What's left is what counts as an hour, what counts as the rate, and whether the extra has to arrive as money.</p>
 
-  <section class="answer">
-    <h2>Salary, and who's exempt</h2>
-    <p>Being paid a salary doesn't automatically cancel overtime. Whether you're entitled turns on the <em>kind of work</em> you do, not how you're paid — a salaried employee doing non-exempt work still earns overtime, calculated from the regular rate their salary implies.</p>
-    <p>Several groups fall outside the standard rule, and this calculator doesn't try to model them:</p>
-    <ul class="conditions">
-      <li><strong>Managers and supervisors</strong> don't get overtime for managerial or supervisory work (only-occasional other tasks don't change that).</li>
-      <li><strong>Certain occupations</strong> are exempt or have a threshold above 44 hours — some IT professionals, specific sales roles, and various regulated professions.</li>
-      <li><strong>Averaging agreements</strong> can spread hours over up to four weeks, changing how overtime is counted.</li>
-      <li>The <strong>"50% rule"</strong> applies when someone does two kinds of work, one covered and one exempt.</li>
-    </ul>
-    <p>If any of these might apply to you, Ontario's Employment Standards Self-Service and special rule tools are the place to confirm. This calculator uses the standard 44-hour, time-and-a-half rule that covers most hourly employees.</p>
+    <h2>What counts as an hour</h2>
+    <p>Hours actually worked, and only those. A public holiday you didn't work is paid as public holiday pay but contributes nothing to the 44: in the guide's example, 45 hours worked across the other five days is one hour of overtime, with the $160 of holiday pay added separately. If you did work the holiday for premium pay, those hours are taken out before the count — nine premium hours in a 54-hour week leave 45, so again one hour of overtime, not ten. Vacation days and sick days are not hours worked either. A week with a day off in it needs 44 real hours before the rate changes.</p>
+    <p>The Act's other limits — 8 hours a day, or your regular day if longer, and 48 a week without a written agreement — are about what you can be required to work, not about pay. Agreeing to a 55-hour week doesn't move the overtime line.</p>
+
+    <h2>What counts as the rate</h2>
+    <p>For an hourly employee, the rate on the stub. For a salaried one it depends on what the salary is for. A <em>fixed</em> salary — the same amount however the hours fall — is treated as covering every non-overtime hour up to 44, so the regular rate is the weekly salary divided by 44. A salary that is <em>adjusted</em> when the hours change is an hourly wage in disguise, and the rate is the salary divided by the hours it was set for.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>50 hours, paid as</th><th>Regular rate</th><th>Overtime rate</th><th>Week's pay</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$25 an hour</td><td>$25.00</td><td>$37.50</td><td>$1,325</td></tr>
+          <tr><td>$1,000 fixed salary</td><td>$22.73 ($1,000 ÷ 44)</td><td>$34.10</td><td>$1,205</td></tr>
+          <tr><td>$1,000 for 40 hours, adjusted</td><td>$25.00 ($1,000 ÷ 40)</td><td>$37.50</td><td>$1,325</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Same $1,000, same 50 hours, $120 apart, because the adjusted salary earns the regular rate on hours 41 to 44 and the fixed salary has already paid for them. Enter the derived rate above and the calculator does the rest. Whatever the figure, it is gross: <a href="/payroll/take-home-pay/">what reaches your account</a> comes after tax, CPP and EI, and the overtime portion also earns <a href="/employment-standards/vacation-pay/">vacation pay</a>, since it is wages.</p>
+
+    <h2>Time instead of money</h2>
+    <p>Overtime doesn't have to be paid out. If you and your employer agree in writing or electronically, each overtime hour can be banked as one and a half hours of paid time off at the regular rate — six hours over 44 becomes nine hours off, to be taken within three months of the week it was earned, or twelve if you've agreed to that as well. If the job ends first, the bank converts back to overtime pay, due within seven days or on the next pay day, whichever is later. The agreement changes the form, not the amount.</p>
+
+    <h2>Averaging, and why 44 becomes 176</h2>
+    <p>The one arrangement that genuinely moves the line is an averaging agreement: in writing, for a set period of two to four weeks, with overtime owed only on hours above 44 times the number of weeks — 176 in four. Under one of these, the 50-and-38 fortnight at the top of the page really does produce no overtime. The periods run back to back, the agreement needs an expiry date no more than two years out for non-union employees, and neither side can drop it early without the other's written agreement. The calculator assumes there isn't one.</p>
+
+    <h2>Who the 44 doesn't reach</h2>
+    <p>Managers and supervisors, for the managerial part of their work; occupations with their own threshold or none, some information technology professionals among them; and anyone splitting a week between covered and exempt work, where the "50% rule" decides which side it falls on. None of that is modelled here — Ontario's special-rule tool is the place to check a specific job. For most hourly employees, the arithmetic above is the entitlement.</p>
   </section>
 
   <section class="faq">
     <h2>Common questions</h2>
     <details><summary>When does overtime start in Ontario?</summary>
-      <p>After 44 hours in a work week for most employees — not 40. It's weekly, not daily: a long single day doesn't trigger overtime on its own unless your contract says so.</p>
+      <p>Once a work week passes 44 hours, for most employees — not 40. It's weekly, not daily: a long single day doesn't trigger overtime on its own unless your contract says so.</p>
     </details>
     <details><summary>How much is overtime pay in Ontario?</summary>
       <p>1½ times your regular rate. At $25/hr the overtime rate is $37.50. A 50-hour week is 44 × $25 + 6 × $37.50 = $1,100 + $225 = $1,325.</p>
@@ -116,6 +134,12 @@
     </details>
     <details><summary>Who is exempt from overtime?</summary>
       <p>Managers and supervisors (for managerial work), and various occupations with an exemption or a higher threshold. Averaging agreements can also change the count. Check Ontario's special rule tool for your job.</p>
+    </details>
+    <details><summary>Is overtime calculated per pay period or per week?</summary>
+      <p>Per work week — a fixed run of seven days — never per pay period. Fifty hours one week and thirty-eight the next is six hours of overtime on a biweekly cheque, even though the two weeks average 44. Only a written averaging agreement, for a set period of two to four weeks, changes that.</p>
+    </details>
+    <details><summary>Can my employer give me time off instead of overtime pay?</summary>
+      <p>Yes, if you agree in writing or electronically. Each overtime hour becomes one and a half hours of paid time off at your regular rate, to be taken within three months of the week it was earned, or within twelve months if you've agreed to that too. If your job ends before you take it, the banked hours are paid out as overtime pay.</p>
     </details>
   </section>
 
