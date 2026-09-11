@@ -23,9 +23,11 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Why do I keep less than half of my pay raise?","acceptedAnswer":{"@type":"Answer","text":"A raise sits on top of the income you already earn, so every dollar is taxed at your marginal rate — your highest bracket, not your average. Add CPP and EI on top until you hit their annual caps, and in Ontario the surtax, and it's normal to keep 60–70% of a raise. You never keep less than half unless the raise pushes you into the top combined brackets."}},
+{"@type":"Question","name":"Why do I keep less than half of my pay raise?","acceptedAnswer":{"@type":"Answer","text":"Because a raise is charged at the rate your salary finished on, not the average rate across the whole salary. Add CPP and EI until each hits its annual ceiling, and in Ontario the surtax, and keeping 60–70% of a raise is normal. You only dip below half in the top combined brackets."}},
 {"@type":"Question","name":"How much of a $5,000 raise do I actually take home?","acceptedAnswer":{"@type":"Answer","text":"It depends on your current salary and province. On a mid-range Ontario salary, a $5,000 raise typically nets roughly $3,200–$3,400 after tax, CPP and EI — around 65% of the gross. Enter your before and after salary above for your own figure."}},
-{"@type":"Question","name":"Does a raise ever leave me with less money?","acceptedAnswer":{"@type":"Answer","text":"No. Canada's tax system is marginal, so a higher bracket only applies to the income above the threshold, never to your whole salary. A raise always increases your take-home pay — just by less than the gross amount, because the top slice is taxed at your marginal rate."}}]}
+{"@type":"Question","name":"Does a raise ever leave me with less money?","acceptedAnswer":{"@type":"Answer","text":"No. Canada's tax system is marginal, so a higher bracket only applies to the income above the threshold, never to your whole salary. A raise always increases your take-home pay — just by less than the gross amount, because the top slice is taxed at your marginal rate."}},
+{"@type":"Question","name":"Do I keep more of a raise once I'm past the CPP and EI maximums?","acceptedAnswer":{"@type":"Answer","text":"Yes. EI stops at $68,900 of insurable earnings and CPP at 5.95% stops at $74,600, with the 4% second tier running to $85,000. Above that a raise faces income tax only, so a $6,000 raise from $85,000 keeps about 70% in Ontario against 64% from $60,000. The surtax and the 26% federal bracket pull it back down past $100,000."}},
+{"@type":"Question","name":"Do I need to fill out a new TD1 after a raise?","acceptedAnswer":{"@type":"Answer","text":"No. A TD1 records your personal tax credits, not your income, and the CRA only asks for a new one within 7 days of a change to your situation that could be expected to change those credits. A raise changes your pay, so payroll re-annualises it from the next cheque and withholds at the new rate without any form from you."}}]}
 </script>
 </head>
 <body>
@@ -98,21 +100,59 @@
   </section>
 
   <section class="answer">
-    <h2>How much of a raise you keep</h2>
-    <p>The whole raise is taxed at your marginal rate — the bracket your income has already climbed into — so you keep less of it than of your base salary. On most mid-range Ontario salaries that works out to keeping roughly two-thirds of the gross raise once federal tax, provincial tax, CPP and EI are taken out. A <a href="/tax-on-extra-income/bonus/">one-off bonus follows the same marginal logic</a>, though payroll withholds it by a separate lump-sum method.</p>
-    <p>It never leaves you worse off. Canada taxes each bracket only on the income inside it, so crossing into a higher bracket never reaches back and taxes your whole salary. The calculator shows the gross raise, the net raise, and the share you actually keep.</p>
+    <h2>The percentage on the letter and the percentage on the cheque</h2>
+    <p>A raise from $60,000 to $66,000 in Ontario is 10% on paper and 8.2% in your account. Take-home goes from $47,340 to $51,199 — $3,859 of the $6,000, or about $148 more on each biweekly cheque. The $2,141 that didn't arrive is four separate charges: $1,162 of federal tax, $524 of Ontario tax, $357 of CPP and $98 of EI.</p>
+    <p>Nothing on that list is priced differently because it came from a raise. The salary underneath already used the basic personal amount and the 14% federal bracket, so the raise inherits whatever rate the salary finished on. That is the whole reason the share you keep moves so much from one person to the next: it is set by where the top of your income sits, and by which payroll charges have already hit their ceiling.</p>
+
+    <h2>The same $6,000 raise at nine different salaries</h2>
+    <p>Every row below is Ontario, 2026, a $6,000 raise, run through the calculator above.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Starting salary</th><th>Net raise</th><th>You keep</th><th>What's in play</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$40,000</td><td>$4,489</td><td>75%</td><td>Lowest brackets; CPP and EI both running</td></tr>
+          <tr><td>$50,000</td><td>$4,424</td><td>74%</td><td>Same, nearing the $53,891 Ontario line</td></tr>
+          <tr><td>$60,000</td><td>$3,859</td><td>64%</td><td>20.5% federal and 9.15% Ontario now apply</td></tr>
+          <tr><td>$70,000</td><td>$3,815</td><td>64%</td><td>EI done at $68,900; CPP1 ends at $74,600</td></tr>
+          <tr><td>$78,000</td><td>$4,052</td><td>68%</td><td>Only CPP2 at 4% still coming off</td></tr>
+          <tr><td>$85,000</td><td>$4,221</td><td>70%</td><td>CPP2 ends at $85,000; income tax alone</td></tr>
+          <tr><td>$110,000</td><td>$3,928</td><td>65%</td><td>11.16% Ontario; 20% surtax has arrived</td></tr>
+          <tr><td>$160,000</td><td>$3,302</td><td>55%</td><td>26% federal; both surtax layers</td></tr>
+          <tr><td>$200,000</td><td>$2,954</td><td>49%</td><td>29% federal; health premium steps again</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Read down the third column and it isn't a slope. It drops from 74% to 64% between $50,000 and $60,000, where the second federal bracket and the second Ontario bracket both start. Then it climbs back to 70% by $85,000, which surprises people. What's happening is that the payroll charges fall away one at a time: EI stops at $68,900 of insurable earnings, CPP at 5.95% stops at $74,600, and the 4% second tier of CPP stops at $85,000. From there to a little under $100,000 a raise faces income tax and nothing else, and 70 cents on the dollar is the best rate on the table above $50,000.</p>
+    <p>The second drop is the Ontario surtax, which is charged on your Ontario tax rather than your income — 20% of basic Ontario tax over $5,818, and 36% on top of that over $7,446. In salary terms the first layer starts just under $100,000 and the second just under $117,000, which is also where the 26% federal bracket begins. A $6,000 raise from $117,045 keeps 58%.</p>
+    <p>The Ontario Health Premium is the one charge that steps rather than slopes. It sits at $600 until taxable income passes $72,000, then takes 25 cents of every dollar until it reaches $750, and stays there until $200,000, where the same thing happens again on the way to $900. That is why the $70,000 row and the $200,000 row each give up $150 of premium, and the rows between them give up none.</p>
+
+    <h2>Same raise, other provinces</h2>
+    <p>$60,000 to $66,000 keeps 64% in Ontario, 64% in Alberta, 66% in British Columbia and 57% in Quebec. Quebec's gap is three things stacking: QPP at 6.3% takes $378 where CPP takes $357, QPIP adds $26 and the reduced 1.30% federal EI adds $78, and Quebec's own tax takes $1,129 of the raise against Ontario's $524. The federal share is smaller there — $967 after the Quebec abatement — but not by enough to close the difference.</p>
+
+    <h2>The year of the raise is shorter than the calculator's</h2>
+    <p>The figures above compare two full years at two salaries. A raise that takes effect on 1 July puts half of that in the current year, and payroll does nothing to catch you up — from the first affected cheque it annualises the new pay and withholds at the new rate, and the earlier cheques stay as they were. If the raise is backdated and the difference is paid out as one amount, that amount is a non-periodic payment, and <a href="/tax-on-extra-income/bonus/">payroll withholds it the way it withholds a bonus</a>.</p>
+    <p>You don't owe anyone a form. A TD1 records your personal tax credits, and the CRA asks for a new one only within 7 days of a change to your situation that could be expected to change those credits. A raise changes your income, not your credits, so the adjustment happens in the payroll system on its own.</p>
+    <p>One last thing to hold the raise against: the brackets move too. The federal amounts are indexed by 2.0% for 2026 and Ontario's by 1.9%. A 2% raise — $60,000 to $61,200 — nets $772, keeps the same 64% as the larger raise from the same salary, and roughly holds your place against the brackets rather than moving you up them.</p>
   </section>
 
   <section class="faq">
     <h2>Common questions</h2>
     <details><summary>Why do I keep less than half of my pay raise?</summary>
-      <p>A raise sits on top of the income you already earn, so every dollar is taxed at your marginal rate. Add CPP and EI until you hit their annual caps, and in Ontario the surtax, and keeping 60–70% of a raise is normal. You only dip below half in the top combined brackets.</p>
+      <p>Because a raise is charged at the rate your salary finished on, not the average rate across the whole salary. Add CPP and EI until each hits its annual ceiling, and in Ontario the surtax, and keeping 60–70% of a raise is normal. You only dip below half in the top combined brackets.</p>
     </details>
     <details><summary>How much of a $5,000 raise do I actually take home?</summary>
       <p>It depends on your salary and province. On a mid-range Ontario salary a $5,000 raise typically nets about $3,200–$3,400 — around 65% of the gross. Enter your before and after figures above for your own number.</p>
     </details>
     <details><summary>Does a raise ever leave me with less money?</summary>
       <p>No. The system is marginal, so a higher bracket only applies to income above the threshold, never your whole salary. A raise always increases take-home pay — just by less than the gross.</p>
+    </details>
+    <details><summary>Do I keep more of a raise once I'm past the CPP and EI maximums?</summary>
+      <p>Yes. EI stops at $68,900 of insurable earnings and CPP at 5.95% stops at $74,600, with the 4% second tier running to $85,000. Above that a raise faces income tax only, so a $6,000 raise from $85,000 keeps about 70% in Ontario against 64% from $60,000. The surtax and the 26% federal bracket pull it back down past $100,000.</p>
+    </details>
+    <details><summary>Do I need to fill out a new TD1 after a raise?</summary>
+      <p>No. A TD1 records your personal tax credits, not your income, and the CRA only asks for a new one within 7 days of a change to your situation that could be expected to change those credits. A raise changes your pay, so payroll re-annualises it from the next cheque and withholds at the new rate without any form from you.</p>
     </details>
   </section>
 
