@@ -26,7 +26,9 @@
 {"@type":"Question","name":"What is the Ontario surtax and when does it apply in 2026?","acceptedAnswer":{"@type":"Answer","text":"Ontario adds a surtax on top of your basic Ontario tax — not on your income. In 2026 you pay 20% on the portion of basic Ontario tax above $5,818, and another 36% on the portion above $7,446. Because it stacks on the tax rather than the income, it only starts biting around the low-six-figure salary range. This calculator applies both thresholds automatically."}},
 {"@type":"Question","name":"How do I work out my take-home pay per biweekly paycheque?","acceptedAnswer":{"@type":"Answer","text":"Take your annual net pay and divide by 26 to get the biweekly figure, or by 52 for weekly. On a biweekly schedule a $1,680 net paycheque works out to roughly $43,680 net per year before rounding. Set the pay frequency in the calculator and it shows the per-paycheque number for you."}},
 {"@type":"Question","name":"What gets deducted from my net pay in 2026?","acceptedAnswer":{"@type":"Answer","text":"Four things come off an employment paycheque: federal income tax, provincial income tax, CPP (5.95% up to $74,600 in pensionable earnings, plus CPP2 on earnings to $85,000), and EI (1.63% up to $68,900 of insurable earnings). In Ontario you may also owe the surtax and the Ontario Health Premium. This tool breaks out each line so you can see where the money goes."}},
-{"@type":"Question","name":"Does this calculate take-home pay on pension income?","acceptedAnswer":{"@type":"Answer","text":"Not exactly. This tool models employment income, where CPP and EI are withheld. Pension income (like CPP retirement or a workplace pension) isn't subject to CPP or EI, so its take-home is higher for the same gross. Use this for salary and wages; treat it as an upper-bound estimate for pension income."}}]}
+{"@type":"Question","name":"Does this calculate take-home pay on pension income?","acceptedAnswer":{"@type":"Answer","text":"Not exactly. This tool models employment income, where CPP and EI are withheld. Pension income (like CPP retirement or a workplace pension) isn't subject to CPP or EI, so its take-home is higher for the same gross. Use this for salary and wages; treat it as an upper-bound estimate for pension income."}},
+{"@type":"Question","name":"Why did my paycheque go up in the fall without a raise?","acceptedAnswer":{"@type":"Answer","text":"Because CPP or EI stopped. EI is deducted on the first $68,900 of earnings and CPP on the first $74,600, then CPP2 at 4% on the slice up to $85,000; once your year-to-date pay passes each ceiling, that deduction ends until January. On $100,000 that happens in early September, late September and early November, and each one arrives as a bigger deposit."}},
+{"@type":"Question","name":"Is take-home pay different if I'm paid semi-monthly instead of biweekly?","acceptedAnswer":{"@type":"Answer","text":"The annual figure is identical; only the slice changes. $50,556 net on $65,000 in Ontario is $1,944 biweekly over 26 cheques, $2,106 semi-monthly over 24, $4,213 monthly or $972 weekly. Two months a year a biweekly schedule pays three cheques, which is where the two feel different."}}]}
 </script>
 </head>
 <body>
@@ -106,9 +108,42 @@
 
   <!-- 2. Plain-language answer block -->
   <section class="answer">
-    <h2>What your take-home pay actually is</h2>
-    <p>Your take-home pay is your gross salary minus federal tax, provincial tax, CPP and EI. On a $65,000 Ontario salary in 2026, that lands a little over $50,000 net — roughly 22–24% comes off before it reaches you. The exact bite depends on your province and how far your income climbs into the higher brackets. That is the arithmetic for regular salary; a <a href="/tax-on-extra-income/bonus/">bonus or other one-off payment</a> is withheld on a different basis and lands differently on the same paycheque.</p>
-    <p>Two Ontario-specific line items catch people out. The <strong>surtax</strong> adds 20% and then 36% on top of your basic Ontario tax once it passes $5,818 and $7,446, and the <strong>Ontario Health Premium</strong> adds up to $600 once your income clears $20,000. Both are built into the number above, so what you see is closer to your real paycheque than a plain bracket calculator.</p>
+    <h2>$1,944 every second Friday</h2>
+    <p>On $65,000 in Ontario the calculator lands on $1,944.45 a cheque, 26 times a year, out of $2,500 of gross. Each one gives up $242.58 to federal tax, $131.48 to Ontario ($23.08 of it the health premium), $140.74 to CPP and $40.75 to EI. Over the year that is $50,556 of the $65,000 — 78 cents on the dollar, with 22 gone before the deposit.</p>
+    <p>Those per-cheque figures are the annual amounts divided by 26, which is also how the pay-frequency selector works. On a steady salary, payroll's period-by-period arithmetic comes out within a few dollars of the same split. The one place it doesn't is the reason for the next section.</p>
+
+    <h2>Why a cheque grows in the autumn</h2>
+    <p>At $65,000 every deduction runs all year, because CPP is charged on earnings up to $74,600 and EI up to $68,900 and neither ceiling is reached. Above those salaries the stub changes mid-year. On $100,000, the EI ceiling arrives in early September, CPP's at the end of September, and the $85,000 ceiling on CPP2, the 4% upper tier, in early November. Each one is a deduction that simply stops, and each shows up as a larger deposit that nobody announced.</p>
+    <p>The calculator doesn't stage that. It shows $4,646 of CPP and $1,123 of EI for the year and spreads them across 26 cheques, $222 apiece. Payroll takes the full 5.95% and 1.63% until the ceilings are hit and then nothing, so the real cheques run smaller than the average until autumn and larger after it, and reset in January. The annual figure is right either way; the per-cheque one is a mean. A <a href="/tax-on-extra-income/bonus/">bonus paid on its own cheque</a> is a different case again, with its own withholding rule.</p>
+
+    <h2>$65,000 in all thirteen jurisdictions</h2>
+    <p>Federal tax, CPP and EI are the same in twelve of the thirteen, so what separates the rows below is provincial or territorial tax alone — from $1,882 in Nunavut to $6,348 in Nova Scotia.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Jurisdiction</th><th>Net pay</th><th>Per biweekly cheque</th><th>Kept</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nunavut</td><td>$52,092</td><td>$2,004</td><td>80%</td></tr>
+          <tr><td>British Columbia</td><td>$51,223</td><td>$1,970</td><td>79%</td></tr>
+          <tr><td>Northwest Territories</td><td>$51,184</td><td>$1,969</td><td>79%</td></tr>
+          <tr><td>Yukon</td><td>$51,113</td><td>$1,966</td><td>79%</td></tr>
+          <tr><td>Alberta</td><td>$50,910</td><td>$1,958</td><td>78%</td></tr>
+          <tr class="highlight"><td>Ontario</td><td>$50,556</td><td>$1,944</td><td>78%</td></tr>
+          <tr><td>Saskatchewan</td><td>$49,588</td><td>$1,907</td><td>76%</td></tr>
+          <tr><td>New Brunswick</td><td>$49,038</td><td>$1,886</td><td>75%</td></tr>
+          <tr><td>Manitoba</td><td>$48,829</td><td>$1,878</td><td>75%</td></tr>
+          <tr><td>Newfoundland and Labrador</td><td>$48,726</td><td>$1,874</td><td>75%</td></tr>
+          <tr><td>Prince Edward Island</td><td>$48,463</td><td>$1,864</td><td>75%</td></tr>
+          <tr><td>Quebec</td><td>$48,180</td><td>$1,853</td><td>74%</td></tr>
+          <tr><td>Nova Scotia</td><td>$47,626</td><td>$1,832</td><td>73%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Ontario's row is two charges, not one: $2,819 of basic Ontario tax and the $600 Ontario Health Premium, which is what puts it below Alberta. The surtax is not in that figure and won't be at this salary — it's charged once basic Ontario tax passes $5,818, and $65,000 of salary produces less than half that. Quebec's row is the one built differently: QPP at $3,875 instead of $3,659 of CPP, $280 of QPIP on top, EI at the reduced rate ($845), Quebec's own tax at $6,587, and federal tax cut to $5,234 by the abatement.</p>
+
+    <h2>What the stub carries that this doesn't</h2>
+    <p>The number above assumes a TD1 with nothing on it but the basic personal amount, and nothing between gross and net except tax, CPP and EI. Whatever you've added to the TD1 — a spouse, the disability amount, tuition — lowers the tax withheld and raises the deposit. Working the other way: union dues, group benefit premiums and a pension or group RRSP contribution all come off the cheque before it reaches you, though the pension and RRSP contributions also reduce the tax taken. Employer-paid life insurance or parking is a taxable benefit, which adds tax without adding cash. None of those are in the figure, so treat it as the ceiling on a clean stub rather than a prediction of yours.</p>
   </section>
 
   <!-- 5. FAQ (mirrors JSON-LD) -->
@@ -125,6 +160,12 @@
     </details>
     <details><summary>Does this calculate take-home pay on pension income?</summary>
       <p>Not exactly. This models employment income, where CPP and EI are withheld. Pension income isn't subject to CPP or EI, so its take-home is higher for the same gross. Use this for salary and wages, and treat it as an upper bound for pension income.</p>
+    </details>
+    <details><summary>Why did my paycheque go up in the fall without a raise?</summary>
+      <p>Because CPP or EI stopped. EI is deducted on the first $68,900 of earnings and CPP on the first $74,600, then CPP2 at 4% on the slice up to $85,000; once your year-to-date pay passes each ceiling, that deduction ends until January. On $100,000 that happens in early September, late September and early November, and each one arrives as a bigger deposit.</p>
+    </details>
+    <details><summary>Is take-home pay different if I'm paid semi-monthly instead of biweekly?</summary>
+      <p>The annual figure is identical; only the slice changes. $50,556 net on $65,000 in Ontario is $1,944 biweekly over 26 cheques, $2,106 semi-monthly over 24, $4,213 monthly or $972 weekly. Two months a year a biweekly schedule pays three cheques, which is where the two feel different.</p>
     </details>
   </section>
 
