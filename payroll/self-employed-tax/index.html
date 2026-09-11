@@ -23,10 +23,12 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How much tax will I pay on $40,000 self-employed?","acceptedAnswer":{"@type":"Answer","text":"On $40,000 of net self-employment income in Ontario for 2026, expect roughly $4,300 in income tax plus about $4,300 in CPP — self-employed people pay both the employee and employer halves of CPP, so the CPP bill is double an employee's. That leaves you setting aside somewhere near a quarter of the income. Enter your own figure above for a precise breakdown."}},
+{"@type":"Question","name":"How much tax will I pay on $40,000 self-employed?","acceptedAnswer":{"@type":"Answer","text":"On $40,000 of net self-employment income in Ontario for 2026, expect about $4,011 of income tax and $4,344 of CPP — the CPP is double an employee's because you pay both halves. That's $8,354 in all, a little over a fifth of the income. Enter your own figure above for the exact split."}},
 {"@type":"Question","name":"Why is CPP double when you're self-employed?","acceptedAnswer":{"@type":"Answer","text":"An employee pays 5.95% CPP and their employer matches it. When you work for yourself you are both, so you pay the full 11.9% on pensionable earnings between $3,500 and $74,600, plus CPP2 above that. Half of what you pay is deductible from your income, which softens the hit at tax time."}},
 {"@type":"Question","name":"Do I have to charge HST when self-employed?","acceptedAnswer":{"@type":"Answer","text":"Once your revenue crosses $30,000 over four consecutive calendar quarters you must register for GST/HST and start charging it. Below $30,000 you're a small supplier and registration is optional. The calculator flags when your income reaches the threshold."}},
-{"@type":"Question","name":"Do self-employed people pay EI?","acceptedAnswer":{"@type":"Answer","text":"Not automatically — EI is not deducted from self-employment income. You can opt in to EI special benefits (like parental or sickness benefits) voluntarily through Service Canada, and then you pay the employee EI rate. Tick the opt-in box above to include it."}}]}
+{"@type":"Question","name":"Do self-employed people pay EI?","acceptedAnswer":{"@type":"Answer","text":"Not automatically — EI is not deducted from self-employment income. You can opt in to EI special benefits (like parental or sickness benefits) voluntarily through Service Canada, and then you pay the employee EI rate. Tick the opt-in box above to include it."}},
+{"@type":"Question","name":"Do I have to pay tax instalments in my first year of self-employment?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Instalments are only required once your net tax owing is more than $3,000 ($1,800 in Quebec) for the current year and for either of the two previous years, and a first year has no qualifying prior year behind it. The whole first-year bill is due April 30 instead, and instalments typically start the year after."}},
+{"@type":"Question","name":"Is the $30,000 GST/HST threshold on revenue or on profit?","acceptedAnswer":{"@type":"Answer","text":"Revenue. The test counts what you bill for taxable supplies before expenses, worldwide and including any associated business, and one quarter can trip it alone, or four consecutive quarters can trip it together. The calculator flags the threshold against the net figure you enter, so you can be over on revenue while it still shows optional."}}]}
 </script>
 </head>
 <body>
@@ -99,15 +101,47 @@
   </section>
 
   <section class="answer">
-    <h2>What self-employment really costs at tax time</h2>
-    <p>Two things make self-employed tax feel heavier than employment. First, nothing is withheld through the year, so the whole bill arrives at once — most people set aside 25–30% of net income to be safe. <a href="/key-dates-limits/tax-deadlines/">When the filing and payment dates fall</a> matters more when nothing has been withheld for you through the year. Second, CPP is doubled: you pay both the 5.95% employee share and the 5.95% employer share, up to the combined maximum, because you're both. Half of that CPP is deductible, which takes some of the sting out. Being paid on commission as an employee is a different situation entirely — <a href="/tax-on-extra-income/commission/">tax still comes off at source there</a>.</p>
-    <p>Watch the $30,000 line. Once your revenue passes $30,000 over four rolling quarters, you have to register for and charge GST/HST. Below it, registering is your choice. The calculator flags the threshold as your income crosses it.</p>
+    <h2>The same $45,000, as a salary and as invoices</h2>
+    <p>Put $45,000 through payroll in Ontario and $8,446 is gone before the deposit lands. Earn the same $45,000 as net self-employment income and nothing comes off at all, which is the problem. The bill is $9,851, it falls due in one piece, and the number above is there so you can see it in September rather than April.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Line</th><th>On salary</th><th>Self-employed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Federal tax</td><td>$3,338</td><td>$3,095</td></tr>
+          <tr><td>Ontario tax + health premium</td><td>$1,905</td><td>$1,817</td></tr>
+          <tr><td>CPP, your half</td><td>$2,469</td><td>$2,469</td></tr>
+          <tr><td>CPP, the employer's half</td><td>—</td><td>$2,469</td></tr>
+          <tr><td>EI</td><td>$734</td><td>$0</td></tr>
+          <tr class="highlight"><td>Total</td><td>$8,446</td><td>$9,851</td></tr>
+          <tr><td>Left over</td><td>$36,554</td><td>$35,149</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The gap is $1,405, not the $2,469 of extra CPP, because two things pull the other way. The employer's half of CPP is deductible, so both income-tax lines are lower on the self-employed side. And EI isn't collected from self-employment income unless you ask for it. (Commission earned on a T4 belongs on the left of this table — <a href="/tax-on-extra-income/commission/">it's withheld at source against a TD1X</a>, not billed.) What changes more than the total is the timing: the employee's $8,446 left in 26 pieces; the self-employed $9,851 is owed on one date.</p>
+
+    <h2>CPP is 11.9%, and it isn't quite what it costs</h2>
+    <p>You pay both sides — 11.9% of net self-employment income between $3,500 and $74,600, a maximum of $8,460.90. Above $74,600 the second tier takes 8% up to $85,000, another $832 at most, so the ceiling on the whole thing is $9,292.90 and you reach it at $85,000 of net income. At $100,000 the calculator shows $9,293 of CPP against $18,835 of income tax.</p>
+    <p>Schedule 8 then hands part of it back. The half an employer would have paid is deducted from your income before tax is worked out, and so is the enhanced portion of your own half; the base portion of your own half is a credit at the lowest rate, the same treatment an employee gets. On $45,000 that deduction is why the income-tax lines in the table run $331 lower than the salaried version, even after losing the EI credit and the Canada employment amount.</p>
+
+    <h2>Four dates instead of twenty-six cheques</h2>
+    <p>A self-employed return isn't due until June 15, but a balance owing is due April 30 regardless, and interest runs from May 1. That April date is the one to plan around in your first year, when nothing has been paid in advance.</p>
+    <p>After that, the CRA moves the collection forward. Once net tax owing passes $3,000 — $1,800 in Quebec — both this year and in at least one of the two years before, you're expected to pay quarterly, on 15 March, 15 June, 15 September and 15 December (the March date is a Sunday in 2026, so the next business day counts). A first year of self-employment usually has no instalments to make because the prior years don't qualify; the second spring is where the previous year's balance and the current year's first instalment can land within six weeks of each other. <a href="/key-dates-limits/tax-deadlines/">The full set of 2026 dates is here</a>.</p>
+
+    <h2>The $30,000 line is drawn on revenue, not on this number</h2>
+    <p>The small-supplier test is on what you bill for taxable supplies, before expenses, worldwide, and counting any associated business — not on net income. It trips two ways: one calendar quarter that clears $30,000 on its own, or the last four consecutive quarters clearing it together. Registration follows, and from then on GST/HST goes on your invoices.</p>
+    <p>The field above is net, so read the flag with that in mind. If you have $30,000 left after expenses you have certainly billed more than $30,000; but you can cross the line on revenue while your net figure sits under it, and the calculator won't say so. Below the threshold, registering is still open to you, and it recovers the HST on your own costs.</p>
+
+    <h2>EI is a choice, QPIP is not</h2>
+    <p>Opting in costs $1.63 per $100 of net self-employment income up to $68,900 — a maximum of $1,123.07, and $733.50 on $45,000, which is what the box above adds. It buys special benefits only: maternity, parental, sickness and caregiving, never regular benefits when the work dries up. The agreement has to be in place for 12 months before a claim, you need at least $9,254 of net self-employed earnings in 2025 to claim in 2026, and once you've drawn on it you pay premiums for as long as you're self-employed.</p>
+    <p>Quebec runs differently on all three counts. QPP is 6.3% a side, so both halves come to 12.6% and $5,229 on $45,000. QPIP is compulsory for the self-employed at 0.764% of income up to $103,000 — $344 here, $786.92 at most — because parental leave is a provincial matter there. And the federal EI opt-in is cheaper, $1.30 per $100 to a maximum of $895.70, since it only has sickness and caregiving left to cover. The Quebec total on $45,000 is $11,103, or 25%.</p>
   </section>
 
   <section class="faq">
     <h2>Common questions</h2>
     <details><summary>How much tax will I pay on $40,000 self-employed?</summary>
-      <p>On $40,000 net in Ontario for 2026, expect roughly $4,300 income tax plus about $4,300 CPP — the CPP is double an employee's because you pay both halves. Budget to set aside close to a quarter of the income. Enter your own figure above for the exact split.</p>
+      <p>On $40,000 of net self-employment income in Ontario for 2026, expect about $4,011 of income tax and $4,344 of CPP — the CPP is double an employee's because you pay both halves. That's $8,354 in all, a little over a fifth of the income. Enter your own figure above for the exact split.</p>
     </details>
     <details><summary>Why is CPP double when you're self-employed?</summary>
       <p>An employee pays 5.95% and the employer matches it. Working for yourself, you're both, so you pay the full 11.9% on pensionable earnings from $3,500 to $74,600, plus CPP2 above that. Half is deductible from income, which softens it at tax time.</p>
@@ -117,6 +151,12 @@
     </details>
     <details><summary>Do self-employed people pay EI?</summary>
       <p>Not automatically — EI isn't deducted from self-employment income. You can opt in to EI special benefits through Service Canada and pay the employee rate. Tick the opt-in box above to include it.</p>
+    </details>
+    <details><summary>Do I have to pay tax instalments in my first year of self-employment?</summary>
+      <p>Usually not. Instalments are only required once your net tax owing is more than $3,000 ($1,800 in Quebec) for the current year and for either of the two previous years, and a first year has no qualifying prior year behind it. The whole first-year bill is due April 30 instead, and instalments typically start the year after.</p>
+    </details>
+    <details><summary>Is the $30,000 GST/HST threshold on revenue or on profit?</summary>
+      <p>Revenue. The test counts what you bill for taxable supplies before expenses, worldwide and including any associated business, and one quarter can trip it alone, or four consecutive quarters can trip it together. The calculator flags the threshold against the net figure you enter, so you can be over on revenue while it still shows optional.</p>
     </details>
   </section>
 

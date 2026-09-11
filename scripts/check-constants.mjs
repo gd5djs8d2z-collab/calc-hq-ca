@@ -58,6 +58,7 @@ export const NEVER_EXEMPT = new Set([
   'bpaCreditRate', 'healthPremiumMax', 'selfEmployedMultiplier', 'bpa', 'brackets',
   'surtax', 'healthPremium', 'taxReduction', 'bpaPhaseOut', 'workerDeduction',
   'rate', 'maxContribution', 'exemption', 'ympe', 'yampe', 'maxInsurableEarnings',
+  'smallSupplierThreshold',
 ]);
 
 for (const key of NEVER_EXEMPT) {

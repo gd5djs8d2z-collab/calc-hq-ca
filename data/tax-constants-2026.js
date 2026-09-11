@@ -87,6 +87,7 @@ const SRC = {
   craFiling: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html',
   craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
   craInstalments: 'https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/income-tax-instalments/due-dates.html',
+  gstRegister: 'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/when-register-charge.html',
   gis:       'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html',
   gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
   oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
@@ -656,6 +657,18 @@ export const TAX_CONSTANTS_2026 = {
     rrspContribution:   { value: '2026-03-02', source_url: SRC.craRrspDates,   last_verified: '2026-07-16' }, // for the 2025 tax year
     instalments:        { value: ['2026-03-16', '2026-06-15', '2026-09-15', '2026-12-15'],
                           source_url: SRC.craInstalments, last_verified: '2026-07-16' },
+  },
+
+  /* ── GST/HST REGISTRATION — the small-supplier threshold ─────────────────────── */
+  // Set by the Excise Tax Act (s. 148), not indexed: the same $30,000 since 1991, so it is
+  // statutory-cadence and never goes stale on a calendar. CRA's test is on REVENUE from
+  // taxable supplies (before expenses, worldwide, including associates), and it trips two
+  // ways — "exceed the $30,000 threshold in a single calendar quarter" or "over the previous
+  // four (or fewer) consecutive calendar quarters". The self-employed calculator restates this
+  // figure as a literal in its prose, JSON-LD and result string; stamped here so a re-verifier
+  // has one page to land on and check-constants can see the number exists.
+  gstHst: {
+    smallSupplierThreshold: { value: 30000, source_url: SRC.gstRegister, last_verified: '2026-09-11', cadence: 'statutory' },
   },
 
   /* ── GUARANTEED INCOME SUPPLEMENT (GIS) — indexed QUARTERLY, NOT January ─────── */
