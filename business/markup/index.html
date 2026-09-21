@@ -23,10 +23,11 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How do you calculate markup?","acceptedAnswer":{"@type":"Answer","text":"Markup is gross profit as a percentage of cost: markup = (selling price − cost) ÷ cost × 100. To set a price from a markup, multiply the cost by one plus the markup: price = cost × (1 + markup). A $30 item with a 50% markup sells for $30 × 1.50 = $45, a $15 profit. Markup is always measured against the cost."}},
-{"@type":"Question","name":"What is the difference between markup and margin?","acceptedAnswer":{"@type":"Answer","text":"They measure the same profit against different bases. Markup is profit as a percentage of cost; margin is profit as a percentage of the selling price. A 50% markup on a $30 cost gives a $45 price and a $15 profit — that's a 33.3% margin. Because the cost is smaller than the price, a markup percentage is always higher than the margin it produces."}},
-{"@type":"Question","name":"What markup gives a 50% margin?","acceptedAnswer":{"@type":"Answer","text":"A 100% markup. To turn a target margin into the markup you need, use markup = margin ÷ (1 − margin): a 50% margin needs 0.50 ÷ 0.50 = 100% markup, a 40% margin needs about 66.7%, and a 25% margin needs 33.3%. Doubling your cost (100% markup) only gets you to a 50% margin, not 100%."}},
-{"@type":"Question","name":"How do I find the markup from cost and selling price?","acceptedAnswer":{"@type":"Answer","text":"Subtract the cost from the price and divide by the cost: markup = (price − cost) ÷ cost. If you buy at $30 and sell at $45, the markup is $15 ÷ $30 = 50%. Set the calculator's known value to 'Selling price' to work it out from the two amounts."}}]}
+{"@type": "Question", "name": "How do you calculate markup?", "acceptedAnswer": {"@type": "Answer", "text": "Markup = (price − cost) ÷ cost. Buy at $30, sell at $45: $15 ÷ $30 = 50%. To price up from cost, price = cost × (1 + markup): $30 × 1.50 = $45."}},
+{"@type": "Question", "name": "What margin does a 50% markup give?", "acceptedAnswer": {"@type": "Answer", "text": "33.3%. Margin = markup ÷ (1 + markup): 0.50 ÷ 1.50 = 33.3%. The $15 of profit is half of the $30 cost but a third of the $45 price."}},
+{"@type": "Question", "name": "What markup gives a 40% margin?", "acceptedAnswer": {"@type": "Answer", "text": "66.7%. Markup = margin ÷ (1 − margin): 0.40 ÷ 0.60 = 66.7%. On a $30 cost that is a $50 price; multiplying by 1.40 instead gives $42 and only a 28.6% margin."}},
+{"@type": "Question", "name": "Can markup be more than 100%?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Markup is measured against cost, so it has no upper limit: a $12 item sold for $36 has a 200% markup. It's margin, measured against the price, that can never reach 100%."}},
+{"@type": "Question", "name": "Does the markup include HST?", "acceptedAnswer": {"@type": "Answer", "text": "No. Cost and price are both before GST/HST. Once you're registered, tax paid to a supplier is refunded through an input tax credit and tax charged to a customer is remitted to the CRA, so neither one is cost or revenue."}}]}
 </script>
 </head>
 <body>
@@ -55,7 +56,7 @@
 <main class="wrap">
   <div class="page-head">
     <h1>Markup Calculator</h1>
-    <p class="lead">Enter your cost and a markup % to get the selling price, gross profit, and the margin that markup actually produces — markup and margin side by side. Or switch the known value to solve the markup from a price. Want to work from the sale price down instead? Use the <a href="/business/profit-margin/">profit margin calculator</a>.</p>
+    <p class="lead">Start from what an item cost you, add a markup, and get the price — along with the margin that markup really produces, which is always the smaller number. Working from a price you already charge? The <a href="/business/profit-margin/">profit margin calculator</a> reads it the other way round.</p>
   </div>
 
   <section class="calc-card" aria-label="Markup calculator">
@@ -89,58 +90,72 @@
   </section>
 
   <section class="answer">
-    <h2>How to calculate markup</h2>
-    <p>Markup is your gross profit as a share of the <strong>cost</strong>: <strong>markup = (price − cost) ÷ cost</strong>. To price up from cost, multiply by one plus the markup: <strong>price = cost × (1 + markup)</strong>. A $30 item with a 50% markup sells for $30 × 1.50 = <strong>$45</strong>, a $15 profit. Markup is the answer to "how much did I add on top of what I paid?" — and unlike margin, it can go well above 100%.</p>
-    <p>Going the other way, if you buy at $30 and sell at $45, the markup is $15 ÷ $30 = 50%. Set the known value above to "Selling price" and the calculator works the markup out from the two amounts.</p>
+    <h2>Pricing up from $30</h2>
+    <p>Markup is measured against cost. Take what you paid, multiply by one plus the markup, and that is the price: <strong>price = cost × (1 + markup)</strong>. The calculator opens on a $30 cost and a 50% markup, so $30 × 1.50 = <strong>$45</strong>, and the $15 between the two is gross profit. Nothing else goes into that $15 — no rent, no wages, no tax — which is what "gross" means.</p>
+    <p>Run it in reverse and the definition falls out: <strong>markup = (price − cost) ÷ cost</strong>. Buy at $30, sell at $45, and $15 ÷ $30 is 50%. Switch "Also known" to Selling price and the calculator does that division. Set it to Profit margin % and it solves the third way — from the margin you want to the markup you'd need — which is the case people reach for most and get wrong most, covered further down.</p>
+    <p>Because the base is the cost, markup has no ceiling. A $12 item sold for $36 carries a 200% markup; jewellery and espresso routinely run past that. Anyone who tells you a percentage "can't be over 100" is thinking of margin.</p>
   </section>
 
   <section class="answer">
-    <h2>Markup vs margin — why the markup looks bigger</h2>
-    <p>Markup and margin are the <em>same</em> profit measured against <em>different</em> bases. Markup is profit ÷ cost; margin is profit ÷ price. That $15 on a $30 cost / $45 price is a <strong>50% markup</strong> but only a <strong>33.3% margin</strong>. The cost is the smaller number, so dividing by it gives the bigger percentage — which is why a markup always looks larger than the margin it delivers.</p>
-    <ul class="conditions">
-      <li><strong>Markup</strong> answers: how much did I add on top of cost? (profit ÷ cost)</li>
-      <li><strong>Margin</strong> answers: what fraction of the sale is profit? (profit ÷ price)</li>
-    </ul>
-    <p>This matters when you price to a goal. Doubling your cost is a 100% markup, but that's only a 50% margin — not 100%. To hit a target margin, convert it first: markup = margin ÷ (1 − margin). The table below does the common ones.</p>
+    <h2>Fifteen dollars, two names</h2>
+    <p>Every markup has a margin sitting inside it, and the calculator prints both because they are the same $15 divided by different things. Against the $30 cost it is a <strong>50% markup</strong>. Against the $45 price it is a <strong>33.3% margin</strong>. The cost is always the smaller of the two, so the markup is always the larger percentage — and the gap widens as the markup climbs. A 20% markup is a 16.7% margin, barely different. A 100% markup is a 50% margin. A 200% markup is a 66.7% margin, a third of the figure you started with.</p>
+    <p>To get from a markup you know to the margin it produces: <strong>margin = markup ÷ (1 + markup)</strong>. To get from a margin you want to the markup you'd have to apply: <strong>markup = margin ÷ (1 − margin)</strong>. The table is those two formulas at the values that come up in practice, and it reads in either direction. The <a href="/business/profit-margin/">profit margin calculator</a> runs the same table from the margin side, at different values.</p>
   </section>
 
   <section>
-    <h2>Markup to margin — quick conversion</h2>
-    <p>The margin each markup actually produces (margin = markup ÷ (1 + markup)):</p>
+    <h2>Markup and the margin it produces</h2>
+    <p>Left to right is the margin a markup gives you; right to left is the markup you need to reach a margin.</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
         <thead>
-          <tr><th>Markup</th><th>Resulting margin</th></tr>
+          <tr><th>Markup on cost</th><th>Margin on price</th></tr>
         </thead>
         <tbody>
           <tr><td>10%</td><td>9.1%</td></tr>
-          <tr><td>15%</td><td>13.0%</td></tr>
           <tr><td>20%</td><td>16.7%</td></tr>
           <tr><td>25%</td><td>20.0%</td></tr>
           <tr><td>30%</td><td>23.1%</td></tr>
           <tr><td>40%</td><td>28.6%</td></tr>
           <tr><td>50%</td><td>33.3%</td></tr>
+          <tr><td>60%</td><td>37.5%</td></tr>
           <tr><td>75%</td><td>42.9%</td></tr>
           <tr><td>100%</td><td>50.0%</td></tr>
+          <tr><td>150%</td><td>60.0%</td></tr>
+          <tr><td>200%</td><td>66.7%</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="disclaimer">Reverse of this — margin to markup — is on the <a href="/business/profit-margin/">profit margin calculator</a>.</p>
+    <p>Three pairs are worth memorising because they anchor the rest: 25% pairs with 20%, 50% with 33.3%, and 100% with 50%. Doubling the cost — the "keystone" pricing that retail has used for a century — is a 100% markup and a 50% margin, never a 100% margin.</p>
+  </section>
+
+  <section class="answer">
+    <h2>The margin that got applied as a markup</h2>
+    <p>The expensive mistake is a target set as margin and executed as markup. A shop wants to keep 40% of every sale. Someone multiplies the $30 cost by 1.40, prices it at $42, and moves on. The $12 of profit on that $42 is a <strong>28.6% margin</strong> — more than a quarter short of the goal on every unit, and nothing about the shelf tag says so. The price that leaves 40 cents of each dollar is $30 ÷ 0.60 = <strong>$50</strong>, which is a 66.7% markup. The Profit margin % setting exists so that the multiplication never happens.</p>
+    <p>The mirror-image trap is the discount. Markup goes on the cost, but a discount comes off the price, and the price is the bigger number. That $45 item with a 50% markup has $15 in it. Take 20% off and $9 of the $15 is gone: the sale is $36 and the markup has shrunk to 20%. Take a third off and all of it is gone — $45 less 33.3% is $30, the cost, and the markup is zero. A promotion that sounds smaller than the markup can still consume most of it, which is why "50% markup" and "a third off" cannot coexist for long.</p>
+  </section>
+
+  <section class="answer">
+    <h2>What HST does to cost and price — nothing</h2>
+    <p>The two amounts you enter are before sales tax, on both sides. If you're registered for GST/HST, the tax on the supplier's invoice isn't part of your cost — you claim it back as an input tax credit — and the tax on your own invoice isn't part of your price, because you collect it for the CRA and remit it. A $45 sale in an HST province puts more than $45 in the till, but only $45 of it is revenue, and only $30 was ever cost. Mix the two conventions — a tax-inclusive cost copied off the supplier's invoice against a pre-tax shelf price — and the markup comes out understated.</p>
+    <p>The line that puts you into that system is $30,000 of taxable sales over four consecutive calendar quarters, or in any single quarter on its own. Below it you can stay a small supplier and charge no tax — and then the tax on what you buy does stay in your cost, because there's no credit to claim it back with. Either way, the arithmetic on this page runs on pre-tax amounts. What the profit is worth once income tax and CPP come off it is on the <a href="/payroll/self-employed-tax/">self-employed tax calculator</a>.</p>
   </section>
 
   <section class="faq">
     <h2>Common questions</h2>
     <details><summary>How do you calculate markup?</summary>
-      <p>Markup = (selling price − cost) ÷ cost × 100. To price up: price = cost × (1 + markup). A $30 item at 50% markup sells for $45 ($15 profit). Markup is measured against the cost.</p>
+      <p>Markup = (price − cost) ÷ cost. Buy at $30, sell at $45: $15 ÷ $30 = 50%. To price up from cost, price = cost × (1 + markup): $30 × 1.50 = $45.</p>
     </details>
-    <details><summary>What's the difference between markup and margin?</summary>
-      <p>Same profit, different base. Markup is profit ÷ cost; margin is profit ÷ price. A 50% markup on $30 gives a $45 price and a $15 profit — a 33.3% margin. Markup is always the larger percentage.</p>
+    <details><summary>What margin does a 50% markup give?</summary>
+      <p>33.3%. Margin = markup ÷ (1 + markup): 0.50 ÷ 1.50 = 33.3%. The $15 of profit is half of the $30 cost but a third of the $45 price.</p>
     </details>
-    <details><summary>What markup gives a 50% margin?</summary>
-      <p>A 100% markup. Convert a target margin with markup = margin ÷ (1 − margin): 50% margin needs 100% markup, 40% needs 66.7%, 25% needs 33.3%. Doubling cost is a 50% margin, not 100%.</p>
+    <details><summary>What markup gives a 40% margin?</summary>
+      <p>66.7%. Markup = margin ÷ (1 − margin): 0.40 ÷ 0.60 = 66.7%. On a $30 cost that is a $50 price; multiplying by 1.40 instead gives $42 and only a 28.6% margin.</p>
     </details>
-    <details><summary>How do I find markup from cost and price?</summary>
-      <p>Markup = (price − cost) ÷ cost. Buy at $30, sell at $45: $15 ÷ $30 = 50%. Set "Also known" to Selling price to compute it from the two amounts.</p>
+    <details><summary>Can markup be more than 100%?</summary>
+      <p>Yes. Markup is measured against cost, so it has no upper limit: a $12 item sold for $36 has a 200% markup. It's margin, measured against the price, that can never reach 100%.</p>
+    </details>
+    <details><summary>Does the markup include HST?</summary>
+      <p>No. Cost and price are both before GST/HST. Once you're registered, tax paid to a supplier is refunded through an input tax credit and tax charged to a customer is remitted to the CRA, so neither one is cost or revenue.</p>
     </details>
   </section>
 
