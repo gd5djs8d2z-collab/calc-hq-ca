@@ -8,8 +8,9 @@ benefit-program constant too — lives once, with provenance, in
 `ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`, `QPIP_PARENTAL`) from it and
 holds **behaviour only** — so you change a number in **one** place.
 
-Five standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
-July); Rule 2 is event-driven; Rule 4 is the automated check that tells you which is due.
+Six standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
+July); Rule 2 is event-driven; Rule 4 is the automated check that tells you which is due; Rule 6
+ties the figures quoted in page copy back to the values they restate.
 
 ## Rule 1 — Annual January re-verification
 
@@ -298,6 +299,67 @@ Benefit**, a separate working-age program with its own estimator. Our `cdb` bloc
   catches a future divergence instead of assuming it away. It compares **only when both blocks
   describe the same benefit year**, so a July window where one is updated before the other does
   not produce a false alarm.
+
+---
+
+## Rule 6 — Prose figures are registered, and the registry is gated
+
+Page copy restates figures as literals — there is no runtime fill — so a value can be
+re-verified, re-stamped and pass every other gate while the sentence quoting it still shows
+the old number. That happened on 2026-10-03: the OAS/GIS/CPP calculators ran on the new
+quarter while their prose and FAQ schema quoted the old one, and CI was green. check-constants
+proves a value is cited and in date; check-history proves the audit trail is kept; check-schema
+only catches a JSON-LD figure after the pack is on record as having moved off it. None of them
+compares a figure in the copy with the value it is supposed to equal.
+
+**The registry:** [`data/prose-figures.json`](data/prose-figures.json). `pages` lists the
+in-scope pages; `figures` has one entry per quoted figure, per surface:
+
+```json
+{ "page": "/benefits/oas/", "surface": "main",
+  "anchor": "the maximum is {} a month at ages 65 to 74",
+  "source": { "const": "oas.maxMonthly65to74" }, "format": "exact" }
+```
+
+- `surface` — `main` (the visible `<main>` text) or `jsonld` (every string in the page's
+  `application/ld+json`). A FAQ answer is normally registered twice, once per surface, because
+  the two are worded differently.
+- `anchor` — the exact surrounding phrase, as the normalised text reads (inline tags such as
+  `<strong>` vanish, other tags become one space, whitespace collapses). `{}` marks the figure;
+  `{*}` matches any other figure inside the phrase, so a neighbouring cell in a table row can
+  drift without hiding this one. It must match **exactly once** on that surface.
+- `source` — `{"const": "<path>"}` for a stamped leaf as-is (the path steps through `.value`,
+  e.g. `gis.single.maxMonthly`), or `{"engine": "<expression>"}` for a derived figure, written
+  with the fixed inputs the prose states, e.g.
+  `"OAS.maxMonthly65to74 * OAS.deferralFactor(70)"` or `"GIS.estimate('single', 9000).monthly"`.
+  Expressions see every export of `data/rates-2026.js` and `assets/js/tax-engine.js`, plus `TC`.
+  Use the page's own calculator functions so the prose and the calculator cannot disagree.
+- `format` — `exact` (to the cent), `round:N` (copy rounds to the nearest N: "about $8,300" is
+  `round:100`), `percent` (source is a fraction, 0.0595 → 5.95%) or `percent:D` (rounded to D
+  decimals).
+
+**The gate:** `scripts/check-prose-figures.mjs`, in CI straight after the history check. It
+fails on `MISMATCH` (figure ≠ source after the format rule), `MISSING` (anchor gone — so
+rewritten copy cannot silently drop out of the check), `AMBIGUOUS` (anchor matches twice),
+`KIND` (a % where a dollar figure is expected, or the reverse), `CONFIG`, and on its own
+built-in self-test, which proves each of those still fires.
+
+```
+node scripts/check-prose-figures.mjs          # --verbose lists every passing figure
+```
+
+**Adding a figure.** Any new figure in page copy that restates a stamped constant — directly
+or through a calculation — **must be registered in the same change that adds it.** Write the
+sentence, copy the phrase around the figure from the normalised text, add the entry, run the
+script. If you change a constant, the script tells you every sentence that now disagrees; fix
+the copy, never the registry entry, unless the sentence genuinely no longer restates that value.
+If you rewrite a sentence, update its anchor in the same commit.
+
+**The ratchet.** Every `$` / `%` figure on an in-scope page that no entry covers is written to
+`data/prose-figures-unregistered.txt` and counted as a warning. Version 1 does not fail on it.
+Burn it down by registering what restates a constant. The rest of the list is worked-example
+inputs, counts and other literals, which have nothing to check against. Adding a page to
+`pages` puts all of its figures on the list.
 
 ---
 

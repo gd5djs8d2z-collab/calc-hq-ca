@@ -16,6 +16,13 @@
 # quiet where firing would be a false alarm (e.g. comparing two different benefit years).
 # Without this step an invariant could silently rot into a no-op and every run would stay green.
 #
+# Then runs scripts/check-prose-figures.mjs, which fails when a figure quoted in page copy no
+# longer equals the stamped value or engine result it restates (data/prose-figures.json), or
+# when a registered sentence has been reworded so its anchor is gone. check-constants and
+# check-history prove a value is cited and its history kept; neither ties the number written
+# in a sentence back to that value — on 2026-10-03 the OAS/GIS/CPP prose quoted the old
+# quarter while every gate was green. See MAINTENANCE.md Rule 6.
+#
 # Finally runs scripts/check-redirects.mjs, the gate on _redirects. Cloudflare follows a
 # redirect "regardless of whether or not an asset matches the incoming request", so a rule
 # whose SOURCE is a live page shadows that page while still returning HTTP 200 — invisible
@@ -76,6 +83,13 @@ jobs:
           set -o pipefail
           node scripts/check-history.mjs | tee history-report.txt
 
+      - name: Run the prose figure check
+        id: checkprose
+        if: always()   # page copy restates figures as literals; tie each one back to its source
+        run: |
+          set -o pipefail
+          node scripts/check-prose-figures.mjs | tee prose-report.txt
+
       - name: Run the invariant negative tests
         id: checkinvariants
         if: always()   # a green constants run proves nothing about whether the gate CAN fail
@@ -128,6 +142,19 @@ jobs:
               echo
               echo 'The history file (data/constant-history.json) has drifted from the live stamps.'
               echo 'Regenerate it with `node scripts/gen-history.mjs` and commit the result.'
+            fi
+            echo
+            echo '## Prose figure check'
+            echo
+            echo '```'
+            cat prose-report.txt 2>/dev/null || echo 'prose figure checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkprose.outcome }}' != 'success' ]; then
+              echo
+              echo 'A figure in page copy no longer equals the value it restates, or a registered'
+              echo 'sentence was reworded and its anchor is gone. Fix the page copy (or, if the'
+              echo 'sentence was deliberately rewritten, its anchor in data/prose-figures.json) —'
+              echo 'never the source. See MAINTENANCE.md Rule 6.'
             fi
             echo
             echo '## Cross-field invariant negative tests'

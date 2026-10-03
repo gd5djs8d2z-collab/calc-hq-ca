@@ -1,0 +1,5760 @@
+{
+  "pages": [
+    "/benefits/oas/",
+    "/benefits/gis/",
+    "/benefits/cpp/",
+    "/benefits/cpp-60-vs-65/",
+    "/benefits/ccb/",
+    "/benefits/ei/",
+    "/benefits/ei-maternity-parental/",
+    "/benefits/cdb/",
+    "/benefits/rdsp/",
+    "/benefits/dtc/",
+    "/key-dates-limits/",
+    "/key-dates-limits/ccb-payment-dates/",
+    "/key-dates-limits/contribution-limits/",
+    "/key-dates-limits/tax-deadlines/"
+  ],
+  "figures": [
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "the maximum Old Age Security pension is {} a month if you are 65 to 74",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "and {} a month if you are 75 or over",
+      "source": {
+        "const": "oas.maxMonthly75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "the older band is {} higher",
+      "source": {
+        "const": "oas.age75IncreaseRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "2025 net world income passes {}.",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "OAS is fully clawed back at {} of income",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "if you are 65 to 74, or {} if you are 75 or over",
+      "source": {
+        "const": "oas.fullRecoveryCeiling75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "subtract the threshold, and multiply by {}.",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "of 2025 income, {*} − {} = {*}",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "worked example"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "of 2025 income, {*} − {*} = {}, and",
+      "source": {
+        "engine": "100000 - OAS.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "worked example excess, income $100,000"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "= {*}, and {} of {*} is",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "and {*} of {} is {*} to repay",
+      "source": {
+        "engine": "100000 - OAS.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "worked example excess, income $100,000"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "is {} to repay over the July 2026",
+      "source": {
+        "engine": "(100000 - OAS.recoveryThreshold) * OAS.recoveryRate"
+      },
+      "format": "exact",
+      "note": "worked example repayment, income $100,000"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "raises the pension by {} for each month you wait",
+      "source": {
+        "const": "oas.deferralIncreasePerMonth"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "for each month you wait — {} a year, to a maximum",
+      "source": {
+        "engine": "OAS.deferralIncreasePerMonth * 12"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "to a maximum of {} at age 70",
+      "source": {
+        "const": "oas.deferralMaxIncrease"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "maximum that turns {} a month into",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "a month into {}. It is worth",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(70)"
+      },
+      "format": "exact",
+      "note": "deferral to 70"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "deferred 1 year (+{})",
+      "source": {
+        "engine": "OAS.deferralFactor(66) - 1"
+      },
+      "format": "percent:1",
+      "note": "hero deferral list, start age 66"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "deferred 2 years (+{})",
+      "source": {
+        "engine": "OAS.deferralFactor(67) - 1"
+      },
+      "format": "percent:1",
+      "note": "hero deferral list, start age 67"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "deferred 3 years (+{})",
+      "source": {
+        "engine": "OAS.deferralFactor(68) - 1"
+      },
+      "format": "percent:1",
+      "note": "hero deferral list, start age 68"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "deferred 4 years (+{})",
+      "source": {
+        "engine": "OAS.deferralFactor(69) - 1"
+      },
+      "format": "percent:1",
+      "note": "hero deferral list, start age 69"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "deferred 5 years (+{})",
+      "source": {
+        "engine": "OAS.deferralFactor(70) - 1"
+      },
+      "format": "percent:1",
+      "note": "hero deferral list, start age 70"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "For October–December 2026 the maximum is {} a month at ages 65 to 74",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "a month at ages 65 to 74, and {} a month from 75",
+      "source": {
+        "const": "oas.maxMonthly75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "the older band is permanently {} higher",
+      "source": {
+        "const": "oas.age75IncreaseRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "reduced by the recovery tax once your net world income passes {}.",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "Your net pension is that figure minus {} of every dollar",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "payment period the recovery tax starts at {} of net world income",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "and the rate is a flat {} of the excess",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "on {*} of income, {*} − {} = {*}, and",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "worked example, threshold"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "on {*} of income, {*} − {*} = {}, and",
+      "source": {
+        "engine": "100000 - OAS.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "worked example excess, income $100,000"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "= {*}, and {} of that is",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "of that is {} repayable across the period",
+      "source": {
+        "engine": "(100000 - OAS.recoveryThreshold) * OAS.recoveryRate"
+      },
+      "format": "exact",
+      "note": "worked example repayment, income $100,000"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "That happens at {} for ages 65 to 74",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "for ages 65 to 74, and {} at 75 and over",
+      "source": {
+        "const": "oas.fullRecoveryCeiling75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2026 – June 2027 2025 {} {*} {*}",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "table row, current period"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2026 – June 2027 2025 {*} {} {*}",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact",
+      "note": "table row, current period"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2026 – June 2027 2025 {*} {*} {}",
+      "source": {
+        "const": "oas.fullRecoveryCeiling75plus"
+      },
+      "format": "exact",
+      "note": "table row, current period"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "at a lower income than the {} headline figure",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "Each month you wait adds {} —",
+      "source": {
+        "const": "oas.deferralIncreasePerMonth"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "Each month you wait adds {*} — {} a year",
+      "source": {
+        "engine": "OAS.deferralIncreasePerMonth * 12"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "a year, capping at {} at age 70",
+      "source": {
+        "const": "oas.deferralMaxIncrease"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "the difference between {} and {*} a month, for life",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "the difference between {*} and {} a month, for life",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(70)"
+      },
+      "format": "exact",
+      "note": "deferral to 70"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "(Oct–Dec 2026) 65 — {}",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact",
+      "note": "deferral table, start 65"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "66 {} {*} 67",
+      "source": {
+        "engine": "OAS.deferralFactor(66) - 1"
+      },
+      "format": "percent:1",
+      "note": "deferral table, start age 66"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "66 {*} {} 67",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(66)"
+      },
+      "format": "exact",
+      "note": "deferral table, start age 66"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "67 {} {*} 68",
+      "source": {
+        "engine": "OAS.deferralFactor(67) - 1"
+      },
+      "format": "percent:1",
+      "note": "deferral table, start age 67"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "67 {*} {} 68",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(67)"
+      },
+      "format": "exact",
+      "note": "deferral table, start age 67"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "68 {} {*} 69",
+      "source": {
+        "engine": "OAS.deferralFactor(68) - 1"
+      },
+      "format": "percent:1",
+      "note": "deferral table, start age 68"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "68 {*} {} 69",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(68)"
+      },
+      "format": "exact",
+      "note": "deferral table, start age 68"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "69 {} {*} 70",
+      "source": {
+        "engine": "OAS.deferralFactor(69) - 1"
+      },
+      "format": "percent:1",
+      "note": "deferral table, start age 69"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "69 {*} {} 70",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(69)"
+      },
+      "format": "exact",
+      "note": "deferral table, start age 69"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "70 {} {*} Deferral",
+      "source": {
+        "engine": "OAS.deferralFactor(70) - 1"
+      },
+      "format": "percent:1",
+      "note": "deferral table, start age 70"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "70 {*} {} Deferral",
+      "source": {
+        "engine": "OAS.maxMonthly65to74 * OAS.deferralFactor(70)"
+      },
+      "format": "exact",
+      "note": "deferral table, start age 70"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "How much is OAS per month in 2026? Maximum {} a month",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "a month at 65–74 and {} at 75+",
+      "source": {
+        "const": "oas.maxMonthly75plus"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "clawback threshold for 2026? {} of 2025 net world income",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "Above that you repay {} of the excess",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "OAS is gone entirely at {} (65–74)",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "(65–74) or {} (75+)",
+      "source": {
+        "const": "oas.fullRecoveryCeiling75plus"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "(Net world income − threshold) × {}.",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "({*} − {}) × 0.15 =",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact",
+      "note": "FAQ worked example"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "× 0.15 = {} for the period",
+      "source": {
+        "engine": "(100000 - OAS.recoveryThreshold) * OAS.recoveryRate"
+      },
+      "format": "exact",
+      "note": "FAQ worked example, income $100,000"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "jsonld",
+      "anchor": "can receive up to {} a month",
+      "source": {
+        "const": "gis.single.maxMonthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "jsonld",
+      "anchor": "once annual income reaches about {}.",
+      "source": {
+        "const": "gis.single.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "jsonld",
+      "anchor": "the first {} is fully exempt",
+      "source": {
+        "const": "gis.employmentExemption.full"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "jsonld",
+      "anchor": "is fully exempt, plus {} of the next",
+      "source": {
+        "const": "gis.employmentExemption.partialRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "jsonld",
+      "anchor": "of the next {}. ¶",
+      "source": {
+        "const": "gis.employmentExemption.partialUpTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Entered separately — the first {} plus half the next {*}",
+      "source": {
+        "const": "gis.employmentExemption.full"
+      },
+      "format": "exact",
+      "note": "form hint"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Entered separately — the first {*} plus half the next {} is exempt",
+      "source": {
+        "const": "gis.employmentExemption.partialUpTo"
+      },
+      "format": "exact",
+      "note": "form hint"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Single, widowed or divorced — up to {} a month",
+      "source": {
+        "const": "gis.single.maxMonthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Single, widowed or divorced — up to {*} a month, ending at about {} of annual income",
+      "source": {
+        "const": "gis.single.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Spouse receives the full OAS pension — up to {} a month each",
+      "source": {
+        "const": "gis.spouseFullOAS.maxMonthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "a month each, ending at about {} of combined income",
+      "source": {
+        "const": "gis.spouseFullOAS.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Spouse receives the Allowance — up to {} a month",
+      "source": {
+        "const": "gis.spouseAllowance.maxMonthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Spouse receives the Allowance — up to {*} a month, ending at about {} of combined",
+      "source": {
+        "const": "gis.spouseAllowance.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "does not receive OAS or the Allowance — up to {} a month",
+      "source": {
+        "const": "gis.spouseNoOAS.maxMonthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "or the Allowance — up to {*} a month, ending at about {} of combined",
+      "source": {
+        "const": "gis.spouseNoOAS.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "To reward seniors who keep working, the first {} of employment",
+      "source": {
+        "const": "gis.employmentExemption.full"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "and half of the next {} is exempt too",
+      "source": {
+        "const": "gis.employmentExemption.partialUpTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "so up to {} of a {*} work income",
+      "source": {
+        "engine": "GIS.employmentExemption.full + GIS.employmentExemption.partialUpTo * GIS.employmentExemption.partialRate"
+      },
+      "format": "exact",
+      "note": "max exempt = full + half of partial band"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "so up to {*} of a {} work income",
+      "source": {
+        "engine": "GIS.employmentExemption.full + GIS.employmentExemption.partialUpTo"
+      },
+      "format": "exact",
+      "note": "top of partial band"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "Against the single maximum of {} and the",
+      "source": {
+        "const": "gis.single.maxMonthly"
+      },
+      "format": "exact",
+      "note": "worked example"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "and the {} cut-off, the estimate",
+      "source": {
+        "const": "gis.single.incomeCutoff"
+      },
+      "format": "exact",
+      "note": "worked example"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "the estimate works out to roughly {} a month",
+      "source": {
+        "engine": "GIS.estimate('single', 9000).monthly"
+      },
+      "format": "round:1",
+      "note": "worked example, single, $9,000 countable"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "a month — about {} a year of GIS",
+      "source": {
+        "engine": "GIS.estimate('single', 9000).annual"
+      },
+      "format": "round:100",
+      "note": "worked example, single, $9,000 countable"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "the exemption wipes out {} of it",
+      "source": {
+        "engine": "6000 - GIS.netEmployment(6000)"
+      },
+      "format": "exact",
+      "note": "exempt part of a $6,000 job"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "(the first {} plus half of the next {*})",
+      "source": {
+        "const": "gis.employmentExemption.full"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "(the first {*} plus half of the next {})",
+      "source": {
+        "engine": "6000 - GIS.employmentExemption.full"
+      },
+      "format": "exact",
+      "note": "$6,000 job minus the fully exempt band"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "so only {} is countable",
+      "source": {
+        "engine": "GIS.netEmployment(6000)"
+      },
+      "format": "exact",
+      "note": "countable part of a $6,000 job"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "with little other income can get up to {} a month",
+      "source": {
+        "const": "gis.single.maxMonthly"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "phasing to zero by about {} of annual income",
+      "source": {
+        "const": "gis.single.incomeCutoff"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "partial exemption: the first {} plus half the next {*}.",
+      "source": {
+        "const": "gis.employmentExemption.full"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "partial exemption: the first {*} plus half the next {}.",
+      "source": {
+        "const": "gis.employmentExemption.partialUpTo"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "CPP is {} of your pensionable",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "between the {} basic exemption",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "pensionable earnings of {} in 2026",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "Take your income up to {},",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "subtract {}, and multiply",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "and multiply by {} — that's your base",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "up to a maximum of {}. Earnings above",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "Earnings above {} up to {*} add",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "Earnings above {*} up to {} add",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "CPP2, at {}.",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "Subtract the {} exemption",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "(capped at {})",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "multiply by {} for CPP1",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "then add {} of any earnings",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "any earnings between {} and {*} for CPP2",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "any earnings between {*} and {} for CPP2",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "employee maximum for 2026 is {}.",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "maximum base CPP1 contribution is {}",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "the maximum CPP2 is {}",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "for a combined maximum of {}.",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "The first {} each year is exempt",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "earnings above {} don't attract",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "the band between {} and {*}, which",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "the band between {*} and {}, which",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "halves, so {} on CPP1",
+      "source": {
+        "engine": "CPP.rate * CPP.selfEmployedMultiplier"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "to a maximum of {}, plus",
+      "source": {
+        "const": "cpp.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "plus {} on the CPP2 band",
+      "source": {
+        "const": "cpp.cpp2.selfEmployedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "to a maximum of {} — {*} in all",
+      "source": {
+        "const": "cpp.cpp2.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "jsonld",
+      "anchor": "— {} in all",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe, { selfEmployed: true }).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "from the {} exemption up to",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "CPP takes {} of your pensionable",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "between the {} basic exemption",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "basic exemption and the {} yearly maximum",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "yearly maximum. Subtract {} from your income",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "from your income (capped at {}), multiply",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "multiply by {}, and that's your base contribution",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "your base contribution, up to {}.",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Earnings between {} and {*} attract CPP2",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Earnings between {*} and {} attract CPP2",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "attract CPP2 at {}, adding",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "adding up to {} more",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "most an employee contributes in 2026 is {}.",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Below {} you pay nothing",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "and above {} no further CPP",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "the {} ceiling and the",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "ceiling and the {} upper limit",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "The {} exemption is the exception",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "The {} is itself two rates",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "two rates stacked. {} is base CPP",
+      "source": {
+        "const": "cpp.baseCpp1Rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "the remaining {} is the enhancement",
+      "source": {
+        "const": "cpp.enhancedCpp1Rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "shares together: {} on CPP1",
+      "source": {
+        "engine": "CPP.rate * CPP.selfEmployedMultiplier"
+      },
+      "format": "percent:2",
+      "note": "self-employed rate = CPP1 rate x multiplier, as the page script prints it"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "shares together: {*} on CPP1 pensionable earnings to a maximum of {}",
+      "source": {
+        "const": "cpp.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "plus {} on the CPP2 band to a maximum of {*}. At",
+      "source": {
+        "const": "cpp.cpp2.selfEmployedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "to a maximum of {}. At or above",
+      "source": {
+        "const": "cpp.cpp2.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "At or above {} of net income",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "of net income that's {} for the year",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe, { selfEmployed: true }).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "roughly {} of employer CPP",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "round:1",
+      "note": "employer match at max earnings, cents dropped"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "pays {} or less",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact",
+      "note": "table row label"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {}",
+      "source": {
+        "engine": "calcCPP(CPP.basicExemption).employee"
+      },
+      "format": "exact",
+      "note": "table: employee at the exemption"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {}",
+      "source": {
+        "engine": "calcCPP(CPP.basicExemption).employee"
+      },
+      "format": "exact",
+      "note": "table: employer match at the exemption"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(CPP.basicExemption, { selfEmployed: true }).total"
+      },
+      "format": "exact",
+      "note": "table: self-employed at the exemption"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(30000).employee"
+      },
+      "format": "exact",
+      "note": "table: employee at $30,000 (row input is a literal)"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {*} {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(30000).employee"
+      },
+      "format": "exact",
+      "note": "table: employer match at $30,000"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {*} {*} {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(30000, { selfEmployed: true }).total"
+      },
+      "format": "exact",
+      "note": "table: self-employed at $30,000"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {*} {*} {*} {*} {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(50000).employee"
+      },
+      "format": "exact",
+      "note": "table: employee at $50,000 (row input is a literal)"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {*} {*} {*} {*} {*} {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(50000).employee"
+      },
+      "format": "exact",
+      "note": "table: employer match at $50,000"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "or less {*} {*} {*} {*} {*} {*} {*} {*} {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(50000, { selfEmployed: true }).total"
+      },
+      "format": "exact",
+      "note": "table: self-employed at $50,000"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "{} {*} {*} {*} {*} and up",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact",
+      "note": "table row label"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "{} {*} {*} {*} and up",
+      "source": {
+        "engine": "calcCPP(CPP.ympe).employee"
+      },
+      "format": "exact",
+      "note": "table: employee at YMPE"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "{} {*} {*} and up",
+      "source": {
+        "engine": "calcCPP(CPP.ympe).employee"
+      },
+      "format": "exact",
+      "note": "table: employer match at YMPE"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "{} {*} and up",
+      "source": {
+        "engine": "calcCPP(CPP.ympe, { selfEmployed: true }).total"
+      },
+      "format": "exact",
+      "note": "table: self-employed at YMPE"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "{} and up",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "table row label"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "and up {}",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact",
+      "note": "table: employee at YAMPE"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "and up {*} {}",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact",
+      "note": "table: employer match at YAMPE"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "and up {*} {*} {}",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe, { selfEmployed: true }).total"
+      },
+      "format": "exact",
+      "note": "table: self-employed at YAMPE"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "The exemption ({}), the",
+      "source": {
+        "const": "qpp.basicExemption"
+      },
+      "format": "exact",
+      "note": "QPP figure (stated identical to CPP)"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "), the {} ceiling, the",
+      "source": {
+        "const": "qpp.ympe"
+      },
+      "format": "exact",
+      "note": "QPP figure"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "ceiling, the {} upper limit and the",
+      "source": {
+        "const": "qpp.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "QPP figure"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "upper limit and the {} second tier",
+      "source": {
+        "const": "qpp.cpp2.rate"
+      },
+      "format": "percent",
+      "note": "QPP figure"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "the base rate is {} versus",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent",
+      "note": "QPP1 total rate (copy calls it base rate)"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "versus CPP's {}.",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "first-tier maximum to {} (against",
+      "source": {
+        "const": "qpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "(against CPP's {})",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "most-you'll-pay is {} once",
+      "source": {
+        "engine": "calcCPP(QPP.cpp2.yampe, { plan: QPP }).employee"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "once the {} QPP2 is added",
+      "source": {
+        "const": "qpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "per-period slice of the {} exemption",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "It's {} of pensionable earnings",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "pensionable earnings between the {} exemption and",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "exemption and {}. Take income",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Take income up to {}, subtract",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "subtract {}, multiply",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "multiply by {} — that's base CPP",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "that's base CPP, up to {}.",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Earnings from {} to {*} add CPP2",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Earnings from {*} to {} add CPP2",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "add CPP2 at {}.",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Subtract {} (income capped at",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "(income capped at {})",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "multiply by {} for CPP1",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "then add {} of earnings between",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "of earnings between {} and {*} for CPP2",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "of earnings between {*} and {} for CPP2",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "The combined employee maximum is {}.",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "For an employee, {} for CPP1 plus",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "for CPP1 plus {} for CPP2",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "for CPP2 — {} combined",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe).employee"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "The first {} each year is exempt",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "exempt and earnings above {} attract",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Both halves: {} on CPP1",
+      "source": {
+        "engine": "CPP.rate * CPP.selfEmployedMultiplier"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "Both halves: {*} on CPP1 pensionable earnings to a maximum of {}",
+      "source": {
+        "const": "cpp.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "plus {} on the CPP2 band to a maximum of {*} —",
+      "source": {
+        "const": "cpp.cpp2.selfEmployedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "to a maximum of {} — {*} in all",
+      "source": {
+        "const": "cpp.cpp2.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "— {} in all",
+      "source": {
+        "engine": "calcCPP(CPP.cpp2.yampe, { selfEmployed: true }).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "but each cheque is {} smaller for life",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "Your pension drops by {} for every month",
+      "source": {
+        "const": "cppRetirement.earlyReductionPerMonth"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "you start before 65 — {} a year",
+      "source": {
+        "engine": "CPP_RETIREMENT.earlyReductionPerMonth * 12"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "adds up to a {} reduction if you start at exactly 60",
+      "source": {
+        "engine": "CPP_RETIREMENT.earlyReductionPerMonth * 60"
+      },
+      "format": "percent",
+      "note": "60 x 0.6%"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "a month at 65 becomes {} a month at 60",
+      "source": {
+        "engine": "CPP_RETIREMENT.monthlyAtStart(1000, 60)"
+      },
+      "format": "exact",
+      "note": "worked example, $1,000 at 65"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "driven only by the {} reduction",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "pension at age 65 is {} a month",
+      "source": {
+        "const": "cppRetirement.maxAt65Monthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "pension at 65 was about {} a month",
+      "source": {
+        "const": "cppRetirement.averageAt65Monthly"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "more years of cheques, each one {} smaller",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "The 2026 maximum is {}/mo for both",
+      "source": {
+        "const": "cppRetirement.maxAt65Monthly"
+      },
+      "format": "exact",
+      "note": "CPP and QPP maxima are both stamped; equal"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "your pension is cut by {} for every month early",
+      "source": {
+        "const": "cppRetirement.earlyReductionPerMonth"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "for every month early — {} a year",
+      "source": {
+        "engine": "CPP_RETIREMENT.earlyReductionPerMonth * 12"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "locks in a {} smaller cheque for life",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "Only the flat {} reduction drives the crossover",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "isn't a flat {} a month like CPP",
+      "source": {
+        "const": "cppRetirement.earlyReductionPerMonth"
+      },
+      "format": "percent",
+      "note": "CPP's flat rate, contrasted with QPP"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "it slides between {} and {*} depending",
+      "source": {
+        "const": "cppRetirement.qppEarlyReductionMin"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "it slides between {*} and {} depending",
+      "source": {
+        "const": "cppRetirement.qppEarlyReductionMax"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "takes the full {} cut at 60",
+      "source": {
+        "engine": "CPP_RETIREMENT.qpp.earlyReductionMax * 60"
+      },
+      "format": "percent",
+      "note": "QPP max pension, 60 months early"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "as little as {} at 60",
+      "source": {
+        "engine": "CPP_RETIREMENT.qpp.earlyReductionMin * 60"
+      },
+      "format": "percent",
+      "note": "QPP smallest pension, 60 months early"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "The late-start increase ({} a month) is the same as CPP",
+      "source": {
+        "const": "cppRetirement.qppLateIncreasePerMonth"
+      },
+      "format": "percent",
+      "note": "QPP paragraph"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "where the pension is {} larger",
+      "source": {
+        "const": "cppRetirement.lateMaxIncrease"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "five extra years of payments at {} less per cheque",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "if you take it at 60? {} less.",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "The reduction is {} per month before 65",
+      "source": {
+        "const": "cppRetirement.earlyReductionPerMonth"
+      },
+      "format": "percent",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "per month before 65 ({} a year)",
+      "source": {
+        "engine": "CPP_RETIREMENT.earlyReductionPerMonth * 12"
+      },
+      "format": "percent:1",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "60 months early works out to {}.",
+      "source": {
+        "engine": "CPP_RETIREMENT.earlyReductionPerMonth * 60"
+      },
+      "format": "percent",
+      "note": "FAQ; 60 x 0.6%"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "pension at 65 becomes {} at 60",
+      "source": {
+        "engine": "CPP_RETIREMENT.monthlyAtStart(1000, 60)"
+      },
+      "format": "exact",
+      "note": "FAQ worked example, $1,000 at 65"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "because the reduction ({}) is what drives it",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "What is the maximum CPP at 65 in 2026? {} a month",
+      "source": {
+        "const": "cppRetirement.maxAt65Monthly"
+      },
+      "format": "exact",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "retirement pension at 65 was about {} a month",
+      "source": {
+        "const": "cppRetirement.averageAt65Monthly"
+      },
+      "format": "round:1",
+      "note": "FAQ"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "the maximum is {} per year ({*} a month) for each child under 6",
+      "source": {
+        "const": "ccb.maxUnder6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "per year ({} a month) for each child under 6",
+      "source": {
+        "engine": "CCB.maxUnder6 / 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "for each child under 6, and {} per year",
+      "source": {
+        "const": "ccb.max6to17"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "per year ({} a month) for each child aged 6 to 17",
+      "source": {
+        "engine": "CCB.max6to17 / 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "full amount if your adjusted family net income is {} or less",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "(AFNI) passes {}.",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "Between {} and {*} the reduction",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "Between {*} and {} the reduction",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "the reduction is {} of the income over",
+      "source": {
+        "const": "ccb.tier1Rates.0"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "of the income over {} for one child",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "for one child, {} for two, {*} for three",
+      "source": {
+        "const": "ccb.tier1Rates.1"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "for two, {} for three",
+      "source": {
+        "const": "ccb.tier1Rates.2"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "and {} for four or more. Above",
+      "source": {
+        "const": "ccb.tier1Rates.3"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "Above {} a fixed amount applies",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "a lower rate — {} for one child up to",
+      "source": {
+        "const": "ccb.tier2Rates.0"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "for one child up to {} for four or more",
+      "source": {
+        "const": "ccb.tier2Rates.3"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "on the income over {}. Because",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "the maximum CCB is {} a year for each child under 6",
+      "source": {
+        "const": "ccb.maxUnder6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "child under 6 and {} a year for each child aged 6 to 17",
+      "source": {
+        "const": "ccb.max6to17"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "aged 6 to 17 — about {} and {*} a month respectively",
+      "source": {
+        "engine": "CCB.maxUnder6 / 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "about {*} and {} a month respectively",
+      "source": {
+        "engine": "CCB.max6to17 / 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "net income sits at or below {}.",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "Above {} the CRA claws back",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "Income from {} to {*}: the benefit drops",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "Income from {*} to {}: the benefit drops",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "the benefit drops by {} of every dollar over",
+      "source": {
+        "const": "ccb.tier1Rates.0"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "of every dollar over {} for one child",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "dollar over {*} for one child, {} for two",
+      "source": {
+        "const": "ccb.tier1Rates.1"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "for two, {} for three, and {*} for four or more. Income above",
+      "source": {
+        "const": "ccb.tier1Rates.2"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "and {} for four or more. Income above",
+      "source": {
+        "const": "ccb.tier1Rates.3"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "Income above {}: a fixed reduction",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "on the income over {} — {*} for one child",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "on the income over {*} — {} for one child",
+      "source": {
+        "const": "ccb.tier2Rates.0"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "— {*} for one child, {} for two",
+      "source": {
+        "const": "ccb.tier2Rates.1"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "for two, {} for three, and {*} for four or more. So",
+      "source": {
+        "const": "ccb.tier2Rates.2"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "and {} for four or more. So a two-child",
+      "source": {
+        "const": "ccb.tier2Rates.3"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "doesn't lose {} of their benefit",
+      "source": {
+        "const": "ccb.tier1Rates.1"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "they lose {} of the {*} that sits above",
+      "source": {
+        "const": "ccb.tier1Rates.1"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "of the {} that sits above the first threshold",
+      "source": {
+        "engine": "65000 - CCB.threshold1"
+      },
+      "format": "exact",
+      "note": "$65,000 is the writer-chosen example income (literal)"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "which is {} off the year's total",
+      "source": {
+        "engine": "CCB.reduction(65000, 2)"
+      },
+      "format": "round:1",
+      "note": "tier-1 reduction for 2 children at $65,000 AFNI; engine gives 3613.005"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "For July 2026–June 2027, up to {} a year",
+      "source": {
+        "const": "ccb.maxUnder6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "a year ({}/month) per child under 6",
+      "source": {
+        "engine": "CCB.maxUnder6 / 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "per child under 6, and {} a year",
+      "source": {
+        "const": "ccb.max6to17"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "a year ({}/month) per child aged 6–17",
+      "source": {
+        "engine": "CCB.max6to17 / 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "net income is {} or less; above that",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "start to decrease? At {} of adjusted",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "From there to {} the reduction is",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "the reduction is {} (one child)",
+      "source": {
+        "const": "ccb.tier1Rates.0"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "(one child) up to {} (four or more)",
+      "source": {
+        "const": "ccb.tier1Rates.3"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "(four or more) of the income above {}.",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "Above {}, a fixed amount plus",
+      "source": {
+        "const": "ccb.threshold2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "a lower rate ({} to {*}) applies",
+      "source": {
+        "const": "ccb.tier2Rates.0"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "a lower rate ({*} to {}) applies",
+      "source": {
+        "const": "ccb.tier2Rates.3"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "EI regular benefits pay {} of your average",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "With 2026 maximum insurable earnings of {},",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "the most you can receive is about {} a week",
+      "source": {
+        "const": "ei.maxWeeklyBenefit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "EI premiums are {} of your insurable earnings",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "maximum premium of {} on the first",
+      "source": {
+        "const": "ei.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "on the first {} you earn",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "If your net family income is {} or less",
+      "source": {
+        "const": "ei.familySupplementThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "raise your benefit rate to as much as {} of your",
+      "source": {
+        "const": "ei.familySupplementMaxRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "reaches nil at {}.",
+      "source": {
+        "const": "ei.familySupplementThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "net income from all sources exceeds {}, you repay",
+      "source": {
+        "const": "ei.repaymentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "you repay {} of the lesser",
+      "source": {
+        "const": "ei.repaymentRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "jsonld",
+      "anchor": "until your earnings reach {} of the weekly",
+      "source": {
+        "const": "ei.workingWhileOnClaimThreshold"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Gross employment income, up to {} counts",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Best weeks used {} and under 700 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[0][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band label: upper bound of band 0"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "700 hours 22 weeks {} to {*} 665 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[0][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 1 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "700 hours 22 weeks {*} to {} 665 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[1][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 1 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "665 hours 21 weeks {} to {*} 630 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[1][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 2 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "665 hours 21 weeks {*} to {} 630 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[2][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 2 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "630 hours 20 weeks {} to {*} 595 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[2][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 3 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "630 hours 20 weeks {*} to {} 595 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[3][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 3 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "595 hours 19 weeks {} to {*} 560 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[3][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 4 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "595 hours 19 weeks {*} to {} 560 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[4][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 4 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "560 hours 18 weeks {} to {*} 525 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[4][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 5 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "560 hours 18 weeks {*} to {} 525 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[5][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 5 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "525 hours 17 weeks {} to {*} 490 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[5][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 6 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "525 hours 17 weeks {*} to {} 490 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[6][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 6 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "490 hours 16 weeks {} to {*} 455 hours",
+      "source": {
+        "engine": "(EI_REGULAR.hoursBands[6][0] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 7 lower label (previous band max + 0.1)"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "490 hours 16 weeks {*} to {} 455 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[7][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table band 7 upper label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "15 weeks More than {} 420 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[7][0] / 100"
+      },
+      "format": "percent",
+      "note": "hours-table open-ended band label"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "EI regular benefits replace {} of your average",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "capped at {} a week in 2026. The cap bites",
+      "source": {
+        "const": "ei.maxWeeklyBenefit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "earning about {} a week",
+      "source": {
+        "engine": "EI_REGULAR.maxInsurableEarnings / 52"
+      },
+      "format": "round:1",
+      "note": "weekly earnings at which the cap bites = MIE/52 (1325.00); maxWeekly/rate = 1325.45 rounds the same"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The family supplement. If your net family income is {} or less",
+      "source": {
+        "const": "ei.familySupplementThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "your rate can climb from {} to as much as {*}",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "your rate can climb from {*} to as much as {} of average",
+      "source": {
+        "const": "ei.familySupplementMaxRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "hours bottom out at 420 above {}",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[7][0] / 100"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "climbing to the \"{} and more\" column",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[10] / 100"
+      },
+      "format": "percent",
+      "note": "last weeks-table band is \"more than 16%\"; prose label says \"16% and more\""
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {} and under {*} to {*} {*} to {*} {*} to {*} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[0] / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 0"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {} to {*} {*} to {*} {*} to {*} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "(EI_REGULAR.benefitWeeksBands[1] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 1"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {} {*} to {*} {*} to {*} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[2] / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 2"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {} to {*} {*} to {*} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "(EI_REGULAR.benefitWeeksBands[3] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 3"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {*} to {} {*} to {*} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[4] / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 4"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {*} to {*} {} to {*} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "(EI_REGULAR.benefitWeeksBands[5] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 5"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {*} to {*} {*} to {} {*} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[6] / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 6"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {*} to {*} {*} to {*} {} to {*} More than {*} 420–454",
+      "source": {
+        "engine": "(EI_REGULAR.benefitWeeksBands[7] + 0.1) / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 7"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {*} to {*} {*} to {*} {*} to {} More than {*} 420–454",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[8] / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 8"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Insurable hours {*} and under {*} to {*} {*} to {*} {*} to {*} {*} to {*} More than {} 420–454",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[10] / 100"
+      },
+      "format": "percent",
+      "note": "weeks-table slice header, column 9"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The 8.1–{} band needs 595 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[3][0] / 100"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The weekly benefit is {} of {*} = {*}",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The weekly benefit is {*} of {*} = {}",
+      "source": {
+        "engine": "EI_REGULAR.estimate(700, 8.1, 900).weekly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "row against the 8.1–{} column gives 20 weeks",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[3] / 100"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Total before tax: {}",
+      "source": {
+        "engine": "EI_REGULAR.estimate(700, 8.1, 900).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "real rate would come in above {}",
+      "source": {
+        "engine": "EI_REGULAR.estimate(700, 8.1, 900).weekly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The 10.1–{} band needs 525 hours",
+      "source": {
+        "engine": "EI_REGULAR.hoursBands[5][0] / 100"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The benefit is {} of {*} = {*}",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "The benefit is {*} of {*} = {}",
+      "source": {
+        "engine": "EI_REGULAR.estimate(600, 10.6, 750).weekly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "row against the 10.1–{} column gives 22 weeks",
+      "source": {
+        "engine": "EI_REGULAR.benefitWeeksBands[5] / 100"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "Total: {}. The near-miss",
+      "source": {
+        "engine": "EI_REGULAR.estimate(600, 10.6, 750).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "until earnings reach {} of the weekly insurable earnings your rate was built from",
+      "source": {
+        "const": "ei.workingWhileOnClaimThreshold"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "On a {} benefit built from",
+      "source": {
+        "engine": "EI_REGULAR.weeklyBenefit(909)"
+      },
+      "format": "round:1",
+      "note": "55% of the $909 input = 499.95, copy rounds to $500"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "work costs you {} of EI",
+      "source": {
+        "engine": "300 * EI_REGULAR.workingRetention"
+      },
+      "format": "exact",
+      "note": "$300 is under 90% of $909, so only the 50% retention rule applies"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "leaves you {} for the week",
+      "source": {
+        "engine": "EI_REGULAR.weeklyBenefit(909) + 300 * (1 - EI_REGULAR.workingRetention)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "for the week instead of {}.",
+      "source": {
+        "engine": "EI_REGULAR.weeklyBenefit(909)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "net income from all sources tops {}, you repay",
+      "source": {
+        "const": "ei.repaymentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "tops {*}, you repay {} of the lesser",
+      "source": {
+        "const": "ei.repaymentRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "the excess is {}, which",
+      "source": {
+        "engine": "95000 - EI_REGULAR.repaymentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "so the repayment is {} of {*} =",
+      "source": {
+        "const": "ei.repaymentRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "so the repayment is {*} of {} =",
+      "source": {
+        "engine": "95000 - EI_REGULAR.repaymentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "= {}. Two exemptions",
+      "source": {
+        "engine": "EI_REGULAR.repayment(95000, 12000)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "EI regular benefits pay {} of",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "up to about {} a week in 2026 (based on",
+      "source": {
+        "const": "ei.maxWeeklyBenefit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "(based on {} maximum insurable earnings)",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "EI premiums are {} of insurable earnings in 2026",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "capped at {} on the first",
+      "source": {
+        "const": "ei.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "{*} on the first {}. After that cap",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "What is the EI family supplement? If your net family income is {} or less",
+      "source": {
+        "const": "ei.familySupplementThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "it can raise your rate from {} to as much as {*}",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "it can raise your rate from {*} to as much as {} of average",
+      "source": {
+        "const": "ei.familySupplementMaxRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "If your 2026 net income exceeds {} you repay",
+      "source": {
+        "const": "ei.repaymentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "exceeds {*} you repay {} of the lesser",
+      "source": {
+        "const": "ei.repaymentRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "per dollar earned, up to {} of the weekly",
+      "source": {
+        "const": "ei.workingWhileOnClaimThreshold"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "Standard parental benefits pay {} of your",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "(up to {} a week in 2026) for up to 35 weeks",
+      "source": {
+        "const": "eiParental.maxWeeklyStandard"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "pay a lower {} (up to",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "(up to {} a week in 2026) but for much longer",
+      "source": {
+        "const": "eiParental.maxWeeklyExtended"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "Because 61 weeks at {} adds up",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "more than 35 weeks at {}, the extended",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "Maternity benefits pay {} of your average",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "up to a maximum of {} a week in 2026, for up to 15 weeks",
+      "source": {
+        "const": "eiParental.maxWeeklyStandard"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "always paid at the {} rate",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "stepping from {} down to {*})",
+      "source": {
+        "const": "qpipParental.basic.exclusiveRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "down to {}) and a Special",
+      "source": {
+        "const": "qpipParental.basic.parentalRate2"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "(shorter, a flat {})",
+      "source": {
+        "const": "qpipParental.special.exclusiveRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "caps benefits at {} of earnings",
+      "source": {
+        "const": "qpipParental.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "of earnings rather than {}, and has",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "Standard parental · {} {*} 0 weeks off",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent",
+      "note": "static result-card label (JS rewrites it with the same literal)"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "Extended parental · {} {*} 0 weeks off",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent",
+      "note": "static result-card label (JS rewrites it with the same literal)"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "up to 15 weeks at {} of average weekly earnings",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent",
+      "note": "maternity is paid at the standard rate (EI_PARENTAL.estimate)"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "to a maximum of {}/week. It can",
+      "source": {
+        "const": "eiParental.maxWeeklyStandard"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "always paid at {} even if you pick",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "{} (max {*}/week) for up to 35 weeks",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "(max {}/week) for up to 35 weeks",
+      "source": {
+        "const": "eiParental.maxWeeklyStandard"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "{} (max {*}/week) for up to 61 weeks",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "(max {}/week) for up to 61 weeks",
+      "source": {
+        "const": "eiParental.maxWeeklyExtended"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "The weekly amount is {} (or {*})",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "The weekly amount is {*} (or {})",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "capped once your salary passes about {}",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "and 61 weeks at {} adds up",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "slightly more than 35 weeks at {}. So",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "18 weeks maternity at {}, then 32",
+      "source": {
+        "const": "qpipParental.basic.exclusiveRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "(the first 7 at {}, the rest",
+      "source": {
+        "const": "qpipParental.basic.parentalRate1"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "the rest at {}). The Special",
+      "source": {
+        "const": "qpipParental.basic.parentalRate2"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "but pays {} the whole way",
+      "source": {
+        "const": "qpipParental.special.exclusiveRate"
+      },
+      "format": "percent",
+      "note": "special.parentalRate is the same 75%"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "QPIP caps benefits at {} of insurable earnings in 2026",
+      "source": {
+        "const": "qpipParental.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "well above EI's {}",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "families with net income of {} or less",
+      "source": {
+        "const": "eiParental.familySupplementIncomeThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "Standard pays {} (up to {*}/week in 2026)",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "Standard pays {*} (up to {}/week in 2026)",
+      "source": {
+        "const": "eiParental.maxWeeklyStandard"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "extended pays {} (up to {*}/week)",
+      "source": {
+        "const": "eiParental.extendedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "extended pays {*} (up to {}/week)",
+      "source": {
+        "const": "eiParental.maxWeeklyExtended"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "How much are EI maternity benefits in 2026? {} of average",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "weekly earnings, up to {} a week, for up to 15 weeks",
+      "source": {
+        "const": "eiParental.maxWeeklyStandard"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "gave birth, and always paid at {}",
+      "source": {
+        "const": "eiParental.standardRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "rate stepping {}→{*})",
+      "source": {
+        "const": "qpipParental.basic.exclusiveRate"
+      },
+      "format": "percent",
+      "note": "Basic: maternity + first 7 parental weeks at 70%"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "rate stepping {*}→{})",
+      "source": {
+        "const": "qpipParental.basic.parentalRate2"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "(shorter, a flat {})",
+      "source": {
+        "const": "qpipParental.special.exclusiveRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "caps benefits at {} of earnings rather than",
+      "source": {
+        "const": "qpipParental.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "of earnings rather than {}, and has",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "jsonld",
+      "anchor": "the maximum is {} a year — {*} a month",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "jsonld",
+      "anchor": "a year — {} a month",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild / 12"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "jsonld",
+      "anchor": "net income is {} or less. Above that it is reduced",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).threshold"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "jsonld",
+      "anchor": "reduced by {} of the excess if one child",
+      "source": {
+        "const": "cdb.rateOneChild"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "jsonld",
+      "anchor": "or {} if two or more qualify",
+      "source": {
+        "const": "cdb.rateTwoPlusChildren"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "jsonld",
+      "anchor": "reaches zero at about {} of income",
+      "source": {
+        "engine": "CDB.annual(CDB.currentBenefitYearStart, 1, 0).zeroAtIncome"
+      },
+      "format": "exact",
+      "note": "one-child zero point"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "the maximum is {} a year — {*} a month — for each child",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it (#a-max)"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "a year — {} a month — for each child",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild / 12"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it (#a-monthly)"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "stays at or under {}.",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).threshold"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it (#a-threshold)"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "Above that it drops by {} of the excess",
+      "source": {
+        "const": "cdb.rateOneChild"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "with one eligible child, or {} with two or more",
+      "source": {
+        "const": "cdb.rateTwoPlusChildren"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "matches contributions up to {} for every",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact",
+      "note": "CDSG 300% match on first $500 = $3 per $1"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "subtract {}, multiply the excess",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).threshold"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it (#t-threshold)"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "uses the same {} as a family with two",
+      "source": {
+        "const": "cdb.rateTwoPlusChildren"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "keeps climbing ({} at three children",
+      "source": {
+        "const": "ccb.tier2Rates.2"
+      },
+      "format": "percent",
+      "note": "CCB tier-2 rate, contrasted with CDB"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "at three children, {} at four or more)",
+      "source": {
+        "const": "ccb.tier2Rates.3"
+      },
+      "format": "percent",
+      "note": "CCB tier-2 rate, contrasted with CDB"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "a one-child claim at {},",
+      "source": {
+        "const": "cdb.rateOneChild"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "Up to {} a year ({*} a month) per approved child",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "a year ({} a month) per approved child",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild / 12"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "net income is {} or less, then reduced by",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).threshold"
+      },
+      "format": "exact",
+      "note": "current benefit year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "then reduced by {} (one child)",
+      "source": {
+        "const": "cdb.rateOneChild"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "(one child) or {} (two or more)",
+      "source": {
+        "const": "cdb.rateTwoPlusChildren"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "at roughly {} of adjusted family net income",
+      "source": {
+        "engine": "CDB.annual(CDB.currentBenefitYearStart, 1, 0).zeroAtIncome"
+      },
+      "format": "exact",
+      "note": "one-child zero point = threshold + max/3.2%"
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "the government matches up to {} for every",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "If family income is {} or less for 2026",
+      "source": {
+        "const": "rdsp.grantThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "the government pays {} for every",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "on your first {} and",
+      "source": {
+        "const": "rdsp.grantTier1Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "on your first {*} and {} for every",
+      "source": {
+        "const": "rdsp.grantTier2Rate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "on the next {} — so a",
+      "source": {
+        "const": "rdsp.grantTier2Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "so a {} contribution",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "attracts the maximum {} grant",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "grant. Above {} the match is",
+      "source": {
+        "const": "rdsp.grantThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "the match is {} for {*} on the first",
+      "source": {
+        "const": "rdsp.grantHighIncomeRate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "the match is {*} for {*} on the first {}, for a maximum",
+      "source": {
+        "const": "rdsp.grantHighIncomeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "for a maximum of {}. The lifetime",
+      "source": {
+        "engine": "RDSP.grantHighIncomeContribution * RDSP.grantHighIncomeRate"
+      },
+      "format": "exact",
+      "note": "max grant above the income threshold = high-income match ceiling x rate (mirrors RDSP.grant().maxForIncome)"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "lifetime grant limit is {},",
+      "source": {
+        "const": "rdsp.lifetimeGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "family income of {} or less gets",
+      "source": {
+        "const": "rdsp.bondFullThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "gets the full {} a year",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "paid up to {}, above which",
+      "source": {
+        "const": "rdsp.bondZeroThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "lifetime bond limit is {}.",
+      "source": {
+        "const": "rdsp.lifetimeBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "rises to {} of grant and {*} of bond, well above",
+      "source": {
+        "const": "rdsp.carryForwardMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "rises to {*} of grant and {} of bond, well above",
+      "source": {
+        "const": "rdsp.carryForwardMaxBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "well above the usual {} and {*}.",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "well above the usual {*} and {}.",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "At the best rate, {} in attracts {*}.",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "At the best rate, {*} in attracts {}.",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "the ceiling rises to {} of grant and {*} of bond, far above",
+      "source": {
+        "const": "rdsp.carryForwardMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "the ceiling rises to {*} of grant and {} of bond, far above",
+      "source": {
+        "const": "rdsp.carryForwardMaxBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "far above the usual {} and {*}.",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "far above the usual {*} and {}.",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "family income at or under {} earns",
+      "source": {
+        "const": "rdsp.grantThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "earns {} for every {*} on the first",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "earns {*} for every {*} on the first {} and",
+      "source": {
+        "const": "rdsp.grantTier1Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "on the first {*} and {} for every {*} on the next",
+      "source": {
+        "const": "rdsp.grantTier2Rate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "on the next {} — a {*} contribution",
+      "source": {
+        "const": "rdsp.grantTier2Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "— a {} contribution attracts the full",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "contribution attracts the full {} grant",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Above that income the match is {} for {*} on the first",
+      "source": {
+        "const": "rdsp.grantHighIncomeRate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Above that income the match is {*} for {*} on the first {}.",
+      "source": {
+        "const": "rdsp.grantHighIncomeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Separately, family income at or under {} receives",
+      "source": {
+        "const": "rdsp.bondFullThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "receives the full {} bond",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "The grant: why {} is the number",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "the first {} is matched three to one",
+      "source": {
+        "const": "rdsp.grantTier1Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "and the next {} two to one",
+      "source": {
+        "const": "rdsp.grantTier2Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Past {} of contributions",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Contributing more than {} in a year",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Full amount at or under {}, nothing",
+      "source": {
+        "const": "rdsp.bondFullThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "nothing at or above {}, and",
+      "source": {
+        "const": "rdsp.bondZeroThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "up to a lifetime {}. How",
+      "source": {
+        "const": "rdsp.lifetimeBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Lifetime grant {} Lifetime bond",
+      "source": {
+        "const": "rdsp.lifetimeGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Lifetime bond {} Lifetime contributions",
+      "source": {
+        "const": "rdsp.lifetimeBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Lifetime contributions {} Maximum grant",
+      "source": {
+        "const": "rdsp.lifetimeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Maximum grant in a normal year {}",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Maximum bond in a normal year {}",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "How much is the grant? Up to {} a year",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "a year — {} per {*} on the first",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "per {*} on the first {} and {*} per",
+      "source": {
+        "const": "rdsp.grantTier1Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "on the first {*} and {} per {*} on the next",
+      "source": {
+        "const": "rdsp.grantTier2Rate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "per {*} on the next {}, if family",
+      "source": {
+        "const": "rdsp.grantTier2Contribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "at or under {} for 2026",
+      "source": {
+        "const": "rdsp.grantThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Above that, {} per {*} to a",
+      "source": {
+        "const": "rdsp.grantHighIncomeRate"
+      },
+      "format": "exact",
+      "note": "match rate stored as dollars of grant per $1 contributed; copy prints it as $N"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "per {*} to a {} maximum",
+      "source": {
+        "engine": "RDSP.grantHighIncomeContribution * RDSP.grantHighIncomeRate"
+      },
+      "format": "exact",
+      "note": "max grant above the income threshold = high-income match ceiling x rate (mirrors RDSP.grant().maxForIncome)"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Lifetime cap {}.",
+      "source": {
+        "const": "rdsp.lifetimeGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "Yes — the bond, up to {} a year",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "a year and {} over a lifetime",
+      "source": {
+        "const": "rdsp.lifetimeBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "carry-forward worth? Up to {} of grant",
+      "source": {
+        "const": "rdsp.carryForwardMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "of grant and {} of bond in a single",
+      "source": {
+        "const": "rdsp.carryForwardMaxBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "jsonld",
+      "anchor": "federal disability amount is {}, and it is valued",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount"
+      },
+      "format": "exact",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "jsonld",
+      "anchor": "lowest federal tax rate of {} — about",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "percent",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "jsonld",
+      "anchor": "— about {} off your federal tax",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount * DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "round:1",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "jsonld",
+      "anchor": "for Ontario is {} at {*}",
+      "source": {
+        "engine": "DTC.provincialYear('ON', DTC.currentTaxYear).amount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "jsonld",
+      "anchor": "for Ontario is {*} at {}, roughly",
+      "source": {
+        "engine": "DTC.provincialYear('ON', DTC.currentTaxYear).rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "jsonld",
+      "anchor": "roughly {} more",
+      "source": {
+        "engine": "DTC.yearValue(DTC.currentTaxYear, 'ON').provincial"
+      },
+      "format": "round:10",
+      "note": "ON provincial credit; engine 520.05"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "the federal disability amount is {}, valued",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount"
+      },
+      "format": "exact",
+      "note": "current tax year, as the page script stamps it (#a-fed)"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "valued at the lowest federal rate of {} — about",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "percent",
+      "note": "current tax year, as the page script stamps it (#a-rate)"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "— about {} off your federal tax",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount * DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "round:1",
+      "note": "current tax year, as the page script stamps it (#a-fedval, whole dollars)"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "valued at the lowest rate — {} federally",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "percent",
+      "note": "current tax year, as the page script stamps it; prose also hard-codes \"for 2025\""
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "both are calculated at {}.",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "percent",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "The federal lowest rate was {} through 2024",
+      "source": {
+        "const": "dtc.federal.y2024.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "through 2024, {} in 2025",
+      "source": {
+        "const": "dtc.federal.y2025.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "in 2025 and {} from 2026",
+      "source": {
+        "const": "dtc.federal.y2026.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "bottom rate from {} to {*} for 2026 only",
+      "source": {
+        "const": "dtc.provincial.AB.y2025.rate"
+      },
+      "format": "percent",
+      "note": "AB lowest rate before the 2026 cut"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "bottom rate from {*} to {} for 2026 only",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent",
+      "note": "AB 2026 lowest bracket (payroll table)"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "more than the credit itself — up to {} a year per child",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild"
+      },
+      "format": "exact",
+      "note": "CDB current-year max"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "matches contributions up to {} for every",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "pays a bond of up to {} a year",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "For 2025, about {} federally",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount * DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "round:1",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "federally (the {} amount at",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount"
+      },
+      "format": "exact",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "amount at {}) plus your province",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "percent",
+      "note": "current tax year, as the page script stamps it"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "the government matches up to {} for every",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "the year: {} of new TFSA room",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "RRSP dollar limit of {} (or",
+      "source": {
+        "const": "registeredAccounts.rrspDollarLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "(or {} of 2025 earned income",
+      "source": {
+        "const": "registeredAccounts.rrspEarnedIncomePct"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "another {} of FHSA room",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "toward the {} lifetime cap",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "ceilings — {} and {*} — start",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/",
+      "surface": "main",
+      "anchor": "ceilings — {*} and {} — start",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "contribution limit for 2026 is {}, unchanged",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "never contributed has {} of total room in 2026",
+      "source": {
+        "const": "registeredAccounts.tfsaCumulativeSince2009"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "RRSP dollar limit is {}, up from",
+      "source": {
+        "const": "registeredAccounts.rrspDollarLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "deduction limit is the lesser of {} of your prior-year",
+      "source": {
+        "const": "registeredAccounts.rrspEarnedIncomePct"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "Savings Account annual limit is {}, with a",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "with a {} lifetime limit",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "Maximum Pensionable Earnings is {}, and",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "base CPP contribution is {} (",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "is {*} ({} of earnings between",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "between the {} exemption and",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "exemption and {}). CPP2",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "CPP2 adds {} on earnings",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "on earnings from {} to {*}, up to",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact",
+      "note": "CPP2 lower bound = YMPE"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "from {*} to {}, up to",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "up to {} more — a combined",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "combined employee maximum of {}.",
+      "source": {
+        "engine": "CPP.maxEmployeeContribution + CPP.cpp2.maxContribution"
+      },
+      "format": "exact",
+      "note": "base CPP max + CPP2 max"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "TFSA — annual {} {*} total room",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "TFSA — annual {*} {} total room",
+      "source": {
+        "const": "registeredAccounts.tfsaCumulativeSince2009"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "RRSP — dollar limit {} Or",
+      "source": {
+        "const": "registeredAccounts.rrspDollarLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "RRSP — dollar limit {*} Or {} of prior-year",
+      "source": {
+        "const": "registeredAccounts.rrspEarnedIncomePct"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "FHSA — annual {} {*} lifetime",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "FHSA — annual {*} {} lifetime",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "RESP — lifetime {} No annual cap",
+      "source": {
+        "const": "registeredAccounts.respLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "CESG grant {} ·",
+      "source": {
+        "const": "registeredAccounts.cesgRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "CESG grant {*} · {}/yr",
+      "source": {
+        "const": "registeredAccounts.cesgMaxPerYear"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "/yr {}/yr captures it",
+      "source": {
+        "const": "registeredAccounts.cesgFullGrantContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "captures it; {} lifetime per child",
+      "source": {
+        "const": "registeredAccounts.cesgLifetimeMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "CPP — YMPE {} Max employee",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "Max employee contribution {} (+",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "(+{} CPP2)",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "EI — max insurable {} Max employee premium",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "Max employee premium {} (outside Quebec)",
+      "source": {
+        "const": "ei.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "(outside Quebec) TFSA — {} for 2026",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "Savings Account annual limit is {} for 2026",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "never contributed carries {} of room into 2026",
+      "source": {
+        "const": "registeredAccounts.tfsaCumulativeSince2009"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "RRSP — {} limit, March 2 deadline",
+      "source": {
+        "const": "registeredAccounts.rrspDollarLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "The 2026 dollar limit is {}, up from",
+      "source": {
+        "const": "registeredAccounts.rrspDollarLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "deduction limit is the lesser of {} of your prior-year earned income",
+      "source": {
+        "const": "registeredAccounts.rrspEarnedIncomePct"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "so you need roughly {} of 2025 earned income",
+      "source": {
+        "engine": "REGISTERED_LIMITS.rrspDollarLimit / REGISTERED_LIMITS.rrspEarnedIncomePct"
+      },
+      "format": "round:1",
+      "note": "dollar limit / 18%, i.e. income at which 18% reaches the cap (187,833.33)"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "page. FHSA — {} a year,",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "FHSA — {*} a year, {} for life",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "unchanged for 2026: {} per year",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "per year up to a {} lifetime maximum",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "the CESG grant — the {} number",
+      "source": {
+        "const": "registeredAccounts.cesgFullGrantContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "but a {} lifetime limit per beneficiary",
+      "source": {
+        "const": "registeredAccounts.respLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "(CESG) pays {} of what you contribute",
+      "source": {
+        "const": "registeredAccounts.cesgRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "to a maximum of {} a year — which means",
+      "source": {
+        "const": "registeredAccounts.cesgMaxPerYear"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "which means {} of contributions a year",
+      "source": {
+        "const": "registeredAccounts.cesgFullGrantContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "the CESG tops out at {}.",
+      "source": {
+        "const": "registeredAccounts.cesgLifetimeMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "contribute far more than {} in one year",
+      "source": {
+        "const": "registeredAccounts.cesgFullGrantContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "CPP — {} ceiling,",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "ceiling, {} maximum For 2026",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "Pensionable Earnings (YMPE) is {},",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "maximum base CPP contribution is {} —",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "is {*} — {} of earnings between",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "of earnings between the {} basic exemption",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "basic exemption and the {} ceiling. Since",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "CPP2, adds {} on earnings",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "adds {*} on earnings between {} and",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact",
+      "note": "CPP2 lower bound = YMPE"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "between {*} and {}, worth up to",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "worth up to {} more, so",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "so the combined employee maximum is {}.",
+      "source": {
+        "engine": "CPP.maxEmployeeContribution + CPP.cpp2.maxContribution"
+      },
+      "format": "exact",
+      "note": "base CPP max + CPP2 max"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "EI — {} maximum insurable earnings",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "maximum insurable earnings of {} for 2026",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "At the {} per {*} rate",
+      "source": {
+        "engine": "EI.rate * 100"
+      },
+      "format": "exact",
+      "note": "EI employee rate 0.0163 shown as $ per $100"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "the maximum employee premium is {} outside Quebec",
+      "source": {
+        "const": "ei.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "reduced rate that caps at {},",
+      "source": {
+        "const": "ei.quebec.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "limit for 2026? {} — unchanged",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "who never contributed has {} of total room in 2026",
+      "source": {
+        "const": "registeredAccounts.tfsaCumulativeSince2009"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "The 2026 dollar limit is {} (up from",
+      "source": {
+        "const": "registeredAccounts.rrspDollarLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "Your deduction limit is the lesser of {} of prior-year",
+      "source": {
+        "const": "registeredAccounts.rrspEarnedIncomePct"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "in an FHSA in 2026? {} a year",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "a year, up to {} over your lifetime",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "maximum CPP contribution in 2026? {} in base CPP",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "in base CPP ({} between",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "between {} and {*}), plus up to",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "between {*} and {}), plus up to",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "plus up to {} of CPP2",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "of CPP2 ({} from",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "CPP2 ({*} from {} to",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact",
+      "note": "CPP2 lower bound = YMPE"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "from {*} to {}) — a combined",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "a combined {} for an employee",
+      "source": {
+        "engine": "CPP.maxEmployeeContribution + CPP.cpp2.maxContribution"
+      },
+      "format": "exact",
+      "note": "base CPP max + CPP2 max"
+    }
+  ]
+}
