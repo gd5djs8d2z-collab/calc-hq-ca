@@ -1364,9 +1364,18 @@
     "key": "gis.effectiveQuarter",
     "value": "July–September 2026",
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
     "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.effectiveQuarter",
+    "value": "October–December 2026",
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
@@ -1376,9 +1385,21 @@
       "incomeCutoff": 22800
     },
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
     "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.single",
+    "value": {
+      "maxMonthly": 1138.9,
+      "incomeCutoff": 23112
+    },
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
@@ -1388,9 +1409,21 @@
       "incomeCutoff": 30096
     },
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
     "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.spouseFullOAS",
+    "value": {
+      "maxMonthly": 685.56,
+      "incomeCutoff": 30528
+    },
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
@@ -1400,9 +1433,21 @@
       "incomeCutoff": 42144
     },
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
     "verified_at": "2026-07-16",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "gis.spouseAllowance",
+    "value": {
+      "maxMonthly": 685.56,
+      "incomeCutoff": 42768
+    },
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
@@ -1412,49 +1457,75 @@
       "incomeCutoff": 54624
     },
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
     "verified_at": "2026-07-16",
     "cadence": "quarterly"
   },
   {
-    "key": "gis.employmentExemption",
+    "key": "gis.spouseNoOAS",
     "value": {
-      "full": 5000,
-      "partialUpTo": 10000,
-      "partialRate": 0.5
+      "maxMonthly": 1138.9,
+      "incomeCutoff": 55392
     },
-    "effective_from": "2026-07-01",
+    "effective_from": "2026-10-01",
     "effective_to": null,
-    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
-    "verified_at": "2026-07-16",
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
     "key": "oas.effectiveQuarter",
     "value": "July–September 2026",
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
     "verified_at": "2026-07-18",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.effectiveQuarter",
+    "value": "October–December 2026",
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
     "key": "oas.maxMonthly65to74",
     "value": 751.97,
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
     "verified_at": "2026-07-18",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.maxMonthly65to74",
+    "value": 762.5,
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
     "key": "oas.maxMonthly75plus",
     "value": 827.17,
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
     "verified_at": "2026-07-18",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "oas.maxMonthly75plus",
+    "value": 838.75,
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
@@ -1659,9 +1730,18 @@
     "key": "cppRetirement.averageAt65Monthly",
     "value": 877.01,
     "effective_from": "2026-07-01",
-    "effective_to": null,
+    "effective_to": "2026-10-01",
     "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html",
     "verified_at": "2026-07-14",
+    "cadence": "quarterly"
+  },
+  {
+    "key": "cppRetirement.averageAt65Monthly",
+    "value": 858.34,
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-benefit/amount.html",
+    "verified_at": "2026-10-03",
     "cadence": "quarterly"
   },
   {
@@ -1776,5 +1856,18 @@
     "source_url": "https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html",
     "verified_at": "2026-07-26",
     "cadence": "january"
+  },
+  {
+    "key": "gis.employmentExemption",
+    "value": {
+      "full": 5000,
+      "partialUpTo": 10000,
+      "partialRate": 0.5
+    },
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html",
+    "verified_at": "2026-07-16",
+    "cadence": "quarterly"
   }
 ]

@@ -143,6 +143,11 @@ the July pass, not the quarterly one:
   numbers per status are what must stay current. GIS never decreases quarter-to-quarter.
 - The employment-income exemption ($5,000 + 50% of the next $10,000) and the 65+/OAS
   eligibility rule change only by legislation — re-confirm, but they rarely move.
+- `gis.employmentExemption` is `cadence: 'statutory'` (since 2026-10-03), so it never goes stale
+  on the calendar. No canada.ca page states it; it cites the Old Age Security Act itself
+  (`SRC.oasActS2`, s. 2 "income", para. (b.1)), quoted in full beside the leaf. **If the Act is
+  amended, re-read s. 2 and re-check the value** — the "last amended" date at the top of the
+  laws-lois.justice.gc.ca page is the thing to watch (2025-10-01 when stamped).
 
 ---
 

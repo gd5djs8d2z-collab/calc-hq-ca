@@ -95,6 +95,8 @@ const SRC = {
   oasEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/eligibility.html',
   oasWhenStart:   'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/when-start.html',
   oasRecoveryTax: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html',
+  // Old Age Security Act, s. 2 (definition of "income") — the statute itself, on the federal laws site.
+  oasActS2:       'https://laws-lois.justice.gc.ca/eng/acts/O-9/section-2.html',
   craBenefitDates: 'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/benefit-payment-dates.html',
   // The whole-of-government benefits calendar — the one page carrying BOTH the Service
   // Canada pension dates (CPP / OAS / GIS) and the CRA benefit dates in a single place.
@@ -682,22 +684,36 @@ export const TAX_CONSTANTS_2026 = {
   // (Jan/Apr/Jul/Oct) — see MAINTENANCE.md. GIS never decreases quarter-to-quarter.
   gis: {
     _cadence: 'quarterly',
-    effectiveQuarter:    { value: 'July–September 2026', source_url: SRC.gis, last_verified: '2026-07-16' },
+    effectiveQuarter:    { value: 'October–December 2026', source_url: SRC.oasPayments, last_verified: '2026-10-03' },
     oasEligibilityAge:   { value: 65, source_url: SRC.gisEligibility, last_verified: '2026-07-16', cadence: 'statutory' },
     // maxMonthly = maximum monthly GIS; incomeCutoff = annual income (couples: combined) at/above which GIS is $0.
-    single:          { value: { maxMonthly: 1123.17, incomeCutoff: 22800 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // single / widowed / divorced
-    spouseFullOAS:   { value: { maxMonthly: 676.09,  incomeCutoff: 30096 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse receives full OAS
-    spouseAllowance: { value: { maxMonthly: 676.09,  incomeCutoff: 42144 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse receives the Allowance
-    spouseNoOAS:     { value: { maxMonthly: 1123.17, incomeCutoff: 54624 }, source_url: SRC.gis, last_verified: '2026-07-16' }, // spouse does NOT receive OAS/Allowance
+    single:          { value: { maxMonthly: 1138.90, incomeCutoff: 23112 }, source_url: SRC.gis, last_verified: '2026-10-03' }, // single / widowed / divorced
+    spouseFullOAS:   { value: { maxMonthly: 685.56,  incomeCutoff: 30528 }, source_url: SRC.gis, last_verified: '2026-10-03' }, // spouse receives full OAS
+    spouseAllowance: { value: { maxMonthly: 685.56,  incomeCutoff: 42768 }, source_url: SRC.gis, last_verified: '2026-10-03' }, // spouse receives the Allowance
+    spouseNoOAS:     { value: { maxMonthly: 1138.90, incomeCutoff: 55392 }, source_url: SRC.gis, last_verified: '2026-10-03' }, // spouse does NOT receive OAS/Allowance
     // Employment / net self-employment exemption: first $5,000 fully exempt, then 50% of the
     // next $10,000 (max $10,000 exempt), PER PERSON. OAS and GIS themselves are excluded income.
-    employmentExemption: { value: { full: 5000, partialUpTo: 10000, partialRate: 0.5 }, source_url: SRC.oasPayments, last_verified: '2026-07-16' },
+    // Set by statute, not indexed — no canada.ca page states it, so it cites the Act itself.
+    // Old Age Security Act, R.S.C. 1985, c. O-9, s. 2, "income", para. (b.1) (current to
+    // 2026-09-21, last amended 2025-10-01; read 2026-10-03):
+    //   "(b.1) for the purpose of determining benefits payable in respect of any month after
+    //   June 2020, there shall be deducted from a person’s combined amount — which is equal to
+    //   the aggregate of the person’s income from office or employment for the year, as reduced
+    //   in accordance with paragraph (a), and the person’s self-employment earnings for the
+    //   year, as reduced in accordance with paragraph (b), if those reduced self-employment
+    //   earnings are greater than zero — an amount that is equal to the aggregate of
+    //   (i) the lesser of $5,000 and the combined amount, and
+    //   (ii) if the combined amount is greater than $5,000, the lesser of $5,000 and half of the
+    //   amount by which the combined amount exceeds $5,000,"
+    // (ii) caps at $5,000 = half of the next $10,000, matching { full, partialUpTo, partialRate }.
+    // Re-read if the Act is amended (MAINTENANCE Rule 3).
+    employmentExemption: { value: { full: 5000, partialUpTo: 10000, partialRate: 0.5 }, source_url: SRC.oasActS2, last_verified: '2026-10-03', cadence: 'statutory' },
   },
 
   /* ── OLD AGE SECURITY (OAS) — pension amount + recovery tax (clawback) ────── */
   // TWO different clocks run here, which is the single most confusing thing about OAS:
   //   1. The PENSION AMOUNT re-indexes QUARTERLY (Jan/Apr/Jul/Oct), like GIS — these are
-  //      the July–September 2026 figures. Bump them together with GIS (MAINTENANCE Rule 3).
+  //      the October–December 2026 figures. Bump them together with GIS (MAINTENANCE Rule 3).
   //   2. The RECOVERY TAX runs on a JULY–JUNE period keyed to the PRIOR calendar year's
   //      income. The current period is July 2026–June 2027, assessed on 2025 income against
   //      the 2025 threshold. Those nodes carry cadence 'july' individually.
@@ -705,6 +721,8 @@ export const TAX_CONSTANTS_2026 = {
   //
   // All values confirmed live 2026-07-18 across four canada.ca pages, which agree:
   //   "Old Age Security payment amounts"  — max $751.97 (65–74) / $827.17 (75+), Jul–Sep 2026
+  // Quarterly pair re-confirmed 2026-10-03 for Oct–Dec 2026 (+1.4% CPI): $762.50 / $838.75 on
+  //   both "Old Age Security payment amounts" and "How much you could receive" (modified 2026-09-29).
   //   "How much you could receive"        — same maxima; "partial pension based on how long
   //                                          you lived in Canada (years lived in Canada ÷ 40)";
   //                                          "Each January, April, July, and October pension
@@ -713,10 +731,10 @@ export const TAX_CONSTANTS_2026 = {
   //   "OAS pension recovery tax"          — the recovery-period table below, and the 15% rate
   oas: {
     _cadence: 'quarterly',
-    effectiveQuarter: { value: 'July–September 2026', source_url: SRC.oasPayments, last_verified: '2026-07-18' },
+    effectiveQuarter: { value: 'October–December 2026', source_url: SRC.oasPayments, last_verified: '2026-10-03' },
     // Maximum monthly pension at full (40-year) residence, before any recovery tax.
-    maxMonthly65to74: { value: 751.97, source_url: SRC.oasPayments, last_verified: '2026-07-18' },
-    maxMonthly75plus: { value: 827.17, source_url: SRC.oasPayments, last_verified: '2026-07-18' },
+    maxMonthly65to74: { value: 762.50, source_url: SRC.oasPayments, last_verified: '2026-10-03' },
+    maxMonthly75plus: { value: 838.75, source_url: SRC.oasPayments, last_verified: '2026-10-03' },
     // Automatic 10% increase the month after the 75th birthday (permanent, since July 2022).
     // Stored for display/explanation — the 75+ maximum above already includes it.
     age75IncreaseRate: { value: 0.10, source_url: SRC.oasAmount, last_verified: '2026-07-18', cadence: 'statutory' },
@@ -926,7 +944,10 @@ export const TAX_CONSTANTS_2026 = {
     lateIncreasePerMonth:   { value: 0.007, source_url: SRC.cppWhenStart, last_verified: '2026-07-14' }, // reference only, not used on 60-vs-65
     lateMaxIncrease:        { value: 0.42,  source_url: SRC.cppWhenStart, last_verified: '2026-07-14' }, // reference only
     maxAt65Monthly:         { value: 1507.65, source_url: SRC.cppAmount, last_verified: '2026-07-14', cadence: 'january' },   // January 2026 maximum
-    averageAt65Monthly:     { value: 877.01,  source_url: SRC.cppAmount, last_verified: '2026-07-14', cadence: 'quarterly' }, // April 2026 average
+    // canada.ca labels this "Average CPP pension at age 65 (July 2026)" — it is the JULY 2026
+    // average, the latest published at 2026-10-03. gen-history dates its row 2026-10-01 because
+    // effective_from follows the quarter containing last_verified, not the figure's own month.
+    averageAt65Monthly:     { value: 858.34,  source_url: SRC.cppAmount, last_verified: '2026-10-03', cadence: 'quarterly' }, // July 2026 average
     qppMaxAt65Monthly:      { value: 1507.65, source_url: SRC.qppFigures,     last_verified: '2026-07-15', cadence: 'january' },
     qppEarlyReductionMin:   { value: 0.005,   source_url: SRC.qppCalculation, last_verified: '2026-07-15' }, // 0.5%/month for a low pension
     qppEarlyReductionMax:   { value: 0.006,   source_url: SRC.qppCalculation, last_verified: '2026-07-15' }, // 0.6%/month at the maximum pension
