@@ -146,6 +146,17 @@
     </div>
     <p>Withholding follows the left column: income tax on that March pay is about <strong>$5,206</strong>, roughly $4,608 of it down to the commission — <strong>38.4%</strong>. With a TD1X estimating $75,000 it would have been about <strong>$2,809</strong>: same pay, same employer, some $2,400 less held back, because payroll was pricing the year instead of the month.</p>
     <p>Over twelve months that rep earns $20,000 of commission costing $5,527 in income tax — 27.6%, not 38.4%. With $1,182 of CPP and $227 of EI, it gives up $6,935 and leaves $13,065. March's excess isn't gone; you're lending it to CRA until you file.</p>
+
+    <h2>Where the commission keeps the most</h2>
+    <p>This is the right-hand column of the table above, run for every jurisdiction: the year as filed, not the annualized March cheque. Edit the base salary or the commission and the order shifts, because each row is the calculator's own result for that province or territory.</p>
+    <div class="compare-table-wrap" id="province-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Jurisdiction</th><th>Net commission</th><th>Withheld</th><th>Kept</th></tr>
+        </thead>
+        <tbody id="province-table"></tbody>
+      </table>
+    </div>
   </section>
 
   <section class="faq">
@@ -220,6 +231,7 @@
 <script type="module">
 import { calcExtraIncome, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
 import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+import { renderProvinceTable } from '/assets/js/province-table.js';
 
 function run() {
   const salary = parseMoney(el('salary').value);
@@ -247,6 +259,11 @@ function run() {
     rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${formatCurrency(Math.abs(v))}</span></div>`).join('')
     + `<div class="row total"><span>Net commission</span><span class="val">${formatCurrency(c.net)}</span></div>`;
   result.hidden = false;
+
+  renderProvinceTable(el('province-table'), el('province'), p => {
+    const x = calcExtraIncome(salary, commission, p);
+    return { sort: x.net, cells: [formatCurrency(x.net), formatCurrency(x.totalWithheld), `${(100 - x.effectiveRate*100).toFixed(0)}%`] };
+  });
 }
 
 el('go').addEventListener('click', run);

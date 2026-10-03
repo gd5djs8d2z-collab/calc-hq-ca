@@ -142,6 +142,17 @@
     </div>
     <p>The salary on its own gives up 23.2% of gross to income tax, CPP and EI. The bonus gives up 34.8%. Same person, same year, same rules — the bonus has no low brackets left to sit in, and it clips the health premium band past $72,000.</p>
     <p>Timing shifts which cheque carries the deduction, not the annual total. Pay the same bonus in February and CPP comes off it in full, then stops earlier on the salary later in the year.</p>
+
+    <h2>The same bonus in every province and territory</h2>
+    <p>These rows take the salary and bonus from the calculator and re-sort when you change either. Most of the spread is provincial tax on the top slice of income. Quebec's row is built on QPP, QPIP and Quebec's own tax, with the federal share cut by the Quebec abatement.</p>
+    <div class="compare-table-wrap" id="province-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Jurisdiction</th><th>Net bonus</th><th>Withheld</th><th>Kept</th></tr>
+        </thead>
+        <tbody id="province-table"></tbody>
+      </table>
+    </div>
   </section>
 
   <section class="faq">
@@ -216,6 +227,7 @@
 <script type="module">
 import { calcExtraIncome, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
 import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+import { renderProvinceTable } from '/assets/js/province-table.js';
 
 function run() {
   const salary = parseMoney(el('salary').value);
@@ -243,6 +255,11 @@ function run() {
     rows.map(([k,v]) => `<div class="row"><span>${k}</span><span class="val">${v<0?'−':''}${formatCurrency(Math.abs(v))}</span></div>`).join('')
     + `<div class="row total"><span>Net bonus</span><span class="val">${formatCurrency(b.net)}</span></div>`;
   result.hidden = false;
+
+  renderProvinceTable(el('province-table'), el('province'), p => {
+    const x = calcExtraIncome(salary, bonus, p);
+    return { sort: x.net, cells: [formatCurrency(x.net), formatCurrency(x.totalWithheld), `${(100 - x.effectiveRate*100).toFixed(0)}%`] };
+  });
 }
 
 el('go').addEventListener('click', run);

@@ -130,6 +130,15 @@
 
     <h2>Same raise, other provinces</h2>
     <p>$60,000 to $66,000 keeps 64% in Ontario, 64% in Alberta, 66% in British Columbia and 57% in Quebec. Quebec's gap is three things stacking: QPP at 6.3% takes $378 where CPP takes $357, QPIP adds $26 and the reduced 1.30% federal EI adds $78, and Quebec's own tax takes $1,129 of the raise against Ontario's $524. The federal share is smaller there — $967 after the Quebec abatement — but not by enough to close the difference.</p>
+    <div class="compare-table-wrap" id="province-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Jurisdiction</th><th>Net raise</th><th>Per month</th><th>Kept</th></tr>
+        </thead>
+        <tbody id="province-table"></tbody>
+      </table>
+    </div>
+    <p>The rows follow whatever salaries you enter above, so the four shares quoted here hold only for the starting pair.</p>
 
     <h2>The year of the raise is shorter than the calculator's</h2>
     <p>The figures above compare two full years at two salaries. A raise that takes effect on 1 July puts half of that in the current year, and payroll does nothing to catch you up — from the first affected cheque it annualises the new pay and withholds at the new rate, and the earlier cheques stay as they were. If the raise is backdated and the difference is paid out as one amount, that amount is a non-periodic payment, and <a href="/tax-on-extra-income/bonus/">payroll withholds it the way it withholds a bonus</a>.</p>
@@ -206,6 +215,7 @@
 <script type="module">
 import { calcRaise, formatCurrency, isLiveProvince } from '/assets/js/tax-engine.js';
 import { parseMoney, provinceStub, el } from '/assets/js/calc-ui.js';
+import { renderProvinceTable } from '/assets/js/province-table.js';
 
 function run() {
   const current = parseMoney(el('current').value);
@@ -220,6 +230,7 @@ function run() {
   if (next <= current) {
     result.hidden = true; stub.hidden = false;
     stub.textContent = 'Enter a new salary higher than your current salary to see the raise.';
+    el('province-table-wrap').hidden = true;
     return;
   }
 
@@ -237,6 +248,12 @@ function run() {
   el('breakdown').innerHTML = rows.map(([k,v],i) =>
     `<div class="row${i===1?' total':''}"><span>${k}</span><span class="val">${formatCurrency(v)}</span></div>`).join('');
   result.hidden = false;
+
+  renderProvinceTable(el('province-table'), el('province'), p => {
+    const x = calcRaise(current, next, p);
+    return { sort: x.netRaise, cells: [formatCurrency(x.netRaise), formatCurrency(x.monthlyNet), `${(x.keptShare*100).toFixed(0)}%`] };
+  });
+  el('province-table-wrap').hidden = false;
 }
 
 el('go').addEventListener('click', run);
