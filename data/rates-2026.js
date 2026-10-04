@@ -716,7 +716,7 @@ export const OAS = {
 //                  (+ under-18 supplement, less the attendant/childcare expense reduction)
 //     provincial = provincial disability amount x that jurisdiction's lowest rate FOR THAT YEAR
 // Every rate is per-year: the federal rate was 15% through 2024, 14.5% in 2025 and 14% from
-// 2026, and Alberta cut its provincial lowest rate 10% -> 8% for 2026 ONLY. Using a current
+// 2026, and Alberta cut its provincial lowest rate 10% -> 8% from the 2025 tax year. Using a current
 // rate for a historical year is the single largest error available here (MAINTENANCE.md).
 //
 // THREE MODELLING DECISIONS, all surfaced on /benefits/dtc/:

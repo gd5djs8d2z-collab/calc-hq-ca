@@ -132,6 +132,12 @@ const SRC = {
   // the CRA Information Guide (Form 5XXX-PC) published with each year's tax package.
   dtcGuide:       'https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package.html',
   dtcAmounts:     'https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html',
+  // Alberta 2025, the year-specific sources (not the package index): Form AB428 for 2025
+  // ("5009-C E (25)") carries the $17,219 disability amount (line 58440) AND the credit rate
+  // (line 53, "Alberta non-refundable tax credit rate", preset 8%); the 2025 Information Guide
+  // 5009-PC carries the same amount and "New for 2025 … A new 8% tax bracket has been introduced".
+  dtcAB428_2025:  'https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5009-c/5009-c-25e.pdf',
+  dtcABGuide2025: 'https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package/alberta/5009-pc.html',
   // 10-year reassessment limit for a retroactive DTC claim (taxpayer relief / T1-ADJ window).
   dtcRetro:       'https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html',
   // ── Child disability benefit (CDB) ──
@@ -1011,7 +1017,7 @@ export const TAX_CONSTANTS_2026 = {
   // The DTC is a NON-REFUNDABLE credit. The disability AMOUNT is multiplied by each
   // jurisdiction's LOWEST bracket rate for THAT TAX YEAR — never the marginal rate, and
   // never the current year's rate applied backwards (see the Alberta near-miss in
-  // MAINTENANCE.md: AB cut 10%→8% for 2026 only). It can only reduce tax payable to zero.
+  // MAINTENANCE.md: AB cut 10%→8% from the 2025 tax year). It can only reduce tax payable to zero.
   //
   // CURRENT YEAR = 2025. CRA had not published the 2026 PROVINCIAL packages when this was
   // built, so the calculator treats 2025 as the current year and the retroactive window is
@@ -1105,7 +1111,16 @@ export const TAX_CONSTANTS_2026 = {
         y2022: { value: { amount: 15284, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
         y2023: { value: { amount: 16201, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
         y2024: { value: { amount: 16882, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
-        y2025: { value: { amount: 17219, rate: 0.1 }, source_url: SRC.dtcGuide, last_verified: '2026-07-24' },
+        // y2025 rate CORRECTED 2026-10-03 from 0.10 to 0.08. Alberta's 8% lowest bracket applies to
+        // the WHOLE 2025 tax year (alberta.ca: "Effective January 1, 2025"; CRA T4032-AB 2026: "For
+        // 2025 and subsequent tax years, the lowest tax bracket will be 8%. Effective July 2025, a
+        // prorated tax rate of 6% was used" — the July date is payroll catching up, not a split year).
+        // The 2025 AB428 values every non-refundable credit, the disability amount included, at 8%.
+        // NOT modelled: the new Alberta supplemental tax credit (2% of credits above $60,000, Worksheet
+        // AB428 line 61545) — it does not reach a claimant whose credits are BPA + DTC ($39,542).
+        // 10% was never in force for 2025, so per the BC precedent there is no superseded value: this
+        // leaf is statutory-cadence and not in constant-history.json, and git is the audit trail.
+        y2025: { value: { amount: 17219, rate: 0.08 }, source_url: SRC.dtcAB428_2025, last_verified: '2026-10-03' },
       },
       SK: { // Saskatchewan
         // y2016 — GAP: no primary source for the lowest rate (see MAINTENANCE.md). Omitted, not guessed.

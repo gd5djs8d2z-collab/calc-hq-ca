@@ -471,10 +471,21 @@ failure from the BC one and would have been **larger**.
 **What almost happened.** The DTC values a disability amount at each jurisdiction's LOWEST rate
 *for that tax year*. The generator that emits the retroactive (2016–2025) constants was about to
 use the **2026** rate table — the one verified against CRA T4032 — for every historical year.
-That table has **Alberta at 8%**, because AB cut its lowest bracket from 10% to 8% **for 2026**.
-Applying 8% to 2016–2025 would have understated every Alberta retroactive DTC claim by **2
-percentage points on ~$150,000 of cumulative disability amounts — roughly $3,000 per claimant**,
-far larger than the NB/PEI rate drift (~$170) that prompted the check.
+That table has **Alberta at 8%**, because AB cut its lowest bracket from 10% to 8% **from the 2025
+tax year**. Applying 8% to 2016–2024 would have understated every Alberta retroactive DTC claim by
+**2 percentage points on ~$136,000 of cumulative disability amounts — roughly $2,700 per
+claimant**, far larger than the NB/PEI rate drift (~$170) that prompted the check.
+
+> **Correction, 2026-10-03.** This note originally dated the cut to 2026 and the DTC row for 2025
+> was stamped at 10%. Both were wrong: alberta.ca puts the 8% bracket "Effective January 1, 2025",
+> CRA's 2026 T4032-AB says "For 2025 and subsequent tax years, the lowest tax bracket will be 8%"
+> (payroll used a prorated 6% from July 2025 to catch up), and the 2025 AB428 values the
+> disability amount at 8% (line 53). CRA's 2025 rates-page footnote "added on July 1, 2025"
+> describes the payroll start, not a split tax year. `dtc.provincial.AB.y2025.rate` is now 0.08;
+> 2016–2024 stay at 10%, confirmed against the 2019 and 2024 AB428. The irony is the lesson
+> restated: the guard against pairing a rate with the wrong year paired this one with the wrong
+> year, and the invariant that should have caught it skipped Alberta because it only compares
+> when the DTC year and the bracket-table year coincide.
 
 **Why no gate would have caught it.** Every value would have been individually correct-looking and
 correctly stamped: 8% *is* Alberta's real lowest rate, sourced from the CRA T4032, freshly

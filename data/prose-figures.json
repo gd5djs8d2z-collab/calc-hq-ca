@@ -4863,22 +4863,22 @@
     {
       "page": "/benefits/dtc/",
       "surface": "main",
-      "anchor": "bottom rate from {} to {*} for 2026 only",
+      "anchor": "bottom rate from {} to {*} starting with 2025",
       "source": {
-        "const": "dtc.provincial.AB.y2025.rate"
+        "const": "dtc.provincial.AB.y2024.rate"
       },
       "format": "percent",
-      "note": "AB lowest rate before the 2026 cut"
+      "note": "AB lowest rate before the cut (2024, the last 10% year)"
     },
     {
       "page": "/benefits/dtc/",
       "surface": "main",
-      "anchor": "bottom rate from {*} to {} for 2026 only",
+      "anchor": "bottom rate from {*} to {} starting with 2025",
       "source": {
-        "const": "provinces.AB.brackets.0.rate"
+        "const": "dtc.provincial.AB.y2025.rate"
       },
       "format": "percent",
-      "note": "AB 2026 lowest bracket (payroll table)"
+      "note": "AB lowest rate from 2025 (the DTC 2025 credit rate)"
     },
     {
       "page": "/benefits/dtc/",

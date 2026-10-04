@@ -67,7 +67,7 @@ check('cdb: real data is clean',
 
 /* ── Invariant 2: dtc.provincial.<code>.y<TAX_YEAR>.rate === provinces.<code>.brackets[0].rate ──
  * The DTC is valued at each jurisdiction's lowest rate FOR THAT TAX YEAR. Applying a current
- * rate to a historical year is the Alberta near-miss (AB cut 10% -> 8% for 2026 only). */
+ * rate to a historical year is the Alberta near-miss (AB cut 10% -> 8% from the 2025 tax year). */
 check('dtc: real data is clean',
   only(invariants(base, TAX_YEAR), 'dtc.').length, 0);
 
