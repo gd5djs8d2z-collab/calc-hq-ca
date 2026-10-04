@@ -117,7 +117,7 @@
     <h2>Non-refundable: the part that decides whether you see any money</h2>
     <p>A non-refundable credit can reduce your tax to zero but never past it. If you owed no tax in a year, the DTC is worth <strong>nothing to you</strong> in that year — the calculator shows this directly, because it runs your income through the real tax calculation rather than assuming the full amount lands.</p>
     <p>This is not a dead end. An unused disability amount can be <strong>transferred to a supporting person</strong>: a spouse or common-law partner, or a parent, grandparent, child, sibling, aunt, uncle, niece or nephew who supported you. The credit then reduces <em>their</em> tax. For a child claim this is the normal path — a child rarely has tax to offset, so the amount usually moves to a parent. If the calculator tells you the credit is going unused, the transfer is the next step, not the end.</p>
-    <p class="disclaimer"><strong>How the years differ.</strong> The current year is run through the full tax calculation, so it accounts for tax payable, the Ontario surtax and Quebec's federal abatement. Earlier years are shown as amount × that year's rate — this site does not carry historical bracket tables — so those <strong>assume you had enough tax payable in each year to absorb the credit</strong>. If your income was low in some of those years, the real retroactive figure will be smaller.</p>
+    <p class="disclaimer"><strong>How the years differ.</strong> The current year is run through the full tax calculation, so it accounts for tax payable, the Ontario surtax and Quebec's federal abatement. That calculation uses the <span id="tt-year">2026</span> tax tables, which value the federal part at <span id="tt-fedrate">14%</span>; on a <span id="cy-year-2">2025</span> return the rate is <span id="cy-fedrate">14.5%</span>, so an adult's federal credit is worth about <strong id="fed-diff">$50.69</strong> more than the calculator shows. Earlier years are shown as amount × that year's rate — this site does not carry historical bracket tables — so those <strong>assume you had enough tax payable in each year to absorb the credit</strong>. If your income was low in some of those years, the real retroactive figure will be smaller.</p>
   </section>
 
   <section id="eligibility">
@@ -230,7 +230,7 @@
 </footer>
 
 <script type="module">
-import { DTC, PROVINCES, PROVINCE_ORDER } from '/data/rates-2026.js';
+import { DTC, PROVINCES, PROVINCE_ORDER, FEDERAL, QUEBEC, TAX_YEAR } from '/data/rates-2026.js';
 import { calcTakeHome } from '/assets/js/tax-engine.js';
 import { parseMoney, el } from '/assets/js/calc-ui.js';
 
@@ -249,6 +249,15 @@ el('a-year').textContent = CY;
 el('a-fed').textContent = money(fed.amount, false);
 el('a-rate').textContent = `${(fed.rate * 100).toFixed(1)}%`;
 el('a-fedval').textContent = money(fed.amount * fed.rate, false);
+// The current year runs through calcTakeHome, i.e. the TAX_YEAR tables; say so, and say what the
+// federal rate difference is worth on the current-year return — computed, never typed.
+const pct = (r) => `${+(r * 100).toFixed(2)}%`;
+const fedRateTables = FEDERAL.brackets[0].rate;
+el('tt-year').textContent = TAX_YEAR;
+el('tt-fedrate').textContent = pct(fedRateTables);
+el('cy-year-2').textContent = CY;
+el('cy-fedrate').textContent = pct(fed.rate);
+el('fed-diff').textContent = money(fed.amount * (fed.rate - fedRateTables));
 for (const id of ['earliest-year','earliest-year-2']) {
   const n = el(id); if (n) n.textContent = DTC.earliestClaimableYear();
 }
@@ -272,14 +281,22 @@ function run() {
     extraProvincialCredit: cur.provincialAmount ?? 0,
   });
   const actualCurrent = Math.max(0, withoutCredit.totalTax - withCredit.totalTax);
-  const uncappedCurrent = cur.total;
-  const unusable = uncappedCurrent - actualCurrent;
+  // The breakdown rows come from this same split, so they always add up to the headline.
+  const fedPart = Math.max(0, withoutCredit.federalTax - withCredit.federalTax);
+  const provPart = Math.max(0, withoutCredit.provincialTax - withCredit.provincialTax);
+  // "Unused" means the credit ran out of tax to reduce — not the gap between this year's rates
+  // and the tables' rates. Full value is measured on the same TAX_YEAR tables as the split.
+  const fedFull = (cur.federalAmount + cur.supplement) * fedRateTables * (code === 'QC' ? 1 - QUEBEC.federalAbatementRate : 1);
+  const provFull = (cur.provincialAmount ?? 0) * (PROVINCES[code].bpaCreditRate ?? 0);
+  const unusable = (withCredit.federalTax < 0.005 ? Math.max(0, fedFull - fedPart) : 0)
+                 + (withCredit.provincialBasic < 0.005 ? Math.max(0, provFull - provPart) : 0);
+  const uncappedCurrent = actualCurrent + unusable;
 
   const totalWithActual = actualCurrent + e.retroTotal;
   el('headline').textContent = money(totalWithActual);
   el('headline-label').textContent = e.retroYears > 0
-    ? `Estimated total — ${CY} plus ${e.retroYears} backdated year${e.retroYears === 1 ? '' : 's'}`
-    : `Estimated credit for ${CY}`;
+    ? `Estimated total — ${CY} (valued with ${TAX_YEAR} tax tables) plus ${e.retroYears} backdated year${e.retroYears === 1 ? '' : 's'}`
+    : `Estimated credit for ${CY} — valued with ${TAX_YEAR} tax tables`;
 
   if (e.retroYears > 0) {
     el('reading').textContent = `${money(actualCurrent)} for ${CY}, plus about ${money(e.retroTotal)} across ${e.retroYears} earlier year${e.retroYears === 1 ? '' : 's'} back to ${e.fromYear}.`;
@@ -288,17 +305,17 @@ function run() {
   }
 
   const rows = [];
-  rows.push([`<strong>${CY} — federal disability amount</strong>`, `${money(cur.federalAmount, false)} × ${(cur.federalRate*100).toFixed(1)}%`]);
+  rows.push([`<strong>${CY} — federal disability amount</strong>`, money(cur.federalAmount, false)]);
   if (under18 && cur.supplement > 0) {
     rows.push([`${CY} — under-18 supplement`, `+ ${money(cur.supplement, false)}`]);
     if (cur.supplementReduction > 0) {
       rows.push([`Supplement reduced by care expenses`, `− ${money(cur.supplementReduction, false)}`]);
     }
   }
-  rows.push([`${CY} — federal credit`, money(cur.federal)]);
+  rows.push([`${CY} — federal credit (${TAX_YEAR} tax tables)`, money(fedPart)]);
   if (cur.provincial != null) {
-    rows.push([`${CY} — ${PROVINCES[code].name} amount`, `${money(cur.provincialAmount, false)} × ${(cur.provincialRate*100).toFixed(2)}%`]);
-    rows.push([`${CY} — provincial credit`, money(cur.provincial)]);
+    rows.push([`${CY} — ${PROVINCES[code].name} amount`, money(cur.provincialAmount, false)]);
+    rows.push([`${CY} — provincial credit (${TAX_YEAR} tax tables)`, money(provPart)]);
   } else {
     rows.push([`${CY} — ${PROVINCES[code].name} amount`, `<em>not published yet</em>`]);
   }

@@ -4948,6 +4948,36 @@
       "format": "exact"
     },
     {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "which value the federal part at {}; on a",
+      "source": {
+        "engine": "FEDERAL.brackets[0].rate"
+      },
+      "format": "percent",
+      "note": "federal lowest rate in the TAX_YEAR tables calcTakeHome uses"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "return the rate is {}, so an adult's federal credit",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).rate"
+      },
+      "format": "percent",
+      "note": "federal rate for the DTC current year"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "federal credit is worth about {} more than the calculator shows",
+      "source": {
+        "engine": "DTC.federalYear(DTC.currentTaxYear).amount * (DTC.federalYear(DTC.currentTaxYear).rate - FEDERAL.brackets[0].rate)"
+      },
+      "format": "exact",
+      "note": "current-year federal amount x (current-year rate - tables rate)"
+    },
+    {
       "page": "/key-dates-limits/",
       "surface": "main",
       "anchor": "the year: {} of new TFSA room",
