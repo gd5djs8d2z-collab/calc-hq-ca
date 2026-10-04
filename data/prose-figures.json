@@ -3073,7 +3073,7 @@
     {
       "page": "/benefits/ei/",
       "surface": "main",
-      "anchor": "climbing to the \"{} and more\" column",
+      "anchor": "climbing to the \"more than {}\" column",
       "source": {
         "engine": "EI_REGULAR.benefitWeeksBands[10] / 100"
       },
