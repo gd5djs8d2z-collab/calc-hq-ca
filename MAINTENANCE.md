@@ -457,8 +457,33 @@ site, but anything else committed here is served, so a secret never goes in a re
 
 Local copies of the generated values live in `~/.calc-hq/lead-secrets.env` (mode 600, outside
 the repo). Set a Cloudflare secret with
-`wrangler secret put NAME < <(sed -n 's/^NAME=//p' ~/.calc-hq/lead-secrets.env)` — it
-survives later git deploys. If the webhook secrets are missing, `/api/lead` answers 503 and
+`wrangler secret put NAME < <(sed -n 's/^NAME=//p' ~/.calc-hq/lead-secrets.env)`.
+
+**What wiped the secrets on launch day, and why it can't recur by itself.** Secrets are
+bound to Worker *versions*. On an **assets-only** Worker (no `main` script — this site before
+the lead form), a deploy produces a version with no secrets: the `.assetsignore` deploy
+(`ce0eb3c`) did exactly that, and the merge deploy (`70fb7ed`) then inherited the empty state,
+so the live form failed. On a Worker **with** a script, a plain `wrangler deploy` keeps them —
+Cloudflare's docs say "secrets are never deleted by a deployment", and a probe on two
+throwaway Workers (wrangler 4.151.1, 2026-10-16) confirmed it: the script Worker kept its
+secret across a redeploy, the assets-only one lost it. `--keep-vars` is not the fix; it only
+protects plain vars. **If `main` is ever removed from `wrangler.jsonc`, every secret goes with
+the next deploy.**
+
+**Standing rule — after ANY deploy to `main`, prove the lead form still works.** Until a git
+deploy has been shown to keep the secrets, treat every push as one that may break it.
+1. `wrangler versions view <active version id> --name calc-hq-ca --json` lists three
+   `secret_text` bindings: `LEADS_WEBHOOK_URL`, `LEADS_WEBHOOK_SECRET`, `LEAD_TEST_TOKEN`.
+   (`wrangler deployments list --name calc-hq-ca` gives the active id.)
+2. `GET https://calc-hq.ca/api/lead/test?id=L-ZZZZZZ` with `Authorization: Bearer
+   <LEAD_TEST_TOKEN>` answers `{"ok":false,"error":"not_found"}`. That one request proves all
+   three: 404 = token wrong or missing; `"auth"` = shared secret wrong; 502 = webhook URL wrong.
+3. A live test lead through the real form (`#lead_test=<token>` on a block page) shows
+   "Request sent", its row reads back with the right province and `is_test`, then is deleted.
+   Rotate `LEAD_TEST_TOKEN` afterwards if its value was shown anywhere.
+
+If step 1 or 2 fails, re-set the three from `~/.calc-hq/lead-secrets.env` with `wrangler
+secret bulk` (one new version), and re-run 1–3. If the webhook secrets are missing, `/api/lead` answers 503 and
 the form shows its generic "didn't go through" message.
 
 **The Apps Script side** is driven by `worker/apps-script/deploy.sh` (clasp 3.4.1, logged in as
