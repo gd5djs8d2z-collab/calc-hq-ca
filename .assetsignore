@@ -1,0 +1,14 @@
+# Repo files that are not part of the website. wrangler.jsonc sets assets.directory to "./",
+# so without this list everything in the repo root is uploaded as a public asset, the git
+# directory included. Keep data/ and scripts/: pages import data/rates-2026.js, and
+# MAINTENANCE.md Rule 4 relies on scripts/check-constants.mjs loading in the browser console.
+# No trailing slashes: in a git worktree .git is a file, not a directory.
+/.git
+/.github
+/.claude
+/.wrangler
+/.dev.vars*
+/.gitignore
+*.md
+/wrangler.jsonc
+/worker
