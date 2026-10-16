@@ -26,7 +26,7 @@
 {"@type":"Question","name":"How often are the figures re-verified?","acceptedAnswer":{"@type":"Answer","text":"On a fixed schedule tied to when each figure actually changes, not a fixed calendar date for everything. Federal and provincial brackets, CPP/EI, and contribution limits are re-checked every January when they index. The Canada Child Benefit and Child Disability Benefit re-index every July. OAS and GIS are re-checked quarterly, since Old Age Security amounts move with the CPI four times a year. Anything that only changes by legislation is re-verified when that legislation changes, not on a calendar at all. An automated script checks every stamped value for staleness against its own schedule and runs on every code push, every pull request, and on the 1st of each month."}},
 {"@type":"Question","name":"Why doesn't my result match the CRA's own calculator?","acceptedAnswer":{"@type":"Answer","text":"Each calculator here models a standard case — typical employment or self-employment income with the credits and contributions that apply to nearly everyone — using published rates and thresholds. The CRA's calculators and your actual return can also account for credits, deductions, and prior-year details specific to you: medical expenses, donations, an RRSP deduction, provincial credits beyond the basic personal amount, and so on. A gap between the two isn't a bug in either tool; it means something in your full picture isn't part of the standard case being modelled. Where the two disagree, the CRA is the authority."}},
 {"@type":"Question","name":"What does calc-hq.ca deliberately not model?","acceptedAnswer":{"@type":"Answer","text":"Anything that depends on a full return or a history the calculator has no way to ask for. Examples stated on their own pages: the RDSP calculator excludes carry-forward, since it depends on disability tax credit status, income, and contributions in each of up to ten prior years; the OAS recovery tax and GIS model the published maxima and cut-offs rather than a full clawback reconstruction. Where something is excluded, the calculator says so on the page rather than silently guessing at a number."}},
-{"@type":"Question","name":"Does calc-hq.ca store what I enter?","acceptedAnswer":{"@type":"Answer","text":"No. There are no accounts and no forms that submit anywhere. The numbers you type — income, family details, contributions — are used only in your browser to compute a result, and they disappear when you close or refresh the page. See the privacy policy for what is involved in running the site itself, including advertising cookies."}},
+{"@type":"Question","name":"Does calc-hq.ca store what I enter?","acceptedAnswer":{"@type":"Answer","text":"No. What you type into a calculator never leaves your browser, there are no accounts, and your inputs are gone when you close or refresh the page. The one thing that sends anything is the optional partner-accountant form under some calculators, and it sends only what you type into that form."}},
 {"@type":"Question","name":"How do I report a wrong number?","acceptedAnswer":{"@type":"Answer","text":"Use the contact page. Include which calculator, the input you used, and the source you're comparing against — that's enough to re-check the underlying constant against its primary source."}}]}
 </script>
 </head>
@@ -85,7 +85,7 @@
 
   <section class="answer">
     <h2>What happens to what you type in</h2>
-    <p>Nothing is sent anywhere or stored. There are no accounts and no forms — every number you enter is used only in your browser to produce a result, gone when you leave or refresh the page. The <a href="/privacy-policy/">privacy policy</a> covers what running the site itself involves, including the advertising cookies Google AdSense sets.</p>
+    <p>Every number you enter in a calculator is used only in your browser to produce a result, and it's gone when you leave or refresh the page. None of it is sent anywhere or stored, and there are no accounts. The one exception is the optional partner-accountant form under some calculators: it sends only what you type into that form, never your calculator inputs. The <a href="/privacy-policy/">privacy policy</a> covers that form and what running the site itself involves, including the advertising cookies Google AdSense sets.</p>
   </section>
 
   <section class="answer">
@@ -113,7 +113,7 @@
       <p>Anything needing a multi-year history or a full return — RDSP carry-forward is the stated example. Each page says explicitly what it excludes rather than approximating it.</p>
     </details>
     <details><summary>Does calc-hq.ca store what I enter?</summary>
-      <p>No. No accounts, no forms, nothing sent off your browser. Your inputs are gone when you close or refresh the page.</p>
+      <p>No. What you type into a calculator never leaves your browser, there are no accounts, and your inputs are gone when you close or refresh the page. The one thing that sends anything is the optional partner-accountant form under some calculators, and it sends only what you type into that form.</p>
     </details>
     <details><summary>How do I report a wrong number?</summary>
       <p>Through the <a href="/contact/">contact page</a>, with the calculator, your input, and the source you're checking against.</p>

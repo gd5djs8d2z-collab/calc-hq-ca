@@ -1,7 +1,12 @@
 {
   "name": "calc-hq-ca",
   "compatibility_date": "2026-01-01",
+  // The lead form's endpoint (/api/lead). Every other path is served from static assets
+  // without running this script — see run_worker_first below.
+  "main": "worker/index.js",
   "assets": {
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     "directory": "./",
     "not_found_handling": "404-page",
     // Sends extensionless paths to the trailing-slash version (/about -> /about/)
@@ -13,5 +18,14 @@
     // URL nor passes link equity. _redirects carries an explicit 301 per page to
     // override it; this setting is the fallback for anything not listed there.
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  // Non-secret lead-form config. Secrets (LEADS_WEBHOOK_URL, LEADS_WEBHOOK_SECRET,
+  // LEAD_TEST_TOKEN) are set in the Cloudflare dashboard, never here — this repo is public.
+  "vars": {
+    "ALLOWED_ORIGINS": "https://calc-hq.ca"
+  },
+  // Per-IP limit on lead submissions: 5 per minute.
+  "ratelimits": [
+    { "name": "LEAD_RATE_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
+  ]
 }

@@ -564,3 +564,51 @@ select.input {
 @media (min-width: 60rem) {
   .page-head { padding-top: 2.5rem; }
 }
+
+/* ── Partner-accountant lead block (scripts/sync-lead-block.mjs) ─────────────
+   Sits under the calculator card. Plainer than the card on purpose: it is a
+   referral, not part of the tool. */
+.lead-block {
+  margin-top: 2rem;
+  padding: 1.4rem 1.25rem 1.5rem;
+  background: rgba(21, 41, 62, 0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.lead-block .lead-title { margin-bottom: 0.6rem; }
+.lead-block p { max-width: 64ch; }
+.lead-partner { font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+.lead-note { font-size: 0.9rem; color: var(--muted); }
+.lead-form { margin-top: 1.25rem; }
+.lead-form [hidden], .lead-panel[hidden] { display: none !important; }
+.lead-form textarea.input { min-height: 5.5rem; resize: vertical; }
+.lead-form .field.checkbox label { font-size: 0.92rem; }
+.lead-error { margin: 0.35rem 0 0; font-size: 0.88rem; color: var(--accent-deep); }
+.lead-form > .lead-error { margin: -0.9rem 0 1.1rem; }
+.lead-form .input[aria-invalid="true"] { border-color: var(--accent-deep); }
+.lead-qc-note {
+  margin: 0 0 1.15rem; padding: 0.85rem 1rem; font-size: 0.96rem;
+  background: rgba(21, 41, 62, 0.04); border: 1px solid var(--line);
+  border-left: 3px solid var(--navy-soft); border-radius: var(--radius-sm);
+}
+.lead-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.lead-status { margin: 1rem 0 0; padding: 0.85rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--line); }
+.lead-status-ok { background: rgba(21, 41, 62, 0.06); border-left: 3px solid var(--navy); }
+.lead-status-error { background: rgba(200, 16, 46, 0.06); border-left: 3px solid var(--accent-deep); }
+.lead-form .btn[disabled] { opacity: 0.6; cursor: default; }
+.lead-block-compact { padding: 1rem 1.25rem; }
+.lead-compact-row { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+.lead-compact-line { margin: 0; }
+.lead-toggle {
+  font: inherit; font-size: 0.96rem; font-weight: 600; color: var(--navy);
+  background: #fff; border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem; min-height: 2.75rem; cursor: pointer; flex: none;
+}
+.lead-toggle:hover { border-color: var(--navy-soft); }
+.lead-toggle:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus); }
+.lead-panel { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+@media (min-width: 40rem) {
+  .lead-block { padding: 1.6rem 1.75rem 1.75rem; }
+  .lead-block-compact { padding: 1.1rem 1.5rem; }
+  .lead-compact-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.25rem; }
+}

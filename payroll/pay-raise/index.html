@@ -99,6 +99,66 @@
     <div class="notice" id="stub" hidden></div>
   </section>
 
+  <!-- lead-block:start -->
+  <aside class="lead-block" id="lead-block" data-variant="full" data-province-source="province" aria-labelledby="lead-title">
+    <h2 class="lead-title" id="lead-title">Want an accountant to take it from here?</h2>
+    <p class="lead-partner">Partner accountant: <a href="https://www.ryanelliott.ca/" target="_blank" rel="sponsored nofollow noopener">Elliott Accounting Group Inc.</a></p>
+    <p>They take on late and multi-year tax filings, CRA notices, small-business bookkeeping, GST/HST and payroll, for clients across Canada. Send a request and they aim to respond within one business day.</p>
+    <p class="lead-note">calc-hq.ca is a calculator site and does not give tax or accounting advice. calc-hq.ca is paid a referral fee if you become a client of Elliott Accounting Group Inc. through this form.</p>
+    <form class="lead-form" id="lead-form" method="post" action="/api/lead" novalidate data-consent-version="2026-10-16a">
+      <div class="field">
+        <label for="lead-province">Province or territory</label>
+        <select class="input" id="lead-province" name="province" required aria-describedby="lead-province-error"><option value="">Choose one</option><option value="ON">Ontario</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="SK">Saskatchewan</option><option value="MB">Manitoba</option><option value="NS">Nova Scotia</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland and Labrador</option><option value="PE">Prince Edward Island</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NU">Nunavut</option><option value="QC">Quebec</option></select>
+        <p class="lead-error" id="lead-province-error" hidden></p>
+      </div>
+      <p class="lead-qc-note" id="lead-qc-note" hidden>calc-hq.ca doesn't have a partner accountant in Quebec yet, so this can't put you in touch with anyone. If you'd use one, send it anyway: it records only that someone in Quebec asked, and from which page — no name or contact details.</p>
+      <div class="lead-personal" id="lead-personal">
+        <div class="field-row">
+          <div class="field">
+            <label for="lead-name">Name</label>
+            <input class="input" id="lead-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="lead-name-error">
+            <p class="lead-error" id="lead-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-email">Email</label>
+            <input class="input" id="lead-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="lead-email-error">
+            <p class="lead-error" id="lead-email-error" hidden></p>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lead-phone">Phone <span class="hint">Optional</span></label>
+            <input class="input" id="lead-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="lead-phone-error">
+            <p class="lead-error" id="lead-phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-need">What do you need help with?</label>
+            <select class="input" id="lead-need" name="need" required aria-describedby="lead-need-error"><option value="">Choose one</option><option value="filings">Behind on tax filings</option><option value="cra">Got a CRA letter or notice</option><option value="self-employed">Self-employed or incorporated, need an accountant</option><option value="bookkeeping">Monthly bookkeeping, GST/HST or payroll</option><option value="other">Something else</option></select>
+            <p class="lead-error" id="lead-need-error" hidden></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lead-message">Anything they should know first? <span class="hint">Optional — up to 500 characters</span></label>
+          <textarea class="input" id="lead-message" name="message" rows="3" maxlength="500" aria-describedby="lead-message-error"></textarea>
+          <p class="lead-error" id="lead-message-error" hidden></p>
+        </div>
+        <div class="field checkbox">
+          <input type="checkbox" id="lead-consent" name="consent" required aria-describedby="lead-consent-error">
+          <label for="lead-consent">I agree that calc-hq.ca may send my name, contact details and request to Elliott Accounting Group Inc., who will contact me about it. See the <a href="/privacy-policy/">privacy policy</a>.</label>
+        </div>
+        <p class="lead-error" id="lead-consent-error" hidden></p>
+      </div>
+      <div class="lead-hp" aria-hidden="true">
+        <label for="lead-website">Leave this field empty</label>
+        <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <button class="btn" id="lead-submit" type="submit" disabled>Send my request</button>
+      <p class="lead-status" id="lead-status" role="status" aria-live="polite" hidden></p>
+    </form>
+  </aside>
+  <script type="module" src="/assets/js/lead-block.js"></script>
+  <!-- lead-block:end -->
+
   <section class="answer">
     <h2>The percentage on the letter and the percentage on the cheque</h2>
     <p>A raise from $60,000 to $66,000 in Ontario is 10% on paper and 8.2% in your account. Take-home goes from $47,340 to $51,199 — $3,859 of the $6,000, or about $148 more on each biweekly cheque. The $2,141 that didn't arrive is four separate charges: $1,162 of federal tax, $524 of Ontario tax, $357 of CPP and $98 of EI.</p>

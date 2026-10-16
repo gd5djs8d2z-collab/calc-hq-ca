@@ -401,6 +401,105 @@ edge and will keep returning 404 for a while afterwards. Test with a cache-busti
 string (`?cb=123`) or `Cache-Control: no-cache`, and re-test a few times before concluding a
 rule is broken — this produced a false negative during the original verification.
 
+## Partner-accountant lead form
+
+The site's one server-side piece. A visitor on a calculator page can ask the partner
+accountant (Elliott Accounting Group Inc.) to contact them; calc-hq.ca is paid per confirmed
+close.
+
+**Path of a lead.** Form (`assets/js/lead-block.js`) → `POST /api/lead` on the Worker
+(`worker/index.js`, the only path it runs on — `run_worker_first: ["/api/*"]`) → the Google
+Apps Script web app bound to Chad's "calc-hq leads" Sheet (`worker/apps-script/Code.gs`). The
+script **stores the row first, then emails**: the partner gets non-test leads that have a
+partner; the owner gets a copy of every lead. A mail failure leaves the row in place with
+`email_failed` ticked — resend those by hand.
+
+**What is never collected.** Calculator inputs (income, hours, amounts). The form reads only
+the calculator's province dropdown, and only to pre-fill its own. An untouched default
+(Ontario) is not treated as a choice.
+
+**Provinces with no partner** (`NO_PARTNER_PROVINCES` in `assets/js/lead-config.js` — Quebec
+today) record the province, the page and the time only. The form hides every personal field
+and the consent box, and the Worker discards personal fields if they are sent anyway. When a
+Quebec partner signs, remove `QC` from that list and run the sync script.
+
+**One template, generated into the pages.** The block is static HTML in each page (so no
+layout shift), written by `scripts/sync-lead-block.mjs` from its `LEAD_PAGES` list and
+`lead-config.js`. Never hand-edit it in a page.
+
+```
+node scripts/sync-lead-block.mjs           # rewrite every listed page
+node scripts/sync-lead-block.mjs --check   # fail if any page has drifted from the template
+```
+
+Deliberately without a block: hubs, home, about/contact/privacy/disclaimer/FAQ, key-dates,
+severance, ESA termination, the `/fr/` pages, and `/benefits/gis/` (a low-income seniors'
+benefit — a paid referral pitch is the wrong fit). **Deferred:** `/employment-standards/vacation-pay/`
+gets the compact block in its own commit once Search Console shows "URL is on Google".
+
+**Changing the consent wording.** Edit `CONSENT_TEXT`, bump `CONSENT_VERSION` (both in
+`lead-config.js`), run the sync script. The Worker refuses any other version (the visitor is
+asked to reload), and each row stores the version its sender agreed to. Update the privacy
+policy's "partner-accountant form" section if the substance changes.
+
+**Config and secrets.** Nothing secret is in this repo — it is public, and its root is the
+assets directory. `.assetsignore` keeps the git directory, docs, config and `worker/` off the
+site, but anything else committed here is served, so a secret never goes in a repo file.
+
+| Name | Where | What |
+|---|---|---|
+| `ALLOWED_ORIGINS` | `wrangler.jsonc` vars | origins allowed to post (`https://calc-hq.ca`) |
+| `LEAD_RATE_LIMITER` | `wrangler.jsonc` ratelimits | 5 submissions per minute per IP |
+| `LEADS_WEBHOOK_URL` | Cloudflare secret | the Apps Script web app `/exec` URL |
+| `LEADS_WEBHOOK_SECRET` | Cloudflare secret | must equal the script's `SHARED_SECRET` property |
+| `LEAD_TEST_TOKEN` | Cloudflare secret | marks a lead as a test (owner-only email) |
+| `SHARED_SECRET`, `OWNER_EMAIL`, `PARTNER_EMAIL` | Apps Script script properties | as named |
+
+Local copies of the generated values live in `~/.calc-hq/lead-secrets.env` (mode 600, outside
+the repo). Set a Cloudflare secret with
+`wrangler secret put NAME < <(sed -n 's/^NAME=//p' ~/.calc-hq/lead-secrets.env)` — it
+survives later git deploys. If the webhook secrets are missing, `/api/lead` answers 503 and
+the form shows its generic "didn't go through" message.
+
+**The Apps Script side** is driven by `worker/apps-script/deploy.sh` (clasp 3.4.1, logged in as
+the Google account that owns the Sheet; its working copy is `~/.calc-hq/apps-script/`):
+
+```
+worker/apps-script/deploy.sh create                          # new Sheet + bound script
+OWNER_EMAIL=… worker/apps-script/deploy.sh push-config       # code + temporary Config.gs
+#   → open the script, run setup() once, approve (Sheets + send mail as you)
+worker/apps-script/deploy.sh push                            # removes Config.gs remotely
+worker/apps-script/deploy.sh deploy                          # web app; records the /exec URL
+```
+
+After editing `Code.gs`, run `push` then `deploy`. `deploy` updates the existing deployment
+in place, so the `/exec` URL — and the Cloudflare secret — never change.
+
+**Testing.**
+- **Locally:** `node worker/test/mock-apps-script.mjs` runs the real `Code.gs` against an
+  in-memory Sheet and a MailApp that records instead of sending. Point `.dev.vars`
+  (gitignored) at it: `LEADS_WEBHOOK_URL=http://127.0.0.1:8799/exec`,
+  `LEADS_WEBHOOK_SECRET=local-test-secret`, `LEAD_TEST_TOKEN=local-test-token`,
+  `ALLOWED_ORIGINS=http://localhost:8788`. `LEAD_TEST_MODE=1` marks every lead as a test.
+  Restart `wrangler dev` after changing `.dev.vars`.
+- **Locally against the real Sheet:** run `wrangler dev --port 8792 --env-file
+  ~/.calc-hq/dev-live.env --persist-to ~/.calc-hq/wrangler-state` (the `wrangler-live-sheet`
+  launch config), and move `.dev.vars` aside first so it can't override the env file.
+  `--persist-to` matters: by default wrangler writes its request traces into `.wrangler/`
+  inside the repo, which is also the watched assets directory, so every request restarts
+  the server. The mock answers in milliseconds and survives that; the real Apps Script
+  takes seconds and gets cut off ("Your worker restarted mid-request").
+- **Live:** open any block page with `#lead_test=<LEAD_TEST_TOKEN>` in the address bar. That
+  lead is flagged `is_test` and emailed to the owner only; a wrong token is refused, never
+  sent as a real lead. `GET`/`DELETE /api/lead/test?id=L-XXXXXX` with
+  `Authorization: Bearer <LEAD_TEST_TOKEN>` reads or deletes it — the script refuses any row
+  not marked `is_test`.
+
+**Rotating a secret.** Generate a new value, put it in `~/.calc-hq/lead-secrets.env`,
+`wrangler secret put` it, and for `LEADS_WEBHOOK_SECRET` also change the script's
+`SHARED_SECRET` property (Project Settings → Script properties). Leads fail with a 502 until
+both sides match, so change them back to back.
+
 ---
 
 # AUDIT LOG
