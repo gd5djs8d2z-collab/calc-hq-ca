@@ -453,6 +453,7 @@ site, but anything else committed here is served, so a secret never goes in a re
 | `LEADS_WEBHOOK_URL` | Cloudflare secret | the Apps Script web app `/exec` URL |
 | `LEADS_WEBHOOK_SECRET` | Cloudflare secret | must equal the script's `SHARED_SECRET` property |
 | `LEAD_TEST_TOKEN` | Cloudflare secret | marks a lead as a test (owner-only email) |
+| `LEAD_HEALTH_TOKEN` | Cloudflare secret **and** GitHub Actions secret (same value) | opens `/api/lead/health` only |
 | `SHARED_SECRET`, `OWNER_EMAIL`, `PARTNER_EMAIL` | Apps Script script properties | as named |
 
 Local copies of the generated values live in `~/.calc-hq/lead-secrets.env` (mode 600, outside
@@ -470,20 +471,30 @@ secret across a redeploy, the assets-only one lost it. `--keep-vars` is not the 
 protects plain vars. **If `main` is ever removed from `wrangler.jsonc`, every secret goes with
 the next deploy.**
 
-**Standing rule — after ANY deploy to `main`, prove the lead form still works.** Until a git
-deploy has been shown to keep the secrets, treat every push as one that may break it.
-1. `wrangler versions view <active version id> --name calc-hq-ca --json` lists three
-   `secret_text` bindings: `LEADS_WEBHOOK_URL`, `LEADS_WEBHOOK_SECRET`, `LEAD_TEST_TOKEN`.
-   (`wrangler deployments list --name calc-hq-ca` gives the active id.)
-2. `GET https://calc-hq.ca/api/lead/test?id=L-ZZZZZZ` with `Authorization: Bearer
-   <LEAD_TEST_TOKEN>` answers `{"ok":false,"error":"not_found"}`. That one request proves all
-   three: 404 = token wrong or missing; `"auth"` = shared secret wrong; 502 = webhook URL wrong.
-3. A live test lead through the real form (`#lead_test=<token>` on a block page) shows
-   "Request sent", its row reads back with the right province and `is_test`, then is deleted.
-   Rotate `LEAD_TEST_TOKEN` afterwards if its value was shown anywhere.
+**The alarm: `.github/workflows/lead-health.yml`.** Hourly, and after every push to `main`
+once Cloudflare's build for that commit has finished, it runs `scripts/check-lead-health.sh`:
+the Worker answers on `/api/lead`, a block page still loads the form script, and
+`/api/lead/health` (with `LEAD_HEALTH_TOKEN`) answers `{"ok":true}` — which needs both webhook
+secrets bound, the Apps Script answering, and the shared secret accepted. It creates no lead.
+A failing run emails the repo owner and names the cause (token refused / secrets missing /
+shared secret rejected / Apps Script unreachable). Run it by hand any time with
+`LEAD_HEALTH_TOKEN=… scripts/check-lead-health.sh`. GitHub pauses scheduled workflows after 60
+days without a commit; re-enable it from the Actions tab if so.
 
-If step 1 or 2 fails, re-set the three from `~/.calc-hq/lead-secrets.env` with `wrangler
-secret bulk` (one new version), and re-run 1–3. If the webhook secrets are missing, `/api/lead` answers 503 and
+What it does **not** catch: a failing email (the row is still saved, with `email_failed`
+ticked — look for it in the Sheet), the browser side of the form breaking while the server
+side is fine, and the partner's own inbox.
+
+**Standing rule — spot check, not every push.** Proven 2026-10-16: the git deploy of `fb8ed73`
+(version `f1209274`) kept all three secrets and a live test lead went through, so script
+deploys are safe and the alarm covers each push. Send a live test lead through the real form
+(`#lead_test=<LEAD_TEST_TOKEN>` on a block page; its row reads back with the right province and
+`is_test`, then delete it) after any change to the form, the Worker or the Apps Script, and
+otherwise once a month. Rotate `LEAD_TEST_TOKEN` afterwards if its value was shown anywhere.
+If the alarm or a spot check fails, check the active version's bindings (`wrangler
+deployments list --name calc-hq-ca`, then `wrangler versions view <id> --name calc-hq-ca
+--json`), re-set what is missing from `~/.calc-hq/lead-secrets.env` with `wrangler secret
+bulk`, and run the check again. If the webhook secrets are missing, `/api/lead` answers 503 and
 the form shows its generic "didn't go through" message.
 
 **The Apps Script side** is driven by `worker/apps-script/deploy.sh` (clasp 3.4.1, logged in as

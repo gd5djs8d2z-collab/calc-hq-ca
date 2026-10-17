@@ -52,6 +52,7 @@ function doPost(e) {
   if (req.action === 'add') return out_(addLead_(req.lead, props));
   if (req.action === 'test_get') return out_(testGet_(req.id));
   if (req.action === 'test_delete') return out_(testDelete_(req.id));
+  if (req.action === 'health') return out_(health_());
   return out_({ ok: false, error: 'action' });
 }
 
@@ -171,6 +172,48 @@ function testDelete_(id) {
   if (sheet.getRange(r, col_('is_test')).getValue() !== true) return { ok: false, error: 'not_test' };
   sheet.deleteRow(r);
   return { ok: true, deleted: id };
+}
+
+/* Called by the Worker's /api/lead/health (hourly + after every deploy). Exercises the real
+   write path — append a row to the Leads tab, find it, delete it, confirm it is gone — under
+   the same lock real leads take, then reads the remaining MailApp quota, which needs the
+   send-mail permission but sends nothing. Every failure is returned as a named error rather
+   than thrown, so the Worker can say what broke. */
+function health_() {
+  var id = 'L-HEALTH-' + new Date().getTime();
+  try {
+    var sheet = sheet_();
+    var lock = LockService.getScriptLock();
+    lock.waitLock(20000);
+    try {
+      sheet.appendRow(COLUMNS.map(function (c) {
+        return c === 'id' ? id
+          : c === 'received_at' ? new Date()
+          : c === 'name' ? 'automated health check'
+          : c === 'status' ? 'sent'
+          : c === 'is_test' ? true
+          : c === 'no_partner' || c === 'email_failed' ? false
+          : c === 'notes' ? 'written and deleted by the health check'
+          : '';
+      }));
+      var r = findRow_(sheet, id);
+      if (!r) return { ok: false, error: 'sheet_write', detail: 'row not found after appendRow' };
+      sheet.deleteRow(r);
+      if (findRow_(sheet, id)) return { ok: false, error: 'sheet_cleanup', detail: id + ' left in the sheet' };
+    } finally {
+      lock.releaseLock();
+    }
+  } catch (err) {
+    return { ok: false, error: 'sheet_write', detail: String(err && err.message || err).slice(0, 200) };
+  }
+  var quota;
+  try {
+    quota = MailApp.getRemainingDailyQuota();
+  } catch (err) {
+    return { ok: false, error: 'mail_unavailable', detail: String(err && err.message || err).slice(0, 200) };
+  }
+  if (quota < 1) return { ok: false, error: 'mail_quota', mail_quota: quota };
+  return { ok: true, mail_quota: quota };
 }
 
 function sheet_() {

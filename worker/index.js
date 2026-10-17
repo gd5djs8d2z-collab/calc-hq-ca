@@ -11,7 +11,7 @@
    Config (wrangler.jsonc vars): ALLOWED_ORIGINS. Which provinces have no partner lives in
    assets/js/lead-config.js, shared with the form.
    Secrets (dashboard / wrangler secret put): LEADS_WEBHOOK_URL, LEADS_WEBHOOK_SECRET,
-   LEAD_TEST_TOKEN. Local only (.dev.vars): LEAD_TEST_MODE=1 marks every lead as a test. */
+   LEAD_TEST_TOKEN, LEAD_HEALTH_TOKEN. Local only (.dev.vars): LEAD_TEST_MODE=1 marks every lead as a test. */
 
 import { CONSENT_VERSION, LEAD_PROVINCES, LEAD_NEEDS, LEAD_LIMITS, NO_PARTNER_PROVINCES } from '../assets/js/lead-config.js';
 
@@ -27,6 +27,7 @@ export default {
     const { pathname } = new URL(request.url);
     if (pathname === '/api/lead') return handleLead(request, env);
     if (pathname === '/api/lead/test') return handleTestAdmin(request, env);
+    if (pathname === '/api/lead/health') return handleHealth(request, env);
     return env.ASSETS.fetch(request);
   },
 };
@@ -195,4 +196,31 @@ async function handleTestAdmin(request, env) {
   if (!action) return json(405, { ok: false });
   const res = await callSheet(env, { action, id });
   return json(res ? 200 : 502, res || { ok: false, error: 'store' });
+}
+
+/* The scheduled check in .github/workflows/lead-health.yml calls this hourly and after every
+   deploy. One request walks the path a real lead takes: both webhook secrets are bound, the Apps
+   Script answers and accepts the shared secret, a row is really written to the Leads tab and
+   deleted again, and MailApp still has quota. It has its own token, LEAD_HEALTH_TOKEN, so
+   rotating the test token never silences the alarm, and it cannot touch a real lead.
+   Answers 200 {"ok":true,"mail_quota":n} when healthy; anything else names what broke. */
+async function handleHealth(request, env) {
+  const auth = request.headers.get('authorization') || '';
+  if (!env.LEAD_HEALTH_TOKEN || !safeEqual(auth.replace(/^Bearer /, ''), env.LEAD_HEALTH_TOKEN)) {
+    return json(404, { ok: false });
+  }
+  if (request.method !== 'GET') return json(405, { ok: false });
+  if (!env.LEADS_WEBHOOK_URL || !env.LEADS_WEBHOOK_SECRET) return json(503, { ok: false, error: 'secrets_missing' });
+  const res = await callSheet(env, { action: 'health' });
+  if (!res) return json(502, { ok: false, error: 'webhook_unreachable' });
+  if (res.ok === true) return json(200, { ok: true, mail_quota: res.mail_quota });
+  const known = {
+    auth: 'webhook_secret_rejected',
+    action: 'apps_script_outdated',
+    sheet_write: 'sheet_write_failed',
+    sheet_cleanup: 'sheet_cleanup_failed',
+    mail_unavailable: 'mail_unavailable',
+    mail_quota: 'mail_quota_exhausted',
+  };
+  return json(502, { ok: false, error: known[res.error] || 'webhook_unexpected', detail: res.detail || '' });
 }
