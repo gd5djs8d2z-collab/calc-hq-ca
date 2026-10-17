@@ -481,6 +481,16 @@ shared secret rejected / Apps Script unreachable). Run it by hand any time with
 `LEAD_HEALTH_TOKEN=… scripts/check-lead-health.sh`. GitHub pauses scheduled workflows after 60
 days without a commit; re-enable it from the Actions tab if so.
 
+**A red "Wait for Cloudflare" step is not always the commit.** On 2026-10-17 the build for
+`1a16bea` sat at "Initializing build environment" for five minutes, then ended "Build failed
+to initialize and was timed out" — Cloudflare never started a container, never cloned, never
+ran `npx wrangler deploy`. Nothing was wrong with the commit, and the fix is **Retry build**
+(Cloudflare → Workers & Pages → calc-hq-ca → Deployments → the failed build), not debugging
+the code; the retry succeeded in 26 seconds. While a build is failed the site keeps serving
+the previous version, so visitors are unaffected — but new Worker code is not live. After the
+retry: confirm the four secrets are still bound on the new active version, then open the red
+lead-health run and click **Re-run jobs** (that is how #8 went green).
+
 What it does **not** catch: a failing email (the row is still saved, with `email_failed`
 ticked — look for it in the Sheet), the browser side of the form breaking while the server
 side is fine, and the partner's own inbox.

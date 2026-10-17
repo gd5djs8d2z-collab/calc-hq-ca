@@ -54,7 +54,9 @@ jobs:
             echo "$(date -u +%T) Workers Builds: ${state:-not started}"
             case "$state" in
               "completed success") sleep 30; exit 0 ;;
-              completed*) echo "::error::Cloudflare's build for this commit did not succeed ($state) — the site was not redeployed."; exit 1 ;;
+              completed*)
+                echo "::error::Cloudflare's build for this commit did not succeed ($state), so the site still runs the previous version. If the build log stops at 'Initializing build environment' and ends 'Build failed to initialize and was timed out', Cloudflare never started the build and nothing is wrong with the commit — click Retry build in Cloudflare (Workers & Pages → calc-hq-ca → Deployments), then use Re-run jobs on this run. Any other error is in the log."
+                exit 1 ;;
             esac
             sleep 15
           done
