@@ -15,7 +15,8 @@
     "/key-dates-limits/contribution-limits/",
     "/key-dates-limits/tax-deadlines/",
     "/payroll/self-employed-tax/",
-    "/payroll/pay-raise/"
+    "/payroll/pay-raise/",
+    "/payroll/take-home-pay/"
   ],
   "figures": [
     {
@@ -5957,6 +5958,1036 @@
       },
       "format": "percent:0",
       "note": "prose restating the $60,000 row"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Nunavut {} {*} {*} Northwest Territories",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NU').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NU net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Nunavut {*} {} {*} Northwest Territories",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NU').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NU per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Nunavut {*} {*} {} Northwest Territories",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NU').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: NU share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Northwest Territories {} {*} {*} Yukon",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NT').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NT net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Northwest Territories {*} {} {*} Yukon",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NT').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NT per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Northwest Territories {*} {*} {} Yukon",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NT').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: NT share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Yukon {} {*} {*} British Columbia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'YT').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: YT net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Yukon {*} {} {*} British Columbia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'YT').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: YT per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Yukon {*} {*} {} British Columbia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'YT').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: YT share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "British Columbia {} {*} {*} Alberta",
+      "source": {
+        "engine": "calcTakeHome(65000, 'BC').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: BC net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "British Columbia {*} {} {*} Alberta",
+      "source": {
+        "engine": "calcTakeHome(65000, 'BC').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: BC per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "British Columbia {*} {*} {} Alberta",
+      "source": {
+        "engine": "calcTakeHome(65000, 'BC').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: BC share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Alberta {} {*} {*} Ontario",
+      "source": {
+        "engine": "calcTakeHome(65000, 'AB').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: AB net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Alberta {*} {} {*} Ontario",
+      "source": {
+        "engine": "calcTakeHome(65000, 'AB').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: AB per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Alberta {*} {*} {} Ontario",
+      "source": {
+        "engine": "calcTakeHome(65000, 'AB').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: AB share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Ontario {} {*} {*} Saskatchewan",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: ON net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Ontario {*} {} {*} Saskatchewan",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: ON per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Ontario {*} {*} {} Saskatchewan",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: ON share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Saskatchewan {} {*} {*} New Brunswick",
+      "source": {
+        "engine": "calcTakeHome(65000, 'SK').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: SK net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Saskatchewan {*} {} {*} New Brunswick",
+      "source": {
+        "engine": "calcTakeHome(65000, 'SK').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: SK per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Saskatchewan {*} {*} {} New Brunswick",
+      "source": {
+        "engine": "calcTakeHome(65000, 'SK').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: SK share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "New Brunswick {} {*} {*} Manitoba",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NB').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NB net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "New Brunswick {*} {} {*} Manitoba",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NB').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NB per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "New Brunswick {*} {*} {} Manitoba",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NB').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: NB share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Manitoba {} {*} {*} Newfoundland and Labrador",
+      "source": {
+        "engine": "calcTakeHome(65000, 'MB').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: MB net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Manitoba {*} {} {*} Newfoundland and Labrador",
+      "source": {
+        "engine": "calcTakeHome(65000, 'MB').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: MB per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Manitoba {*} {*} {} Newfoundland and Labrador",
+      "source": {
+        "engine": "calcTakeHome(65000, 'MB').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: MB share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Newfoundland and Labrador {} {*} {*} Prince Edward Island",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NL').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NL net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Newfoundland and Labrador {*} {} {*} Prince Edward Island",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NL').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NL per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Newfoundland and Labrador {*} {*} {} Prince Edward Island",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NL').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: NL share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Prince Edward Island {} {*} {*} Quebec",
+      "source": {
+        "engine": "calcTakeHome(65000, 'PE').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: PE net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Prince Edward Island {*} {} {*} Quebec",
+      "source": {
+        "engine": "calcTakeHome(65000, 'PE').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: PE per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Prince Edward Island {*} {*} {} Quebec",
+      "source": {
+        "engine": "calcTakeHome(65000, 'PE').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: PE share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Quebec {} {*} {*} Nova Scotia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: QC net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Quebec {*} {} {*} Nova Scotia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: QC per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Quebec {*} {*} {} Nova Scotia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: QC share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Nova Scotia {} {*} {*} Ontario's row",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NS').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NS net pay (anchor also pins row order)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Nova Scotia {*} {} {*} Ontario's row",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NS').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 table: NS per biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Nova Scotia {*} {*} {} Ontario's row",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NS').net / 65000"
+      },
+      "format": "percent:0",
+      "note": "$65,000 table: NS share kept"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "tax alone — from {} in Nunavut",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NU').provincialTax"
+      },
+      "format": "round:1",
+      "note": "$65,000: lowest provincial/territorial tax (NU)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "in Nunavut to {} in Nova Scotia",
+      "source": {
+        "engine": "calcTakeHome(65000, 'NS').provincialTax"
+      },
+      "format": "round:1",
+      "note": "$65,000: highest provincial tax (NS)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Send my request {} every second Friday",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario biweekly cheque (heading)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "the calculator lands on {} a cheque",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 26"
+      },
+      "format": "exact",
+      "note": "$65,000 Ontario biweekly cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Each one gives up {} to federal tax",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').federalTax / 26"
+      },
+      "format": "exact",
+      "note": "per-cheque federal tax"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "to federal tax, {} to Ontario",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').provincialTax / 26"
+      },
+      "format": "exact",
+      "note": "per-cheque Ontario tax incl. Health Premium"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "to Ontario ({} of it the health premium)",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').healthPremium / 26"
+      },
+      "format": "exact",
+      "note": "per-cheque Health Premium"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "of it the health premium), {} to CPP",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').cpp / 26"
+      },
+      "format": "exact",
+      "note": "per-cheque CPP"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "to CPP and {} to EI. Over the year",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').ei / 26"
+      },
+      "format": "exact",
+      "note": "per-cheque EI"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Over the year that is {} of the",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario annual net"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "because CPP is charged on earnings up to {} and EI up to",
+      "source": {
+        "engine": "CPP.ympe"
+      },
+      "format": "exact",
+      "note": "YMPE"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "and EI up to {} and neither ceiling",
+      "source": {
+        "engine": "EI.maxInsurableEarnings"
+      },
+      "format": "exact",
+      "note": "EI maximum insurable earnings"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "and the {} ceiling on CPP2",
+      "source": {
+        "engine": "CPP.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "YAMPE"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "ceiling on CPP2, the {} upper tier",
+      "source": {
+        "engine": "CPP.cpp2.rate"
+      },
+      "format": "percent",
+      "note": "CPP2 rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "It shows {} of CPP and",
+      "source": {
+        "engine": "calcTakeHome(100000, 'ON').cpp"
+      },
+      "format": "round:1",
+      "note": "$100,000 Ontario: CPP + CPP2 for the year"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "of CPP and {} of EI for the year",
+      "source": {
+        "engine": "calcTakeHome(100000, 'ON').ei"
+      },
+      "format": "round:1",
+      "note": "$100,000 Ontario: EI for the year"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "across 26 cheques, {} apiece",
+      "source": {
+        "engine": "(calcTakeHome(100000, 'ON').cpp + calcTakeHome(100000, 'ON').ei) / 26"
+      },
+      "format": "round:1",
+      "note": "$100,000: CPP + EI per cheque"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Payroll takes the full {} and {*} until",
+      "source": {
+        "engine": "CPP.rate"
+      },
+      "format": "percent",
+      "note": "CPP rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Payroll takes the full {*} and {} until",
+      "source": {
+        "engine": "EI.rate"
+      },
+      "format": "percent",
+      "note": "EI rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "two charges, not one: {} of basic Ontario tax",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').provincialBasic"
+      },
+      "format": "round:1",
+      "note": "$65,000: basic Ontario tax"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "of basic Ontario tax and the {} Ontario Health Premium",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').healthPremium"
+      },
+      "format": "round:1",
+      "note": "$65,000: Health Premium"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "once basic Ontario tax passes {}, and",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[0].over"
+      },
+      "format": "exact",
+      "note": "surtax first threshold"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "QPP at {} instead of",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').cpp"
+      },
+      "format": "round:1",
+      "note": "$65,000 Quebec: QPP"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "instead of {} of CPP, {*} of QPIP",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').cpp"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario: CPP"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "of CPP, {} of QPIP on top",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').qpip"
+      },
+      "format": "round:1",
+      "note": "$65,000 Quebec: QPIP"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "EI at the reduced rate ({})",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').ei"
+      },
+      "format": "round:1",
+      "note": "$65,000 Quebec: EI at the reduced rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Quebec's own tax at {}, and",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').provincialTax"
+      },
+      "format": "round:1",
+      "note": "$65,000 Quebec: Quebec income tax"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "federal tax cut to {} by the abatement",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').federalTax"
+      },
+      "format": "round:1",
+      "note": "$65,000 Quebec: federal tax after the 16.5% abatement"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "In 2026 you pay {} on the portion of basic Ontario tax",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[0].rate"
+      },
+      "format": "percent",
+      "note": "surtax first rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "basic Ontario tax above {}, and another",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[0].over"
+      },
+      "format": "exact",
+      "note": "surtax first threshold"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "and another {} on the portion above",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[1].rate"
+      },
+      "format": "percent",
+      "note": "surtax second rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "on the portion above {}. Because it stacks",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[1].over"
+      },
+      "format": "exact",
+      "note": "surtax second threshold"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "provincial income tax, CPP ({} up to",
+      "source": {
+        "engine": "CPP.rate"
+      },
+      "format": "percent",
+      "note": "CPP rate (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "up to {} in pensionable earnings",
+      "source": {
+        "engine": "CPP.ympe"
+      },
+      "format": "exact",
+      "note": "YMPE (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "plus CPP2 on earnings to {}), and EI",
+      "source": {
+        "engine": "CPP.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "YAMPE (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "and EI ({} up to",
+      "source": {
+        "engine": "EI.rate"
+      },
+      "format": "percent",
+      "note": "EI rate (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "up to {} of insurable earnings",
+      "source": {
+        "engine": "EI.maxInsurableEarnings"
+      },
+      "format": "exact",
+      "note": "EI MIE (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "EI is deducted on the first {} of earnings",
+      "source": {
+        "engine": "EI.maxInsurableEarnings"
+      },
+      "format": "exact",
+      "note": "EI MIE (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "and CPP on the first {}, then CPP2",
+      "source": {
+        "engine": "CPP.ympe"
+      },
+      "format": "exact",
+      "note": "YMPE (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "then CPP2 at {} on the slice",
+      "source": {
+        "engine": "CPP.cpp2.rate"
+      },
+      "format": "percent",
+      "note": "CPP2 rate (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "on the slice up to {}; once your",
+      "source": {
+        "engine": "CPP.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "YAMPE (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "only the slice changes. {} net on",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario annual net (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "in Ontario is {} biweekly over 26",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 26"
+      },
+      "format": "round:1",
+      "note": "biweekly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "over 26 cheques, {} semi-monthly over 24",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 24"
+      },
+      "format": "round:1",
+      "note": "semi-monthly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "semi-monthly over 24, {} monthly or",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 12"
+      },
+      "format": "round:1",
+      "note": "monthly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "monthly or {} weekly",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 52"
+      },
+      "format": "round:1",
+      "note": "weekly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "In 2026 you pay {} on the portion of basic Ontario tax",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[0].rate"
+      },
+      "format": "percent",
+      "note": "surtax first rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "basic Ontario tax above {}, and another",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[0].over"
+      },
+      "format": "exact",
+      "note": "surtax first threshold"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "and another {} on the portion above",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[1].rate"
+      },
+      "format": "percent",
+      "note": "surtax second rate"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "on the portion above {}. Because it stacks",
+      "source": {
+        "engine": "PROVINCES.ON.surtax[1].over"
+      },
+      "format": "exact",
+      "note": "surtax second threshold"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "provincial income tax, CPP ({} up to",
+      "source": {
+        "engine": "CPP.rate"
+      },
+      "format": "percent",
+      "note": "CPP rate (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "up to {} in pensionable earnings",
+      "source": {
+        "engine": "CPP.ympe"
+      },
+      "format": "exact",
+      "note": "YMPE (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "plus CPP2 on earnings to {}), and EI",
+      "source": {
+        "engine": "CPP.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "YAMPE (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "and EI ({} up to",
+      "source": {
+        "engine": "EI.rate"
+      },
+      "format": "percent",
+      "note": "EI rate (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "up to {} of insurable earnings",
+      "source": {
+        "engine": "EI.maxInsurableEarnings"
+      },
+      "format": "exact",
+      "note": "EI MIE (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "EI is deducted on the first {} of earnings",
+      "source": {
+        "engine": "EI.maxInsurableEarnings"
+      },
+      "format": "exact",
+      "note": "EI MIE (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "and CPP on the first {}, then CPP2",
+      "source": {
+        "engine": "CPP.ympe"
+      },
+      "format": "exact",
+      "note": "YMPE (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "then CPP2 at {} on the slice",
+      "source": {
+        "engine": "CPP.cpp2.rate"
+      },
+      "format": "percent",
+      "note": "CPP2 rate (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "on the slice up to {}; once your",
+      "source": {
+        "engine": "CPP.cpp2.yampe"
+      },
+      "format": "exact",
+      "note": "YAMPE (FAQ 2)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "only the slice changes. {} net on",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario annual net (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "in Ontario is {} biweekly over 26",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 26"
+      },
+      "format": "round:1",
+      "note": "biweekly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "over 26 cheques, {} semi-monthly over 24",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 24"
+      },
+      "format": "round:1",
+      "note": "semi-monthly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "semi-monthly over 24, {} monthly or",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 12"
+      },
+      "format": "round:1",
+      "note": "monthly (FAQ)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "monthly or {} weekly",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 52"
+      },
+      "format": "round:1",
+      "note": "weekly (FAQ)"
     }
   ]
 }
