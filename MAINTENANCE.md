@@ -22,6 +22,12 @@ provincial/territorial bracket table and BPA are indexed on **January 1**. Every
    value you checked**, even the ones that didn't change (the date is the point).
 3. Anything you can't confirm gets `last_verified: "UNVERIFIED — pending Jan audit"`, not
    a date you can't stand behind.
+4. **A stamped value that looks like a typo is checked against the CURRENT year's primary
+   source before anyone changes it.** Read the row for the tax year the file covers, not the
+   nearest familiar number, and note which edition you read: CRA reissues T4032 mid-year (BC,
+   NL and PE all had "Effective July 1, 2026" editions), and a January edition can predate a
+   budget. The BC lowest rate went wrong this way on 2026-07-23 — the correct 2026 value
+   (5.60%) looked like a dropped zero, and last year's value (5.06%) looked right.
 
 Primary sources: CRA T4032 (federal Chart 1 + each province's Chart 2 + CPP/EI), the CRA
 CPP and EI rate/maximum pages, and each province's own finance/statute page. Bracket
@@ -550,6 +556,35 @@ both sides match, so change them back to back.
 
 # AUDIT LOG
 
+## 2026-10-17 — BC lowest rate restored to 5.60% (the 2026-07-23 "correction" was the error)
+
+**Found** while cross-checking all 14 bracket sets for the tax-bracket pages. `provinces.BC
+.brackets[0].rate` and `provinces.BC.bpaCreditRate` held **0.0506**; the 2026 rate is **5.60%**.
+
+**Verified 2026-10-17 against both primary sources, which agree:**
+- gov.bc.ca personal income tax rates ("Last updated on April 17, 2026"): 2026 tax year
+  "$0 to $50,363 — **5.60%**"; 2025 tax year "$0 to $49,279 — 5.06%".
+- CRA T4032BC **Effective July 1, 2026**: "For 2026 and subsequent years, the lowest personal
+  tax rate is increased from 5.06% to 5.60%." It withholds at a prorated **6.14%** from July so
+  the year averages 5.60% — a payroll device, not the annual rate. The same notice confirms the
+  $690 BC tax reduction this file already held.
+- CRA T4032BC **Effective January 1, 2026** still says 5.06% (Chart 2: 0.0506; line 18 "5.06% ×
+  0.0506") — it predates BC Budget 2026 (17 Feb 2026). That superseded edition, plus the 2025
+  row on gov.bc.ca (note its $49,279 threshold, not 2026's $50,363), is what the 2026-07-23 entry
+  below quoted.
+
+**Changed** both nodes 0.0506 → 0.0560, `last_verified` 2026-10-17, history regenerated (the
+0.0506 rows close at 2026-01-01; nothing else moved). The other six BC rates and all seven
+thresholds already matched gov.bc.ca.
+
+**Impact — the live site under-stated BC tax from 2026-07-23 to 2026-10-17.** Real engine, BC
+provincial tax, employee: $40,000 +$129.39 · $60,000 +$180.21 · $100,000 and $150,000 +$175.52 per
+year (bracket at the wrong rate +$214–$272, credits at the wrong rate −$85–$96; net as shown).
+Self-employed: +$121.18 / +$185.49 / +$181.59 / +$181.59.
+
+**Lesson** (now Rule 1 step 4): a correct value that looks like a typo must be checked against
+the current year's row in the current edition before it is touched.
+
 ## 2026-07-15 — Inaugural full audit (all live jurisdictions + benefits)
 
 First complete pass of the maintenance system: every constant re-checked against primary
@@ -667,6 +702,10 @@ rather than computed — the same reason a per-year-derivation approach was reje
   separately (its whole credit table moved in lockstep — confirmed real).
 
 ## 2026-07-23 — BC lowest-rate correction (out-of-cycle, data-entry error)
+
+> **SUPERSEDED — this entry is wrong.** 0.0560 was correct for 2026; this change introduced the
+> error it describes. See 2026-10-17 above. Kept as written so the reasoning that failed stays
+> visible.
 
 **Found.** British Columbia's lowest bracket rate was stored as `0.0560` in **both**
 `provinces.BC.brackets[0].rate` and `provinces.BC.bpaCreditRate` — a dropped-zero transcription
