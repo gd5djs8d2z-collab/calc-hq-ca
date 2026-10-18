@@ -28,6 +28,9 @@ provincial/territorial bracket table and BPA are indexed on **January 1**. Every
    NL and PE all had "Effective July 1, 2026" editions), and a January edition can predate a
    budget. The BC lowest rate went wrong this way on 2026-07-23 — the correct 2026 value
    (5.60%) looked like a dropped zero, and last year's value (5.06%) looked right.
+5. **If any contribution or premium rate changed** (CPP, CPP2, QPP, EI, Quebec EI, QPIP), re-run
+   the half-cent check in Rule 7 for the whole family before shipping. A function that was clean
+   last year is clean only because of last year's rate.
 
 Primary sources: CRA T4032 (federal Chart 1 + each province's Chart 2 + CPP/EI), the CRA
 CPP and EI rate/maximum pages, and each province's own finance/statute page. Bracket
@@ -372,6 +375,40 @@ inputs, counts and other literals, which have nothing to check against. Adding a
 `pages` puts all of its figures on the list.
 
 ---
+
+## Rule 7 — Money is rounded to the cent, with exact arithmetic
+
+Money computed as `amount × rate` is rounded to the cent with exact arithmetic — `centsOf()` in
+`assets/js/tax-engine.js` — never left as a raw float.
+
+**The failure class.** Most decimal rates have no exact binary form. 1.63% is stored as
+0.016299999999999998…, so wherever the true product is an exact half cent the float lands a
+hair under it and rounds the wrong way. It does that at some incomes and not others, so it shows
+up as a $1 discrepancy at a handful of incomes and is invisible everywhere else. No gate notices,
+because the value is right to thirteen decimal places.
+
+**It reached the live site.** EI at 1.63% displayed $733 instead of $734 on a $45,000 salary, and
+the same at $5,000, $15,000, $25,000 and $55,000. On `/payroll/self-employed-tax/` the
+hand-written table said $734 and the calculator beside it said $733. Fixed 2026-10-18 in
+`ff06cf6`. The table cell is now registered, and against the old engine it fails.
+
+**`centsOf()`** scales the amount to whole cents and the rate to a whole number (× 10⁷), so the
+product is exact and a true half cent rounds up. It throws on a rate with more than seven
+decimals rather than truncating it.
+
+**Where it is applied, and where not yet (2026-10-18).** `calcEI` (EI and Quebec EI) rounds
+through `centsOf()`. `calcCPP` (CPP, CPP2, QPP) and `calcQPIP` still multiply as raw floats.
+With 2026 rates none of their own figures is wrong at whole-dollar display, but at the cent they
+do have half-cent cases (CPP at $3,550, QPIP at $1,050, among others). Routing them through
+`centsOf()` moves about 70 sampled totals and tax lines by $1. That decision is held for its own
+review, not swept in with the EI fix.
+
+**The check, whenever a rate changes.** For each function in the family, compare the engine's
+float result with exact decimal arithmetic (Python `decimal`, half-up) at every whole-dollar
+income from $0 to $200,000, at whole-dollar display and at the cent — including the per-cheque
+splits (÷ 12, 24, 26, 52), since those display to the cent. Any mismatch at whole-dollar display
+is a live bug of the EI kind. Then, before shipping any rounding change, diff the engine's
+results across all 13 jurisdictions and account for every figure that moves.
 
 ## Redirects — how to move a URL on this site
 
