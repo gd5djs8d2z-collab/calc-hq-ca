@@ -87,6 +87,7 @@ const SRC = {
   peAct:     'https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf',
   yukon:     'https://yukon.ca/en/yukon-historical-tax-rates',
   nlFin:     'https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/',
+  onTaxAct:  'https://www.ontario.ca/laws/statute/07t11', // Taxation Act, 2007 (e-Laws; needs JavaScript to render)
   craLimits: 'https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html',
   fhsa:      'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html',
   eduSavings:'https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html',
@@ -440,12 +441,25 @@ export const TAX_CONSTANTS_2026 = {
       // Ontario tax reduction (Taxation Act, 2007, s.20): a non-refundable credit equal to
       // twice the personal amount minus "tax otherwise payable" — Ontario tax AFTER the surtax,
       // before the Health Premium (ON428 lines 73→81; the premium is added at line 89 and is
-      // never reduced). s.20(4): basic reduction = $205 × the Ontario allocation factor, so it is
-      // indexed; CRA T4032ON 2026 gives the 2026 amount as $300 (2025 ON428: $294). The extra
+      // never reduced). s.20(4) sets the basic reduction at $205, and s.23(1) para 5 indexes
+      // s.20(4) and (5) to CPI every year — so the amount is indexed (the "Ontario allocation
+      // factor" in s.20(4) is the share of income earned in Ontario, 1 for a full-year resident,
+      // not an indexing device). CRA T4032ON 2026 gives the 2026 amount as $300 (2025 ON428: $294). The extra
       // amounts per dependant under 18 / with an infirmity (s.20(3),(5)) are NOT modelled — the
       // calculator pages say so. CRA quotes $575 each for 2026 but $379 × the factor gives ≈ $555;
       // unresolved, so not stamped.
       ontarioTaxReduction: { value: { basic: 300 }, source_url: T4032('on'), last_verified: '2026-10-18', cadence: 'january' },
+      // Low-income individuals and families tax (LIFT) credit — Taxation Act, 2007, s.21.1(3.1),
+      // taxation years after 2021: (D − E) × F, where D = lesser of $875 and the lowest tax rate
+      // (5.05%, brackets[0].rate) × EMPLOYMENT income; E = 5% of the greater of personal adjusted
+      // income over $32,500 and family adjusted income over $65,000; F = Ontario allocation factor
+      // (1 for a full-year Ontario resident). NOT INDEXED: s.21.1 is not on s.23(1)'s indexing list,
+      // and the 2025 Schedule ON428-A prints the same $875 / $32,500 / $65,000. Non-refundable, taken
+      // after the Ontario tax reduction and before the Health Premium (ON428 lines 84→86, premium at
+      // 89). Self-employment income does not count. The engine applies the INDIVIDUAL test only — it
+      // has no spouse input, so familyThreshold is recorded but unused (the pages say so).
+      ontarioLift: { value: { max: 875, individualThreshold: 32500, familyThreshold: 65000, phaseOutRate: 0.05 },
+                     source_url: SRC.onTaxAct, last_verified: '2026-10-18', cadence: 'statutory' },
       // Ontario Health Premium — six flat bands, not indexed, tops out at $900.
       // NOTE: the engine currently HARDCODES this schedule (ontarioHealthPremium()); this
       // data array is the documented source of truth but is not yet read by the engine.

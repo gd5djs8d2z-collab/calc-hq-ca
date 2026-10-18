@@ -132,7 +132,7 @@ function provincialBPA(prov, netIncome) {
   return p.max - (p.max - p.min) * frac;
 }
 
-function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0, extraCredit = 0 }) {
+function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0, extraCredit = 0, employmentIncome = 0 }) {
   const prov = PROVINCES[code];
   // Quebec's deduction for workers (line 201): 6% of eligible work income (employment +
   // net business income), capped, reduces the provincial taxable base only — never federal.
@@ -177,8 +177,24 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
     onReduction = Math.min(taxBefore, Math.max(0, 2 * prov.ontarioTaxReduction.basic - taxBefore));
   }
 
+  // Ontario LIFT credit (Taxation Act, 2007, s.21.1(3.1); Schedule ON428-A; ON428 line 85):
+  // 5.05% (the lowest rate) of EMPLOYMENT income, capped at the maximum, less 5% of adjusted net
+  // income over the individual threshold. Taken from what is left after the tax reduction,
+  // never below zero, and before the Health Premium, which it cannot reduce. employmentIncome
+  // defaults to 0, so only callers that pass it (calcTakeHome) get LIFT — self-employment income
+  // never qualifies. Individual test only: there is no spouse input, so the family-income test
+  // (which can only shrink the credit) is not applied — the pages say so. Adjusted net income is
+  // taken as taxableIncome, which is net income (line 23600) for the cases this engine models.
+  let lift = 0;
+  if (prov.ontarioLift && employmentIncome > 0) {
+    const L = prov.ontarioLift;
+    const base = Math.min(L.max, prov.brackets[0].rate * employmentIncome);
+    const credit = Math.max(0, base - L.phaseOutRate * Math.max(0, taxableIncome - L.individualThreshold));
+    lift = Math.min(Math.max(0, basic + surtax - onReduction), credit);
+  }
+
   const health = code === 'ON' ? ontarioHealthPremium(taxableIncome) : 0;
-  return { basic, surtax, health, taxReduction: reduction + onReduction, total: basic + surtax - onReduction + health };
+  return { basic, surtax, health, taxReduction: reduction + onReduction + lift, lift, total: basic + surtax - onReduction - lift + health };
 }
 
 function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false, extraCredit = 0 }) {
@@ -216,7 +232,7 @@ export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvinc
   // so calcTakeHome(gross, code) is byte-identical to before. The DTC page uses the difference
   // method — one call with, one without — to read a correctly capped, surtax-aware benefit.
   const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC, extraCredit: extraFederalCredit });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross, workIncome: gross, extraCredit: extraProvincialCredit });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross, workIncome: gross, extraCredit: extraProvincialCredit, employmentIncome: gross });
 
   const totalTax = fed + prov.total;
   const totalDeductions = totalTax + cpp.employee + eiTypePremium;
