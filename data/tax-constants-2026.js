@@ -437,6 +437,15 @@ export const TAX_CONSTANTS_2026 = {
       // Surtax on BASIC Ontario tax (after BPA credit): 20% over $5,818, +36% over $7,446.
       surtax: { value: [ { over: 5818, rate: 0.20 }, { over: 7446, rate: 0.36 } ],
                 source_url: T4032('on'), last_verified: '2026-07-14' },
+      // Ontario tax reduction (Taxation Act, 2007, s.20): a non-refundable credit equal to
+      // twice the personal amount minus "tax otherwise payable" — Ontario tax AFTER the surtax,
+      // before the Health Premium (ON428 lines 73→81; the premium is added at line 89 and is
+      // never reduced). s.20(4): basic reduction = $205 × the Ontario allocation factor, so it is
+      // indexed; CRA T4032ON 2026 gives the 2026 amount as $300 (2025 ON428: $294). The extra
+      // amounts per dependant under 18 / with an infirmity (s.20(3),(5)) are NOT modelled — the
+      // calculator pages say so. CRA quotes $575 each for 2026 but $379 × the factor gives ≈ $555;
+      // unresolved, so not stamped.
+      ontarioTaxReduction: { value: { basic: 300 }, source_url: T4032('on'), last_verified: '2026-10-18', cadence: 'january' },
       // Ontario Health Premium — six flat bands, not indexed, tops out at $900.
       // NOTE: the engine currently HARDCODES this schedule (ontarioHealthPremium()); this
       // data array is the documented source of truth but is not yet read by the engine.

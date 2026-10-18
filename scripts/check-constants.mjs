@@ -56,7 +56,7 @@ export const STRUCTURAL_EXEMPT = new Set([
  */
 export const NEVER_EXEMPT = new Set([
   'bpaCreditRate', 'healthPremiumMax', 'selfEmployedMultiplier', 'bpa', 'brackets',
-  'surtax', 'healthPremium', 'taxReduction', 'bpaPhaseOut', 'workerDeduction',
+  'surtax', 'healthPremium', 'taxReduction', 'ontarioTaxReduction', 'bpaPhaseOut', 'workerDeduction',
   'rate', 'maxContribution', 'exemption', 'ympe', 'yampe', 'maxInsurableEarnings',
   'smallSupplierThreshold',
 ]);

@@ -166,8 +166,19 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   for (const t of (prov.surtax || [])) {
     if (basic > t.over) surtax += (basic - t.over) * t.rate;
   }
+
+  // Ontario tax reduction (Taxation Act, 2007, s.20; ON428 lines 74–81): twice the basic
+  // reduction minus Ontario tax after surtax, never below zero and never more than that tax.
+  // It applies AFTER the surtax and BEFORE the Health Premium, which it cannot reduce. Only the
+  // basic amount is modelled — not the per-dependant amounts (see the pages' disclaimers).
+  let onReduction = 0;
+  if (prov.ontarioTaxReduction) {
+    const taxBefore = basic + surtax;
+    onReduction = Math.min(taxBefore, Math.max(0, 2 * prov.ontarioTaxReduction.basic - taxBefore));
+  }
+
   const health = code === 'ON' ? ontarioHealthPremium(taxableIncome) : 0;
-  return { basic, surtax, health, taxReduction: reduction, total: basic + surtax + health };
+  return { basic, surtax, health, taxReduction: reduction + onReduction, total: basic + surtax - onReduction + health };
 }
 
 function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false, extraCredit = 0 }) {
