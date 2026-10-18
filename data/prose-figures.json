@@ -13,7 +13,9 @@
     "/key-dates-limits/",
     "/key-dates-limits/ccb-payment-dates/",
     "/key-dates-limits/contribution-limits/",
-    "/key-dates-limits/tax-deadlines/"
+    "/key-dates-limits/tax-deadlines/",
+    "/payroll/self-employed-tax/",
+    "/payroll/pay-raise/"
   ],
   "figures": [
     {
@@ -5785,6 +5787,176 @@
       },
       "format": "exact",
       "note": "base CPP max + CPP2 max"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "in Ontario and {} is gone before the deposit lands",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').totalDeductions"
+      },
+      "format": "round:1",
+      "note": "$45,000 salary, Ontario: total deductions (intro)"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Total {} {*} Left over",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').totalDeductions"
+      },
+      "format": "round:1",
+      "note": "$45,000 salary, Ontario: total deductions (table)"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Left over {} {*} The gap is",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').net"
+      },
+      "format": "round:1",
+      "note": "$45,000 salary, Ontario: left over"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Ontario tax + health premium {} {*} CPP, your half",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').provincialTax"
+      },
+      "format": "round:1",
+      "note": "$45,000 salary, Ontario tax incl. Health Premium, after the s.20 reduction and LIFT"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "The gap is {}, not the",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').net - calcSelfEmployed(45000, 'ON').afterTax"
+      },
+      "format": "round:1",
+      "note": "salary left over minus self-employed left over, $45,000 Ontario"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "the salaried column keeps {} the invoices column",
+      "source": {
+        "engine": "Math.max(0, Math.min(PROVINCES.ON.ontarioLift.max, PROVINCES.ON.brackets[0].rate * 45000) - PROVINCES.ON.ontarioLift.phaseOutRate * Math.max(0, 45000 - calcCPP(45000).enhanced - PROVINCES.ON.ontarioLift.individualThreshold))"
+      },
+      "format": "round:1",
+      "note": "Ontario LIFT credit on a $45,000 salary (Taxation Act s.21.1(3.1), individual test)"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "federal tax comes out {} lower on the self-employed side",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').federalTax - calcSelfEmployed(45000, 'ON').federalTax"
+      },
+      "format": "round:1",
+      "note": "federal tax, salary minus self-employed, $45,000 Ontario"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "that deduction takes {} off the federal line",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').federalTax - calcSelfEmployed(45000, 'ON').federalTax"
+      },
+      "format": "round:1",
+      "note": "federal tax, salary minus self-employed, $45,000 Ontario (Schedule 8 paragraph)"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Ontario runs {} the other way",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').provincialTax - calcTakeHome(45000, 'ON').provincialTax"
+      },
+      "format": "round:1",
+      "note": "Ontario tax, self-employed minus salary, $45,000 (LIFT goes to the salaried side only)"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "together come out {} lower than the salaried version",
+      "source": {
+        "engine": "(calcTakeHome(45000, 'ON').federalTax + calcTakeHome(45000, 'ON').provincialTax) - (calcSelfEmployed(45000, 'ON').federalTax + calcSelfEmployed(45000, 'ON').provincialTax)"
+      },
+      "format": "round:1",
+      "note": "federal + Ontario, salary minus self-employed, $45,000"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "the employee's {} leaves in 26 pieces",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').totalDeductions"
+      },
+      "format": "round:1",
+      "note": "$45,000 salary, Ontario: total deductions (gap paragraph)"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "$40,000 {} {*} Lowest brackets",
+      "source": {
+        "engine": "calcRaise(40000, 46000, 'ON').netRaise"
+      },
+      "format": "round:1",
+      "note": "$6,000 raise from $40,000, Ontario (LIFT phase-out in play)"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "$40,000 {*} {} Lowest brackets",
+      "source": {
+        "engine": "calcRaise(40000, 46000, 'ON').keptShare"
+      },
+      "format": "percent:0",
+      "note": "share of a $6,000 raise kept from $40,000, Ontario"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "$50,000 {} {*} Same, nearing",
+      "source": {
+        "engine": "calcRaise(50000, 56000, 'ON').netRaise"
+      },
+      "format": "round:1",
+      "note": "$6,000 raise from $50,000, Ontario"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "$50,000 {*} {} Same, nearing",
+      "source": {
+        "engine": "calcRaise(50000, 56000, 'ON').keptShare"
+      },
+      "format": "percent:0",
+      "note": "share of a $6,000 raise kept from $50,000, Ontario"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "It drops from {} to {*} between $50,000",
+      "source": {
+        "engine": "calcRaise(50000, 56000, 'ON').keptShare"
+      },
+      "format": "percent:0",
+      "note": "prose restating the $50,000 row"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "It drops from {*} to {} between $50,000",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').keptShare"
+      },
+      "format": "percent:0",
+      "note": "prose restating the $60,000 row"
     }
   ]
 }
