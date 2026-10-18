@@ -63,11 +63,25 @@ export function calcCPP(earnings, { selfEmployed = false, plan = CPP } = {}) {
   return { cpp1, cpp2, employee, total, enhanced, base };
 }
 
+/* amount × rate, rounded to the cent half up — how a premium or contribution is actually
+   charged. A plain float product can't be trusted for this: 1.63% has no exact binary form (the
+   nearest double is 0.016299999999999998…), so 45,000 × 0.0163 comes out 733.4999999999999 and a
+   true $733.50 displays as $733. Scaling the amount to whole cents and the rate to a whole number
+   keeps the product exact, so a true half cent is exactly .5 and rounds up. The guard refuses a
+   rate with more than 7 decimal places instead of silently truncating it. See MAINTENANCE.md,
+   "Money is rounded to the cent". */
+const RATE_SCALE = 1e7;
+function centsOf(amount, rate) {
+  const scaledRate = Math.round(rate * RATE_SCALE);
+  if (Math.abs(rate * RATE_SCALE - scaledRate) > 1e-6) throw new Error(`centsOf: rate ${rate} has more than 7 decimal places`);
+  return Math.round(Math.round(amount * 100) * scaledRate / RATE_SCALE) / 100;
+}
+
 /* ── EI ──────────────────────────────────────────────────────────────────── */
 export function calcEI(earnings, { quebec = false } = {}) {
   const cfg = quebec ? { rate: EI.quebec.rate, max: EI.quebec.maxEmployeePremium }
                      : { rate: EI.rate,        max: EI.maxEmployeePremium };
-  const premium = Math.min(Math.min(earnings, EI.maxInsurableEarnings) * cfg.rate, cfg.max);
+  const premium = Math.min(centsOf(Math.min(earnings, EI.maxInsurableEarnings), cfg.rate), cfg.max);
   return { premium, rate: cfg.rate };
 }
 
