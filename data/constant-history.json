@@ -1019,7 +1019,56 @@
       }
     ],
     "effective_from": "2026-01-01",
+    "effective_to": "2026-01-01",
+    "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
+    "verified_at": "2026-07-13",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.brackets",
+    "value": [
+      {
+        "min": 0,
+        "max": 33928,
+        "rate": 0.095
+      },
+      {
+        "min": 33928,
+        "max": 65820,
+        "rate": 0.1347
+      },
+      {
+        "min": 65820,
+        "max": 106890,
+        "rate": 0.166
+      },
+      {
+        "min": 106890,
+        "max": 142520,
+        "rate": 0.1762
+      },
+      {
+        "min": 142520,
+        "max": 200000,
+        "rate": 0.19
+      },
+      {
+        "min": 200000,
+        "max": "Infinity",
+        "rate": 0.2
+      }
+    ],
+    "effective_from": "2026-01-01",
     "effective_to": null,
+    "source_url": "https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf",
+    "verified_at": "2026-10-18",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.bpa",
+    "value": 15000,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-01-01",
     "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
     "verified_at": "2026-07-13",
     "cadence": "january"
@@ -1029,6 +1078,15 @@
     "value": 15000,
     "effective_from": "2026-01-01",
     "effective_to": null,
+    "source_url": "https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf",
+    "verified_at": "2026-10-18",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.bpaCreditRate",
+    "value": 0.095,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-01-01",
     "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
     "verified_at": "2026-07-13",
     "cadence": "january"
@@ -1038,8 +1096,8 @@
     "value": 0.095,
     "effective_from": "2026-01-01",
     "effective_to": null,
-    "source_url": "https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax",
-    "verified_at": "2026-07-13",
+    "source_url": "https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf",
+    "verified_at": "2026-10-18",
     "cadence": "january"
   },
   {

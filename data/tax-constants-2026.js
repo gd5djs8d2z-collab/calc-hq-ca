@@ -78,7 +78,13 @@ const SRC = {
   eiWorking:   'https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/working-while-claim.html',
   bcRates:   'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates',
   bcCredits: 'https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic',
-  peGov:     'https://www.princeedwardisland.ca/en/information/finance/provincial-personal-income-tax',
+  // PEI Income Tax Act, consolidated to May 29, 2026: s.7 (2026 brackets and rates), s.9 (BPA).
+  // The folder in this path changes with each new consolidation; if it 404s, take the current
+  // Income Tax Act PDF from princeedwardisland.ca's legislation pages. (The old rates page,
+  // /en/information/finance/provincial-personal-income-tax, now redirects to
+  // /en/information/finance-and-affordability/... behind a bot-check CAPTCHA, so it could not be
+  // read to verify — 2026-10-18.)
+  peAct:     'https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf',
   yukon:     'https://yukon.ca/en/yukon-historical-tax-rates',
   nlFin:     'https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/',
   craLimits: 'https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html',
@@ -559,9 +565,13 @@ export const TAX_CONSTANTS_2026 = {
 
     PE: {
       name: 'Prince Edward Island', indexation: 0.018,
-      // Brackets from the ENACTED PEI law (Bill No. 23, 2026 budget): sixth bracket over
-      // $200,000 @ 20% and fifth threshold $142,520. CRA T4032-PE still shows the pre-
-      // Bill-23 five-bracket table — the table lagged the statute. See MAINTENANCE.md.
+      // 20% IS THE CORRECT 2026 TOP RATE — DO NOT CHANGE IT TO 21%. PEI's 2026 budget (Bill No. 23,
+      // April 2026) added the sixth bracket, over $200,000 at 20%, "for the 2026 and subsequent
+      // taxation years" (Income Tax Act s.7(f), consolidated to May 29, 2026). CRA's T4032PE
+      // Effective January 1, 2026 predates it and shows five brackets; T4032PE Effective July 1,
+      // 2026 matches this table but withholds at a PRORATED 21% above $200,000 from July so the
+      // year averages 20% — 21% is a payroll device, not the annual rate. All six bands and the
+      // $15,000 BPA (s.9) re-verified against the Act and the July edition on 2026-10-18.
       brackets: { value: [
         { min: 0,      max: 33928,    rate: 0.0950 },
         { min: 33928,  max: 65820,    rate: 0.1347 },
@@ -569,9 +579,9 @@ export const TAX_CONSTANTS_2026 = {
         { min: 106890, max: 142520,   rate: 0.1762 },
         { min: 142520, max: 200000,   rate: 0.1900 },
         { min: 200000, max: Infinity, rate: 0.2000 },
-      ], source_url: SRC.peGov, last_verified: '2026-07-13' },
-      bpa: { value: 15000, source_url: SRC.peGov, last_verified: '2026-07-13' },
-      bpaCreditRate: { value: 0.095, source_url: SRC.peGov, last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
+      ], source_url: SRC.peAct, last_verified: '2026-10-18' },
+      bpa: { value: 15000, source_url: SRC.peAct, last_verified: '2026-10-18' },
+      bpaCreditRate: { value: 0.095, source_url: SRC.peAct, last_verified: '2026-10-18' }, // = brackets[0].rate (lowest-rate rule)
     },
 
     YT: {

@@ -109,13 +109,17 @@ contribution combinations), and the page states that this is what it is doing.
 
 When a province or territory tables a **mid-year** tax change, verify against the
 **enacted statute / the government's own announcement — not the CRA T4032 table.** The
-T4032 is published in January and **lags** in-year legislation.
+January T4032 **lags** in-year legislation. CRA may later issue an "Effective July 1"
+edition, but its mid-year rates are **prorated** for July–December withholding and are
+never the annual rate (see Rule 1 step 4).
 
 **Worked example — PEI, 2026.** PEI's Bill No. 23 (2026 budget) added a sixth bracket
-(over $200,000 @ 20%) and shifted the fifth threshold to $142,520. CRA's T4032-PE still
-showed the pre-Bill-23 five-bracket table (top $142,250 @ 19%). We used the **enacted PEI
-law** and recorded `source_url` as the PEI finance page, not the CRA table. Do the same
-for any future mid-year change: statute first, and note in a comment when the T4032 lags.
+(over $200,000 @ 20%) and shifted the fifth threshold to $142,520. CRA's January T4032-PE
+showed the pre-Bill-23 five-bracket table (top $142,250 @ 19%); its July 1, 2026 edition
+caught up but withholds at a prorated 21% above $200,000. We store the **enacted** 20% and
+cite the PEI Income Tax Act itself (`SRC.peAct`, s.7 and s.9) — re-verified 2026-10-18, after
+PEI's rates page moved behind a bot-check. Do the same for any future mid-year change:
+statute first, and note in a comment when the T4032 lags or prorates.
 
 ## Rule 3 — Quarterly re-verification (GIS / OAS benefits)
 
