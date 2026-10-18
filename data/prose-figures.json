@@ -6988,6 +6988,16 @@
       },
       "format": "round:1",
       "note": "weekly (FAQ)"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "CPP and EI both running; LIFT phasing out at {}",
+      "source": {
+        "const": "provinces.ON.ontarioLift.phaseOutRate"
+      },
+      "format": "percent",
+      "note": "LIFT phase-out rate, Taxation Act s.21.1(3.1)"
     }
   ]
 }
