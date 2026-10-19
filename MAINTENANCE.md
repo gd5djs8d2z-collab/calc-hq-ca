@@ -8,9 +8,10 @@ benefit-program constant too — lives once, with provenance, in
 `ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`, `QPIP_PARENTAL`) from it and
 holds **behaviour only** — so you change a number in **one** place.
 
-Six standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
+Seven standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
 July); Rule 2 is event-driven; Rule 4 is the automated check that tells you which is due; Rule 6
-ties the figures quoted in page copy back to the values they restate.
+ties the figures quoted in page copy back to the values they restate; Rule 7 says which form each
+money calculation follows.
 
 ## Rule 1 — Annual January re-verification
 
@@ -376,39 +377,75 @@ inputs, counts and other literals, which have nothing to check against. Adding a
 
 ---
 
-## Rule 7 — Money is rounded to the cent, with exact arithmetic
+## Rule 7 — Each calculation follows its governing form
 
-Money computed as `amount × rate` is rounded to the cent with exact arithmetic — `centsOf()` in
-`assets/js/tax-engine.js` — never left as a raw float.
+Every contribution and premium has two authorities: a year-end form that fixes the amount owed
+for the year, and a payroll formula that fixes what comes off each cheque. They round at different
+stages, so no single rounding rule covers both. Three rules follow:
 
-**The failure class.** Most decimal rates have no exact binary form. 1.63% is stored as
-0.016299999999999998…, so wherever the true product is an exact half cent the float lands a
-hair under it and rounds the wrong way. It does that at some incomes and not others, so it shows
-up as a $1 discrepancy at a handful of incomes and is invisible everywhere else. No gate notices,
-because the value is right to thirteen decimal places.
+- **Annual figures follow the year-end forms.** The engine works in annual amounts, so every
+  figure it returns is the year-end form's figure.
+- **Per-cheque figures follow the payroll formulas.** The engine has no per-cheque arithmetic —
+  the pages divide the annual figure by 12, 24, 26 or 52 — so payroll and the site part company
+  here, by cents.
+- **Where a form is silent on a half cent, the figure is left unrounded.** We don't choose a rule
+  the form doesn't state.
 
-**It reached the live site.** EI at 1.63% displayed $733 instead of $734 on a $45,000 salary, and
-the same at $5,000, $15,000, $25,000 and $55,000. On `/payroll/self-employed-tax/` the
-hand-written table said $734 and the calculator beside it said $733. Fixed 2026-10-18 in
-`ff06cf6`. The table cell is now registered, and against the old engine it fails.
+| Calculation | Annual — governs the engine | Per cheque |
+|---|---|---|
+| CPP / CPP2, employee | Schedule 8 Part 3, lines 11, 12, 22 | T4127 ch. 6 |
+| CPP / CPP2, self-employed | Schedule 8 Part 4, lines 10–17 | — |
+| QPP, employee | Schedule U Part B | TP-1015.F-V §3.1 |
+| QPP, self-employed | Schedule U Part C, lines 48, 93, 99–103 | — |
+| EI and Quebec EI, employee | T2204 lines 10–11 (required premium) | T4127 ch. 7 |
+| EI, self-employed opt-in | Schedule 13 lines 9–10 | — |
+| QPIP, employee | not yet read | TP-1015.F-V §4.1 |
+| QPIP, self-employed | Schedule R line 24 | — |
 
-**`centsOf()`** scales the amount to whole cents and the rate to a whole number (× 10⁷), so the
-product is exact and a true half cent rounds up. It throws on a rate with more than seven
-decimals rather than truncating it.
+Editions read 2026-10-18: Schedule 8, T2204 and Schedule 13 for T1-2025; Schedules U and R
+2025-12; T4127 122nd edition (January 2026 — the July 123rd edition says the CPP and EI formulas
+are unchanged); TP-1015.F-V 2026-01. Re-read each one when its new edition comes out.
 
-**Where it is applied, and where not yet (2026-10-18).** `calcEI` (EI and Quebec EI) rounds
-through `centsOf()`. `calcCPP` (CPP, CPP2, QPP) and `calcQPIP` still multiply as raw floats.
-With 2026 rates none of their own figures is wrong at whole-dollar display, but at the cent they
-do have half-cent cases (CPP at $3,550, QPIP at $1,050, among others). Routing them through
-`centsOf()` moves about 70 sampled totals and tax lines by $1. That decision is held for its own
-review, not swept in with the EI fix.
+**What the forms say about rounding.** The payroll formulas are explicit: each cheque's
+contribution or premium rounds half up at the third decimal, and the per-period CPP/QPP
+exemption is truncated ($3,500 ÷ 52 = $67.30). The year-end forms say only that amounts carried
+to the return are entered "in dollars and cents". None states how to round an exact half cent,
+and none says whether intermediate lines are rounded. So `calcCPP` (CPP, CPP2, QPP) and
+`calcQPIP` multiply unrounded, and stay that way until a form says otherwise. It matters:
+Schedule 8 line 15 for $20,750 of self-employment income is exactly $853.875, and with the EI
+opt-in, rounding it up shows NT tax of $9 while rounding it down shows $10. That isn't the
+site's call. The self-employed total is line 14 — line 10 plus line 13 — never twice a rounded
+employee share: $2,052.75 at $20,750, not $2,052.76.
 
-**The check, whenever a rate changes.** For each function in the family, compare the engine's
-float result with exact decimal arithmetic (Python `decimal`, half-up) at every whole-dollar
-income from $0 to $200,000, at whole-dollar display and at the cent — including the per-cheque
-splits (÷ 12, 24, 26, 52), since those display to the cent. Any mismatch at whole-dollar display
-is a live bug of the EI kind. Then, before shipping any rounding change, diff the engine's
-results across all 13 jurisdictions and account for every figure that moves.
+**EI — the one rounded calculation.** `calcEI` rounds through `centsOf()`, which scales the
+amount to whole cents and the rate to a whole number (× 10⁷), so the product is exact; it throws
+on a rate with more than seven decimals rather than truncating it. The reason is a float
+artefact: 1.63% is stored as 0.016299999999999998…, so a premium that is exactly a whole number
+of cents can come out a hair under. On a $45,000 salary the required premium is exactly $733.50;
+the float gave 733.4999… and production showed **$733** — also at $5,000, $15,000, $25,000 and
+$55,000 — while the hand-written table on `/payroll/self-employed-tax/` said $734. Fixed
+2026-10-18 in `ff06cf6`, and kept the same day as T2204's required premium. The table cell is
+registered and fails against the old engine. `centsOf()` also rounds a true half cent up, which
+T2204 doesn't state: at every whole-dollar income ending in 50, 1.63% lands on one ($20,750 ×
+1.63% = $338.225 → $338.23). That is the one place the site has chosen a half-cent rule, and it
+was a decision, not an oversight.
+
+**The annual figure is not what payroll withholds.** The annual EI figure is the required
+premium. Withholding rounds every cheque, so the year's total moves with pay frequency: at
+$45,000 it is $733.44 semi-monthly, $733.46 biweekly, $733.56 monthly and $733.72 weekly,
+against $733.50 required. On a steady salary the gap is at most half a cent per cheque — 26¢ a
+year when paid weekly. T2204 credits the lesser of withheld and required and refunds an
+overpayment only above $1, so these cents are never reconciled. CPP moves the same way: $2,469.22
+biweekly to $2,469.48 weekly, against $2,469.25 required on Schedule 8.
+
+**The check, whenever a rate changes** (Rule 1, step 5). For each function, compare the engine
+with exact decimal arithmetic on its governing form's lines (Python `decimal`; unrounded for
+`calcCPP` and `calcQPIP`, half up to the cent for `calcEI`) at every whole-dollar income from $0
+to $200,000, at whole-dollar display and at the cent, including the per-cheque splits (÷ 12,
+24, 26, 52). A mismatch at whole-dollar display is a live bug of the EI kind; with 2026 rates
+there are none (CPP, QPP, both ×1 and ×2, and both QPIP rates, rechecked 2026-10-18). Before
+shipping any rounding change, name the form line that justifies it, diff the engine across all
+13 jurisdictions and account for every figure that moves.
 
 ## Redirects — how to move a URL on this site
 
