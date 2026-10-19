@@ -446,8 +446,18 @@ export const TAX_CONSTANTS_2026 = {
       // factor" in s.20(4) is the share of income earned in Ontario, 1 for a full-year resident,
       // not an indexing device). CRA T4032ON 2026 gives the 2026 amount as $300 (2025 ON428: $294). The extra
       // amounts per dependant under 18 / with an infirmity (s.20(3),(5)) are NOT modelled — the
-      // calculator pages say so. CRA quotes $575 each for 2026 but $379 × the factor gives ≈ $555;
-      // unresolved, so not stamped.
+      // calculator pages say so.
+      // DEPENDANT AMOUNT — resolved 2026-10-19, still not stamped. The statute governs: s.20(5)
+      // ($379) indexed under s.23(1) para 5 and s.23(2) on the UNROUNDED prior-year amount, which
+      // is what ON428 prints each year (2014–2025: 413 421 427 434 442 452 460 464 475 506 529 544).
+      // Chaining those with Ontario's factors (read off the ON428 bracket thresholds; 1.9% for 2026)
+      // puts 2026 at 554.19–554.35, i.e. $554. Every printed year lands inside the chain. T4032ON
+      // 2026's $575 fits no factor (544 × 1.057), and its "indexing factor … 2.0%" sentence is the
+      // federal factor — it printed 4.7% / 2.7% for 2024 / 2025 against Ontario's 4.5% / 2.8%.
+      // T4032ON 2025 said $544, matching ON428. So $575 is a payroll-table error, and an annual
+      // calculator follows ON428 (MAINTENANCE Rule 7). $554 is our arithmetic, not a published
+      // figure, so it is NOT stamped: stamp it from the 2026 ON428 (line 75/76) when CRA issues
+      // it, and if that prints anything other than $554, re-read s.20 before using it.
       ontarioTaxReduction: { value: { basic: 300 }, source_url: T4032('on'), last_verified: '2026-10-18', cadence: 'january' },
       // Low-income individuals and families tax (LIFT) credit — Taxation Act, 2007, s.21.1(3.1),
       // taxation years after 2021: (D − E) × F, where D = lesser of $875 and the lowest tax rate
