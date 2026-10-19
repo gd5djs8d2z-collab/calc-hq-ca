@@ -288,6 +288,48 @@ check('ei: real data is clean',
     only(invariants(c, TAX_YEAR), 'ei.').length, 0);
 }
 
+/* ── Ontario Health Premium: engine copy === data copy ───────────────────────────
+ * The schedule lives twice: hardcoded in tax-engine.js ontarioHealthPremium(), which the
+ * calculators run, and as provinces.ON.healthPremium in the pack, which nothing reads. They
+ * are deliberately NOT reconciled (that would change the array's shape and the engine); this
+ * locks them together instead, at every whole dollar from $0 to $400,000. The engine function
+ * is not exported, so it is read from the source text — a rename makes this throw, never skip.
+ * The tier formulas are strings over `income` and `lesser` (= Math.min). */
+import { readFileSync } from 'node:fs';
+const enginePath = new URL('../assets/js/tax-engine.js', import.meta.url);
+const engineSrc = readFileSync(enginePath, 'utf8');
+const hpStart = engineSrc.indexOf('function ontarioHealthPremium(');
+const hpEnd = engineSrc.indexOf('\n}\n', hpStart);
+if (hpStart < 0 || hpEnd < 0) throw new Error('ontarioHealthPremium() not found in tax-engine.js — update this test');
+const engineHP = new Function(`${engineSrc.slice(hpStart, hpEnd + 2)}; return ontarioHealthPremium;`)();
+
+function dataHP(schedule, income) {
+  for (const band of schedule) {
+    if (income <= band.upTo) {
+      return 'premium' in band ? band.premium : new Function('lesser', 'income', `return ${band.formula};`)(Math.min, income);
+    }
+  }
+  return NaN;
+}
+/** Whole dollars from $0 to $400,000 where the two copies differ. */
+function healthPremiumMismatches(schedule) {
+  let n = 0;
+  for (let income = 0; income <= 400000; income++) {
+    if (Math.abs(engineHP(income) - dataHP(schedule, income)) > 1e-9) n++;
+  }
+  return n;
+}
+
+check('ON health premium: engine and data array agree at every dollar $0–$400,000',
+  healthPremiumMismatches(base.provinces.ON.healthPremium.value), 0);
+
+{ // a one-dollar drift in one band of the data copy must show up
+  const c = structuredClone(base);
+  c.provinces.ON.healthPremium.value[3].formula = 'lesser(601, 450+0.25*(income-48000))';
+  check('ON health premium: a drifted data band is caught',
+    healthPremiumMismatches(c.provinces.ON.healthPremium.value) > 0, true);
+}
+
 /* ── report ─────────────────────────────────────────────────────────────────── */
 const failed = results.filter((r) => !r.ok);
 const lines = ['cross-field invariant negative tests', ''];

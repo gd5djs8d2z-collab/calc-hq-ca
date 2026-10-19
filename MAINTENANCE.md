@@ -447,6 +447,38 @@ there are none (CPP, QPP, both ×1 and ×2, and both QPIP rates, rechecked 2026-
 shipping any rounding change, name the form line that justifies it, diff the engine across all
 13 jurisdictions and account for every figure that moves.
 
+## Open item — orphaned in-force history rows
+
+`data/constant-history.json` holds a row only for leaves whose cadence has a derivable period
+start, so every `statutory` leaf is left out (`scripts/gen-history.mjs`). When a leaf that already
+has a row is re-tagged `statutory`, gen-history stops emitting its key, and `mergeHistory()`
+carries the old row forward verbatim, **still marked in force** (`effective_to: null`) and still
+carrying the source and cadence the leaf no longer has. check-history never sees it, because it
+checks only the keys gen-history emits. The run reports it as `orphanKeys`.
+
+**The one case so far:** `gis.employmentExemption`, re-tagged `statutory` and re-sourced to the
+OAS Act on 2026-10-03 (Rule 3). Its row still reads quarterly, canada.ca, in force from
+2026-07-01. The value ($5,000 + 50% of the next $10,000) has not changed. **Left as it is on
+purpose (2026-10-19), until one of the options below is chosen.**
+
+**Don't close the row by hand.** Setting `effective_to` tells check-schema that $5,000, $10,000 and
+50% are retired values, and it flags them wherever page schema still quotes them. Tried
+2026-10-19: 8 false `RETIRED` hits across four pages (`/benefits/gis/`, `/benefits/ccb/`,
+`/business/markup/`, `/payroll/pay-raise/`), with check-history still passing. The value is
+current; only the row's place in the history ended, and the file has no way to say that.
+
+Two options, neither chosen:
+
+- **A marker for rows that left the history with their value unchanged** — e.g. close the row and
+  record why, with check-schema taught to leave such closures out of its retired set. This keeps
+  statutory leaves out of the file as now. It needs a row-format change in gen-history,
+  check-history and check-schema, and a rule for which date closes the row.
+- **Let statutory leaves into the history.** Every stamped leaf gets a row and orphaning on
+  re-tag stops happening. The cost is an `effective_from` for leaves whose period start isn't
+  derivable (today that is why they're excluded), and ~224 new rows.
+
+Either way, re-check `orphanKeys` in the gen-history report after any cadence change.
+
 ## Redirects — how to move a URL on this site
 
 **Verified working 2026-07-18** against the live site, not assumed. This site is served by

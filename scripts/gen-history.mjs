@@ -177,8 +177,11 @@ export function mergeHistory(freshRows, existingRows = []) {
     }
   }
 
-  // Keys that vanished from the pack: keep every row, closing any still marked in-force so
-  // the file never claims a deleted constant is current.
+  // Keys no longer emitted — deleted, renamed, or re-tagged statutory: every row is carried
+  // forward VERBATIM, including one still marked in-force (effective_to: null). Nothing here
+  // closes it, because no fresh row supplies an effective_to and closing would mark a value
+  // that may still be current as retired. Such rows are counted in stats.orphanKeys; see
+  // MAINTENANCE.md, "Open item — orphaned in-force history rows".
   const orphanKeys = [...priorByKey.keys()].filter((k) => !seenKeys.has(k)).sort();
   for (const key of orphanKeys) {
     const rows = [...priorByKey.get(key)]
