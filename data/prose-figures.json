@@ -5892,6 +5892,16 @@
     {
       "page": "/payroll/self-employed-tax/",
       "surface": "main",
+      "anchor": "The Quebec total on $45,000 is {}, or",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'QC').totalObligation"
+      },
+      "format": "round:1",
+      "note": "$45,000 self-employed, Quebec: income tax + QPP (both halves) + QPIP, after the s.60(g) / line 248 QPIP deduction"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
       "anchor": "the employee's {} leaves in 26 pieces",
       "source": {
         "engine": "calcTakeHome(45000, 'ON').totalDeductions"

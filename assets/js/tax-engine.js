@@ -329,10 +329,18 @@ export function calcSelfEmployed(netBusinessIncome, code, { optIntoEI = false } 
   // QPIP is MANDATORY for self-employed in Quebec (at the single self-employed rate).
   const qpip = isQC ? calcQPIP(netBusinessIncome, { selfEmployed: true }) : { premium: 0 };
   const eiTypePremium = ei.premium + qpip.premium;
+  // QPIP on self-employment income is split like CPP: the premium less what the same earnings
+  // would cost at the employee rate is DEDUCTED from income, and only the rest is a credit.
+  // Federal: ITA s.60(g) (A − B) and s.118.7(a.2) (credit = premium − the 60(g) amount); CRA
+  // line 22300 / Schedule 10. Quebec: the same amount on TP-1 line 248, per Schedule R line 26
+  // (premium × 43.736% for 2025 = (0.878 − 0.494) ÷ 0.878, i.e. this same A − B), and CRA's
+  // line 22300 page says to claim the same amount on the Revenu Québec return. One deduction
+  // therefore serves both returns. Read 2026-10-19; Schedule R 2025-12 was the latest edition.
+  const qpipDeduction = isQC ? qpip.premium - calcQPIP(netBusinessIncome).premium : 0;
 
   // Enhanced CPP (on the employee-equivalent share) is also deductible.
-  const taxable = Math.max(0, netBusinessIncome - halfCppDeduction - cpp.enhanced);
-  const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC });
+  const taxable = Math.max(0, netBusinessIncome - halfCppDeduction - cpp.enhanced - qpipDeduction);
+  const fed = federalTax(taxable, netBusinessIncome, { cppBase: cpp.base, eiPremium: eiTypePremium - qpipDeduction, quebecAbatement: isQC });
   const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: netBusinessIncome, workIncome: netBusinessIncome });
 
   const incomeTax = fed + prov.total;
