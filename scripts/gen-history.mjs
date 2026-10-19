@@ -1,8 +1,11 @@
 /**
  * gen-history.mjs — regenerates data/constant-history.json, the append-only value-change
  * audit trail for the tax constants. One row per stamped, non-exempt leaf whose cadence
- * has a derivable period start; the 49 statutory-cadence leaves (period start not derivable)
- * are left out and reported. See MAINTENANCE.md and check-constants.mjs.
+ * has a derivable period start. Every `cadence: 'statutory'` leaf (period start not
+ * derivable) is left out, and the CLI report prints how many — that count is
+ * stampedLeaves() minus the rows emitted, so read it from the report, not from here; it
+ * grows whenever a leaf is stamped or re-tagged statutory. See MAINTENANCE.md and
+ * check-constants.mjs.
  *
  * REUSE, DON'T REIMPLEMENT
  *   collect() and STRUCTURAL_EXEMPT come straight from check-constants.mjs, so the key

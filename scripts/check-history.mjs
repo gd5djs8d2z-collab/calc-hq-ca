@@ -7,9 +7,9 @@
  *   - that row's value deep-equals the live TAX_CONSTANTS_2026 value, and
  *   - that row's source_url matches the live stamp.
  *
- * The 49 statutory-cadence leaves have no derivable period start, so gen-history leaves them
- * out of the file; this checker skips them by the SAME rule (effectiveFrom === null) and prints
- * the count so the number stays visible.
+ * Statutory-cadence leaves have no derivable period start, so gen-history leaves them out of
+ * the file; this checker skips them by the SAME rule (effectiveFrom === null) and prints the
+ * count so the number stays visible — read it from the report; it moves as leaves are stamped.
  *
  * REUSE, DON'T REIMPLEMENT
  *   collect()/STRUCTURAL_EXEMPT and the emit rule (stampedLeaves, effectiveFrom, buildHistory)
