@@ -7601,7 +7601,7 @@
     {
       "page": "/tax-brackets/ontario/",
       "surface": "main",
-      "anchor": "It runs out at {}, when Ontario tax reaches {*}.",
+      "anchor": "reduction runs out at {}, when Ontario tax reaches {*}.",
       "source": {
         "engine": "((x => { const t = calcIncomeTax(x,'ON'); return t.provincialBasic + t.surtax + t.healthPremium - t.provincialTax; })(24870) > 1e-9 && (x => { const t = calcIncomeTax(x,'ON'); return t.provincialBasic + t.surtax + t.healthPremium - t.provincialTax; })(24871) < 1e-9) ? 24870 : NaN"
       },
@@ -7611,7 +7611,7 @@
     {
       "page": "/tax-brackets/ontario/",
       "surface": "main",
-      "anchor": "It runs out at {*}, when Ontario tax reaches {}.",
+      "anchor": "reduction runs out at {*}, when Ontario tax reaches {}.",
       "source": {
         "engine": "2 * TC.provinces.ON.ontarioTaxReduction.value.basic"
       },
