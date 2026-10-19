@@ -85,9 +85,13 @@ export const decodeEntities = (s) => s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]\w*);/gi
     : (ENTITIES[e] ?? m));
 const squash = (s) => s.replace(/[\s  ]+/g, ' ').trim();
 
-/** The page's <main>, as a reader sees it. */
+/** The page's <main>, as a reader sees it — minus the regions scripts/sync-tax-brackets.mjs
+ *  writes (`<!-- tb:NAME:start -->` … `end -->`). Those tables are generated from the constants
+ *  and guarded by that script's --check; scanning them here would only pile their cells onto
+ *  the ratchet as "unregistered". Hand-written prose around them is checked as normal. */
 export function mainText(html) {
   let m = (html.match(/<main\b[\s\S]*?<\/main>/i) || [''])[0];
+  m = m.replace(/<!-- tb:([a-z0-9]+):start -->[\s\S]*?<!-- tb:\1:end -->/g, ' ');
   m = m.replace(/<(script|style|template)\b[\s\S]*?<\/\1>/gi, ' ').replace(/<!--[\s\S]*?-->/g, ' ');
   m = m.replace(new RegExp(`</?(?:${INLINE})(?:\\s[^>]*)?>`, 'gi'), '').replace(/<[^>]+>/g, ' ');
   return squash(decodeEntities(m));
@@ -295,6 +299,8 @@ export function selfTest() {
   expectFail('a % figure under a money format', run({ reg: reg3 }), 'KIND');
   const extra = run({ html: page('<p>Unregistered $99 and 4%.</p>', goodLd) });
   if (extra.unregistered.length !== 2) errs.push(`self-test: ratchet should list exactly the 2 unregistered figures (got ${extra.unregistered.length})`);
+  const gen = run({ html: page('<!-- tb:marginal:start --><table><tr><td>$53,891</td><td>23.15%</td></tr></table><!-- tb:marginal:end --><p>Unregistered $99.</p>', goodLd) });
+  if (gen.unregistered.length !== 1) errs.push(`self-test: a generated tb: region should be out of the ratchet, prose after it in (got ${gen.unregistered.length}, expected 1)`);
   return errs;
 }
 

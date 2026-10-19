@@ -146,7 +146,7 @@ function provincialBPA(prov, netIncome) {
   return p.max - (p.max - p.min) * frac;
 }
 
-function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0, extraCredit = 0, employmentIncome = 0 }) {
+function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = taxableIncome, workIncome = 0, extraCredit = 0, employmentIncome = 0, employment = true }) {
   const prov = PROVINCES[code];
   // Quebec's deduction for workers (line 201): 6% of eligible work income (employment +
   // net business income), capped, reduces the provincial taxable base only — never federal.
@@ -162,7 +162,7 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   // (Revenu Québec, Line 350), so the contribution amounts are NOT added on top.
   let creditBase = provincialBPA(prov, netIncome);
   if (!prov.bpaBundlesContributions) creditBase += cppBase + eiPremium;
-  if (prov.includesCanadaEmploymentAmount) creditBase += FEDERAL.canadaEmploymentAmountBase;
+  if (prov.includesCanadaEmploymentAmount && employment) creditBase += FEDERAL.canadaEmploymentAmountBase;
   // extraCredit: additional non-refundable credit amounts valued at the lowest rate — e.g.
   // the provincial disability amount (DTC). Added to the base BEFORE surtax so an Ontario
   // surtax rides on the reduced provincial tax automatically. Defaults to 0, so every
@@ -211,7 +211,7 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   return { basic, surtax, health, taxReduction: reduction + onReduction + lift, lift, total: basic + surtax - onReduction - lift + health };
 }
 
-function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false, extraCredit = 0 }) {
+function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatement = false, extraCredit = 0, employment = true }) {
   let tax = bracketTax(taxableIncome, FEDERAL.brackets);
   // extraCredit: additional non-refundable credit valued at the lowest federal rate — e.g.
   // the federal disability amount (DTC). Applied to basic federal tax before the Quebec
@@ -219,13 +219,32 @@ function federalTax(taxableIncome, netIncome, { cppBase, eiPremium, quebecAbatem
   // Defaults to 0 → existing callers unchanged.
   const credits =
     (federalBPA(netIncome) + cppBase + eiPremium + extraCredit) * FEDERAL.bpa.creditRate
-    + FEDERAL.canadaEmploymentAmountMaxCredit;
+    + (employment ? FEDERAL.canadaEmploymentAmountMaxCredit : 0);
   // "Basic federal tax" (T1 line 42900): bracket tax after non-refundable credits.
   const basicFederal = Math.max(0, tax - credits);
   // Refundable Quebec abatement (T1 line 44000 = line 42900 × 16.5%): Quebec residents
   // reduce basic federal tax by 16.5%. No federal surtax exists in this engine, so the
   // abatement applies directly to basicFederal — the exact CRA base, no interpolation.
   return quebecAbatement ? basicFederal * (1 - QUEBEC.federalAbatementRate) : basicFederal;
+}
+
+/**
+ * Income tax alone on income that carries no CPP, EI or Canada Employment Amount — interest,
+ * rental or pension income, say. The same federalTax/provincialTax every calculator uses, with
+ * the employment-only credits switched off (the `employment` flag defaults on, so no existing
+ * caller changes). The tax-bracket pages difference this to get the textbook marginal rate.
+ */
+export function calcIncomeTax(taxableIncome, code) {
+  const fed = federalTax(taxableIncome, taxableIncome, { cppBase: 0, eiPremium: 0, quebecAbatement: code === 'QC', employment: false });
+  const prov = provincialTax(taxableIncome, code, { cppBase: 0, eiPremium: 0, employment: false });
+  return {
+    federalTax: fed,
+    provincialTax: prov.total,
+    provincialBasic: prov.basic,
+    surtax: prov.surtax,
+    healthPremium: prov.health,
+    totalTax: fed + prov.total,
+  };
 }
 
 /**

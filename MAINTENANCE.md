@@ -446,6 +446,35 @@ to $200,000, at whole-dollar display and at the cent, including the per-cheque s
 there are none (CPP, QPP, both ×1 and ×2, and both QPIP rates, rechecked 2026-10-18). Before
 shipping any rounding change, name the form line that justifies it, diff the engine across all
 13 jurisdictions and account for every figure that moves.
+## Tax-bracket pages (`/tax-brackets/`)
+
+The bracket tables, the combined marginal-rate table, the personal-amount table, and each
+page's `<title>`, meta description, og tags and `<h1>` are **generated**: `scripts/sync-tax-brackets.mjs`
+rewrites every region between `<!-- tb:NAME:start -->` and `<!-- tb:NAME:end -->` from
+`tax-constants-2026.js` and the engine. The marginal table is found by running the engine
+(`calcIncomeTax`) across the income range — never by adding rates — so a surtax, a premium
+ramp or a phase-out appears because the engine charges it. Never hand-edit a `tb:` region.
+
+```
+node scripts/sync-tax-brackets.mjs           # regenerate every listed page
+node scripts/sync-tax-brackets.mjs --check   # CI: fail if a page differs from what it would write
+```
+
+`check-prose-figures` skips `tb:` regions (this script guards them); the prose around them is
+registered in `data/prose-figures.json` like any other page.
+
+**Every January**, after the constants are re-stamped: run the script, then **read the diff of
+each marginal-rate table** — a new or vanished row means a threshold moved relative to another,
+and the prose that describes those rows (surtax start, Health Premium ramps) must be re-read.
+Then run `check-prose-figures`, which names every sentence whose figure moved. The year in the
+generated head and `<h1>` follows `TAX_YEAR`; the year in the FAQ ("When do the new tax
+brackets take effect?") and its JSON-LD twin is hand-written and must be bumped.
+
+The Ontario tax reduction is modelled for the basic amount only, so the Ontario marginal table
+runs from $0. The per-dependant amounts are not modelled, so its low bands are for a filer with
+no dependants.
+
+---
 
 ## Open item — orphaned in-force history rows
 

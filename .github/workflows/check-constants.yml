@@ -90,6 +90,13 @@ jobs:
           set -o pipefail
           node scripts/check-prose-figures.mjs | tee prose-report.txt
 
+      - name: Run the tax-bracket page check
+        id: checkbrackets
+        if: always()   # the bracket tables are generated from the pack; fail if a page lags it
+        run: |
+          set -o pipefail
+          node scripts/sync-tax-brackets.mjs --check | tee brackets-report.txt
+
       - name: Run the invariant negative tests
         id: checkinvariants
         if: always()   # a green constants run proves nothing about whether the gate CAN fail
@@ -155,6 +162,17 @@ jobs:
               echo 'sentence was reworded and its anchor is gone. Fix the page copy (or, if the'
               echo 'sentence was deliberately rewritten, its anchor in data/prose-figures.json) —'
               echo 'never the source. See MAINTENANCE.md Rule 6.'
+            fi
+            echo
+            echo '## Tax-bracket page check'
+            echo
+            echo '```'
+            cat brackets-report.txt 2>/dev/null || echo 'bracket page checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkbrackets.outcome }}' != 'success' ]; then
+              echo
+              echo 'A /tax-brackets/ page no longer matches the constants or the engine. Run'
+              echo '`node scripts/sync-tax-brackets.mjs`, read the diff, and commit the regenerated page.'
             fi
             echo
             echo '## Cross-field invariant negative tests'

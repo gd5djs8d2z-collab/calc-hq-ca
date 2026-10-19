@@ -68,6 +68,15 @@
     "cadence": "january"
   },
   {
+    "key": "federal.indexationFactor",
+    "value": 0.02,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-10-17",
+    "cadence": "january"
+  },
+  {
     "key": "cpp.rate",
     "value": 0.0595,
     "effective_from": "2026-01-01",
@@ -550,6 +559,15 @@
     "effective_to": null,
     "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
     "verified_at": "2026-07-18",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.ON.indexationFactor",
+    "value": 0.019,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032on-jan/t4032on-january-general-information.html",
+    "verified_at": "2026-10-17",
     "cadence": "january"
   },
   {

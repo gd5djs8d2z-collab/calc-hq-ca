@@ -16,7 +16,8 @@
     "/key-dates-limits/tax-deadlines/",
     "/payroll/self-employed-tax/",
     "/payroll/pay-raise/",
-    "/payroll/take-home-pay/"
+    "/payroll/take-home-pay/",
+    "/tax-brackets/ontario/"
   ],
   "figures": [
     {
@@ -7018,6 +7019,1017 @@
       },
       "format": "round:1",
       "note": "$45,000 salary EI = $733.50 exactly; rounded to the cent in calcEI (float gave 733.4999… → $733)"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "top bracket rate is {}.",
+      "source": {
+        "const": "provinces.ON.brackets.4.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Where {} becomes {*} Ontario works",
+      "source": {
+        "const": "provinces.ON.brackets.4.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Where {*} becomes {} Ontario works",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'ON').provincialTax - calcIncomeTax(300000,'ON').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "from a top-bracket dollar is {},",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'ON').provincialTax - calcIncomeTax(300000,'ON').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "by the {} indexing factor CRA applied federally",
+      "source": {
+        "const": "federal.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and the {} it applied for Ontario",
+      "source": {
+        "const": "provinces.ON.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{} and {*} are round because",
+      "source": {
+        "const": "provinces.ON.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{*} and {} are round because",
+      "source": {
+        "const": "provinces.ON.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "inflation works on the {} band",
+      "source": {
+        "const": "provinces.ON.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "its ceiling stays at {}, which",
+      "source": {
+        "const": "provinces.ON.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "further into {} territory",
+      "source": {
+        "const": "provinces.ON.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Any part of it above {} is charged a further {*},",
+      "source": {
+        "const": "provinces.ON.surtax.0.over"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Any part of it above {*} is charged a further {},",
+      "source": {
+        "const": "provinces.ON.surtax.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "any part above {} a further {*} on top of that",
+      "source": {
+        "const": "provinces.ON.surtax.1.over"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "any part above {*} a further {} on top of that",
+      "source": {
+        "const": "provinces.ON.surtax.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "each extra dollar of basic Ontario tax costs {},",
+      "source": {
+        "engine": "(1 + TC.provinces.ON.surtax.value[0].rate + TC.provinces.ON.surtax.value[1].rate)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "behave as if they were {}, {*} and {*}.",
+      "source": {
+        "engine": "(calcIncomeTax(130001,'ON').provincialTax - calcIncomeTax(130000,'ON').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "behave as if they were {*}, {} and {*}.",
+      "source": {
+        "engine": "(calcIncomeTax(160001,'ON').provincialTax - calcIncomeTax(160000,'ON').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "behave as if they were {*}, {*} and {}.",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'ON').provincialTax - calcIncomeTax(300000,'ON').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "it starts once taxable income passes {}, and",
+      "source": {
+        "engine": "(() => { let lo = 50000, hi = 200000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'ON').surtax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and the {} layer once it passes {*}.",
+      "source": {
+        "const": "provinces.ON.surtax.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and the {*} layer once it passes {}.",
+      "source": {
+        "engine": "(() => { let lo = 50000, hi = 300000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'ON').provincialBasic > TC.provinces.ON.surtax.value[1].over) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "to about {} and about {*} of pay",
+      "source": {
+        "engine": "(() => { let lo = 50000, hi = 200000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcTakeHome(m,'ON').surtax > 0) ? (hi = m) : (lo = m); } return hi; })()"
+      },
+      "format": "round:100"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "to about {*} and about {} of pay",
+      "source": {
+        "engine": "(() => { let lo = 50000, hi = 300000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcTakeHome(m,'ON').provincialBasic > TC.provinces.ON.surtax.value[1].over) ? (hi = m) : (lo = m); } return hi; })()"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "salary it comes to {}, added to",
+      "source": {
+        "engine": "calcTakeHome(120000,'ON').surtax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "added to {} of basic Ontario tax",
+      "source": {
+        "engine": "calcTakeHome(120000,'ON').provincialBasic"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "medical expenses are valued at {}, but",
+      "source": {
+        "const": "provinces.ON.bpaCreditRate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "a dollar of credit is worth {} of itself rather than {*}.",
+      "source": {
+        "engine": "TC.provinces.ON.bpaCreditRate.value * (1 + TC.provinces.ON.surtax.value[0].rate + TC.provinces.ON.surtax.value[1].rate)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "a dollar of credit is worth {*} of itself rather than {}.",
+      "source": {
+        "const": "provinces.ON.bpaCreditRate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "nothing up to {} of taxable income",
+      "source": {
+        "const": "provinces.ON.healthPremium.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "then {}, {*}, {*}, {*} and finally {*}",
+      "source": {
+        "engine": "calcIncomeTax(30000,'ON').healthPremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "then {*}, {}, {*}, {*} and finally {*}",
+      "source": {
+        "engine": "calcIncomeTax(40000,'ON').healthPremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "then {*}, {*}, {}, {*} and finally {*}",
+      "source": {
+        "engine": "calcIncomeTax(60000,'ON').healthPremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "then {*}, {*}, {*}, {} and finally {*}",
+      "source": {
+        "engine": "calcIncomeTax(100000,'ON').healthPremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "then {*}, {*}, {*}, {*} and finally {}",
+      "source": {
+        "const": "provinces.ON.healthPremiumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "The two lower ramps take {} of each dollar.",
+      "source": {
+        "engine": "(calcIncomeTax(22001,'ON').healthPremium - calcIncomeTax(22000,'ON').healthPremium)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "The three upper ones take {}, and",
+      "source": {
+        "engine": "(calcIncomeTax(48301,'ON').healthPremium - calcIncomeTax(48300,'ON').healthPremium)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "they are only {} wide",
+      "source": {
+        "engine": "(calcIncomeTax(100000,'ON').healthPremium - calcIncomeTax(60000,'ON').healthPremium) / (calcIncomeTax(72301,'ON').healthPremium - calcIncomeTax(72300,'ON').healthPremium)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "its bracket says: {} between {*} and {*},",
+      "source": {
+        "engine": "(calcIncomeTax(48301,'ON').totalTax - calcIncomeTax(48300,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "its bracket says: {*} between {} and {*},",
+      "source": {
+        "const": "provinces.ON.healthPremium.2.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "its bracket says: {*} between {*} and {},",
+      "source": {
+        "engine": "(calcIncomeTax(48600,'ON').healthPremium === 600 && calcIncomeTax(48599,'ON').healthPremium < 600) ? 48600 : NaN"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{} between {*} and {*}, and {*} just over",
+      "source": {
+        "engine": "(calcIncomeTax(72301,'ON').totalTax - calcIncomeTax(72300,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{*} between {} and {*}, and {*} just over",
+      "source": {
+        "const": "provinces.ON.healthPremium.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{*} between {*} and {}, and {*} just over",
+      "source": {
+        "engine": "(calcIncomeTax(72600,'ON').healthPremium === 750 && calcIncomeTax(72599,'ON').healthPremium < 750) ? 72600 : NaN"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and {} just over {*}.",
+      "source": {
+        "engine": "(calcIncomeTax(200301,'ON').totalTax - calcIncomeTax(200300,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and {*} just over {}.",
+      "source": {
+        "const": "provinces.ON.healthPremium.4.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "no ramp costs more than {}",
+      "source": {
+        "engine": "(calcIncomeTax(100000,'ON').healthPremium - calcIncomeTax(60000,'ON').healthPremium)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "a raise that crosses {} keeping",
+      "source": {
+        "const": "provinces.ON.healthPremium.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "costs a little less until {}.",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "charges {} on the next dollar of pay rather than {*};",
+      "source": {
+        "engine": "(calcTakeHome(60100,'ON').totalTax - calcTakeHome(60000,'ON').totalTax) / 100"
+      },
+      "format": "percent:2",
+      "note": "$100 step: calcEI rounds to the cent, so a single dollar of pay moves EI by 1 or 2 cents and reads 28.03%"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "on the next dollar of pay rather than {};",
+      "source": {
+        "engine": "(calcIncomeTax(60001,'ON').totalTax - calcIncomeTax(60000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "between {} and {*}, where the",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "between {*} and {}, where the",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "where the {} second-tier CPP",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "deducted in full, it charges {}.",
+      "source": {
+        "engine": "(calcTakeHome(80001,'ON').totalTax - calcTakeHome(80000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Above {} the two rates match",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "threshold sits {} higher in salary terms",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "reduction starts at {}, twice the {*} basic amount",
+      "source": {
+        "engine": "2 * TC.provinces.ON.ontarioTaxReduction.value.basic"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "reduction starts at {*}, twice the {} basic amount",
+      "source": {
+        "const": "provinces.ON.ontarioTaxReduction.basic"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "While that tax is under {} the reduction",
+      "source": {
+        "const": "provinces.ON.ontarioTaxReduction.basic"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "doesn't arrive until {}, not the",
+      "source": {
+        "engine": "(calcIncomeTax(18929,'ON').provincialTax === 0 && calcIncomeTax(18930,'ON').provincialTax > 0) ? 18929 : NaN"
+      },
+      "format": "exact",
+      "note": "last dollar before Ontario basic tax passes the $300 basic reduction"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "not the {} basic personal amount",
+      "source": {
+        "const": "provinces.ON.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Ontario's real rate is {}, double the posted {*}.",
+      "source": {
+        "engine": "2 * TC.provinces.ON.bpaCreditRate.value"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Ontario's real rate is {*}, double the posted {}.",
+      "source": {
+        "const": "provinces.ON.bpaCreditRate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "It runs out at {}, when Ontario tax reaches {*}.",
+      "source": {
+        "engine": "((x => { const t = calcIncomeTax(x,'ON'); return t.provincialBasic + t.surtax + t.healthPremium - t.provincialTax; })(24870) > 1e-9 && (x => { const t = calcIncomeTax(x,'ON'); return t.provincialBasic + t.surtax + t.healthPremium - t.provincialTax; })(24871) < 1e-9) ? 24870 : NaN"
+      },
+      "format": "exact",
+      "note": "last dollar with any Ontario tax reduction left"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "It runs out at {*}, when Ontario tax reaches {}.",
+      "source": {
+        "engine": "2 * TC.provinces.ON.ontarioTaxReduction.value.basic"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "The Health Premium starts at {} and climbs",
+      "source": {
+        "const": "provinces.ON.healthPremium.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "so the next dollar there costs {}, more than",
+      "source": {
+        "engine": "(calcIncomeTax(22001,'ON').totalTax - calcIncomeTax(22000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "the engine charges {} of federal tax",
+      "source": {
+        "engine": "calcTakeHome(75000,'ON').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and {} of Ontario tax,",
+      "source": {
+        "engine": "calcTakeHome(75000,'ON').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{} of it the Health Premium",
+      "source": {
+        "engine": "calcTakeHome(75000,'ON').healthPremium"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "for {} in all.",
+      "source": {
+        "engine": "calcTakeHome(75000,'ON').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "That works out to {} of the salary",
+      "source": {
+        "engine": "calcTakeHome(75000,'ON').totalTax / 75000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "slices were taxed at {} and {*} and",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "slices were taxed at {*} and {} and",
+      "source": {
+        "const": "provinces.ON.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "The rate on the next dollar is {}.",
+      "source": {
+        "engine": "(calcTakeHome(75001,'ON').totalTax - calcTakeHome(75000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "raise from here adds {} of income tax",
+      "source": {
+        "engine": "calcTakeHome(76000,'ON').totalTax - calcTakeHome(75000,'ON').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "second-tier CPP takes another {},",
+      "source": {
+        "engine": "calcTakeHome(76000,'ON').cpp - calcTakeHome(75000,'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "which leaves {} of the thousand",
+      "source": {
+        "engine": "1000 - (calcTakeHome(76000,'ON').totalTax - calcTakeHome(75000,'ON').totalTax) - (calcTakeHome(76000,'ON').cpp - calcTakeHome(75000,'ON').cpp)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Ottawa's is {};",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Ontario's is {}. On paper",
+      "source": {
+        "const": "provinces.ON.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "at its maximum up to {} of net income",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "shrinks to {} by {*},",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "shrinks to {*} by {},",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "the table shows {} there",
+      "source": {
+        "engine": "(calcIncomeTax(190001,'ON').totalTax - calcIncomeTax(190000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "rather than the {} you get",
+      "source": {
+        "engine": "TC.federal.brackets.value[3].rate + TC.provinces.ON.brackets.value[3].rate * (1 + TC.provinces.ON.surtax.value[0].rate + TC.provinces.ON.surtax.value[1].rate)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "by stacking {} on a surtaxed {*}.",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "by stacking {*} on a surtaxed {}.",
+      "source": {
+        "const": "provinces.ON.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Between {} and {*} it is",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "Between {*} and {} it is",
+      "source": {
+        "engine": "(() => { let lo = 50000, hi = 200000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'ON').surtax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "it is {} for most incomes",
+      "source": {
+        "engine": "(calcIncomeTax(65001,'ON').totalTax - calcIncomeTax(65000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "{} once the surtax starts",
+      "source": {
+        "engine": "(calcIncomeTax(100001,'ON').totalTax - calcIncomeTax(100000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and {} from {*} to {*}.",
+      "source": {
+        "engine": "(calcIncomeTax(130001,'ON').totalTax - calcIncomeTax(130000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and {*} from {} to {*}.",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "and {*} from {*} to {}.",
+      "source": {
+        "const": "provinces.ON.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "runs slightly lower below {}, because",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "which was {} for 2026",
+      "source": {
+        "const": "provinces.ON.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "the federal brackets rose {}.",
+      "source": {
+        "const": "federal.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "The {} and {*} thresholds are fixed",
+      "source": {
+        "const": "provinces.ON.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "The {*} and {} thresholds are fixed",
+      "source": {
+        "const": "provinces.ON.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "Between {} and {*} it is",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "Between {*} and {} it is",
+      "source": {
+        "engine": "(() => { let lo = 50000, hi = 200000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'ON').surtax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "it is {} for most incomes",
+      "source": {
+        "engine": "(calcIncomeTax(65001,'ON').totalTax - calcIncomeTax(65000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "{} once the surtax starts",
+      "source": {
+        "engine": "(calcIncomeTax(100001,'ON').totalTax - calcIncomeTax(100000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "and {} from {*} to {*}.",
+      "source": {
+        "engine": "(calcIncomeTax(130001,'ON').totalTax - calcIncomeTax(130000,'ON').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "and {*} from {} to {*}.",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "and {*} from {*} to {}.",
+      "source": {
+        "const": "provinces.ON.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "runs slightly lower below {}, because",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "which was {} for 2026",
+      "source": {
+        "const": "provinces.ON.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "the federal brackets rose {}.",
+      "source": {
+        "const": "federal.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "The {} and {*} thresholds are fixed",
+      "source": {
+        "const": "provinces.ON.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "jsonld",
+      "anchor": "The {*} and {} thresholds are fixed",
+      "source": {
+        "const": "provinces.ON.brackets.4.min"
+      },
+      "format": "exact"
     }
   ]
 }

@@ -612,3 +612,15 @@ select.input {
   .lead-block-compact { padding: 1.1rem 1.5rem; }
   .lead-compact-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.25rem; }
 }
+
+/* Tax-bracket pages — generated tables (scripts/sync-tax-brackets.mjs). */
+.compare-table caption { caption-side: top; text-align: left; font-weight: 650; color: var(--ink); padding: 0 0 0.4rem; }
+.answer .compare-table-wrap { margin: 1.2rem 0 1.4rem; }
+.marginal-table th:last-child, .marginal-table td:last-child {
+  text-align: left; white-space: normal; min-width: 13rem; color: var(--muted); font-size: 0.9rem;
+}
+@media (max-width: 34rem) {
+  .marginal-table, .bracket-table { min-width: 0; font-size: 0.9rem; }
+  .marginal-table th, .marginal-table td, .bracket-table th, .bracket-table td { white-space: normal; padding: 0.55rem 0.35rem; }
+  .marginal-table th:last-child, .marginal-table td:last-child { min-width: 0; font-size: 0.82rem; }
+}

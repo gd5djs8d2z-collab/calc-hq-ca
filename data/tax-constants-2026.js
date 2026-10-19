@@ -189,6 +189,9 @@ export const TAX_CONSTANTS_2026 = {
     // Canada Employment Amount: credit maxes at $210.14 (= base × 14%); base is $1,501.
     canadaEmploymentAmountMaxCredit: { value: 210.14, source_url: SRC.fed, last_verified: '2026-07-13' },
     canadaEmploymentAmountBase:      { value: 1501,   source_url: SRC.fed, last_verified: '2026-07-13' },
+    // The factor CRA applied to the federal thresholds and credits for this year (T4032,
+    // "Indexing for 2026"). Quoted on the tax-bracket pages; the engine does not read it.
+    indexationFactor: { value: 0.02, source_url: SRC.fed, last_verified: '2026-10-17' },
   },
 
   /* ── CPP / CPP2 (all provinces except Quebec, which uses QPP) ──────────────── */
@@ -485,6 +488,11 @@ export const TAX_CONSTANTS_2026 = {
       // Top band cap, confirmed 2026-07-18 on T4032-ON: "when taxable income is greater
       // than $200,000, the premium is the lesser of (i) $900 and (ii) $750 plus 25%..."
       healthPremiumMax: { value: 900, source_url: T4032('on'), last_verified: '2026-07-18' },
+      // T4032-ON "Ontario indexing for 2026": the factor applied to the indexed thresholds and
+      // credits. The $150,000 and $220,000 thresholds and the health premium are NOT indexed —
+      // Taxation Act, 2007 s. 23(1) leaves them off its list. The bare `indexation` label above
+      // is the same figure; this is the stamped one the tax-bracket pages quote.
+      indexationFactor: { value: 0.019, source_url: T4032('on'), last_verified: '2026-10-17' },
     },
 
     AB: {
