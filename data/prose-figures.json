@@ -36,7 +36,12 @@
     "/key-dates-limits/cpp-payment-dates/",
     "/key-dates-limits/oas-gis-payment-dates/",
     "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
-    "/key-dates-limits/ei-payment-dates/"
+    "/key-dates-limits/ei-payment-dates/",
+    "/guides/oas-eligibility/",
+    "/guides/gis-eligibility/",
+    "/guides/cpp-eligibility/",
+    "/guides/ccb-eligibility/",
+    "/guides/"
   ],
   "figures": [
     {
@@ -15681,6 +15686,204 @@
         "const": "benefitPaymentDates2026.cgebIncrease"
       },
       "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "you: Between {} and {*}:",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMin"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "{*} and {}: shared custody.",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMax"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "More than {}: full custody.",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMax"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "Less than {}: you're not",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMin"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "you between {} and {*}",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMin"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "jsonld",
+      "anchor": "you between {} and {*}",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMin"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "{*} and {} of the",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMax"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "jsonld",
+      "anchor": "{*} and {} of the",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMax"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "income. Above {} you are",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMax"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "jsonld",
+      "anchor": "income. Above {} you are",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMax"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "main",
+      "anchor": "custody; below {} you are",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMin"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/ccb-eligibility/",
+      "surface": "jsonld",
+      "anchor": "custody; below {} you are",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyMin"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/oas-eligibility/",
+      "surface": "main",
+      "anchor": "income reaches {} between 65",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/oas-eligibility/",
+      "surface": "main",
+      "anchor": "74, or {} from 75,",
+      "source": {
+        "const": "oas.fullRecoveryCeiling75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/cpp-eligibility/",
+      "surface": "main",
+      "anchor": "benefit receives {} of the",
+      "source": {
+        "const": "benefitEligibility.cppSurvivorShare65Plus"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/guides/cpp-eligibility/",
+      "surface": "main",
+      "anchor": "amount plus {}. Apply soon",
+      "source": {
+        "const": "benefitEligibility.cppSurvivorShareUnder65"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/guides/gis-eligibility/",
+      "surface": "main",
+      "anchor": "recovered at {} (65 to",
+      "source": {
+        "const": "oas.fullRecoveryCeiling65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/gis-eligibility/",
+      "surface": "main",
+      "anchor": "Less than {} The residence",
+      "source": {
+        "const": "gis.single.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/gis-eligibility/",
+      "surface": "main",
+      "anchor": "be below: {} if you're",
+      "source": {
+        "const": "gis.single.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/gis-eligibility/",
+      "surface": "main",
+      "anchor": "or widowed; {} combined, if",
+      "source": {
+        "const": "gis.spouseFullOAS.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/gis-eligibility/",
+      "surface": "main",
+      "anchor": "OAS pension; {} combined, if",
+      "source": {
+        "const": "gis.spouseAllowance.incomeCutoff"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/gis-eligibility/",
+      "surface": "main",
+      "anchor": "the Allowance; {} combined, if",
+      "source": {
+        "const": "gis.spouseNoOAS.incomeCutoff"
+      },
+      "format": "exact"
     }
   ]
 }

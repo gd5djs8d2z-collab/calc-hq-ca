@@ -426,6 +426,9 @@ select.input {
   white-space: nowrap;
 }
 .compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+/* Tables whose cells are short sentences rather than figures: let them wrap and read left. */
+.compare-table.text-cells { min-width: 0; }
+.compare-table.text-cells th, .compare-table.text-cells td { white-space: normal; text-align: left; vertical-align: top; }
 .compare-table thead th {
   color: var(--muted);
   font-size: 0.78rem;
