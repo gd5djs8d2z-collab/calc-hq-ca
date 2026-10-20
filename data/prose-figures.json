@@ -46,10 +46,12 @@
     "/guides/fhsa-eligibility/",
     "/tax-on-extra-income/capital-gains/",
     "/guides/capital-gains-tax/",
-    "/business/gst-hst/"
+    "/business/gst-hst/",
+    "/business/"
   ],
   "strict": [
-    "/business/gst-hst/"
+    "/business/gst-hst/",
+    "/business/"
   ],
   "allowlist": [
     {
@@ -105,6 +107,54 @@
       "surface": "jsonld",
       "anchor": "total is {} before tax and",
       "reason": "Example input: the pre-tax price the worked example starts from. Every figure derived from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "Say a thing costs you {} and",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "and you sell it for {}. That",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "measured against the {} you were paid",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "measured against the {} you laid out",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "Aim for \"{} on this\"",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "if you meant {} on cost",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "if you meant {} of the sale",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "call that {} and you have",
+      "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
     }
   ],
   "figures": [
@@ -16948,6 +16998,186 @@
         "engine": "SALES_TAX.rates('QC').combined"
       },
       "format": "percent:3"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "That is {} of gross profit",
+      "source": {
+        "engine": "120-80"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "you were paid it is a {} margin",
+      "source": {
+        "engine": "(120-80)/120"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "you laid out it is a {} markup",
+      "source": {
+        "engine": "(120-80)/80"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "different prices — {} if you meant",
+      "source": {
+        "engine": "80*(1+0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "on cost, {} if you meant",
+      "source": {
+        "engine": "80/(1-0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "Revenue is {}, the stock",
+      "source": {
+        "engine": "120*1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "the stock cost {}, and the",
+      "source": {
+        "engine": "80*1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "and the {} of gross profit is",
+      "source": {
+        "engine": "(120-80)*1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "and you have {} of net self-employment",
+      "source": {
+        "engine": "(120-80)*1000-10000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "in Ontario it puts {} of income tax",
+      "source": {
+        "engine": "calcSelfEmployed((120-80)*1000-10000,'ON').incomeTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "of income tax and {} of CPP",
+      "source": {
+        "engine": "calcSelfEmployed((120-80)*1000-10000,'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "CPP on it, leaving {} —",
+      "source": {
+        "engine": "calcSelfEmployed((120-80)*1000-10000,'ON').afterTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "three-fifths of the {} the margin",
+      "source": {
+        "engine": "(120-80)*1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "At {} of revenue",
+      "source": {
+        "engine": "120*1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "well past the {} line for GST/HST",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "so in Ontario {} goes on every invoice",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "every invoice — {} across the year",
+      "source": {
+        "engine": "120*1000*SALES_TAX.hst.ON"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "across the year — and {} comes back",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "that carried it, {} on that stock",
+      "source": {
+        "engine": "80*1000*SALES_TAX.hst.ON"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/",
+      "surface": "main",
+      "anchor": "You remit the {} difference",
+      "source": {
+        "engine": "(120-80)*1000*SALES_TAX.hst.ON"
+      },
+      "format": "exact"
     }
   ]
 }
