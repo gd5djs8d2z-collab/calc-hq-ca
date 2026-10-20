@@ -560,6 +560,35 @@ export const REGISTERED_LIMITS = {
   cesgLifetimeMax: v(TC.registeredAccounts.cesgLifetimeMax),
 };
 
+// FHSA rules for the FHSA calculator (TC.fhsaRules), alongside the two limits above.
+export const FHSA = {
+  annualLimit: v(TC.registeredAccounts.fhsaAnnualLimit),
+  lifetimeLimit: v(TC.registeredAccounts.fhsaLifetimeLimit),
+  firstAvailable: v(TC.fhsaRules.firstAvailable),
+  carryforwardMax: v(TC.fhsaRules.carryforwardMax),
+  participationYears: v(TC.fhsaRules.participationYears),
+  closingAge: v(TC.fhsaRules.closingAge),
+  minOpeningAge: v(TC.fhsaRules.minOpeningAge),
+  excessTaxMonthly: v(TC.fhsaRules.excessTaxMonthly),
+  /** Participation room year by year, for the simple case the CRA's formula reduces to when there
+   *  are no excess amounts, designated amounts, withdrawals or RRSP transfers: the opening year
+   *  gets the annual limit; each later year gets the annual limit plus a carryforward (unused room
+   *  from the year before, capped), never more than the lifetime limit less everything put in.
+   *  contribs: { [year]: amount }. Returns one row per year from `opened` to `upTo`. */
+  room(opened, contribs, upTo) {
+    const rows = [];
+    let carry = 0, used = 0, prevIn = 0;
+    for (let y = opened; y <= upTo; y++) {
+      if (y > opened) carry = Math.min(this.carryforwardMax, Math.max(0, this.annualLimit + carry - prevIn));
+      const room = Math.max(0, Math.min(this.annualLimit + carry, this.lifetimeLimit - used));
+      const put = contribs[y] || 0;
+      rows.push({ year: y, carryforward: carry, room, contributed: put, excess: Math.max(0, put - room), lifetimeLeft: this.lifetimeLimit - used });
+      used += put; prevIn = put;
+    }
+    return rows;
+  },
+};
+
 export const KEY_DATES = {
   personalFiling: v(TC.taxDeadlines2026.personalFiling),
   payment: v(TC.taxDeadlines2026.payment),

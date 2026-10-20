@@ -99,6 +99,11 @@ const SRC = {
   onTaxAct:  'https://www.ontario.ca/laws/statute/07t11', // Taxation Act, 2007 (e-Laws; needs JavaScript to render)
   craLimits: 'https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html',
   fhsa:      'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html',
+  fhsaOpen:  'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/opening-your-fhsas.html',
+  fhsaClose: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/closing-your-fhsa.html',
+  fhsaDefs:  'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/definitions.html',
+  fhsaExcess:'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/what-happens-contribute-transfer-too-much.html',
+  fhsaStats: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/fhsa-statistics.html',
   eduSavings:'https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html',
   craFiling: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html',
   craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
@@ -783,6 +788,19 @@ export const TAX_CONSTANTS_2026 = {
     cesgMaxPerYear:            { value: 500,    source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // 20% of the first $2,500 contributed
     cesgFullGrantContribution: { value: 2500,   source_url: SRC.eduSavings, last_verified: '2026-07-18' },
     cesgLifetimeMax:           { value: 7200,   source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // per child
+  },
+
+  /* ── FHSA RULES — the structure around the two limits above ─────────────────── */
+  // Read on the CRA FHSA pages 2026-10-20. Statutory: these change only by amending the Act.
+  fhsaRules: {
+    _cadence: 'statutory',
+    firstAvailable:      { value: '2023-04-01', source_url: SRC.fhsaStats,  last_verified: '2026-10-20' }, // "Accounts for the FHSA became available on April 1, 2023"
+    carryforwardMax:     { value: 8000,         source_url: SRC.fhsaDefs,   last_verified: '2026-10-20' }, // participation room carryforward: lesser of $8,000 and unused prior-year room
+    participationYears:  { value: 15,           source_url: SRC.fhsaClose,  last_verified: '2026-10-20' }, // period ends Dec 31 of the year of the 15th anniversary of the first FHSA…
+    closingAge:          { value: 71,           source_url: SRC.fhsaClose,  last_verified: '2026-10-20' }, // …or of turning 71, or the year after the first qualifying withdrawal
+    minOpeningAge:       { value: 18,           source_url: SRC.fhsaOpen,   last_verified: '2026-10-20' }, // 19 where that is the age of majority for contracts
+    firstTimeBuyerYears: { value: 4,            source_url: SRC.fhsaOpen,   last_verified: '2026-10-20' }, // no owned home lived in this year or the previous 4 calendar years
+    excessTaxMonthly:    { value: 0.01,         source_url: SRC.fhsaExcess, last_verified: '2026-10-20' }, // on the highest excess FHSA amount in each month
   },
 
   /* ── 2026 TAX DEADLINES (for filing the 2025 return) ──────────────────────── */

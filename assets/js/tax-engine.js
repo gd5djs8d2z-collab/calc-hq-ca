@@ -262,7 +262,7 @@ export function calcIncomeTax(taxableIncome, code) {
  * Full annual take-home for employment income.
  * Returns gross, each deduction, net, and average rate.
  */
-export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvincialCredit = 0 } = {}) {
+export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvincialCredit = 0, deduction = 0 } = {}) {
   const isQC = code === 'QC';
   const cpp = calcCPP(gross, { plan: pensionPlan(code) }); // QPP for Quebec, CPP elsewhere
   // Quebec pays the REDUCED federal EI rate plus a QPIP premium; elsewhere, plain EI.
@@ -270,13 +270,17 @@ export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvinc
   const qpip = isQC ? calcQPIP(gross) : { premium: 0 };
   const eiTypePremium = ei.premium + qpip.premium;
   // Enhanced CPP is deductible from taxable income.
-  const taxable = Math.max(0, gross - cpp.enhanced);
+  // deduction: an optional deduction claimed on the return (an FHSA contribution, say). It lowers
+  // taxable and net income but not the CPP/EI base, which is earnings. Defaults to 0, so
+  // calcTakeHome(gross, code) is byte-identical to before.
+  const netIncome = Math.max(0, gross - deduction);
+  const taxable = Math.max(0, gross - cpp.enhanced - deduction);
   // extraFederal/ProvincialCredit: optional non-refundable credit AMOUNTS (e.g. the disability
   // amount) folded into each jurisdiction's credit base at the lowest rate. Both default to 0,
   // so calcTakeHome(gross, code) is byte-identical to before. The DTC page uses the difference
   // method — one call with, one without — to read a correctly capped, surtax-aware benefit.
-  const fed = federalTax(taxable, gross, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC, extraCredit: extraFederalCredit });
-  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome: gross, workIncome: gross, extraCredit: extraProvincialCredit, employmentIncome: gross });
+  const fed = federalTax(taxable, netIncome, { cppBase: cpp.base, eiPremium: eiTypePremium, quebecAbatement: isQC, extraCredit: extraFederalCredit });
+  const prov = provincialTax(taxable, code, { cppBase: cpp.base, eiPremium: eiTypePremium, netIncome, workIncome: gross, extraCredit: extraProvincialCredit, employmentIncome: gross });
 
   const totalTax = fed + prov.total;
   const totalDeductions = totalTax + cpp.employee + eiTypePremium;
