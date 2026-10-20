@@ -24,6 +24,7 @@
  *                                                  an expression over the engine exports with
  *                                                  fixed inputs, for derived figures
  *     format   "exact"      money, equal to the cent
+ *              "money:D"    money shown to D decimals ($9.975 -> money:3)
  *              "round:N"    money rounded to the nearest N ("about $8,300" -> round:100)
  *              "percent"    source is a fraction (0.0595), copy shows 5.95%
  *              "percent:D"  same, copy rounds to D decimals
@@ -44,6 +45,17 @@
  *   KIND       a money format found a % figure, or vice versa
  *   CONFIG     malformed entry, page not in scope, const path not a number, engine error
  *   SELF-TEST  the built-in self-test below did not behave
+ *
+ * STRICT PAGES (fail, not warn)
+ *   registry.strict lists pages where every $ / % figure in either surface must be bound: either
+ *   covered by a registry entry or matched by an entry in registry.allowlist —
+ *     { page, surface, anchor, reason }   anchor uses {} for the figure, exactly as above; reason
+ *                                          says why the figure is not a stamp (an example input, a
+ *                                          historical rate, a 0% that is a definition). Required.
+ *   UNBOUND    a figure on a strict page that is neither registered nor allowlisted
+ *   STALE      an allowlist anchor that no longer matches exactly once (so allowances can't rot)
+ *   Allowlisting is for figures that genuinely don't derive from a stamp; anything that does gets
+ *   a registry entry instead.
  *
  * RATCHET (warning only in v1)
  *   Every $ / % figure on an in-scope page, in either surface, that no registry entry covers is
@@ -142,6 +154,10 @@ const round = (n, d) => Number(n.toFixed(d));
 export function expectedFor(value, format) {
   let m;
   if (format === 'exact') return { n: round(value, 2), text: money(round(value, 2)), percent: false };
+  if ((m = /^money:(\d)$/.exec(format))) {
+    const n = round(value, Number(m[1]));
+    return { n, text: '$' + n.toLocaleString('en-CA', { minimumFractionDigits: Number(m[1]), maximumFractionDigits: Number(m[1]) }), percent: false };
+  }
   if ((m = /^round:(\d+(?:\.\d+)?)$/.exec(format))) {
     const step = Number(m[1]);
     const n = round(Math.round(value / step) * step, 2);
@@ -230,7 +246,27 @@ export function check({ registry, readPage, ctx }) {
     passes.push(`ok         ${where}: ${raw}  (${srcLabel}, ${f.format})`);
   });
 
-  // Ratchet: every figure token on an in-scope page that no entry covers.
+  // Allowlist: figures on strict pages that are deliberately not stamps. Each anchor must match
+  // exactly once, and every entry needs a reason.
+  const strict = new Set(registry.strict || []);
+  const allowed = new Map();                  // `${page}|${surface}` -> Set of capture offsets
+  (registry.allowlist || []).forEach((a, i) => {
+    const where = `${a.page} [${a.surface}] "${a.anchor}"`;
+    if (!pages.has(a.page)) return failures.push(`CONFIG     allowlist #${i} ${where}: page is not in registry.pages`);
+    if (typeof a.anchor !== 'string' || a.anchor.split('{}').length !== 2) return failures.push(`CONFIG     allowlist #${i} ${where}: anchor must contain exactly one {}`);
+    if (!a.reason || typeof a.reason !== 'string') return failures.push(`CONFIG     allowlist #${i} ${where}: a reason is required`);
+    let text; try { text = surfaceOf(a.page)[a.surface]; } catch { return; }
+    if (typeof text !== 'string') return;
+    const hits = [...text.matchAll(anchorRegex(a.anchor))];
+    if (hits.length !== 1) return failures.push(`STALE      allowlist #${i} ${where}: anchor matches ${hits.length} times, must match once`);
+    const key = `${a.page}|${a.surface}`;
+    if (!allowed.has(key)) allowed.set(key, new Set());
+    allowed.get(key).add(hits[0].indices[1][0]);
+  });
+  for (const page of strict) if (!pages.has(page)) failures.push(`CONFIG     strict page ${page} is not in registry.pages`);
+
+  // Ratchet: every figure token on an in-scope page that no entry covers. On a strict page an
+  // uncovered, un-allowlisted figure is a failure, not a warning.
   const unregistered = [];
   for (const page of pages) {
     let s; try { s = surfaceOf(page); } catch { continue; }
@@ -238,8 +274,13 @@ export function check({ registry, readPage, ctx }) {
       const text = s[surface];
       if (typeof text !== 'string') continue;
       const cov = covered.get(`${page}|${surface}`) || new Set();
+      const ok = allowed.get(`${page}|${surface}`) || new Set();
       for (const tok of figureTokens(text)) {
-        if (cov.has(tok.index)) continue;
+        if (cov.has(tok.index) || ok.has(tok.index)) continue;
+        if (strict.has(page)) {
+          const near = text.slice(Math.max(0, tok.index - 50), tok.index) + '⟦' + tok.raw + '⟧' + text.slice(tok.index + tok.raw.length, tok.index + tok.raw.length + 30);
+          failures.push(`UNBOUND    ${page} [${surface}] ${tok.raw} is neither registered nor allowlisted: …${near}…`);
+        }
         const ctxText = text.slice(Math.max(0, tok.index - 60), tok.index) + '⟦' + tok.raw + '⟧' +
           text.slice(tok.index + tok.raw.length, tok.index + tok.raw.length + 40);
         unregistered.push(`${page}\t${surface}\t${tok.raw}\t…${ctxText}…`);
@@ -301,6 +342,17 @@ export function selfTest() {
   if (extra.unregistered.length !== 2) errs.push(`self-test: ratchet should list exactly the 2 unregistered figures (got ${extra.unregistered.length})`);
   const gen = run({ html: page('<!-- tb:marginal:start --><table><tr><td>$53,891</td><td>23.15%</td></tr></table><!-- tb:marginal:end --><p>Unregistered $99.</p>', goodLd) });
   if (gen.unregistered.length !== 1) errs.push(`self-test: a generated tb: region should be out of the ratchet, prose after it in (got ${gen.unregistered.length}, expected 1)`);
+  // Strict pages: an unbound figure fails; allowlisting it passes; a stale allowance fails.
+  const strictReg = { ...clone(registry), strict: ['/t/'] };
+  const loose = page('<p>Example on $100 of sales.</p>', goodLd);
+  expectFail('an unbound figure on a strict page', run({ html: loose, reg: strictReg }), 'UNBOUND');
+  const allowReg = { ...strictReg, allowlist: [{ page: '/t/', surface: 'main', anchor: 'Example on {} of sales.', reason: 'example input' }] };
+  const allowRun = run({ html: loose, reg: allowReg });
+  if (allowRun.failures.length) errs.push(`self-test: an allowlisted figure should pass — ${allowRun.failures.join(' | ')}`);
+  expectFail('a stale allowlist anchor', run({ html: page('<p>Example on $200 in sales.</p>', goodLd), reg: allowReg }), 'STALE');
+  const noReason = { ...allowReg, allowlist: [{ ...allowReg.allowlist[0], reason: '' }] };
+  expectFail('an allowance with no reason', run({ html: loose, reg: noReason }), 'CONFIG');
+  if (expectedFor(9.975, 'money:3').text !== '$9.975') errs.push(`self-test: money:3 should print $9.975 (got ${expectedFor(9.975, 'money:3').text})`);
   return errs;
 }
 
@@ -341,7 +393,8 @@ async function main() {
     `${registry.figures.length} registered figures on ${registry.pages.length} pages: ` +
       `${passes.length} match, ${failures.length} issue(s)`,
     `self-test: ${selfErrs.length ? 'FAIL' : 'ok'} (stamped-value change, prose change, deleted anchor, ` +
-      'JSON-LD-only edit, duplicate anchor, rounding, broken block, bad path, wrong kind — each must fail)',
+      'JSON-LD-only edit, duplicate anchor, rounding, broken block, bad path, wrong kind, unbound figure on a strict page, stale allowance — each must fail)',
+    `strict pages: ${(registry.strict || []).length} (${(registry.allowlist || []).length} allowlisted figure(s))`,
     `RATCHET (warning): ${unregistered.length} figure(s) on in-scope pages are not registered` +
       (write ? ' — listed in data/prose-figures-unregistered.txt' : ''),
     '',

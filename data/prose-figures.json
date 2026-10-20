@@ -48,6 +48,65 @@
     "/guides/capital-gains-tax/",
     "/business/gst-hst/"
   ],
+  "strict": [
+    "/business/gst-hst/"
+  ],
+  "allowlist": [
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Total with tax {} Four systems",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Its HST fell from {} to",
+      "reason": "Historical rate: Nova Scotia HST before April 1, 2025 (CRA rate table, \"October 1, 2016 to March 31, 2025\" column). It describes a past rate, so no current stamp can bind it."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "but the price was {} and the HST",
+      "reason": "Example input: the pre-tax price the worked example starts from. Every figure derived from it is registered."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "So a {} sale carries",
+      "reason": "Example input: the pre-tax price the worked example starts from. Every figure derived from it is registered."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "and exports carry {}, and exempt",
+      "reason": "Definition: a zero-rated supply is taxable at 0% by law (CRA type-of-supply page), not a jurisdiction rate."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "lowered its HST from {} to",
+      "reason": "Historical rate: Nova Scotia HST before April 1, 2025 (CRA rate table, \"October 1, 2016 to March 31, 2025\" column). It describes a past rate, so no current stamp can bind it."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "lowered its HST from {} to",
+      "reason": "Historical rate: Nova Scotia HST before April 1, 2025 (CRA rate table, \"October 1, 2016 to March 31, 2025\" column). It describes a past rate, so no current stamp can bind it."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "total is {} before tax and",
+      "reason": "Example input: the pre-tax price the worked example starts from. Every figure derived from it is registered."
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "total is {} before tax and",
+      "reason": "Example input: the pre-tax price the worked example starts from. Every figure derived from it is registered."
+    }
+  ],
   "figures": [
     {
       "page": "/benefits/oas/",
@@ -16605,11 +16664,47 @@
     {
       "page": "/business/gst-hst/",
       "surface": "main",
-      "anchor": "total is {}, but the",
+      "anchor": "On a {} Ontario receipt,",
       "source": {
-        "engine": "113*SALES_TAX.hst.ON"
+        "engine": "SALES_TAX.forward('ON',100).total"
       },
       "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Ontario receipt, {} of the",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "total is {}, but the",
+      "source": {
+        "engine": "SALES_TAX.forward('ON',100).total*SALES_TAX.hst.ON"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "the HST {}, because the",
+      "source": {
+        "engine": "SALES_TAX.forward('ON',100).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "so at {} one more",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
     },
     {
       "page": "/business/gst-hst/",
@@ -16641,11 +16736,29 @@
     {
       "page": "/business/gst-hst/",
       "surface": "main",
+      "anchor": "up from {}. Revenu Québec",
+      "source": {
+        "engine": "100*SALES_TAX.pst.QC"
+      },
+      "format": "money:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
       "anchor": "rate of {}, but the",
       "source": {
         "engine": "SALES_TAX.rates('QC').combined"
       },
       "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "it carries {} HST rather",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
     },
     {
       "page": "/business/gst-hst/",
@@ -16689,6 +16802,96 @@
       "anchor": "{*} to {} on April",
       "source": {
         "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "point. The {} federal portion",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "point. The {} federal portion",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "one plus {}: a {*}",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "one plus {}: a {*}",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "{*}: a {} total is",
+      "source": {
+        "engine": "SALES_TAX.forward('ON',100).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "{*}: a {} total is",
+      "source": {
+        "engine": "SALES_TAX.forward('ON',100).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "tax and {} of HST.",
+      "source": {
+        "engine": "SALES_TAX.forward('ON',100).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "tax and {} of HST.",
+      "source": {
+        "engine": "SALES_TAX.forward('ON',100).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "total by {} overstates the",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "total by {} overstates the",
+      "source": {
+        "const": "salesTax.hst.ON"
       },
       "format": "percent:0"
     },

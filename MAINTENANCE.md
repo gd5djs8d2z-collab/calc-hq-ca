@@ -383,6 +383,17 @@ Burn it down by registering what restates a constant. The rest of the list is wo
 inputs, counts and other literals, which have nothing to check against. Adding a page to
 `pages` puts all of its figures on the list.
 
+**Strict pages (added 2026-10-20).** A page listed in the registry's `strict` array gets no
+warnings: every `$` / `%` figure on it, in either surface, must be a registered figure or match an
+entry in `allowlist` (`{ page, surface, anchor, reason }`). Anything else fails as `UNBOUND`. An
+allowlist anchor that stops matching exactly once fails as `STALE`, so an allowance can't quietly
+outlive its sentence. Allowlist only what genuinely isn't a stamp: an example's input price, a
+historical rate, a 0% that is a legal definition, a calculator placeholder. Give a reason.
+Anything computed from a stamp gets a registry entry built from an engine expression, never a
+typed number. The first strict page is `/business/gst-hst/`. Other pages stay on the warning
+ratchet until each one's figures are bound or allowlisted. Format `money:D` shows a dollar figure
+to D decimals (`$9.975` → `money:3`).
+
 ---
 
 ## Rule 7 — Each calculation follows its governing form
