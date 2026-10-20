@@ -13,6 +13,7 @@
  *   'january'   annual CRA/payroll indexation — the DEFAULT when unspecified.
  *   'july'      re-indexed each July on a July–June benefit year (CCB).
  *   'quarterly' re-indexed Jan/Apr/Jul/Oct (GIS/OAS, CPP averages).
+ *   'semiannual' re-issued every January 1 and July 1 (CRA T4127 payroll editions).
  *   'statutory' changes only by legislation — never stale on a calendar.
  * A node's own `cadence` wins; otherwise it inherits its block's `_cadence`.
  *
@@ -27,7 +28,7 @@
 import { TAX_CONSTANTS_2026, TAX_YEAR } from '../data/tax-constants-2026.js';
 
 const DEFAULT_CADENCE = 'january';
-const CADENCES = ['january', 'july', 'quarterly', 'statutory'];
+const CADENCES = ['january', 'july', 'quarterly', 'semiannual', 'statutory'];
 
 /**
  * STRUCTURAL EXEMPTIONS — leaves that are labels or model flags rather than sourceable
@@ -79,6 +80,7 @@ function periodStart(cadence, asOf) {
     case 'july':      return m >= 6 ? new Date(Date.UTC(y, 6, 1))   // July 1 this year
                                     : new Date(Date.UTC(y - 1, 6, 1));
     case 'quarterly': return new Date(Date.UTC(y, Math.floor(m / 3) * 3, 1));
+    case 'semiannual': return new Date(Date.UTC(y, m >= 6 ? 6 : 0, 1));   // Jan 1 and Jul 1 (CRA payroll editions)
     default:          return new Date(Date.UTC(y, 0, 1));
   }
 }
@@ -157,6 +159,22 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
     if (po && typeof bpa === 'number' && po.max !== bpa) {
       bad.push(`provinces.${code}: bpaPhaseOut.max ${po.max} !== bpa ${bpa}`);
     }
+  }
+
+  // ── Payroll July 2026: the annual copies cited to T4127 must equal the annual stamps ───
+  // The prorated figures stand alone; their annual counterparts are stamped twice (provinces.*
+  // and payrollJuly2026.*) so a January update to one that misses the other is caught here.
+  const pj = root.payrollJuly2026, pv = root.provinces;
+  if (pj && pv) {
+    const pairs = [
+      ['BC.lowestRateAnnual', pj.BC?.lowestRateAnnual?.value, 'provinces.BC.brackets[0].rate', pv.BC?.brackets?.value?.[0]?.rate],
+      ['BC.taxReductionAnnual', pj.BC?.taxReductionAnnual?.value, 'provinces.BC.taxReduction.base', pv.BC?.taxReduction?.value?.base],
+      ['BC.taxReductionStart', pj.BC?.taxReductionStart?.value, 'provinces.BC.taxReduction.threshold', pv.BC?.taxReduction?.value?.threshold],
+      ['BC.taxReductionRate', pj.BC?.taxReductionRate?.value, 'provinces.BC.taxReduction.rate', pv.BC?.taxReduction?.value?.rate],
+      ['NL.bpaAnnual', pj.NL?.bpaAnnual?.value, 'provinces.NL.bpa', pv.NL?.bpa?.value],
+      ['PE.topRateAnnual', pj.PE?.topRateAnnual?.value, 'provinces.PE.brackets[last].rate', pv.PE?.brackets?.value?.at(-1)?.rate],
+    ];
+    for (const [a, av, b, bv] of pairs) if (av !== bv) bad.push(`payrollJuly2026.${a} ${av} !== ${b} ${bv}`);
   }
 
   // ── OAS recovery table: the row for the current income year repeats the scalar stamps ───

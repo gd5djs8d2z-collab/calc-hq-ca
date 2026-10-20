@@ -395,6 +395,15 @@ check('oas-table: real data is clean', only(invariants(base, TAX_YEAR), 'oas.rec
 { const c = structuredClone(base); c.oas.recoveryTable.y2026.max75plus.value = 161000;
   check('oas-table: a non-current row is free to differ', only(invariants(c, TAX_YEAR), 'oas.recoveryTable').length, 0); }
 
+/* ── Payroll July 2026: the annual copies must equal the annual stamps ───────── */
+check('payroll-annual: real data is clean', only(invariants(base, TAX_YEAR), 'payrollJuly2026').length, 0);
+{ const c = structuredClone(base); c.provinces.BC.brackets.value[0].rate = 0.0565; c.provinces.BC.bpaCreditRate.value = 0.0565;
+  check('payroll-annual: a BC annual rate moved without the payroll copy fires', only(invariants(c, TAX_YEAR), 'payrollJuly2026').length, 1); }
+{ const c = structuredClone(base); c.payrollJuly2026.NL.bpaAnnual.value = 13200;
+  check('payroll-annual: a payroll copy that drifts from provinces.NL.bpa fires', only(invariants(c, TAX_YEAR), 'payrollJuly2026').length, 1); }
+{ const c = structuredClone(base); c.payrollJuly2026.BC.lowestRate.value = 0.0620;
+  check('payroll-annual: the prorated figure itself is free to move', only(invariants(c, TAX_YEAR), 'payrollJuly2026').length, 0); }
+
 /* ── report ─────────────────────────────────────────────────────────────────── */
 const failed = results.filter((r) => !r.ok);
 const lines = ['cross-field invariant negative tests', ''];

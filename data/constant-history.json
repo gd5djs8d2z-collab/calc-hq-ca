@@ -1514,6 +1514,212 @@
     "cadence": "january"
   },
   {
+    "key": "payrollJuly2026.effectiveFrom",
+    "value": "2026-07-01",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.lowestRate",
+    "value": 0.0614,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/rates-income-thresholds-constants-26e.csv",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.lowestRateAnnual",
+    "value": 0.056,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.kp",
+    "value": [
+      0,
+      786,
+      3606,
+      5676,
+      9061,
+      13059,
+      22884
+    ],
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/rates-income-thresholds-constants-26e.csv",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.taxReductionMax",
+    "value": 805,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/other-rates-amounts-26e.csv",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.taxReductionAnnual",
+    "value": 690,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.taxReductionStart",
+    "value": 25570,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.taxReductionRate",
+    "value": 0.0356,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.BC.taxReductionCutoff",
+    "value": 44952,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.NL.bpa",
+    "value": 15000,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/other-rates-amounts-26e.csv",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.NL.bpaAnnual",
+    "value": 13094,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.PE.topRate",
+    "value": 0.21,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/rates-income-thresholds-constants-26e.csv",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.PE.topRateAnnual",
+    "value": 0.2,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.PE.topKp",
+    "value": 10464,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/rates-income-thresholds-constants-26e.csv",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.PE.topKpAnnual",
+    "value": 8464,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.AB.k5pThreshold",
+    "value": 4896,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.AB.k5pRate",
+    "value": 0.25,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.cpp2027.effectiveFrom",
+    "value": "2027-01-01",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.cpp2027.baseRateCombinedFrom",
+    "value": 0.099,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.cpp2027.baseRateCombinedTo",
+    "value": 0.095,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.cpp2027.employeeBaseRateFrom",
+    "value": 0.0495,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
+    "key": "payrollJuly2026.cpp2027.employeeBaseRateTo",
+    "value": 0.0475,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+    "verified_at": "2026-10-20",
+    "cadence": "semiannual"
+  },
+  {
     "key": "capitalGains.lcge",
     "value": 1275000,
     "effective_from": "2026-01-01",

@@ -132,6 +132,13 @@ jobs:
           set -o pipefail
           node scripts/check-faq-parity.mjs | tee faq-report.txt
 
+      - name: Run the payroll engine check against CRA PDOC
+        id: testpayroll
+        if: always()   # payroll-engine.js must reproduce CRA's PDOC results and T4127 Table 8.1
+        run: |
+          set -o pipefail
+          node scripts/test-payroll.mjs | tee payroll-report.txt
+
       - name: Run the schema-check negative tests
         id: testschema
         if: always()   # the RETIRED rule is dormant until a value moves — prove it still fires
@@ -262,5 +269,17 @@ jobs:
               echo 'Its RETIRED rule is dormant while constant-history.json holds no superseded rows,'
               echo 'so a green check-schema run alone does not prove the gate works — these tests are'
               echo 'what proves it. Fix scripts/check-schema.mjs rather than relaxing the tests.'
+            fi
+            echo
+            echo '## Payroll engine check (CRA PDOC + T4127 Table 8.1)'
+            echo
+            echo '```'
+            cat payroll-report.txt 2>/dev/null || echo 'payroll check did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.testpayroll.outcome }}' != 'success' ]; then
+              echo
+              echo 'The payroll engine no longer reproduces a CRA PDOC result or a T4127 constant. Fix'
+              echo 'assets/js/payroll-engine.js or the stamps it reads; never edit the PDOC results in'
+              echo 'scripts/fixtures/pdoc-cases.json, which are CRA output.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"

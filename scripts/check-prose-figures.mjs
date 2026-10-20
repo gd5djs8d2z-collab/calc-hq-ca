@@ -366,7 +366,11 @@ export async function loadContext() {
   const spec = "'/data/rates-2026.js'";
   if (src.split(spec).length !== 2) throw new Error(`tax-engine.js should import ${spec} exactly once — loader rewrite would not be faithful`);
   const engine = await import('data:text/javascript,' + encodeURIComponent(src.replace(spec, JSON.stringify(ratesUrl))));
-  return { TC, scope: { ...rates, ...engine, TC } };
+  // The payroll engine (T4127 withholding) loads the same way, so pages can register figures it computes.
+  const psrc = readFileSync(new URL('assets/js/payroll-engine.js', ROOT_URL), 'utf8');
+  if (psrc.split(spec).length !== 2) throw new Error(`payroll-engine.js should import ${spec} exactly once — loader rewrite would not be faithful`);
+  const payroll = await import('data:text/javascript,' + encodeURIComponent(psrc.replace(spec, JSON.stringify(ratesUrl))));
+  return { TC, scope: { ...rates, ...engine, ...payroll, TC } };
 }
 
 async function main() {

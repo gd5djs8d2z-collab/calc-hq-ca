@@ -597,6 +597,22 @@ export const SALES_TAX = {
   },
 };
 
+// Payroll withholding from July 1, 2026 (TC.payrollJuly2026): the T4127 prorated figures and the
+// Alberta supplementary credit, read by /assets/js/payroll-engine.js. Everything else the payroll
+// formulas need (brackets, BPAs, CPP, CPP2, EI, the Ontario Health Premium) is the annual stamp.
+const PJ = TC.payrollJuly2026;
+export const PAYROLL = {
+  effectiveFrom: v(PJ.effectiveFrom),
+  BC: { lowestRate: v(PJ.BC.lowestRate), kp: v(PJ.BC.kp), taxReductionMax: v(PJ.BC.taxReductionMax),
+        taxReductionStart: v(PJ.BC.taxReductionStart), taxReductionRate: v(PJ.BC.taxReductionRate),
+        taxReductionCutoff: v(PJ.BC.taxReductionCutoff), lowestRateAnnual: v(PJ.BC.lowestRateAnnual),
+        taxReductionAnnual: v(PJ.BC.taxReductionAnnual) },
+  NL: { bpa: v(PJ.NL.bpa), bpaAnnual: v(PJ.NL.bpaAnnual) },
+  PE: { topRate: v(PJ.PE.topRate), topKp: v(PJ.PE.topKp), topRateAnnual: v(PJ.PE.topRateAnnual), topKpAnnual: v(PJ.PE.topKpAnnual) },
+  AB: { k5pThreshold: v(PJ.AB.k5pThreshold), k5pRate: v(PJ.AB.k5pRate) },
+  cpp2027: Object.fromEntries(Object.entries(PJ.cpp2027).map(([k, n]) => [k, v(n)])),
+};
+
 // Capital gains (TC.capitalGains). The federal and Quebec inclusion rates are stamped separately
 // because they are set by separate governments; both are one-half for 2026.
 export const CAPITAL_GAINS = {

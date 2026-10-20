@@ -1,0 +1,2401 @@
+{
+  "_note": "Inputs and CRA PDOC results for the payroll-deductions cross-check. Each case was run through PDOC (apps.cra-arc.gc.ca/ebci/rhpd, version 2026-06-11, Salary calculation, pay date as given, TD1 claim amounts as given, year-to-date amounts as given) on 2026-10-20. set 'specified' = the 26 cases the brief named (exact match required); set 'extra' = 90 generated cases (exact, except a one-cent difference is tolerated where our unrounded figure is within $0.001 of a half-cent; at most 4 such cases). scripts/test-payroll.mjs enforces both.",
+  "cases": [
+    {
+      "id": "ON-1",
+      "code": "ON",
+      "periods": 26,
+      "pay": 2500,
+      "date": "2026-07-17",
+      "note": "biweekly, mid income",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "pdoc": {
+        "federalTax": 242.58,
+        "provincialTax": 131.46,
+        "cpp": 140.74,
+        "cpp2": 0.0,
+        "ei": 40.75,
+        "net": 1944.47,
+        "employerEi": 57.05
+      },
+      "set": "specified"
+    },
+    {
+      "id": "ON-2",
+      "code": "ON",
+      "periods": 12,
+      "pay": 9500,
+      "date": "2026-08-31",
+      "note": "monthly, surtax and health premium",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "pdoc": {
+        "federalTax": 1348.01,
+        "provincialTax": 698.8,
+        "cpp": 547.9,
+        "cpp2": 0.0,
+        "ei": 154.85,
+        "net": 6750.44,
+        "employerEi": 216.79
+      },
+      "set": "specified"
+    },
+    {
+      "id": "ON-3",
+      "code": "ON",
+      "periods": 52,
+      "pay": 640,
+      "date": "2026-09-04",
+      "note": "weekly, low income (Ontario tax reduction)",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "pdoc": {
+        "federalTax": 35.03,
+        "provincialTax": 23.23,
+        "cpp": 34.08,
+        "cpp2": 0.0,
+        "ei": 10.43,
+        "net": 537.23,
+        "employerEi": 14.6
+      },
+      "set": "specified"
+    },
+    {
+      "id": "ON-4",
+      "code": "ON",
+      "periods": 26,
+      "pay": 4200,
+      "date": "2026-11-20",
+      "ytd": {
+        "pensionable": 72000,
+        "cpp": 4100.0,
+        "cpp2": 0,
+        "ei": 1123.07
+      },
+      "note": "crosses the YMPE this period: CPP to the cap, CPP2 starts; EI already at the maximum",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "pdoc": {
+        "federalTax": 575.41,
+        "provincialTax": 292.72,
+        "cpp": 130.45,
+        "cpp2": 64.0,
+        "ei": 0.0,
+        "net": 3137.42,
+        "employerEi": 0.0
+      },
+      "set": "specified"
+    },
+    {
+      "id": "BC-1",
+      "code": "BC",
+      "periods": 26,
+      "pay": 1600,
+      "date": "2026-07-17",
+      "note": "biweekly, BC tax reduction S partly phased out",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "pdoc": {
+        "federalTax": 111.47,
+        "provincialTax": 50.54,
+        "cpp": 87.19,
+        "cpp2": 0.0,
+        "ei": 26.08,
+        "net": 1324.72,
+        "employerEi": 36.51
+      },
+      "set": "specified"
+    },
+    {
+      "id": "BC-2",
+      "code": "BC",
+      "periods": 24,
+      "pay": 4000,
+      "date": "2026-10-15",
+      "note": "semi-monthly, prorated 6.14% band",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "pdoc": {
+        "federalTax": 521.79,
+        "provincialTax": 226.59,
+        "cpp": 229.32,
+        "cpp2": 0.0,
+        "ei": 65.2,
+        "net": 2957.1,
+        "employerEi": 91.28
+      },
+      "set": "specified"
+    },
+    {
+      "id": "BC-3",
+      "code": "BC",
+      "periods": 12,
+      "pay": 14000,
+      "date": "2026-12-15",
+      "note": "monthly, high income",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "pdoc": {
+        "federalTax": 2487.33,
+        "provincialTax": 1191.39,
+        "cpp": 815.65,
+        "cpp2": 0.0,
+        "ei": 228.2,
+        "net": 9277.43,
+        "employerEi": 319.48
+      },
+      "set": "specified"
+    },
+    {
+      "id": "BC-4",
+      "code": "BC",
+      "periods": 52,
+      "pay": 450,
+      "date": "2026-08-07",
+      "note": "weekly, full S reduction",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "pdoc": {
+        "federalTax": 10.45,
+        "provincialTax": 0.0,
+        "cpp": 22.77,
+        "cpp2": 0.0,
+        "ei": 7.34,
+        "net": 409.44,
+        "employerEi": 10.28
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NL-1",
+      "code": "NL",
+      "periods": 26,
+      "pay": 1800,
+      "date": "2026-07-31",
+      "note": "biweekly, prorated $15,000 BPA",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "pdoc": {
+        "federalTax": 137.35,
+        "provincialTax": 99.02,
+        "cpp": 99.09,
+        "cpp2": 0.0,
+        "ei": 29.34,
+        "net": 1435.2,
+        "employerEi": 41.08
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NL-2",
+      "code": "NL",
+      "periods": 12,
+      "pay": 6000,
+      "date": "2026-09-30",
+      "note": "monthly",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "pdoc": {
+        "federalTax": 639.19,
+        "provincialTax": 504.33,
+        "cpp": 339.65,
+        "cpp2": 0.0,
+        "ei": 97.8,
+        "net": 4419.03,
+        "employerEi": 136.92
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NL-3",
+      "code": "NL",
+      "periods": 52,
+      "pay": 2100,
+      "date": "2026-11-13",
+      "note": "weekly, upper brackets",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "pdoc": {
+        "federalTax": 292.34,
+        "provincialTax": 223.55,
+        "cpp": 120.95,
+        "cpp2": 0.0,
+        "ei": 34.23,
+        "net": 1428.93,
+        "employerEi": 47.92
+      },
+      "set": "specified"
+    },
+    {
+      "id": "PE-1",
+      "code": "PE",
+      "periods": 26,
+      "pay": 2000,
+      "date": "2026-07-17",
+      "note": "biweekly",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "pdoc": {
+        "federalTax": 163.23,
+        "provincialTax": 148.4,
+        "cpp": 110.99,
+        "cpp2": 0.0,
+        "ei": 32.6,
+        "net": 1544.78,
+        "employerEi": 45.64
+      },
+      "set": "specified"
+    },
+    {
+      "id": "PE-2",
+      "code": "PE",
+      "periods": 12,
+      "pay": 21000,
+      "date": "2026-10-30",
+      "note": "monthly $252,000 a year: above the $200,000 bracket at the prorated 21%",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "pdoc": {
+        "federalTax": 4459.25,
+        "provincialTax": 3339.01,
+        "cpp": 1232.15,
+        "cpp2": 0.0,
+        "ei": 342.3,
+        "net": 11627.29,
+        "employerEi": 479.22
+      },
+      "set": "specified"
+    },
+    {
+      "id": "PE-3",
+      "code": "PE",
+      "periods": 24,
+      "pay": 3100,
+      "date": "2026-12-15",
+      "note": "semi-monthly",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "pdoc": {
+        "federalTax": 339.2,
+        "provincialTax": 290.03,
+        "cpp": 175.77,
+        "cpp2": 0.0,
+        "ei": 50.53,
+        "net": 2244.47,
+        "employerEi": 70.74
+      },
+      "set": "specified"
+    },
+    {
+      "id": "AB-1",
+      "code": "AB",
+      "periods": 26,
+      "pay": 3000,
+      "date": "2026-07-17",
+      "note": "biweekly",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "pdoc": {
+        "federalTax": 341.15,
+        "provincialTax": 165.71,
+        "cpp": 170.49,
+        "cpp2": 0.0,
+        "ei": 48.9,
+        "net": 2273.75,
+        "employerEi": 68.46
+      },
+      "set": "specified"
+    },
+    {
+      "id": "AB-2",
+      "code": "AB",
+      "periods": 12,
+      "pay": 12500,
+      "date": "2026-09-30",
+      "note": "monthly, high income",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "pdoc": {
+        "federalTax": 2101.23,
+        "provincialTax": 953.05,
+        "cpp": 726.4,
+        "cpp2": 0.0,
+        "ei": 203.75,
+        "net": 8515.57,
+        "employerEi": 285.25
+      },
+      "set": "specified"
+    },
+    {
+      "id": "AB-3",
+      "code": "AB",
+      "periods": 52,
+      "pay": 900,
+      "date": "2026-08-14",
+      "note": "weekly",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "pdoc": {
+        "federalTax": 68.67,
+        "provincialTax": 31.83,
+        "cpp": 49.55,
+        "cpp2": 0.0,
+        "ei": 14.67,
+        "net": 735.28,
+        "employerEi": 20.54
+      },
+      "set": "specified"
+    },
+    {
+      "id": "AB-4",
+      "code": "AB",
+      "periods": 26,
+      "pay": 3500,
+      "date": "2026-10-09",
+      "td1Fed": 16452,
+      "td1Prov": 80000,
+      "note": "large TD1AB claim: Alberta supplementary credit K5P",
+      "pdoc": {
+        "federalTax": 442.63,
+        "provincialTax": 21.09,
+        "cpp": 200.24,
+        "cpp2": 0.0,
+        "ei": 57.05,
+        "net": 2778.99,
+        "employerEi": 79.87
+      },
+      "set": "specified"
+    },
+    {
+      "id": "SK-1",
+      "code": "SK",
+      "periods": 24,
+      "pay": 3500,
+      "date": "2026-08-14",
+      "note": "semi-monthly",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "pdoc": {
+        "federalTax": 420.32,
+        "provincialTax": 278.37,
+        "cpp": 199.57,
+        "cpp2": 0.0,
+        "ei": 57.05,
+        "net": 2544.69,
+        "employerEi": 79.87
+      },
+      "set": "specified"
+    },
+    {
+      "id": "MB-1",
+      "code": "MB",
+      "periods": 26,
+      "pay": 2700,
+      "date": "2026-09-11",
+      "note": "biweekly",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "pdoc": {
+        "federalTax": 281.44,
+        "provincialTax": 221.78,
+        "cpp": 152.64,
+        "cpp2": 0.0,
+        "ei": 44.01,
+        "net": 2000.13,
+        "employerEi": 61.61
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NS-1",
+      "code": "NS",
+      "periods": 12,
+      "pay": 5200,
+      "date": "2026-07-31",
+      "note": "monthly",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "pdoc": {
+        "federalTax": 483.61,
+        "provincialTax": 494.77,
+        "cpp": 292.05,
+        "cpp2": 0.0,
+        "ei": 84.76,
+        "net": 3844.81,
+        "employerEi": 118.66
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NB-1",
+      "code": "NB",
+      "periods": 52,
+      "pay": 1150,
+      "date": "2026-10-02",
+      "note": "weekly",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "pdoc": {
+        "federalTax": 101.91,
+        "provincialTax": 81.69,
+        "cpp": 64.42,
+        "cpp2": 0.0,
+        "ei": 18.75,
+        "net": 883.23,
+        "employerEi": 26.25
+      },
+      "set": "specified"
+    },
+    {
+      "id": "YT-1",
+      "code": "YT",
+      "periods": 26,
+      "pay": 3300,
+      "date": "2026-11-06",
+      "note": "biweekly, Yukon Canada employment amount (K4P)",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "pdoc": {
+        "federalTax": 402.04,
+        "provincialTax": 179.99,
+        "cpp": 188.34,
+        "cpp2": 0.0,
+        "ei": 53.79,
+        "net": 2475.84,
+        "employerEi": 75.31
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NT-1",
+      "code": "NT",
+      "periods": 12,
+      "pay": 8000,
+      "date": "2026-12-15",
+      "note": "monthly",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "pdoc": {
+        "federalTax": 1043.58,
+        "provincialTax": 449.82,
+        "cpp": 458.65,
+        "cpp2": 0.0,
+        "ei": 130.4,
+        "net": 5917.55,
+        "employerEi": 182.56
+      },
+      "set": "specified"
+    },
+    {
+      "id": "NU-1",
+      "code": "NU",
+      "periods": 24,
+      "pay": 4600,
+      "date": "2026-09-15",
+      "note": "semi-monthly",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "pdoc": {
+        "federalTax": 643.56,
+        "provincialTax": 208.63,
+        "cpp": 265.02,
+        "cpp2": 0.0,
+        "ei": 74.98,
+        "net": 3407.81,
+        "employerEi": 104.97
+      },
+      "set": "specified"
+    },
+    {
+      "id": "MB-2",
+      "code": "MB",
+      "periods": 12,
+      "pay": 21000,
+      "date": "2026-11-30",
+      "ytd": {
+        "pensionable": 85000,
+        "cpp": 4230.45,
+        "cpp2": 416,
+        "ei": 1123.07
+      },
+      "note": "above both the CPP and EI ceilings: no CPP, CPP2 or EI this period; BPAMB phase-out",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "pdoc": {
+        "federalTax": 4519.3,
+        "provincialTax": 3006.28,
+        "cpp": 0.0,
+        "cpp2": 0.0,
+        "ei": 0.0,
+        "net": 13474.42,
+        "employerEi": 0.0
+      },
+      "set": "specified"
+    },
+    {
+      "id": "X-01",
+      "code": "NS",
+      "periods": 12,
+      "pay": 13333.33,
+      "date": "2026-09-11",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 2315.73,
+        "provincialTax": 1877.62,
+        "cpp": 775.98,
+        "cpp2": 0.0,
+        "ei": 217.33,
+        "net": 8146.67,
+        "employerEi": 304.26
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-02",
+      "code": "NB",
+      "periods": 26,
+      "pay": 7846.15,
+      "date": "2026-11-10",
+      "td1Fed": 23469,
+      "td1Prov": 15609,
+      "note": "generated, partial year to date (3 periods), larger TD1 claims",
+      "ytd": {
+        "pensionable": 23538.45,
+        "cpp": 1192.29,
+        "cpp2": 0,
+        "insurable": 23538.45,
+        "ei": 383.68
+      },
+      "pdoc": {
+        "federalTax": 1490.3,
+        "provincialTax": 1007.67,
+        "cpp": 458.84,
+        "cpp2": 0.0,
+        "ei": 127.89,
+        "net": 4761.45,
+        "employerEi": 179.05
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-03",
+      "code": "NB",
+      "periods": 52,
+      "pay": 1550,
+      "date": "2026-11-12",
+      "td1Fed": 19528,
+      "td1Prov": 26070,
+      "note": "generated mixed case, larger TD1 claims",
+      "pdoc": {
+        "federalTax": 172.44,
+        "provincialTax": 113.12,
+        "cpp": 88.22,
+        "cpp2": 0.0,
+        "ei": 25.27,
+        "net": 1150.95,
+        "employerEi": 35.38
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-04",
+      "code": "BC",
+      "periods": 26,
+      "pay": 5057.69,
+      "date": "2026-12-16",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated, partial year to date (14 periods)",
+      "ytd": {
+        "pensionable": 70807.66,
+        "cpp": 4004.81,
+        "cpp2": 0,
+        "insurable": 68900,
+        "ei": 1123.07
+      },
+      "pdoc": {
+        "federalTax": 776.43,
+        "provincialTax": 350.23,
+        "cpp": 225.64,
+        "cpp2": 50.61,
+        "ei": 0.0,
+        "net": 3654.78,
+        "employerEi": 0.0
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-05",
+      "code": "BC",
+      "periods": 26,
+      "pay": 765.38,
+      "date": "2026-07-16",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 3.48,
+        "provincialTax": 0.0,
+        "cpp": 37.53,
+        "cpp2": 0.0,
+        "ei": 12.48,
+        "net": 711.89,
+        "employerEi": 17.47
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-06",
+      "code": "NS",
+      "periods": 24,
+      "pay": 6800,
+      "date": "2026-12-10",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 1192.18,
+        "provincialTax": 966.53,
+        "cpp": 395.92,
+        "cpp2": 0.0,
+        "ei": 110.84,
+        "net": 4134.53,
+        "employerEi": 155.18
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-07",
+      "code": "PE",
+      "periods": 24,
+      "pay": 8125,
+      "date": "2026-10-14",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 1547.76,
+        "provincialTax": 1181.51,
+        "cpp": 474.76,
+        "cpp2": 0.0,
+        "ei": 132.44,
+        "net": 4788.53,
+        "employerEi": 185.42
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-08",
+      "code": "SK",
+      "periods": 12,
+      "pay": 2291.67,
+      "date": "2026-10-13",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 89.49,
+        "provincialTax": 45.87,
+        "cpp": 119.0,
+        "cpp2": 0.0,
+        "ei": 37.35,
+        "net": 1999.96,
+        "employerEi": 52.29
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-09",
+      "code": "MB",
+      "periods": 26,
+      "pay": 9892.31,
+      "date": "2026-07-10",
+      "td1Fed": 24129,
+      "td1Prov": 22596,
+      "note": "generated mixed case, larger TD1 claims",
+      "pdoc": {
+        "federalTax": 2074.2,
+        "provincialTax": 1377.02,
+        "cpp": 580.58,
+        "cpp2": 0.0,
+        "ei": 161.24,
+        "net": 5699.27,
+        "employerEi": 225.74
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-10",
+      "code": "MB",
+      "periods": 24,
+      "pay": 10004.17,
+      "date": "2026-12-18",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 2087.27,
+        "provincialTax": 1399.71,
+        "cpp": 586.57,
+        "cpp2": 0.0,
+        "ei": 163.07,
+        "net": 5767.55,
+        "employerEi": 228.3
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-11",
+      "code": "PE",
+      "periods": 24,
+      "pay": 5845.83,
+      "date": "2026-11-14",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 946.58,
+        "provincialTax": 754.87,
+        "cpp": 339.15,
+        "cpp2": 0.0,
+        "ei": 95.29,
+        "net": 3709.94,
+        "employerEi": 133.41
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-12",
+      "code": "AB",
+      "periods": 52,
+      "pay": 4217.31,
+      "date": "2026-10-10",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 848.52,
+        "provincialTax": 382.22,
+        "cpp": 246.93,
+        "cpp2": 0.0,
+        "ei": 68.74,
+        "net": 2670.9,
+        "employerEi": 96.24
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-13",
+      "code": "NS",
+      "periods": 26,
+      "pay": 3823.08,
+      "date": "2026-12-10",
+      "td1Fed": 17014,
+      "td1Prov": 21029,
+      "note": "generated, partial year to date (13 periods), larger TD1 claims",
+      "ytd": {
+        "pensionable": 49700.04,
+        "cpp": 2748.9,
+        "cpp2": 0,
+        "insurable": 49700.04,
+        "ei": 810.11
+      },
+      "pdoc": {
+        "federalTax": 505.17,
+        "provincialTax": 430.26,
+        "cpp": 219.46,
+        "cpp2": 0.0,
+        "ei": 62.32,
+        "net": 2605.87,
+        "employerEi": 87.25
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-14",
+      "code": "NU",
+      "periods": 12,
+      "pay": 13850,
+      "date": "2026-07-15",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 2448.72,
+        "provincialTax": 827.79,
+        "cpp": 806.72,
+        "cpp2": 0.0,
+        "ei": 225.76,
+        "net": 9541.01,
+        "employerEi": 316.06
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-15",
+      "code": "NT",
+      "periods": 26,
+      "pay": 3400,
+      "date": "2026-11-14",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 422.33,
+        "provincialTax": 182.72,
+        "cpp": 194.29,
+        "cpp2": 0.0,
+        "ei": 55.42,
+        "net": 2545.24,
+        "employerEi": 77.59
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-16",
+      "code": "PE",
+      "periods": 24,
+      "pay": 7412.5,
+      "date": "2026-08-16",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated, partial year to date (2 periods)",
+      "ytd": {
+        "pensionable": 14825,
+        "cpp": 673.84,
+        "cpp2": 0,
+        "insurable": 14825,
+        "ei": 241.65
+      },
+      "pdoc": {
+        "federalTax": 1349.84,
+        "provincialTax": 1047.48,
+        "cpp": 432.37,
+        "cpp2": 0.0,
+        "ei": 120.82,
+        "net": 4461.99,
+        "employerEi": 169.15
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-17",
+      "code": "NS",
+      "periods": 26,
+      "pay": 4592.31,
+      "date": "2026-11-11",
+      "td1Fed": 20384,
+      "td1Prov": 20683,
+      "note": "generated, partial year to date (19 periods), larger TD1 claims",
+      "ytd": {
+        "pensionable": 85000,
+        "cpp": 4230.45,
+        "cpp2": 416,
+        "insurable": 68900,
+        "ei": 1123.07
+      },
+      "pdoc": {
+        "federalTax": 657.28,
+        "provincialTax": 572.5,
+        "cpp": 0.0,
+        "cpp2": 0.0,
+        "ei": 0.0,
+        "net": 3362.53,
+        "employerEi": 0.0
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-18",
+      "code": "NB",
+      "periods": 12,
+      "pay": 14925,
+      "date": "2026-11-10",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 2725.42,
+        "provincialTax": 1846.1,
+        "cpp": 870.68,
+        "cpp2": 0.0,
+        "ei": 243.28,
+        "net": 9239.52,
+        "employerEi": 340.59
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-19",
+      "code": "BC",
+      "periods": 26,
+      "pay": 7138.46,
+      "date": "2026-08-18",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated, partial year to date (19 periods)",
+      "ytd": {
+        "pensionable": 85000,
+        "cpp": 4230.45,
+        "cpp2": 416,
+        "insurable": 68900,
+        "ei": 1123.07
+      },
+      "pdoc": {
+        "federalTax": 1345.22,
+        "provincialTax": 658.68,
+        "cpp": 0.0,
+        "cpp2": 0.0,
+        "ei": 0.0,
+        "net": 5134.56,
+        "employerEi": 0.0
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-20",
+      "code": "MB",
+      "periods": 12,
+      "pay": 17891.67,
+      "date": "2026-08-16",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 3566.85,
+        "provincialTax": 2434.81,
+        "cpp": 1047.2,
+        "cpp2": 0.0,
+        "ei": 291.63,
+        "net": 10551.18,
+        "employerEi": 408.28
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-21",
+      "code": "YT",
+      "periods": 26,
+      "pay": 8073.08,
+      "date": "2026-11-11",
+      "td1Fed": 16833,
+      "td1Prov": 28913,
+      "note": "generated mixed case, larger TD1 claims",
+      "pdoc": {
+        "federalTax": 1591.18,
+        "provincialTax": 660.25,
+        "cpp": 472.34,
+        "cpp2": 0.0,
+        "ei": 131.59,
+        "net": 5217.72,
+        "employerEi": 184.23
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-22",
+      "code": "NU",
+      "periods": 26,
+      "pay": 1711.54,
+      "date": "2026-11-18",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 125.9,
+        "provincialTax": 33.35,
+        "cpp": 93.83,
+        "cpp2": 0.0,
+        "ei": 27.9,
+        "net": 1430.56,
+        "employerEi": 39.06
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-23",
+      "code": "NB",
+      "periods": 24,
+      "pay": 6337.5,
+      "date": "2026-11-10",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 1073.14,
+        "provincialTax": 744.85,
+        "cpp": 368.4,
+        "cpp2": 0.0,
+        "ei": 103.3,
+        "net": 4047.81,
+        "employerEi": 144.62
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-24",
+      "code": "SK",
+      "periods": 52,
+      "pay": 3169.23,
+      "date": "2026-11-12",
+      "td1Fed": 17312,
+      "td1Prov": 30991,
+      "note": "generated, partial year to date (37 periods), larger TD1 claims",
+      "ytd": {
+        "pensionable": 85000,
+        "cpp": 4230.45,
+        "cpp2": 416,
+        "insurable": 68900,
+        "ei": 1123.07
+      },
+      "pdoc": {
+        "federalTax": 563.91,
+        "provincialTax": 306.68,
+        "cpp": 0.0,
+        "cpp2": 0.0,
+        "ei": 0.0,
+        "net": 2298.64,
+        "employerEi": 0.0
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-25",
+      "code": "AB",
+      "periods": 52,
+      "pay": 2100,
+      "date": "2026-10-13",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 292.34,
+        "provincialTax": 142.26,
+        "cpp": 120.95,
+        "cpp2": 0.0,
+        "ei": 34.23,
+        "net": 1510.22,
+        "employerEi": 47.92
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-26",
+      "code": "NB",
+      "periods": 12,
+      "pay": 21475,
+      "date": "2026-11-12",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated, partial year to date (2 periods)",
+      "ytd": {
+        "pensionable": 42950,
+        "cpp": 2347.28,
+        "cpp2": 0,
+        "insurable": 42950,
+        "ei": 700.08
+      },
+      "pdoc": {
+        "federalTax": 4595.62,
+        "provincialTax": 3062.42,
+        "cpp": 1260.41,
+        "cpp2": 0.0,
+        "ei": 350.04,
+        "net": 12206.51,
+        "employerEi": 490.06
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-27",
+      "code": "PE",
+      "periods": 12,
+      "pay": 19850,
+      "date": "2026-09-18",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated, partial year to date (4 periods)",
+      "ytd": {
+        "pensionable": 79400,
+        "cpp": 4230.45,
+        "cpp2": 192,
+        "insurable": 68900,
+        "ei": 1123.07
+      },
+      "pdoc": {
+        "federalTax": 4120.84,
+        "provincialTax": 3093.96,
+        "cpp": 0.0,
+        "cpp2": 224.0,
+        "ei": 0.0,
+        "net": 12411.2,
+        "employerEi": 0.0
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-28",
+      "code": "PE",
+      "periods": 52,
+      "pay": 2844.23,
+      "date": "2026-08-14",
+      "td1Fed": 25838,
+      "td1Prov": 27882,
+      "note": "generated mixed case, larger TD1 claims",
+      "pdoc": {
+        "federalTax": 449.23,
+        "provincialTax": 351.4,
+        "cpp": 165.23,
+        "cpp2": 0.0,
+        "ei": 46.36,
+        "net": 1832.01,
+        "employerEi": 64.9
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-29",
+      "code": "MB",
+      "periods": 26,
+      "pay": 9588.46,
+      "date": "2026-11-15",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 2028.3,
+        "provincialTax": 1352.99,
+        "cpp": 562.5,
+        "cpp2": 0.0,
+        "ei": 156.29,
+        "net": 5488.38,
+        "employerEi": 218.81
+      },
+      "set": "extra"
+    },
+    {
+      "id": "X-30",
+      "code": "YT",
+      "periods": 24,
+      "pay": 5079.17,
+      "date": "2026-12-17",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "note": "generated mixed case",
+      "pdoc": {
+        "federalTax": 749.24,
+        "provincialTax": 331.96,
+        "cpp": 293.53,
+        "cpp2": 0.0,
+        "ei": 82.79,
+        "net": 3621.65,
+        "employerEi": 115.91
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-01",
+      "code": "AB",
+      "periods": 12,
+      "pay": 16549.62,
+      "date": "2026-10-11",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 3181.54,
+        "provincialTax": 1434.24,
+        "cpp": 967.35,
+        "cpp2": 0.0,
+        "ei": 269.76,
+        "net": 10696.73,
+        "employerEi": 377.66
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-02",
+      "code": "BC",
+      "periods": 52,
+      "pay": 425.16,
+      "date": "2026-10-10",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 7.24,
+        "provincialTax": 0.0,
+        "cpp": 21.29,
+        "cpp2": 0.0,
+        "ei": 6.93,
+        "net": 389.7,
+        "employerEi": 9.7
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-03",
+      "code": "SK",
+      "periods": 24,
+      "pay": 1081.35,
+      "date": "2026-11-11",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 36.4,
+        "provincialTax": 16.68,
+        "cpp": 55.66,
+        "cpp2": 0.0,
+        "ei": 17.63,
+        "net": 954.98,
+        "employerEi": 24.68
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-04",
+      "code": "MB",
+      "periods": 26,
+      "pay": 4172.02,
+      "date": "2026-11-16",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 579.01,
+        "provincialTax": 419.96,
+        "cpp": 240.23,
+        "cpp2": 0.0,
+        "ei": 68.0,
+        "net": 2864.82,
+        "employerEi": 95.2
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-05",
+      "code": "NS",
+      "periods": 52,
+      "pay": 2271.72,
+      "date": "2026-12-17",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 327.2,
+        "provincialTax": 292.91,
+        "cpp": 131.16,
+        "cpp2": 0.0,
+        "ei": 37.03,
+        "net": 1483.42,
+        "employerEi": 51.84
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-06",
+      "code": "NB",
+      "periods": 24,
+      "pay": 5728.78,
+      "date": "2026-08-11",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 916.45,
+        "provincialTax": 648.43,
+        "cpp": 332.19,
+        "cpp2": 0.0,
+        "ei": 93.38,
+        "net": 3738.33,
+        "employerEi": 130.73
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-07",
+      "code": "NL",
+      "periods": 12,
+      "pay": 15471.52,
+      "date": "2026-12-11",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 2872.02,
+        "provincialTax": 2005.92,
+        "cpp": 903.2,
+        "cpp2": 0.0,
+        "ei": 252.19,
+        "net": 9438.19,
+        "employerEi": 353.07
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-08",
+      "code": "PE",
+      "periods": 24,
+      "pay": 7035.4,
+      "date": "2026-08-14",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1252.77,
+        "provincialTax": 976.55,
+        "cpp": 409.93,
+        "cpp2": 0.0,
+        "ei": 114.68,
+        "net": 4281.47,
+        "employerEi": 160.55
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-09",
+      "code": "YT",
+      "periods": 26,
+      "pay": 1140.63,
+      "date": "2026-07-14",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 52.04,
+        "provincialTax": 23.79,
+        "cpp": 59.86,
+        "cpp2": 0.0,
+        "ei": 18.59,
+        "net": 986.35,
+        "employerEi": 26.03
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-10",
+      "code": "NT",
+      "periods": 52,
+      "pay": 1395.82,
+      "date": "2026-07-18",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 149.7,
+        "provincialTax": 65.58,
+        "cpp": 79.05,
+        "cpp2": 0.0,
+        "ei": 22.75,
+        "net": 1078.74,
+        "employerEi": 31.85
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-11",
+      "code": "NU",
+      "periods": 24,
+      "pay": 6230.45,
+      "date": "2026-10-18",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1045.58,
+        "provincialTax": 352.01,
+        "cpp": 362.03,
+        "cpp2": 0.0,
+        "ei": 101.56,
+        "net": 4369.27,
+        "employerEi": 142.18
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-12",
+      "code": "ON",
+      "periods": 52,
+      "pay": 599.97,
+      "date": "2026-08-13",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 29.85,
+        "provincialTax": 21.36,
+        "cpp": 31.69,
+        "cpp2": 0.0,
+        "ei": 9.78,
+        "net": 507.29,
+        "employerEi": 13.69
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-13",
+      "code": "AB",
+      "periods": 26,
+      "pay": 7751.58,
+      "date": "2026-09-15",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1500.93,
+        "provincialTax": 676.54,
+        "cpp": 453.21,
+        "cpp2": 0.0,
+        "ei": 126.35,
+        "net": 4994.55,
+        "employerEi": 176.89
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-14",
+      "code": "BC",
+      "periods": 24,
+      "pay": 5350.51,
+      "date": "2026-08-15",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 819.08,
+        "provincialTax": 368.99,
+        "cpp": 309.68,
+        "cpp2": 0.0,
+        "ei": 87.21,
+        "net": 3765.55,
+        "employerEi": 122.09
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-15",
+      "code": "SK",
+      "periods": 12,
+      "pay": 4837.12,
+      "date": "2026-08-14",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 418.84,
+        "provincialTax": 297.81,
+        "cpp": 270.45,
+        "cpp2": 0.0,
+        "ei": 78.85,
+        "net": 3771.17,
+        "employerEi": 110.39
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-16",
+      "code": "MB",
+      "periods": 26,
+      "pay": 549.92,
+      "date": "2026-07-11",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 0.0,
+        "provincialTax": 0.0,
+        "cpp": 24.71,
+        "cpp2": 0.0,
+        "ei": 8.96,
+        "net": 516.25,
+        "employerEi": 12.54
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-17",
+      "code": "NS",
+      "periods": 12,
+      "pay": 15053.89,
+      "date": "2026-11-18",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 2758.6,
+        "provincialTax": 2235.33,
+        "cpp": 878.35,
+        "cpp2": 0.0,
+        "ei": 245.38,
+        "net": 8936.23,
+        "employerEi": 343.53
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-18",
+      "code": "NB",
+      "periods": 26,
+      "pay": 2364.99,
+      "date": "2026-08-13",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 216.42,
+        "provincialTax": 172.0,
+        "cpp": 132.71,
+        "cpp2": 0.0,
+        "ei": 38.55,
+        "net": 1805.31,
+        "employerEi": 53.97
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-19",
+      "code": "NL",
+      "periods": 52,
+      "pay": 1665.77,
+      "date": "2026-12-17",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 204.22,
+        "provincialTax": 156.53,
+        "cpp": 95.11,
+        "cpp2": 0.0,
+        "ei": 27.15,
+        "net": 1182.76,
+        "employerEi": 38.01
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-20",
+      "code": "PE",
+      "periods": 12,
+      "pay": 13287.37,
+      "date": "2026-11-16",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 2303.9,
+        "provincialTax": 1805.74,
+        "cpp": 773.24,
+        "cpp2": 0.0,
+        "ei": 216.58,
+        "net": 8187.91,
+        "employerEi": 303.21
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-21",
+      "code": "YT",
+      "periods": 12,
+      "pay": 10199.6,
+      "date": "2026-08-11",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1509.1,
+        "provincialTax": 668.36,
+        "cpp": 589.52,
+        "cpp2": 0.0,
+        "ei": 166.25,
+        "net": 7266.37,
+        "employerEi": 232.75
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-22",
+      "code": "NT",
+      "periods": 26,
+      "pay": 1594.48,
+      "date": "2026-09-10",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 110.76,
+        "provincialTax": 46.12,
+        "cpp": 86.86,
+        "cpp2": 0.0,
+        "ei": 25.99,
+        "net": 1324.75,
+        "employerEi": 36.39
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-23",
+      "code": "NU",
+      "periods": 26,
+      "pay": 1330.24,
+      "date": "2026-10-16",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 76.57,
+        "provincialTax": 19.25,
+        "cpp": 71.14,
+        "cpp2": 0.0,
+        "ei": 21.68,
+        "net": 1141.6,
+        "employerEi": 30.35
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-24",
+      "code": "ON",
+      "periods": 24,
+      "pay": 3443,
+      "date": "2026-12-14",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 408.75,
+        "provincialTax": 214.09,
+        "cpp": 196.18,
+        "cpp2": 0.0,
+        "ei": 56.12,
+        "net": 2567.86,
+        "employerEi": 78.57
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-25",
+      "code": "AB",
+      "periods": 52,
+      "pay": 1514.42,
+      "date": "2026-07-13",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 173.5,
+        "provincialTax": 84.28,
+        "cpp": 86.1,
+        "cpp2": 0.0,
+        "ei": 24.69,
+        "net": 1145.85,
+        "employerEi": 34.57
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-26",
+      "code": "BC",
+      "periods": 26,
+      "pay": 942,
+      "date": "2026-12-18",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 26.34,
+        "provincialTax": 0.0,
+        "cpp": 48.04,
+        "cpp2": 0.0,
+        "ei": 15.35,
+        "net": 852.27,
+        "employerEi": 21.49
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-27",
+      "code": "SK",
+      "periods": 52,
+      "pay": 2593.38,
+      "date": "2026-09-13",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 409.93,
+        "provincialTax": 249.51,
+        "cpp": 150.3,
+        "cpp2": 0.0,
+        "ei": 42.27,
+        "net": 1741.37,
+        "employerEi": 59.18
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-28",
+      "code": "MB",
+      "periods": 12,
+      "pay": 3026.35,
+      "date": "2026-07-15",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 184.55,
+        "provincialTax": 161.93,
+        "cpp": 162.71,
+        "cpp2": 0.0,
+        "ei": 49.33,
+        "net": 2467.83,
+        "employerEi": 69.06
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-29",
+      "code": "NS",
+      "periods": 52,
+      "pay": 1992.75,
+      "date": "2026-10-15",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 270.58,
+        "provincialTax": 244.58,
+        "cpp": 114.56,
+        "cpp2": 0.0,
+        "ei": 32.48,
+        "net": 1330.55,
+        "employerEi": 45.47
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-30",
+      "code": "NB",
+      "periods": 12,
+      "pay": 12580.6,
+      "date": "2026-12-14",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 2121.97,
+        "provincialTax": 1474.75,
+        "cpp": 731.19,
+        "cpp2": 0.0,
+        "ei": 205.06,
+        "net": 8047.63,
+        "employerEi": 287.08
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-31",
+      "code": "NL",
+      "periods": 24,
+      "pay": 2027.1,
+      "date": "2026-08-11",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 158.77,
+        "provincialTax": 117.89,
+        "cpp": 111.94,
+        "cpp2": 0.0,
+        "ei": 33.04,
+        "net": 1605.46,
+        "employerEi": 46.26
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-32",
+      "code": "PE",
+      "periods": 26,
+      "pay": 1878.9,
+      "date": "2026-10-15",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 147.56,
+        "provincialTax": 133.01,
+        "cpp": 103.79,
+        "cpp2": 0.0,
+        "ei": 30.63,
+        "net": 1463.91,
+        "employerEi": 42.88
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-33",
+      "code": "YT",
+      "periods": 52,
+      "pay": 2571.48,
+      "date": "2026-11-13",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 404.3,
+        "provincialTax": 177.73,
+        "cpp": 149.0,
+        "cpp2": 0.0,
+        "ei": 41.92,
+        "net": 1798.53,
+        "employerEi": 58.69
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-34",
+      "code": "NT",
+      "periods": 24,
+      "pay": 1748.13,
+      "date": "2026-07-14",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 122.68,
+        "provincialTax": 51.1,
+        "cpp": 95.34,
+        "cpp2": 0.0,
+        "ei": 28.49,
+        "net": 1450.52,
+        "employerEi": 39.89
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-35",
+      "code": "NU",
+      "periods": 12,
+      "pay": 4702.74,
+      "date": "2026-07-11",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 401.46,
+        "provincialTax": 109.27,
+        "cpp": 262.46,
+        "cpp2": 0.0,
+        "ei": 76.65,
+        "net": 3852.9,
+        "employerEi": 107.31
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-36",
+      "code": "ON",
+      "periods": 12,
+      "pay": 1827.54,
+      "date": "2026-08-14",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 29.44,
+        "provincialTax": 21.75,
+        "cpp": 91.38,
+        "cpp2": 0.0,
+        "ei": 29.79,
+        "net": 1655.18,
+        "employerEi": 41.71
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-37",
+      "code": "AB",
+      "periods": 12,
+      "pay": 6445.38,
+      "date": "2026-07-12",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 728.07,
+        "provincialTax": 353.64,
+        "cpp": 366.15,
+        "cpp2": 0.0,
+        "ei": 105.06,
+        "net": 4892.46,
+        "employerEi": 147.08
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-38",
+      "code": "BC",
+      "periods": 52,
+      "pay": 520.82,
+      "date": "2026-09-17",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 19.61,
+        "provincialTax": 0.0,
+        "cpp": 26.98,
+        "cpp2": 0.0,
+        "ei": 8.49,
+        "net": 465.74,
+        "employerEi": 11.89
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-39",
+      "code": "SK",
+      "periods": 52,
+      "pay": 3178.32,
+      "date": "2026-09-13",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 560.5,
+        "provincialTax": 324.91,
+        "cpp": 185.11,
+        "cpp2": 0.0,
+        "ei": 51.81,
+        "net": 2055.99,
+        "employerEi": 72.53
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-40",
+      "code": "MB",
+      "periods": 26,
+      "pay": 3501.16,
+      "date": "2026-10-16",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 442.86,
+        "provincialTax": 322.0,
+        "cpp": 200.31,
+        "cpp2": 0.0,
+        "ei": 57.07,
+        "net": 2478.92,
+        "employerEi": 79.9
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-41",
+      "code": "NS",
+      "periods": 24,
+      "pay": 2057.69,
+      "date": "2026-12-15",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 162.73,
+        "provincialTax": 170.26,
+        "cpp": 113.76,
+        "cpp2": 0.0,
+        "ei": 33.54,
+        "net": 1577.4,
+        "employerEi": 46.96
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-42",
+      "code": "NB",
+      "periods": 24,
+      "pay": 4201.51,
+      "date": "2026-09-16",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 562.69,
+        "provincialTax": 410.54,
+        "cpp": 241.31,
+        "cpp2": 0.0,
+        "ei": 68.48,
+        "net": 2918.49,
+        "employerEi": 95.87
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-43",
+      "code": "NL",
+      "periods": 26,
+      "pay": 3806.8,
+      "date": "2026-08-15",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 504.89,
+        "provincialTax": 385.6,
+        "cpp": 218.5,
+        "cpp2": 0.0,
+        "ei": 62.05,
+        "net": 2635.76,
+        "employerEi": 86.87
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-44",
+      "code": "PE",
+      "periods": 26,
+      "pay": 5666.86,
+      "date": "2026-10-10",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 943.45,
+        "provincialTax": 745.81,
+        "cpp": 329.17,
+        "cpp2": 0.0,
+        "ei": 92.37,
+        "net": 3556.06,
+        "employerEi": 129.32
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-45",
+      "code": "YT",
+      "periods": 24,
+      "pay": 3138.19,
+      "date": "2026-09-11",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 346.89,
+        "provincialTax": 156.07,
+        "cpp": 178.05,
+        "cpp2": 0.0,
+        "ei": 51.15,
+        "net": 2406.03,
+        "employerEi": 71.61
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-46",
+      "code": "NT",
+      "periods": 26,
+      "pay": 6298.38,
+      "date": "2026-11-11",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1106.0,
+        "provincialTax": 507.24,
+        "cpp": 366.74,
+        "cpp2": 0.0,
+        "ei": 102.66,
+        "net": 4215.74,
+        "employerEi": 143.72
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-47",
+      "code": "NU",
+      "periods": 52,
+      "pay": 1875.75,
+      "date": "2026-11-10",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 246.83,
+        "provincialTax": 79.15,
+        "cpp": 107.6,
+        "cpp2": 0.0,
+        "ei": 30.57,
+        "net": 1411.6,
+        "employerEi": 42.8
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-48",
+      "code": "ON",
+      "periods": 24,
+      "pay": 8082.86,
+      "date": "2026-07-18",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1535.66,
+        "provincialTax": 949.49,
+        "cpp": 472.25,
+        "cpp2": 0.0,
+        "ei": 131.75,
+        "net": 4993.71,
+        "employerEi": 184.45
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-49",
+      "code": "AB",
+      "periods": 26,
+      "pay": 7314.54,
+      "date": "2026-09-18",
+      "td1Fed": 16452,
+      "td1Prov": 22769,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1375.46,
+        "provincialTax": 620.29,
+        "cpp": 427.21,
+        "cpp2": 0.0,
+        "ei": 119.23,
+        "net": 4772.35,
+        "employerEi": 166.92
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-50",
+      "code": "BC",
+      "periods": 24,
+      "pay": 1521.41,
+      "date": "2026-10-17",
+      "td1Fed": 16452,
+      "td1Prov": 13216,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 93.34,
+        "provincialTax": 35.26,
+        "cpp": 81.85,
+        "cpp2": 0.0,
+        "ei": 24.8,
+        "net": 1286.16,
+        "employerEi": 34.72
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-51",
+      "code": "SK",
+      "periods": 12,
+      "pay": 8371.52,
+      "date": "2026-07-13",
+      "td1Fed": 16452,
+      "td1Prov": 20381,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1118.98,
+        "provincialTax": 726.47,
+        "cpp": 480.75,
+        "cpp2": 0.0,
+        "ei": 136.46,
+        "net": 5908.86,
+        "employerEi": 191.04
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-52",
+      "code": "MB",
+      "periods": 52,
+      "pay": 1088.91,
+      "date": "2026-08-14",
+      "td1Fed": 16452,
+      "td1Prov": 15780,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 93.12,
+        "provincialTax": 79.75,
+        "cpp": 60.79,
+        "cpp2": 0.0,
+        "ei": 17.75,
+        "net": 837.5,
+        "employerEi": 24.85
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-53",
+      "code": "NS",
+      "periods": 12,
+      "pay": 14218.08,
+      "date": "2026-11-13",
+      "td1Fed": 16452,
+      "td1Prov": 11932,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 2543.46,
+        "provincialTax": 2061.56,
+        "cpp": 828.62,
+        "cpp2": 0.0,
+        "ei": 231.75,
+        "net": 8552.69,
+        "employerEi": 324.45
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-54",
+      "code": "NB",
+      "periods": 26,
+      "pay": 7043.05,
+      "date": "2026-07-13",
+      "td1Fed": 16452,
+      "td1Prov": 13664,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1297.68,
+        "provincialTax": 876.53,
+        "cpp": 411.05,
+        "cpp2": 0.0,
+        "ei": 114.8,
+        "net": 4342.99,
+        "employerEi": 160.72
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-55",
+      "code": "NL",
+      "periods": 24,
+      "pay": 4568.63,
+      "date": "2026-11-16",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 637.2,
+        "provincialTax": 487.28,
+        "cpp": 263.16,
+        "cpp2": 0.0,
+        "ei": 74.47,
+        "net": 3106.52,
+        "employerEi": 104.26
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-56",
+      "code": "PE",
+      "periods": 12,
+      "pay": 4761.62,
+      "date": "2026-09-11",
+      "td1Fed": 16452,
+      "td1Prov": 15000,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 409.08,
+        "provincialTax": 375.98,
+        "cpp": 265.96,
+        "cpp2": 0.0,
+        "ei": 77.61,
+        "net": 3632.99,
+        "employerEi": 108.65
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-57",
+      "code": "YT",
+      "periods": 26,
+      "pay": 3570.86,
+      "date": "2026-11-15",
+      "td1Fed": 16452,
+      "td1Prov": 16452,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 457.01,
+        "provincialTax": 204.13,
+        "cpp": 204.46,
+        "cpp2": 0.0,
+        "ei": 58.21,
+        "net": 2647.05,
+        "employerEi": 81.49
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-58",
+      "code": "NT",
+      "periods": 24,
+      "pay": 7697.38,
+      "date": "2026-10-13",
+      "td1Fed": 16452,
+      "td1Prov": 18198,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 1424.99,
+        "provincialTax": 663.22,
+        "cpp": 449.32,
+        "cpp2": 0.0,
+        "ei": 125.47,
+        "net": 5034.38,
+        "employerEi": 175.66
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-59",
+      "code": "NU",
+      "periods": 52,
+      "pay": 1651.65,
+      "date": "2026-08-17",
+      "td1Fed": 16452,
+      "td1Prov": 19659,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 201.35,
+        "provincialTax": 63.62,
+        "cpp": 94.27,
+        "cpp2": 0.0,
+        "ei": 26.92,
+        "net": 1265.49,
+        "employerEi": 37.69
+      },
+      "set": "extra"
+    },
+    {
+      "id": "V-60",
+      "code": "ON",
+      "periods": 12,
+      "pay": 2219.63,
+      "date": "2026-11-13",
+      "td1Fed": 16452,
+      "td1Prov": 12989,
+      "note": "generated validation case",
+      "pdoc": {
+        "federalTax": 80.17,
+        "provincialTax": 74.62,
+        "cpp": 114.71,
+        "cpp2": 0.0,
+        "ei": 36.18,
+        "net": 1913.95,
+        "employerEi": 50.65
+      },
+      "set": "extra"
+    }
+  ],
+  "source": "CRA Payroll Deductions Online Calculator (PDOC), July 2026 rates, run 2026-10-20"
+}

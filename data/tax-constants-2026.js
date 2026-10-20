@@ -23,6 +23,8 @@
  *                                   field is omitted; this is MAINTENANCE Rule 1).
  *                     'july'      — re-indexed each July on a July–June benefit year (CCB).
  *                     'quarterly' — re-indexed Jan/Apr/Jul/Oct (GIS/OAS, CPP averages).
+ *                     'semiannual' — re-issued every January 1 and July 1: the CRA T4127
+ *                                   payroll editions and their mid-year prorated figures.
  *                     'statutory' — changes ONLY by legislation or by-law, never by
  *                                   indexation. Never goes stale on a calendar; re-verify
  *                                   when the governing statute is amended (MAINTENANCE Rule 2).
@@ -96,6 +98,8 @@ const SRC = {
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
+  t4127JulRates:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/rates-income-thresholds-constants-26e.csv', // Table 8.1, effective July 1, 2026
+  t4127JulOther:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/other-rates-amounts-26e.csv',       // Table 8.2, effective July 1, 2026
   mbCredits: 'https://www.gov.mb.ca/finance/personal/pcredits.html',
   mbAct:     'https://web2.gov.mb.ca/laws/statutes/ccsm/i010.php',               // The Income Tax Act (C.C.S.M. c. I10), s.4.6(16.1), current as of Oct 16, 2026
   onTaxAct:  'https://www.ontario.ca/laws/statute/07t11', // Taxation Act, 2007 (e-Laws; needs JavaScript to render)
@@ -818,6 +822,58 @@ export const TAX_CONSTANTS_2026 = {
     minOpeningAge:       { value: 18,           source_url: SRC.fhsaOpen,   last_verified: '2026-10-20' }, // 19 where that is the age of majority for contracts
     firstTimeBuyerYears: { value: 4,            source_url: SRC.fhsaOpen,   last_verified: '2026-10-20' }, // no owned home lived in this year or the previous 4 calendar years
     excessTaxMonthly:    { value: 0.01,         source_url: SRC.fhsaExcess, last_verified: '2026-10-20' }, // on the highest excess FHSA amount in each month
+  },
+
+  /* ── PAYROLL WITHHOLDING FROM JULY 1, 2026 — CRA T4127, 123rd edition ───────────────
+     The payroll formulas (Option 1) for pay dates from the first July payroll to December 31.
+     Three jurisdictions changed their 2026 tax mid-year after January's tables went out, so
+     T4127 PRORATES the change into the second half: the year's withholding then averages to
+     the annual rate. The prorated figures are payroll devices, NOT the 2026 annual rates; the
+     annual rates live in provinces.* above and are repeated here, cited to the same T4127, so
+     the two can be held equal (check-constants invariants). Everything not listed here (the
+     other brackets, BPAs, CPP, CPP2, EI, the Ontario Health Premium) is unchanged from January
+     and read from the annual stamps, which T4127 Table 8.1/8.2 confirm. Re-issued each
+     January and July, hence 'semiannual'. */
+  payrollJuly2026: {
+    _cadence: 'semiannual',
+    effectiveFrom: { value: '2026-07-01', source_url: SRC.t4127Jul, last_verified: '2026-10-20' },
+    BC: {
+      lowestRate:          { value: 0.0614, source_url: SRC.t4127JulRates, last_verified: '2026-10-20', status: 'prorated' },
+      lowestRateAnnual:    { value: 0.0560, source_url: SRC.t4127Jul,      last_verified: '2026-10-20' }, // Option 2 table; = provinces.BC.brackets[0].rate
+      kp:                  { value: [0, 786, 3606, 5676, 9061, 13059, 22884], source_url: SRC.t4127JulRates, last_verified: '2026-10-20', status: 'prorated' },
+      taxReductionMax:     { value: 805,    source_url: SRC.t4127JulOther, last_verified: '2026-10-20', status: 'prorated' }, // S2 column
+      taxReductionAnnual:  { value: 690,    source_url: SRC.t4127Jul,      last_verified: '2026-10-20' }, // = provinces.BC.taxReduction.base
+      taxReductionStart:   { value: 25570,  source_url: SRC.t4127Jul,      last_verified: '2026-10-20' },
+      taxReductionRate:    { value: 0.0356, source_url: SRC.t4127Jul,      last_verified: '2026-10-20' },
+      taxReductionCutoff:  { value: 44952,  source_url: SRC.t4127Jul,      last_verified: '2026-10-20' }, // S = $0 above: "the legislated maximum"
+    },
+    NL: {
+      bpa:                 { value: 15000,  source_url: SRC.t4127JulOther, last_verified: '2026-10-20', status: 'prorated' },
+      bpaAnnual:           { value: 13094,  source_url: SRC.t4127Jul,      last_verified: '2026-10-20' }, // = provinces.NL.bpa
+    },
+    PE: {
+      topRate:             { value: 0.21,   source_url: SRC.t4127JulRates, last_verified: '2026-10-20', status: 'prorated' }, // above $200,000
+      topRateAnnual:       { value: 0.20,   source_url: SRC.t4127Jul,      last_verified: '2026-10-20' }, // = provinces.PE.brackets[5].rate
+      topKp:               { value: 10464,  source_url: SRC.t4127JulRates, last_verified: '2026-10-20', status: 'prorated' },
+      topKpAnnual:         { value: 8464,   source_url: SRC.t4127Jul,      last_verified: '2026-10-20' }, // Option 2 table
+    },
+    // Alberta's supplementary credit (K5P): ((K1P + K2P) − $4,896.00) × 25%, never negative.
+    // $4,896 = 8% × $61,200, so credits above $61,200 earn 10% rather than 8%.
+    AB: {
+      k5pThreshold:        { value: 4896,   source_url: SRC.t4127Jul, last_verified: '2026-10-20' },
+      k5pRate:             { value: 0.25,   source_url: SRC.t4127Jul, last_verified: '2026-10-20' },
+    },
+    // Announced, NOT applied: "On April 28, 2026, the Government of Canada announced its
+    // intention to reduce the contribution rate of the base CPP from 9.90% to 9.50%, effective
+    // January 1, 2027 ... for employees and employers, the base contribution rate will decrease
+    // from 4.95% to 4.75%." The first and second additional rates are unchanged.
+    cpp2027: {
+      effectiveFrom:       { value: '2027-01-01', source_url: SRC.t4127Jul, last_verified: '2026-10-20', status: 'announced' },
+      baseRateCombinedFrom:{ value: 0.099,  source_url: SRC.t4127Jul, last_verified: '2026-10-20', status: 'announced' },
+      baseRateCombinedTo:  { value: 0.095,  source_url: SRC.t4127Jul, last_verified: '2026-10-20', status: 'announced' },
+      employeeBaseRateFrom:{ value: 0.0495, source_url: SRC.t4127Jul, last_verified: '2026-10-20', status: 'announced' },
+      employeeBaseRateTo:  { value: 0.0475, source_url: SRC.t4127Jul, last_verified: '2026-10-20', status: 'announced' },
+    },
   },
 
   /* ── CAPITAL GAINS (2026) ──────────────────────────────────────────────────── */
