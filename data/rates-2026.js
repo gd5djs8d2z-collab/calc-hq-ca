@@ -560,6 +560,43 @@ export const REGISTERED_LIMITS = {
   cesgLifetimeMax: v(TC.registeredAccounts.cesgLifetimeMax),
 };
 
+// Sales tax (TC.salesTax): the general rates in each jurisdiction, and forward/reverse helpers for
+// the GST/HST calculator. Each tax is computed on the pre-tax price and rounded to the cent, a
+// half cent rounding up (Revenu Québec's rule, and the CRA's). Exemptions, zero-rating and
+// place-of-supply rules are not modelled.
+const roundCent = (x) => Math.floor(x * 100 + 0.5 + 1e-9) / 100;
+export const SALES_TAX = {
+  gst: v(TC.salesTax.gst),
+  hst: Object.fromEntries(Object.entries(TC.salesTax.hst).map(([k, n]) => [k, v(n)])),
+  pst: Object.fromEntries(Object.entries(TC.salesTax.pst).map(([k, n]) => [k, v(n)])),
+  /** { system, federal, provincial, combined } for a jurisdiction code. federal is the GST, or the
+   *  whole HST in a harmonized province (provincial is then 0). */
+  rates(code) {
+    if (this.hst[code] !== undefined) return { system: 'HST', federal: this.hst[code], provincial: 0, combined: this.hst[code] };
+    const p = this.pst[code] || 0;
+    return { system: code === 'QC' ? 'GST+QST' : p ? 'GST+PST' : 'GST', federal: this.gst, provincial: p, combined: this.gst + p };
+  },
+  /** Tax on a pre-tax amount. */
+  forward(code, amount) {
+    const r = this.rates(code);
+    const federal = roundCent(amount * r.federal), provincial = roundCent(amount * r.provincial);
+    return { ...r, before: roundCent(amount), federalTax: federal, provincialTax: provincial, total: roundCent(amount + federal + provincial) };
+  },
+  /** Pre-tax amount from a tax-included total. Rounding each tax to the cent means some totals
+   *  have no exact pre-tax amount, so the cents either side of the plain division are tried and
+   *  the first that reproduces the total wins; `gap` is what is left when none does. */
+  reverse(code, total) {
+    const r = this.rates(code), entered = roundCent(total), mid = roundCent(entered / (1 + r.combined));
+    let best = null;
+    for (const d of [0, -0.01, 0.01, -0.02, 0.02]) {
+      const f = this.forward(code, roundCent(mid + d)), gap = roundCent(entered - f.total);
+      if (!best || Math.abs(gap) < Math.abs(best.gap)) best = { ...f, entered, gap };
+      if (gap === 0) break;
+    }
+    return best;
+  },
+};
+
 // Capital gains (TC.capitalGains). The federal and Quebec inclusion rates are stamped separately
 // because they are set by separate governments; both are one-half for 2026.
 export const CAPITAL_GAINS = {

@@ -107,6 +107,16 @@ const SRC = {
   finTaxExp: 'https://www.canada.ca/en/department-finance/services/publications/federal-tax-expenditures/2026/part-6.html', // Report on Federal Tax Expenditures 2026, "Partial inclusion of capital gains"
   qcBul20258:'https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/finances/publications-adm/Bulletins/EN/BULEN_2025-8.pdf', // Information Bulletin 2025-8, Nov 25, 2025
   craIndexed:'https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html',
+  craGstRates:'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate/calculator.html', // CRA GST/HST and PST rate table, modified 2025-04-01
+  onHst:     'https://www.ontario.ca/document/harmonized-sales-tax-hst',
+  nbHst:     'https://www2.gnb.ca/content/gnb/en/departments/finance/taxes/hst.html',
+  nlHst:     'https://www.gov.nl.ca/fin/tax-programs-incentives/personal/hst/',
+  nsHst:     'https://news.novascotia.ca/en/2025/03/31/province-lowers-hst-raises-income-thresholds-nova-scotians',
+  peHst:     'https://www.princeedwardisland.ca/sites/default/files/publications/revenue_tax_guide_187.pdf', // PEI Revenue Tax Guide 187 (the site's HTML pages sit behind a CAPTCHA)
+  bcPst:     'https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/pst',
+  skPst:     'https://www.saskatchewan.ca/business/taxes-licensing-and-reporting/provincial-taxes-policies-and-bulletins/provincial-sales-tax',
+  mbRst:     'https://www.gov.mb.ca/finance/taxation/taxes/retail.html',
+  qcQst:     'https://www.revenuquebec.ca/en/businesses/consumption-taxes/gsthst-and-qst/basic-rules-for-applying-the-gsthst-and-qst/tables-of-gst-and-qst-rates/',
   eduSavings:'https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html',
   craFiling: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html',
   craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
@@ -843,6 +853,31 @@ export const TAX_CONSTANTS_2026 = {
   // has one page to land on and check-constants can see the number exists.
   gstHst: {
     smallSupplierThreshold: { value: 30000, source_url: SRC.gstRegister, last_verified: '2026-09-11', cadence: 'statutory' },
+  },
+
+  /* ── SALES TAX RATES (2026) — for the GST/HST calculator ─────────────────────── */
+  // Each rate is stamped to the government that sets it; every one also agrees with the CRA's
+  // table (SRC.craGstRates). HST rates are combined (5% federal + the provincial part). PST/QST
+  // are the general consumer rates; all are charged on the pre-tax price (Revenu Québec:
+  // "calculates 5% GST on the sale price, then also calculates the QST on the sale price";
+  // Manitoba: RST "is calculated on the selling price, before the GST"). Checked 2026-10-20;
+  // the last change was Nova Scotia's HST, 15% to 14% on April 1, 2025.
+  salesTax: {
+    _cadence: 'statutory',
+    gst: { value: 0.05, source_url: SRC.craGstRates, last_verified: '2026-10-20' },
+    hst: {
+      ON: { value: 0.13, source_url: SRC.onHst, last_verified: '2026-10-20' },
+      NB: { value: 0.15, source_url: SRC.nbHst, last_verified: '2026-10-20' },
+      NL: { value: 0.15, source_url: SRC.nlHst, last_verified: '2026-10-20' },
+      NS: { value: 0.14, source_url: SRC.nsHst, last_verified: '2026-10-20' },
+      PE: { value: 0.15, source_url: SRC.peHst, last_verified: '2026-10-20' },
+    },
+    pst: {
+      BC: { value: 0.07,    source_url: SRC.bcPst, last_verified: '2026-10-20' },
+      SK: { value: 0.06,    source_url: SRC.skPst, last_verified: '2026-10-20' },
+      MB: { value: 0.07,    source_url: SRC.mbRst, last_verified: '2026-10-20' }, // Manitoba calls it RST
+      QC: { value: 0.09975, source_url: SRC.qcQst, last_verified: '2026-10-20' }, // QST
+    },
   },
 
   /* ── GUARANTEED INCOME SUPPLEMENT (GIS) — indexed QUARTERLY, NOT January ─────── */
