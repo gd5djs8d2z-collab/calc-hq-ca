@@ -59,6 +59,14 @@ whole point of that section, so they must be current:
   so the page splits Jan/Apr from Jul/Oct; check whether the old name is still in use.
   NOTE: this page's date tables are STATIC HTML (for crawlability) with the constants used by the
   countdown — update **both** the tables and the constants, or they'll drift.
+  The six per-benefit pages added 2026-10-20 (`/key-dates-limits/{canada-child-benefit,
+  gst-hst-credit,cpp,oas-gis,ontario-trillium-benefit,ei}-payment-dates/`) do NOT have that
+  problem: their tables are written from the same constants by `scripts/sync-payment-dates.mjs`,
+  and its `--check` runs in CI. After re-stamping, run it and commit the regenerated pages. Their
+  prose also restates a few 2026 dates in words (the CCB's June 19 / September 18 / December 11,
+  the OTB's January 9 / May 8 / October 9, the GST/CGEB quarter dates, the FAQ date lists) —
+  rewrite those by hand in the January pass. The rule figures they quote ($240, $50, $500, $2,
+  25%, 50%) are stamped in the same block and registered, so the prose gate catches those.
   **Also re-stamp `cppOasGis`** (added 2026-07-18) — the single Service Canada schedule shared by
   CPP, OAS, GIS, the Allowance and the Allowance for the Survivor, sourced from the
   whole-of-government benefits calendar (`SRC.benefitsCalendar`) rather than the CRA page. It is

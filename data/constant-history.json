@@ -1858,6 +1858,15 @@
     "cadence": "january"
   },
   {
+    "key": "benefitPaymentDates2026.otbAnnualPayment",
+    "value": "2027-06-10",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
     "key": "ccb.benefitYear",
     "value": "July 2026 – June 2027",
     "effective_from": "2026-07-01",

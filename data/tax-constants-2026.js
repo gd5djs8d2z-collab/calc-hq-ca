@@ -117,6 +117,13 @@ const SRC = {
   // The whole-of-government benefits calendar — the one page carrying BOTH the Service
   // Canada pension dates (CPP / OAS / GIS) and the CRA benefit dates in a single place.
   benefitsCalendar: 'https://www.canada.ca/en/services/benefits/calendar.html',
+  // Per-benefit payment pages (stamped 2026-10-20 for the /key-dates-limits/*-payment-dates/ pages).
+  ccbPaymentDates:  'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/payment-dates.html',
+  cgebPaymentDates: 'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit/payment-dates.html',
+  gstTopUp:         'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/gst-hst-credit/one-time-top-up.html',
+  cgebMain:         'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit.html',
+  craOtb:           'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html',
+  ontarioOtb:       'https://www.ontario.ca/page/ontario-trillium-benefit',
   // ── Benefit-program sources (migrated out of rates-2026.js 2026-07-18) ──
   esaTermination: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment',
   esaSeverance:   'https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay',
@@ -894,7 +901,9 @@ export const TAX_CONSTANTS_2026 = {
 
   /* ── BENEFIT PAYMENT DATES (2026) — CRA monthly payment calendars ─────────── */
   // All four calendars confirmed live 2026-07-18 against the CRA "Payment dates for CRA
-  // administered benefits and credits" page (page date-modified 2026-07-09).
+  // administered benefits and credits" page (page date-modified 2026-07-09), and re-confirmed
+  // 2026-10-20 against the same page (modified 2026-10-14) and the whole-of-government calendar
+  // (modified 2026-08-07): every date identical on both. Neither lists any 2027 date yet.
   // NOTE: the GST/HST credit was RENAMED partway through 2026 — CRA lists Jan/Apr under
   // "GST/HST credit" and Jul/Oct under "Canada Groceries and Essentials Benefit (formerly
   // the GST/HST credit)". Both are kept separate below so the page can explain the change.
@@ -903,14 +912,14 @@ export const TAX_CONSTANTS_2026 = {
     _cadence: 'january', // the whole calendar re-issues each year
     ccb: { value: ['2026-01-20','2026-02-20','2026-03-20','2026-04-20','2026-05-20','2026-06-19',
                    '2026-07-20','2026-08-20','2026-09-18','2026-10-20','2026-11-20','2026-12-11'],
-           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' },
+           source_url: SRC.craBenefitDates, last_verified: '2026-10-20' },
     gstCredit: { value: ['2026-01-05','2026-04-02'],
-           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // old name, first half of 2026
+           source_url: SRC.craBenefitDates, last_verified: '2026-10-20' }, // old name, first half of 2026
     groceriesEssentials: { value: ['2026-07-03','2026-10-05'],
-           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // renamed program, from July 2026
+           source_url: SRC.craBenefitDates, last_verified: '2026-10-20' }, // renamed program, from July 2026
     ontarioTrillium: { value: ['2026-01-09','2026-02-10','2026-03-10','2026-04-10','2026-05-08','2026-06-10',
                    '2026-07-10','2026-08-10','2026-09-10','2026-10-09','2026-11-10','2026-12-10'],
-           source_url: SRC.craBenefitDates, last_verified: '2026-07-18' }, // paid as "Canada PRO" on bank statements
+           source_url: SRC.craBenefitDates, last_verified: '2026-10-20' }, // paid as "Canada PRO" on bank statements
 
     // ── Service Canada pensions: CPP, OAS, GIS ────────────────────────────────
     // ONE schedule covers all three. Confirmed 2026-07-18 on the whole-of-government
@@ -928,7 +937,21 @@ export const TAX_CONSTANTS_2026 = {
     // assume the other followed.
     cppOasGis: { value: ['2026-01-28','2026-02-25','2026-03-27','2026-04-28','2026-05-27','2026-06-26',
                    '2026-07-29','2026-08-27','2026-09-25','2026-10-28','2026-11-26','2026-12-22'],
-           source_url: SRC.benefitsCalendar, last_verified: '2026-07-18' },
+           source_url: SRC.benefitsCalendar, last_verified: '2026-10-20' },
+
+    // ── One-off and rule figures quoted on the per-benefit pages (stamped 2026-10-20) ──
+    // The one-time GST/HST credit top-up: paid once, outside the quarterly calendar.
+    gstTopUp: { value: '2026-06-05', source_url: SRC.gstTopUp, last_verified: '2026-10-20', cadence: 'statutory' },
+    // OTB taken as one annual payment (elected on the return, entitlement over $500): CRA's
+    // stated date for the 2026 benefit year. A published 2027 date, so not provisional.
+    otbAnnualPayment: { value: '2027-06-10', source_url: SRC.craOtb, last_verified: '2026-10-20', cadence: 'july' },
+    // Amounts that change WHEN a benefit is paid rather than how much — each restated on a page.
+    ccbLumpSumBelow: { value: 240, source_url: SRC.ccbPaymentDates,  last_verified: '2026-10-20', cadence: 'statutory' }, // yearly total under this → one July payment
+    cgebQuarterMin:  { value: 50,  source_url: SRC.cgebPaymentDates, last_verified: '2026-10-20', cadence: 'statutory' }, // quarterly amount under this → one July payment
+    otbLumpSumMax:   { value: 500, source_url: SRC.craOtb,           last_verified: '2026-10-20', cadence: 'statutory' }, // annual entitlement at or under this → one payment in the first month
+    cgebIncrease:    { value: 0.25, source_url: SRC.cgebMain,  last_verified: '2026-10-20', cadence: 'statutory' }, // July 2026 increase, in place 2026 to 2031
+    gstTopUpShare:   { value: 0.5,  source_url: SRC.gstTopUp,  last_verified: '2026-10-20', cadence: 'statutory' }, // top-up = this share of the July 2025–June 2026 annual credit, in most cases
+    otbNoPaymentMax: { value: 2,   source_url: SRC.ontarioOtb,       last_verified: '2026-10-20', cadence: 'statutory' }, // annual entitlement at or under this → not paid
   },
 
   /* ══════════════════════════════════════════════════════════════════════════
