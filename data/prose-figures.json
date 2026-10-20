@@ -55,7 +55,8 @@
     "/business/",
     "/benefits/oas/",
     "/payroll/payroll-deductions/",
-    "/payroll/take-home-pay/"
+    "/payroll/take-home-pay/",
+    "/payroll/pay-raise/"
   ],
   "allowlist": [
     {
@@ -297,6 +298,270 @@
       "surface": "jsonld",
       "anchor": "on {} in",
       "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "(2026) A {} raise doesn't",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "put {} in",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "year {} Want",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "raise from {} to {*}",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "to {} in",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "the {}, or",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "same {} raise",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "a {} raise,",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "play {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "out at {*} {} {*} {*} Same,",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "line {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "apply {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "ends at {*} {} {*} {*} Only",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "off {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "alone {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "arrived {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "layers {} {*}",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} between {} and {*},",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and {}, where",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "by {}, which",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "above {}. The",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "begins. A {} raise from",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "why the {} row and",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and the {} row each",
+      "reason": "Table row label: the starting salary of a row in the $6,000-raise table, quoted again in the prose; the row results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "provinces {} to",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "to {} keeps",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*}. A {} raise —",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "— {} to",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "of a {} raise do",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "salary from {} to {*}",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "to {} (checked",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "every {}), a",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*}), a {} raise nets",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "so a {} raise from",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "raise from {} keeps about",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "from {}. The",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "of a {} raise do",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "from {} to",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "to {} (checked",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "every {}), a",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "{*}), a {} raise nets",
+      "reason": "Example input: a parameter of the $5,000 sweep (start, end, step, raise size); the min/max results are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "so a {} raise from",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "from {} keeps",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "from {}. The",
+      "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
     }
   ],
   "figures": [
@@ -17992,6 +18257,888 @@
       "anchor": "about {} net",
       "source": {
         "engine": "1680 * 26"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "is {} on",
+      "source": {
+        "engine": "6000 / 60000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "paper and {} in your",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').netRaise / calcRaise(60000, 66000, 'ON').before.net"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "goes from {} to {*}",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').before.net"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} to {} — {*}",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').after.net"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} — {} of the",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "about {} more",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').biweeklyNet"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "The {} that",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').grossRaise - calcRaise(60000, 66000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "charges: {} of",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'ON').after.federalTax - calcRaise(60000, 66000, 'ON').before.federalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "federal tax, {} of Ontario",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'ON').after.provincialTax - calcRaise(60000, 66000, 'ON').before.provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Ontario tax, {} of CPP",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'ON').after.cpp - calcRaise(60000, 66000, 'ON').before.cpp)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'ON').after.ei - calcRaise(60000, 66000, 'ON').before.ei)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and filled the {} federal bracket,",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "the {} Ontario",
+      "source": {
+        "const": "provinces.ON.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "line {*} {} {*} {*}",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "line {*} {*} {} {*} federal and",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {*} {} federal and",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and {} Ontario",
+      "source": {
+        "const": "provinces.ON.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "apply {*} {} {*} EI",
+      "source": {
+        "engine": "calcRaise(70000, 76000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {} EI",
+      "source": {
+        "engine": "calcRaise(70000, 76000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {}; CPP1",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "ends at {} {*} {*}",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {*} {} {*} Only",
+      "source": {
+        "engine": "calcRaise(78000, 84000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {} Only",
+      "source": {
+        "engine": "calcRaise(78000, 84000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {} still",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "off {*} {} {*} CPP2",
+      "source": {
+        "engine": "calcRaise(85000, 91000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {} CPP2",
+      "source": {
+        "engine": "calcRaise(85000, 91000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {}; income",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "alone {*} {} {*} {*}",
+      "source": {
+        "engine": "calcRaise(110000, 116000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {*} {} {*} Ontario;",
+      "source": {
+        "engine": "calcRaise(110000, 116000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {} Ontario;",
+      "source": {
+        "const": "provinces.ON.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Ontario; {} surtax",
+      "source": {
+        "const": "provinces.ON.surtax.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "arrived {*} {} {*} {*}",
+      "source": {
+        "engine": "calcRaise(160000, 166000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "arrived {*} {*} {} {*} federal; both",
+      "source": {
+        "engine": "calcRaise(160000, 166000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {*} {} federal; both",
+      "source": {
+        "const": "federal.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "layers {*} {} {*} {*}",
+      "source": {
+        "engine": "calcRaise(200000, 206000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "layers {*} {*} {} {*} federal; health",
+      "source": {
+        "engine": "calcRaise(200000, 206000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} {*} {} federal; health",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "to {} by",
+      "source": {
+        "engine": "calcRaise(85000, 91000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "EI stops at {} of insurable earnings,",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "earnings, CPP at {} stops at {*},",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {}, and",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and the {} second tier",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {}. From",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "just above {} a raise",
+      "source": {
+        "engine": "Math.floor((() => { const t = TC.provinces.ON.surtax.value[0].over; let lo = 50000, hi = 250000; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (calcTakeHome(m, 'ON').provincialBasic > t) hi = m; else lo = m; } return hi; })() / 1000) * 1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "income — {} of basic",
+      "source": {
+        "const": "provinces.ON.surtax.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "over {}, and",
+      "source": {
+        "const": "provinces.ON.surtax.0.over"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and {} on",
+      "source": {
+        "const": "provinces.ON.surtax.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "over {}. In",
+      "source": {
+        "const": "provinces.ON.surtax.1.over"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "above {} and",
+      "source": {
+        "engine": "Math.floor((() => { const t = TC.provinces.ON.surtax.value[0].over; let lo = 50000, hi = 250000; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (calcTakeHome(m, 'ON').provincialBasic > t) hi = m; else lo = m; } return hi; })() / 1000) * 1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "above {}, a",
+      "source": {
+        "engine": "Math.floor((() => { const t = TC.provinces.ON.surtax.value[1].over; let lo = 50000, hi = 250000; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (calcTakeHome(m, 'ON').provincialBasic > t) hi = m; else lo = m; } return hi; })() / 1000) * 1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "the {} where",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "where the {} federal bracket",
+      "source": {
+        "const": "federal.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "raise from {} keeps {*}.",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "keeps {}. The",
+      "source": {
+        "engine": "calcRaise(TC.federal.brackets.value[2].min, TC.federal.brackets.value[2].min + 6000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {} until",
+      "source": {
+        "engine": "calcTakeHome(72000, 'ON').healthPremium"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "passes {}, then",
+      "source": {
+        "const": "provinces.ON.healthPremium.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "reaches {}, and",
+      "source": {
+        "engine": "calcTakeHome(200000, 'ON').healthPremium"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "until {}, where",
+      "source": {
+        "const": "provinces.ON.healthPremium.4.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "to {}. That",
+      "source": {
+        "const": "provinces.ON.healthPremiumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "up {} of",
+      "source": {
+        "engine": "(calcRaise(70000, 76000, 'ON').after.healthPremium - calcRaise(70000, 76000, 'ON').before.healthPremium)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "keeps {} in",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Ontario, {} in",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'AB').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Alberta, {} in",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'BC').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Columbia and {} in Quebec.",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'QC').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {} takes",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "takes {} where",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'QC').after.cpp - calcRaise(60000, 66000, 'QC').before.cpp)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "takes {}, QPIP",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'ON').after.cpp - calcRaise(60000, 66000, 'ON').before.cpp)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "adds {} and",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'QC').after.qpip - calcRaise(60000, 66000, 'QC').before.qpip)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "reduced {} federal",
+      "source": {
+        "const": "ei.quebec.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "adds {}, and",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'QC').after.ei - calcRaise(60000, 66000, 'QC').before.ei)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "takes {} of",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'QC').after.provincialTax - calcRaise(60000, 66000, 'QC').before.provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Ontario's {}. The",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'ON').after.provincialTax - calcRaise(60000, 66000, 'ON').before.provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "— {} after",
+      "source": {
+        "engine": "(calcRaise(60000, 66000, 'QC').after.federalTax - calcRaise(60000, 66000, 'QC').before.federalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "by {} for",
+      "source": {
+        "const": "federal.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "by {}. A",
+      "source": {
+        "const": "provinces.ON.indexationFactor"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "{*} to {} — nets",
+      "source": {
+        "engine": "60000 * 1.02"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "nets {}, keeps",
+      "source": {
+        "engine": "calcRaise(60000, 61200, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "same {} as",
+      "source": {
+        "engine": "calcRaise(60000, 61200, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "keeping 60–{} of",
+      "source": {
+        "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "Yes. EI stops at {} of insurable earnings and",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and CPP at {} stops at {*},",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "at {}, with",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "with the {} second tier",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "to {}. Above",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "about {} in",
+      "source": {
+        "engine": "calcRaise(85000, 91000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "against {} from",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "surtax and the {} federal bracket pull",
+      "source": {
+        "const": "federal.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "past {}. Do",
+      "source": {
+        "engine": "Math.floor((() => { const t = TC.provinces.ON.surtax.value[0].over; let lo = 50000, hi = 250000; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (calcTakeHome(m, 'ON').provincialBasic > t) hi = m; else lo = m; } return hi; })() / 1000) * 1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "keeping 60–{} of",
+      "source": {
+        "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "at {} of",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "at {} stops",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "at {}, with",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "the {} second",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "to {}. Above",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "about {} in",
+      "source": {
+        "engine": "calcRaise(85000, 91000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "against {} from",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').keptShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "the {} federal",
+      "source": {
+        "const": "federal.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "past {}.",
+      "source": {
+        "engine": "Math.floor((() => { const t = TC.provinces.ON.surtax.value[0].over; let lo = 50000, hi = 250000; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (calcTakeHome(m, 'ON').provincialBasic > t) hi = m; else lo = m; } return hi; })() / 1000) * 1000"
       },
       "format": "exact"
     }

@@ -429,10 +429,13 @@ select.input {
 /* Tables whose cells are short sentences rather than figures: let them wrap and read left. */
 .compare-table.text-cells { min-width: 0; }
 .compare-table.text-cells th, .compare-table.text-cells td { white-space: normal; text-align: left; vertical-align: top; }
+/* One sentence column at the end of a figure table: wrap it and read it left. */
+.compare-table th.note, .compare-table td.note { white-space: normal; text-align: left; }
 /* Narrow figure tables (a few numeric columns, long headers): drop the minimum width and let
    only the headers wrap, so they fit a phone without scrolling. */
 .compare-table.fit, .compare-table.stack { min-width: 0; }
 .compare-table.fit thead th, .compare-table.stack thead th { white-space: normal; vertical-align: bottom; }
+.compare-table.fit td:first-child { white-space: normal; }
 /* Wide figure tables: below 40rem each row becomes a card, one labelled line per cell. The
    label comes from the cell's data-label, so the cell text — and every registered figure —
    is unchanged. 40rem is where five figure columns stop fitting the content column. */
