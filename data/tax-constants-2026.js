@@ -87,6 +87,15 @@ const SRC = {
   peAct:     'https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf',
   yukon:     'https://yukon.ca/en/yukon-historical-tax-rates',
   nlFin:     'https://www.gov.nl.ca/fin/tax-programs-incentives/personal/personalincometax/',
+  // Low-income tax reductions and Manitoba's BPA phase-out (stamped 2026-10-20). Each statute
+  // was read in the consolidation current on that date; see MAINTENANCE.md audit log 2026-10-20.
+  nlLitrReg: 'https://www.assembly.nl.ca/Legislation/sr/regulations/rc260018.htm', // NLR 18/26: the 2026 amounts
+  nlAct:     'https://www.assembly.nl.ca/Legislation/sr/statutes/i01-1.htm',        // Income Tax Act, 2000: s.21.1 (LITR), s.6.1 (indexing)
+  nbAct:     'https://laws.gnb.ca/en/document/cs/N-6.001',                         // New Brunswick Income Tax Act: s.49.1 (LITR), s.16.1 (indexing)
+  nsAct:     'https://nslegislature.ca/sites/default/files/legc/statutes/income%20tax.pdf', // Income Tax Act (NS), s.35(4), current to Sept 3, 2026
+  mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
+  mbCredits: 'https://www.gov.mb.ca/finance/personal/pcredits.html',
+  mbAct:     'https://web2.gov.mb.ca/laws/statutes/ccsm/i010.php',               // The Income Tax Act (C.C.S.M. c. I10), s.4.6(16.1), current as of Oct 16, 2026
   onTaxAct:  'https://www.ontario.ca/laws/statute/07t11', // Taxation Act, 2007 (e-Laws; needs JavaScript to render)
   craLimits: 'https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html',
   fhsa:      'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html',
@@ -556,6 +565,20 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: T4032('mb'), last_verified: '2026-07-13' },
       bpa: { value: 15780, source_url: T4032('mb'), last_verified: '2026-07-13' },
       bpaCreditRate: { value: 0.108, source_url: T4032('mb'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
+      // BPA PHASE-OUT (since the 2025 tax year; gov.mb.ca credits page): the $15,780 shrinks in a
+      // straight line to $0 as net income goes from $200,000 to $400,000. CRA's 2026 T4127 states
+      // the same formula for 2026 — BPAMB = $15,780 − (NI − $200,000) × ($15,780 / $200,000) —
+      // as does Worksheet MB428 for 2025. Same linear shape as Yukon's, so it uses bpaPhaseOut.
+      bpaPhaseOut: { value: { max: 15780, min: 0, phaseOutStart: 200000, phaseOutEnd: 400000 },
+                     source_url: SRC.mbBpa, last_verified: '2026-10-20', cadence: 'january' },
+      // FAMILY TAX BENEFIT (The Income Tax Act s.4.6(16.1), current as of Oct 16, 2026; Schedule
+      // MB428-A for 2025 shows the same): a non-refundable credit AMOUNT of $2,065, less 9% of the
+      // individual's income, valued at the lowest rate like the BPA — worth up to $223 and nil at
+      // $22,944. Every filer gets the $2,065 basic amount; the spouse, dependant, age and
+      // disability add-ons need inputs the calculators don't collect, so only the basic amount is
+      // modelled. Not indexed (Manitoba froze indexation from 2025), hence statutory.
+      familyTaxBenefit: { value: { amount: 2065, rate: 0.09 },
+                          source_url: SRC.mbAct, last_verified: '2026-10-20', cadence: 'statutory' },
     },
 
     NS: {
@@ -569,6 +592,14 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: T4032('ns'), last_verified: '2026-07-13' },
       bpa: { value: 11932, source_url: T4032('ns'), last_verified: '2026-07-13' }, // income-testing removed in 2025 — now flat
       bpaCreditRate: { value: 0.0879, source_url: T4032('ns'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
+      // LOW-INCOME TAX REDUCTION (Income Tax Act s.35(4), consolidation current to Sept 3, 2026):
+      // $300, less 5% of adjusted family income over $15,000, never below zero — so nil at
+      // $21,000 for a single filer. NOT indexed: Nova Scotia's 2025-26 indexation covers the
+      // brackets and five named credits only (novascotia.ca indexation page), and the 2025 NS428
+      // shows the same $300 / $15,000 / 5%. Single-filer part only: the $300 spouse/dependant and
+      // $165-per-child amounts need inputs the calculators don't collect.
+      taxReduction: { value: { base: 300, threshold: 15000, rate: 0.05 },
+                      source_url: SRC.nsAct, last_verified: '2026-10-20', cadence: 'statutory' },
     },
 
     NB: {
@@ -581,6 +612,18 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: T4032('nb'), last_verified: '2026-07-13' },
       bpa: { value: 13664, source_url: T4032('nb'), last_verified: '2026-07-13' },
       bpaCreditRate: { value: 0.094, source_url: T4032('nb'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
+      // LOW-INCOME TAX REDUCTION (Income Tax Act s.49.1). The 2026 figures are DERIVED — CRA's
+      // 2026 NB428 isn't out until January 2027 and gnb.ca stops at 2025 — by the Act's own rules:
+      //  threshold: s.49.1(2)(d)(ii)'s $19,177 (2022) is indexed under s.16.1, chained unrounded;
+      //    the chain reproduces gnb.ca's $20,385 / $21,343 / $21,920 for 2023-25, and NB's 2.0%
+      //    factor for 2026 (CRA T4032NB) takes 21,919.52 to 22,357.91 → $22,358.
+      //  base: s.49.1(2)(a) = lowest rate × (threshold − BPA), rounded UP → ⌈0.094 × (22,358 −
+      //    13,664)⌉ = ⌈817.24⌉ = $818 (the same formula gives the 2025 NB428's $802 exactly).
+      //  rate: 3% (s.49.1(2.01) reads the 4% in (2)(d) as 3% from 2010; NB428 2025 agrees).
+      // Nil at $49,625. Single-filer part only (spouse/dependant amounts need inputs the
+      // calculators don't collect). Re-stamp from the 2026 NB428 when it lands.
+      taxReduction: { value: { base: 818, threshold: 22358, rate: 0.03 },
+                      source_url: SRC.nbAct, last_verified: '2026-10-20', cadence: 'january' },
     },
 
     NL: {
@@ -604,6 +647,16 @@ export const TAX_CONSTANTS_2026 = {
       // not a phase-in target (corrected 2026-10-20).
       bpa: { value: 13094, source_url: SRC.nlFin, last_verified: '2026-07-15' },
       bpaCreditRate: { value: 0.087, source_url: SRC.nlFin, last_verified: '2026-07-15' }, // = brackets[0].rate (lowest-rate rule)
+      // LOW-INCOME TAX REDUCTION (Income Tax Act, 2000 s.21.1): A − 16% × (adjusted income −
+      // threshold). A for 2026 is $842 (NLR 18/26 s.3(b)(i), filed May 14, 2026 — down from
+      // 2025's $997 as the budget raised the BPA). The single threshold is DERIVED: s.21.1(2)(b)
+      // is indexed under s.6.1 by NL's CPI factor, 1.1% for 2026 (CRA T4032NL), so 2025's
+      // $23,928 (NL428 2025; gov.nl.ca) → 24,191.2 → $24,191. s.6.1 chains the UNROUNDED prior
+      // amount, so this can be $1 off (16¢ of tax at most). Nil at $29,454. Single-filer part
+      // only: B ($563 for a spouse or eligible dependant) needs inputs the calculators don't
+      // collect. Re-stamp from the 2026 NL428 when it lands.
+      taxReduction: { value: { base: 842, threshold: 24191, rate: 0.16 },
+                      source_url: SRC.nlLitrReg, last_verified: '2026-10-20', cadence: 'january' },
     },
 
     PE: {
@@ -625,6 +678,14 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: SRC.peAct, last_verified: '2026-10-18' },
       bpa: { value: 15000, source_url: SRC.peAct, last_verified: '2026-10-18' },
       bpaCreditRate: { value: 0.095, source_url: SRC.peAct, last_verified: '2026-10-18' }, // = brackets[0].rate (lowest-rate rule)
+      // LOW-INCOME TAX REDUCTION (Income Tax Act s.32(2), consolidation current to May 29, 2026,
+      // last amended 2025, c.6, s.3): $350, less 5% of adjusted income over $23,000 — up from
+      // 2025's $22,650 (PE428 2025), as PEI's Poverty Elimination Strategy report also records.
+      // Nil at $30,000. An eligible individual includes anyone 19 or older (s.32(1)(b)(iii)).
+      // Single-filer part only: the spouse, dependant, $300-per-child and $250 age-65 amounts need
+      // inputs the calculators don't collect.
+      taxReduction: { value: { base: 350, threshold: 23000, rate: 0.05 },
+                      source_url: SRC.peAct, last_verified: '2026-10-20', cadence: 'january' },
     },
 
     YT: {

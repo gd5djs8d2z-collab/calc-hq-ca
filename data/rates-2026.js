@@ -94,7 +94,7 @@ export const QUEBEC = {
 
 /* ── PROVINCES & TERRITORIES ─────────────────────────────────────────────── */
 // Derived from TC.provinces, reconstructing the exact shape the engine reads. Optional
-// fields (surtax, healthPremium, taxReduction, ontarioTaxReduction, ontarioLift, bpaPhaseOut,
+// fields (surtax, healthPremium, taxReduction, ontarioTaxReduction, ontarioLift, bpaPhaseOut, familyTaxBenefit,
 // includesCanadaEmploymentAmount)
 // are attached only where a jurisdiction defines them.
 function buildProvince(p) {
@@ -115,6 +115,7 @@ function buildProvince(p) {
   if (p.includesCanadaEmploymentAmount) out.includesCanadaEmploymentAmount = true;
   if (p.bpaBundlesContributions) out.bpaBundlesContributions = true;
   if (p.workerDeduction) out.workerDeduction = v(p.workerDeduction);
+  if (p.familyTaxBenefit) out.familyTaxBenefit = v(p.familyTaxBenefit);
   return out;
 }
 

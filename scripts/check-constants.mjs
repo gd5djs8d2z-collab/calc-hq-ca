@@ -57,6 +57,7 @@ export const STRUCTURAL_EXEMPT = new Set([
 export const NEVER_EXEMPT = new Set([
   'bpaCreditRate', 'healthPremiumMax', 'selfEmployedMultiplier', 'bpa', 'brackets',
   'surtax', 'healthPremium', 'taxReduction', 'ontarioTaxReduction', 'ontarioLift', 'bpaPhaseOut', 'workerDeduction',
+  'familyTaxBenefit',
   'rate', 'maxContribution', 'exemption', 'ympe', 'yampe', 'maxInsurableEarnings',
   'smallSupplierThreshold',
 ]);
@@ -149,6 +150,25 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
     // silently under/over-state tax for every filer in that jurisdiction.
     if (credit !== brackets[0].rate) {
       bad.push(`provinces.${code}: bpaCreditRate ${credit} !== brackets[0].rate ${brackets[0].rate}`);
+    }
+    // A phased-out BPA starts from the BPA itself (Yukon from the federal maximum, Manitoba from
+    // its frozen $15,780). Stamped separately, so a January update to one must move the other.
+    const po = p.bpaPhaseOut?.value, bpa = p.bpa?.value;
+    if (po && typeof bpa === 'number' && po.max !== bpa) {
+      bad.push(`provinces.${code}: bpaPhaseOut.max ${po.max} !== bpa ${bpa}`);
+    }
+  }
+
+  // ── New Brunswick low-income tax reduction: base is a formula of other stamps ────────────
+  // s.49.1(2)(a): the base is the lowest rate × (threshold − NB BPA), rounded UP to the dollar.
+  // All three inputs are stamped separately, so a January re-index of the BPA or the threshold
+  // that leaves the base behind is caught here rather than mis-pricing every low-income NB filer.
+  const nb = root.provinces?.NB, nbTr = nb?.taxReduction?.value;
+  if (nbTr && typeof nb.bpa?.value === 'number' && Array.isArray(nb.brackets?.value)) {
+    const expected = Math.ceil(Math.round(nb.brackets.value[0].rate * (nbTr.threshold - nb.bpa.value) * 1e6) / 1e6);
+    if (nbTr.base !== expected) {
+      bad.push(`provinces.NB.taxReduction.base ${nbTr.base} !== ⌈${nb.brackets.value[0].rate} × ` +
+        `(threshold ${nbTr.threshold} − bpa ${nb.bpa.value})⌉ = ${expected} (NB Income Tax Act s.49.1(2)(a))`);
     }
   }
 

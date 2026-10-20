@@ -330,6 +330,62 @@ check('ON health premium: engine and data array agree at every dollar $0–$400,
     healthPremiumMismatches(c.provinces.ON.healthPremium.value) > 0, true);
 }
 
+/* ── Invariant 6: a phased-out BPA starts from the BPA ───────────────────────────
+ * Manitoba and Yukon stamp bpa and bpaPhaseOut.max separately; a January update to one
+ * must move the other. */
+check('bpaPhaseOut: real data is clean',
+  invariants(base, TAX_YEAR).filter((x) => x.includes('bpaPhaseOut.max')).length, 0);
+
+{ // Manitoba re-stamping its BPA without the phase-out must fire
+  const c = structuredClone(base);
+  c.provinces.MB.bpa.value = 16000;
+  check('bpaPhaseOut: MB bpa moving alone fires',
+    only(invariants(c, TAX_YEAR), 'provinces.MB: bpaPhaseOut.max').length, 1);
+}
+
+{ // ...and from the phase-out side, for Yukon
+  const c = structuredClone(base);
+  c.provinces.YT.bpaPhaseOut.value.max = 16500;
+  check('bpaPhaseOut: YT max moving alone fires',
+    only(invariants(c, TAX_YEAR), 'provinces.YT: bpaPhaseOut.max').length, 1);
+}
+
+/* ── Invariant 7: NB low-income reduction base = ⌈lowest rate × (threshold − BPA)⌉ ──
+ * NB Income Tax Act s.49.1(2)(a). Three separate stamps feed the formula. */
+check('nb-litr: real data is clean',
+  only(invariants(base, TAX_YEAR), 'provinces.NB.taxReduction').length, 0);
+
+{ // re-indexing the threshold but not the base must fire
+  const c = structuredClone(base);
+  c.provinces.NB.taxReduction.value.threshold += 500;
+  check('nb-litr: threshold moving alone fires',
+    only(invariants(c, TAX_YEAR), 'provinces.NB.taxReduction').length, 1);
+}
+
+{ // re-stamping the NB BPA but not the base must fire
+  const c = structuredClone(base);
+  c.provinces.NB.bpa.value += 300;
+  check('nb-litr: BPA moving alone fires',
+    only(invariants(c, TAX_YEAR), 'provinces.NB.taxReduction').length, 1);
+}
+
+{ // THE ROUNDING GUARD: the Act rounds UP, so the base is the ceiling, never the nearest dollar.
+  // 0.094 × 8,694 = 817.24 → $818; a base of $817 (rounded to nearest) must fire.
+  const c = structuredClone(base);
+  c.provinces.NB.taxReduction.value.base = Math.round(0.094 * (c.provinces.NB.taxReduction.value.threshold - c.provinces.NB.bpa.value));
+  check('nb-litr: a nearest-dollar base fires',
+    only(invariants(c, TAX_YEAR), 'provinces.NB.taxReduction').length, 1);
+}
+
+{ // all three moved together, consistently, stays quiet
+  const c = structuredClone(base);
+  const t = c.provinces.NB.taxReduction.value;
+  t.threshold += 400; c.provinces.NB.bpa.value += 300;
+  t.base = Math.ceil(0.094 * (t.threshold - c.provinces.NB.bpa.value));
+  check('nb-litr: a consistent re-index stays quiet',
+    only(invariants(c, TAX_YEAR), 'provinces.NB.taxReduction').length, 0);
+}
+
 /* ── report ─────────────────────────────────────────────────────────────────── */
 const failed = results.filter((r) => !r.ok);
 const lines = ['cross-field invariant negative tests', ''];

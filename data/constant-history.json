@@ -845,6 +845,20 @@
     "cadence": "january"
   },
   {
+    "key": "provinces.MB.bpaPhaseOut",
+    "value": {
+      "max": 15780,
+      "min": 0,
+      "phaseOutStart": 200000,
+      "phaseOutEnd": 400000
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "provinces.NS.brackets",
     "value": [
       {
@@ -946,6 +960,19 @@
     "cadence": "january"
   },
   {
+    "key": "provinces.NB.taxReduction",
+    "value": {
+      "base": 818,
+      "threshold": 22358,
+      "rate": 0.03
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://laws.gnb.ca/en/document/cs/N-6.001",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "provinces.NL.brackets",
     "value": [
       {
@@ -1014,6 +1041,19 @@
     "cadence": "january"
   },
   {
+    "key": "provinces.NL.taxReduction",
+    "value": {
+      "base": 842,
+      "threshold": 24191,
+      "rate": 0.16
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.assembly.nl.ca/Legislation/sr/regulations/rc260018.htm",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "provinces.PE.brackets",
     "value": [
       {
@@ -1127,6 +1167,19 @@
     "effective_to": null,
     "source_url": "https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf",
     "verified_at": "2026-10-18",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.PE.taxReduction",
+    "value": {
+      "base": 350,
+      "threshold": 23000,
+      "rate": 0.05
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.princeedwardisland.ca/sites/default/files/0432/I-01-Income%20Tax%20Act.pdf",
+    "verified_at": "2026-10-20",
     "cadence": "january"
   },
   {

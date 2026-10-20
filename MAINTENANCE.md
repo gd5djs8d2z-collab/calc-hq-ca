@@ -695,6 +695,38 @@ both sides match, so change them back to back.
 
 # AUDIT LOG
 
+## 2026-10-20 — Five unmodelled rules stamped: MB's BPA phase-out and family tax benefit, four low-income reductions
+
+**Found** building the tax-bracket pages: the engine charged MB, NL, NB, NS and PE on brackets and
+BPA alone, so MB tax was under-stated at $200k+ and over-stated at low incomes, and NL/NB/NS/PE tax
+over-stated for low-income single filers. No constant was wrong; five rules were missing.
+
+**Stamped** (single-filer parts only; spouse, dependant, child and age add-ons need inputs the
+calculators don't collect, and the pages say so):
+
+| Leaf | 2026 value | Source | How the 2026 figure was reached |
+|---|---|---|---|
+| `provinces.MB.bpaPhaseOut` | $15,780 → $0 over $200k–$400k net income | CRA T4127 Jan 2026 (`SRC.mbBpa`); gov.mb.ca credits page; Worksheet MB428 2025 | read directly |
+| `provinces.MB.familyTaxBenefit` | $2,065 − 9% of income, valued at 10.8% | Income Tax Act C.C.S.M. c. I10 s.4.6(16.1), current to Oct 16, 2026 (`SRC.mbAct`) | read directly; not indexed |
+| `provinces.NL.taxReduction` | $842 − 16% over $24,191 | NLR 18/26 s.3(b) (`SRC.nlLitrReg`); Income Tax Act, 2000 s.21.1, s.6.1 | base read directly; **threshold derived**: 2025's $23,928 × 1.011 (NL's 2026 factor, CRA T4032NL). s.6.1 chains the unrounded figure, so it can be $1 off |
+| `provinces.NB.taxReduction` | $818 − 3% over $22,358 | Income Tax Act s.49.1, s.16.1 (`SRC.nbAct`) | **derived**: the s.16.1 CPI chain from the 2022 $19,177 reproduces gnb.ca's 2023–25 thresholds, then NB's 2.0% for 2026; base = ⌈9.4% × (threshold − BPA)⌉ per s.49.1(2)(a), which also gives 2025's $802 |
+| `provinces.NS.taxReduction` | $300 − 5% over $15,000 | Income Tax Act s.35(4), current to Sept 3, 2026 (`SRC.nsAct`) | read directly; not on NS's indexation list |
+| `provinces.PE.taxReduction` | $350 − 5% over $23,000 | Income Tax Act s.32(2), current to May 29, 2026 (`SRC.peAct`) | read directly (2025: $22,650) |
+
+**January 2027:** re-stamp NL and NB from the 2026 NL428 and NB428 the moment CRA publishes them —
+those two thresholds (and NB's base) are derivations, not published figures. A new invariant ties
+NB's base to its threshold, BPA and lowest rate, and another ties every `bpaPhaseOut.max` to its
+`bpa`, so a January update that moves one input alone fails the check.
+
+**Impact (engine, salary, before → after):** MB +$426 at $250k, +$1,278 at $350k, +$1,704 from
+$400k; −$29 at $20k. NL up to −$747 (at $25k), NB up to −$745 (at $25k), NS up to −$188 (at $15k),
+PE up to −$350 (at $20k). The other eight jurisdictions are byte-identical across every engine
+entry point at every $250 from $0 to $600,000.
+
+**Not fixed, noticed in passing:** the structural `indexation` field reads 0.02 for NL and 0.021 for
+NS, but CRA's T4032NL gives NL 1.1% for 2026 and novascotia.ca gives NS 1.6%. Nothing in the
+engine reads the field; it is documentation that is wrong.
+
 ## 2026-10-17 — BC lowest rate restored to 5.60% (the 2026-07-23 "correction" was the error)
 
 **Found** while cross-checking all 14 bracket sets for the tax-bracket pages. `provinces.BC

@@ -120,10 +120,12 @@ function ontarioHealthPremium(taxableIncome) {
 }
 
 /**
- * BC tax reduction credit — a non-refundable low-income reduction applied against
- * provincial tax. Full base amount when net income is at/under the threshold, then
- * reduced by rate × (net income − threshold); it can lower BC tax to zero but never
- * below. netIncome here is the taxable-income proxy the engine already uses (≈ line
+ * Low-income tax reduction — BC's tax reduction and the NL, NB, NS and PE low-income tax
+ * reductions all take this shape, applied against provincial tax after the credits. Full
+ * base amount when net income is at/under the threshold, then reduced by rate × (net
+ * income − threshold); it can lower provincial tax to zero but never below. Only the
+ * single-filer base is modelled — the spouse, dependant and child amounts need inputs the
+ * calculators don't collect. netIncome here is the taxable-income proxy the engine already uses (≈ line
  * 23600 for a simple employment case). Returns 0 when the province defines no reduction.
  */
 function provincialTaxReduction(prov, netIncome) {
@@ -134,8 +136,9 @@ function provincialTaxReduction(prov, netIncome) {
 
 /**
  * Provincial basic personal amount. Flat for most jurisdictions; Yukon uses the
- * federal income-tested BPA (max down to min across a net-income band), so a
- * province may instead define `bpaPhaseOut`.
+ * federal income-tested BPA (max down to min across a net-income band) and Manitoba
+ * phases its BPA out to $0 between $200,000 and $400,000, so a province may instead
+ * define `bpaPhaseOut`.
  */
 function provincialBPA(prov, netIncome) {
   const p = prov.bpaPhaseOut;
@@ -168,10 +171,18 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
   // surtax rides on the reduced provincial tax automatically. Defaults to 0, so every
   // existing caller's output is unchanged.
   creditBase += extraCredit;
+  // Manitoba family tax benefit (Income Tax Act s.4.6(16.1)): a credit AMOUNT of the basic $2,065
+  // less 9% of income, valued at the lowest rate with the other credits. Only the basic amount —
+  // the spouse, dependant, age and disability add-ons need inputs the calculators don't collect.
+  // Income is netIncome, the same figure the BPA phase-outs read.
+  if (prov.familyTaxBenefit) {
+    const f = prov.familyTaxBenefit;
+    creditBase += Math.max(0, f.amount - f.rate * netIncome);
+  }
   const credits = creditBase * prov.bpaCreditRate;
   basic = Math.max(0, basic - credits);
 
-  // Provincial tax reduction (e.g. BC's low-income reduction) — capped at tax payable.
+  // Provincial low-income tax reduction (BC, NL, NB, NS, PE) — capped at tax payable.
   const reduction = Math.min(basic, provincialTaxReduction(prov, taxableIncome));
   basic = Math.max(0, basic - reduction);
 
