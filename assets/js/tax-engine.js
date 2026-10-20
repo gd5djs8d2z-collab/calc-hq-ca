@@ -179,7 +179,11 @@ function provincialTax(taxableIncome, code, { cppBase, eiPremium, netIncome = ta
     const f = prov.familyTaxBenefit;
     creditBase += Math.max(0, f.amount - f.rate * netIncome);
   }
-  const credits = creditBase * prov.bpaCreditRate;
+  let credits = creditBase * prov.bpaCreditRate;
+  // Alberta supplemental tax credit (Act s.20.2): a quarter of the credits above the indexed
+  // threshold, so credit amounts above $61,200 count at 10% rather than 8%. It only arises with
+  // very large credit claims; at the basic amounts it is nil, so no ordinary output changes.
+  if (prov.supplementalCredit) credits += Math.max(0, (credits - prov.supplementalCredit.threshold) * prov.supplementalCredit.rate);
   basic = Math.max(0, basic - credits);
 
   // Provincial low-income tax reduction (BC, NL, NB, NS, PE) — capped at tax payable.

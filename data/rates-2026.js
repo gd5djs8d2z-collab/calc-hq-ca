@@ -116,6 +116,7 @@ function buildProvince(p) {
   if (p.bpaBundlesContributions) out.bpaBundlesContributions = true;
   if (p.workerDeduction) out.workerDeduction = v(p.workerDeduction);
   if (p.familyTaxBenefit) out.familyTaxBenefit = v(p.familyTaxBenefit);
+  if (p.supplementalCredit) out.supplementalCredit = v(p.supplementalCredit);
   return out;
 }
 

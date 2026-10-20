@@ -638,6 +638,18 @@
     "cadence": "january"
   },
   {
+    "key": "provinces.AB.supplementalCredit",
+    "value": {
+      "threshold": 4896,
+      "rate": 0.25
+    },
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://kings-printer.alberta.ca/documents/Acts/a30.pdf",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "provinces.BC.brackets",
     "value": [
       {

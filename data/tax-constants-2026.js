@@ -98,6 +98,8 @@ const SRC = {
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
+  abAct:     'https://kings-printer.alberta.ca/documents/Acts/a30.pdf', // Alberta Personal Income Tax Act: s.20.2 (supplemental tax credit), s.44.2 (indexing)
+  abWorksheet:'https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package/alberta/5009-d.html', // Worksheet AB428, line 61545
   t4127JulRates:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/rates-income-thresholds-constants-26e.csv', // Table 8.1, effective July 1, 2026
   t4127JulOther:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/other-rates-amounts-26e.csv',       // Table 8.2, effective July 1, 2026
   mbCredits: 'https://www.gov.mb.ca/finance/personal/pcredits.html',
@@ -552,6 +554,14 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: T4032('ab'), last_verified: '2026-07-14' },
       bpa: { value: 22769, source_url: T4032('ab'), last_verified: '2026-07-14' },
       bpaCreditRate: { value: 0.08, source_url: T4032('ab'), last_verified: '2026-07-14' }, // = brackets[0].rate (lowest-rate rule)
+      // SUPPLEMENTAL TAX CREDIT (Alberta Personal Income Tax Act s.20.2, from 2025): (A − $4,800) × 0.25,
+      // where A is the credits under ss.8–10, 12–13.1, 18, 19 and 20.1 at 8% — the personal, age,
+      // pension, medical, impairment, adoption, student-loan, CPP/EI and transferred credits, NOT
+      // donations (s.11) or tuition (s.17). Worksheet AB428 line 61545 (2025) computes the same:
+      // 25% × (8% × (line 58800 − line 58560) − $4,800). The $4,800 is indexed by s.44.2 with the
+      // Alberta escalator, 2% for 2026 (T4127 Table 8.2), so $4,896 = 8% × $61,200: credit amounts
+      // above $61,200 are valued at 10% rather than 8%. T4127's payroll K5P is the same formula.
+      supplementalCredit: { value: { threshold: 4896, rate: 0.25 }, source_url: SRC.abAct, last_verified: '2026-10-20' },
     },
 
     BC: {

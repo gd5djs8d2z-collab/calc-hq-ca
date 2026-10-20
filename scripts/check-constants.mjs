@@ -58,7 +58,7 @@ export const STRUCTURAL_EXEMPT = new Set([
 export const NEVER_EXEMPT = new Set([
   'bpaCreditRate', 'healthPremiumMax', 'selfEmployedMultiplier', 'bpa', 'brackets',
   'surtax', 'healthPremium', 'taxReduction', 'ontarioTaxReduction', 'ontarioLift', 'bpaPhaseOut', 'workerDeduction',
-  'familyTaxBenefit',
+  'familyTaxBenefit', 'supplementalCredit',
   'rate', 'maxContribution', 'exemption', 'ympe', 'yampe', 'maxInsurableEarnings',
   'smallSupplierThreshold',
 ]);
@@ -173,6 +173,8 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
       ['BC.taxReductionRate', pj.BC?.taxReductionRate?.value, 'provinces.BC.taxReduction.rate', pv.BC?.taxReduction?.value?.rate],
       ['NL.bpaAnnual', pj.NL?.bpaAnnual?.value, 'provinces.NL.bpa', pv.NL?.bpa?.value],
       ['PE.topRateAnnual', pj.PE?.topRateAnnual?.value, 'provinces.PE.brackets[last].rate', pv.PE?.brackets?.value?.at(-1)?.rate],
+      ['AB.k5pThreshold', pj.AB?.k5pThreshold?.value, 'provinces.AB.supplementalCredit.threshold', pv.AB?.supplementalCredit?.value?.threshold],
+      ['AB.k5pRate', pj.AB?.k5pRate?.value, 'provinces.AB.supplementalCredit.rate', pv.AB?.supplementalCredit?.value?.rate],
     ];
     for (const [a, av, b, bv] of pairs) if (av !== bv) bad.push(`payrollJuly2026.${a} ${av} !== ${b} ${bv}`);
   }
