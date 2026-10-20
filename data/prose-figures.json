@@ -56,7 +56,8 @@
     "/benefits/oas/",
     "/payroll/payroll-deductions/",
     "/payroll/take-home-pay/",
-    "/payroll/pay-raise/"
+    "/payroll/pay-raise/",
+    "/payroll/self-employed-tax/"
   ],
   "allowlist": [
     {
@@ -562,6 +563,96 @@
       "surface": "jsonld",
       "anchor": "from {}. The",
       "reason": "Example input: a salary or raise the worked example starts from; the figures computed from it are registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "CPP {} Want",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "same {}, as",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Put {} through",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "same {} as",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "At {} the",
+      "reason": "Example input: the $100,000 net income at which the calculator is quoted; the CPP and tax it shows are registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "On {} that",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "per {} of",
+      "reason": "Unit of a per-$100 rate (\"$1.63 per $100\"): a fixed denominator, not a figure; the rate itself is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "on {}, which",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "on {}. QPIP",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "per {} to",
+      "reason": "Unit of a per-$100 rate (\"$1.63 per $100\"): a fixed denominator, not a figure; the rate itself is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "on {} is",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "on {} self-employed?",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "On {} of",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "on {} self-employed?",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "On {} of",
+      "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
     }
   ],
   "figures": [
@@ -19139,6 +19230,636 @@
       "anchor": "past {}.",
       "source": {
         "engine": "Math.floor((() => { const t = TC.provinces.ON.surtax.value[0].over; let lo = 50000, hi = 250000; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (calcTakeHome(m, 'ON').provincialBasic > t) hi = m; else lo = m; } return hi; })() / 1000) * 1000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "is {}, it",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').totalObligation"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "tax {} {*}",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*} {} Ontario",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "premium {*} {} CPP, your",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "half {} {*}",
+      "source": {
+        "engine": "calcTakeHome(45000, 'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "half {*} {} CPP, the",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').cpp / 2"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "— {} EI",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').cpp / 2"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*} {} Total",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').ei"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*} {} Left",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').totalObligation"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*} {} The",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').afterTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "the {} of",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').cpp / 2"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "self-employed {} is",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').totalObligation"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "is {}, and",
+      "source": {
+        "engine": "TC.cpp.rate.value * TC.cpp.selfEmployedMultiplier.value"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "— {} of",
+      "source": {
+        "engine": "TC.cpp.rate.value * TC.cpp.selfEmployedMultiplier.value"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "between {} and",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "and {}, a",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "of {}. Above",
+      "source": {
+        "const": "cpp.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Above {} the",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "takes {} up",
+      "source": {
+        "const": "cpp.cpp2.selfEmployedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "to {}, another",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "another {} at",
+      "source": {
+        "const": "cpp.cpp2.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "is {} and",
+      "source": {
+        "engine": "TC.cpp.maxSelfEmployedContribution.value + TC.cpp.cpp2.maxSelfEmployedContribution.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "it at {} of net",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "shows {} of",
+      "source": {
+        "engine": "calcSelfEmployed(100000, 'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "against {} of",
+      "source": {
+        "engine": "calcSelfEmployed(100000, 'ON').incomeTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "passes {} —",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "— {} in",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThresholdQC"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "The {} line",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "clears {} on",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "have {} left",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "than {}; but",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "costs {} per",
+      "source": {
+        "engine": "TC.ei.rate.value * 100"
+      },
+      "format": "money:2"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "up to {} — a",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "of {}, and",
+      "source": {
+        "const": "ei.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*}, and {} on {*},",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON', { optIntoEI: true }).ei"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "least {} of",
+      "source": {
+        "const": "ei.selfEmployedMinEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "QPP is {} a side,",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "to {} and",
+      "source": {
+        "engine": "TC.qpp.rate.value * TC.qpp.selfEmployedMultiplier.value"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*} and {} on {*}.",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'QC').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "self-employed at {} of income",
+      "source": {
+        "const": "qpip.selfEmployedRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "up to {} — {*}",
+      "source": {
+        "const": "qpip.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "— {} here,",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'QC').qpip"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "here, {} at",
+      "source": {
+        "const": "qpip.maxSelfEmployedPremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "cheaper, {} per",
+      "source": {
+        "engine": "TC.ei.quebec.rate.value * 100"
+      },
+      "format": "money:2"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "of {}, since",
+      "source": {
+        "const": "ei.quebec.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "or {}. What",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'QC').averageRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "about {} of",
+      "source": {
+        "engine": "calcSelfEmployed(40000, 'ON').incomeTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "source": {
+        "engine": "calcSelfEmployed(40000, 'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "That's {} in",
+      "source": {
+        "engine": "calcSelfEmployed(40000, 'ON').totalObligation"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "pays {} and",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "full {} on",
+      "source": {
+        "engine": "TC.cpp.rate.value * TC.cpp.selfEmployedMultiplier.value"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "from {} to",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "to {}, plus",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "crosses {} over",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "Below {} you're",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "than {} ({*}",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "{*} ({} in",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThresholdQC"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "main",
+      "anchor": "the {} GST/HST",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "about {} of",
+      "source": {
+        "engine": "calcSelfEmployed(40000, 'ON').incomeTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "and {} of",
+      "source": {
+        "engine": "calcSelfEmployed(40000, 'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "That's {} in",
+      "source": {
+        "engine": "calcSelfEmployed(40000, 'ON').totalObligation"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "pays {} and",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "full {} on",
+      "source": {
+        "engine": "TC.cpp.rate.value * TC.cpp.selfEmployedMultiplier.value"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "from {} to",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "to {}, plus",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "crosses {} over",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "Below {} you're",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "than {} ({*}",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "{*} ({} in",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThresholdQC"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/self-employed-tax/",
+      "surface": "jsonld",
+      "anchor": "the {} GST/HST",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
       },
       "format": "exact"
     }

@@ -130,6 +130,8 @@ const SRC = {
   craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
   craInstalments: 'https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/income-tax-instalments/due-dates.html',
   gstRegister: 'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/when-register-charge.html',
+  craInstalmentsWho: 'https://www.canada.ca/en/revenue-agency/services/payments/payments-cra/individual-payments/income-tax-instalments/who-pays-instalments.html',
+  eiSelfEmployedEligibility: 'https://www.canada.ca/en/services/benefits/ei/ei-self-employed-workers/eligibility.html',
   gis:       'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/benefit-amount.html',
   gisEligibility: 'https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement/eligibility.html',
   oasPayments: 'https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/payments.html',
@@ -319,6 +321,11 @@ export const TAX_CONSTANTS_2026 = {
     // stored rounded to 0.0228, which gives $1,570.92 on $68,900; corrected 2026-10-20. No page read it.
     employerRate:         { value: 0.02282, source_url: SRC.t4127JulEi, last_verified: '2026-10-20' }, // = employee rate × 1.4
     maxEmployerPremium:   { value: 1572.30, source_url: SRC.ei, last_verified: '2026-07-18' },
+    // Self-employed special benefits: minimum net self-employed earnings in the prior calendar
+    // year to claim in 2026 — "a minimum amount of $9,254 in net self-employed earnings between
+    // January 1 and December 31, 2025". Set each year; confirmed 2026-10-20 on Service Canada's
+    // eligibility page (modified 2025-12-31).
+    selfEmployedMinEarnings: { value: 9254, source_url: SRC.eiSelfEmployedEligibility, last_verified: '2026-10-20' },
     benefitReplacementRate:{ value: 0.55,   source_url: SRC.eiBenefit, last_verified: '2026-07-14' }, // regular benefits = 55%
     quebec: {
       rate:               { value: 0.0130,  source_url: SRC.ei, last_verified: '2026-07-18' },
@@ -911,6 +918,11 @@ export const TAX_CONSTANTS_2026 = {
     rrspContribution:   { value: '2026-03-02', source_url: SRC.craRrspDates,   last_verified: '2026-07-16' }, // for the 2025 tax year
     instalments:        { value: ['2026-03-16', '2026-06-15', '2026-09-15', '2026-12-15'],
                           source_url: SRC.craInstalments, last_verified: '2026-07-16' },
+    // Who pays instalments: net tax owing over $3,000 ($1,800 for Quebec residents) in 2026 and
+    // in either 2025 or 2024. ITA s.156.1 sets the amounts; they are not indexed. Confirmed
+    // 2026-10-20 on CRA "Who has to pay: Required tax instalments" (page modified 2026-01-20).
+    instalmentThreshold:   { value: 3000, source_url: SRC.craInstalmentsWho, last_verified: '2026-10-20', cadence: 'statutory' },
+    instalmentThresholdQC: { value: 1800, source_url: SRC.craInstalmentsWho, last_verified: '2026-10-20', cadence: 'statutory' },
   },
 
   /* ── GST/HST REGISTRATION — the small-supplier threshold ─────────────────────── */

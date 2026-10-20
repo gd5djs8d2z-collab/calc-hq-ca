@@ -329,6 +329,15 @@
     "cadence": "january"
   },
   {
+    "key": "ei.selfEmployedMinEarnings",
+    "value": 9254,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/ei/ei-self-employed-workers/eligibility.html",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "ei.benefitReplacementRate",
     "value": 0.55,
     "effective_from": "2026-01-01",
