@@ -560,6 +560,14 @@ export const REGISTERED_LIMITS = {
   cesgLifetimeMax: v(TC.registeredAccounts.cesgLifetimeMax),
 };
 
+// Capital gains (TC.capitalGains). The federal and Quebec inclusion rates are stamped separately
+// because they are set by separate governments; both are one-half for 2026.
+export const CAPITAL_GAINS = {
+  inclusionRate: v(TC.capitalGains.inclusionRate),
+  quebecInclusionRate: v(TC.capitalGains.quebecInclusionRate),
+  lcge: v(TC.capitalGains.lcge),
+};
+
 // FHSA rules for the FHSA calculator (TC.fhsaRules), alongside the two limits above.
 export const FHSA = {
   annualLimit: v(TC.registeredAccounts.fhsaAnnualLimit),

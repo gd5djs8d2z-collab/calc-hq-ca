@@ -262,7 +262,7 @@ export function calcIncomeTax(taxableIncome, code) {
  * Full annual take-home for employment income.
  * Returns gross, each deduction, net, and average rate.
  */
-export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvincialCredit = 0, deduction = 0 } = {}) {
+export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvincialCredit = 0, deduction = 0, otherIncome = 0 } = {}) {
   const isQC = code === 'QC';
   const cpp = calcCPP(gross, { plan: pensionPlan(code) }); // QPP for Quebec, CPP elsewhere
   // Quebec pays the REDUCED federal EI rate plus a QPIP premium; elsewhere, plain EI.
@@ -273,8 +273,11 @@ export function calcTakeHome(gross, code, { extraFederalCredit = 0, extraProvinc
   // deduction: an optional deduction claimed on the return (an FHSA contribution, say). It lowers
   // taxable and net income but not the CPP/EI base, which is earnings. Defaults to 0, so
   // calcTakeHome(gross, code) is byte-identical to before.
-  const netIncome = Math.max(0, gross - deduction);
-  const taxable = Math.max(0, gross - cpp.enhanced - deduction);
+  // otherIncome: optional income on top of the salary that carries no CPP or EI and earns no
+  // employment credits — a taxable capital gain, say. It raises taxable and net income only.
+  // Defaults to 0, so existing callers are unchanged.
+  const netIncome = Math.max(0, gross - deduction) + otherIncome;
+  const taxable = Math.max(0, gross - cpp.enhanced - deduction) + otherIncome;
   // extraFederal/ProvincialCredit: optional non-refundable credit AMOUNTS (e.g. the disability
   // amount) folded into each jurisdiction's credit base at the lowest rate. Both default to 0,
   // so calcTakeHome(gross, code) is byte-identical to before. The DTC page uses the difference

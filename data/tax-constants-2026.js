@@ -104,6 +104,9 @@ const SRC = {
   fhsaDefs:  'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/definitions.html',
   fhsaExcess:'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/what-happens-contribute-transfer-too-much.html',
   fhsaStats: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/fhsa-statistics.html',
+  finTaxExp: 'https://www.canada.ca/en/department-finance/services/publications/federal-tax-expenditures/2026/part-6.html', // Report on Federal Tax Expenditures 2026, "Partial inclusion of capital gains"
+  qcBul20258:'https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/finances/publications-adm/Bulletins/EN/BULEN_2025-8.pdf', // Information Bulletin 2025-8, Nov 25, 2025
+  craIndexed:'https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html',
   eduSavings:'https://www.canada.ca/en/services/benefits/education/education-savings/estimating-amounts.html',
   craFiling: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals/filing-dates-tax-return.html',
   craRrspDates: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html',
@@ -801,6 +804,19 @@ export const TAX_CONSTANTS_2026 = {
     minOpeningAge:       { value: 18,           source_url: SRC.fhsaOpen,   last_verified: '2026-10-20' }, // 19 where that is the age of majority for contracts
     firstTimeBuyerYears: { value: 4,            source_url: SRC.fhsaOpen,   last_verified: '2026-10-20' }, // no owned home lived in this year or the previous 4 calendar years
     excessTaxMonthly:    { value: 0.01,         source_url: SRC.fhsaExcess, last_verified: '2026-10-20' }, // on the highest excess FHSA amount in each month
+  },
+
+  /* ── CAPITAL GAINS (2026) ──────────────────────────────────────────────────── */
+  // Inclusion rate: Finance Canada's Report on Federal Tax Expenditures 2026 ("Only half of net
+  // realized capital gains are included in income"; part 2 adds that Budget 2025 confirmed the
+  // Budget 2024 increase to two-thirds would not proceed). CRA Guide T4037 shows 1/2 for 2001 to
+  // 2025 and the PMO cancelled the increase on March 21, 2025. Quebec: Information Bulletin 2025-8
+  // harmonizes with the cancellation; Revenu Québec's line 139 page applies 50% for 2025.
+  // LCGE: the CRA's 2026 indexation table (indexation resumed in 2026 on the $1.25M limit).
+  capitalGains: {
+    inclusionRate:        { value: 0.5,     source_url: SRC.finTaxExp,  last_verified: '2026-10-20', cadence: 'statutory' },
+    quebecInclusionRate:  { value: 0.5,     source_url: SRC.qcBul20258, last_verified: '2026-10-20', cadence: 'statutory' },
+    lcge:                 { value: 1275000, source_url: SRC.craIndexed, last_verified: '2026-10-20', cadence: 'january' }, // QSBC shares and qualified farm or fishing property
   },
 
   /* ── 2026 TAX DEADLINES (for filing the 2025 return) ──────────────────────── */

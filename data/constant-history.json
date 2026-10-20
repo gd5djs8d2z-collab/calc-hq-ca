@@ -1505,6 +1505,15 @@
     "cadence": "january"
   },
   {
+    "key": "capitalGains.lcge",
+    "value": 1275000,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "taxDeadlines2026.personalFiling",
     "value": "2026-04-30",
     "effective_from": "2026-01-01",
