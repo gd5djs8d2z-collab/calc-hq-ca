@@ -15687,6 +15687,78 @@
         "engine": "Math.max(...(() => { const ys = Array.from({ length: 10 }, (_, i) => 'y' + (DTC.currentTaxYear - 9 + i)); return Object.values(TC.dtc.provincial).filter((p) => ys.every((y) => p[y] && TC.dtc.federal[y])).map((p) => ys.reduce((s, y) => s + TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate, 0)); })())"
       },
       "format": "round:1000"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "claim runs roughly {}–{*} a year",
+      "source": {
+        "engine": "Math.min(...((y) => Object.values(TC.dtc.provincial).filter((p) => p[y]).map((p) => TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate))(('y' + DTC.currentTaxYear)))"
+      },
+      "format": "round:10"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "claim runs roughly {*}–{} a year",
+      "source": {
+        "engine": "Math.max(...((y) => Object.values(TC.dtc.provincial).filter((p) => p[y]).map((p) => TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate))(('y' + DTC.currentTaxYear)))"
+      },
+      "format": "round:10"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "on record pays about {}–{*} in one",
+      "source": {
+        "engine": "Math.min(...(() => { const ys = Array.from({ length: 10 }, (_, i) => 'y' + (DTC.currentTaxYear - 9 + i)); return Object.values(TC.dtc.provincial).filter((p) => ys.every((y) => p[y] && TC.dtc.federal[y])).map((p) => ys.reduce((s, y) => s + TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate, 0)); })())"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "on record pays about {*}–{} in one",
+      "source": {
+        "engine": "Math.max(...(() => { const ys = Array.from({ length: 10 }, (_, i) => 'y' + (DTC.currentTaxYear - 9 + i)); return Object.values(TC.dtc.provincial).filter((p) => ys.every((y) => p[y] && TC.dtc.federal[y])).map((p) => ys.reduce((s, y) => s + TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate, 0)); })())"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "At roughly {}–{*} per year",
+      "source": {
+        "engine": "Math.min(...((y) => Object.values(TC.dtc.provincial).filter((p) => p[y]).map((p) => TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate))(('y' + DTC.currentTaxYear)))"
+      },
+      "format": "round:10"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "At roughly {*}–{} per year",
+      "source": {
+        "engine": "Math.max(...((y) => Object.values(TC.dtc.provincial).filter((p) => p[y]).map((p) => TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate))(('y' + DTC.currentTaxYear)))"
+      },
+      "format": "round:10"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "single payment of about {}–{*} in the nine",
+      "source": {
+        "engine": "Math.min(...(() => { const ys = Array.from({ length: 10 }, (_, i) => 'y' + (DTC.currentTaxYear - 9 + i)); return Object.values(TC.dtc.provincial).filter((p) => ys.every((y) => p[y] && TC.dtc.federal[y])).map((p) => ys.reduce((s, y) => s + TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate, 0)); })())"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "single payment of about {*}–{} in the nine",
+      "source": {
+        "engine": "Math.max(...(() => { const ys = Array.from({ length: 10 }, (_, i) => 'y' + (DTC.currentTaxYear - 9 + i)); return Object.values(TC.dtc.provincial).filter((p) => ys.every((y) => p[y] && TC.dtc.federal[y])).map((p) => ys.reduce((s, y) => s + TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate, 0)); })())"
+      },
+      "format": "round:1000"
     }
   ]
 }
