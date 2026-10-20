@@ -97,6 +97,13 @@ jobs:
           set -o pipefail
           node scripts/sync-tax-brackets.mjs --check | tee brackets-report.txt
 
+      - name: Run the payment-date page check
+        id: checkpaydates
+        if: always()   # the per-benefit date tables are generated from the stamped dates; fail if a page lags them
+        run: |
+          set -o pipefail
+          node scripts/sync-payment-dates.mjs --check | tee paydates-report.txt
+
       - name: Run the invariant negative tests
         id: checkinvariants
         if: always()   # a green constants run proves nothing about whether the gate CAN fail
@@ -173,6 +180,17 @@ jobs:
               echo
               echo 'A /tax-brackets/ page no longer matches the constants or the engine. Run'
               echo '`node scripts/sync-tax-brackets.mjs`, read the diff, and commit the regenerated page.'
+            fi
+            echo
+            echo '## Payment-date page check'
+            echo
+            echo '```'
+            cat paydates-report.txt 2>/dev/null || echo 'payment-date page checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkpaydates.outcome }}' != 'success' ]; then
+              echo
+              echo 'A per-benefit payment-date page no longer matches the stamped dates. Run'
+              echo '`node scripts/sync-payment-dates.mjs`, read the diff, and commit the regenerated page.'
             fi
             echo
             echo '## Cross-field invariant negative tests'

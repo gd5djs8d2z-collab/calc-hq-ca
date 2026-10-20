@@ -30,7 +30,13 @@
     "/tax-brackets/new-brunswick/",
     "/tax-brackets/nova-scotia/",
     "/tax-brackets/prince-edward-island/",
-    "/tax-brackets/manitoba/"
+    "/tax-brackets/manitoba/",
+    "/key-dates-limits/canada-child-benefit-payment-dates/",
+    "/key-dates-limits/gst-hst-credit-payment-dates/",
+    "/key-dates-limits/cpp-payment-dates/",
+    "/key-dates-limits/oas-gis-payment-dates/",
+    "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+    "/key-dates-limits/ei-payment-dates/"
   ],
   "figures": [
     {
@@ -15495,6 +15501,186 @@
         "engine": "(calcIncomeTax(450001,'MB').totalTax - calcIncomeTax(450000,'MB').totalTax)"
       },
       "format": "percent:2"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "main",
+      "anchor": "just a new name (plus a {} increase to the amount)",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "main",
+      "anchor": "total benefit for the year is less than {}, the CRA",
+      "source": {
+        "const": "benefitPaymentDates2026.ccbLumpSumBelow"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "main",
+      "anchor": "One substantive change did come with it: a {} increase",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "main",
+      "anchor": "2026 annual entitlement is {} or less",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "main",
+      "anchor": "if your entitlement is over {}, it",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "main",
+      "anchor": "new name, plus a {} increase to the amount from July 2026",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/ccb-payment-dates/",
+      "surface": "jsonld",
+      "anchor": "the benefit amount rose {} starting July 2026",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/canada-child-benefit-payment-dates/",
+      "surface": "main",
+      "anchor": "less than {}, the CRA",
+      "source": {
+        "const": "benefitPaymentDates2026.ccbLumpSumBelow"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "main",
+      "anchor": "More than {}: you choose",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "main",
+      "anchor": "either way. {} or less:",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "main",
+      "anchor": "usually July. {} or less:",
+      "source": {
+        "const": "benefitPaymentDates2026.otbNoPaymentMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "main",
+      "anchor": "is over {} and you",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "jsonld",
+      "anchor": "is over {} and you",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "main",
+      "anchor": "Entitlements of {} or less",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+      "surface": "jsonld",
+      "anchor": "Entitlements of {} or less",
+      "source": {
+        "const": "benefitPaymentDates2026.otbLumpSumMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/gst-hst-credit-payment-dates/",
+      "surface": "main",
+      "anchor": "less than {}, the CRA",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebQuarterMin"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/gst-hst-credit-payment-dates/",
+      "surface": "main",
+      "anchor": "went up {} from July",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/gst-hst-credit-payment-dates/",
+      "surface": "main",
+      "anchor": "it was {} of the",
+      "source": {
+        "const": "benefitPaymentDates2026.gstTopUpShare"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/gst-hst-credit-payment-dates/",
+      "surface": "main",
+      "anchor": "amount rose {} from July",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/key-dates-limits/gst-hst-credit-payment-dates/",
+      "surface": "jsonld",
+      "anchor": "amount rose {} from July",
+      "source": {
+        "const": "benefitPaymentDates2026.cgebIncrease"
+      },
+      "format": "percent:0"
     }
   ]
 }
