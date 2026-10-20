@@ -54,7 +54,8 @@
     "/business/gst-hst/",
     "/business/",
     "/benefits/oas/",
-    "/payroll/payroll-deductions/"
+    "/payroll/payroll-deductions/",
+    "/payroll/take-home-pay/"
   ],
   "allowlist": [
     {
@@ -218,6 +219,84 @@
       "surface": "jsonld",
       "anchor": "deducted from a {} biweekly paycheque",
       "reason": "Example input: the gross biweekly pay the worked examples start from. Every deduction, total and comparison computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "pay {} Want",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "On {} in",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "the {} —",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "At {} every",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "On {}, the",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "into. {} in",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "{*}, and {} of salary",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "A {} net",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "On {} that",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "on {} in",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "A {} net",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "On {} that",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "on {} in",
+      "reason": "Example input: the salary (or pay) the worked example starts from; every figure computed from it is registered."
     }
   ],
   "figures": [
@@ -17888,6 +17967,33 @@
         "const": "payrollJuly2026.BC.lowestRateAnnual"
       },
       "format": "percent:2"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "out of {} of gross.",
+      "source": {
+        "engine": "65000 / 26"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "about {} net",
+      "source": {
+        "engine": "1680 * 26"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "jsonld",
+      "anchor": "about {} net",
+      "source": {
+        "engine": "1680 * 26"
+      },
+      "format": "exact"
     }
   ]
 }
