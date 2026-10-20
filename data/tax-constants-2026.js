@@ -94,6 +94,8 @@ const SRC = {
   nbAct:     'https://laws.gnb.ca/en/document/cs/N-6.001',                         // New Brunswick Income Tax Act: s.49.1 (LITR), s.16.1 (indexing)
   nsAct:     'https://nslegislature.ca/sites/default/files/legc/statutes/income%20tax.pdf', // Income Tax Act (NS), s.35(4), current to Sept 3, 2026
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
+  t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
+  t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
   mbCredits: 'https://www.gov.mb.ca/finance/personal/pcredits.html',
   mbAct:     'https://web2.gov.mb.ca/laws/statutes/ccsm/i010.php',               // The Income Tax Act (C.C.S.M. c. I10), s.4.6(16.1), current as of Oct 16, 2026
   onTaxAct:  'https://www.ontario.ca/laws/statute/07t11', // Taxation Act, 2007 (e-Laws; needs JavaScript to render)
@@ -307,7 +309,9 @@ export const TAX_CONSTANTS_2026 = {
     rate:                 { value: 0.0163,  source_url: SRC.ei, last_verified: '2026-07-18' },
     maxInsurableEarnings: { value: 68900,   source_url: SRC.ei, last_verified: '2026-07-18' },
     maxEmployeePremium:   { value: 1123.07, source_url: SRC.ei, last_verified: '2026-07-18' },
-    employerRate:         { value: 0.0228,  source_url: SRC.ei, last_verified: '2026-07-14' }, // = employee rate × 1.4
+    // T4127 Table 8.7: employer contribution rate 0.02282 (= 1.4 × 0.0163), maximum $1,572.30. Was
+    // stored rounded to 0.0228, which gives $1,570.92 on $68,900; corrected 2026-10-20. No page read it.
+    employerRate:         { value: 0.02282, source_url: SRC.t4127JulEi, last_verified: '2026-10-20' }, // = employee rate × 1.4
     maxEmployerPremium:   { value: 1572.30, source_url: SRC.ei, last_verified: '2026-07-18' },
     benefitReplacementRate:{ value: 0.55,   source_url: SRC.eiBenefit, last_verified: '2026-07-14' }, // regular benefits = 55%
     quebec: {

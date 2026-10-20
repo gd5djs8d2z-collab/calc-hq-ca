@@ -305,9 +305,18 @@
     "key": "ei.employerRate",
     "value": 0.0228,
     "effective_from": "2026-01-01",
-    "effective_to": null,
+    "effective_to": "2026-01-01",
     "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html",
     "verified_at": "2026-07-14",
+    "cadence": "january"
+  },
+  {
+    "key": "ei.employerRate",
+    "value": 0.02282,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv",
+    "verified_at": "2026-10-20",
     "cadence": "january"
   },
   {
