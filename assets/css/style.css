@@ -429,6 +429,20 @@ select.input {
 /* Tables whose cells are short sentences rather than figures: let them wrap and read left. */
 .compare-table.text-cells { min-width: 0; }
 .compare-table.text-cells th, .compare-table.text-cells td { white-space: normal; text-align: left; vertical-align: top; }
+/* Narrow figure tables (a few numeric columns, long headers): drop the minimum width and let
+   only the headers wrap, so they fit a phone without scrolling. */
+.compare-table.fit, .compare-table.stack { min-width: 0; }
+.compare-table.fit thead th, .compare-table.stack thead th { white-space: normal; vertical-align: bottom; }
+/* Wide figure tables: below 40rem each row becomes a card, one labelled line per cell. The
+   label comes from the cell's data-label, so the cell text — and every registered figure —
+   is unchanged. 40rem is where five figure columns stop fitting the content column. */
+@media (max-width: 40rem) {
+  .compare-table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .compare-table.stack tr { display: block; border-bottom: 2px solid var(--line); padding: 0.35rem 0; }
+  .compare-table.stack td { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 0; padding: 0.3rem 0.4rem; text-align: right; white-space: normal; }
+  .compare-table.stack td::before { content: attr(data-label); color: var(--muted); font-weight: 600; text-align: left; }
+  .compare-table.stack td:first-child { text-align: right; font-weight: 650; }
+}
 .compare-table thead th {
   color: var(--muted);
   font-size: 0.78rem;
