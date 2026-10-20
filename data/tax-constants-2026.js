@@ -124,6 +124,9 @@ const SRC = {
   cgebMain:         'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit.html',
   craOtb:           'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-ontario.html',
   ontarioOtb:       'https://www.ontario.ca/page/ontario-trillium-benefit',
+  // Eligibility pages behind the /guides/ pages (stamped 2026-10-20).
+  cppSurvivor:      'https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-survivor-pension.html',
+  ccbWhoApply:      'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/who-apply.html',
   // ── Benefit-program sources (migrated out of rates-2026.js 2026-07-18) ──
   esaTermination: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment',
   esaSeverance:   'https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay',
@@ -952,6 +955,21 @@ export const TAX_CONSTANTS_2026 = {
     cgebIncrease:    { value: 0.25, source_url: SRC.cgebMain,  last_verified: '2026-10-20', cadence: 'statutory' }, // July 2026 increase, in place 2026 to 2031
     gstTopUpShare:   { value: 0.5,  source_url: SRC.gstTopUp,  last_verified: '2026-10-20', cadence: 'statutory' }, // top-up = this share of the July 2025–June 2026 annual credit, in most cases
     otbNoPaymentMax: { value: 2,   source_url: SRC.ontarioOtb,       last_verified: '2026-10-20', cadence: 'statutory' }, // annual entitlement at or under this → not paid
+  },
+
+  /* ── BENEFIT ELIGIBILITY RULES quoted on the /guides/ pages (stamped 2026-10-20) ──
+     Percentages from the eligibility pages that no calculator consumes but the guides restate,
+     stamped so the prose gate can hold the copy to them. Set by statute; re-read only when the
+     program changes. */
+  benefitEligibility: {
+    _cadence: 'statutory',
+    // CPP survivor's pension, as a share of the deceased contributor's retirement pension (when
+    // the survivor gets no other CPP benefit). Under 65 it is this share PLUS a flat-rate portion.
+    cppSurvivorShare65Plus:   { value: 0.6,   source_url: SRC.cppSurvivor, last_verified: '2026-10-20' },
+    cppSurvivorShareUnder65:  { value: 0.375, source_url: SRC.cppSurvivor, last_verified: '2026-10-20' },
+    // CCB shared custody: a child living with you between these shares of the time.
+    ccbSharedCustodyMin:      { value: 0.4,   source_url: SRC.ccbWhoApply, last_verified: '2026-10-20' },
+    ccbSharedCustodyMax:      { value: 0.6,   source_url: SRC.ccbWhoApply, last_verified: '2026-10-20' },
   },
 
   /* ══════════════════════════════════════════════════════════════════════════
