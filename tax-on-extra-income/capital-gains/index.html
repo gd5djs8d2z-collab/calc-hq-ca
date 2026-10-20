@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capital Gains Tax Calculator 2026 — Every Province and Territory | calc-hq.ca</title>
+<meta name="description" content="Work out the tax on a 2026 capital gain in any province or territory: the 50% inclusion rate, your marginal rate on top of your other income, and what you keep.">
+<link rel="canonical" href="https://calc-hq.ca/tax-on-extra-income/capital-gains/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Capital Gains Tax Calculator 2026 — All 13 Jurisdictions">
+<meta property="og:description" content="Half of the gain is taxable, at the rate your other income has already reached. See the tax and what you keep.">
+<meta property="og:url" content="https://calc-hq.ca/tax-on-extra-income/capital-gains/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Tax on Extra Income","item":"https://calc-hq.ca/tax-on-extra-income/"},
+{"@type":"ListItem","position":3,"name":"Capital Gains Tax Calculator","item":"https://calc-hq.ca/tax-on-extra-income/capital-gains/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the capital gains inclusion rate for 2026?","acceptedAnswer":{"@type":"Answer","text":"One-half (50%) for individuals, on every dollar of gain. The increase to two-thirds on gains over $250,000 was cancelled, and Quebec has said it will match that."}},
+{"@type":"Question","name":"What does a capital gain cost me in tax?","acceptedAnswer":{"@type":"Answer","text":"Half of the gain is added to your income and taxed at your marginal rate, so the tax depends on your other income and province. On a $75,000 salary in Ontario, a $20,000 gain costs about $2,965."}},
+{"@type":"Question","name":"Do I pay capital gains tax when I sell my house?","acceptedAnswer":{"@type":"Answer","text":"Not if it was solely your principal residence for every year you owned it. You still report the sale and designate it as your principal residence on Schedule 3. A home sold within 365 days of buying it can be treated as business income instead."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/tax-on-extra-income/">Tax on Extra Income</a><span class="sep">›</span>
+    <span>Capital Gains Tax</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Capital Gains Tax Calculator (2026)</h1>
+    <p class="lead">There is no separate capital gains tax in Canada. Half of the gain is added to your income for the year and taxed at whatever rate the rest of your income has already reached, so two people selling identical shares at the same profit can owe very different amounts.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Capital gains tax calculator">
+    <div class="field">
+      <label for="proceeds">Sale price (proceeds of disposition)</label>
+      <input class="input" id="proceeds" type="text" inputmode="numeric" placeholder="52,000" value="52,000">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="acb">Adjusted cost base</label>
+        <input class="input" id="acb" type="text" inputmode="numeric" placeholder="30,000" value="30,000">
+      </div>
+      <div class="field">
+        <label for="costs">Selling costs</label>
+        <input class="input" id="costs" type="text" inputmode="numeric" placeholder="250" value="250">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="province">Province or territory</label>
+        <select class="input" id="province">
+          <option value="ON" selected>Ontario</option>
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          <option value="QC">Quebec</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="base">Your other 2026 income</label>
+        <input class="input" id="base" type="text" inputmode="numeric" placeholder="75,000" value="75,000">
+      </div>
+    </div>
+    <div class="field">
+      <label for="kind">That other income is mainly</label>
+      <select class="input" id="kind">
+        <option value="emp" selected>Salary or wages</option>
+        <option value="other">Pension, interest or other income with no CPP or EI</option>
+      </select>
+    </div>
+    <button class="btn" id="go" type="button">Work out the tax on my gain</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label" id="label">Tax on this capital gain</p>
+      <p class="result-number" id="tax">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+  </section>
+
+  <!-- lead-block:start -->
+  <aside class="lead-block" id="lead-block" data-variant="full" data-province-source="province" aria-labelledby="lead-title">
+    <h2 class="lead-title" id="lead-title">Want an accountant to take it from here?</h2>
+    <p class="lead-partner">Partner accountant: <a href="https://www.ryanelliott.ca/" target="_blank" rel="sponsored nofollow noopener">Elliott Accounting Group Inc.</a></p>
+    <p>They take on late and multi-year tax filings, CRA notices, small-business bookkeeping, GST/HST and payroll, for clients across Canada. Send a request and they aim to respond within one business day.</p>
+    <p class="lead-note">calc-hq.ca is a calculator site and does not give tax or accounting advice. calc-hq.ca is paid a referral fee if you become a client of Elliott Accounting Group Inc. through this form.</p>
+    <form class="lead-form" id="lead-form" method="post" action="/api/lead" novalidate data-consent-version="2026-10-16a">
+      <div class="field">
+        <label for="lead-province">Province or territory</label>
+        <select class="input" id="lead-province" name="province" required aria-describedby="lead-province-error"><option value="">Choose one</option><option value="ON">Ontario</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="SK">Saskatchewan</option><option value="MB">Manitoba</option><option value="NS">Nova Scotia</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland and Labrador</option><option value="PE">Prince Edward Island</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NU">Nunavut</option><option value="QC">Quebec</option></select>
+        <p class="lead-error" id="lead-province-error" hidden></p>
+      </div>
+      <p class="lead-qc-note" id="lead-qc-note" hidden>calc-hq.ca doesn't have a partner accountant in Quebec yet, so this can't put you in touch with anyone. If you'd use one, send it anyway: it records only that someone in Quebec asked, and from which page — no name or contact details.</p>
+      <div class="lead-personal" id="lead-personal">
+        <div class="field-row">
+          <div class="field">
+            <label for="lead-name">Name</label>
+            <input class="input" id="lead-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="lead-name-error">
+            <p class="lead-error" id="lead-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-email">Email</label>
+            <input class="input" id="lead-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="lead-email-error">
+            <p class="lead-error" id="lead-email-error" hidden></p>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lead-phone">Phone <span class="hint">Optional</span></label>
+            <input class="input" id="lead-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="lead-phone-error">
+            <p class="lead-error" id="lead-phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-need">What do you need help with?</label>
+            <select class="input" id="lead-need" name="need" required aria-describedby="lead-need-error"><option value="">Choose one</option><option value="filings">Behind on tax filings</option><option value="cra">Got a CRA letter or notice</option><option value="self-employed">Self-employed or incorporated, need an accountant</option><option value="bookkeeping">Monthly bookkeeping, GST/HST or payroll</option><option value="other">Something else</option></select>
+            <p class="lead-error" id="lead-need-error" hidden></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lead-message">Anything they should know first? <span class="hint">Optional — up to 500 characters</span></label>
+          <textarea class="input" id="lead-message" name="message" rows="3" maxlength="500" aria-describedby="lead-message-error"></textarea>
+          <p class="lead-error" id="lead-message-error" hidden></p>
+        </div>
+        <div class="field checkbox">
+          <input type="checkbox" id="lead-consent" name="consent" required aria-describedby="lead-consent-error">
+          <label for="lead-consent">I agree that calc-hq.ca may send my name, contact details and request to Elliott Accounting Group Inc., who will contact me about it. See the <a href="/privacy-policy/">privacy policy</a>.</label>
+        </div>
+        <p class="lead-error" id="lead-consent-error" hidden></p>
+      </div>
+      <div class="lead-hp" aria-hidden="true">
+        <label for="lead-website">Leave this field empty</label>
+        <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <button class="btn" id="lead-submit" type="submit" disabled>Send my request</button>
+      <p class="lead-status" id="lead-status" role="status" aria-live="polite" hidden></p>
+    </form>
+  </aside>
+  <script type="module" src="/assets/js/lead-block.js"></script>
+  <!-- lead-block:end -->
+
+  <section class="answer">
+    <h2>From sale price to taxable amount</h2>
+    <p>The gain is what you received, less what the property cost you and what it cost to sell. The cost is the adjusted cost base: the purchase price plus commissions and other acquisition costs, averaged across every lot if you bought the same shares more than once. Selling costs include commissions and legal fees. Shares bought for $30,000 and sold for $52,000 with a $250 commission give a capital gain of $21,750.</p>
+    <p>Only part of that is income. For 2026 the inclusion rate is 50%, so $10,875 goes on line 12700 of the federal return as a taxable capital gain. From there it's ordinary income: it carries no CPP or EI, but it sits on top of your salary, pension or anything else you earned, and it's taxed at the rates that apply above that point.</p>
+
+    <h2>The same gain in thirteen places</h2>
+    <p>On a $75,000 salary, a $20,000 gain adds $10,000 of taxable income. In Ontario the federal share of the bill is $2,050, the same everywhere outside Quebec, and the provincial share is what moves the total:</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table text-cells">
+        <caption>A $20,000 gain on top of a $75,000 salary</caption>
+        <thead><tr><th>Jurisdiction</th><th>Tax on the gain</th></tr></thead>
+        <tbody>
+          <tr><td>Ontario</td><td>$2,965</td></tr>
+          <tr><td>Alberta</td><td>$3,050</td></tr>
+          <tr><td>British Columbia</td><td>$2,820</td></tr>
+          <tr><td>Saskatchewan</td><td>$3,300</td></tr>
+          <tr><td>Manitoba</td><td>$3,325</td></tr>
+          <tr><td>Nova Scotia</td><td>$3,717</td></tr>
+          <tr><td>New Brunswick</td><td>$3,450</td></tr>
+          <tr><td>Newfoundland and Labrador</td><td>$3,500</td></tr>
+          <tr><td>Prince Edward Island</td><td>$3,710</td></tr>
+          <tr><td>Yukon</td><td>$2,950</td></tr>
+          <tr><td>Northwest Territories</td><td>$2,910</td></tr>
+          <tr><td>Nunavut</td><td>$2,750</td></tr>
+          <tr><td>Quebec</td><td>$3,612</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Each figure is the difference between two runs of the engine behind the calculator, with and without the gain, rounded to the dollar. Quebec's figure is lower federally because of the 16.5% federal abatement Quebec residents receive, and higher provincially because Quebec's own brackets are steeper; Quebec applies its own inclusion rate, which for 2026 is also 50%.</p>
+
+    <h2>Who you are changes the bill</h2>
+    <p>Hold the gain and the province fixed and vary everything else. In Ontario, the $20,000 gain costs $2,555 on a $40,000 salary, $2,965 on $75,000 and $4,497 on $160,000. A retiree with $40,000 of pension income pays $2,055 on the same gain, less than the $40,000 earner, because the gain raises the earner's net income and claws back part of Ontario's low-income workers' tax credit, which pension income never earned. The calculator asks what kind of income you have for that reason.</p>
+    <p>Timing is the other lever. A gain is taxed in the year of the sale, so selling in a year when your income is lower, such as after retiring or during a leave, can move the same gain into a lower bracket. Spreading a large sale across December and January splits it between two tax years.</p>
+
+    <h2>The rate that stayed at one-half</h2>
+    <p>Budget 2024 proposed raising the inclusion rate to two-thirds on an individual's gains above $250,000 a year. The start date was pushed from June 25, 2024 to January 1, 2026, then the increase was cancelled on March 21, 2025, and Finance Canada confirmed in Budget 2025 that it would not go ahead. Quebec announced in Information Bulletin 2025-8 that it would follow. A 2026 gain is taxed at 50% from the first dollar, with no threshold, and the $250,000 figure some older articles still quote no longer applies.</p>
+
+    <h2>What the calculator leaves out</h2>
+    <ul>
+      <li><strong>Your home.</strong> A property that was solely your principal residence for every year you owned it is exempt, though the sale still has to be reported on Schedule 3 with a principal residence designation. Partial-use and rental cases need the CRA's formula.</li>
+      <li><strong>Small business shares and farm or fishing property.</strong> The lifetime capital gains exemption for 2026 is $1,275,000 of gains on qualified small business corporation shares and qualified farm or fishing property, a deduction of up to $637,500 of taxable gains. It isn't applied here.</li>
+      <li><strong>Homes held less than 365 days.</strong> A Canadian housing unit sold within 365 consecutive days of buying it is a flipped property: the profit is business income, fully taxable, unless a listed life event applies.</li>
+      <li><strong>Losses and other offsets.</strong> Capital losses brought forward or back, donations of securities (which can carry a zero inclusion rate), and the alternative minimum tax on very large gains aren't modelled. Enter a sale below its cost and the calculator shows the allowable capital loss instead. Superficial losses, gifts and the other events that trigger a gain without a sale are in the <a href="/guides/capital-gains-tax/">capital gains guide</a>.</li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>What is the capital gains inclusion rate for 2026?</summary>
+      <p>One-half (50%) for individuals, on every dollar of gain. The increase to two-thirds on gains over $250,000 was cancelled, and Quebec has said it will match that.</p>
+    </details>
+    <details><summary>What does a capital gain cost me in tax?</summary>
+      <p>Half of the gain is added to your income and taxed at your marginal rate, so the tax depends on your other income and province. On a $75,000 salary in Ontario, a $20,000 gain costs about $2,965.</p>
+    </details>
+    <details><summary>Do I pay capital gains tax when I sell my house?</summary>
+      <p>Not if it was solely your principal residence for every year you owned it. You still report the sale and designate it as your principal residence on Schedule 3. A home sold within 365 days of buying it can be treated as business income instead.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/tax-brackets/"><h3>2026 Tax Brackets</h3><p>The federal, provincial and territorial rates the taxable half lands in.</p></a>
+      <a class="tool-card" href="/tax-on-extra-income/bonus/"><h3>Bonus Tax Calculator</h3><p>Extra employment income, taxed in full with CPP and EI on top.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>The salary the gain is stacked on.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only. Uses the 2026 federal, provincial and territorial rates with the basic personal amount and payroll credits; the pension, age and other personal credits, the principal residence exemption, the lifetime capital gains exemption, capital losses and the alternative minimum tax are not applied. Inclusion rate from Finance Canada's 2026 Report on Federal Tax Expenditures and Quebec's Information Bulletin 2025-8, checked October 20, 2026.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/key-dates-limits/ccb-payment-dates/">Benefit Payment Dates</a></li>
+          <li><a href="/key-dates-limits/contribution-limits/">2026 Contribution Limits</a></li>
+          <li><a href="/key-dates-limits/tax-deadlines/">2026 Tax Deadlines</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a> · <a href="/faq/">FAQ</a> · <a href="/fr/salaire-net-quebec/">Français</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { CAPITAL_GAINS } from '/data/rates-2026.js';
+import { calcTakeHome, calcIncomeTax, formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const row = (k, v, cls = '') => `<div class="row${cls}"><span>${k}</span><span class="val">${v}</span></div>`;
+const pct = (x) => (x * 100).toFixed(2) + '%';
+const pctR = (x) => +(x * 100).toFixed(2) + '%';
+
+function run() {
+  const proceeds = parseMoney(el('proceeds').value), acb = parseMoney(el('acb').value), costs = parseMoney(el('costs').value);
+  const code = el('province').value, base = parseMoney(el('base').value), emp = el('kind').value === 'emp';
+  // Quebec sets its own inclusion rate; for 2026 it matches the federal one-half.
+  const rate = code === 'QC' ? CAPITAL_GAINS.quebecInclusionRate : CAPITAL_GAINS.inclusionRate;
+  const gain = proceeds - acb - costs;
+
+  let h = row('Sale price', formatCurrency(proceeds)) + row('Less adjusted cost base', '−' + formatCurrency(acb))
+    + row('Less selling costs', '−' + formatCurrency(costs));
+  if (gain <= 0) {
+    const allowable = -gain * rate;
+    el('label').textContent = 'Allowable capital loss';
+    el('tax').textContent = formatCurrency(allowable);
+    el('reading').textContent = gain === 0 ? 'No gain and no loss.' : `A capital loss of ${formatCurrency(-gain)}. Only ${pctR(rate)} of it, the allowable capital loss, counts, and only against taxable capital gains: this year's, the three years before, or any later year. It can't reduce tax on your salary or other income.`;
+    el('breakdown').innerHTML = h + row('Capital loss', formatCurrency(-gain), ' total') + row('Allowable capital loss', formatCurrency(allowable));
+    el('result').hidden = false;
+    return;
+  }
+  const taxable = gain * rate;
+  const before = emp ? calcTakeHome(base, code) : calcIncomeTax(base, code);
+  const after = emp ? calcTakeHome(base, code, { otherIncome: taxable }) : calcIncomeTax(base + taxable, code);
+  const tax = after.totalTax - before.totalTax, fed = after.federalTax - before.federalTax;
+
+  el('label').textContent = 'Tax on this capital gain';
+  el('tax').textContent = formatCurrency(tax);
+  el('reading').textContent = `You keep ${formatCurrency(gain - tax)} of the ${formatCurrency(gain)} gain. Tax takes ${pct(tax / gain)} of the whole gain, which is ${pct(tax / taxable)} on the half that's taxable.`;
+  h += row('Capital gain', formatCurrency(gain), ' total')
+    + row(`Taxable capital gain (${pctR(rate)})`, formatCurrency(taxable))
+    + row('Federal tax on it', formatCurrency(fed))
+    + row(code === 'QC' ? 'Quebec tax on it' : 'Provincial or territorial tax on it', formatCurrency(tax - fed))
+    + row('Total tax on the gain', formatCurrency(tax), ' total')
+    + row('After-tax gain', formatCurrency(gain - tax));
+  el('breakdown').innerHTML = h;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['province', 'kind'].forEach((id) => el(id).addEventListener('change', run));
+['proceeds', 'acb', 'costs', 'base'].forEach((id) => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

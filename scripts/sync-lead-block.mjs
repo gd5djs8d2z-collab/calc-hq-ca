@@ -30,6 +30,7 @@ export const LEAD_PAGES = {
   'payroll/self-employed-tax':          { variant: 'full', source: 'province' },
   'tax-on-extra-income/bonus':          { variant: 'full', source: 'province' },
   'tax-on-extra-income/commission':     { variant: 'full', source: 'province' },
+  'tax-on-extra-income/capital-gains':  { variant: 'full', source: 'province' },
   'payroll/take-home-pay':              { variant: 'full', source: 'province' },
   'payroll/pay-raise':                  { variant: 'full', source: 'province' },
   'payroll/quebec-income-tax':          { variant: 'quebec', after: 'brackets' },

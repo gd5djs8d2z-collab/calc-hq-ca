@@ -43,7 +43,9 @@
     "/guides/ccb-eligibility/",
     "/guides/",
     "/property/fhsa/",
-    "/guides/fhsa-eligibility/"
+    "/guides/fhsa-eligibility/",
+    "/tax-on-extra-income/capital-gains/",
+    "/guides/capital-gains-tax/"
   ],
   "figures": [
     {
@@ -16112,6 +16114,285 @@
         "const": "registeredAccounts.fhsaLifetimeLimit"
       },
       "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "gain of {}. Only part",
+      "source": {
+        "engine": "52000-30000-250"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "rate is {}, so {*}",
+      "source": {
+        "const": "capitalGains.inclusionRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*}, so {} goes on",
+      "source": {
+        "engine": "(52000-30000-250)*CAPITAL_GAINS.inclusionRate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "gain adds {} of taxable",
+      "source": {
+        "engine": "20000*CAPITAL_GAINS.inclusionRate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "bill is {}, the same",
+      "source": {
+        "engine": "(calcTakeHome(75000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).federalTax - calcTakeHome(75000,'ON').federalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "gain Ontario {} Alberta {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'ON').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} Alberta {} British Columbia",
+      "source": {
+        "engine": "(calcTakeHome(75000,'AB',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'AB').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "British Columbia {} Saskatchewan {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'BC',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'BC').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} Saskatchewan {} Manitoba {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'SK',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'SK').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} Manitoba {} Nova Scotia",
+      "source": {
+        "engine": "(calcTakeHome(75000,'MB',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'MB').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "Nova Scotia {} New Brunswick",
+      "source": {
+        "engine": "(calcTakeHome(75000,'NS',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'NS').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "New Brunswick {} Newfoundland and",
+      "source": {
+        "engine": "(calcTakeHome(75000,'NB',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'NB').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "and Labrador {} Prince Edward",
+      "source": {
+        "engine": "(calcTakeHome(75000,'NL',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'NL').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "Edward Island {} Yukon {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'PE',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'PE').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} Yukon {} Northwest Territories",
+      "source": {
+        "engine": "(calcTakeHome(75000,'YT',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'YT').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "Northwest Territories {} Nunavut {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'NT',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'NT').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} Nunavut {} Quebec {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'NU',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'NU').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} Quebec {} Each figure",
+      "source": {
+        "engine": "(calcTakeHome(75000,'QC',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'QC').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "of the {} federal abatement",
+      "source": {
+        "engine": "QUEBEC.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "is also {}. Who you",
+      "source": {
+        "const": "capitalGains.quebecInclusionRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "gain costs {} on a",
+      "source": {
+        "engine": "(calcTakeHome(40000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(40000,'ON').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} salary, {} on {*}",
+      "source": {
+        "engine": "(calcTakeHome(75000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'ON').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "{*} and {} on {*}.",
+      "source": {
+        "engine": "(calcTakeHome(160000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(160000,'ON').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "income pays {} on the",
+      "source": {
+        "engine": "(calcIncomeTax(40000+20000*CAPITAL_GAINS.inclusionRate,'ON').totalTax - calcIncomeTax(40000,'ON').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "taxed at {} from the",
+      "source": {
+        "const": "capitalGains.inclusionRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "2026 is {} of gains",
+      "source": {
+        "const": "capitalGains.lcge"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "up to {} of taxable",
+      "source": {
+        "engine": "TC.capitalGains.lcge.value*CAPITAL_GAINS.inclusionRate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "2026? One-half ({}) for individuals,",
+      "source": {
+        "const": "capitalGains.inclusionRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "jsonld",
+      "anchor": "One-half ({}) for individuals,",
+      "source": {
+        "const": "capitalGains.inclusionRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "costs about {}. Do I",
+      "source": {
+        "engine": "(calcTakeHome(75000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'ON').totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "jsonld",
+      "anchor": "costs about {}.",
+      "source": {
+        "engine": "(calcTakeHome(75000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'ON').totalTax)"
+      },
+      "format": "round:1"
     }
   ]
 }
