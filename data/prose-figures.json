@@ -51,7 +51,8 @@
   ],
   "strict": [
     "/business/gst-hst/",
-    "/business/"
+    "/business/",
+    "/benefits/oas/"
   ],
   "allowlist": [
     {
@@ -155,6 +156,42 @@
       "surface": "main",
       "anchor": "call that {} and you have",
       "reason": "Example input: the worked example's chosen cost, price, markup target or expense figure. Everything computed from it is registered."
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "worked example: on {} of income",
+      "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "of income, {} − {*} =",
+      "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "× {*}. On {}: (",
+      "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "On {*}: ({} − {*}) × 0.15",
+      "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "× {*}. On {}: (",
+      "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "On {*}: ({} − {*}) × 0.15",
+      "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
     }
   ],
   "figures": [
@@ -327,36 +364,6 @@
         "const": "oas.fullRecoveryCeiling75plus"
       },
       "format": "exact"
-    },
-    {
-      "page": "/benefits/oas/",
-      "surface": "main",
-      "anchor": "July 2026 – June 2027 2025 {} {*} {*}",
-      "source": {
-        "const": "oas.recoveryThreshold"
-      },
-      "format": "exact",
-      "note": "table row, current period"
-    },
-    {
-      "page": "/benefits/oas/",
-      "surface": "main",
-      "anchor": "July 2026 – June 2027 2025 {*} {} {*}",
-      "source": {
-        "const": "oas.fullRecoveryCeiling65to74"
-      },
-      "format": "exact",
-      "note": "table row, current period"
-    },
-    {
-      "page": "/benefits/oas/",
-      "surface": "main",
-      "anchor": "July 2026 – June 2027 2025 {*} {*} {}",
-      "source": {
-        "const": "oas.fullRecoveryCeiling75plus"
-      },
-      "format": "exact",
-      "note": "table row, current period"
     },
     {
       "page": "/benefits/oas/",
@@ -17178,6 +17185,179 @@
         "engine": "(120-80)*1000*SALES_TAX.hst.ON"
       },
       "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2025 – June 2026 2024 {} {*} {*}",
+      "source": {
+        "const": "oas.recoveryTable.y2024.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2025 – June 2026 2024 {*} {} {*}",
+      "source": {
+        "const": "oas.recoveryTable.y2024.max65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2025 – June 2026 2024 {*} {*} {}",
+      "source": {
+        "const": "oas.recoveryTable.y2024.max75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2026 – June 2027 2025 {} {*} {*}",
+      "source": {
+        "const": "oas.recoveryTable.y2025.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2026 – June 2027 2025 {*} {} {*}",
+      "source": {
+        "const": "oas.recoveryTable.y2025.max65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2026 – June 2027 2025 {*} {*} {}",
+      "source": {
+        "const": "oas.recoveryTable.y2025.max75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2027 – June 2028 2026 {} {*} {*}",
+      "source": {
+        "const": "oas.recoveryTable.y2026.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2027 – June 2028 2026 {*} {} {*}",
+      "source": {
+        "const": "oas.recoveryTable.y2026.max65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
+      "anchor": "July 2027 – June 2028 2026 {*} {*} {}",
+      "source": {
+        "const": "oas.recoveryTable.y2026.max75plus"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "How much is OAS per month in 2026? ¶ Answer ¶ Maximum {} a month",
+      "source": {
+        "const": "oas.maxMonthly65to74"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "jsonld",
+      "anchor": "clawback threshold for 2026? ¶ Answer ¶ {} of 2025 net world income",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "a $5,000 raise nets between {} and",
+      "source": {
+        "engine": "(() => { let v = Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.min(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })()"
+      },
+      "format": "round:1",
+      "note": "Ontario, salaries $60,000–$100,000 at $1,000 steps"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "nets between {*} and {}: {*} to",
+      "source": {
+        "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": "and {*}: {} to {*} of the gross",
+      "source": {
+        "engine": "(() => { let v = Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.min(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "main",
+      "anchor": ": {*} to {} of the gross",
+      "source": {
+        "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "a $5,000 raise nets between {} and",
+      "source": {
+        "engine": "(() => { let v = Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.min(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })()"
+      },
+      "format": "round:1",
+      "note": "Ontario, salaries $60,000–$100,000 at $1,000 steps"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "nets between {*} and {}: {*} to",
+      "source": {
+        "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": "and {*}: {} to {*} of the gross",
+      "source": {
+        "engine": "(() => { let v = Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.min(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/pay-raise/",
+      "surface": "jsonld",
+      "anchor": ": {*} to {} of the gross",
+      "source": {
+        "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
+      },
+      "format": "percent:0"
     }
   ]
 }

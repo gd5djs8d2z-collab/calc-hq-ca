@@ -386,6 +386,15 @@ check('nb-litr: real data is clean',
     only(invariants(c, TAX_YEAR), 'provinces.NB.taxReduction').length, 0);
 }
 
+/* ── OAS recovery table row for the current income year === the scalar stamps ── */
+check('oas-table: real data is clean', only(invariants(base, TAX_YEAR), 'oas.recoveryTable').length, 0);
+{ const c = structuredClone(base); c.oas.recoveryTable.y2025.max65to74.value = 152000;
+  check('oas-table: a table ceiling that drifts from the engine stamp fires', only(invariants(c, TAX_YEAR), 'oas.recoveryTable').length, 1); }
+{ const c = structuredClone(base); c.oas.recoveryThreshold.value = 95323;
+  check('oas-table: an engine threshold moved without the table fires', only(invariants(c, TAX_YEAR), 'oas.recoveryTable').length, 1); }
+{ const c = structuredClone(base); c.oas.recoveryTable.y2026.max75plus.value = 161000;
+  check('oas-table: a non-current row is free to differ', only(invariants(c, TAX_YEAR), 'oas.recoveryTable').length, 0); }
+
 /* ── report ─────────────────────────────────────────────────────────────────── */
 const failed = results.filter((r) => !r.ok);
 const lines = ['cross-field invariant negative tests', ''];

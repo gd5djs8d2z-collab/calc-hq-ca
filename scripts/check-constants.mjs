@@ -159,6 +159,20 @@ export function invariants(root = TAX_CONSTANTS_2026, taxYear = TAX_YEAR) {
     }
   }
 
+  // ── OAS recovery table: the row for the current income year repeats the scalar stamps ───
+  // The engine reads oas.recoveryThreshold and the two ceilings; the /benefits/oas/ table reads
+  // oas.recoveryTable. Both are stamped from the same Service Canada page, so a July update to
+  // one must move the other.
+  const oas = root.oas, rows = oas?.recoveryTable;
+  if (rows && typeof oas.recoveryIncomeYear?.value === 'number') {
+    const cur = Object.values(rows).find((r) => r && r.incomeYear?.value === oas.recoveryIncomeYear.value);
+    if (!cur) bad.push(`oas.recoveryTable: no row for income year ${oas.recoveryIncomeYear.value}`);
+    else for (const [k, s] of [['min', 'recoveryThreshold'], ['max65to74', 'fullRecoveryCeiling65to74'], ['max75plus', 'fullRecoveryCeiling75plus']]) {
+      if (cur[k]?.value !== oas[s]?.value) bad.push(`oas.recoveryTable row ${oas.recoveryIncomeYear.value} ${k} ${cur[k]?.value} !== oas.${s} ${oas[s]?.value}`);
+    }
+    if (cur && cur.period?.value !== oas.recoveryPeriod?.value) bad.push(`oas.recoveryTable row ${oas.recoveryIncomeYear.value} period "${cur.period?.value}" !== oas.recoveryPeriod "${oas.recoveryPeriod?.value}"`);
+  }
+
   // ── New Brunswick low-income tax reduction: base is a formula of other stamps ────────────
   // s.49.1(2)(a): the base is the lowest rate × (threshold − NB BPA), rounded UP to the dollar.
   // All three inputs are stamped separately, so a January re-index of the BPA or the threshold

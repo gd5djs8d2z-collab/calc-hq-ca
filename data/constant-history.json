@@ -1777,6 +1777,96 @@
     "cadence": "july"
   },
   {
+    "key": "oas.recoveryTable.y2025.period",
+    "value": "July 2026 – June 2027",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2025.incomeYear",
+    "value": 2025,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2025.min",
+    "value": 93454,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2025.max65to74",
+    "value": 152062,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2025.max75plus",
+    "value": 157923,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2026.period",
+    "value": "July 2027 – June 2028",
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2026.incomeYear",
+    "value": 2026,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2026.min",
+    "value": 95323,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2026.max65to74",
+    "value": 155320,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
+    "key": "oas.recoveryTable.y2026.max75plus",
+    "value": 161320,
+    "effective_from": "2026-07-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/recovery-tax.html",
+    "verified_at": "2026-10-20",
+    "cadence": "july"
+  },
+  {
     "key": "benefitPaymentDates2026.ccb",
     "value": [
       "2026-01-20",

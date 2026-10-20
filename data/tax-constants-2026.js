@@ -969,6 +969,37 @@ export const TAX_CONSTANTS_2026 = {
     // — see the note on OAS.estimate() in rates-2026.js.
     fullRecoveryCeiling65to74: { value: 152062, source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
     fullRecoveryCeiling75plus: { value: 157923, source_url: SRC.oasRecoveryTax, last_verified: '2026-07-18', cadence: 'july' },
+
+    // The recovery-tax table on Service Canada's page, all three rows as published, for the
+    // /benefits/oas/ table. Verified 2026-10-20. The page's footnote: "From January to September
+    // of the current tax year, the amounts in this table are estimates based on maximum OAS
+    // pension amounts. From October to December, the amounts are final." So the 2026-income
+    // row is FINAL as of October 2026 (status below). The 2025 row repeats the scalar stamps
+    // above, which the engine reads; check-constants holds the two equal (invariants()).
+    recoveryTable: {
+      _cadence: 'july',
+      y2024: {  // closed period: never changes again
+        period:    { value: 'July 2025 – June 2026', source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', cadence: 'statutory' },
+        incomeYear:{ value: 2024,   source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', cadence: 'statutory' },
+        min:       { value: 90997,  source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', cadence: 'statutory' },
+        max65to74: { value: 148451, source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', cadence: 'statutory' },
+        max75plus: { value: 154196, source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', cadence: 'statutory' },
+      },
+      y2025: {  // the current period
+        period:    { value: 'July 2026 – June 2027', source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        incomeYear:{ value: 2025,   source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        min:       { value: 93454,  source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        max65to74: { value: 152062, source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        max75plus: { value: 157923, source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+      },
+      y2026: {  // the next period. Published as estimates until September; these are the final figures
+        period:    { value: 'July 2027 – June 2028', source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        incomeYear:{ value: 2026,   source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        min:       { value: 95323,  source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20' },
+        max65to74: { value: 155320, source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', status: 'final' },
+        max75plus: { value: 161320, source_url: SRC.oasRecoveryTax, last_verified: '2026-10-20', status: 'final' },
+      },
+    },
   },
 
   /* ── BENEFIT PAYMENT DATES (2026) — CRA monthly payment calendars ─────────── */
