@@ -125,6 +125,13 @@ jobs:
           set -o pipefail
           node scripts/check-schema.mjs | tee schema-report.txt
 
+      - name: Run the FAQ structured-data parity check
+        id: checkfaq
+        if: always()   # FAQPage JSON-LD must say exactly what the visible FAQ says
+        run: |
+          set -o pipefail
+          node scripts/check-faq-parity.mjs | tee faq-report.txt
+
       - name: Run the schema-check negative tests
         id: testschema
         if: always()   # the RETIRED rule is dormant until a value moves — prove it still fires
@@ -231,6 +238,17 @@ jobs:
               echo 'moved off, or a block no longer parses. JSON-LD is read as raw text by crawlers,'
               echo 'so it cannot be filled from the pack at runtime — these literals need a manual'
               echo 'update whenever the constant they mirror changes. Fix the page, not the checker.'
+            fi
+            echo
+            echo '## FAQ structured-data parity'
+            echo
+            echo '```'
+            cat faq-report.txt 2>/dev/null || echo 'FAQ parity checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkfaq.outcome }}' != 'success' ]; then
+              echo
+              echo 'A FAQPage JSON-LD block no longer matches the FAQ visible on its page. The visible text is'
+              echo 'the source of truth: rewrite the JSON-LD to match it word for word (MAINTENANCE.md, Rule 8).'
             fi
             echo
             echo '## Schema-check negative tests'

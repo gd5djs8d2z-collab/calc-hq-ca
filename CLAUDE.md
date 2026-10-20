@@ -58,7 +58,7 @@ output — that is expected. Read past it and look for shared *body* prose.
 Run the gates:
 
 ```bash
-for s in check-schema check-constants check-redirects test-schema test-invariants; do printf "%-18s " "$s"; node scripts/$s.mjs >/dev/null 2>&1 && echo PASS || echo FAIL; done
+for s in check-schema check-constants check-redirects test-schema test-invariants check-faq-parity; do printf "%-18s " "$s"; node scripts/$s.mjs >/dev/null 2>&1 && echo PASS || echo FAIL; done
 ```
 
 Then render the page and confirm it — grep does not prove wiring. The `static`
@@ -76,7 +76,8 @@ what keeps prose and calculator from drifting.
 ## FAQ JSON-LD
 
 Every page restates its visible FAQ inside an `application/ld+json` FAQPage
-block. New entries must match the visible text **verbatim**. Several older
-entries are paraphrases of their visible answers; that predates this file, and
-`check-schema` does not test for it — it only catches retired pack figures and
-invalid JSON.
+block, word for word: same questions, same answers, same order, as plain text.
+The visible answer is the source of truth — edit it, then copy it into the
+JSON-LD. `scripts/check-faq-parity.mjs` enforces this in CI (MAINTENANCE.md,
+Rule 8); register any figure in an FAQ answer on both the `main` and `jsonld`
+surfaces.

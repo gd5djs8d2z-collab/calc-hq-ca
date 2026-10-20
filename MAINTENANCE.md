@@ -8,10 +8,10 @@ benefit-program constant too — lives once, with provenance, in
 `ONTARIO_ESA`, `CCB`, `LTT`, `CPP_RETIREMENT`, `EI_PARENTAL`, `QPIP_PARENTAL`) from it and
 holds **behaviour only** — so you change a number in **one** place.
 
-Seven standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
+Eight standing rules keep it honest. Rules 1, 3 and 5 are calendar passes (January, quarterly,
 July); Rule 2 is event-driven; Rule 4 is the automated check that tells you which is due; Rule 6
 ties the figures quoted in page copy back to the values they restate; Rule 7 says which form each
-money calculation follows.
+money calculation follows; Rule 8 holds each page's FAQ structured data to its visible FAQ.
 
 ## Rule 1 — Annual January re-verification
 
@@ -484,6 +484,22 @@ no dependants.
 
 ---
 
+## Rule 8 — FAQ structured data says exactly what the page says
+
+Google's guidelines require FAQPage JSON-LD to match the FAQ visible on the page. Until
+2026-10-20, 28 older pages carried JSON-LD answers that paraphrased the visible ones (longer,
+shorter, sometimes different questions) and nothing compared the two. `scripts/check-faq-parity.mjs`
+now does, in CI: every `<details><summary>` pair inside `<main>` against the page's FAQPage
+`mainEntity`, same count, same order, question and answer identical after normalisation (tags
+stripped, entities decoded, whitespace collapsed — so a visible link or list is matched by its plain
+text). It has a built-in self-test like the prose gate.
+
+**The visible text is the source of truth.** To change an FAQ, edit the visible answer and copy its
+plain text into the JSON-LD; never the other way round. A figure in the answer then appears on both
+surfaces, so register it on both (`main` and `jsonld`) in `data/prose-figures.json`.
+
+---
+
 ## Open item — orphaned in-force history rows
 
 `data/constant-history.json` holds a row only for leaves whose cadence has a derivable period
@@ -702,6 +718,20 @@ both sides match, so change them back to back.
 ---
 
 # AUDIT LOG
+
+## 2026-10-20 — FAQ structured data brought into line with the visible FAQs; DTC range corrected
+
+28 pages rebuilt so their FAQPage JSON-LD is the visible FAQ word for word (Rule 8, new gate
+`check-faq-parity`). The visible text was checked first and taken as correct everywhere except
+`/benefits/dtc/`, where two answers were wrong and were rewritten from the constants before the
+sync: the 2025 combined federal+provincial DTC value was given as "$1,600–$2,300" (the stamped
+amounts give $1,961 in BC to $2,939 in Saskatchewan across the 12 jurisdictions outside Quebec,
+which the engine doesn't model), and the ten-year backdating total as "$15,000–$22,000" (the nine
+jurisdictions with all ten years on record give $17,452 to $28,216; PEI, Saskatchewan and NWT have
+gaps in the archived guides). Both ranges are now registered engine expressions.
+
+In the registry, 137 JSON-LD entries anchored on the old paraphrases were removed and 110
+mirrored from the matching `main` entries now that the two surfaces carry the same text.
 
 ## 2026-10-20 — Five unmodelled rules stamped: MB's BPA phase-out and family tax benefit, four low-income reductions
 
