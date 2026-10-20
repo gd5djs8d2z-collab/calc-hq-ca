@@ -17,7 +17,15 @@
     "/payroll/self-employed-tax/",
     "/payroll/pay-raise/",
     "/payroll/take-home-pay/",
-    "/tax-brackets/ontario/"
+    "/tax-brackets/ontario/",
+    "/tax-brackets/british-columbia/",
+    "/tax-brackets/alberta/",
+    "/tax-brackets/saskatchewan/",
+    "/tax-brackets/quebec/",
+    "/tax-brackets/yukon/",
+    "/tax-brackets/northwest-territories/",
+    "/tax-brackets/nunavut/",
+    "/tax-brackets/"
   ],
   "figures": [
     {
@@ -8030,6 +8038,4479 @@
         "const": "provinces.ON.brackets.4.min"
       },
       "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "rate of {} starting at",
+      "source": {
+        "const": "provinces.BC.brackets.6.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "starting at {}. Every B.C.",
+      "source": {
+        "const": "provinces.BC.brackets.6.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "{*} to {} for 2026",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "two is {}, which is",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "year at {}. B.C. values",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "worth. The {} basic personal",
+      "source": {
+        "const": "provinces.BC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "now removes {} of B.C.",
+      "source": {
+        "engine": "TC.provinces.BC.bpa.value * TC.provinces.BC.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "incomes at {} B.C. cancels",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'BC').provincialTax - calcIncomeTax(35000,'BC').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "up to {} of provincial",
+      "source": {
+        "const": "provinces.BC.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "up to {}. Past that,",
+      "source": {
+        "const": "provinces.BC.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "shrinks by {} of each",
+      "source": {
+        "const": "provinces.BC.taxReduction.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "gone at {}. Each of",
+      "source": {
+        "engine": "TC.provinces.BC.taxReduction.value.threshold + TC.provinces.BC.taxReduction.value.base / TC.provinces.BC.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "province takes {} of a",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'BC').provincialTax - calcIncomeTax(35000,'BC').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "rather than {}, and the",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "rate of {} is higher",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'BC').totalTax - calcIncomeTax(35000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "than the {} that applies",
+      "source": {
+        "engine": "(calcIncomeTax(47001,'BC').totalTax - calcIncomeTax(47000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "just past {}. The reduction",
+      "source": {
+        "engine": "TC.provinces.BC.taxReduction.value.threshold + TC.provinces.BC.taxReduction.value.base / TC.provinces.BC.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "income passed {}. With the",
+      "source": {
+        "const": "provinces.BC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "income passes {}. The calculators",
+      "source": {
+        "engine": "(() => { let lo = 13000, hi = 40000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'BC').provincialTax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "up to {}, because a",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "salary pays {} on its",
+      "source": {
+        "engine": "(calcTakeHome(40100,'BC').totalTax - calcTakeHome(40000,'BC').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "dollar, against {} in the",
+      "source": {
+        "engine": "(calcIncomeTax(40001,'BC').totalTax - calcIncomeTax(40000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "table. Above {} the two",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "threshold arrives {} later on",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(85000,'BC').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "tax and {} of B.C.",
+      "source": {
+        "engine": "calcTakeHome(85000,'BC').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "B.C. tax, {} together, which",
+      "source": {
+        "engine": "calcTakeHome(85000,'BC').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "which is {} of the",
+      "source": {
+        "engine": "calcTakeHome(85000,'BC').totalTax / 85000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "pay is {}: the federal",
+      "source": {
+        "engine": "(calcTakeHome(85100,'BC').totalTax - calcTakeHome(85000,'BC').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "the federal {} plus B.C.'s",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "plus B.C.'s {}. Only the",
+      "source": {
+        "const": "provinces.BC.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "dollars above {} pay that",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "those above {} pay that",
+      "source": {
+        "const": "provinces.BC.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "It adds {} of income",
+      "source": {
+        "engine": "calcTakeHome(90000,'BC').totalTax - calcTakeHome(85000,'BC').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "the first {} of income",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "the first {}. Each government",
+      "source": {
+        "const": "provinces.BC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "shrink at {} of net",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "out at {} by {*},",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "{*} by {}, which is",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "table charges {} between {*}",
+      "source": {
+        "engine": "(calcIncomeTax(200001,'BC').totalTax - calcIncomeTax(200000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "{*} between {} and {*}",
+      "source": {
+        "const": "provinces.BC.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "{*} and {} rather than",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "sum of {} and {*}.",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "{*} and {}. B.C.'s doesn't",
+      "source": {
+        "const": "provinces.BC.brackets.5.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "2026 is {}, but payroll",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "for 2026? {} on the",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "{} on the",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "the first {} of taxable",
+      "source": {
+        "const": "provinces.BC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "the first {} of taxable",
+      "source": {
+        "const": "provinces.BC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "return applies {} to the",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "return applies {} to the",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "shrinks by {} of every",
+      "source": {
+        "const": "provinces.BC.taxReduction.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "shrinks by {} of every",
+      "source": {
+        "const": "provinces.BC.taxReduction.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "income between {} and {*},",
+      "source": {
+        "const": "provinces.BC.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "income between {} and {*},",
+      "source": {
+        "const": "provinces.BC.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "{*} and {}, which lifts",
+      "source": {
+        "engine": "TC.provinces.BC.taxReduction.value.threshold + TC.provinces.BC.taxReduction.value.base / TC.provinces.BC.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "{*} and {}, which lifts",
+      "source": {
+        "engine": "TC.provinces.BC.taxReduction.value.threshold + TC.provinces.BC.taxReduction.value.base / TC.provinces.BC.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "stretch to {}. Once the",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'BC').totalTax - calcIncomeTax(35000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "stretch to {}. Once the",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'BC').totalTax - calcIncomeTax(35000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "back to {} until B.C.'s",
+      "source": {
+        "engine": "(calcIncomeTax(47001,'BC').totalTax - calcIncomeTax(47000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "back to {} until B.C.'s",
+      "source": {
+        "engine": "(calcIncomeTax(47001,'BC').totalTax - calcIncomeTax(47000,'BC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "begins at {}. Are B.C.",
+      "source": {
+        "const": "provinces.BC.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "begins at {}.",
+      "source": {
+        "const": "provinces.BC.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "January. Alberta's {} band ends",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "ends at {}, a little",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "the federal {} where Ottawa's",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "steps from {} to {*}.",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} to {}. For the",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "For the {} in between,",
+      "source": {
+        "engine": "TC.provinces.AB.brackets.value[0].max - TC.federal.brackets.value[1].min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "dollar costs {} before rising",
+      "source": {
+        "engine": "(calcIncomeTax(60001,'AB').totalTax - calcIncomeTax(60000,'AB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "rising to {}. What the",
+      "source": {
+        "engine": "(calcIncomeTax(62001,'AB').totalTax - calcIncomeTax(62000,'AB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "What the {} bracket did",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "change Charging {} rather than",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "rather than {} on the",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "the first {} is worth",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "up to {} a year,",
+      "source": {
+        "engine": "TC.provinces.AB.brackets.value[0].max * (TC.provinces.AB.brackets.value[1].rate - TC.provinces.AB.brackets.value[0].rate)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income of {} or more",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "less. The {} personal amount",
+      "source": {
+        "const": "provinces.AB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "now removes {} of Alberta",
+      "source": {
+        "engine": "TC.provinces.AB.bpa.value * TC.provinces.AB.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "where at {} it removed",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "it removed {}. The saving",
+      "source": {
+        "engine": "TC.provinces.AB.bpa.value * TC.provinces.AB.brackets.value[1].rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "incomes past {}. To protect",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "credits pass {}. A claim",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income. The {} row near",
+      "source": {
+        "engine": "(calcIncomeTax(20001,'AB').totalTax - calcIncomeTax(20000,'AB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "taxing at {} and Alberta",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "Alberta at {}, so between",
+      "source": {
+        "const": "provinces.AB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "the federal {} applies, and",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "and Alberta's {} joins only",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "taxed at {} rather than",
+      "source": {
+        "engine": "(calcTakeHome(60100,'AB').totalTax - calcTakeHome(60000,'AB').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "the table's {}. From {*}",
+      "source": {
+        "engine": "(calcIncomeTax(60001,'AB').totalTax - calcIncomeTax(60000,'AB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*}. From {} up, salary",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "threshold reached {} further up",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(95000,'AB').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "tax and {} of Alberta",
+      "source": {
+        "engine": "calcTakeHome(95000,'AB').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "that is {}, or {*}",
+      "source": {
+        "engine": "calcTakeHome(95000,'AB').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*}, or {} of the",
+      "source": {
+        "engine": "calcTakeHome(95000,'AB').totalTax / 95000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "taxed at {}. The gap",
+      "source": {
+        "engine": "(calcTakeHome(95100,'AB').totalTax - calcTakeHome(95000,'AB').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income above {} pays Alberta's",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "pays Alberta's {}, only the",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income above {} pays the",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "the federal {}, and the",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "salary adds {} of income",
+      "source": {
+        "engine": "calcTakeHome(96000,'AB').totalTax - calcTakeHome(95000,'AB').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "Saskatchewan's is {} above it",
+      "source": {
+        "engine": "TC.provinces.SK.bpa.value - TC.federal.bpa.value.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "and Quebec's {}; Alberta's is",
+      "source": {
+        "engine": "TC.provinces.QC.bpa.value - TC.federal.bpa.value.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "Alberta's is {} above it,",
+      "source": {
+        "engine": "TC.provinces.AB.bpa.value - TC.federal.bpa.value.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "tapers from {} at {*}",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} at {} of net",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income to {} at {*},",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} at {}, lifting the",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income at {}. It now",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "now charges {} on the",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "on the first {} of taxable income",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "and saves {} for what",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "and its {} basic personal",
+      "source": {
+        "const": "provinces.AB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income up to {}, {*} up to",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "income up to {}, {*} up to",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "income up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.AB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.AB.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.AB.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.AB.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.AB.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to",
+      "source": {
+        "const": "provinces.AB.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to",
+      "source": {
+        "const": "provinces.AB.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*} and",
+      "source": {
+        "const": "provinces.AB.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*} and",
+      "source": {
+        "const": "provinces.AB.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*} and",
+      "source": {
+        "const": "provinces.AB.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*} and",
+      "source": {
+        "const": "provinces.AB.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*} and",
+      "source": {
+        "const": "provinces.AB.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*} and",
+      "source": {
+        "const": "provinces.AB.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "up to {} and {*}",
+      "source": {
+        "const": "provinces.AB.brackets.4.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "up to {} and {*}",
+      "source": {
+        "const": "provinces.AB.brackets.4.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} and {} beyond. On",
+      "source": {
+        "const": "provinces.AB.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} and {} beyond. On",
+      "source": {
+        "const": "provinces.AB.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "tax, from {} to {*}.",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "tax, from {} to {*}.",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} to {}. Does Alberta",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} to {}.",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "stretch between {} and {*}",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "stretch between {} and {*}",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "{*} and {} where only",
+      "source": {
+        "const": "provinces.AB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "{*} and {} where only",
+      "source": {
+        "const": "provinces.AB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "taper above {}. The top",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "taper above {}. The top",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "rate is {}, on income",
+      "source": {
+        "engine": "(calcIncomeTax(450001,'AB').totalTax - calcIncomeTax(450000,'AB').totalTax)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "rate is {}, on income",
+      "source": {
+        "engine": "(calcIncomeTax(450001,'AB').totalTax - calcIncomeTax(450000,'AB').totalTax)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "income over {}. When did",
+      "source": {
+        "const": "provinces.AB.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "income over {}.",
+      "source": {
+        "const": "provinces.AB.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "did the {} Alberta tax",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "did the {} Alberta tax",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "to the first {} of taxable income",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "the first {} of taxable",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "valued at {} as well,",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "jsonld",
+      "anchor": "valued at {} as well,",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "begins at {}, just short",
+      "source": {
+        "const": "provinces.SK.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "the federal {}, and its",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "rate at {}, well before",
+      "source": {
+        "const": "provinces.SK.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "amount At {}, Saskatchewan's first",
+      "source": {
+        "const": "provinces.SK.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "that same {}, the {*}",
+      "source": {
+        "const": "provinces.SK.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "{*}, the {} credit cancels",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "credit cancels {} of Saskatchewan",
+      "source": {
+        "engine": "TC.provinces.SK.bpa.value * TC.provinces.SK.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "the first {}. That is",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "That is {} more income",
+      "source": {
+        "engine": "TC.provinces.SK.bpa.value - TC.federal.bpa.value.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "Up to {}, a dollar",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "pay costs {} where the",
+      "source": {
+        "engine": "(calcTakeHome(70100,'SK').totalTax - calcTakeHome(70000,'SK').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "table says {}. Once pay",
+      "source": {
+        "engine": "(calcIncomeTax(70001,'SK').totalTax - calcIncomeTax(70000,'SK').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "pay passes {} the two",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "table sits {} lower than",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "salary draws {} of federal",
+      "source": {
+        "engine": "calcTakeHome(70000,'SK').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "tax and {} of Saskatchewan",
+      "source": {
+        "engine": "calcTakeHome(70000,'SK').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "Saskatchewan tax, {} between them,",
+      "source": {
+        "engine": "calcTakeHome(70000,'SK').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "which is {} of the",
+      "source": {
+        "engine": "calcTakeHome(70000,'SK').totalTax / 70000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "EI take {} more. Saskatchewan's",
+      "source": {
+        "engine": "calcTakeHome(70000,'SK').cpp + calcTakeHome(70000,'SK').ei"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "top dollar, {}, is well",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "under Ottawa's {}. Run it",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "shrinks to {} between {*}",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "{*} between {} and {*}",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "{*} and {} of net",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "stays at {} no matter",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "tax rates, {}, {*} and",
+      "source": {
+        "const": "provinces.SK.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "rates, {*}, {} and {*},",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "{*} and {}, and it",
+      "source": {
+        "const": "provinces.SK.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "is a {} basic personal",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.SK.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable",
+      "source": {
+        "const": "provinces.SK.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.SK.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.SK.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.SK.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.SK.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.SK.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.SK.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "comes to {}. What is",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'SK').totalTax - calcIncomeTax(300000,'SK').totalTax)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "comes to {}.",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'SK').totalTax - calcIncomeTax(300000,'SK').totalTax)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "for 2026? {}. It is",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "{}. It is",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "years. At {} it cancels",
+      "source": {
+        "const": "provinces.SK.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "years. At {} it cancels",
+      "source": {
+        "const": "provinces.SK.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "it cancels {} of provincial",
+      "source": {
+        "engine": "TC.provinces.SK.bpa.value * TC.provinces.SK.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "it cancels {} of provincial",
+      "source": {
+        "engine": "TC.provinces.SK.bpa.value * TC.provinces.SK.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "income. At {} to {*}",
+      "source": {
+        "const": "provinces.SK.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "income. At {} to {*}",
+      "source": {
+        "const": "provinces.SK.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "{*} to {} of taxable",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "{*} to {} of taxable",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "rate is {}, of which",
+      "source": {
+        "engine": "(calcIncomeTax(56001,'SK').totalTax - calcIncomeTax(56000,'SK').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "rate is {}, of which",
+      "source": {
+        "engine": "(calcIncomeTax(56001,'SK').totalTax - calcIncomeTax(56000,'SK').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "of which {} is Saskatchewan's.",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "of which {} is Saskatchewan's.",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "cut by {} on line",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "rates of {}, {*}, {*},",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "of {*}, {}, {*}, {*}",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "of {*}, {*}, {}, {*} and {*}",
+      "source": {
+        "const": "federal.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*}, {*}, {*}, {} and {*} into",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*} and {} into an",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "an effective {}, {*}, {*},",
+      "source": {
+        "engine": "TC.federal.brackets.value[0].rate * (1 - TC.quebec.federalAbatementRate.value)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "effective {*}, {}, {*}, {*}",
+      "source": {
+        "engine": "TC.federal.brackets.value[1].rate * (1 - TC.quebec.federalAbatementRate.value)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "effective {*}, {*}, {}, {*} and {*}.",
+      "source": {
+        "engine": "TC.federal.brackets.value[2].rate * (1 - TC.quebec.federalAbatementRate.value)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*}, {*}, {} and {*}.",
+      "source": {
+        "engine": "TC.federal.brackets.value[3].rate * (1 - TC.quebec.federalAbatementRate.value)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*} and {}. Quebec's own",
+      "source": {
+        "engine": "TC.federal.brackets.value[4].rate * (1 - TC.quebec.federalAbatementRate.value)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "starts at {}, the same",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "out at {} from {*},",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*} from {}, a lower",
+      "source": {
+        "const": "provinces.QC.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "credits lose {} of their",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "amount, worth {} to someone",
+      "source": {
+        "engine": "TC.federal.bpa.value.max * TC.federal.brackets.value[0].rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "is worth {} in Quebec.",
+      "source": {
+        "engine": "TC.federal.bpa.value.max * TC.federal.brackets.value[0].rate * (1 - TC.quebec.federalAbatementRate.value)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "too. The {} basic personal",
+      "source": {
+        "const": "provinces.QC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "for workers, {} of work",
+      "source": {
+        "const": "provinces.QC.workerDeduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "up to {}, which lowers",
+      "source": {
+        "const": "provinces.QC.workerDeduction.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "rate by {}. calc-hq's tax",
+      "source": {
+        "engine": "TC.federal.brackets.value[4].rate * TC.quebec.federalAbatementRate.value"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "less below {}. QPP, QPIP",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "engine charges {} on an",
+      "source": {
+        "engine": "(calcTakeHome(50100,'QC').totalTax - calcTakeHome(50000,'QC').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "table shows {}. {*} of",
+      "source": {
+        "engine": "(calcIncomeTax(50001,'QC').totalTax - calcIncomeTax(50000,'QC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "Quebec carries {} of federal",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "abatement and {} of Quebec",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "come to {}, {*} of",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "to {*}, {} of the",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').totalTax / 80000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "QPP of {}, EI of",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "EI of {} at Quebec's",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').ei"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "QPIP of {}. The next",
+      "source": {
+        "engine": "calcTakeHome(80000,'QC').qpip"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "taxed at {}. Quebec's {*}",
+      "source": {
+        "engine": "(calcTakeHome(80100,'QC').totalTax - calcTakeHome(80000,'QC').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*}. Quebec's {} and the",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "abated federal {} make up",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "the table's {} comes from",
+      "source": {
+        "engine": "(calcIncomeTax(80001,'QC').totalTax - calcIncomeTax(80000,'QC').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "personal amount, {}, is larger",
+      "source": {
+        "const": "provinces.QC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "than Ottawa's {}, and it",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "valued at {}, Quebec's lowest",
+      "source": {
+        "const": "provinces.QC.bpaCreditRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "abatement: Above {} of net",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "fall, reaching {} at {*}.",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*} at {}. Quebec's amount",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "return knocks {} off their",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "by the {} Quebec abatement.",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "by the {} Quebec abatement.",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "tax by {}, compensating for",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "tax by {}, compensating for",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "dollar is {}. Do Quebec",
+      "source": {
+        "engine": "(calcIncomeTax(400001,'QC').totalTax - calcIncomeTax(400000,'QC').totalTax)"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "jsonld",
+      "anchor": "dollar is {}.",
+      "source": {
+        "engine": "(calcIncomeTax(400001,'QC').totalTax - calcIncomeTax(400000,'QC').totalTax)"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "thresholds match: {}, {*} and",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "match: {*}, {} and {*}",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "match: {*}, {*} and {} start a new rate",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "bracket. Yukon's {} rate starts",
+      "source": {
+        "const": "provinces.YT.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "a flat {}, a figure",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "rate of {} begins at",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "begins at {}. A personal",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "federal one: {} for net",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "up to {}, falling to",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "falling to {} by {*}.",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "{*} by {}. Valued at",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "rate of {}, the full",
+      "source": {
+        "const": "provinces.YT.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "amount cancels {} of territorial",
+      "source": {
+        "engine": "TC.provinces.YT.bpaPhaseOut.value.max * TC.provinces.YT.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "And between {} and {*}",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "{*} and {} both amounts",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "which adds {} to the",
+      "source": {
+        "engine": "(calcIncomeTax(200001,'YT').totalTax - calcIncomeTax(200000,'YT').totalTax) - TC.federal.brackets.value[3].rate - TC.provinces.YT.brackets.value[3].rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "is worth {} of Yukon",
+      "source": {
+        "engine": "TC.federal.canadaEmploymentAmountBase.value * TC.provinces.YT.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "lower until {}, since wages",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "boundary arrives {} later in",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "is taxed {} federally and",
+      "source": {
+        "engine": "calcTakeHome(120000,'YT').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "federally and {} by Yukon,",
+      "source": {
+        "engine": "calcTakeHome(120000,'YT').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "by Yukon, {} in all",
+      "source": {
+        "engine": "calcTakeHome(120000,'YT').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "all and {} of the",
+      "source": {
+        "engine": "calcTakeHome(120000,'YT').totalTax / 120000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "taxed at {}: {*} federal",
+      "source": {
+        "engine": "(calcTakeHome(120100,'YT').totalTax - calcTakeHome(120000,'YT').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "at {*}: {} federal plus",
+      "source": {
+        "const": "federal.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "federal plus {} territorial, since",
+      "source": {
+        "const": "provinces.YT.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "has crossed {} on both",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "only above {} does it",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "thresholds, yes: {}, {*} and",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "thresholds, yes: {}, {*} and",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "yes: {*}, {} and {*}",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "yes: {*}, {} and {*}",
+      "source": {
+        "const": "federal.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "yes: {*}, {*} and {} start a new rate",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "{*} and {} start a",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "own, from {} to {*},",
+      "source": {
+        "const": "provinces.YT.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "own, from {} to {*},",
+      "source": {
+        "const": "provinces.YT.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "{*} to {}, and its",
+      "source": {
+        "const": "provinces.YT.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "{*} to {}, and its",
+      "source": {
+        "const": "provinces.YT.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "starts at {}, a threshold",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "starts at {}, a threshold",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "tax rate? {} on income",
+      "source": {
+        "engine": "(calcIncomeTax(600001,'YT').totalTax - calcIncomeTax(600000,'YT').totalTax)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "{} on income",
+      "source": {
+        "engine": "(calcIncomeTax(600001,'YT').totalTax - calcIncomeTax(600000,'YT').totalTax)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "income over {}: the federal",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "income over {}: the federal",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "the federal {} plus Yukon's",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "the federal {} plus Yukon's",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "plus Yukon's {}. Between {*}",
+      "source": {
+        "const": "provinces.YT.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "plus Yukon's {}. Between {*}",
+      "source": {
+        "const": "provinces.YT.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "{*}. Between {} and {*}",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "{*}. Between {} and {*}",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "{*} and {} it is",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "{*} and {} it is",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "it is {}. Is Yukon's",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'YT').totalTax - calcIncomeTax(300000,'YT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "it is {}.",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'YT').totalTax - calcIncomeTax(300000,'YT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "It is {} for net",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "It is {} for net",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "up to {} and declines",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "up to {} and declines",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "declines to {} at {*},",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "declines to {} at {*},",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "{*} at {}, exactly as",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "{*} at {}, exactly as",
+      "source": {
+        "const": "provinces.YT.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "at Yukon's {} instead of",
+      "source": {
+        "const": "provinces.YT.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "at Yukon's {} instead of",
+      "source": {
+        "const": "provinces.YT.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "the federal {}. Run your",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "jsonld",
+      "anchor": "the federal {}.",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "starts at {}, ahead of",
+      "source": {
+        "const": "provinces.NT.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "of Ottawa's {} bracket, which",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "begins at {}. That leaves",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "dollar costs {}, between the",
+      "source": {
+        "engine": "(calcIncomeTax(175001,'NT').totalTax - calcIncomeTax(175000,'NT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "between the {} below it",
+      "source": {
+        "engine": "(calcIncomeTax(150001,'NT').totalTax - calcIncomeTax(150000,'NT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "and the {} above. All",
+      "source": {
+        "engine": "(calcIncomeTax(200001,'NT').totalTax - calcIncomeTax(200000,'NT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "lower until {}, where contributions",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "threshold shifted {} up the",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(100000,'NT').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "tax and {} of territorial",
+      "source": {
+        "engine": "calcTakeHome(100000,'NT').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "territorial tax, {} of the",
+      "source": {
+        "engine": "calcTakeHome(100000,'NT').totalTax / 100000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "dollar costs {}, the federal",
+      "source": {
+        "engine": "(calcTakeHome(100100,'NT').totalTax - calcTakeHome(100000,'NT').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "the federal {} plus the",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "the territory's {}. Your own",
+      "source": {
+        "const": "provinces.NT.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "amounts Between {} and {*}",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "{*} and {} of income",
+      "source": {
+        "const": "provinces.NT.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "income, from {} to {*}.",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "{*} to {}. Common questions",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "rates, from {} to {*},",
+      "source": {
+        "const": "provinces.NT.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "{*} to {}, with an",
+      "source": {
+        "const": "provinces.NT.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "with an {} basic personal",
+      "source": {
+        "const": "provinces.NT.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.NT.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable income up",
+      "source": {
+        "const": "provinces.NT.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.NT.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.NT.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.NT.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.NT.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.NT.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.NT.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NT.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NT.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NT.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NT.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that,",
+      "source": {
+        "const": "provinces.NT.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} above that,",
+      "source": {
+        "const": "provinces.NT.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "Northwest Territories? {} on taxable",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'NT').totalTax - calcIncomeTax(300000,'NT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable income over",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'NT').totalTax - calcIncomeTax(300000,'NT').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "income over {}, where the",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "income over {}, where the",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "the federal {} rate applies",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "the federal {} rate applies",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "the territory's {}. Does the",
+      "source": {
+        "const": "provinces.NT.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "jsonld",
+      "anchor": "the territory's {}.",
+      "source": {
+        "const": "provinces.NT.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "threshold. Its {} bracket begins",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "begins at {}, one dollar",
+      "source": {
+        "const": "provinces.NU.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "below the {} where Ottawa's",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "where Ottawa's {} bracket and",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "taxed at {}. It changes",
+      "source": {
+        "engine": "(calcIncomeTax(181440,'NU').totalTax - calcIncomeTax(181439,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "up to {}: each dollar",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "taxed at {}, against {*}",
+      "source": {
+        "engine": "(calcTakeHome(65100,'NU').totalTax - calcTakeHome(65000,'NU').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "{*}, against {} here. Higher",
+      "source": {
+        "engine": "(calcIncomeTax(65001,'NU').totalTax - calcIncomeTax(65000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "threshold reached {} later in",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "salary pays {} in federal",
+      "source": {
+        "engine": "calcTakeHome(65000,'NU').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "tax and {} in Nunavut",
+      "source": {
+        "engine": "calcTakeHome(65000,'NU').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "Nunavut tax, {} of the",
+      "source": {
+        "engine": "calcTakeHome(65000,'NU').totalTax / 65000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "amounts Nunavut's {} is larger",
+      "source": {
+        "const": "provinces.NU.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "the federal {}, but at",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "at a {} credit rate",
+      "source": {
+        "const": "provinces.NU.bpaCreditRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "cancels only {} of tax:",
+      "source": {
+        "engine": "TC.provinces.NU.bpa.value * TC.provinces.NU.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "the scale: {} on its",
+      "source": {
+        "const": "provinces.NU.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "bracket and {} on its",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "dollar costs {}, the lowest",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'NU').totalTax - calcIncomeTax(300000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "run from {} to {*},",
+      "source": {
+        "const": "provinces.NU.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "run from {} to {*},",
+      "source": {
+        "const": "provinces.NU.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "{*} to {}, the lowest",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "{*} to {}, the lowest",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "tax is {}. What are",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'NU').totalTax - calcIncomeTax(300000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "tax is {}.",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'NU').totalTax - calcIncomeTax(300000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.NU.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable",
+      "source": {
+        "const": "provinces.NU.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.NU.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.NU.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.NU.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.NU.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.NU.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.NU.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NU.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NU.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NU.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NU.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "starts at {} and the",
+      "source": {
+        "const": "provinces.NU.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "starts at {} and the",
+      "source": {
+        "const": "provinces.NU.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "the federal {} bracket at",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "the federal {} bracket at",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "bracket at {}. For that",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "jsonld",
+      "anchor": "bracket at {}. For that",
+      "source": {
+        "const": "federal.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "rate is {}, cut from",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "threshold rose {} with indexation",
+      "source": {
+        "const": "federal.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "personal amount, {}, shrinks to",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "shrinks to {} as net",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "goes from {} to {*},",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}, which nudges",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "cut by {}, the Quebec",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "dollar costs {} in Nunavut",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'NU').totalTax - calcIncomeTax(2000000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Nunavut and {} in Newfoundland",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'NL').totalTax - calcIncomeTax(2000000,'NL').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "brackets from {} to {*}.",
+      "source": {
+        "const": "provinces.BC.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}. B.C.'s February",
+      "source": {
+        "const": "provinces.BC.brackets.6.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "incomes between {} and about",
+      "source": {
+        "const": "provinces.BC.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "and about {} above the",
+      "source": {
+        "engine": "TC.provinces.BC.taxReduction.value.threshold + TC.provinces.BC.taxReduction.value.base / TC.provinces.BC.taxReduction.value.rate"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "rates Alberta {} on the",
+      "source": {
+        "const": "provinces.AB.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "the first {}, then five",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "up to {}, and the",
+      "source": {
+        "const": "provinces.AB.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "country at {}. No surtax",
+      "source": {
+        "const": "provinces.AB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Rates of {}, {*} and",
+      "source": {
+        "const": "provinces.SK.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "of {*}, {} and {*}",
+      "source": {
+        "const": "provinces.SK.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} and {} on just",
+      "source": {
+        "const": "provinces.SK.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "and a {} personal amount",
+      "source": {
+        "const": "provinces.SK.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "top rate, {}, is the",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'SK').totalTax - calcIncomeTax(2000000,'SK').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Three rates, {}, {*} and",
+      "source": {
+        "const": "provinces.MB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "rates, {*}, {} and {*},",
+      "source": {
+        "const": "provinces.MB.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} and {}, with thresholds",
+      "source": {
+        "const": "provinces.MB.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "thresholds at {} and {*}.",
+      "source": {
+        "const": "provinces.MB.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} and {}. Manitoba stopped",
+      "source": {
+        "const": "provinces.MB.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "and its {} basic personal",
+      "source": {
+        "const": "provinces.MB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Five brackets from {} to {*}, but",
+      "source": {
+        "const": "provinces.ON.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}, but a",
+      "source": {
+        "const": "provinces.ON.brackets.4.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "dollar to {}, and the",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'ON').provincialTax - calcIncomeTax(300000,'ON').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Four brackets from {} to {*}, filed",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}, filed on",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "by the {} abatement. Quebec",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "brackets, from {} up to",
+      "source": {
+        "const": "provinces.NB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "up to {} on income",
+      "source": {
+        "const": "provinces.NB.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "income over {}, and a",
+      "source": {
+        "const": "provinces.NB.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "amount of {}. Nova Scotia",
+      "source": {
+        "const": "provinces.NB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Five brackets from {} to {*}, the",
+      "source": {
+        "const": "provinces.NS.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}, the top",
+      "source": {
+        "const": "provinces.NS.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "starting at {}. Its {*}",
+      "source": {
+        "const": "provinces.NS.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*}. Its {} basic personal",
+      "source": {
+        "const": "provinces.NS.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "added a {} rate on",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "income over {} and moved",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "it to {}. CRA's January",
+      "source": {
+        "const": "provinces.PE.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "rate above {} from July",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "return applies {}. Newfoundland and",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "else, from {} to {*}",
+      "source": {
+        "const": "provinces.NL.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {} on income",
+      "source": {
+        "const": "provinces.NL.brackets.7.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "income over {}. The April",
+      "source": {
+        "const": "provinces.NL.brackets.7.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "amount to {}; payroll uses",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "rates from {} to {*}",
+      "source": {
+        "const": "provinces.YT.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "from {*} to {} and a top",
+      "source": {
+        "const": "provinces.YT.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "own from {}. Yukon brackets",
+      "source": {
+        "const": "provinces.YT.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "Four brackets from {} to {*} and",
+      "source": {
+        "const": "provinces.NT.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {} and an",
+      "source": {
+        "const": "provinces.NT.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "and an {} basic personal",
+      "source": {
+        "const": "provinces.NT.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "in Canada, {} to {*},",
+      "source": {
+        "const": "provinces.NU.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}, and the",
+      "source": {
+        "const": "provinces.NU.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "top rate, {}. Nunavut brackets",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'NU').totalTax - calcIncomeTax(2000000,'NU').totalTax)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "lowest at {} combined with",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'NU').totalTax - calcIncomeTax(2000000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "jsonld",
+      "anchor": "lowest at {} combined with",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'NU').totalTax - calcIncomeTax(2000000,'NU').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "lowest at {}. Lower down",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'SK').totalTax - calcIncomeTax(2000000,'SK').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "jsonld",
+      "anchor": "lowest at {}. Lower down",
+      "source": {
+        "engine": "(calcIncomeTax(2000001,'SK').totalTax - calcIncomeTax(2000000,'SK').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "brackets, from {} to {*},",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "jsonld",
+      "anchor": "brackets, from {} to {*},",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} to {}, apply everywhere.",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "jsonld",
+      "anchor": "{*} to {}, apply everywhere.",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "by the {} Quebec abatement.",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "jsonld",
+      "anchor": "by the {} Quebec abatement.",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent:1"
     }
   ]
 }

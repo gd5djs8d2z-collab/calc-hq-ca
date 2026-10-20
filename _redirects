@@ -107,7 +107,15 @@
 /privacy-policy                                /privacy-policy/                               301
 /property                                      /property/                                     301
 /property/land-transfer-tax                    /property/land-transfer-tax/                   301
+/tax-brackets                                  /tax-brackets/                                 301
+/tax-brackets/alberta                          /tax-brackets/alberta/                         301
+/tax-brackets/british-columbia                 /tax-brackets/british-columbia/                301
+/tax-brackets/northwest-territories            /tax-brackets/northwest-territories/           301
+/tax-brackets/nunavut                          /tax-brackets/nunavut/                         301
 /tax-brackets/ontario                          /tax-brackets/ontario/                         301
+/tax-brackets/quebec                           /tax-brackets/quebec/                          301
+/tax-brackets/saskatchewan                     /tax-brackets/saskatchewan/                    301
+/tax-brackets/yukon                            /tax-brackets/yukon/                           301
 /tax-on-extra-income                           /tax-on-extra-income/                          301
 /tax-on-extra-income/bonus                     /tax-on-extra-income/bonus/                    301
 /tax-on-extra-income/commission                /tax-on-extra-income/commission/               301

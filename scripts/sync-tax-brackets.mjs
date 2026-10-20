@@ -22,7 +22,7 @@
  *               because the engine charges it.
  *
  * HOW THE MARGINAL TABLE IS FOUND
- *   Scan $0 to SCAN_TOP in $25 steps, reading the tax on the next dollar for both profiles.
+ *   Scan $0 to past the top threshold in $25 steps, reading the tax on the next dollar for both profiles.
  *   Wherever either rate moves, bisect to the exact dollar. Then merge neighbouring bands whose
  *   two rates agree to the displayed precision, and label each boundary by matching it against
  *   the stamped thresholds (or, where none matches, by which part of the engine changed).
@@ -45,7 +45,9 @@ const R = await import(ratesUrl);
 
 const v = (node) => node.value;
 const money = (n) => '$' + Math.round(n).toLocaleString('en-CA');
-const pct = (r, d = 2) => `${(r * 100).toFixed(d)}%`;
+// Half up, past float noise: Quebec's top rate is exactly 53.305%, and a next-dollar difference
+// lands either side of the half by a few ulps, which would read as a rate change that isn't there.
+const pct = (r, d = 2) => `${(Math.round(r * 10 ** (d + 2) + 1e-6) / 10 ** d).toFixed(d)}%`;
 const rate = (r) => `${+(r * 100).toFixed(3)}%`;        // bracket rates as published: 5.05%, 20.5%, 14%
 
 /** The posted top provincial rate, and what the engine actually charges on a top-bracket dollar. */
@@ -66,14 +68,115 @@ const PAGES = [
     ogDescription: (y) => `Ontario's ${y} brackets, the surtax that raises its top rate from ${rate(topRate('ON'))} to ${pct(topRealRate('ON'))}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Ontario Tax Brackets ${y}`,
   },
+  {
+    file: 'tax-brackets/british-columbia/index.html',
+    code: 'BC',
+    title: (y) => `British Columbia Tax Brackets ${y}: Rates, the ${pct(lowRate('BC'))} Change and Marginal Rates | calc-hq.ca`,
+    description: (y) => `BC's ${y} tax brackets beside the federal ones: the lowest rate at ${pct(lowRate('BC'))}, the BC tax reduction that lifts the rate on lower incomes, and the combined rate on every band.`,
+    ogTitle: (y) => `British Columbia Tax Brackets ${y} — Seven Rates and What They Add Up To`,
+    ogDescription: (y) => `BC's ${y} brackets from ${pct(lowRate('BC'))} to ${rate(topRate('BC'))}, and a marginal-rate table computed by running the tax engine, reduction and all.`,
+    h1: (y) => `British Columbia Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/alberta/index.html',
+    code: 'AB',
+    title: (y) => `Alberta Tax Brackets ${y}: The ${rate(lowRate('AB'))} Bracket and Marginal Rates | calc-hq.ca`,
+    description: (y) => `Alberta's ${y} tax brackets with the federal rates: ${rate(lowRate('AB'))} on the first ${money(v(TC.provinces.AB.brackets)[0].max)}, a ${money(v(TC.provinces.AB.bpa))} basic personal amount, and the combined rate on every band.`,
+    ogTitle: (y) => `Alberta Tax Brackets ${y} — From ${rate(lowRate('AB'))} to ${rate(topRate('AB'))}`,
+    ogDescription: (y) => `Alberta's six ${y} brackets and a combined marginal-rate table computed by running the tax engine across the income range.`,
+    h1: (y) => `Alberta Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/saskatchewan/index.html',
+    code: 'SK',
+    title: (y) => `Saskatchewan Tax Brackets ${y}: Three Rates and Real Marginal Rates | calc-hq.ca`,
+    description: (y) => `Saskatchewan's ${y} tax brackets with the federal rates, its ${money(v(TC.provinces.SK.bpa))} basic personal amount, and the combined federal and Saskatchewan rate on every band.`,
+    ogTitle: (y) => `Saskatchewan Tax Brackets ${y} — Three Rates, Eight Bands`,
+    ogDescription: (y) => `Saskatchewan's ${y} brackets at ${rate(lowRate('SK'))}, ${rate(v(TC.provinces.SK.brackets)[1].rate)} and ${rate(topRate('SK'))}, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `Saskatchewan Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/quebec/index.html',
+    code: 'QC',
+    title: (y) => `Quebec Tax Brackets ${y}: Provincial Rates, the Federal Abatement and Marginal Rates | calc-hq.ca`,
+    description: (y) => `Quebec's ${y} tax brackets, the federal brackets after the ${rate(v(TC.quebec.federalAbatementRate))} Quebec abatement, and the combined marginal rate on every band.`,
+    ogTitle: (y) => `Quebec Tax Brackets ${y} — Two Returns, One Marginal Rate`,
+    ogDescription: (y) => `Quebec's ${y} brackets from ${rate(lowRate('QC'))} to ${rate(topRate('QC'))}, the abatement that trims every federal rate, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `Quebec Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/yukon/index.html',
+    code: 'YT',
+    title: (y) => `Yukon Tax Brackets ${y}: Territorial Rates and Real Marginal Rates | calc-hq.ca`,
+    description: (y) => `Yukon's ${y} tax brackets, which share the federal thresholds, the basic personal amount that shrinks with the federal one, and the combined rate on every band.`,
+    ogTitle: (y) => `Yukon Tax Brackets ${y} — Built on the Federal Thresholds`,
+    ogDescription: (y) => `Yukon's ${y} brackets from ${rate(lowRate('YT'))} to ${rate(topRate('YT'))}, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `Yukon Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/northwest-territories/index.html',
+    code: 'NT',
+    title: (y) => `Northwest Territories Tax Brackets ${y}: Rates and Marginal Rates | calc-hq.ca`,
+    description: (y) => `The Northwest Territories' ${y} tax brackets with the federal rates, its ${money(v(TC.provinces.NT.bpa))} basic personal amount, and the combined rate on every band.`,
+    ogTitle: (y) => `Northwest Territories Tax Brackets ${y} — Four Rates, Federal Included`,
+    ogDescription: (y) => `NWT's ${y} brackets from ${rate(lowRate('NT'))} to ${rate(topRate('NT'))}, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `Northwest Territories Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/nunavut/index.html',
+    code: 'NU',
+    title: (y) => `Nunavut Tax Brackets ${y}: Canada's Lowest Rates and Marginal Rates | calc-hq.ca`,
+    description: (y) => `Nunavut's ${y} tax brackets, from ${rate(lowRate('NU'))} to ${rate(topRate('NU'))}, beside the federal ones, and the combined federal and territorial rate on every band.`,
+    ogTitle: (y) => `Nunavut Tax Brackets ${y} — the Lowest Rates in Canada`,
+    ogDescription: (y) => `Nunavut's ${y} brackets and a marginal-rate table computed by running the tax engine across the income range.`,
+    h1: (y) => `Nunavut Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/index.html',
+    code: null,                                    // the hub: federal table + every jurisdiction side by side
+    title: (y) => `Canadian Tax Brackets ${y}: Federal, Provincial and Territorial Rates | calc-hq.ca`,
+    description: (y) => `The ${y} federal tax brackets once, then every province and territory: its rates, basic personal amount and the combined rate on a top-bracket dollar.`,
+    ogTitle: (y) => `Canadian Tax Brackets ${y} — Federal and All 13 Provinces and Territories`,
+    ogDescription: (y) => `Federal brackets from ${rate(v(TC.federal.brackets)[0].rate)} to ${rate(v(TC.federal.brackets).at(-1).rate)}, and every province's and territory's ${y} rates side by side.`,
+    h1: (y) => `Canadian Tax Brackets ${y}`,
+  },
 ];
+
+/* ── The hub's side-by-side table ──────────────────────────────────────────── */
+// West to east, then the territories. A jurisdiction links to its page only once it has one.
+const ORDER = ['BC', 'AB', 'SK', 'MB', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'YT', 'NT', 'NU'];
+const lowRate = (code) => v(TC.provinces[code].brackets)[0].rate;
+// The combined rate on a dollar far above every threshold and phase-out in the engine.
+const combinedTop = (code) => E.calcIncomeTax(2000001, code).totalTax - E.calcIncomeTax(2000000, code).totalTax;
+
+function summaryTable() {
+  const href = Object.fromEntries(PAGES.filter((p) => p.code).map((p) => [p.code, '/' + p.file.replace(/index\.html$/, '')]));
+  const rows = ORDER.map((code) => {
+    const P = TC.provinces[code], b = v(P.brackets);
+    const name = href[code] ? `<a href="${href[code]}">${P.name}</a>` : P.name;
+    return `<tr><td>${name}</td><td>${b.length}</td><td>${rate(b[0].rate)}</td><td>${rate(b.at(-1).rate)} over ${money(b.at(-1).min)}</td><td>${money(v(P.bpa))}</td><td>${pct(combinedTop(code))}</td></tr>`;
+  }).join('\n          ');
+  return `
+    <div class="compare-table-wrap">
+      <table class="compare-table summary-table">
+        <caption>Provincial and territorial income tax, ${TAX_YEAR}</caption>
+        <thead><tr><th>Jurisdiction</th><th>Brackets</th><th>Lowest rate</th><th>Top rate</th><th>Basic personal amount</th><th>Combined top rate</th></tr></thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
+    `;
+}
 
 /* ── Engine probes ─────────────────────────────────────────────────────────── */
 // The table is income tax on TAXABLE income with no CPP/EI (calcIncomeTax): one rate per band,
 // the figure every bracket table means. A salary's rate differs below the CPP/EI ceilings, and
 // its thresholds sit higher by the enhanced-CPP deduction; the pages say so in registered prose
 // rather than doubling every row.
-const SCAN_TOP = 400000, STEP = 25;
+// Scan past the jurisdiction's top threshold (Yukon's is $500,000) and the federal BPA floor.
+const STEP = 25;
+const scanTop = (code) => Math.max(400000, v(TC.provinces[code].brackets).at(-1).min + 100000);
 const taxOf = (code) => (x) => E.calcIncomeTax(x, code);
 const marg = (f, x) => f(x + 1).totalTax - f(x).totalTax;
 
@@ -81,16 +184,24 @@ function bands(code, from) {
   const f = taxOf(code), k = (x) => pct(marg(f, x));
   const pts = [];
   let prev = k(from);
-  for (let x = from + STEP; x <= SCAN_TOP; x += STEP) {
+  for (let x = from + STEP, top = scanTop(code); x <= top; x += STEP) {
     const cur = k(x);
-    if (cur !== prev) {
-      let lo = x - STEP, hi = x;                 // k(lo) === prev, k(hi) === cur
+    // Two changes can share one step (Nunavut's 11.5% bracket starts at $181,439, a dollar
+    // under the federal $181,440), so keep bisecting from each boundary until the step's end agrees.
+    let lo = x - STEP;
+    while (cur !== prev) {
+      let hi = x;                                // k(lo) === prev, k(hi) !== prev
       while (hi - lo > 1) { const mid = Math.floor((lo + hi) / 2); k(mid) === prev ? (lo = mid) : (hi = mid); }
       pts.push(hi);
-      prev = cur;
+      prev = k(hi);
+      lo = hi;
     }
   }
-  const edges = [from, ...pts];
+  // A threshold that falls inside a dollar (the surtax and tax-reduction points do) leaves that one
+  // dollar at an in-between rate. Fold it into the band it opens, unless the dollar's far edge is
+  // itself a stamped point — Nunavut's $181,439 to the federal $181,440 is a real one-dollar band.
+  const known = knownPoints(code);
+  const edges = [from, ...pts.filter((p, i) => !((i ? pts[i - 1] : from) === p - 1 && !known.some(([x]) => x === p)))];
   return edges.map((a, i) => {
     const b = edges[i + 1] ?? Infinity;
     const x = b === Infinity ? a + 1000 : Math.floor((a + b) / 2);
@@ -106,11 +217,22 @@ function knownPoints(code) {
   const bpa = v(TC.federal.bpa);
   out.push([bpa.phaseOutStart, 'federal basic personal amount starts shrinking']);
   out.push([bpa.phaseOutEnd, 'federal basic personal amount at its floor']);
+  if (P.bpaPhaseOut) {                             // Yukon: its own BPA tracks the federal one
+    const p = v(P.bpaPhaseOut);
+    out.push([p.phaseOutStart, `${P.name} basic personal amount starts shrinking`]);
+    out.push([p.phaseOutEnd, `${P.name} basic personal amount at its floor`]);
+  }
+  if (P.taxReduction) {                            // BC: an income-tested reduction, base − rate × (income − threshold)
+    const t = v(P.taxReduction);
+    out.push([t.threshold, `${P.name} tax reduction starts shrinking`]);
+    // Not a whole dollar ($44,952.25 in 2026), so the scan's boundary lands within a dollar of it.
+    out.push([t.threshold + t.base / t.rate, `${P.name} tax reduction runs out`, 1]);
+  }
   return out;
 }
 
 function label(code, band) {
-  const near = knownPoints(code).filter(([x]) => x === band.from).map(([, l]) => l);
+  const near = knownPoints(code).filter(([x, , tol = 0]) => Math.abs(x - band.from) <= tol).map(([, l]) => l);
   if (near.length) return near.join(' + ');
   // No stamped threshold here — say which part of the engine moved, in its own numbers.
   const f = taxOf(code), x = band.from, a = f(x - 1), b = f(x), c = f(x + 1);
@@ -129,14 +251,19 @@ function label(code, band) {
     }
     return `Health Premium holds at ${money(b.healthPremium)}`;
   }
-  if (Math.abs(d('federalTax')) > 1e-6 && a.federalTax < 1e-9) return 'federal basic personal amount used up';
+  const P = TC.provinces[code];
+  const provStarts = Math.abs(d('provincialTax')) > 1e-6 && a.provincialTax < 1e-9;
+  if (Math.abs(d('federalTax')) > 1e-6 && a.federalTax < 1e-9)
+    return 'federal basic personal amount used up' + (provStarts ? ` + ${P.name}'s` : '');
   // What the province gives back after the surtax (Ontario: the s. 20 tax reduction; LIFT needs
   // employment income, which calcIncomeTax never has): basic + surtax + premium − the total.
   const back = (t) => t.provincialBasic + t.surtax + t.healthPremium - t.provincialTax;
   if (Math.abs((back(c) - back(b)) - (back(b) - back(a))) > 1e-6) {
-    const P = TC.provinces[code];
     return back(c) > 1e-9 ? `${P.name} tax reduction starts shrinking` : `${P.name} tax reduction runs out`;
   }
+  // The first dollar of provincial tax: past the basic personal amount, or (BC) past the point
+  // where the income-tested reduction no longer covers all of it.
+  if (provStarts) return P.taxReduction ? `${P.name} tax starts: the reduction is used up` : `${P.name} basic personal amount used up`;
   throw new Error(`${code}: no label for the rate change at ${money(x)}`);
 }
 
@@ -168,7 +295,9 @@ function bpaTable(code) {
         <tbody>
           <tr><td>Federal, net income up to ${money(fb.phaseOutStart)}</td><td>${money(fb.max)}</td><td>${rate(fRate)}</td><td>${money(fb.max * fRate)}</td></tr>
           <tr><td>Federal, net income ${money(fb.phaseOutEnd)} and up</td><td>${money(fb.min)}</td><td>${rate(fRate)}</td><td>${money(fb.min * fRate)}</td></tr>
-          <tr><td>${P.name}</td><td>${money(v(P.bpa))}</td><td>${rate(pRate)}</td><td>${money(v(P.bpa) * pRate)}</td></tr>
+          ${P.bpaPhaseOut ? ((p) => `<tr><td>${P.name}, net income up to ${money(p.phaseOutStart)}</td><td>${money(p.max)}</td><td>${rate(pRate)}</td><td>${money(p.max * pRate)}</td></tr>
+          <tr><td>${P.name}, net income ${money(p.phaseOutEnd)} and up</td><td>${money(p.min)}</td><td>${rate(pRate)}</td><td>${money(p.min * pRate)}</td></tr>`)(v(P.bpaPhaseOut))
+            : `<tr><td>${P.name}</td><td>${money(v(P.bpa))}</td><td>${rate(pRate)}</td><td>${money(v(P.bpa) * pRate)}</td></tr>`}
         </tbody>
       </table>
     </div>
@@ -195,7 +324,7 @@ function marginalTable(page) {
 }
 
 function render(page, name) {
-  const y = TAX_YEAR, P = TC.provinces[page.code];
+  const y = TAX_YEAR, P = page.code && TC.provinces[page.code];
   switch (name) {
     case 'head': return `
 <title>${page.title(y)}</title>
@@ -208,6 +337,7 @@ function render(page, name) {
     case 'provincial': return bracketTable(v(P.brackets), `${P.name} tax brackets, ${y}`);
     case 'bpa': return bpaTable(page.code);
     case 'marginal': return marginalTable(page);
+    case 'summary': return summaryTable();
     default: throw new Error(`${page.file}: unknown region tb:${name}`);
   }
 }
