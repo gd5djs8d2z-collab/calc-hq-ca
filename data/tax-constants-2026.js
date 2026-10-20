@@ -595,11 +595,13 @@ export const TAX_CONSTANTS_2026 = {
         { min: 570638,  max: 1141275,   rate: 0.2130 },
         { min: 1141275, max: Infinity,  rate: 0.2180 },
       ], source_url: SRC.nlFin, last_verified: '2026-07-15' },
-      // AUDIT 2026-07-15: was $11,188 (the 2025 value — stale). NL Budget 2026 (Apr 29)
-      // raised the BPA to $13,094 effective Jan 1, 2026. This is the 2026 return / non-
-      // refundable-credit-table amount (gov.nl.ca/fin). NL is separately phasing toward a
-      // $15,000 exemption, delivered in-year via a prorated higher payroll BPA from July —
-      // but the amount claimed on the 2026 return is $13,094, which is what an annual calc uses.
+      // AUDIT 2026-07-15: was $11,188 — not the 2025 value ($11,067 on gov.nl.ca) but that
+      // figure indexed by NL's 1.1% for 2026, as CRA's January T4032NL printed it before the
+      // budget. NL Budget 2026 (Apr 29) raised the BPA to $13,094 effective Jan 1, 2026: the
+      // 2026 return / non-refundable-credit-table amount (gov.nl.ca/fin), what an annual calc
+      // uses. CRA's July T4032NL withholds on a prorated $15,000 BPA for Jul–Dec only, so the
+      // year averages ($11,188 + $15,000) / 2 = $13,094. $15,000 is that half-year catch-up,
+      // not a phase-in target (corrected 2026-10-20).
       bpa: { value: 13094, source_url: SRC.nlFin, last_verified: '2026-07-15' },
       bpaCreditRate: { value: 0.087, source_url: SRC.nlFin, last_verified: '2026-07-15' }, // = brackets[0].rate (lowest-rate rule)
     },

@@ -736,12 +736,15 @@ T4032 and Revenu Québec tables.
 **Result: 1 correction, 0 unverified, everything else confirmed.**
 
 ### The one correction
-- **Newfoundland & Labrador BPA — CORRECTED $11,188 → $13,094.** The code held the **2025**
-  value. NL Budget 2026 (Apr 29, 2026) raised the BPA to **$13,094** effective Jan 1, 2026
-  (gov.nl.ca Finance "provincial non-refundable credits table"). Caveat kept in code: NL is
-  separately phasing toward a **$15,000** exemption, delivered in-year via a prorated higher
-  *payroll* BPA from July 2026 — but the amount claimed on the **2026 return** (what an annual
-  calculator uses) is $13,094. Regression: only NL take-home moved (+~$166 at $65k); all other
+- **Newfoundland & Labrador BPA — CORRECTED $11,188 → $13,094.** The code held the
+  pre-budget 2026 value: $11,188 is 2025's $11,067 indexed by NL's 1.1%, as CRA's January
+  T4032NL printed it. NL Budget 2026 (Apr 29, 2026) raised the BPA to **$13,094** effective
+  Jan 1, 2026 (gov.nl.ca Finance "provincial non-refundable credits table"), and that is the
+  amount claimed on the **2026 return** (what an annual calculator uses). *(Corrected
+  2026-10-20: this entry first said $11,188 was the 2025 value and that NL was phasing toward
+  a $15,000 exemption. CRA's July T4032NL shows $15,000 is only a prorated payroll BPA for
+  July–December, so the year averages ($11,188 + $15,000) / 2 = $13,094. It is a half-year
+  catch-up, not a phase-in target.)* Regression: only NL take-home moved (+~$166 at $65k); all other
   jurisdictions byte-identical.
 
 ### The two flagged-for-scrutiny items — both RESOLVED
@@ -779,7 +782,9 @@ T4032 and Revenu Québec tables.
 - **Manitoba freeze** — brackets + BPA held at 2024 levels; confirm each year whether the freeze is lifted.
 - **Saskatchewan** — BPA includes the Affordability Act +$500 (through 2028) on top of indexation; the gov page 403s to automated fetches, so keep a taxtips corroboration on file.
 - **PEI** — CRA T4032-PE payroll table and many calculators still surface the old 3-bracket (9.8/13.8/16.7) structure; the enacted 6-bracket statute governs.
-- **NL** — the $15,000 exemption phase-in: re-check the 2027 return BPA (it should land at $15,000).
+- **NL** — re-read the 2027 BPA from gov.nl.ca and the January T4032NL as for any other year. There
+  is no $15,000 phase-in to expect: that figure was only CRA's prorated July–December 2026 payroll
+  amount (corrected 2026-10-20).
 - **CCB** — 2026–27 amounts now official; next re-index is **July 2027**.
 
 ## 2026-07-24 — The Alberta near-miss: current-year rates applied to historical years
