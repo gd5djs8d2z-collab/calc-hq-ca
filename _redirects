@@ -110,9 +110,14 @@
 /tax-brackets                                  /tax-brackets/                                 301
 /tax-brackets/alberta                          /tax-brackets/alberta/                         301
 /tax-brackets/british-columbia                 /tax-brackets/british-columbia/                301
+/tax-brackets/manitoba                         /tax-brackets/manitoba/                        301
+/tax-brackets/new-brunswick                    /tax-brackets/new-brunswick/                   301
+/tax-brackets/newfoundland-and-labrador        /tax-brackets/newfoundland-and-labrador/       301
 /tax-brackets/northwest-territories            /tax-brackets/northwest-territories/           301
+/tax-brackets/nova-scotia                      /tax-brackets/nova-scotia/                     301
 /tax-brackets/nunavut                          /tax-brackets/nunavut/                         301
 /tax-brackets/ontario                          /tax-brackets/ontario/                         301
+/tax-brackets/prince-edward-island             /tax-brackets/prince-edward-island/            301
 /tax-brackets/quebec                           /tax-brackets/quebec/                          301
 /tax-brackets/saskatchewan                     /tax-brackets/saskatchewan/                    301
 /tax-brackets/yukon                            /tax-brackets/yukon/                           301

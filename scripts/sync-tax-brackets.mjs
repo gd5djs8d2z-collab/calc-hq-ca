@@ -132,6 +132,51 @@ const PAGES = [
     h1: (y) => `Nunavut Tax Brackets ${y}`,
   },
   {
+    file: 'tax-brackets/manitoba/index.html',
+    code: 'MB',
+    title: (y) => `Manitoba Tax Brackets ${y}: Frozen Thresholds, the BPA Phase-Out and Marginal Rates | calc-hq.ca`,
+    description: (y) => `Manitoba's ${y} tax brackets, still at their 2024 levels, the basic personal amount that phases out between ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutStart)} and ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutEnd)}, and the combined rate on every band.`,
+    ogTitle: (y) => `Manitoba Tax Brackets ${y} — Where the Top Rate Isn't at the Top`,
+    ogDescription: (y) => `Manitoba's three ${y} brackets, the BPA phase-out that lifts the rate below ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutEnd)}, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `Manitoba Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/newfoundland-and-labrador/index.html',
+    code: 'NL',
+    title: (y) => `Newfoundland and Labrador Tax Brackets ${y}: Eight Rates and Marginal Rates | calc-hq.ca`,
+    description: (y) => `Newfoundland and Labrador's ${y} brackets, the ${money(v(TC.provinces.NL.bpa))} basic personal amount from the April budget, the low income tax reduction, and the combined rate on every band.`,
+    ogTitle: (y) => `Newfoundland and Labrador Tax Brackets ${y} — Up to ${pct(combinedTop('NL'))}`,
+    ogDescription: (y) => `NL's eight ${y} brackets from ${rate(lowRate('NL'))} to ${rate(topRate('NL'))}, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `Newfoundland and Labrador Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/new-brunswick/index.html',
+    code: 'NB',
+    title: (y) => `New Brunswick Tax Brackets ${y}: Rates, the Low-Income Reduction and Marginal Rates | calc-hq.ca`,
+    description: (y) => `New Brunswick's ${y} tax brackets with the federal rates, the low-income tax reduction that runs to ${money(v(TC.provinces.NB.taxReduction).threshold + v(TC.provinces.NB.taxReduction).base / v(TC.provinces.NB.taxReduction).rate)}, and the combined rate on every band.`,
+    ogTitle: (y) => `New Brunswick Tax Brackets ${y} — Four Rates and a Long Taper`,
+    ogDescription: (y) => `NB's ${y} brackets from ${rate(lowRate('NB'))} to ${rate(topRate('NB'))}, and a marginal-rate table computed by running the tax engine.`,
+    h1: (y) => `New Brunswick Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/nova-scotia/index.html',
+    code: 'NS',
+    title: (y) => `Nova Scotia Tax Brackets ${y}: Rates, Indexation and Marginal Rates | calc-hq.ca`,
+    description: (y) => `Nova Scotia's ${y} tax brackets beside the federal ones, its ${money(v(TC.provinces.NS.bpa))} basic personal amount, the low-income tax reduction, and the combined rate on every band.`,
+    ogTitle: (y) => `Nova Scotia Tax Brackets ${y} — Five Rates up to ${rate(topRate('NS'))}`,
+    ogDescription: (y) => `Nova Scotia's ${y} brackets and a marginal-rate table computed by running the tax engine across the income range.`,
+    h1: (y) => `Nova Scotia Tax Brackets ${y}`,
+  },
+  {
+    file: 'tax-brackets/prince-edward-island/index.html',
+    code: 'PE',
+    title: (y) => `Prince Edward Island Tax Brackets ${y}: The New ${rate(topRate('PE'))} Bracket and Marginal Rates | calc-hq.ca`,
+    description: (y) => `PEI's ${y} tax brackets, including the sixth bracket at ${rate(topRate('PE'))} over ${money(v(TC.provinces.PE.brackets).at(-1).min)}, the low-income tax reduction, and the combined rate on every band.`,
+    ogTitle: (y) => `Prince Edward Island Tax Brackets ${y} — Six Rates from ${rate(lowRate('PE'))}`,
+    ogDescription: (y) => `PEI's ${y} brackets and a marginal-rate table computed by running the tax engine, low-income reduction included.`,
+    h1: (y) => `Prince Edward Island Tax Brackets ${y}`,
+  },
+  {
     file: 'tax-brackets/index.html',
     code: null,                                    // the hub: federal table + every jurisdiction side by side
     title: (y) => `Canadian Tax Brackets ${y}: Federal, Provincial and Territorial Rates | calc-hq.ca`,
@@ -217,12 +262,16 @@ function knownPoints(code) {
   const bpa = v(TC.federal.bpa);
   out.push([bpa.phaseOutStart, 'federal basic personal amount starts shrinking']);
   out.push([bpa.phaseOutEnd, 'federal basic personal amount at its floor']);
-  if (P.bpaPhaseOut) {                             // Yukon: its own BPA tracks the federal one
+  if (P.bpaPhaseOut) {                             // Yukon tracks the federal BPA; Manitoba's runs out to $0
     const p = v(P.bpaPhaseOut);
     out.push([p.phaseOutStart, `${P.name} basic personal amount starts shrinking`]);
-    out.push([p.phaseOutEnd, `${P.name} basic personal amount at its floor`]);
+    out.push([p.phaseOutEnd, p.min === 0 ? `${P.name} basic personal amount fully phased out` : `${P.name} basic personal amount at its floor`]);
   }
-  if (P.taxReduction) {                            // BC: an income-tested reduction, base − rate × (income − threshold)
+  if (P.familyTaxBenefit) {                        // Manitoba: a credit amount of base − 9% of income
+    const f = v(P.familyTaxBenefit);
+    out.push([f.amount / f.rate, `${P.name} family tax benefit runs out`, 1]);
+  }
+  if (P.taxReduction) {                            // BC, NL, NB, NS, PE: base − rate × (income − threshold)
     const t = v(P.taxReduction);
     out.push([t.threshold, `${P.name} tax reduction starts shrinking`]);
     // Not a whole dollar ($44,952.25 in 2026), so the scan's boundary lands within a dollar of it.
@@ -263,7 +312,14 @@ function label(code, band) {
   }
   // The first dollar of provincial tax: past the basic personal amount, or (BC) past the point
   // where the income-tested reduction no longer covers all of it.
-  if (provStarts) return P.taxReduction ? `${P.name} tax starts: the reduction is used up` : `${P.name} basic personal amount used up`;
+  // Below the reduction's threshold the full reduction is used up; above it (NB, NS), tax starts
+  // because the reduction is shrinking faster than it can keep covering the tax.
+  if (provStarts) {
+    if (P.familyTaxBenefit) return `${P.name} basic personal amount and family tax benefit used up`;
+    if (!P.taxReduction) return `${P.name} basic personal amount used up`;
+    return x <= v(P.taxReduction).threshold ? `${P.name} tax starts: the reduction is used up`
+      : `${P.name} tax starts: the shrinking reduction no longer covers it`;
+  }
   throw new Error(`${code}: no label for the rate change at ${money(x)}`);
 }
 

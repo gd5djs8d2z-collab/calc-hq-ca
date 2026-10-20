@@ -25,7 +25,12 @@
     "/tax-brackets/yukon/",
     "/tax-brackets/northwest-territories/",
     "/tax-brackets/nunavut/",
-    "/tax-brackets/"
+    "/tax-brackets/",
+    "/tax-brackets/newfoundland-and-labrador/",
+    "/tax-brackets/new-brunswick/",
+    "/tax-brackets/nova-scotia/",
+    "/tax-brackets/prince-edward-island/",
+    "/tax-brackets/manitoba/"
   ],
   "figures": [
     {
@@ -11883,6 +11888,2310 @@
       "format": "exact"
     },
     {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "starts at {}, a few",
+      "source": {
+        "const": "provinces.NB.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "the federal {}; the top",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "one, at {}, from {*}.",
+      "source": {
+        "const": "provinces.NB.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*}, from {}. How the",
+      "source": {
+        "const": "provinces.NB.brackets.3.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "income threshold, {} for 2026,",
+      "source": {
+        "const": "provinces.NB.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "and the {} basic personal",
+      "source": {
+        "const": "provinces.NB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "at the {} lowest rate",
+      "source": {
+        "const": "provinces.NB.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "That gives {}, which is",
+      "source": {
+        "const": "provinces.NB.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "So below {} of net",
+      "source": {
+        "const": "provinces.NB.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "shrinks by {} of each",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "up to {}. The 2026",
+      "source": {
+        "engine": "(() => { let lo = 0, hi = 60000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcTakeHome(m,'NB').provincialTax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "threshold becomes {}, and the",
+      "source": {
+        "const": "provinces.NB.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*} gives {}. A spouse",
+      "source": {
+        "const": "provinces.NB.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "rate is {}: the {*}",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'NB').provincialTax - calcIncomeTax(35000,'NB').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*}: the {} bracket plus",
+      "source": {
+        "const": "provinces.NB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "plus the {} withdrawal. calc-hq's",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "table until {}, because contributions",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "dollar costs {}. Beyond {*},",
+      "source": {
+        "engine": "(calcTakeHome(40100,'NB').totalTax - calcTakeHome(40000,'NB').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*}. Beyond {}, salary and",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "showing up {} later in",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "still worth {}. The engine",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.base - TC.provinces.NB.taxReduction.value.rate * (40000 - calcCPP(40000).enhanced - TC.provinces.NB.taxReduction.value.threshold)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(40000,'NB').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "tax and {} of New",
+      "source": {
+        "engine": "calcTakeHome(40000,'NB').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "Brunswick tax, {} of the",
+      "source": {
+        "engine": "calcTakeHome(40000,'NB').totalTax / 40000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "there adds {} of income",
+      "source": {
+        "engine": "calcTakeHome(45000,'NB').totalTax - calcTakeHome(40000,'NB').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "tapers, from {} to {*}",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*} to {} of net",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "at only {} a dollar,",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "province's: worth {} to a",
+      "source": {
+        "const": "provinces.NB.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "out until {}. That stretch,",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.threshold + TC.provinces.NB.taxReduction.value.base / TC.provinces.NB.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "a combined {} instead of",
+      "source": {
+        "engine": "(calcIncomeTax(35001,'NB').totalTax - calcIncomeTax(35000,'NB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "instead of {}. Below are",
+      "source": {
+        "engine": "(calcIncomeTax(51001,'NB').totalTax - calcIncomeTax(51000,'NB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.NB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable",
+      "source": {
+        "const": "provinces.NB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.NB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.NB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.NB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.NB.brackets.1.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.NB.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to",
+      "source": {
+        "const": "provinces.NB.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NB.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NB.brackets.2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NB.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NB.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that,",
+      "source": {
+        "const": "provinces.NB.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} above that,",
+      "source": {
+        "const": "provinces.NB.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "income under {} gets some",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.threshold + TC.provinces.NB.taxReduction.value.base / TC.provinces.NB.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "income under {} gets some",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.threshold + TC.provinces.NB.taxReduction.value.base / TC.provinces.NB.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "person gets {} at incomes",
+      "source": {
+        "const": "provinces.NB.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "person gets {} at incomes",
+      "source": {
+        "const": "provinces.NB.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "up to {}, less {*}",
+      "source": {
+        "const": "provinces.NB.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "up to {}, less {*}",
+      "source": {
+        "const": "provinces.NB.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "{*}, less {} of income",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "{*}, less {} of income",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "withdrawn, adding {} to the",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "withdrawn, adding {} to the",
+      "source": {
+        "const": "provinces.NB.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "to the {} provincial rate.",
+      "source": {
+        "const": "provinces.NB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "to the {} provincial rate.",
+      "source": {
+        "const": "provinces.NB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "out at {}, and the",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.threshold + TC.provinces.NB.taxReduction.value.base / TC.provinces.NB.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "out at {}, and the",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.threshold + TC.provinces.NB.taxReduction.value.base / TC.provinces.NB.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "falls to {} until the",
+      "source": {
+        "engine": "(calcIncomeTax(51001,'NB').totalTax - calcIncomeTax(51000,'NB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "falls to {} until the",
+      "source": {
+        "engine": "(calcIncomeTax(51001,'NB').totalTax - calcIncomeTax(51000,'NB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "January. Its {} rate now",
+      "source": {
+        "const": "provinces.NS.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "starts at {}, about half",
+      "source": {
+        "const": "provinces.NS.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "and its {} top rate",
+      "source": {
+        "const": "provinces.NS.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "rate from {} makes a",
+      "source": {
+        "const": "provinces.NS.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "a combined {} on the",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'NS').totalTax - calcIncomeTax(300000,'NS').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "reduction is {} for a",
+      "source": {
+        "const": "provinces.NS.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "reduced by {} of net",
+      "source": {
+        "const": "provinces.NS.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "income over {}, so it",
+      "source": {
+        "const": "provinces.NS.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "gone at {}. Those amounts",
+      "source": {
+        "engine": "TC.provinces.NS.taxReduction.value.threshold + TC.provinces.NS.taxReduction.value.base / TC.provinces.NS.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "income passes {}, still below",
+      "source": {
+        "engine": "(() => { let lo = 0, hi = 40000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'NS').provincialTax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "below the {} at which",
+      "source": {
+        "const": "federal.bpa.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "rows below {}: CPP and",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "salary pays {} on its",
+      "source": {
+        "engine": "(calcTakeHome(65100,'NS').totalTax - calcTakeHome(65000,'NS').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "table shows {}. Higher up,",
+      "source": {
+        "engine": "(calcIncomeTax(65001,'NS').totalTax - calcIncomeTax(65000,'NS').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "each threshold {} further up",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "The engine's {} of income",
+      "source": {
+        "engine": "calcTakeHome(65000,'NS').totalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "{*} is {} of the",
+      "source": {
+        "engine": "calcTakeHome(65000,'NS').totalTax / 65000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "Nova Scotia's {} band, which",
+      "source": {
+        "const": "provinces.NS.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "begins at {}, and Ottawa's",
+      "source": {
+        "const": "provinces.NS.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "and Ottawa's {} band. Any",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "does, from {} of net",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "comes to {} and Ottawa's",
+      "source": {
+        "engine": "calcTakeHome(65000,'NS').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "Ottawa's to {}. Outside Quebec,",
+      "source": {
+        "engine": "calcTakeHome(65000,'NS').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "are an {} basic personal",
+      "source": {
+        "const": "provinces.NS.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "starts at {}. Both 2026",
+      "source": {
+        "const": "provinces.NS.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "for 2026? {} up to",
+      "source": {
+        "const": "provinces.NS.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{} up to {*}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NS.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "2026? {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NS.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NS.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NS.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NS.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NS.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NS.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {*}, {} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NS.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {*}, {} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NS.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NS.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NS.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NS.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NS.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NS.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NS.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "{*}, and {} over that,",
+      "source": {
+        "const": "provinces.NS.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} over that,",
+      "source": {
+        "const": "provinces.NS.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "up to {} in Nova",
+      "source": {
+        "const": "provinces.NS.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "up to {} in Nova",
+      "source": {
+        "const": "provinces.NS.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "person, less {} of net",
+      "source": {
+        "const": "provinces.NS.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "person, less {} of net",
+      "source": {
+        "const": "provinces.NS.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "income above {}. It ends",
+      "source": {
+        "const": "provinces.NS.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "income above {}. It ends",
+      "source": {
+        "const": "provinces.NS.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "ends at {}. Couples and",
+      "source": {
+        "engine": "TC.provinces.NS.taxReduction.value.threshold + TC.provinces.NS.taxReduction.value.base / TC.provinces.NS.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "jsonld",
+      "anchor": "ends at {}. Couples and",
+      "source": {
+        "engine": "TC.provinces.NS.taxReduction.value.threshold + TC.provinces.NS.taxReduction.value.base / TC.provinces.NS.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} above {} for the",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "to the {} the return",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "slice above {} pays {*}",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} pays {} more than",
+      "source": {
+        "engine": "(calcIncomeTax(250000,'PE').provincialTax - calcIncomeTax(200000,'PE').provincialTax) - (250000 - 200000) * TC.provinces.PE.brackets.value[4].rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "reduction at {} for an",
+      "source": {
+        "const": "provinces.PE.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "individual, reduced by {} of adjusted income",
+      "source": {
+        "const": "provinces.PE.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "income over {}, up from",
+      "source": {
+        "const": "provinces.PE.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "disappears at {}. Combined with",
+      "source": {
+        "engine": "TC.provinces.PE.taxReduction.value.threshold + TC.provinces.PE.taxReduction.value.base / TC.provinces.PE.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "with the {} basic personal",
+      "source": {
+        "const": "provinces.PE.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "income passes {}. Between {*}",
+      "source": {
+        "engine": "(() => { let lo = 0, hi = 40000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'PE').provincialTax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*}. Between {} and {*},",
+      "source": {
+        "const": "provinces.PE.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} and {}, the province's",
+      "source": {
+        "engine": "TC.provinces.PE.taxReduction.value.threshold + TC.provinces.PE.taxReduction.value.base / TC.provinces.PE.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "dollar is {} rather than",
+      "source": {
+        "engine": "(calcIncomeTax(26001,'PE').provincialTax - calcIncomeTax(26000,'PE').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "rather than {}, as the",
+      "source": {
+        "const": "provinces.PE.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "shows until {}, since CPP",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "salary pays {} on the",
+      "source": {
+        "engine": "(calcTakeHome(50100,'PE').totalTax - calcTakeHome(50000,'PE').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "instead of {}. Further up,",
+      "source": {
+        "engine": "(calcIncomeTax(50001,'PE').totalTax - calcIncomeTax(50000,'PE').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "threshold sits {} higher in",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(26000,'PE').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "and only {} of Island",
+      "source": {
+        "engine": "calcTakeHome(26000,'PE').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "bill is {} and the",
+      "source": {
+        "engine": "calcTakeHome(250000,'PE').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "provincial one {}, and each",
+      "source": {
+        "engine": "calcTakeHome(250000,'PE').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "dollar costs {}. Your pay:",
+      "source": {
+        "engine": "(calcTakeHome(250100,'PE').totalTax - calcTakeHome(250000,'PE').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "stays at {} whatever you",
+      "source": {
+        "const": "provinces.PE.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "falls to {} over the",
+      "source": {
+        "const": "federal.bpa.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "over the {} to {*}",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} to {} range. Common",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "for 2026: {} on taxable",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "income over {}, added by",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "moved to {}. CRA's January",
+      "source": {
+        "const": "provinces.PE.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "for 2026? {} up to",
+      "source": {
+        "const": "provinces.PE.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{} up to {*}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.PE.brackets.0.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "2026? {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.PE.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.PE.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.PE.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, {*}",
+      "source": {
+        "const": "provinces.PE.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.PE.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.PE.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {*}, {} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.PE.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {*}, {} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.PE.brackets.2.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*},",
+      "source": {
+        "const": "provinces.PE.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*},",
+      "source": {
+        "const": "provinces.PE.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.PE.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.PE.brackets.3.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.PE.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.PE.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.PE.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.PE.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.PE.brackets.4.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.PE.brackets.4.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*}, and {} over {*}.",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} over {*}.",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "{*} over {}. When did",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{*} over {}.",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "withholding above {} runs at",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "withholding above {} runs at",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "year averages {}. How much",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "year averages {}.",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "tax reduction? {} for a",
+      "source": {
+        "const": "provinces.PE.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "{} for a",
+      "source": {
+        "const": "provinces.PE.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "2026, reduced by {} of adjusted income",
+      "source": {
+        "const": "provinces.PE.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "reduced by {} of adjusted",
+      "source": {
+        "const": "provinces.PE.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "income over {}, so nothing",
+      "source": {
+        "const": "provinces.PE.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "income over {}, so nothing",
+      "source": {
+        "const": "provinces.PE.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "left at {}. Spouses, dependants,",
+      "source": {
+        "engine": "TC.provinces.PE.taxReduction.value.threshold + TC.provinces.PE.taxReduction.value.base / TC.provinces.PE.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "left at {}. Spouses, dependants,",
+      "source": {
+        "engine": "TC.provinces.PE.taxReduction.value.threshold + TC.provinces.PE.taxReduction.value.base / TC.provinces.PE.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "start at {}, {*} and",
+      "source": {
+        "const": "provinces.NL.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "at {*}, {} and {*},",
+      "source": {
+        "const": "provinces.NL.brackets.6.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*} and {}, the last",
+      "source": {
+        "const": "provinces.NL.brackets.7.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "dollar past {}, the federal",
+      "source": {
+        "const": "provinces.NL.brackets.7.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "the federal {} and the",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "the provincial {} add up",
+      "source": {
+        "const": "provinces.NL.brackets.7.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "up to {}, the highest",
+      "source": {
+        "engine": "(calcIncomeTax(1500001,'NL').totalTax - calcIncomeTax(1500000,'NL').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "return uses {} for the",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "the province's {}, that personal",
+      "source": {
+        "const": "provinces.NL.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "amount cancels {} of provincial",
+      "source": {
+        "engine": "TC.provinces.NL.bpa.value * TC.provinces.NL.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "it is {}, down from",
+      "source": {
+        "const": "provinces.NL.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "withdrawn at {} of net",
+      "source": {
+        "const": "provinces.NL.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "income above {}, so nothing",
+      "source": {
+        "const": "provinces.NL.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "left by {}. Between the",
+      "source": {
+        "engine": "TC.provinces.NL.taxReduction.value.threshold + TC.provinces.NL.taxReduction.value.base / TC.provinces.NL.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "up to {}. One caveat",
+      "source": {
+        "engine": "(() => { let lo = 0, hi = 60000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcTakeHome(m,'NL').provincialTax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "yet, so {} is 2025's",
+      "source": {
+        "const": "provinces.NL.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "income between {} and {*},",
+      "source": {
+        "const": "provinces.NL.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*} and {}, each extra",
+      "source": {
+        "engine": "TC.provinces.NL.taxReduction.value.threshold + TC.provinces.NL.taxReduction.value.base / TC.provinces.NL.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "dollar costs {} in provincial",
+      "source": {
+        "engine": "(calcIncomeTax(27001,'NL').provincialTax - calcIncomeTax(27000,'NL').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "rather than {}, and the",
+      "source": {
+        "const": "provinces.NL.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "rate of {} is higher",
+      "source": {
+        "engine": "(calcIncomeTax(27001,'NL').totalTax - calcIncomeTax(27000,'NL').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "than the {} paid at",
+      "source": {
+        "engine": "(calcIncomeTax(100001,'NL').totalTax - calcIncomeTax(100000,'NL').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "table until {}, as CPP",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "salary pays {} on its",
+      "source": {
+        "engine": "(calcTakeHome(27100,'NL').totalTax - calcTakeHome(27000,'NL').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "dollar. Past {} the rates",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "threshold arriving {} further along",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(27000,'NL').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "tax and {} of provincial",
+      "source": {
+        "engine": "calcTakeHome(27000,'NL').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "long gone: {} federal and",
+      "source": {
+        "engine": "calcTakeHome(90000,'NL').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "federal and {} provincial, {*}",
+      "source": {
+        "engine": "calcTakeHome(90000,'NL').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*} provincial, {} of the",
+      "source": {
+        "engine": "calcTakeHome(90000,'NL').totalTax / 90000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "and the {} personal amount.",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "narrowing at {}. Common questions",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "amount to {}, and a",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "reduction to {}. The first",
+      "source": {
+        "const": "provinces.NL.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "for 2026? {} up to",
+      "source": {
+        "const": "provinces.NL.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{} up to {*}, {*} up to {*}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NL.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "2026? {*} up to {}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NL.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {}, {*} up to {*}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NL.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "2026? {*} up to {*}, {} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NL.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, {*} up to {*}, {*}",
+      "source": {
+        "const": "provinces.NL.brackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "up to {*}, {*} up to {}, {*} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NL.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "up to {*}, {*} up to {}, {*} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NL.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "to {*}, {*} up to {*}, {} up to {*}, {*} up to",
+      "source": {
+        "const": "provinces.NL.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} up to {*}, {} up to {*}, {*} up to",
+      "source": {
+        "const": "provinces.NL.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NL.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NL.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NL.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, {*} up",
+      "source": {
+        "const": "provinces.NL.brackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NL.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} up to {*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*}, {*} up to {*},",
+      "source": {
+        "const": "provinces.NL.brackets.3.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.4.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.4.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "to {*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.4.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} up to {*}, {*} up to {}, {*} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.4.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.5.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {*} up to {*}, {} up to {*}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.5.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.5.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} up to {}, {*} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.5.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.6.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*} up to {*}, {} up to {*}, and",
+      "source": {
+        "const": "provinces.NL.brackets.6.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NL.brackets.6.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.NL.brackets.6.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "{*}, and {} beyond. How",
+      "source": {
+        "const": "provinces.NL.brackets.7.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} beyond.",
+      "source": {
+        "const": "provinces.NL.brackets.7.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "it is {} for an",
+      "source": {
+        "const": "provinces.NL.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "it is {} for an",
+      "source": {
+        "const": "provinces.NL.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "reduced by {} of net",
+      "source": {
+        "const": "provinces.NL.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "reduced by {} of net",
+      "source": {
+        "const": "provinces.NL.taxReduction.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "income over {}, and it",
+      "source": {
+        "const": "provinces.NL.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "income over {}, and it",
+      "source": {
+        "const": "provinces.NL.taxReduction.threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "gone by {}. A spouse",
+      "source": {
+        "engine": "TC.provinces.NL.taxReduction.value.threshold + TC.provinces.NL.taxReduction.value.base / TC.provinces.NL.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "gone by {}. A spouse",
+      "source": {
+        "engine": "TC.provinces.NL.taxReduction.value.threshold + TC.provinces.NL.taxReduction.value.base / TC.provinces.NL.taxReduction.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "for 2026? {} on the",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "{} on the",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "year matches {}. Run your",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "year matches {}.",
+      "source": {
+        "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
       "page": "/tax-brackets/",
       "surface": "main",
       "anchor": "rate is {}, cut from",
@@ -12110,7 +14419,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "thresholds at {} and {*}.",
+      "anchor": "thresholds at {} and {*},",
       "source": {
         "const": "provinces.MB.brackets.1.min"
       },
@@ -12119,7 +14428,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "{*} and {}. Manitoba stopped",
+      "anchor": "{*} and {}, unindexed since",
       "source": {
         "const": "provinces.MB.brackets.2.min"
       },
@@ -12128,9 +14437,27 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "and its {} basic personal",
+      "anchor": "like the {} basic personal",
       "source": {
         "const": "provinces.MB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "out between {} and {*}",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "{*} and {} of net",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
       },
       "format": "exact"
     },
@@ -12209,7 +14536,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "income over {}, and a",
+      "anchor": "income over {}. A single",
       "source": {
         "const": "provinces.NB.brackets.3.min"
       },
@@ -12218,11 +14545,20 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "amount of {}. Nova Scotia",
+      "anchor": "by just {} per dollar",
       "source": {
-        "const": "provinces.NB.bpa"
+        "const": "provinces.NB.taxReduction.rate"
       },
-      "format": "exact"
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "until about {}. New Brunswick",
+      "source": {
+        "engine": "TC.provinces.NB.taxReduction.value.threshold + TC.provinces.NB.taxReduction.value.base / TC.provinces.NB.taxReduction.value.rate"
+      },
+      "format": "round:1000"
     },
     {
       "page": "/tax-brackets/",
@@ -12263,7 +14599,16 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "added a {} rate on",
+      "anchor": "and its {} low-income reduction",
+      "source": {
+        "const": "provinces.NS.taxReduction.base"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "sixth a {} rate over",
       "source": {
         "const": "provinces.PE.brackets.5.rate"
       },
@@ -12272,7 +14617,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "income over {} and moved",
+      "anchor": "rate over {} added in",
       "source": {
         "const": "provinces.PE.brackets.5.min"
       },
@@ -12281,7 +14626,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "it to {}. CRA's January",
+      "anchor": "threshold at {}. Payroll withholds",
       "source": {
         "const": "provinces.PE.brackets.4.min"
       },
@@ -12290,7 +14635,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "rate above {} from July",
+      "anchor": "withholds above {} at a",
       "source": {
         "const": "provinces.PE.brackets.5.min"
       },
@@ -12299,7 +14644,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "return applies {}. Newfoundland and",
+      "anchor": "return charges {}. Prince Edward",
       "source": {
         "const": "provinces.PE.brackets.5.rate"
       },
@@ -12326,7 +14671,7 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "income over {}. The April",
+      "anchor": "income over {}. Its basic",
       "source": {
         "const": "provinces.NL.brackets.7.min"
       },
@@ -12335,9 +14680,18 @@
     {
       "page": "/tax-brackets/",
       "surface": "main",
-      "anchor": "amount to {}; payroll uses",
+      "anchor": "up to {} in April",
       "source": {
         "const": "provinces.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "down to {}. Newfoundland and",
+      "source": {
+        "const": "provinces.NL.taxReduction.base"
       },
       "format": "exact"
     },
@@ -12511,6 +14865,636 @@
         "const": "quebec.federalAbatementRate"
       },
       "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "band. The {} and {*}",
+      "source": {
+        "const": "provinces.MB.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} and {} thresholds date",
+      "source": {
+        "const": "provinces.MB.brackets.2.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "into the {} and {*}",
+      "source": {
+        "const": "provinces.MB.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} and {} bands every",
+      "source": {
+        "const": "provinces.MB.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "disappears Above {} of net",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "shrinks by {} of every",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max / (TC.provinces.MB.bpaPhaseOut.value.phaseOutEnd - TC.provinces.MB.bpaPhaseOut.value.phaseOutStart)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "and by {} it is",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "is worth {} of itself",
+      "source": {
+        "const": "provinces.MB.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "it costs {} at {*}",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max * TC.provinces.MB.bpaCreditRate.value * (250000 - TC.provinces.MB.bpaPhaseOut.value.phaseOutStart) / (TC.provinces.MB.bpaPhaseOut.value.phaseOutEnd - TC.provinces.MB.bpaPhaseOut.value.phaseOutStart)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "the full {} from {*}",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max * TC.provinces.MB.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} from {} up. Spread",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "that adds {} to the",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max * TC.provinces.MB.bpaCreditRate.value / (TC.provinces.MB.bpaPhaseOut.value.phaseOutEnd - TC.provinces.MB.bpaPhaseOut.value.phaseOutStart)"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "rate. Between {} and {*},",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} and {}, where Ottawa's",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "figure reaches {}; past {*},",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'MB').totalTax - calcIncomeTax(300000,'MB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*}; past {}, with nothing",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "back to {}. A credit",
+      "source": {
+        "engine": "(calcIncomeTax(450001,'MB').totalTax - calcIncomeTax(450000,'MB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "starts at {}, shrinks by",
+      "source": {
+        "const": "provinces.MB.familyTaxBenefit.amount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "shrinks by {} of income,",
+      "source": {
+        "const": "provinces.MB.familyTaxBenefit.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "valued at {} like the",
+      "source": {
+        "const": "provinces.MB.bpaCreditRate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "up to {} and runs",
+      "source": {
+        "engine": "TC.provinces.MB.familyTaxBenefit.value.amount * TC.provinces.MB.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "out at {}. With it,",
+      "source": {
+        "engine": "TC.provinces.MB.familyTaxBenefit.value.amount / TC.provinces.MB.familyTaxBenefit.value.rate"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "income passes {} rather than",
+      "source": {
+        "engine": "(() => { let lo = 0, hi = 40000; while (hi - lo > 1) { const m = Math.floor((lo + hi) / 2); (calcIncomeTax(m,'MB').provincialTax > 0) ? (hi = m) : (lo = m); } return lo; })()"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "than at {}, and the",
+      "source": {
+        "const": "provinces.MB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "covers is {}. A spouse,",
+      "source": {
+        "engine": "(calcIncomeTax(20001,'MB').provincialTax - calcIncomeTax(20000,'MB').provincialTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "less until {}, CPP and",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "pay faces {} on its",
+      "source": {
+        "engine": "(calcTakeHome(45100,'MB').totalTax - calcTakeHome(45000,'MB').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "dollar. From {} up, the",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "every threshold {} higher in",
+      "source": {
+        "engine": "TC.cpp.maxContributoryEarnings.value * TC.cpp.enhancedCpp1Rate.value + TC.cpp.cpp2.maxContribution.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "engine charges {} of federal",
+      "source": {
+        "engine": "calcTakeHome(250000,'MB').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "tax and {} of Manitoba",
+      "source": {
+        "engine": "calcTakeHome(250000,'MB').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "Manitoba tax, {} of the",
+      "source": {
+        "engine": "calcTakeHome(250000,'MB').totalTax / 250000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "dollar costs {}, {*} of",
+      "source": {
+        "engine": "(calcTakeHome(250100,'MB').totalTax - calcTakeHome(250000,'MB').totalTax) / 100"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "costs {*}, {} of it",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max * TC.provinces.MB.bpaCreditRate.value / (TC.provinces.MB.bpaPhaseOut.value.phaseOutEnd - TC.provinces.MB.bpaPhaseOut.value.phaseOutStart)"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "different range, {} to {*},",
+      "source": {
+        "const": "federal.bpa.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} to {}, and never",
+      "source": {
+        "const": "federal.bpa.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "taking the {} personal amount",
+      "source": {
+        "const": "provinces.MB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "income between {} and {*}.",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} and {}. That makes",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "combined rate, {}, a middle",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'MB').totalTax - calcIncomeTax(300000,'MB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "for 2026? {} on taxable",
+      "source": {
+        "const": "provinces.MB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "{} on taxable",
+      "source": {
+        "const": "provinces.MB.brackets.0.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.MB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "provinces.MB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.MB.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "provinces.MB.brackets.1.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.MB.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "up to {}, and {*}",
+      "source": {
+        "const": "provinces.MB.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.MB.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.MB.brackets.2.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "2025. The {} amount shrinks",
+      "source": {
+        "const": "provinces.MB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "2025. The {} amount shrinks",
+      "source": {
+        "const": "provinces.MB.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "rises from {} to {*}",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "rises from {} to {*}",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutStart"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} to {} and is",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "{*} to {} and is",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "up to {} of Manitoba",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max * TC.provinces.MB.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "up to {} of Manitoba",
+      "source": {
+        "engine": "TC.provinces.MB.bpaPhaseOut.value.max * TC.provinces.MB.bpaCreditRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "lower above {}? Because the",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "lower above {}?",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "out. Between {} and {*}",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "out. Between {} and {*}",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*} and {} each dollar",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "{*} and {} each dollar",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "a combined {}; above {*}",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'MB').totalTax - calcIncomeTax(300000,'MB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "a combined {}; above {*}",
+      "source": {
+        "engine": "(calcIncomeTax(300001,'MB').totalTax - calcIncomeTax(300000,'MB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "{*}; above {} there is",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "{*}; above {} there is",
+      "source": {
+        "const": "provinces.MB.bpaPhaseOut.phaseOutEnd"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "rate is {}. Run your",
+      "source": {
+        "engine": "(calcIncomeTax(450001,'MB').totalTax - calcIncomeTax(450000,'MB').totalTax)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "jsonld",
+      "anchor": "rate is {}.",
+      "source": {
+        "engine": "(calcIncomeTax(450001,'MB').totalTax - calcIncomeTax(450000,'MB').totalTax)"
+      },
+      "format": "percent:2"
     }
   ]
 }
