@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FHSA Calculator 2026 — Participation Room, Carryforward and Tax Savings | calc-hq.ca</title>
+<meta name="description" content="Work out your 2026 FHSA room from the year you opened it and what you have put in, what the deduction saves you in your province, and when the account has to close.">
+<link rel="canonical" href="https://calc-hq.ca/property/fhsa/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FHSA Calculator 2026 — Room, Carryforward and Tax Savings">
+<meta property="og:description" content="Your 2026 FHSA participation room, the tax an FHSA deduction saves in each province, and the year the account must close.">
+<meta property="og:url" content="https://calc-hq.ca/property/fhsa/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Property & Housing","item":"https://calc-hq.ca/property/"},
+{"@type":"ListItem","position":3,"name":"FHSA Calculator","item":"https://calc-hq.ca/property/fhsa/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much FHSA room do I have in 2026?","acceptedAnswer":{"@type":"Answer","text":"$8,000 if you opened your first FHSA in 2026. Otherwise $8,000 plus whatever you left unused in 2025, with the carried-forward part capped at $8,000, so $16,000 at most, and never more than the unused part of the $40,000 lifetime limit."}},
+{"@type":"Question","name":"Should I deduct my FHSA contribution now or later?","acceptedAnswer":{"@type":"Answer","text":"You can do either. Contributions you do not deduct carry forward with no expiry, so if you expect a higher income in a later year, deducting then can save more tax. The contribution itself still has to fit in that year's room."}},
+{"@type":"Question","name":"What happens to my FHSA if I never buy a home?","acceptedAnswer":{"@type":"Answer","text":"Before the account's participation period ends, move the money directly to an RRSP or RRIF, which is not taxed and uses no RRSP room, or withdraw it as taxable income. The period ends on December 31 of the year of the 15th anniversary of opening, the year you turn 71, or the year after a qualifying withdrawal, whichever comes first."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/property/">Property &amp; Housing</a><span class="sep">›</span>
+    <span>FHSA Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>FHSA Calculator (2026)</h1>
+    <p class="lead">Two questions decide what to do with a first home savings account this year: how much you may put in, and what the deduction is worth at your income. The first depends on the year the account was opened and every dollar added since; the second on your tax bracket and province. Enter both histories and the calculator answers each.</p>
+  </div>
+
+  <section class="calc-card" aria-label="FHSA calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="opened">Year you opened your first FHSA</label>
+        <select class="input" id="opened">
+          <option value="2023">2023</option>
+          <option value="2024" selected>2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026, or opening one this year</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="born">Year you were born</label>
+        <input class="input" id="born" type="text" inputmode="numeric" placeholder="1996" value="1996">
+      </div>
+    </div>
+    <div class="field-row" id="past">
+      <div class="field" id="f2023"><label for="c2023">Put in during 2023</label><input class="input" id="c2023" type="text" inputmode="numeric" placeholder="0" value="0"></div>
+      <div class="field" id="f2024"><label for="c2024">Put in during 2024</label><input class="input" id="c2024" type="text" inputmode="numeric" placeholder="0" value="3,000"></div>
+      <div class="field" id="f2025"><label for="c2025">Put in during 2025</label><input class="input" id="c2025" type="text" inputmode="numeric" placeholder="0" value="0"></div>
+    </div>
+    <div class="field">
+      <label for="plan">Amount you plan to put in during 2026
+        <span class="hint">Contributions plus any transfers from an RRSP</span>
+      </label>
+      <input class="input" id="plan" type="text" inputmode="numeric" placeholder="8,000" value="8,000">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="province">Province or territory</label>
+        <select class="input" id="province">
+          <option value="ON" selected>Ontario</option>
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          <option value="QC">Quebec</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="income">2026 employment income</label>
+        <input class="input" id="income" type="text" inputmode="numeric" placeholder="85,000" value="85,000">
+      </div>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="rrsp">
+      <label for="rrsp">Part of the 2026 amount is an RRSP transfer</label>
+    </div>
+    <div class="field" id="f-rrsp" hidden>
+      <label for="rrspAmt">RRSP transfer included above</label>
+      <input class="input" id="rrspAmt" type="text" inputmode="numeric" placeholder="0" value="0">
+    </div>
+    <button class="btn" id="go" type="button">Work out my FHSA room</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Your 2026 FHSA participation room</p>
+      <p class="result-number" id="room">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="notice" id="warn" hidden></div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>Room is built year by year</h2>
+    <p>The year your first FHSA opens, you get $8,000 of participation room. Every year after that, the room is the same $8,000 plus a carryforward: whatever you left unused the year before, but never more than $8,000. The total can't exceed what's left of the $40,000 lifetime limit once everything you've already put in is subtracted.</p>
+    <p>Take an account opened in 2024 with $3,000 added that year. In 2025 the room is $13,000. Leave 2025 untouched and the 2026 room is $16,000, not the $21,000 a running total would suggest. Nothing has been forfeited, though. The lifetime balance still has $37,000 to go; the cap on the carryforward only limits how quickly a late starter can catch up.</p>
+    <p>Opening the account is what starts the clock, not funding it. The CRA's own example is someone who opens an FHSA and puts nothing in: their notice of assessment shows $16,000 of room for the following year. Room runs on the calendar year, with no 60-day grace period like the RRSP's, and contributions and transfers in from an RRSP draw on the same room. Growth inside the account doesn't use any.</p>
+
+    <h2>What the deduction saves, province by province</h2>
+    <p>An FHSA contribution comes off your taxable income, so it saves tax at the rate on the top slice of what you earn. Federal tax supplies most of it: on $85,000 of employment income in Ontario, an $8,000 deduction cuts federal tax by $1,640 of the $2,372 total. Where you live sets the rest:</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table text-cells">
+        <caption>$8,000 deducted from $85,000 of employment income</caption>
+        <thead><tr><th>Jurisdiction</th><th>Tax saved</th></tr></thead>
+        <tbody>
+          <tr><td>Ontario</td><td>$2,372</td></tr>
+          <tr><td>Alberta</td><td>$2,440</td></tr>
+          <tr><td>British Columbia</td><td>$2,256</td></tr>
+          <tr><td>Saskatchewan</td><td>$2,640</td></tr>
+          <tr><td>Manitoba</td><td>$2,660</td></tr>
+          <tr><td>Nova Scotia</td><td>$2,974</td></tr>
+          <tr><td>New Brunswick</td><td>$2,760</td></tr>
+          <tr><td>Newfoundland and Labrador</td><td>$2,800</td></tr>
+          <tr><td>Prince Edward Island</td><td>$2,968</td></tr>
+          <tr><td>Yukon</td><td>$2,360</td></tr>
+          <tr><td>Northwest Territories</td><td>$2,328</td></tr>
+          <tr><td>Nunavut</td><td>$2,200</td></tr>
+          <tr><td>Quebec</td><td>$2,889</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Figures come from running the calculator's tax engine twice for each jurisdiction, once with the deduction and once without, rounded to the dollar. CPP and EI don't change, because they're charged on earnings, not taxable income. In Quebec the deduction counts on both returns: Revenu Québec's line 215 takes the same amount you deduct federally.</p>
+
+    <h2>The deduction can wait for a better year</h2>
+    <p>Contributing and deducting are separate decisions. Any contribution you don't claim in the year it's made carries forward with no time limit, even after the account is closed, so someone expecting a raise can put money in now, let it grow tax-free, and claim the deduction when their bracket is higher. In British Columbia, the same $8,000 saves $1,853 against $45,000 of income, $2,256 at $85,000 and $2,638 at $120,000. Two limits apply: an RRSP transfer into the FHSA uses room but is never deductible, and nothing contributed after your first qualifying withdrawal can be deducted.</p>
+
+    <h2>When the account has to close</h2>
+    <p>An FHSA has a fixed life. The participation period ends on December 31 of the year in which the earliest of three things happens: the 15th anniversary of opening your first FHSA, the year you turn 71, or the year after your first qualifying withdrawal. An account opened in 2024 by someone born in 1996 ends on December 31, 2039. Before then, anything still in it should either go to a home purchase, move directly to an RRSP or RRIF, which uses no RRSP room and triggers no tax, or come out as a taxable withdrawal. Whatever is left when the period ends is taxed as income for that year.</p>
+
+    <h2>Cases the calculator doesn't model</h2>
+    <p>It assumes you've stayed within your room every year, haven't withdrawn anything and haven't designated an excess amount. Putting in more than your room creates an excess FHSA amount, taxed at 1% a month on the highest excess in that month until it's removed, and that excess also reduces the room for the years after. Withdrawals and designated amounts can restore room through a re-participation calculation the CRA describes separately. If any of those apply, the room on your CRA account or notice of assessment is the figure to rely on. Who can open an account, and what makes a withdrawal qualify, is set out in the <a href="/guides/fhsa-eligibility/">FHSA eligibility guide</a>.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much FHSA room do I have in 2026?</summary>
+      <p>$8,000 if you opened your first FHSA in 2026. Otherwise $8,000 plus whatever you left unused in 2025, with the carried-forward part capped at $8,000, so $16,000 at most, and never more than the unused part of the $40,000 lifetime limit.</p>
+    </details>
+    <details><summary>Should I deduct my FHSA contribution now or later?</summary>
+      <p>You can do either. Contributions you do not deduct carry forward with no expiry, so if you expect a higher income in a later year, deducting then can save more tax. The contribution itself still has to fit in that year's room.</p>
+    </details>
+    <details><summary>What happens to my FHSA if I never buy a home?</summary>
+      <p>Before the account's participation period ends, move the money directly to an RRSP or RRIF, which is not taxed and uses no RRSP room, or withdraw it as taxable income. The period ends on December 31 of the year of the 15th anniversary of opening, the year you turn 71, or the year after a qualifying withdrawal, whichever comes first.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/property/land-transfer-tax/"><h3>Land Transfer Tax Calculator</h3><p>The Ontario and Toronto tax due on closing day, with first-time-buyer rebates.</p></a>
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>What your salary leaves you each pay, before any FHSA deduction.</p></a>
+      <a class="tool-card" href="/key-dates-limits/contribution-limits/"><h3>2026 Contribution Limits</h3><p>The FHSA limits beside the TFSA, RRSP and RESP figures.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only. Room follows the CRA's participation-room formula for accounts with no excess amounts, designated amounts, withdrawals or re-participation; tax savings use the 2026 federal, provincial and territorial rates on employment income. Based on the CRA's FHSA pages and Revenu Québec's line 215 guidance, checked October 20, 2026. Your CRA account shows your actual room.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/key-dates-limits/ccb-payment-dates/">Benefit Payment Dates</a></li>
+          <li><a href="/key-dates-limits/contribution-limits/">2026 Contribution Limits</a></li>
+          <li><a href="/key-dates-limits/tax-deadlines/">2026 Tax Deadlines</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a> · <a href="/faq/">FAQ</a> · <a href="/fr/salaire-net-quebec/">Français</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { FHSA } from '/data/rates-2026.js';
+import { calcTakeHome, formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const YEAR = 2026;
+const row = (k, v, cls = '') => `<div class="row${cls}"><span>${k}</span><span class="val">${v}</span></div>`;
+const pct = (x) => (x * 100).toFixed(2) + '%';
+const pct1 = (x) => +(x * 100).toFixed(2) + '%';
+
+function syncFields() {
+  const opened = +el('opened').value;
+  [2023, 2024, 2025].forEach((y) => { el('f' + y).hidden = y < opened; });
+  el('past').hidden = opened >= YEAR;
+  el('f-rrsp').hidden = !el('rrsp').checked;
+}
+
+function run() {
+  syncFields();
+  const opened = +el('opened').value;
+  const born = parseInt(el('born').value, 10);
+  const contribs = {};
+  for (let y = opened; y < YEAR; y++) contribs[y] = parseMoney(el('c' + y).value);
+  const plan = parseMoney(el('plan').value);
+  contribs[YEAR] = plan;
+  const code = el('province').value;
+  const income = parseMoney(el('income').value);
+  const rrsp = el('rrsp').checked ? Math.min(parseMoney(el('rrspAmt').value), plan) : 0;
+
+  const rows = FHSA.room(opened, contribs, YEAR + 1);
+  const now = rows.find((r) => r.year === YEAR), next = rows.find((r) => r.year === YEAR + 1);
+  const warn = [];
+  const over = rows.filter((r) => r.year < YEAR && r.excess > 0);
+  if (over.length) warn.push(`What you put in during ${over.map((r) => r.year).join(' and ')} is more than that year's room (${over.map((r) => formatCurrency(r.room)).join(', ')}). That is an excess FHSA amount, taxed at ${pct1(FHSA.excessTaxMonthly)} a month until it's removed, and it changes the room that follows in ways this calculator doesn't model. Your CRA account shows the figures the CRA has on file.`);
+
+  const inRoom = Math.min(plan, now.room);
+  if (plan > now.room) warn.push(`${formatCurrency(plan)} is ${formatCurrency(plan - now.room)} more than your 2026 room. The tax saving below is on the ${formatCurrency(inRoom)} that fits.`);
+  const deductible = Math.max(0, inRoom - rrsp);
+  const base = calcTakeHome(income, code), less = calcTakeHome(income, code, { deduction: deductible });
+  const saved = base.totalTax - less.totalTax, fedSaved = base.federalTax - less.federalTax;
+
+  let close = null, why = '';
+  if (Number.isFinite(born) && born > 1900) {
+    const byAnniv = opened + FHSA.participationYears, byAge = born + FHSA.closingAge;
+    if (opened - born > FHSA.closingAge) warn.push(`An FHSA can only be opened by someone ${FHSA.closingAge} or younger on December 31 of the opening year.`);
+    else if (opened - born < FHSA.minOpeningAge) warn.push(`An FHSA can't be opened before your ${FHSA.minOpeningAge}th birthday, or 19th where that is the age for signing a contract.`);
+    else {
+      close = Math.min(byAnniv, byAge);
+      why = byAnniv <= byAge ? `the ${FHSA.participationYears}th anniversary of opening` : `the year you turn ${FHSA.closingAge}`;
+      if (close < YEAR) warn.push(`On these dates the account's participation period ended on December 31, ${close}, so no 2026 contributions are possible.`);
+    }
+  }
+
+  el('room').textContent = formatCurrency(now.room);
+  el('reading').textContent = opened === YEAR
+    ? 'The first year an FHSA is open always carries the full annual limit.'
+    : `The ${formatCurrency(FHSA.annualLimit)} annual limit plus ${formatCurrency(now.carryforward)} carried forward from 2025.`;
+
+  let h = row('Annual limit', formatCurrency(FHSA.annualLimit))
+    + row('Carried forward from 2025', formatCurrency(now.carryforward))
+    + row('Lifetime limit still unused', formatCurrency(now.lifetimeLeft))
+    + row('2026 room', formatCurrency(now.room), ' total')
+    + row('Planned 2026 amount that fits', formatCurrency(inRoom));
+  if (rrsp > 0) h += row('Less RRSP transfer (not deductible)', '−' + formatCurrency(rrsp));
+  h += row('Federal tax saved by deducting it in 2026', formatCurrency(fedSaved))
+    + row(code === 'QC' ? 'Quebec tax saved (TP-1 line 215)' : 'Provincial or territorial tax saved', formatCurrency(saved - fedSaved))
+    + row('Total tax saved', formatCurrency(saved), ' total')
+    + row('As a share of the amount deducted', deductible > 0 ? pct(saved / deductible) : '—')
+    + row('Room in 2027 on these numbers', formatCurrency(next.room));
+  if (close) h += row(`Participation period ends (${why})`, `Dec 31, ${close}`);
+  el('breakdown').innerHTML = h;
+  el('warn').innerHTML = warn.join('<br><br>');
+  el('warn').hidden = !warn.length;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['opened', 'province', 'rrsp'].forEach((id) => el(id).addEventListener('change', run));
+['born', 'c2023', 'c2024', 'c2025', 'plan', 'income', 'rrspAmt'].forEach((id) => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

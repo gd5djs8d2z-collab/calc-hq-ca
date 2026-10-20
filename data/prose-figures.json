@@ -41,7 +41,9 @@
     "/guides/gis-eligibility/",
     "/guides/cpp-eligibility/",
     "/guides/ccb-eligibility/",
-    "/guides/"
+    "/guides/",
+    "/property/fhsa/",
+    "/guides/fhsa-eligibility/"
   ],
   "figures": [
     {
@@ -15759,6 +15761,357 @@
         "engine": "Math.max(...(() => { const ys = Array.from({ length: 10 }, (_, i) => 'y' + (DTC.currentTaxYear - 9 + i)); return Object.values(TC.dtc.provincial).filter((p) => ys.every((y) => p[y] && TC.dtc.federal[y])).map((p) => ys.reduce((s, y) => s + TC.dtc.federal[y].value.amount * TC.dtc.federal[y].value.rate + p[y].value.amount * p[y].value.rate, 0)); })())"
       },
       "format": "round:1000"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "you get {} of participation",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "the same {} plus a",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "more than {}. The total",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "left of the {} lifetime limit once",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "2024 with {} added that",
+      "source": {
+        "engine": "FHSA.room(2024,{2024:3000},2026)[0].contributed"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "room is {}. Leave 2025",
+      "source": {
+        "engine": "FHSA.room(2024,{2024:3000},2026)[1].room"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "room is {}, not the",
+      "source": {
+        "engine": "FHSA.room(2024,{2024:3000},2026)[2].room"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "not the {} a running",
+      "source": {
+        "engine": "FHSA.room(2024,{2024:3000},2026)[1].room + TC.registeredAccounts.fhsaAnnualLimit.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "still has {} to go;",
+      "source": {
+        "engine": "FHSA.room(2024,{2024:3000},2026)[2].lifetimeLeft"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "assessment shows {} of room",
+      "source": {
+        "engine": "FHSA.room(2026,{},2027)[1].room"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "tax by {} of the",
+      "source": {
+        "engine": "(calcTakeHome(85000,'ON').federalTax - calcTakeHome(85000,'ON',{deduction:8000}).federalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "of the {} total. Where",
+      "source": {
+        "engine": "(calcTakeHome(85000,'ON').totalTax - calcTakeHome(85000,'ON',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "saved Ontario {} Alberta {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'ON').totalTax - calcTakeHome(85000,'ON',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} Alberta {} British Columbia",
+      "source": {
+        "engine": "(calcTakeHome(85000,'AB').totalTax - calcTakeHome(85000,'AB',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "British Columbia {} Saskatchewan {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'BC').totalTax - calcTakeHome(85000,'BC',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} Saskatchewan {} Manitoba {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'SK').totalTax - calcTakeHome(85000,'SK',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} Manitoba {} Nova Scotia",
+      "source": {
+        "engine": "(calcTakeHome(85000,'MB').totalTax - calcTakeHome(85000,'MB',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "Nova Scotia {} New Brunswick",
+      "source": {
+        "engine": "(calcTakeHome(85000,'NS').totalTax - calcTakeHome(85000,'NS',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "New Brunswick {} Newfoundland and",
+      "source": {
+        "engine": "(calcTakeHome(85000,'NB').totalTax - calcTakeHome(85000,'NB',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "and Labrador {} Prince Edward",
+      "source": {
+        "engine": "(calcTakeHome(85000,'NL').totalTax - calcTakeHome(85000,'NL',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "Edward Island {} Yukon {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'PE').totalTax - calcTakeHome(85000,'PE',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} Yukon {} Northwest Territories",
+      "source": {
+        "engine": "(calcTakeHome(85000,'YT').totalTax - calcTakeHome(85000,'YT',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "Northwest Territories {} Nunavut {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'NT').totalTax - calcTakeHome(85000,'NT',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} Nunavut {} Quebec {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'NU').totalTax - calcTakeHome(85000,'NU',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} Quebec {} Figures come",
+      "source": {
+        "engine": "(calcTakeHome(85000,'QC').totalTax - calcTakeHome(85000,'QC',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} saves {} against {*}",
+      "source": {
+        "engine": "(calcTakeHome(45000,'BC').totalTax - calcTakeHome(45000,'BC',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "of income, {} at {*}",
+      "source": {
+        "engine": "(calcTakeHome(85000,'BC').totalTax - calcTakeHome(85000,'BC',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*} and {} at {*}.",
+      "source": {
+        "engine": "(calcTakeHome(120000,'BC').totalTax - calcTakeHome(120000,'BC',{deduction:8000}).totalTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "taxed at {} a month",
+      "source": {
+        "const": "fhsaRules.excessTaxMonthly"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "in 2026? {} if you",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "jsonld",
+      "anchor": "{} if you",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "2026. Otherwise {} plus whatever",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "jsonld",
+      "anchor": "2026. Otherwise {} plus whatever",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "capped at {}, so {*}",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "jsonld",
+      "anchor": "capped at {}, so {*}",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "{*}, so {} at most,",
+      "source": {
+        "engine": "TC.registeredAccounts.fhsaAnnualLimit.value + TC.fhsaRules.carryforwardMax.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "jsonld",
+      "anchor": "{*}, so {} at most,",
+      "source": {
+        "engine": "TC.registeredAccounts.fhsaAnnualLimit.value + TC.fhsaRules.carryforwardMax.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "of the {} lifetime limit.",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "jsonld",
+      "anchor": "of the {} lifetime limit.",
+      "source": {
+        "const": "registeredAccounts.fhsaLifetimeLimit"
+      },
+      "format": "exact"
     }
   ]
 }
