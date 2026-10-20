@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payroll Deductions Calculator 2026 — Tax, CPP, CPP2 and EI per Paycheque | calc-hq.ca</title>
+<meta name="description" content="What an employer withholds from each paycheque from July 1, 2026: federal and provincial tax, CPP, CPP2 and EI by CRA's T4127 formulas, plus the employer's share, for every province and territory except Quebec.">
+<link rel="canonical" href="https://calc-hq.ca/payroll/payroll-deductions/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Payroll Deductions Calculator 2026 — Per Paycheque, CRA Formulas">
+<meta property="og:description" content="Federal and provincial tax, CPP, CPP2 and EI on one cheque, by CRA's July 2026 payroll formulas, and what the employer adds.">
+<meta property="og:url" content="https://calc-hq.ca/payroll/payroll-deductions/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Payroll & Take-Home","item":"https://calc-hq.ca/payroll/"},
+{"@type":"ListItem","position":3,"name":"Payroll Deductions Calculator","item":"https://calc-hq.ca/payroll/payroll-deductions/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much is deducted from a $2,500 biweekly paycheque in Ontario?","acceptedAnswer":{"@type":"Answer","text":"On the basic TD1 claims, $242.58 of federal tax, $131.46 of Ontario tax, $140.74 of CPP and $40.75 of EI, for net pay of $1,944.47, using CRA's formulas for pay dates from July 1, 2026."}},
+{"@type":"Question","name":"Why did B.C. payroll tax go up in July 2026?","acceptedAnswer":{"@type":"Answer","text":"British Columbia raised its lowest rate to 5.60% for 2026 after the January payroll tables were issued. To collect the full year's change in the second half, the July tables withhold at a prorated 6.14% on that band. Your 2026 return uses 5.60%."}},
+{"@type":"Question","name":"What does an employer pay on top of payroll deductions?","acceptedAnswer":{"@type":"Answer","text":"The employer matches the employee's CPP and CPP2 contributions dollar for dollar, and pays EI premiums of 1.4 times the employee's. All of it is remitted to CRA with the tax withheld."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/payroll/">Payroll &amp; Take-Home</a><span class="sep">›</span>
+    <span>Payroll Deductions</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>Payroll Deductions Calculator (2026)</h1>
+    <p class="lead">An employer doesn't work out your tax for the year. It works out what to hold back from this one cheque, using CRA's payroll formulas and the TD1 forms you signed. Enter one period's gross pay and this calculator applies the same formulas CRA publishes for pay dates from July 1, 2026, cheque by cheque.</p>
+  </div>
+
+  <section class="calc-card" aria-label="Payroll deductions calculator">
+    <div class="field">
+      <label for="pay">Gross pay for the pay period</label>
+      <input class="input" id="pay" type="text" inputmode="decimal" placeholder="2,500.00" value="2,500.00">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="freq">Pay frequency</label>
+        <select class="input" id="freq">
+          <option value="52">Weekly (52 a year)</option>
+          <option value="26" selected>Biweekly (26 a year)</option>
+          <option value="24">Semi-monthly (24 a year)</option>
+          <option value="12">Monthly (12 a year)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="province">Province or territory of employment</label>
+        <select class="input" id="province">
+          <option value="ON" selected>Ontario</option>
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          <option value="QC">Quebec</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="td1fed">Federal TD1 claim
+          <span class="hint">Leave blank for the basic personal amount</span>
+        </label>
+        <input class="input" id="td1fed" type="text" inputmode="decimal" placeholder="16,452" value="">
+      </div>
+      <div class="field">
+        <label for="td1prov">Provincial TD1 claim
+          <span class="hint">Leave blank for the basic personal amount</span>
+        </label>
+        <input class="input" id="td1prov" type="text" inputmode="decimal" placeholder="12,989" value="">
+      </div>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="useytd">
+      <label for="useytd">Enter amounts already deducted this year (for CPP2 and the CPP and EI maximums)</label>
+    </div>
+    <div id="ytd" hidden>
+      <div class="field-row">
+      <div class="field">
+        <label for="ytdpi">Pensionable earnings so far this year</label>
+        <input class="input" id="ytdpi" type="text" inputmode="decimal" placeholder="0.00" value="">
+      </div>
+      <div class="field">
+        <label for="ytdcpp">CPP deducted so far</label>
+        <input class="input" id="ytdcpp" type="text" inputmode="decimal" placeholder="0.00" value="">
+      </div>
+      </div>
+      <div class="field-row">
+      <div class="field">
+        <label for="ytdcpp2">CPP2 deducted so far</label>
+        <input class="input" id="ytdcpp2" type="text" inputmode="decimal" placeholder="0.00" value="">
+      </div>
+      <div class="field">
+        <label for="ytdei">EI deducted so far</label>
+        <input class="input" id="ytdei" type="text" inputmode="decimal" placeholder="0.00" value="">
+      </div>
+      </div>
+    </div>
+    <button class="btn" id="go" type="button">Calculate the deductions</button>
+
+    <div class="notice" id="qc" hidden>Quebec employers withhold Quebec income tax by Revenu Québec's own formulas, and QPP and QPIP rather than CPP, so this calculator doesn't cover Quebec. The <a href="/payroll/quebec-income-tax/">Quebec income tax calculator</a> works out the year's Quebec and federal tax.</div>
+    <div class="result" id="result" hidden>
+      <p class="result-label">Net pay for the period</p>
+      <p class="result-number" id="net">—</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <p class="result-label">Employer's share for the period</p>
+      <div class="breakdown" id="employer"></div>
+    </div>
+  </section>
+
+  <!-- lead-block:start -->
+  <aside class="lead-block" id="lead-block" data-variant="full" data-province-source="province" aria-labelledby="lead-title">
+    <h2 class="lead-title" id="lead-title">Want an accountant to take it from here?</h2>
+    <p class="lead-partner">Partner accountant: <a href="https://www.ryanelliott.ca/" target="_blank" rel="sponsored nofollow noopener">Elliott Accounting Group Inc.</a></p>
+    <p>They take on late and multi-year tax filings, CRA notices, small-business bookkeeping, GST/HST and payroll, for clients across Canada. Send a request and they aim to respond within one business day.</p>
+    <p class="lead-note">calc-hq.ca is a calculator site and does not give tax or accounting advice. calc-hq.ca is paid a referral fee if you become a client of Elliott Accounting Group Inc. through this form.</p>
+    <form class="lead-form" id="lead-form" method="post" action="/api/lead" novalidate data-consent-version="2026-10-16a">
+      <div class="field">
+        <label for="lead-province">Province or territory</label>
+        <select class="input" id="lead-province" name="province" required aria-describedby="lead-province-error"><option value="">Choose one</option><option value="ON">Ontario</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="SK">Saskatchewan</option><option value="MB">Manitoba</option><option value="NS">Nova Scotia</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland and Labrador</option><option value="PE">Prince Edward Island</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NU">Nunavut</option><option value="QC">Quebec</option></select>
+        <p class="lead-error" id="lead-province-error" hidden></p>
+      </div>
+      <p class="lead-qc-note" id="lead-qc-note" hidden>calc-hq.ca doesn't have a partner accountant in Quebec yet, so this can't put you in touch with anyone. If you'd use one, send it anyway: it records only that someone in Quebec asked, and from which page — no name or contact details.</p>
+      <div class="lead-personal" id="lead-personal">
+        <div class="field-row">
+          <div class="field">
+            <label for="lead-name">Name</label>
+            <input class="input" id="lead-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="lead-name-error">
+            <p class="lead-error" id="lead-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-email">Email</label>
+            <input class="input" id="lead-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="lead-email-error">
+            <p class="lead-error" id="lead-email-error" hidden></p>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lead-phone">Phone <span class="hint">Optional</span></label>
+            <input class="input" id="lead-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="lead-phone-error">
+            <p class="lead-error" id="lead-phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="lead-need">What do you need help with?</label>
+            <select class="input" id="lead-need" name="need" required aria-describedby="lead-need-error"><option value="">Choose one</option><option value="filings">Behind on tax filings</option><option value="cra">Got a CRA letter or notice</option><option value="self-employed">Self-employed or incorporated, need an accountant</option><option value="bookkeeping">Monthly bookkeeping, GST/HST or payroll</option><option value="other">Something else</option></select>
+            <p class="lead-error" id="lead-need-error" hidden></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lead-message">Anything they should know first? <span class="hint">Optional — up to 500 characters</span></label>
+          <textarea class="input" id="lead-message" name="message" rows="3" maxlength="500" aria-describedby="lead-message-error"></textarea>
+          <p class="lead-error" id="lead-message-error" hidden></p>
+        </div>
+        <div class="field checkbox">
+          <input type="checkbox" id="lead-consent" name="consent" required aria-describedby="lead-consent-error">
+          <label for="lead-consent">I agree that calc-hq.ca may send my name, contact details and request to Elliott Accounting Group Inc., who will contact me about it. See the <a href="/privacy-policy/">privacy policy</a>.</label>
+        </div>
+        <p class="lead-error" id="lead-consent-error" hidden></p>
+      </div>
+      <div class="lead-hp" aria-hidden="true">
+        <label for="lead-website">Leave this field empty</label>
+        <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <button class="btn" id="lead-submit" type="submit" disabled>Send my request</button>
+      <p class="lead-status" id="lead-status" role="status" aria-live="polite" hidden></p>
+    </form>
+  </aside>
+  <script type="module" src="/assets/js/lead-block.js"></script>
+  <!-- lead-block:end -->
+
+  <section class="answer">
+    <h2>One cheque, treated as a year</h2>
+    <p>The formulas in CRA's guide T4127 take the pay for a single period, subtract the enhanced part of CPP (which is deductible), and multiply by the number of pay periods to estimate a year's taxable income. They work out the year's federal and provincial tax on that estimate, credit the basic personal amount from your TD1 and the CPP and EI you'll pay, then divide back down to one period. CPP comes off at 5.95% of pay above the period's share of the basic exemption, and EI at 1.63%.</p>
+    <p>A biweekly cheque of $2,500 in Ontario, on the basic TD1 claims, is treated as $64,385.10 of taxable income a year. It loses $242.58 to federal tax, $131.46 to Ontario tax, $140.74 in CPP contributions and $40.75 in EI premiums, leaving $1,944.47. The employer adds its own $140.74 of CPP, an equal match, and $57.05 of EI, which is 1.4 times the employee's premium.</p>
+
+    <h2>Why three provinces use different rates from July</h2>
+    <p>Payroll tables are issued twice a year, in January and July. Three provinces changed their 2026 tax after January's tables had gone out, so for the second half of the year CRA prorates each change: the July figure is set so that half a year at the old figure and half at the new one averages out to the real 2026 amount.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table stack">
+        <caption>The three 2026 changes the July tables prorate</caption>
+        <thead><tr><th>Figure</th><th>January tables</th><th>July tables</th><th>2026 return</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Figure">B.C. lowest rate</td><td data-label="January tables">5.06%</td><td data-label="July tables">6.14%</td><td data-label="2026 return">5.60%</td></tr>
+          <tr><td data-label="Figure">B.C. tax reduction</td><td data-label="January tables">$575</td><td data-label="July tables">$805</td><td data-label="2026 return">$690</td></tr>
+          <tr><td data-label="Figure">N.L. basic personal amount</td><td data-label="January tables">$11,188</td><td data-label="July tables">$15,000</td><td data-label="2026 return">$13,094</td></tr>
+          <tr><td data-label="Figure">P.E.I. rate over $200,000</td><td data-label="January tables">19%</td><td data-label="July tables">21%</td><td data-label="2026 return">20%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The July column is a payroll device, not the 2026 rate. Your return applies the right-hand column to the whole year, and the calculator above uses the July column because it is what employers withhold from cheques paid on or after July 1. The figures come from T4127's 123rd edition, effective July 1, 2026, which CRA's own online calculator also uses.</p>
+
+    <h2>Withholding isn't the same as your tax</h2>
+    <p>Payroll formulas estimate, and the estimate runs high or low for predictable reasons. The prorated tables are one. Take the same $2,500 biweekly cheque: if every cheque of the year were withheld at July's rates, British Columbia would take $3,108 against $2,930 on the return, and Newfoundland and Labrador $5,083 against $5,248. In Ontario, which changed nothing mid-year, the two land within a dollar: $3,418 and $3,419.</p>
+    <p>The rest of the gap comes from credits payroll can't see. Ontario's low-income workers' credit, the low-income reductions in New Brunswick, Newfoundland and Labrador, Nova Scotia and Prince Edward Island, and Manitoba's family tax benefit are claimed only on the return. So are RRSP deductions not taken at source, other income, and credits not entered on a TD1. A refund or a balance owing in April is usually one of these, not a payroll error. For the year's tax as the return sees it, use the <a href="/payroll/take-home-pay/">take-home pay calculator</a>; this page stops at what each cheque withholds.</p>
+
+    <h2>CPP2, and why cheques grow late in the year</h2>
+    <p>CPP stops once the employee has paid the year's maximum of $4,230.45, and EI at $1,123.07, the premium on $68,900 of insurable earnings. Above the first ceiling of $74,600, a second tier, CPP2, takes 4% of pay up to $85,000, at most $416 a year. Whether a cheque carries CPP2, or no CPP or EI at all, depends on what has already been deducted this year, so the calculator asks for those amounts. Leave them out and it treats the cheque as the first of the year.</p>
+
+    <h2>Coming in January 2027</h2>
+    <p>The federal government announced on April 28, 2026 that the base CPP rate will fall from 9.90% to 9.50% on January 1, 2027, so the employee's and the employer's base shares each drop from 4.95% to 4.75%. The first and second additional contributions don't change. Nothing here applies it yet; the 2026 rates stay in force until the January tables.</p>
+
+    <h2>What this calculator doesn't do</h2>
+    <ul>
+      <li><strong>Quebec.</strong> Quebec income tax is withheld under Revenu Québec's own formulas, with QPP and QPIP in place of CPP. Use the <a href="/payroll/quebec-income-tax/">Quebec income tax calculator</a> for the year's tax there.</li>
+      <li><strong>Bonuses and other one-off payments.</strong> They're taxed by a separate method that compares the year with and without the payment. The <a href="/tax-on-extra-income/bonus/">bonus tax calculator</a> covers it.</li>
+      <li><strong>TD1 defaults.</strong> Left blank, the claims are the basic personal amounts, reduced at high incomes as T4127 directs when no TD1 is filed. Enter your TD1 totals for anything else, such as dependants or a disability amount.</li>
+      <li><strong>Pay dates before July 1, 2026, and the estimate itself.</strong> The results are an estimate for pay dates from July 1 to December 31, 2026, with no taxable benefits, RRSP or union dues deducted at source.</li>
+      <li><strong>The last cent.</strong> In rare cases where a figure lands on a half-cent, withholding can differ from CRA's PDOC by one cent.</li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>How much is deducted from a $2,500 biweekly paycheque in Ontario?</summary>
+      <p>On the basic TD1 claims, $242.58 of federal tax, $131.46 of Ontario tax, $140.74 of CPP and $40.75 of EI, for net pay of $1,944.47, using CRA's formulas for pay dates from July 1, 2026.</p>
+    </details>
+    <details><summary>Why did B.C. payroll tax go up in July 2026?</summary>
+      <p>British Columbia raised its lowest rate to 5.60% for 2026 after the January payroll tables were issued. To collect the full year's change in the second half, the July tables withhold at a prorated 6.14% on that band. Your 2026 return uses 5.60%.</p>
+    </details>
+    <details><summary>What does an employer pay on top of payroll deductions?</summary>
+      <p>The employer matches the employee's CPP and CPP2 contributions dollar for dollar, and pays EI premiums of 1.4 times the employee's. All of it is remitted to CRA with the tax withheld.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/payroll/take-home-pay/"><h3>Take-Home Pay Calculator</h3><p>The year's tax as your return will work it out, rather than cheque by cheque.</p></a>
+      <a class="tool-card" href="/tax-on-extra-income/bonus/"><h3>Bonus Tax Calculator</h3><p>The separate withholding method for a one-off payment.</p></a>
+      <a class="tool-card" href="/payroll/quebec-income-tax/"><h3>Quebec Income Tax Calculator</h3><p>For employees whose employer withholds for Quebec.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only. Follows CRA's T4127 Payroll Deductions Formulas, 123rd edition (Option 1), for pay dates from July 1 to December 31, 2026, checked against CRA's Payroll Deductions Online Calculator. Not for Quebec, non-periodic payments, taxable benefits or deductions at source. Your employer's payroll and your TD1 forms decide the actual amounts.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/key-dates-limits/ccb-payment-dates/">Benefit Payment Dates</a></li>
+          <li><a href="/key-dates-limits/contribution-limits/">2026 Contribution Limits</a></li>
+          <li><a href="/key-dates-limits/tax-deadlines/">2026 Tax Deadlines</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a> · <a href="/faq/">FAQ</a> · <a href="/fr/salaire-net-quebec/">Français</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { PROVINCES } from '/data/rates-2026.js';
+import { payrollDeductions, defaultClaims } from '/assets/js/payroll-engine.js';
+import { el } from '/assets/js/calc-ui.js';
+
+const cad = (x) => x.toLocaleString('en-CA', { style: 'currency', currency: 'CAD' });
+const num = (s) => { const n = parseFloat(String(s).replace(/[^0-9.]/g, '')); return Number.isFinite(n) ? n : null; };
+const row = (k, v, cls = '') => `<div class="row${cls}"><span>${k}</span><span class="val">${v}</span></div>`;
+
+function placeholders() {
+  const code = el('province').value;
+  if (code === 'QC') return;
+  const d = defaultClaims(code, 0);
+  el('td1fed').placeholder = d.fed.toLocaleString('en-CA', { minimumFractionDigits: 0 });
+  el('td1prov').placeholder = d.prov.toLocaleString('en-CA', { minimumFractionDigits: 0 });
+}
+
+function run() {
+  const code = el('province').value;
+  el('ytd').hidden = !el('useytd').checked;
+  placeholders();
+  const qc = code === 'QC';
+  el('qc').hidden = !qc;
+  el('result').hidden = qc;
+  if (qc) return;
+  const periods = Number(el('freq').value), pay = num(el('pay').value) || 0;
+  const ytd = el('useytd').checked
+    ? { pensionable: num(el('ytdpi').value) || 0, cpp: num(el('ytdcpp').value) || 0, cpp2: num(el('ytdcpp2').value) || 0, ei: num(el('ytdei').value) || 0 }
+    : {};
+  const r = payrollDeductions({ code, pay, periods, td1Fed: num(el('td1fed').value) ?? undefined, td1Prov: num(el('td1prov').value) ?? undefined, ytd });
+  el('net').textContent = cad(r.net);
+  el('reading').textContent = `${cad(r.totalDeductions)} comes off ${cad(r.gross)}: tax of ${cad(r.federalTax + r.provincialTax)} and ${cad(r.cpp + r.cpp2 + r.ei)} of CPP and EI.`;
+  el('breakdown').innerHTML = row('Gross pay', cad(r.gross)) + row('Federal tax', cad(r.federalTax))
+    + row(`${PROVINCES[code].name} tax`, cad(r.provincialTax)) + row('CPP', cad(r.cpp)) + row('CPP2', cad(r.cpp2))
+    + row('EI', cad(r.ei)) + row('Total deductions', cad(r.totalDeductions), ' total') + row('Net pay', cad(r.net));
+  const er = r.employer;
+  el('employer').innerHTML = row('CPP (matches the employee)', cad(er.cpp)) + row('CPP2 (matches the employee)', cad(er.cpp2))
+    + row('EI (1.4 × the employee premium)', cad(er.ei))
+    + row('Employer total', cad(er.cpp + er.cpp2 + er.ei), ' total')
+    + row('Remittance for this cheque', cad(r.totalDeductions + er.cpp + er.cpp2 + er.ei));
+}
+
+el('go').addEventListener('click', run);
+['freq', 'province', 'useytd'].forEach((id) => el(id).addEventListener('change', run));
+['pay', 'td1fed', 'td1prov', 'ytdpi', 'ytdcpp', 'ytdcpp2', 'ytdei'].forEach((id) => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

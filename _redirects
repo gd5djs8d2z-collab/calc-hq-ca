@@ -115,6 +115,7 @@
 /payroll                                       /payroll/                                      301
 /payroll/hourly-to-salary                      /payroll/hourly-to-salary/                     301
 /payroll/pay-raise                             /payroll/pay-raise/                            301
+/payroll/payroll-deductions                    /payroll/payroll-deductions/                   301
 /payroll/quebec-income-tax                     /payroll/quebec-income-tax/                    301
 /payroll/self-employed-tax                     /payroll/self-employed-tax/                    301
 /payroll/take-home-pay                         /payroll/take-home-pay/                        301

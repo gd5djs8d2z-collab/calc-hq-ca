@@ -47,12 +47,14 @@
     "/tax-on-extra-income/capital-gains/",
     "/guides/capital-gains-tax/",
     "/business/gst-hst/",
-    "/business/"
+    "/business/",
+    "/payroll/payroll-deductions/"
   ],
   "strict": [
     "/business/gst-hst/",
     "/business/",
-    "/benefits/oas/"
+    "/benefits/oas/",
+    "/payroll/payroll-deductions/"
   ],
   "allowlist": [
     {
@@ -192,6 +194,30 @@
       "surface": "jsonld",
       "anchor": "On {*}: ({} − {*}) × 0.15",
       "reason": "Example input: Service Canada's own worked example uses $100,000 of net world income. The threshold, excess and repayment computed from it are registered."
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "A biweekly cheque of {} in Ontario",
+      "reason": "Example input: the gross biweekly pay the worked examples start from. Every deduction, total and comparison computed from it is registered."
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "Take the same {} biweekly cheque",
+      "reason": "Example input: the gross biweekly pay the worked examples start from. Every deduction, total and comparison computed from it is registered."
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "deducted from a {} biweekly paycheque",
+      "reason": "Example input: the gross biweekly pay the worked examples start from. Every deduction, total and comparison computed from it is registered."
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "deducted from a {} biweekly paycheque",
+      "reason": "Example input: the gross biweekly pay the worked examples start from. Every deduction, total and comparison computed from it is registered."
     }
   ],
   "figures": [
@@ -17358,6 +17384,510 @@
         "engine": "(() => { let v = -Infinity; for (let s = 60000; s <= 100000; s += 1000) v = Math.max(v, calcTakeHome(s + 5000, 'ON').net - calcTakeHome(s, 'ON').net); return v; })() / 5000"
       },
       "format": "percent:0"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "off at {} of pay",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "EI at {}. A biweekly",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "treated as {} of taxable",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).factors.A"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "It loses {} to federal",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "federal tax, {} to Ontario",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).provincialTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "Ontario tax, {} in CPP",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).cpp"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "contributions and {} in EI",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).ei"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "premiums, leaving {}. The employer",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).net"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "its own {} of CPP,",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).employer.cpp"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "match, and {} of EI,",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).employer.ei"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "lowest rate {} {*} {*}",
+      "source": {
+        "engine": "(2 * PAYROLL.BC.lowestRateAnnual - PAYROLL.BC.lowestRate)"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "rate {*} {} {*} B.C.",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} {*} {} B.C. tax",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRateAnnual"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "tax reduction {} {*} {*}",
+      "source": {
+        "engine": "(2 * PAYROLL.BC.taxReductionAnnual - PAYROLL.BC.taxReductionMax)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "reduction {*} {} {*} N.L.",
+      "source": {
+        "const": "payrollJuly2026.BC.taxReductionMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} {*} {} N.L. basic",
+      "source": {
+        "const": "payrollJuly2026.BC.taxReductionAnnual"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "personal amount {} {*} {*}",
+      "source": {
+        "engine": "(2 * PAYROLL.NL.bpaAnnual - PAYROLL.NL.bpa)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "amount {*} {} {*} P.E.I.",
+      "source": {
+        "const": "payrollJuly2026.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} {*} {} P.E.I. rate",
+      "source": {
+        "const": "payrollJuly2026.NL.bpaAnnual"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "rate over {} {*} {*}",
+      "source": {
+        "const": "provinces.PE.brackets.5.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "over {*} {} {*} {*}",
+      "source": {
+        "engine": "(2 * PAYROLL.PE.topRateAnnual - PAYROLL.PE.topRate)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} {*} {} {*} The",
+      "source": {
+        "const": "payrollJuly2026.PE.topRate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} {*} {} The July",
+      "source": {
+        "const": "payrollJuly2026.PE.topRateAnnual"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "would take {} against {*}",
+      "source": {
+        "engine": "(payrollDeductions({code:'BC',pay:2500,periods:26}).provincialTax * 26)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} against {} on the",
+      "source": {
+        "engine": "calcTakeHome(2500 * 26, 'BC').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "and Labrador {} against {*}.",
+      "source": {
+        "engine": "(payrollDeductions({code:'NL',pay:2500,periods:26}).provincialTax * 26)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} against {}. In Ontario,",
+      "source": {
+        "engine": "calcTakeHome(2500 * 26, 'NL').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "a dollar: {} and {*}.",
+      "source": {
+        "engine": "(payrollDeductions({code:'ON',pay:2500,periods:26}).provincialTax * 26)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} and {}. The rest",
+      "source": {
+        "engine": "calcTakeHome(2500 * 26, 'ON').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "maximum of {}, and EI",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "EI at {}, the premium",
+      "source": {
+        "const": "ei.maxEmployeePremium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "premium on {} of insurable",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "ceiling of {}, a second",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "CPP2, takes {} of pay",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "up to {}, at most",
+      "source": {
+        "const": "cpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "at most {} a year.",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "fall from {} to {*}",
+      "source": {
+        "const": "payrollJuly2026.cpp2027.baseRateCombinedFrom"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} to {} on January",
+      "source": {
+        "const": "payrollJuly2026.cpp2027.baseRateCombinedTo"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "drop from {} to {*}.",
+      "source": {
+        "const": "payrollJuly2026.cpp2027.employeeBaseRateFrom"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "{*} to {}. The first",
+      "source": {
+        "const": "payrollJuly2026.cpp2027.employeeBaseRateTo"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "TD1 claims, {} of federal",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "TD1 claims, {} of federal",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "federal tax, {} of Ontario",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).provincialTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "federal tax, {} of Ontario",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).provincialTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "Ontario tax, {} of CPP",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).cpp"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "Ontario tax, {} of CPP",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).cpp"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "CPP and {} of EI,",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).ei"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "CPP and {} of EI,",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).ei"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "pay of {}, using CRA's",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).net"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "pay of {}, using CRA's",
+      "source": {
+        "engine": "payrollDeductions({code:'ON',pay:2500,periods:26}).net"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "rate to {} for 2026",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRateAnnual"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "rate to {} for 2026",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRateAnnual"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "a prorated {} on that",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "a prorated {} on that",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "main",
+      "anchor": "return uses {}. What does",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRateAnnual"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/payroll-deductions/",
+      "surface": "jsonld",
+      "anchor": "return uses {}.",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRateAnnual"
+      },
+      "format": "percent:2"
     }
   ]
 }
