@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GST/HST Calculator 2026 — Add or Remove Sales Tax in Any Province | calc-hq.ca</title>
+<meta name="description" content="Add GST, HST, PST or QST to a price, or back the tax out of a total, for every province and territory at the 2026 rates, including Nova Scotia's 14% HST.">
+<link rel="canonical" href="https://calc-hq.ca/business/gst-hst/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GST/HST Calculator 2026 — Forward and Reverse, All 13 Jurisdictions">
+<meta property="og:description" content="GST, HST, PST and QST at 2026 rates: add tax to a price or take it out of a total.">
+<meta property="og:url" content="https://calc-hq.ca/business/gst-hst/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Business & Finance","item":"https://calc-hq.ca/business/"},
+{"@type":"ListItem","position":3,"name":"GST/HST Calculator","item":"https://calc-hq.ca/business/gst-hst/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the HST rate in Nova Scotia for 2026?","acceptedAnswer":{"@type":"Answer","text":"14%. Nova Scotia lowered its HST from 15% to 14% on April 1, 2025, by cutting the provincial portion by one percentage point. The 5% federal portion did not change."}},
+{"@type":"Question","name":"How do I calculate the price before HST from a total?","acceptedAnswer":{"@type":"Answer","text":"Divide the total by one plus the rate. In Ontario, divide by 1.13: a $113 total is $100 before tax and $13 of HST. Multiplying the total by 13% overstates the tax."}},
+{"@type":"Question","name":"Is QST charged on top of GST?","acceptedAnswer":{"@type":"Answer","text":"No. Both taxes are calculated on the price before tax: 5% GST and 9.975% QST, for a combined 14.975%. The receipt must show each tax separately."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/business/">Business &amp; Finance</a><span class="sep">›</span>
+    <span>GST/HST Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>GST/HST Calculator (2026)</h1>
+    <p class="lead">A sale in Canada is taxed one of four ways depending on where it's made: GST alone, a single harmonized HST, or GST beside a provincial tax that is calculated and reported separately. Pick the province, enter a price before tax or a total that already includes it, and the calculator splits out each tax at its 2026 rate.</p>
+  </div>
+
+  <section class="calc-card" aria-label="GST/HST calculator">
+    <div class="field-row">
+      <div class="field">
+        <label for="mode">I'm starting from</label>
+        <select class="input" id="mode">
+          <option value="fwd" selected>The price before tax</option>
+          <option value="rev">A total that includes tax</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="province">Where the sale is made</label>
+        <select class="input" id="province">
+          <option value="ON" selected>Ontario</option>
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          <option value="QC">Quebec</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="amount" id="amount-label">Price before tax</label>
+      <input class="input" id="amount" type="text" inputmode="decimal" placeholder="250.00" value="250.00">
+    </div>
+    <button class="btn" id="go" type="button">Calculate the sales tax</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label" id="label">Total with tax</p>
+      <p class="result-number" id="out">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="notice" id="gap" hidden></div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>Four systems, thirteen rates</h2>
+    <p>The federal goods and services tax is 5% everywhere. Five provinces have folded their own sales tax into it as the HST, collected by the CRA as one charge. Three keep a separate provincial sales tax, and Quebec has its own QST, collected by Revenu Québec. Alberta and the three territories add nothing.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table text-cells">
+        <caption>General sales tax rates, 2026</caption>
+        <thead><tr><th>Jurisdiction</th><th>Tax</th><th>Rate</th></tr></thead>
+        <tbody>
+          <tr><td>Ontario</td><td>HST</td><td>13%</td></tr>
+          <tr><td>Alberta</td><td>GST</td><td>5%</td></tr>
+          <tr><td>British Columbia</td><td>GST + PST</td><td>5% + 7% = 12%</td></tr>
+          <tr><td>Saskatchewan</td><td>GST + PST</td><td>5% + 6% = 11%</td></tr>
+          <tr><td>Manitoba</td><td>GST + RST</td><td>5% + 7% = 12%</td></tr>
+          <tr><td>Nova Scotia</td><td>HST</td><td>14%</td></tr>
+          <tr><td>New Brunswick</td><td>HST</td><td>15%</td></tr>
+          <tr><td>Newfoundland and Labrador</td><td>HST</td><td>15%</td></tr>
+          <tr><td>Prince Edward Island</td><td>HST</td><td>15%</td></tr>
+          <tr><td>Yukon</td><td>GST</td><td>5%</td></tr>
+          <tr><td>Northwest Territories</td><td>GST</td><td>5%</td></tr>
+          <tr><td>Nunavut</td><td>GST</td><td>5%</td></tr>
+          <tr><td>Quebec</td><td>GST + QST</td><td>5% + 9.975% = 14.975%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The most recent change is Nova Scotia's. Its HST fell from 15% to 14% on April 1, 2025, when the province cut its own portion by one point. Every rate above was checked against the CRA's rate table and against the government that sets it.</p>
+
+    <h2>Taking tax out of a total</h2>
+    <p>The tempting shortcut is to multiply the receipt total by the rate, and it always overstates the tax. On a $113 Ontario receipt, 13% of the total is $14.69, but the price was $100 and the HST $13, because the tax was charged on the price, not on itself. The correct move is to divide: the total over one plus the rate gives the pre-tax price, and the tax is whatever is left.</p>
+    <p>Rounding adds a wrinkle the reverse mode shows rather than hides. Each tax is rounded to the cent, with a half cent going up, so at 13% one more cent of price adds a cent and a bit to the total, and some totals can't be produced by any price at all. When that happens the calculator gives the pre-tax price that comes closest and says how far off it is, which is usually a single cent.</p>
+
+    <h2>Quebec charges two taxes on the same base</h2>
+    <p>Quebec's QST is 9.975%, and like the GST it is worked out on the price before any tax, not on the price plus GST. So a $100 sale carries $5 of GST and $9.98 of QST, the second rounded up from $9.975. Revenu Québec lets a cash register apply a single combined rate of 14.975%, but the receipt still has to show the two taxes separately. Manitoba's retail sales tax and the PST in British Columbia and Saskatchewan are also charged on the pre-tax price.</p>
+
+    <h2>Where the sale is made sets the rate</h2>
+    <p>The rate follows the place of supply, not the seller's address. The CRA's own example is a British Columbia store that sells a mattress to a customer in Ontario and delivers it there: the sale is made in Ontario, so it carries 13% HST rather than British Columbia's GST and PST. It's why the calculator asks where the sale is made, not where the business is.</p>
+
+    <h2>What the calculator assumes</h2>
+    <ul>
+      <li><strong>A fully taxable sale at the general rate.</strong> Zero-rated supplies such as basic groceries, prescription drugs and exports carry 0%, and exempt ones such as long-term residential rent, most medical and dental services, music lessons and most financial services carry no GST/HST at all.</li>
+      <li><strong>Provincial taxes are consumer sales taxes with their own rules.</strong> PST, RST and QST each have their own list of what's taxable, and it doesn't always match the federal one. Ontario also rebates its 8% portion of the HST at the till on some items.</li>
+      <li><strong>No input tax credits.</strong> A registered business claims back the GST/HST it pays on its own purchases. That changes what the business keeps, not what the customer is charged, and it isn't modelled here.</li>
+    </ul>
+    <p>How sales tax interacts with pricing and profit is covered on the <a href="/business/markup/">markup</a> and <a href="/business/profit-margin/">profit margin</a> calculators, both of which work on pre-tax amounts.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>What is the HST rate in Nova Scotia for 2026?</summary>
+      <p>14%. Nova Scotia lowered its HST from 15% to 14% on April 1, 2025, by cutting the provincial portion by one percentage point. The 5% federal portion did not change.</p>
+    </details>
+    <details><summary>How do I calculate the price before HST from a total?</summary>
+      <p>Divide the total by one plus the rate. In Ontario, divide by 1.13: a $113 total is $100 before tax and $13 of HST. Multiplying the total by 13% overstates the tax.</p>
+    </details>
+    <details><summary>Is QST charged on top of GST?</summary>
+      <p>No. Both taxes are calculated on the price before tax: 5% GST and 9.975% QST, for a combined 14.975%. The receipt must show each tax separately.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-3">
+      <a class="tool-card" href="/business/markup/"><h3>Markup Calculator</h3><p>Build a selling price from cost, before tax goes on.</p></a>
+      <a class="tool-card" href="/business/profit-margin/"><h3>Profit Margin Calculator</h3><p>Read the margin in a pre-tax price.</p></a>
+      <a class="tool-card" href="/payroll/self-employed-tax/"><h3>Self-Employed Tax Calculator</h3><p>When registration becomes compulsory, and the income tax on the profit.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only, at the general GST, HST, PST, RST and QST rates in effect in 2026, from the CRA's rate table and each province's own publication, checked October 20, 2026. Exempt and zero-rated supplies, provincial exemptions, place-of-supply rules and input tax credits are not modelled; each tax is rounded to the nearest cent.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/key-dates-limits/ccb-payment-dates/">Benefit Payment Dates</a></li>
+          <li><a href="/key-dates-limits/contribution-limits/">2026 Contribution Limits</a></li>
+          <li><a href="/key-dates-limits/tax-deadlines/">2026 Tax Deadlines</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a> · <a href="/faq/">FAQ</a> · <a href="/fr/salaire-net-quebec/">Français</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { SALES_TAX } from '/data/rates-2026.js';
+import { el } from '/assets/js/calc-ui.js';
+
+const NAMES = { BC: 'PST', SK: 'PST', MB: 'RST', QC: 'QST' };
+const cad = (x) => x.toLocaleString('en-CA', { style: 'currency', currency: 'CAD' });
+const pct = (x) => +(x * 100).toFixed(3) + '%';
+const row = (k, v, cls = '') => `<div class="row${cls}"><span>${k}</span><span class="val">${v}</span></div>`;
+const parse = (s) => { const n = parseFloat(String(s).replace(/[^0-9.]/g, '')); return Number.isFinite(n) ? n : 0; };
+
+function run() {
+  const rev = el('mode').value === 'rev', code = el('province').value, amt = parse(el('amount').value);
+  el('amount-label').textContent = rev ? 'Total including tax' : 'Price before tax';
+  const r = rev ? SALES_TAX.reverse(code, amt) : SALES_TAX.forward(code, amt);
+  el('label').textContent = rev ? 'Price before tax' : 'Total with tax';
+  el('out').textContent = cad(rev ? r.before : r.total);
+  const tax = r.federalTax + r.provincialTax;
+  el('reading').textContent = r.system === 'HST'
+    ? `One harmonized tax at ${pct(r.federal)}: ${cad(tax)} on ${cad(r.before)}.`
+    : r.provincial ? `Two separate taxes, each on the pre-tax price: ${cad(tax)} in all, ${pct(r.combined)} combined.`
+    : `GST alone at ${pct(r.federal)}; there is no provincial or territorial sales tax here.`;
+  let h = row('Price before tax', cad(r.before));
+  h += row(r.system === 'HST' ? `HST (${pct(r.federal)})` : `GST (${pct(r.federal)})`, cad(r.federalTax));
+  if (r.provincial) h += row(`${NAMES[code]} (${pct(r.provincial)})`, cad(r.provincialTax));
+  h += row('Total with tax', cad(r.total), ' total');
+  el('breakdown').innerHTML = h;
+  el('gap').hidden = !(rev && r.gap);
+  if (rev && r.gap) el('gap').textContent = `No pre-tax price gives exactly ${cad(r.entered)} once each tax is rounded to the cent. ${cad(r.before)} comes closest, at ${cad(r.total)}.`;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['mode', 'province'].forEach((id) => el(id).addEventListener('change', run));
+el('amount').addEventListener('change', run);
+run();
+</script>
+</body>
+</html>

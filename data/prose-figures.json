@@ -45,7 +45,8 @@
     "/property/fhsa/",
     "/guides/fhsa-eligibility/",
     "/tax-on-extra-income/capital-gains/",
-    "/guides/capital-gains-tax/"
+    "/guides/capital-gains-tax/",
+    "/business/gst-hst/"
   ],
   "figures": [
     {
@@ -16393,6 +16394,357 @@
         "engine": "(calcTakeHome(75000,'ON',{otherIncome:20000*CAPITAL_GAINS.inclusionRate}).totalTax - calcTakeHome(75000,'ON').totalTax)"
       },
       "format": "round:1"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "tax is {} everywhere. Five",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Ontario HST {} Alberta GST",
+      "source": {
+        "const": "salesTax.hst.ON"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Alberta GST {} British Columbia",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Columbia GST + PST {} + {*} = {*}",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "PST {*} + {} = {*} Saskatchewan",
+      "source": {
+        "const": "salesTax.pst.BC"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "{*} = {} Saskatchewan GST",
+      "source": {
+        "engine": "SALES_TAX.rates('BC').combined"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Saskatchewan GST + PST {} + {*} = {*}",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "PST {*} + {} = {*} Manitoba",
+      "source": {
+        "const": "salesTax.pst.SK"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "{*} = {} Manitoba GST",
+      "source": {
+        "engine": "SALES_TAX.rates('SK').combined"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "+ RST {} + {*}",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "RST {*} + {} = {*} Nova",
+      "source": {
+        "const": "salesTax.pst.MB"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "{*} = {} Nova Scotia",
+      "source": {
+        "engine": "SALES_TAX.rates('MB').combined"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Scotia HST {} New Brunswick",
+      "source": {
+        "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Brunswick HST {} Newfoundland and",
+      "source": {
+        "const": "salesTax.hst.NB"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Labrador HST {} Prince Edward",
+      "source": {
+        "const": "salesTax.hst.NL"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Island HST {} Yukon GST",
+      "source": {
+        "const": "salesTax.hst.PE"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Yukon GST {} Northwest Territories",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Territories GST {} Nunavut GST",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "Nunavut GST {} Quebec GST",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "+ QST {} + {*}",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "QST {*} + {} = {*} The",
+      "source": {
+        "const": "salesTax.pst.QC"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "{*} = {} The most",
+      "source": {
+        "engine": "SALES_TAX.rates('QC').combined"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "fell from {*} to {} on April 1, 2025,",
+      "source": {
+        "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "total is {}, but the",
+      "source": {
+        "engine": "113*SALES_TAX.hst.ON"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "QST is {}, and like",
+      "source": {
+        "const": "salesTax.pst.QC"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "sale carries {} of GST",
+      "source": {
+        "engine": "SALES_TAX.forward('QC',100).federalTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "GST and {} of QST,",
+      "source": {
+        "engine": "SALES_TAX.forward('QC',100).provincialTax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "rate of {}, but the",
+      "source": {
+        "engine": "SALES_TAX.rates('QC').combined"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "rebates its {} portion of",
+      "source": {
+        "engine": "SALES_TAX.hst.ON-SALES_TAX.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "for 2026? {}. Nova Scotia",
+      "source": {
+        "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "{}. Nova Scotia",
+      "source": {
+        "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "HST from {*} to {} on April 1, 2025,",
+      "source": {
+        "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "{*} to {} on April",
+      "source": {
+        "const": "salesTax.hst.NS"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "before tax: {} GST and",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "before tax: {} GST and",
+      "source": {
+        "const": "salesTax.gst"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "GST and {} QST, for",
+      "source": {
+        "const": "salesTax.pst.QC"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "GST and {} QST, for",
+      "source": {
+        "const": "salesTax.pst.QC"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "main",
+      "anchor": "a combined {}. The receipt",
+      "source": {
+        "engine": "SALES_TAX.rates('QC').combined"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/business/gst-hst/",
+      "surface": "jsonld",
+      "anchor": "a combined {}. The receipt",
+      "source": {
+        "engine": "SALES_TAX.rates('QC').combined"
+      },
+      "format": "percent:3"
     }
   ]
 }
