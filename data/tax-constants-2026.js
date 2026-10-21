@@ -101,6 +101,7 @@ const SRC = {
   rc4064:    'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4064/disability-related-information.html',
   oasActS12: 'https://laws-lois.justice.gc.ca/eng/acts/o-9/page-3.html',
   eiAfterApply: 'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/after-applying.html',
+  esaGuideOvertime: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay',
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
@@ -1248,6 +1249,10 @@ export const TAX_CONSTANTS_2026 = {
     // many occupations are exempt or have a different threshold — NOT modelled.
     overtimeThresholdHours: { value: 44,  source_url: SRC.esaOvertime, last_verified: '2026-07-17' },
     overtimeMultiplier:     { value: 1.5, source_url: SRC.esaOvertime, last_verified: '2026-07-17' },
+    // Mixed covered/exempt work: "If at least 50 per cent of the hours the employee works is in a job
+    // category that is covered", overtime applies (O. Reg. 285/01). ESA guide, overtime pay (updated
+    // 2026-02-05), read 2026-10-20.
+    mixedWorkCoveredShare: { value: 0.5, source_url: SRC.esaGuideOvertime, last_verified: '2026-10-20', cadence: 'statutory' },
 
     // s.35.2 VACATION — at least 4% of gross wages under 5 years of employment, 6% at
     // 5+; vacation TIME is 2 weeks (<5 yr) / 3 weeks (5+ yr). Gross wages exclude

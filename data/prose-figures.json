@@ -60,7 +60,11 @@
     "/faq/",
     "/privacy-policy/",
     "/business/markup/",
-    "/business/profit-margin/"
+    "/business/profit-margin/",
+    "/employment-standards/esa-termination/",
+    "/employment-standards/severance-pay/",
+    "/employment-standards/vacation-pay/",
+    "/employment-standards/overtime-pay/"
   ],
   "strict": [
     "/business/gst-hst/",
@@ -123,7 +127,11 @@
     "/guides/",
     "/guides/fhsa-eligibility/",
     "/business/markup/",
-    "/business/profit-margin/"
+    "/business/profit-margin/",
+    "/employment-standards/esa-termination/",
+    "/employment-standards/severance-pay/",
+    "/employment-standards/vacation-pay/",
+    "/employment-standards/overtime-pay/"
   ],
   "allowlist": [
     {
@@ -2291,6 +2299,144 @@
       "surface": "jsonld",
       "anchor": "cost, {} price",
       "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/employment-standards/esa-termination/",
+      "surface": "main",
+      "anchor": "notice {} How",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "pay {} If",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "owed {} Enter",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "earns {}: he",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "standard {} of",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "a {} non-discretionary",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "On {} that's",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "On {} that's",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "week {} Enter",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "at {} an",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "at {} —",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "the {} of",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "pay {} an",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "hour {} {*}",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "{*} {} fixed",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "salary {*} ({} ÷ 44)",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "{*} {} for",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "adjusted {*} ({} ÷ 40)",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "Same {}, same",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "At {}/hr the",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "× {} +",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "At {}/hr the",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "× {} +",
+      "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
     }
   ],
   "figures": [
@@ -23757,6 +23903,960 @@
         "engine": "40 - 30"
       },
       "format": "exact"
+    },
+    {
+      "page": "/employment-standards/esa-termination/",
+      "surface": "main",
+      "anchor": "least {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/esa-termination/",
+      "surface": "main",
+      "anchor": "Calculator {} or",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/esa-termination/",
+      "surface": "main",
+      "anchor": "or {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "payroll {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "Under {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "Under {}M, but",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "a payroll of {} million or more.",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "under {} million.",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "a payroll of {} million or more,",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "a {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "Does the {} million payroll",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "Calculator {} or",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "or {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "main",
+      "anchor": "whether the {} million payroll",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "jsonld",
+      "anchor": "of {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "jsonld",
+      "anchor": "a {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/severance-pay/",
+      "surface": "jsonld",
+      "anchor": "the {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "at {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "and {} from",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "The {} your",
+      "source": {
+        "engine": "TC.ontarioEsa.vacationRate5Plus.value - TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "a {} year",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "owed {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "it, {}, not",
+      "source": {
+        "engine": "16000 * TC.ontarioEsa.vacationRate5Plus.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "not {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "carried {} up",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "of {} on",
+      "source": {
+        "engine": "TC.ontarioEsa.vacationRate5Plus.value - TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "is {} at",
+      "source": {
+        "engine": "30000 * TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "is {*} at {} and {*} at",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "at {*} and {} at {*}; the",
+      "source": {
+        "engine": "30000 * TC.ontarioEsa.vacationRate5Plus.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "at {}; the",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "the {} gap",
+      "source": {
+        "engine": "30000 * (TC.ontarioEsa.vacationRate5Plus.value - TC.ontarioEsa.vacationRateUnder5.value)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "the {} figure",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "gives {} at",
+      "source": {
+        "engine": "50000 * TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "gives {*} at {} and {*} at",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "at {*} and {} at {*}; add",
+      "source": {
+        "engine": "50000 * TC.ontarioEsa.vacationRate5Plus.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "at {}; add",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "check the {} or {*}",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "{*} or {} is really",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "left: {} under",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "years, {} if",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "least {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "least {} from",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "that's {} or",
+      "source": {
+        "engine": "50000 * TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "or {}. A",
+      "source": {
+        "engine": "50000 * TC.ontarioEsa.vacationRate5Plus.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "from {} to",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "to {}? At",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "years: {} and",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "more: {} and",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "is the {} or {*}",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "or {} money",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "at {}? Yes.",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "is {} on",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "paid {} on",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "a {} top-up",
+      "source": {
+        "engine": "TC.ontarioEsa.vacationRate5Plus.value - TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "so {} or",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "main",
+      "anchor": "{*} or {} is added",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "least {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "least {} from",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "that's {} or",
+      "source": {
+        "engine": "50000 * TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "or {}. A",
+      "source": {
+        "engine": "50000 * TC.ontarioEsa.vacationRate5Plus.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "from {} to",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "to {}?",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "years: {} and",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "more: {} and",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "the {} or",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "or {} money",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "at {}?",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "is {} on",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "paid {} on",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "a {} top-up",
+      "source": {
+        "engine": "TC.ontarioEsa.vacationRate5Plus.value - TC.ontarioEsa.vacationRateUnder5.value"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "so {} or",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/vacation-pay/",
+      "surface": "jsonld",
+      "anchor": "or {} is",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "at {}: {*}",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "{*}: {} for",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "then {} for",
+      "source": {
+        "engine": "25 * 38"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "one, {} across",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value + 25 * 38"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "of {}. The",
+      "source": {
+        "engine": "25 * 88"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "The {} is",
+      "source": {
+        "engine": "(50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * (TC.ontarioEsa.overtimeMultiplier.value - 1)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "— {} plus",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "at {}, {*}",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "{*}, {} —",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value + (53 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "hour {*} {} {*} {*}",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "{*} {*} {} {*} fixed",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "salary {} ({*}",
+      "source": {
+        "engine": "(1000 / TC.ontarioEsa.overtimeThresholdHours.value)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "44) {} {*}",
+      "source": {
+        "engine": "(Math.round(Math.round(1000 / TC.ontarioEsa.overtimeThresholdHours.value * 100) * TC.ontarioEsa.overtimeMultiplier.value) / 100)"
+      },
+      "format": "money:2"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "44) {*} {} {*} for",
+      "source": {
+        "engine": "1000 + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * (Math.round(Math.round(1000 / TC.ontarioEsa.overtimeThresholdHours.value * 100) * TC.ontarioEsa.overtimeMultiplier.value) / 100)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "adjusted {} ({*}",
+      "source": {
+        "engine": "(1000 / 40)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "40) {} {*}",
+      "source": {
+        "engine": "(1000 / 40) * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "{*} {} Same",
+      "source": {
+        "engine": "(1000 / 40) * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * (1000 / 40) * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "hours, {} apart,",
+      "source": {
+        "engine": "((1000 / 40) * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * (1000 / 40) * TC.ontarioEsa.overtimeMultiplier.value) - (1000 + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * (Math.round(Math.round(1000 / TC.ontarioEsa.overtimeThresholdHours.value * 100) * TC.ontarioEsa.overtimeMultiplier.value) / 100))"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "the \"{} rule\"",
+      "source": {
+        "const": "ontarioEsa.mixedWorkCoveredShare"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "is {}. A",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "× {} =",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "= {} +",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "+ {} =",
+      "source": {
+        "engine": "(50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "= {}. Do",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "Calculator {} or",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "main",
+      "anchor": "or {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "is {}. A",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "× {} =",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "= {} +",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "+ {} =",
+      "source": {
+        "engine": "(50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/overtime-pay/",
+      "surface": "jsonld",
+      "anchor": "= {}.",
+      "source": {
+        "engine": "25 * TC.ontarioEsa.overtimeThresholdHours.value + (50 - TC.ontarioEsa.overtimeThresholdHours.value) * 25 * TC.ontarioEsa.overtimeMultiplier.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/esa-termination/",
+      "surface": "main",
+      "anchor": "reaches {} million.",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/esa-termination/",
+      "surface": "jsonld",
+      "anchor": "reaches {} million.",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
     }
   ]
 }
