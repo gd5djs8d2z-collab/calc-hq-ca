@@ -1003,6 +1003,15 @@
     "cadence": "january"
   },
   {
+    "key": "provinces.NB.indexationFactor",
+    "value": 0.02,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nb-jan/t4032nb-january-general-information.html",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "provinces.NL.brackets",
     "value": [
       {
@@ -1080,6 +1089,24 @@
     "effective_from": "2026-01-01",
     "effective_to": null,
     "source_url": "https://www.assembly.nl.ca/Legislation/sr/regulations/rc260018.htm",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NL.taxReductionSpouse",
+    "value": 563,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.assembly.nl.ca/Legislation/sr/regulations/rc260018.htm",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
+    "key": "provinces.NL.indexationFactor",
+    "value": 0.011,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032nl-jan/t4032nl-january-general-information.html",
     "verified_at": "2026-10-20",
     "cadence": "january"
   },

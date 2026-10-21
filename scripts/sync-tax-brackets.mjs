@@ -194,18 +194,22 @@ const lowRate = (code) => v(TC.provinces[code].brackets)[0].rate;
 // The combined rate on a dollar far above every threshold and phase-out in the engine.
 const combinedTop = (code) => E.calcIncomeTax(2000001, code).totalTax - E.calcIncomeTax(2000000, code).totalTax;
 
+const SUMMARY_HEAD = ['Jurisdiction', 'Brackets', 'Lowest rate', 'Top rate', 'Basic personal amount', 'Combined top rate'];
+
 function summaryTable() {
   const href = Object.fromEntries(PAGES.filter((p) => p.code).map((p) => [p.code, '/' + p.file.replace(/index\.html$/, '')]));
   const rows = ORDER.map((code) => {
     const P = TC.provinces[code], b = v(P.brackets);
     const name = href[code] ? `<a href="${href[code]}">${P.name}</a>` : P.name;
-    return `<tr><td>${name}</td><td>${b.length}</td><td>${rate(b[0].rate)}</td><td>${rate(b.at(-1).rate)} over ${money(b.at(-1).min)}</td><td>${money(v(P.bpa))}</td><td>${pct(combinedTop(code))}</td></tr>`;
+    // data-label names each cell for the stacked (card) layout on phones; see .compare-table.stack.
+    const cells = [name, b.length, rate(b[0].rate), `${rate(b.at(-1).rate)} over ${money(b.at(-1).min)}`, money(v(P.bpa)), pct(combinedTop(code))];
+    return `<tr>${cells.map((c, i) => `<td data-label="${SUMMARY_HEAD[i]}">${c}</td>`).join('')}</tr>`;
   }).join('\n          ');
   return `
     <div class="compare-table-wrap">
-      <table class="compare-table summary-table">
+      <table class="compare-table summary-table stack">
         <caption>Provincial and territorial income tax, ${TAX_YEAR}</caption>
-        <thead><tr><th>Jurisdiction</th><th>Brackets</th><th>Lowest rate</th><th>Top rate</th><th>Basic personal amount</th><th>Combined top rate</th></tr></thead>
+        <thead><tr>${SUMMARY_HEAD.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
         <tbody>
           ${rows}
         </tbody>

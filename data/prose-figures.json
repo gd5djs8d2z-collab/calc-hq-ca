@@ -60,7 +60,21 @@
     "/payroll/self-employed-tax/",
     "/key-dates-limits/contribution-limits/",
     "/benefits/ccb/",
-    "/key-dates-limits/tax-deadlines/"
+    "/key-dates-limits/tax-deadlines/",
+    "/tax-brackets/",
+    "/tax-brackets/alberta/",
+    "/tax-brackets/british-columbia/",
+    "/tax-brackets/manitoba/",
+    "/tax-brackets/new-brunswick/",
+    "/tax-brackets/newfoundland-and-labrador/",
+    "/tax-brackets/northwest-territories/",
+    "/tax-brackets/nova-scotia/",
+    "/tax-brackets/nunavut/",
+    "/tax-brackets/ontario/",
+    "/tax-brackets/prince-edward-island/",
+    "/tax-brackets/quebec/",
+    "/tax-brackets/saskatchewan/",
+    "/tax-brackets/yukon/"
   ],
   "allowlist": [
     {
@@ -692,6 +706,444 @@
       "surface": "main",
       "anchor": "earning {} doesn't",
       "reason": "Example input: the family income in the reduction-rate example; the rates it illustrates are registered."
+    },
+    {
+      "page": "/tax-brackets/",
+      "surface": "main",
+      "anchor": "from {} partway",
+      "reason": "Historical figure: the 15% lowest federal rate in force before the July 2025 cut; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "a {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "A {} salary,",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "On {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "by {}, so",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/alberta/",
+      "surface": "main",
+      "anchor": "another {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "withholding {}, last",
+      "reason": "Historical figure: 2025's 5.06% lowest B.C. rate, which the January 2026 payroll tables still used; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "from {} to",
+      "reason": "Historical figure: 2025's 5.06% lowest B.C. rate, which the January 2026 payroll tables still used; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "at {}. The",
+      "reason": "Historical figure: 2025's 5.06% lowest B.C. rate, which the January 2026 payroll tables still used; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "What {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "an {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "by {}, so",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "a {} raise",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "at {} than",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "at {}? Because",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "at {} than",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "jsonld",
+      "anchor": "at {}?",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "at {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "deducted; {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "pay. {} in",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/manitoba/",
+      "surface": "main",
+      "anchor": "a {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "2025's {}. Carried",
+      "reason": "Historical figure: 2025's $21,920 low-income reduction threshold, the base the 2026 figure is indexed from; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "2025's {} gives",
+      "reason": "Historical figure: 2025's $802 low-income reduction, quoted as the prior-year comparison; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "income. At {} of pay",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "terms. {} in",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "Moncton At {} of salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "A {} raise",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "at {} than",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "at {}? Because",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "at {} the",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "at {} than",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "at {}?",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "jsonld",
+      "anchor": "at {} the",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "with {}, because",
+      "reason": "Historical figure: the $11,188 basic personal amount in CRA's January 2026 payroll tables, replaced from July; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "from {} in",
+      "reason": "Historical figure: 2025's $997 low-income reduction, quoted as the prior-year comparison; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "2025's {} carried",
+      "reason": "Historical figure: 2025's $23,928 low-income reduction threshold, the base the 2026 figure is indexed from; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "at {}. The",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "a {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "On {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "On {} the",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "used {} until",
+      "reason": "Historical figure: the $11,188 basic personal amount in CRA's January 2026 payroll tables, replaced from July; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "used {} until",
+      "reason": "Historical figure: the $11,188 basic personal amount in CRA's January 2026 payroll tables, replaced from July; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/northwest-territories/",
+      "surface": "main",
+      "anchor": "On {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "a {} salary,",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "deductible. A {} salary pays",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "pay. A {} salary in",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "on {} is",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "a {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "pay. {} in",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/nunavut/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "On a {} salary it",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "at {} the",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "at {}. A",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "on a {} salary The",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "On a {} salary the",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/ontario/",
+      "surface": "main",
+      "anchor": "A {} raise",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "On {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "from {} in",
+      "reason": "Historical figure: 2025's $22,650 low-income reduction threshold, quoted as the prior-year comparison; superseded and will not change."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "pay. {} and",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "salary At {} the reduction",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "tax. At {} the federal",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "a {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "{*}. {} of",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/quebec/",
+      "surface": "main",
+      "anchor": "An {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "at {} the",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "it. {} in",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "it. {} in",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/tax-brackets/yukon/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
     }
   ],
   "figures": [
@@ -9764,7 +10216,7 @@
     {
       "page": "/tax-brackets/quebec/",
       "surface": "main",
-      "anchor": "{*}, and {} above that.",
+      "anchor": "{*}, and {} on every dollar past that.",
       "source": {
         "const": "provinces.QC.brackets.3.rate"
       },
@@ -9773,7 +10225,7 @@
     {
       "page": "/tax-brackets/quebec/",
       "surface": "jsonld",
-      "anchor": "{*}, and {} above that.",
+      "anchor": "{*}, and {} on every dollar past that.",
       "source": {
         "const": "provinces.QC.brackets.3.rate"
       },
@@ -20096,6 +20548,213 @@
       "anchor": "2026? {} in",
       "source": {
         "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "withholding {} on",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/british-columbia/",
+      "surface": "main",
+      "anchor": "point: {} is",
+      "source": {
+        "const": "payrollJuly2026.BC.lowestRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/new-brunswick/",
+      "surface": "main",
+      "anchor": "Brunswick's {} indexing",
+      "source": {
+        "const": "provinces.NB.indexationFactor"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "a {} amount",
+      "source": {
+        "const": "payrollJuly2026.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "province's {} factor.",
+      "source": {
+        "const": "provinces.NL.indexationFactor"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "adds {} to",
+      "source": {
+        "const": "provinces.NL.taxReductionSpouse"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "adds {} and",
+      "source": {
+        "const": "provinces.NL.taxReductionSpouse"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "main",
+      "anchor": "prorated {} from",
+      "source": {
+        "const": "payrollJuly2026.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "adds {} and",
+      "source": {
+        "const": "provinces.NL.taxReductionSpouse"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/newfoundland-and-labrador/",
+      "surface": "jsonld",
+      "anchor": "prorated {} from",
+      "source": {
+        "const": "payrollJuly2026.NL.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "to {} for",
+      "source": {
+        "engine": "TC.provinces.NS.taxReduction.value.base + TC.provinces.NS.taxReductionSpouse.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/nova-scotia/",
+      "surface": "main",
+      "anchor": "adds {} for",
+      "source": {
+        "const": "provinces.NS.taxReductionPerChild"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "withhold {} above",
+      "source": {
+        "const": "payrollJuly2026.PE.topRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "more: {} for",
+      "source": {
+        "const": "provinces.PE.taxReductionSpouse"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "dependant, {} per",
+      "source": {
+        "const": "provinces.PE.taxReductionPerChild"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "and {} for",
+      "source": {
+        "const": "provinces.PE.taxReductionAge65"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "the {} tax",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "main",
+      "anchor": "prorated {} from",
+      "source": {
+        "const": "payrollJuly2026.PE.topRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "the {} tax",
+      "source": {
+        "const": "provinces.PE.brackets.5.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/prince-edward-island/",
+      "surface": "jsonld",
+      "anchor": "prorated {} from",
+      "source": {
+        "const": "payrollJuly2026.PE.topRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "by {} a",
+      "source": {
+        "const": "provinces.SK.bpaAffordabilityStep"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "main",
+      "anchor": "adds {} a",
+      "source": {
+        "const": "provinces.SK.bpaAffordabilityStep"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-brackets/saskatchewan/",
+      "surface": "jsonld",
+      "anchor": "adds {} a",
+      "source": {
+        "const": "provinces.SK.bpaAffordabilityStep"
       },
       "format": "exact"
     }

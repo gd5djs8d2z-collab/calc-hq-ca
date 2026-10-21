@@ -95,6 +95,8 @@ const SRC = {
   nlAct:     'https://www.assembly.nl.ca/Legislation/sr/statutes/i01-1.htm',        // Income Tax Act, 2000: s.21.1 (LITR), s.6.1 (indexing)
   nbAct:     'https://laws.gnb.ca/en/document/cs/N-6.001',                         // New Brunswick Income Tax Act: s.49.1 (LITR), s.16.1 (indexing)
   nsAct:     'https://nslegislature.ca/sites/default/files/legc/statutes/income%20tax.pdf', // Income Tax Act (NS), s.35(4), current to Sept 3, 2026
+  ns5003:    'https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package/nova-scotia/5003-pc.html',
+  skPit:     'https://www.saskatchewan.ca/residents/taxes-and-investments/personal-income-tax',
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
@@ -610,6 +612,10 @@ export const TAX_CONSTANTS_2026 = {
       ], source_url: T4032('sk'), last_verified: '2026-07-13' },
       bpa: { value: 20381, source_url: T4032('sk'), last_verified: '2026-07-13' }, // Saskatchewan Affordability Act + indexation
       bpaCreditRate: { value: 0.105, source_url: T4032('sk'), last_verified: '2026-07-13' }, // = brackets[0].rate (lowest-rate rule)
+      // Saskatchewan Affordability Act: "$500 annual increases to the Basic Personal Tax Credit
+      // Amount ... for each of the 2025, 2026, 2027 and 2028 taxation years, in addition to the
+      // increases resulting from the indexation". Read 2026-10-20 on saskatchewan.ca.
+      bpaAffordabilityStep: { value: 500, source_url: SRC.skPit, last_verified: '2026-10-20', cadence: 'statutory' },
     },
 
     MB: {
@@ -656,6 +662,11 @@ export const TAX_CONSTANTS_2026 = {
       // $165-per-child amounts need inputs the calculators don't collect.
       taxReduction: { value: { base: 300, threshold: 15000, rate: 0.05 },
                       source_url: SRC.nsAct, last_verified: '2026-10-20', cadence: 'statutory' },
+      // The add-ons in s.35(4), confirmed 2026-10-20 on CRA's 2025 Nova Scotia tax information
+      // (5003-PC, modified 2026-01-20): "$300 if you had a spouse or common-law partner" (or an
+      // eligible dependant, not both) and "$165 for each dependent child". Not indexed.
+      taxReductionSpouse:   { value: 300, source_url: SRC.ns5003, last_verified: '2026-10-20', cadence: 'statutory' },
+      taxReductionPerChild: { value: 165, source_url: SRC.ns5003, last_verified: '2026-10-20', cadence: 'statutory' },
     },
 
     NB: {
@@ -680,6 +691,9 @@ export const TAX_CONSTANTS_2026 = {
       // calculators don't collect). Re-stamp from the 2026 NB428 when it lands.
       taxReduction: { value: { base: 818, threshold: 22358, rate: 0.03 },
                       source_url: SRC.nbAct, last_verified: '2026-10-20', cadence: 'january' },
+      // T4032-NB "New Brunswick indexing": "The indexing factor for January 1, 2026, is 2.0%."
+      // Read 2026-10-20 (page modified 2025-12-17). The bare `indexation` label above agrees.
+      indexationFactor: { value: 0.02, source_url: T4032('nb'), last_verified: '2026-10-20' },
     },
 
     NL: {
@@ -713,6 +727,13 @@ export const TAX_CONSTANTS_2026 = {
       // collect. Re-stamp from the 2026 NL428 when it lands.
       taxReduction: { value: { base: 842, threshold: 24191, rate: 0.16 },
                       source_url: SRC.nlLitrReg, last_verified: '2026-10-20', cadence: 'january' },
+      // NLR 18/26 s.3(b): "the amount referred to in paragraph 21.1(2.1)(b) of the Act is $563" —
+      // amount B, added where the filer has a qualified relation (cohabiting spouse or common-law
+      // partner) or claims an eligible dependant under s.9(1)(b). Read 2026-10-20.
+      taxReductionSpouse: { value: 563, source_url: SRC.nlLitrReg, last_verified: '2026-10-20', cadence: 'january' },
+      // T4032-NL "The indexing factor for January 1, 2026 is 1.1%." Read 2026-10-20 (page modified
+      // 2025-12-17). NOTE the bare `indexation: 0.02` label above is stale; nothing reads it.
+      indexationFactor: { value: 0.011, source_url: T4032('nl'), last_verified: '2026-10-20' },
     },
 
     PE: {
@@ -742,6 +763,13 @@ export const TAX_CONSTANTS_2026 = {
       // inputs the calculators don't collect.
       taxReduction: { value: { base: 350, threshold: 23000, rate: 0.05 },
                       source_url: SRC.peAct, last_verified: '2026-10-20', cadence: 'january' },
+      // The other amounts in the same subsection (consolidation current to May 29, 2026; read
+      // 2026-10-20): (b) "$350 for a person who is the qualified relation", (c) $350 for an
+      // eligible dependant where there is none, (d) "$300 ... multiplied by the number of the
+      // qualified dependants", (e) "$250, where the individual ... has attained the age of sixty-five".
+      taxReductionSpouse:   { value: 350, source_url: SRC.peAct, last_verified: '2026-10-20', cadence: 'statutory' },
+      taxReductionPerChild: { value: 300, source_url: SRC.peAct, last_verified: '2026-10-20', cadence: 'statutory' },
+      taxReductionAge65:    { value: 250, source_url: SRC.peAct, last_verified: '2026-10-20', cadence: 'statutory' },
     },
 
     YT: {
