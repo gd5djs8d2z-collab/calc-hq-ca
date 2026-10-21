@@ -58,7 +58,9 @@
     "/contact/",
     "/disclaimer/",
     "/faq/",
-    "/privacy-policy/"
+    "/privacy-policy/",
+    "/business/markup/",
+    "/business/profit-margin/"
   ],
   "strict": [
     "/business/gst-hst/",
@@ -119,7 +121,9 @@
     "/guides/cpp-eligibility/",
     "/guides/ccb-eligibility/",
     "/guides/",
-    "/guides/fhsa-eligibility/"
+    "/guides/fhsa-eligibility/",
+    "/business/markup/",
+    "/business/profit-margin/"
   ],
   "allowlist": [
     {
@@ -1627,6 +1631,666 @@
       "surface": "main",
       "anchor": "at {} —",
       "reason": "Example input: the salary, raise, income or price the quoted result is computed at; the result itself is registered."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {} Behind",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "from {} Markup",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "on a {} cost and",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "a {} markup,",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "so {} ×",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "cost. Buy at {}, sell at {*},",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "÷ {} is",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "A {} item",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "for {} carries",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "Against the {} cost it",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "climbs. A {} markup is",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "different. A {} markup is",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "margin. A {} markup is",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {*} {*} {} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {*} {*} {*} {*} {} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} {*} Three",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} Three",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} Three",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {} {*} {*} {*} Three",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {} {*} Three",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "rest: {} pairs",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*}, {} with",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "and {} with",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} markup and",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "never a {} margin. The",
+      "reason": "Mathematical limit, not a quantity: 100% as the bound a margin can never reach (or a markup can exceed)."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "keep {} of",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "multiplies the {} cost by",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is {} ÷",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "Take {} off",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "only {} was",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "cost. Buy at {}, sell at {*}:",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "÷ {} =",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "markup): {} ×",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "of the {} cost but",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "a {} margin?",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "On a {} cost that",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "than {}? Yes.",
+      "reason": "Mathematical limit, not a quantity: 100% as the bound a margin can never reach (or a markup can exceed)."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "a {} item",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "for {} has",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "reach {}. Does",
+      "reason": "Mathematical limit, not a quantity: 100% as the bound a margin can never reach (or a markup can exceed)."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "at {}, sell",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "÷ {} =",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "markup): {} ×",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "the {} cost",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "a {} margin?",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "a {} cost",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "than {}?",
+      "reason": "Mathematical limit, not a quantity: 100% as the bound a margin can never reach (or a markup can exceed)."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "a {} item",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "for {} has",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "reach {}.",
+      "reason": "Mathematical limit, not a quantity: 100% as the bound a margin can never reach (or a markup can exceed)."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "margin {} Behind",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is a {} cost against",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "a {} price.",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "and {*} ÷ {} is {*} —",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "against the {} cost is",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "sell the {} item for",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "for {} and",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "reach {}, because",
+      "reason": "Mathematical limit, not a quantity: 100% as the bound a margin can never reach (or a markup can exceed)."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "for a {} margin on",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "on {} and",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "For a {} margin on",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "on a {} cost, {*}",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "on a {*} cost, {} ÷ 0.60 = {*}.",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "instead. {} ×",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "like \"{} on",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "gets: a {} margin needs",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "that {} cost,",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost {} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost {*} {*} {} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost {*} {*} {*} {*} {} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} {*} The",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} The",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} The",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {} {*} {*} {*} The",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {} {*} The",
+      "reason": "Table row label: the markup or margin each conversion row starts from; the converted figure beside it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "markup): a {} margin needs",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "and a {} markup produces",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "— {} margin",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost, {} means",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "Sell the {} item at",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "a {} item",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "at {} —",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "than {}, but",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "but {} is",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "A {} item",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "for {} makes",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} ÷ {} is {*}.",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "for a {} margin? Divide",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "For a {} cost, {*}",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "For a {*} cost, {} ÷ 0.60 = {*}.",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is a {} markup and",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "equals a {} margin? {*}.",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "the {} cost,",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost, {} price",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "A {} item",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "for {} makes",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "÷ {} is",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "for a {} margin?",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "a {} cost,",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "cost, {} ÷",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "a {} markup",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "equals a {} margin?",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "the {} cost,",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "cost, {} price",
+      "reason": "Example input: a cost, price, starting markup, target margin or discount the worked example sets; every figure computed from it is bound."
     }
   ],
   "figures": [
@@ -21815,6 +22479,1284 @@
         "const": "ei.serviceStandardShare"
       },
       "format": "percent"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "= {}, and",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "the {} between",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "that {} —",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "sell at {}, and {*}",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "and {} ÷",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is {}. Switch",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "a {} markup;",
+      "source": {
+        "engine": "(36 - 12) / 12"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "same {} divided",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} markup. Against",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "Against the {} price it",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} margin. The",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / (30 * 1.5)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} margin, barely",
+      "source": {
+        "engine": "0.2 / 1.2"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} margin. A",
+      "source": {
+        "engine": "1 / 2"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} margin, a",
+      "source": {
+        "engine": "2 / 3"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {*} {} {*} {*}",
+      "source": {
+        "engine": "0.10 / (1 + 0.10)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {*} {*} {*} {} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.20 / (1 + 0.20)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "price {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.25 / (1 + 0.25)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.30 / (1 + 0.30)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.40 / (1 + 0.40)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} {*} {*} Three",
+      "source": {
+        "engine": "0.50 / (1 + 0.50)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} Three",
+      "source": {
+        "engine": "0.60 / (1 + 0.60)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} Three",
+      "source": {
+        "engine": "0.75 / (1 + 0.75)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {} {*} {*} {*} {*} Three",
+      "source": {
+        "engine": "1.00 / (1 + 1.00)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {} {*} {*} Three",
+      "source": {
+        "engine": "1.50 / (1 + 1.50)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*} {} Three",
+      "source": {
+        "engine": "2.00 / (1 + 2.00)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "with {}, {*}",
+      "source": {
+        "engine": "0.25 / 1.25"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "with {}, and",
+      "source": {
+        "engine": "0.5 / 1.5"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "with {}. Doubling",
+      "source": {
+        "engine": "1 / 2"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "and a {} margin, never",
+      "source": {
+        "engine": "1 / 2"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "it at {}, and moves",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "on. The {} of profit",
+      "source": {
+        "engine": "30 * 1.4 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "that {} is",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} margin —",
+      "source": {
+        "engine": "(30 * 1.4 - 30) / (30 * 1.4)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "= {}, which",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is a {} markup. The",
+      "source": {
+        "engine": "(30 / (1 - 0.4) - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "That {} item",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "with a {} markup has",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "has {} in",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "source": {
+        "engine": "30 * 1.5 * 0.2"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "the {} is",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is {} and",
+      "source": {
+        "engine": "30 * 1.5 * 0.8"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "to {}. Take",
+      "source": {
+        "engine": "(30 * 1.5 * 0.8 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "— {} less",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "less {} is",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / (30 * 1.5)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is {}, the",
+      "source": {
+        "engine": "30 * 1.5 * (1 - (30 * 1.5 - 30) / (30 * 1.5))"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "why \"{} markup\"",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "A {} sale",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "than {} in",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "only {} of",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "is {} of",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "at {}: {*}",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*}: {} ÷",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "= {}. To",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "= {}. What",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "does a {} markup give?",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "give? {}. Margin",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / (30 * 1.5)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "= {}. The",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / (30 * 1.5)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "{*}. The {} of profit",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "the {} price.",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "margin? {}. Markup",
+      "source": {
+        "engine": "(30 / (1 - 0.4) - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "= {}. On",
+      "source": {
+        "engine": "(30 / (1 - 0.4) - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "a {} price;",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "gives {} and",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "only a {} margin. Can",
+      "source": {
+        "engine": "(30 * 1.4 - 30) / (30 * 1.4)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "main",
+      "anchor": "has a {} markup. It's",
+      "source": {
+        "engine": "(36 - 12) / 12"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "at {}: {*}",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "{*}: {} ÷",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "= {}. To",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "× 1.50 = {}.",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "does a {} markup give?",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "{}. Margin",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / (30 * 1.5)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "= {}. The",
+      "source": {
+        "engine": "(30 * 1.5 - 30) / (30 * 1.5)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "The {} of",
+      "source": {
+        "engine": "30 * 1.5 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "the {} price.",
+      "source": {
+        "engine": "30 * 1.5"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "{}. Markup",
+      "source": {
+        "engine": "(30 / (1 - 0.4) - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "= {}. On",
+      "source": {
+        "engine": "(30 / (1 - 0.4) - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "a {} price;",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "gives {} and",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "a {} margin.",
+      "source": {
+        "engine": "(30 * 1.4 - 30) / (30 * 1.4)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/markup/",
+      "surface": "jsonld",
+      "anchor": "a {} markup.",
+      "source": {
+        "engine": "(36 - 12) / 12"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "The {} between",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is gross profit, and {} ÷ {*} is {*}",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is {} —",
+      "source": {
+        "engine": "(40 - 30) / 40"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "same {} measured",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is a {} markup, and",
+      "source": {
+        "engine": "(40 - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is {} when",
+      "source": {
+        "engine": "(30 - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "reads −{} and",
+      "source": {
+        "engine": "(40 - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "price is {}, which is",
+      "source": {
+        "engine": "30 / (1 - 0.99)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "= {}. Check",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "way: {} of",
+      "source": {
+        "engine": "30 / (1 - 0.4) - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "profit on {} is {*}.",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} is {}. The mistake",
+      "source": {
+        "engine": "(30 / (1 - 0.4) - 30) / (30 / (1 - 0.4))"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "1.40 is {}, which feels",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "But {} on",
+      "source": {
+        "engine": "30 * 1.4 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} on {} is a",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is a {} margin. That",
+      "source": {
+        "engine": "(30 * 1.4 - 30) / (30 * 1.4)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "of {} on",
+      "source": {
+        "engine": "30 / (1 - 0.6)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost, a {} markup, not",
+      "source": {
+        "engine": "(30 / (1 - 0.6) - 30) / 30"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "the {} that",
+      "source": {
+        "engine": "30 * 1.6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost {*} {} {*} {*}",
+      "source": {
+        "engine": "0.10 / (1 - 0.10)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "cost {*} {*} {*} {} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.15 / (1 - 0.15)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.20 / (1 - 0.20)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.25 / (1 - 0.25)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} {*}",
+      "source": {
+        "engine": "0.30 / (1 - 0.30)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*} {*} The",
+      "source": {
+        "engine": "0.40 / (1 - 0.40)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} The",
+      "source": {
+        "engine": "0.50 / (1 - 0.50)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {} {*} {*} {*} {*} The",
+      "source": {
+        "engine": "0.60 / (1 - 0.60)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {} {*} {*} The",
+      "source": {
+        "engine": "0.70 / (1 - 0.70)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} {} The",
+      "source": {
+        "engine": "0.75 / (1 - 0.75)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "needs a {} markup, and",
+      "source": {
+        "engine": "0.2 / (1 - 0.2)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "produces a {} margin. Past",
+      "source": {
+        "engine": "0.25 / (1 + 0.25)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "its {} and",
+      "source": {
+        "engine": "(40 - 30) / 40"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "— a {} cost —",
+      "source": {
+        "engine": "100 * (1 - 0.5)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "is {} +",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "+ {} =",
+      "source": {
+        "engine": "100 - 100 * (1 - 0.5)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "= {} on",
+      "source": {
+        "engine": "(40 - 30) + (100 - 100 * (1 - 0.5))"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "on {} of",
+      "source": {
+        "engine": "40 + 100"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "a {} blended",
+      "source": {
+        "engine": "((40 - 30) + (100 - 100 * (1 - 0.5))) / (40 + 100)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "the {} you",
+      "source": {
+        "engine": "((40 - 30) / 40 + 0.5) / 2"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "takes {} and",
+      "source": {
+        "engine": "40 + 100"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "and {} as",
+      "source": {
+        "engine": "30 + 100 * (1 - 0.5)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "pass {} across",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "and {} is",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "the {} line",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "makes {} of",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "of gross profit, and {} ÷ {*} is {*}.",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "{*} is {}. The base",
+      "source": {
+        "engine": "(40 - 30) / 40"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "= {}. Multiplying",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "gives {}, which",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "only a {} margin. What",
+      "source": {
+        "engine": "(30 * 1.4 - 30) / (30 * 1.4)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "margin? {}. Markup",
+      "source": {
+        "engine": "(40 - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "= {}. The",
+      "source": {
+        "engine": "(40 - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "main",
+      "anchor": "The {} of",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "makes {} of",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "and {} ÷",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "is {}. The",
+      "source": {
+        "engine": "(40 - 30) / 40"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "= {}. Multiplying",
+      "source": {
+        "engine": "30 / (1 - 0.4)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "gives {}, which",
+      "source": {
+        "engine": "30 * 1.4"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "a {} margin.",
+      "source": {
+        "engine": "(30 * 1.4 - 30) / (30 * 1.4)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "{}. Markup",
+      "source": {
+        "engine": "(40 - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "= {}. The",
+      "source": {
+        "engine": "(40 - 30) / 30"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/business/profit-margin/",
+      "surface": "jsonld",
+      "anchor": "The {} of",
+      "source": {
+        "engine": "40 - 30"
+      },
+      "format": "exact"
     }
   ]
 }
