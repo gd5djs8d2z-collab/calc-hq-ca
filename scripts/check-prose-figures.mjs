@@ -46,9 +46,9 @@
  *   CONFIG     malformed entry, page not in scope, const path not a number, engine error
  *   SELF-TEST  the built-in self-test below did not behave
  *
- * STRICT PAGES (fail, not warn)
- *   registry.strict lists pages where every $ / % figure in either surface must be bound: either
- *   covered by a registry entry or matched by an entry in registry.allowlist —
+ * STRICT BY DEFAULT (fail, not warn) — since 2026-10-20
+ *   Every page in registry.pages is strict: every $ / % figure in either surface must be bound,
+ *   either covered by a registry entry or matched by an entry in registry.allowlist —
  *     { page, surface, anchor, reason }   anchor uses {} for the figure, exactly as above; reason
  *                                          says why the figure is not a stamp (an example input, a
  *                                          historical rate, a 0% that is a definition). Required.
@@ -56,6 +56,10 @@
  *   STALE      an allowlist anchor that no longer matches exactly once (so allowances can't rot)
  *   Allowlisting is for figures that genuinely don't derive from a stamp; anything that does gets
  *   a registry entry instead.
+ *   registry.lenient ([{ page, reason }], empty today) is the only way back to warn-only, one page
+ *   at a time, with a reason.
+ *   UNREGISTERED  a site page (any index.html the build serves) missing from registry.pages, so a
+ *                 new page fails CI until it is registered.
  *
  * RATCHET (warning only in v1)
  *   Every $ / % figure on an in-scope page, in either surface, that no registry entry covers is
@@ -75,7 +79,7 @@
  *   --no-write  do not rewrite the ratchet file (used by tests)
  */
 import { readFileSync, writeFileSync } from 'node:fs';
-import { figureTokens } from './check-schema.mjs';
+import { figureTokens, htmlFiles } from './check-schema.mjs';
 
 const ROOT_URL = new URL('../', import.meta.url);
 const REGISTRY_PATH = new URL('data/prose-figures.json', ROOT_URL);
@@ -193,9 +197,18 @@ const pageFile = (page) => `${page.replace(/^\//, '')}index.html`;
  * Pure core. registry = parsed JSON; readPage(path) -> html; ctx = { TC, scope } where scope is
  * the name->value map engine expressions are evaluated against.
  */
-export function check({ registry, readPage, ctx }) {
+export function check({ registry, readPage, ctx, sitePages = null }) {
   const failures = [], passes = [];
   const pages = new Set(registry.pages);
+  // Strict by default: a page leaves strict only through registry.lenient, with a reason.
+  const lenient = new Set();
+  (registry.lenient || []).forEach((l, i) => {
+    if (!l || !pages.has(l.page)) return failures.push(`CONFIG     lenient #${i}: ${l && l.page} is not in registry.pages`);
+    if (!l.reason || typeof l.reason !== 'string') return failures.push(`CONFIG     lenient #${i} ${l.page}: a reason is required`);
+    lenient.add(l.page);
+  });
+  if ('strict' in registry) failures.push('CONFIG     registry.strict is retired — every page is strict unless listed in registry.lenient');
+  if (sitePages) for (const p of sitePages) if (!pages.has(p)) failures.push(`UNREGISTERED ${p}: a site page not in data/prose-figures.json — register it (pages, figures, allowlist)`);
   const surfaces = new Map();                 // page -> { main, jsonld } (text or Error)
   const covered = new Map();                  // `${page}|${surface}` -> Set of capture offsets
 
@@ -263,7 +276,7 @@ export function check({ registry, readPage, ctx }) {
 
   // Allowlist: figures on strict pages that are deliberately not stamps. Each anchor must match
   // exactly once, and every entry needs a reason.
-  const strict = new Set(registry.strict || []);
+  const strict = new Set([...pages].filter((p) => !lenient.has(p)));
   const allowed = new Map();                  // `${page}|${surface}` -> Set of capture offsets
   (registry.allowlist || []).forEach((a, i) => {
     const where = `${a.page} [${a.surface}] "${a.anchor}"`;
@@ -278,7 +291,6 @@ export function check({ registry, readPage, ctx }) {
     if (!allowed.has(key)) allowed.set(key, new Set());
     allowed.get(key).add(hits[0].indices[1][0]);
   });
-  for (const page of strict) if (!pages.has(page)) failures.push(`CONFIG     strict page ${page} is not in registry.pages`);
 
   // Ratchet: every figure token on an in-scope page that no entry covers. On a strict page an
   // uncovered, un-allowlisted figure is a failure, not a warning.
@@ -358,7 +370,7 @@ export function selfTest() {
   const gen = run({ html: page('<!-- tb:marginal:start --><table><tr><td>$53,891</td><td>23.15%</td></tr></table><!-- tb:marginal:end --><p>Unregistered $99.</p>', goodLd) });
   if (gen.unregistered.length !== 1) errs.push(`self-test: a generated tb: region should be out of the ratchet, prose after it in (got ${gen.unregistered.length}, expected 1)`);
   // Strict pages: an unbound figure fails; allowlisting it passes; a stale allowance fails.
-  const strictReg = { ...clone(registry), strict: ['/t/'] };
+  const strictReg = clone(registry);   // strict by default
   const loose = page('<p>Example on $100 of sales.</p>', goodLd);
   expectFail('an unbound figure on a strict page', run({ html: loose, reg: strictReg }), 'UNBOUND');
   const allowReg = { ...strictReg, allowlist: [{ page: '/t/', surface: 'main', anchor: 'Example on {} of sales.', reason: 'example input' }] };
@@ -372,7 +384,7 @@ export function selfTest() {
   // never even saw it).
   const frHtml = (pct, amt) => `<html><body><main><p>L'abattement de ${pct} réduit l'impôt.</p><p>Un revenu de ${amt} a ce taux.</p></main></body></html>`;
   const frTC = { qc: { ab: { value: 0.165, source_url: 'x', last_verified: 'x' }, t: { value: 54345, source_url: 'x', last_verified: 'x' } } };
-  const frReg = { pages: ['/fr/t/'], strict: ['/fr/t/'], figures: [
+  const frReg = { pages: ['/fr/t/'], figures: [
     { page: '/fr/t/', surface: 'main', anchor: "L'abattement de {} réduit", source: { const: 'qc.ab' }, format: 'percent' },
     { page: '/fr/t/', surface: 'main', anchor: 'Un revenu de {} a ce', source: { const: 'qc.t' }, format: 'exact' }] };
   const frRun = (html, reg = frReg) => check({ registry: reg, readPage: () => html, ctx: { TC: frTC, scope: { TC: frTC } } });
@@ -380,6 +392,14 @@ export function selfTest() {
   if (frOk.failures.length) errs.push(`self-test: French figures should bind — ${frOk.failures.join(' | ')}`);
   expectFail('a changed French figure', frRun(frHtml('16,4\u00a0%', '54\u00a0345\u00a0$')), 'MISMATCH');
   expectFail('an unbound French dollar amount on a strict page', frRun(frHtml('16,5 %', '54 345 $').replace('</main>', '<p>Soit 1 450 $ de plus.</p></main>')), 'UNBOUND');
+  // Strict by default: a site page missing from the registry fails; a lenient page only warns,
+  // and needs a reason; the retired strict array is refused.
+  expectFail('a site page missing from the registry', check({ registry, readPage: () => page('', goodLd), ctx: { TC, scope: { TC } }, sitePages: ['/t/', '/new/'] }), 'UNREGISTERED');
+  const lenReg = { ...clone(registry), lenient: [{ page: '/t/', reason: 'test' }] };
+  const lenRun = run({ html: loose, reg: lenReg });
+  if (lenRun.failures.length || lenRun.unregistered.length !== 1) errs.push(`self-test: a lenient page should only warn — ${lenRun.failures.join(' | ')}`);
+  expectFail('a lenient page with no reason', run({ html: loose, reg: { ...lenReg, lenient: [{ page: '/t/' }] } }), 'CONFIG');
+  expectFail('the retired strict array', run({ reg: { ...clone(registry), strict: ['/t/'] } }), 'CONFIG');
   if (expectedFor(9.975, 'money:3').text !== '$9.975') errs.push(`self-test: money:3 should print $9.975 (got ${expectedFor(9.975, 'money:3').text})`);
   return errs;
 }
@@ -406,8 +426,10 @@ async function main() {
   const write = !process.argv.includes('--no-write');
   const registry = JSON.parse(readFileSync(REGISTRY_PATH, 'utf8'));
   const ctx = await loadContext();
+  // Every page the build serves: each index.html, as its URL path ('/', '/payroll/', ...).
+  const sitePages = htmlFiles().filter((f) => /(^|\/)index\.html$/.test(f)).map((f) => '/' + f.replace(/index\.html$/, ''));
   const { failures, passes, unregistered } = check({
-    registry, ctx, readPage: (f) => readFileSync(new URL(f, ROOT_URL), 'utf8'),
+    registry, ctx, sitePages, readPage: (f) => readFileSync(new URL(f, ROOT_URL), 'utf8'),
   });
   const selfErrs = selfTest();
 
@@ -425,8 +447,8 @@ async function main() {
     `${registry.figures.length} registered figures on ${registry.pages.length} pages: ` +
       `${passes.length} match, ${failures.length} issue(s)`,
     `self-test: ${selfErrs.length ? 'FAIL' : 'ok'} (stamped-value change, prose change, deleted anchor, ` +
-      'JSON-LD-only edit, duplicate anchor, rounding, broken block, bad path, wrong kind, unbound figure on a strict page, stale allowance, French figures — each must fail)',
-    `strict pages: ${(registry.strict || []).length} (${(registry.allowlist || []).length} allowlisted figure(s))`,
+      'JSON-LD-only edit, duplicate anchor, rounding, broken block, bad path, wrong kind, unbound figure on a strict page, stale allowance, French figures, unregistered page, lenient without reason — each must fail)',
+    `strict by default: ${registry.pages.length - (registry.lenient || []).length} of ${registry.pages.length} pages (${(registry.lenient || []).length} lenient, ${(registry.allowlist || []).length} allowlisted figure(s))`,
     `RATCHET (warning): ${unregistered.length} figure(s) on in-scope pages are not registered` +
       (write ? ' — listed in data/prose-figures-unregistered.txt' : ''),
     '',
