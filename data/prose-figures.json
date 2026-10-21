@@ -48,7 +48,17 @@
     "/guides/capital-gains-tax/",
     "/business/gst-hst/",
     "/business/",
-    "/payroll/payroll-deductions/"
+    "/payroll/payroll-deductions/",
+    "/",
+    "/benefits/",
+    "/employment-standards/",
+    "/payroll/",
+    "/tax-on-extra-income/",
+    "/about/",
+    "/contact/",
+    "/disclaimer/",
+    "/faq/",
+    "/privacy-policy/"
   ],
   "strict": [
     "/business/gst-hst/",
@@ -85,7 +95,31 @@
     "/benefits/rdsp/",
     "/property/fhsa/",
     "/tax-on-extra-income/capital-gains/",
-    "/guides/capital-gains-tax/"
+    "/guides/capital-gains-tax/",
+    "/",
+    "/benefits/",
+    "/employment-standards/",
+    "/payroll/",
+    "/tax-on-extra-income/",
+    "/key-dates-limits/ei-payment-dates/",
+    "/about/",
+    "/contact/",
+    "/disclaimer/",
+    "/faq/",
+    "/privacy-policy/",
+    "/key-dates-limits/",
+    "/key-dates-limits/ccb-payment-dates/",
+    "/key-dates-limits/canada-child-benefit-payment-dates/",
+    "/key-dates-limits/gst-hst-credit-payment-dates/",
+    "/key-dates-limits/cpp-payment-dates/",
+    "/key-dates-limits/oas-gis-payment-dates/",
+    "/key-dates-limits/ontario-trillium-benefit-payment-dates/",
+    "/guides/oas-eligibility/",
+    "/guides/gis-eligibility/",
+    "/guides/cpp-eligibility/",
+    "/guides/ccb-eligibility/",
+    "/guides/",
+    "/guides/fhsa-eligibility/"
   ],
   "allowlist": [
     {
@@ -1575,6 +1609,24 @@
       "surface": "main",
       "anchor": "each {} you",
       "reason": "Unit of a match ratio (\"$3 for each $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "a {} raise",
+      "reason": "Example input: the salary, raise, income or price the quoted result is computed at; the result itself is registered."
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "on {} owes,",
+      "reason": "Example input: the salary, raise, income or price the quoted result is computed at; the result itself is registered."
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "at {} —",
+      "reason": "Example input: the salary, raise, income or price the quoted result is computed at; the result itself is registered."
     }
   ],
   "figures": [
@@ -21313,6 +21365,456 @@
         "const": "cpp.basicExemption"
       },
       "format": "exact"
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "The {} CPP",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "the {} EI",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "— the {} a {*}",
+      "source": {
+        "engine": "calcRaise(60000, 66000, 'ON').netRaise"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "Ontario, the {} a self-employed",
+      "source": {
+        "engine": "calcSelfEmployed(45000, 'ON').totalObligation"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/",
+      "surface": "main",
+      "anchor": "owes, the {} a Toronto",
+      "source": {
+        "engine": "LTT.estimate(800000, true, false).total"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "over {} July",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "CPP takes {} of what",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "from {} up",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "to {}, and",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "EI takes {} of the",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "first {}; that",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "— {} of",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "to {} a",
+      "source": {
+        "const": "ei.maxWeeklyBenefit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "where {} of",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "attracts {} of",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "under {} collects",
+      "source": {
+        "const": "rdsp.bondFullThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "a {} bond",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "above {}. For",
+      "source": {
+        "const": "oas.recoveryThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "between {} a",
+      "source": {
+        "const": "cppRetirement.earlyReductionPerMonth"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "and {} a",
+      "source": {
+        "const": "cppRetirement.lateIncreasePerMonth"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "— {} less",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "60, {} more",
+      "source": {
+        "const": "cppRetirement.lateMaxIncrease"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "at {} and",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "— {} in",
+      "source": {
+        "const": "rdsp.contributionForMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "attract {}. OAS",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/",
+      "surface": "main",
+      "anchor": "the {} exemption",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/employment-standards/",
+      "surface": "main",
+      "anchor": "from {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/",
+      "surface": "main",
+      "anchor": "to {} and",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/",
+      "surface": "main",
+      "anchor": "severance. {} million",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/employment-standards/",
+      "surface": "main",
+      "anchor": "Calculator {} of",
+      "source": {
+        "const": "ontarioEsa.vacationRateUnder5"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/",
+      "surface": "main",
+      "anchor": "service, {} at",
+      "source": {
+        "const": "ontarioEsa.vacationRate5Plus"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/employment-standards/",
+      "surface": "main",
+      "anchor": "a {}M-payroll employer.",
+      "source": {
+        "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
+      },
+      "format": "money:1"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "CPP at {} of pensionable",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "EI at {} of insurable",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "to {} for",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "at {} against",
+      "source": {
+        "const": "cpp.maxSelfEmployedContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "employee's {}; EI",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "passes {} in",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "at {} where",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "pays {} to",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "to {} precisely",
+      "source": {
+        "const": "ei.quebec.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/payroll/",
+      "surface": "main",
+      "anchor": "the {} HST",
+      "source": {
+        "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "tax ({} above",
+      "source": {
+        "const": "provinces.ON.surtax.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "above {}, a",
+      "source": {
+        "const": "provinces.ON.surtax.0.over"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "further {} above",
+      "source": {
+        "const": "provinces.ON.surtax.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "above {}) and",
+      "source": {
+        "const": "provinces.ON.surtax.1.over"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "to {} because",
+      "source": {
+        "const": "ei.quebec.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "to {} in",
+      "source": {
+        "const": "provinces.AB.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/",
+      "surface": "main",
+      "anchor": "at {} in",
+      "source": {
+        "const": "provinces.NS.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/ei-payment-dates/",
+      "surface": "main",
+      "anchor": "meet {} of",
+      "source": {
+        "const": "ei.serviceStandardShare"
+      },
+      "format": "percent"
     }
   ]
 }

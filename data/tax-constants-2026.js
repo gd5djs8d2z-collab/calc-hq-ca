@@ -100,6 +100,7 @@ const SRC = {
   t4037:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/t4037/capital-gains.html',
   rc4064:    'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4064/disability-related-information.html',
   oasActS12: 'https://laws-lois.justice.gc.ca/eng/acts/o-9/page-3.html',
+  eiAfterApply: 'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/after-applying.html',
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
@@ -334,6 +335,10 @@ export const TAX_CONSTANTS_2026 = {
     // January 1 and December 31, 2025". Set each year; confirmed 2026-10-20 on Service Canada's
     // eligibility page (modified 2025-12-31).
     selfEmployedMinEarnings: { value: 9254, source_url: SRC.eiSelfEmployedEligibility, last_verified: '2026-10-20' },
+    // Service standard: "Our service standard is to provide you with a decision within 28 days of
+    // filing your application. ... We aim to meet this standard 80% of the time." Read 2026-10-20
+    // on Service Canada's "After you apply" page (modified 2026-10-19). Administrative target.
+    serviceStandardShare: { value: 0.8, source_url: SRC.eiAfterApply, last_verified: '2026-10-20', cadence: 'statutory' },
     benefitReplacementRate:{ value: 0.55,   source_url: SRC.eiBenefit, last_verified: '2026-07-14' }, // regular benefits = 55%
     quebec: {
       rate:               { value: 0.0130,  source_url: SRC.ei, last_verified: '2026-07-18' },

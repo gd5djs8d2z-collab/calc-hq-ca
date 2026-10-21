@@ -55,17 +55,19 @@ function offDay(iso, usual) {
 }
 
 function table(key, rows, { first = 'Month', note = null } = {}) {
+  // data-label names each cell for the stacked (card) layout on phones (.compare-table.stack);
+  // the note column wraps (.note) so a long programme name doesn't widen the table.
   const body = rows.map((r) => {
     const p = parts(r.date);
-    const cells = [`<td>${r.label}</td>`, `<td>${long(r.date)}</td>`, `<td>${DAYS[p.dow]}</td>`];
-    if (note) cells.push(`<td>${r.note}</td>`);
-    cells.push('<td class="st"></td>');
+    const cells = [`<td data-label="${first}">${r.label}</td>`, `<td data-label="Payment date">${long(r.date)}</td>`, `<td data-label="Day">${DAYS[p.dow]}</td>`];
+    if (note) cells.push(`<td class="note" data-label="${note}">${r.note}</td>`);
+    cells.push('<td class="st" data-label="Status"></td>');
     return `<tr data-date="${r.date}">${cells.join('')}</tr>`;
   }).join('\n          ');
   const head = [first, 'Payment date', 'Day', ...(note ? [note] : []), 'Status'].map((h) => `<th>${h}</th>`).join('');
   return `
     <div class="compare-table-wrap">
-      <table class="compare-table">
+      <table class="compare-table stack">
         <thead><tr>${head}</tr></thead>
         <tbody data-benefit="${key}">
           ${body}

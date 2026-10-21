@@ -429,6 +429,8 @@ select.input {
 /* Tables whose cells are short sentences rather than figures: let them wrap and read left. */
 .compare-table.text-cells { min-width: 0; }
 .compare-table.text-cells th, .compare-table.text-cells td { white-space: normal; text-align: left; vertical-align: top; }
+@media (max-width: 24rem) { .compare-table.text-cells th, .compare-table.text-cells td { padding: 0.5rem 0.3rem; hyphens: auto; } }
+.compare-table td.st { white-space: normal; }
 /* One sentence column at the end of a figure table: wrap it and read it left. */
 .compare-table th.note, .compare-table td.note { white-space: normal; text-align: left; }
 /* Narrow figure tables (a few numeric columns, long headers): drop the minimum width and let
@@ -444,7 +446,7 @@ select.input {
   .compare-table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .compare-table.stack tr { display: block; border-bottom: 2px solid var(--line); padding: 0.35rem 0; }
   .compare-table.stack td { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 0; padding: 0.3rem 0.4rem; text-align: right; white-space: normal; }
-  .compare-table.stack td::before { content: attr(data-label); color: var(--muted); font-weight: 600; text-align: left; }
+  .compare-table.stack td::before { content: attr(data-label); color: var(--muted); font-weight: 600; text-align: left; flex: none; max-width: 55%; }
   .compare-table.stack td:first-child { text-align: right; font-weight: 650; }
 }
 .compare-table thead th {
@@ -633,6 +635,9 @@ select.input {
   .lead-block-compact { padding: 1.1rem 1.5rem; }
   .lead-compact-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.25rem; }
 }
+
+/* A bare URL used as link text (privacy policy) may break anywhere rather than widen the page. */
+main p a, main li a { overflow-wrap: anywhere; }
 
 /* Tax-bracket pages — generated tables (scripts/sync-tax-brackets.mjs). */
 .summary-table td { white-space: normal; }
