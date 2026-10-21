@@ -68,7 +68,9 @@
     "/payroll/quebec-income-tax/",
     "/payroll/hourly-to-salary/",
     "/fr/calculateur-impot-quebec/",
-    "/fr/salaire-net-quebec/"
+    "/fr/salaire-net-quebec/",
+    "/property/",
+    "/property/land-transfer-tax/"
   ],
   "strict": [
     "/business/gst-hst/",
@@ -139,7 +141,9 @@
     "/payroll/quebec-income-tax/",
     "/payroll/hourly-to-salary/",
     "/fr/calculateur-impot-quebec/",
-    "/fr/salaire-net-quebec/"
+    "/fr/salaire-net-quebec/",
+    "/property/",
+    "/property/land-transfer-tax/"
   ],
   "allowlist": [
     {
@@ -2637,6 +2641,72 @@
       "surface": "main",
       "anchor": "brut de {} en 2026,",
       "reason": "Example input: the salary the worked example (and the FAQ) is quoted at; every figure computed from it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "for {} on",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*} on {}, {*} on",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*}, {*} on {}, {*} on {*}",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*} on {} million, {*}",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*} on {} million, which",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "so the {} house costs",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "a {} million",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "on the {} house that",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "payable {} Behind",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "A {} home",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "A {} home",
+      "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
     }
   ],
   "figures": [
@@ -26803,6 +26873,1095 @@
         "const": "quebec.federalAbatementRate"
       },
       "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "with {} of",
+      "source": {
+        "engine": "LTT.estimate(800000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "with {}. Nothing",
+      "source": {
+        "engine": "LTT.estimate(800000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "graduated: {} on",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "first {}, then",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "then {} up",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "up to {}, {*} up",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "to {*}, {} up to",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*}, {*} up to {}, {*} up to {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*} up to {*}, {} up to {*} million,",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "to {} million,",
+      "source": {
+        "engine": "LTT.ontarioBrackets[3].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "and {} beyond",
+      "source": {
+        "const": "ltt.ontarioBrackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "— {} on",
+      "source": {
+        "engine": "LTT.estimate(400000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "on {*}, {} on {*},",
+      "source": {
+        "engine": "LTT.estimate(600000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*} on {*}, {} on {*} million,",
+      "source": {
+        "engine": "LTT.estimate(1000000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "million, {} on",
+      "source": {
+        "engine": "LTT.estimate(2000000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "is {} rising",
+      "source": {
+        "engine": "LTT.estimate(400000, false, false).total / 400000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "to {}. A",
+      "source": {
+        "engine": "LTT.estimate(2e6, false, false).total / 2e6"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "to {} of",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "first {}, a",
+      "source": {
+        "engine": "(() => { const b = LTT.ontarioBrackets, R = LTT.ontarioFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return Math.floor(p / 1000) * 1000; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "flat {} off",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "costs {} instead",
+      "source": {
+        "engine": "LTT.estimate(600000, false, true).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "of {}. Inside",
+      "source": {
+        "engine": "LTT.estimate(600000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "doubles: {}, {*},",
+      "source": {
+        "engine": "LTT.estimate(400000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*}, {}, {*},",
+      "source": {
+        "engine": "LTT.estimate(600000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*}, {}, {*}.",
+      "source": {
+        "engine": "LTT.estimate(1000000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*}, {}. Past",
+      "source": {
+        "engine": "LTT.estimate(2000000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "Past {} million",
+      "source": {
+        "engine": "LTT.torontoBrackets[3].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "at {} to",
+      "source": {
+        "const": "ltt.torontoBrackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*} to {} million and",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "through {}, {*},",
+      "source": {
+        "const": "ltt.torontoBrackets.5.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "through {*}, {}, {*} and",
+      "source": {
+        "const": "ltt.torontoBrackets.6.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "{*}, {} and",
+      "source": {
+        "const": "ltt.torontoBrackets.7.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "and {} to",
+      "source": {
+        "const": "ltt.torontoBrackets.8.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "to {} above",
+      "source": {
+        "const": "ltt.torontoBrackets.9.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "above {} million",
+      "source": {
+        "engine": "LTT.torontoBrackets[8].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "pays {} where",
+      "source": {
+        "engine": "LTT.estimate(3500000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "pays {}. The",
+      "source": {
+        "engine": "LTT.estimate(3500000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "at {}, which",
+      "source": {
+        "const": "ltt.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "on {}. A",
+      "source": {
+        "engine": "(() => { const b = LTT.torontoBrackets, R = LTT.torontoFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return p; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "rebates, {} together,",
+      "source": {
+        "engine": "LTT.ontarioFtbRebateMax + LTT.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "pays {} on",
+      "source": {
+        "engine": "LTT.estimate(600000, true, true).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/",
+      "surface": "main",
+      "anchor": "buyer {}. The",
+      "source": {
+        "engine": "LTT.estimate(600000, true, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "closing. Up to {} million the two",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "first {} is",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "at {}, never",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "rates: {} on",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "first {} {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "first {*} {} from {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "first {*} {*} from {} to {*} {*} from",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "from {*} to {} {*} from {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} to {*} {} from {*} to",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {*} {*} from {} to {*} {*} from",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {*} {*} from {*} to {} {*} from {*} to {*} {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} {*} from {*} to {*} {} from {*} to {*} {*} above",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {*} {*} from {} to {*} {*} above",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} to {} {*} above",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} {} above",
+      "source": {
+        "const": "ltt.ontarioBrackets.4.rate"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "above {} (homes",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {}, add",
+      "source": {
+        "const": "ltt.torontoBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "a {} band",
+      "source": {
+        "const": "ltt.torontoBrackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "from {}M to",
+      "source": {
+        "engine": "LTT.torontoBrackets[3].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {}M, and",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "2026: {} from",
+      "source": {
+        "const": "ltt.torontoBrackets.5.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "2026: {*} from {}M–{*}M, {*} from {*}M–{*}M,",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "2026: {*} from {*}M–{}M, {*} from {*}M–{*}M,",
+      "source": {
+        "engine": "LTT.torontoBrackets[5].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} from {*}M–{*}M, {} from {*}M–{*}M, {*}",
+      "source": {
+        "const": "ltt.torontoBrackets.6.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}M–{*}M, {*} from {}M–{*}M, {*} from {*}M–{*}M,",
+      "source": {
+        "engine": "LTT.torontoBrackets[5].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}M–{*}M, {*} from {*}M–{}M, {*} from {*}M–{*}M,",
+      "source": {
+        "engine": "LTT.torontoBrackets[6].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}M–{*}M, {*} from {*}M–{*}M, {} from {*}M–{*}M, {*} from",
+      "source": {
+        "const": "ltt.torontoBrackets.7.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "from {*}M–{*}M, {*} from {}M–{*}M, {*} from {*}M–{*}M, and",
+      "source": {
+        "engine": "LTT.torontoBrackets[6].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "from {*}M–{*}M, {*} from {*}M–{}M, {*} from {*}M–{*}M, and",
+      "source": {
+        "engine": "LTT.torontoBrackets[7].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} from {*}M–{*}M, {} from {*}M–{*}M, and",
+      "source": {
+        "const": "ltt.torontoBrackets.8.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "from {}M–{*}M, and",
+      "source": {
+        "engine": "LTT.torontoBrackets[7].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "from {*}M–{}M, and",
+      "source": {
+        "engine": "LTT.torontoBrackets[8].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}M–{*}M, and {} above {*}M.",
+      "source": {
+        "const": "ltt.torontoBrackets.9.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "above {}M. So",
+      "source": {
+        "engine": "LTT.torontoBrackets[8].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "above {} million",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "up to {}, which wipes",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "about {}. The",
+      "source": {
+        "engine": "(() => { const b = LTT.ontarioBrackets, R = LTT.ontarioFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return Math.floor(p / 1000) * 1000; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "up to {}, which clears",
+      "source": {
+        "const": "ltt.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {}. They're",
+      "source": {
+        "engine": "(() => { const b = LTT.torontoBrackets, R = LTT.torontoFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return p; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "as {} off",
+      "source": {
+        "engine": "LTT.ontarioFtbRebateMax + LTT.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "the {} provincial",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "Up to {} million they",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "Ontario? {} to",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "Ontario? {*} to {}, {*} to {*},",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} to {*}, {} to {*}, {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}, {*} to {}, {*} to {*},",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}, {*} to {*}, {} to {*}, {*} to",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {*}, {*} to {}, {*} to {*}, and",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*} to {*}, {} to {*}, and",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {}, and",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "{*}, and {} above {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "above {} on",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "is {} provincially.",
+      "source": {
+        "engine": "LTT.estimate(600000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {} provincially",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "about {}) and,",
+      "source": {
+        "engine": "(() => { const b = LTT.ontarioBrackets, R = LTT.ontarioFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return Math.floor(p / 1000) * 1000; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {} municipally",
+      "source": {
+        "const": "ltt.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {}). A",
+      "source": {
+        "engine": "(() => { const b = LTT.torontoBrackets, R = LTT.torontoFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return p; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "at {}, the",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "at {}, each",
+      "source": {
+        "const": "ltt.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "to {} combined",
+      "source": {
+        "engine": "LTT.ontarioFtbRebateMax + LTT.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {} million",
+      "source": {
+        "engine": "LTT.torontoBrackets[4].upTo / 1e6"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "{} to {*}, {*} to {*}, {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "{*} to {}, {*} to {*}, {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.0.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "{*} to {*}, {} to {*}, {*}",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} to {}, {*} to {*},",
+      "source": {
+        "const": "ltt.ontarioBrackets.1.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} to {*}, {} to {*}, {*} to",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {*}, {*} to {}, {*} to {*}, and",
+      "source": {
+        "const": "ltt.ontarioBrackets.2.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "{*} to {*}, {} to {*}, and",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {}, and",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "and {} above",
+      "source": {
+        "const": "ltt.ontarioBrackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "above {} on",
+      "source": {
+        "const": "ltt.ontarioBrackets.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "is {} provincially.",
+      "source": {
+        "engine": "LTT.estimate(600000, false, false).total"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {} provincially",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "about {}) and,",
+      "source": {
+        "engine": "(() => { const b = LTT.ontarioBrackets, R = LTT.ontarioFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return Math.floor(p / 1000) * 1000; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {} municipally",
+      "source": {
+        "const": "ltt.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {}). A",
+      "source": {
+        "engine": "(() => { const b = LTT.torontoBrackets, R = LTT.torontoFtbRebateMax; let lo = 0, t = 0; for (const x of b) { const seg = (x.upTo - lo) * x.rate; if (t + seg >= R) { const p = lo + (R - t) / x.rate; return p; } t += seg; lo = x.upTo; } })()"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "at {}, the",
+      "source": {
+        "const": "ltt.ontarioFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "at {}, each",
+      "source": {
+        "const": "ltt.torontoFtbRebateMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "jsonld",
+      "anchor": "to {} combined",
+      "source": {
+        "engine": "LTT.ontarioFtbRebateMax + LTT.torontoFtbRebateMax"
+      },
+      "format": "exact"
     }
   ]
 }
