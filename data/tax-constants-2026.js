@@ -97,6 +97,9 @@ const SRC = {
   nsAct:     'https://nslegislature.ca/sites/default/files/legc/statutes/income%20tax.pdf', // Income Tax Act (NS), s.35(4), current to Sept 3, 2026
   ns5003:    'https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package/nova-scotia/5003-pc.html',
   skPit:     'https://www.saskatchewan.ca/residents/taxes-and-investments/personal-income-tax',
+  t4037:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/t4037/capital-gains.html',
+  rc4064:    'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4064/disability-related-information.html',
+  oasActS12: 'https://laws-lois.justice.gc.ca/eng/acts/o-9/page-3.html',
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
@@ -942,6 +945,10 @@ export const TAX_CONSTANTS_2026 = {
     inclusionRate:        { value: 0.5,     source_url: SRC.finTaxExp,  last_verified: '2026-10-20', cadence: 'statutory' },
     quebecInclusionRate:  { value: 0.5,     source_url: SRC.qcBul20258, last_verified: '2026-10-20', cadence: 'statutory' },
     lcge:                 { value: 1275000, source_url: SRC.craIndexed, last_verified: '2026-10-20', cadence: 'january' }, // QSBC shares and qualified farm or fishing property
+    // Personal-use property (ITA s.46(1)): ACB and proceeds each deemed at least $1,000. T4037
+    // (2025): "If the adjusted cost base (ACB) of the property is less than $1,000, its ACB is
+    // considered to be $1,000" (same for proceeds). Read 2026-10-20.
+    personalUsePropertyFloor: { value: 1000, source_url: SRC.t4037, last_verified: '2026-10-20', cadence: 'statutory' },
   },
 
   /* ── 2026 TAX DEADLINES (for filing the 2025 return) ──────────────────────── */
@@ -1035,6 +1042,10 @@ export const TAX_CONSTANTS_2026 = {
     // (ii) caps at $5,000 = half of the next $10,000, matching { full, partialUpTo, partialRate }.
     // Re-read if the Act is amended (MAINTENANCE Rule 3).
     employmentExemption: { value: { full: 5000, partialUpTo: 10000, partialRate: 0.5 }, source_url: SRC.oasActS2, last_verified: '2026-10-03', cadence: 'statutory' },
+    // Single pensioner's GIS falls "one dollar for each full two dollars of the pensioner's monthly
+    // base income" — OAS Act s.12(1)(a), current to 2026-09-30, read 2026-10-20. (The top-up has its
+    // own, faster taper; this is the base rate the GIS page quotes.)
+    singleReductionRate: { value: 0.5, source_url: SRC.oasActS12, last_verified: '2026-10-20', cadence: 'statutory' },
   },
 
   /* ── OLD AGE SECURITY (OAS) — pension amount + recovery tax (clawback) ────── */
@@ -1422,6 +1433,10 @@ export const TAX_CONSTANTS_2026 = {
     currentTaxYear:      { value: 2025, source_url: SRC.dtcAmounts, last_verified: '2026-07-24', cadence: 'january' },
     maxRetroactiveYears: { value: 10,   source_url: SRC.dtcRetro,   last_verified: '2026-07-24' },
     earliestYear:        { value: 2016, source_url: SRC.dtcRetro,   last_verified: '2026-07-24' },
+    // "All or substantially all of the time": CRA reads it as "at least 90% of the time" (RC4064
+    // 2025, read 2026-10-20). Administrative, not in the Act — the courts have said so — but it is
+    // the figure CRA applies and the DTC page quotes.
+    substantiallyAllShare: { value: 0.9, source_url: SRC.rc4064, last_verified: '2026-10-20' },
 
     // ── FEDERAL, per tax year (CRA indexation chart) ─────────────────────────
     // amount        = base disability amount (T1 line 31600)

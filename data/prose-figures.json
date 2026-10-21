@@ -74,7 +74,18 @@
     "/tax-brackets/prince-edward-island/",
     "/tax-brackets/quebec/",
     "/tax-brackets/saskatchewan/",
-    "/tax-brackets/yukon/"
+    "/tax-brackets/yukon/",
+    "/benefits/ei/",
+    "/benefits/ei-maternity-parental/",
+    "/benefits/gis/",
+    "/benefits/cpp/",
+    "/benefits/cpp-60-vs-65/",
+    "/benefits/dtc/",
+    "/benefits/cdb/",
+    "/benefits/rdsp/",
+    "/property/fhsa/",
+    "/tax-on-extra-income/capital-gains/",
+    "/guides/capital-gains-tax/"
   ],
   "allowlist": [
     {
@@ -1144,6 +1155,426 @@
       "surface": "main",
       "anchor": "A {} salary",
       "reason": "Example input: a salary, raise or income level the worked example or FAQ is quoted at; the tax and rates computed from it are registered or generated."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "benefit {} Behind",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "at {} gets",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "at {}, 700",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "700 hours, {} a week.",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "benefit is {*} of {} = {*}. The table's",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "those {} weeks",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "at {}, 600",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "600 hours, {} a week.",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "benefit is {*} of {} = {*}. The 595–629",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "at {}, the",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "up {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "On {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "Standard parental · {*} {} 0 weeks off ·",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "≈ {} Extended",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "Extended parental · {*} {} 0 weeks off ·",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "main",
+      "anchor": "≈ {} Enter",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "GIS {} What",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "about {} for",
+      "reason": "Unit of a reduction ratio (\"$1 for every $2\"): a fixed numerator, not a figure; the $2 is bound to the stamped rate."
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "is {} a",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "is {} (OAS",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "a {}-a-year part-time",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "contribution {} Behind",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "less {*} {*} {*} {} {*} {*} {*} {*}",
+      "reason": "Table row label: an earnings level the contribution table is computed at; the row results are registered."
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} {*} {*} {*} {*} {} {*} {*} {*} {*} {*} {*} {*}",
+      "reason": "Table row label: an earnings level the contribution table is computed at; the row results are registered."
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "main",
+      "anchor": "A {} pension",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "A {} pension",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "earning {} and",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "earning {} get",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "every {}. Canada",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "every {}, and",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/cdb/",
+      "surface": "main",
+      "anchor": "every {}. Canada",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "{*} for every {} on the first",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "{*} for every {} on the next",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "for {} on",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "— {*} per {} on the first",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "and {*} per {} on the next",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "main",
+      "anchor": "per {} to",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "— {*} per {} on the first",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "and {*} per {} on the next",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "per {} to",
+      "reason": "Unit of a match ratio (\"$3 for every $1\"): a fixed denominator, not a figure; the ratio itself is registered."
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "room {} Room",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "on {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "from {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "against {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "at {} and",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "at {}. Two",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "gain {} Want",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "for {} and",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "for {} with",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "a {} commission",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "On a {} salary, a",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "salary, a {} gain adds",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "A {} gain",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "of a {} salary Jurisdiction",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "the {} gain",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "on a {} salary, {*}",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "on {} and",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "on {}. A",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "with {} of",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "the {} earner,",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "above {} a",
+      "reason": "Historical figure: the $250,000 threshold of the cancelled two-thirds inclusion proposal, quoted to say it no longer applies; never in force."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "the {} figure",
+      "reason": "Historical figure: the $250,000 threshold of the cancelled two-thirds inclusion proposal, quoted to say it no longer applies; never in force."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "over {} was",
+      "reason": "Historical figure: the $250,000 threshold of the cancelled two-thirds inclusion proposal, quoted to say it no longer applies; never in force."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "On a {} salary in",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "main",
+      "anchor": "Ontario, a {} gain costs",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "jsonld",
+      "anchor": "over {} was",
+      "reason": "Historical figure: the $250,000 threshold of the cancelled two-thirds inclusion proposal, quoted to say it no longer applies; never in force."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "jsonld",
+      "anchor": "a {} salary",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/tax-on-extra-income/capital-gains/",
+      "surface": "jsonld",
+      "anchor": "a {} gain",
+      "reason": "Example input: an income, earnings, price or regional rate the worked example is built on; the results computed from it are registered."
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "each {} you",
+      "reason": "Unit of a match ratio (\"$3 for each $1\"): a fixed denominator, not a figure; the ratio itself is registered."
     }
   ],
   "figures": [
@@ -1872,15 +2303,6 @@
       "anchor": "— {} in all",
       "source": {
         "engine": "calcCPP(CPP.cpp2.yampe, { selfEmployed: true }).total"
-      },
-      "format": "exact"
-    },
-    {
-      "page": "/benefits/cpp/",
-      "surface": "main",
-      "anchor": "from the {} exemption up to",
-      "source": {
-        "const": "cpp.basicExemption"
       },
       "format": "exact"
     },
@@ -4872,34 +5294,6 @@
       },
       "format": "percent",
       "note": "AB lowest rate from 2025 (the DTC 2025 credit rate)"
-    },
-    {
-      "page": "/benefits/dtc/",
-      "surface": "main",
-      "anchor": "more than the credit itself — up to {} a year per child",
-      "source": {
-        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild"
-      },
-      "format": "exact",
-      "note": "CDB current-year max"
-    },
-    {
-      "page": "/benefits/dtc/",
-      "surface": "main",
-      "anchor": "matches contributions up to {} for every",
-      "source": {
-        "const": "rdsp.grantTier1Rate"
-      },
-      "format": "exact"
-    },
-    {
-      "page": "/benefits/dtc/",
-      "surface": "main",
-      "anchor": "pays a bond of up to {} a year",
-      "source": {
-        "const": "rdsp.maxAnnualBond"
-      },
-      "format": "exact"
     },
     {
       "page": "/benefits/dtc/",
@@ -20755,6 +21149,168 @@
       "anchor": "adds {} a",
       "source": {
         "const": "provinces.SK.bpaAffordabilityStep"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "than {} gets",
+      "source": {
+        "engine": "TC.ei.benefitWeeksBands.value.at(-2) / 100"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/benefits/ei/",
+      "surface": "main",
+      "anchor": "from {} of",
+      "source": {
+        "engine": "500 / TC.ei.benefitReplacementRate.value"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/benefits/ei-maternity-parental/",
+      "surface": "jsonld",
+      "anchor": "{} of average",
+      "source": {
+        "const": "ei.benefitReplacementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/gis/",
+      "surface": "main",
+      "anchor": "every {} of",
+      "source": {
+        "engine": "1 / TC.gis.singleReductionRate.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "{} less.",
+      "source": {
+        "const": "cppRetirement.earlyMaxReduction"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/cpp-60-vs-65/",
+      "surface": "jsonld",
+      "anchor": "{} a month as",
+      "source": {
+        "const": "cppRetirement.maxAt65Monthly"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "as ~{}), even",
+      "source": {
+        "const": "dtc.substantiallyAllShare"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "Up to {} a year",
+      "source": {
+        "const": "rdsp.maxAnnualGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/rdsp/",
+      "surface": "jsonld",
+      "anchor": "to {} of",
+      "source": {
+        "const": "rdsp.carryForwardMaxGrant"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "an {} deduction",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "rest: {} deducted",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "same {} saves",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/capital-gains-tax/",
+      "surface": "main",
+      "anchor": "least {}, and",
+      "source": {
+        "const": "capitalGains.personalUsePropertyFloor"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/guides/capital-gains-tax/",
+      "surface": "main",
+      "anchor": "are {} or",
+      "source": {
+        "const": "capitalGains.personalUsePropertyFloor"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "— up to {} a year for",
+      "source": {
+        "engine": "CDB.yearData(CDB.currentBenefitYearStart).maxPerChild"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "as {} for",
+      "source": {
+        "const": "rdsp.grantTier1Rate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/dtc/",
+      "surface": "main",
+      "anchor": "of up to {} a year without",
+      "source": {
+        "const": "rdsp.maxAnnualBond"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/cpp/",
+      "surface": "main",
+      "anchor": "at the {} exemption and",
+      "source": {
+        "const": "cpp.basicExemption"
       },
       "format": "exact"
     }

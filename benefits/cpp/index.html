@@ -85,7 +85,7 @@
 <main class="wrap">
   <div class="page-head">
     <h1>CPP Calculator (2026)</h1>
-    <p class="lead">CPP is federal — the same across the country, except in Quebec, which runs its own QPP at a higher rate. Enter your income, pick your plan and whether you’re employed or self-employed, and see how the yearly contribution is built — from the $3,500 exemption up to the annual maximum.</p>
+    <p class="lead">CPP is federal — the same across the country, except in Quebec, which runs its own QPP at a higher rate. Enter your income, pick your plan and whether you’re employed or self-employed, and see how the yearly contribution is built — starting at the $3,500 exemption and stopping at the annual maximum.</p>
   </div>
 
   <section class="calc-card" aria-label="CPP calculator">
@@ -202,14 +202,14 @@
     <p>Two things soften it. Contributions are based on <strong>net</strong> business income — after expenses, not gross billings. And half the total, the employer-equivalent portion, is deductible on <strong>line 22200</strong> of your return, which reduces your taxable income. The other half earns the usual credit and deduction split.</p>
     <p>Worth pricing in before you set a contract rate: a T4 job includes roughly $4,230 of employer CPP that never appears on your payslip but is part of what you cost. An equivalent contract rate has to cover it, because as a contractor you pay it yourself.</p>
     <div class="compare-table-wrap">
-      <table class="compare-table">
+      <table class="compare-table stack">
         <thead><tr><th>Net income</th><th>Employee pays</th><th>Employer pays</th><th>Self-employed pays</th></tr></thead>
         <tbody>
-          <tr><td>$3,500 or less</td><td>$0</td><td>$0</td><td>$0</td></tr>
-          <tr><td>$30,000</td><td>$1,576.75</td><td>$1,576.75</td><td>$3,153.50</td></tr>
-          <tr><td>$50,000</td><td>$2,766.75</td><td>$2,766.75</td><td>$5,533.50</td></tr>
-          <tr><td>$74,600</td><td>$4,230.45</td><td>$4,230.45</td><td>$8,460.90</td></tr>
-          <tr class="highlight"><td>$85,000 and up</td><td>$4,646.45</td><td>$4,646.45</td><td>$9,292.90</td></tr>
+          <tr><td data-label="Net income">$3,500 or less</td><td data-label="Employee pays">$0</td><td data-label="Employer pays">$0</td><td data-label="Self-employed pays">$0</td></tr>
+          <tr><td data-label="Net income">$30,000</td><td data-label="Employee pays">$1,576.75</td><td data-label="Employer pays">$1,576.75</td><td data-label="Self-employed pays">$3,153.50</td></tr>
+          <tr><td data-label="Net income">$50,000</td><td data-label="Employee pays">$2,766.75</td><td data-label="Employer pays">$2,766.75</td><td data-label="Self-employed pays">$5,533.50</td></tr>
+          <tr><td data-label="Net income">$74,600</td><td data-label="Employee pays">$4,230.45</td><td data-label="Employer pays">$4,230.45</td><td data-label="Self-employed pays">$8,460.90</td></tr>
+          <tr class="highlight"><td data-label="Net income">$85,000 and up</td><td data-label="Employee pays">$4,646.45</td><td data-label="Employer pays">$4,646.45</td><td data-label="Self-employed pays">$9,292.90</td></tr>
         </tbody>
       </table>
     </div>
@@ -218,7 +218,7 @@
 
   <section class="answer">
     <h2>Quebec is different: QPP, not CPP</h2>
-    <p>If you work in Quebec you pay into the <strong>Québec Pension Plan</strong> instead of CPP, and its rate is higher. The exemption ($3,500), the $74,600 ceiling, the $85,000 upper limit and the 4% second tier are all identical to CPP — but the base rate is <strong>6.3%</strong> versus CPP's 5.95%. That pushes the first-tier maximum to <strong>$4,479.30</strong> (against CPP's $4,230.45), so a Quebec employee's most-you'll-pay is <strong>$4,895.30</strong> once the $416 QPP2 is added. Switch the plan above to "QPP — Quebec" to see your Quebec numbers. Your employer still matches you, and the self-employed still pay both halves.</p>
+    <p>Quebec workers pay into the <strong>Québec Pension Plan</strong> instead of CPP, and its rate is higher. The exemption ($3,500), the $74,600 ceiling, the $85,000 upper limit and the 4% second tier are all identical to CPP — but the base rate is <strong>6.3%</strong> versus CPP's 5.95%. That pushes the first-tier maximum to <strong>$4,479.30</strong> (against CPP's $4,230.45), so a Quebec employee's most-you'll-pay is <strong>$4,895.30</strong> once the $416 QPP2 is added. Switch the plan above to "QPP — Quebec" to see your Quebec numbers. Your employer still matches you, and the self-employed still pay both halves.</p>
   </section>
 
   <section class="answer">
