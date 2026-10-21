@@ -155,6 +155,9 @@ const SRC = {
   // Eligibility pages behind the /guides/ pages (stamped 2026-10-20).
   cppSurvivor:      'https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-survivor-pension.html',
   ccbWhoApply:      'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/who-apply.html',
+  t4114:            'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/t4114/canada-child-benefit.html',
+  itaTfsa:          'https://laws-lois.justice.gc.ca/eng/acts/i-3.3/section-207.01.html',
+  tfsaOver:         'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/tax-free-savings-account/contributing/overcontribute.html',
   // ── Benefit-program sources (migrated out of rates-2026.js 2026-07-18) ──
   esaTermination: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment',
   esaSeverance:   'https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay',
@@ -821,6 +824,13 @@ export const TAX_CONSTANTS_2026 = {
     rrspEarnedIncomePct:       { value: 0.18,   source_url: SRC.craLimits,  last_verified: '2026-07-16' }, // lesser of 18% of prior-year earned income or the dollar limit
     fhsaAnnualLimit:           { value: 8000,   source_url: SRC.fhsa,       last_verified: '2026-07-16' }, // legislated, not indexed
     fhsaLifetimeLimit:         { value: 40000,  source_url: SRC.fhsa,       last_verified: '2026-07-16' },
+    // TFSA dollar limit indexing step: ITA s.207.01(1) "TFSA dollar limit" (d) — $5,000 indexed
+    // under s.117.1, "rounded to the nearest multiple of $500". Read 2026-10-20 on Justice Laws
+    // (current to 2026-09-30).
+    tfsaIndexRounding:         { value: 500,    source_url: SRC.itaTfsa,    last_verified: '2026-10-20', cadence: 'statutory' },
+    // Tax on an excess TFSA amount (ITA s.207.02): "taxable at 1% per month for as long as it
+    // remains in your account". Read 2026-10-20 on CRA's over-contribution page (modified 2026-01-06).
+    tfsaExcessTaxMonthly:      { value: 0.01,   source_url: SRC.tfsaOver,   last_verified: '2026-10-20', cadence: 'statutory' },
     respLifetimeLimit:         { value: 50000,  source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // per beneficiary; no annual cap
     cesgRate:                  { value: 0.20,   source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // basic grant = 20% of contributions
     cesgMaxPerYear:            { value: 500,    source_url: SRC.eduSavings, last_verified: '2026-07-18' }, // 20% of the first $2,500 contributed
@@ -1152,6 +1162,10 @@ export const TAX_CONSTANTS_2026 = {
     // CCB shared custody: a child living with you between these shares of the time.
     ccbSharedCustodyMin:      { value: 0.4,   source_url: SRC.ccbWhoApply, last_verified: '2026-10-20' },
     ccbSharedCustodyMax:      { value: 0.6,   source_url: SRC.ccbWhoApply, last_verified: '2026-10-20' },
+    // Each shared-custody parent gets half the full-custody amount, on their own AFNI. T4114:
+    // "Each individual will get 50% of the payment they would have received if the child lived
+    // with them 100% of the time." (ITA s.122.61(1.1)). Read 2026-10-20; page modified 2026-07-02.
+    ccbSharedCustodyShare:    { value: 0.5,   source_url: SRC.t4114, last_verified: '2026-10-20', cadence: 'statutory' },
   },
 
   /* ══════════════════════════════════════════════════════════════════════════

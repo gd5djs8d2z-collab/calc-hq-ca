@@ -57,7 +57,10 @@
     "/payroll/payroll-deductions/",
     "/payroll/take-home-pay/",
     "/payroll/pay-raise/",
-    "/payroll/self-employed-tax/"
+    "/payroll/self-employed-tax/",
+    "/key-dates-limits/contribution-limits/",
+    "/benefits/ccb/",
+    "/key-dates-limits/tax-deadlines/"
   ],
   "allowlist": [
     {
@@ -653,6 +656,42 @@
       "surface": "jsonld",
       "anchor": "On {} of",
       "reason": "Example input: the net self-employment income the worked example starts from; every figure computed from it is registered."
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "from {} in",
+      "reason": "Historical figure: the 2025 RRSP dollar limit, quoted as the prior-year comparison; it will not change."
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "per {} rate,",
+      "reason": "Unit of a per-$100 rate (\"$1.63 per $100\"): a fixed denominator, not a figure; the rate itself is registered."
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "from {}). Your",
+      "reason": "Historical figure: the 2025 RRSP dollar limit, quoted as the prior-year comparison; it will not change."
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "from {}). Your",
+      "reason": "Historical figure: the 2025 RRSP dollar limit, quoted as the prior-year comparison; it will not change."
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "CCB {} Behind",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "earning {} doesn't",
+      "reason": "Example input: the family income in the reduction-rate example; the rates it illustrates are registered."
     }
   ],
   "figures": [
@@ -4897,33 +4936,6 @@
     {
       "page": "/key-dates-limits/contribution-limits/",
       "surface": "main",
-      "anchor": "is {*} — {} of earnings between",
-      "source": {
-        "const": "cpp.rate"
-      },
-      "format": "percent"
-    },
-    {
-      "page": "/key-dates-limits/contribution-limits/",
-      "surface": "main",
-      "anchor": "of earnings between the {} basic exemption",
-      "source": {
-        "const": "cpp.basicExemption"
-      },
-      "format": "exact"
-    },
-    {
-      "page": "/key-dates-limits/contribution-limits/",
-      "surface": "main",
-      "anchor": "basic exemption and the {} ceiling. Since",
-      "source": {
-        "const": "cpp.ympe"
-      },
-      "format": "exact"
-    },
-    {
-      "page": "/key-dates-limits/contribution-limits/",
-      "surface": "main",
       "anchor": "CPP2, adds {} on earnings",
       "source": {
         "const": "cpp.cpp2.rate"
@@ -4948,25 +4960,6 @@
         "const": "cpp.cpp2.yampe"
       },
       "format": "exact"
-    },
-    {
-      "page": "/key-dates-limits/contribution-limits/",
-      "surface": "main",
-      "anchor": "worth up to {} more, so",
-      "source": {
-        "const": "cpp.cpp2.maxContribution"
-      },
-      "format": "exact"
-    },
-    {
-      "page": "/key-dates-limits/contribution-limits/",
-      "surface": "main",
-      "anchor": "so the combined employee maximum is {}.",
-      "source": {
-        "engine": "CPP.maxEmployeeContribution + CPP.cpp2.maxContribution"
-      },
-      "format": "exact",
-      "note": "base CPP max + CPP2 max"
     },
     {
       "page": "/key-dates-limits/contribution-limits/",
@@ -5065,15 +5058,6 @@
       "anchor": "a year, up to {} over your lifetime",
       "source": {
         "const": "registeredAccounts.fhsaLifetimeLimit"
-      },
-      "format": "exact"
-    },
-    {
-      "page": "/key-dates-limits/contribution-limits/",
-      "surface": "main",
-      "anchor": "maximum CPP contribution in 2026? {} in base CPP",
-      "source": {
-        "const": "cpp.maxEmployeeContribution"
       },
       "format": "exact"
     },
@@ -19860,6 +19844,258 @@
       "anchor": "the {} GST/HST",
       "source": {
         "const": "gstHst.smallSupplierThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "at {} RESP",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "nearest {}, and",
+      "source": {
+        "const": "registeredAccounts.tfsaIndexRounding"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "charges {} a",
+      "source": {
+        "const": "registeredAccounts.tfsaExcessTaxMonthly"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "most {} the",
+      "source": {
+        "engine": "TC.registeredAccounts.fhsaAnnualLimit.value + TC.fhsaRules.carryforwardMax.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "to {}, so",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "{} —",
+      "source": {
+        "const": "registeredAccounts.tfsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "{} a year,",
+      "source": {
+        "const": "registeredAccounts.fhsaAnnualLimit"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "to {}, so",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "is {}.",
+      "source": {
+        "engine": "TC.registeredAccounts.fhsaAnnualLimit.value + TC.fhsaRules.carryforwardMax.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "jsonld",
+      "anchor": "{} in",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "gets {} of",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyShare"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "main",
+      "anchor": "get {} of",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyShare"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "At {} of",
+      "source": {
+        "const": "ccb.threshold1"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/benefits/ccb/",
+      "surface": "jsonld",
+      "anchor": "get {} of",
+      "source": {
+        "const": "benefitEligibility.ccbSharedCustodyShare"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/tax-deadlines/",
+      "surface": "main",
+      "anchor": "net tax owing tops {} ({*} in Quebec) in",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/tax-deadlines/",
+      "surface": "main",
+      "anchor": "owing tops {*} ({} in Quebec) in",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThresholdQC"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/tax-deadlines/",
+      "surface": "main",
+      "anchor": "tax owing tops {} ({*} in Quebec).",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/tax-deadlines/",
+      "surface": "main",
+      "anchor": "tops {*} ({} in Quebec).",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThresholdQC"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/tax-deadlines/",
+      "surface": "jsonld",
+      "anchor": "tops {} ({*}",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThreshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/tax-deadlines/",
+      "surface": "jsonld",
+      "anchor": "{*} ({} in",
+      "source": {
+        "const": "taxDeadlines2026.instalmentThresholdQC"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "up to {} at a",
+      "source": {
+        "const": "fhsaRules.carryforwardMax"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "— {} of",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "above {}, up",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "to {}. Since",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "to {} more,",
+      "source": {
+        "const": "cpp.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "total to {} at most.",
+      "source": {
+        "engine": "CPP.maxEmployeeContribution + CPP.cpp2.maxContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "is {}. How",
+      "source": {
+        "engine": "TC.registeredAccounts.fhsaAnnualLimit.value + TC.fhsaRules.carryforwardMax.value"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/key-dates-limits/contribution-limits/",
+      "surface": "main",
+      "anchor": "2026? {} in",
+      "source": {
+        "const": "cpp.maxEmployeeContribution"
       },
       "format": "exact"
     }
