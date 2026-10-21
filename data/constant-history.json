@@ -1442,6 +1442,15 @@
     "cadence": "january"
   },
   {
+    "key": "provinces.QC.indexationFactor",
+    "value": 0.0205,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "source_url": "https://www.quebec.ca/en/news/actualites/detail/indexing-of-the-parameters-of-the-personal-income-tax-system-social-assistance-benefits-and-certain-government-fees-for-the-2026-taxation-year-67249",
+    "verified_at": "2026-10-20",
+    "cadence": "january"
+  },
+  {
     "key": "provinces.QC.bpaCreditRate",
     "value": 0.14,
     "effective_from": "2026-01-01",

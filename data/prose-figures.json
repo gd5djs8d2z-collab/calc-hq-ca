@@ -64,7 +64,11 @@
     "/employment-standards/esa-termination/",
     "/employment-standards/severance-pay/",
     "/employment-standards/vacation-pay/",
-    "/employment-standards/overtime-pay/"
+    "/employment-standards/overtime-pay/",
+    "/payroll/quebec-income-tax/",
+    "/payroll/hourly-to-salary/",
+    "/fr/calculateur-impot-quebec/",
+    "/fr/salaire-net-quebec/"
   ],
   "strict": [
     "/business/gst-hst/",
@@ -131,7 +135,11 @@
     "/employment-standards/esa-termination/",
     "/employment-standards/severance-pay/",
     "/employment-standards/vacation-pay/",
-    "/employment-standards/overtime-pay/"
+    "/employment-standards/overtime-pay/",
+    "/payroll/quebec-income-tax/",
+    "/payroll/hourly-to-salary/",
+    "/fr/calculateur-impot-quebec/",
+    "/fr/salaire-net-quebec/"
   ],
   "allowlist": [
     {
@@ -2437,6 +2445,198 @@
       "surface": "jsonld",
       "anchor": "× {} +",
       "reason": "Example input: the wage, rate, salary, hours-derived amount or pay the worked example starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "tax {} Enter",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "around {} sits",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "Around {}, a",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "Around {}, a",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "salary {} Enter",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "At {} an",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "at {} an",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "A {} salary",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "same {} salary",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {} /",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {*} / hr {*} {*} {} / hr {*} {*} {*} /",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} /",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*}",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} /",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} /",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} / hr {*} {*} {*} / hr {*} {*} {} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} / hr {*} {*} {} / hr {*} {*} Gross",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "e.g. {}/hr ×",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "is {} an",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "weeks, {}/hr is",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "e.g. {}/hr ×",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "is {} an",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "weeks, {}/hr is",
+      "reason": "Example input: the hourly wage, salary or income level the worked example or table row starts from; the figures computed from it are bound."
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "d'environ {} se",
+      "reason": "Example input: the salary the worked example (and the FAQ) is quoted at; every figure computed from it is bound."
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}, le",
+      "reason": "Example input: the salary the worked example (and the FAQ) is quoted at; every figure computed from it is bound."
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}, le",
+      "reason": "Example input: the salary the worked example (and the FAQ) is quoted at; every figure computed from it is bound."
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "net {} Ce",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {} Pour",
+      "reason": "Example input: the salary the worked example (and the FAQ) is quoted at; every figure computed from it is bound."
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "brut de {} en 2026,",
+      "reason": "Example input: the salary the worked example (and the FAQ) is quoted at; every figure computed from it is bound."
     }
   ],
   "figures": [
@@ -24857,6 +25057,1752 @@
         "engine": "TC.ontarioEsa.severancePayrollThreshold.value / 1e6"
       },
       "format": "money:1"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "after the {} abatement plus",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "amount ({} for",
+      "source": {
+        "const": "provinces.QC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "by the {} abatement —",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "the {} federal",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "by {}. So",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "the {} band",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "to {}. Knowing",
+      "source": {
+        "engine": "(calcTakeHome(65000, 'QC').federalTax + calcTakeHome(65000, 'QC').provincialTax) / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "are {} up",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "up to {}, {*} to",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "to {*}, {} to {*},",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*} to {}, {*} to",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*} to {*}, {} to {*}, and",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*}, {*} to {}, and {*} above",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*}, and {} above that.",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "about {} from",
+      "source": {
+        "const": "provinces.QC.indexationFactor"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "about {} on",
+      "source": {
+        "engine": "calcIncomeTax(2000001, 'QC').totalTax - calcIncomeTax(2000000, 'QC').totalTax"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "over {} —",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "2026? {} up",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "up to {}, {*} from",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "up to {*}, {} from {*} to",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*}, {*} from {} to {*}, {*}",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*} to {}, {*} from",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*} to {*}, {} from {*} to",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*}, {*} from {} to {*}, and",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "from {*} to {}, and {*} above",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "{*}, and {} above {*}.",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "above {}. These",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "the {} abatement)",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "to {}. How",
+      "source": {
+        "engine": "(calcTakeHome(65000, 'QC').federalTax + calcTakeHome(65000, 'QC').provincialTax) / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "the {} Quebec",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "About {} combined",
+      "source": {
+        "engine": "calcIncomeTax(2000001, 'QC').totalTax - calcIncomeTax(2000000, 'QC').totalTax"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "Quebec's {} plus",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "federal {} reduced",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "main",
+      "anchor": "over {}. It",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "{} up",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "up to {}, {*} from",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "up to {*}, {} from {*} to",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} from {} to {*}, {*}",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "{*} to {}, {*} from",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "{*} to {*}, {} from {*} to",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "{*}, {*} from {} to {*}, and",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "to {}, and",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "and {} above",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "above {}. These",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "the {} abatement)",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "to {}.",
+      "source": {
+        "engine": "(calcTakeHome(65000, 'QC').federalTax + calcTakeHome(65000, 'QC').provincialTax) / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "the {} Quebec",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "About {} combined",
+      "source": {
+        "engine": "calcIncomeTax(2000001, 'QC').totalTax - calcIncomeTax(2000000, 'QC').totalTax"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "Quebec's {} plus",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "federal {} reduced",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/payroll/quebec-income-tax/",
+      "surface": "jsonld",
+      "anchor": "over {}. It",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "that's {}; at",
+      "source": {
+        "engine": "25 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "it's {}. Change",
+      "source": {
+        "engine": "20 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "about {} an",
+      "source": {
+        "engine": "60000 / 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {*} / hr {} {*} {*} / hr",
+      "source": {
+        "engine": "15 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {*} / hr {*} {} {*} / hr {*} {*}",
+      "source": {
+        "engine": "15 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr",
+      "source": {
+        "engine": "17 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "Monthly {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*}",
+      "source": {
+        "engine": "17 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} /",
+      "source": {
+        "engine": "18 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "/ hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr",
+      "source": {
+        "engine": "18 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr",
+      "source": {
+        "engine": "20 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*}",
+      "source": {
+        "engine": "20 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr",
+      "source": {
+        "engine": "22 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*}",
+      "source": {
+        "engine": "22 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr",
+      "source": {
+        "engine": "25 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*}",
+      "source": {
+        "engine": "25 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "/ hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "30 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "30 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "/ hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "35 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "35 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "/ hr {*} {*} {*} / hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "40 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} / hr {*} {*} {*} / hr {*} {} {*} / hr {*} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "40 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "/ hr {*} {*} {*} / hr {} {*} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "45 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {*} {*} / hr {*} {} {*} / hr {*} {*} Gross",
+      "source": {
+        "engine": "45 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "/ hr {} {*} Gross",
+      "source": {
+        "engine": "50 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*} {} Gross",
+      "source": {
+        "engine": "50 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "= {}. Fewer",
+      "source": {
+        "engine": "25 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "{*}/hr is {} a year",
+      "source": {
+        "engine": "20 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "— about {} a month,",
+      "source": {
+        "engine": "20 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "month, {} biweekly,",
+      "source": {
+        "engine": "20 * 2080 / 26"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "main",
+      "anchor": "or {} a",
+      "source": {
+        "engine": "20 * 2080 / 52"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "= {}. Fewer",
+      "source": {
+        "engine": "25 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "{*}/hr is {} a year",
+      "source": {
+        "engine": "20 * 2080"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "about {} a",
+      "source": {
+        "engine": "20 * 2080 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "month, {} biweekly,",
+      "source": {
+        "engine": "20 * 2080 / 26"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/payroll/hourly-to-salary/",
+      "surface": "jsonld",
+      "anchor": "or {} a",
+      "source": {
+        "engine": "20 * 2080 / 52"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {} et",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "base ({} en",
+      "source": {
+        "const": "provinces.QC.bpa"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "l'abattement de {} — s'ajoute",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {} :",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}. La",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {} avant",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}. Savoir",
+      "source": {
+        "engine": "(calcTakeHome(65000, 'QC').federalTax + calcTakeHome(65000, 'QC').provincialTax) / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {} jusqu'à",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "{*} jusqu'à {}, {*} jusqu'à",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "{*}, {} jusqu'à 108",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "jusqu'à {}, 24",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "{*}, {} jusqu'à 132",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "jusqu'à {}, et",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "$, et {} au-delà. Les",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "d'environ {} par",
+      "source": {
+        "const": "provinces.QC.indexationFactor"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "d'environ {} sur",
+      "source": {
+        "engine": "calcIncomeTax(2000001, 'QC').totalTax - calcIncomeTax(2000000, 'QC').totalTax"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "plus de {} — un",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "2026? {} jusqu'à",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "{*} jusqu'à {}, {*} de",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "{*}, {} de 54",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "% de {} à 108",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "$ à {}, {*}",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "{*}, {} de 108",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "% de {} à 132",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "$ à {}, et 25,75",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "$, et {} au-delà. Ce",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}) s'ajoute",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}. Comment",
+      "source": {
+        "engine": "(calcTakeHome(65000, 'QC').federalTax + calcTakeHome(65000, 'QC').provincialTax) / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "Environ {} combiné",
+      "source": {
+        "engine": "calcIncomeTax(2000001, 'QC').totalTax - calcIncomeTax(2000000, 'QC').totalTax"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "le {} du",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "le {} fédéral",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}. Il",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "{} jusqu'à",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "jusqu'à {}, 19",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "{*}, {} de 54",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "% de {} à 108",
+      "source": {
+        "const": "provinces.QC.brackets.0.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "à {}, 24",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "{*}, {} de 108",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "% de {} à 132",
+      "source": {
+        "const": "provinces.QC.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "à {}, et",
+      "source": {
+        "const": "provinces.QC.brackets.2.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "et {} au-delà.",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}) s'ajoute",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "près de {}.",
+      "source": {
+        "engine": "(calcTakeHome(65000, 'QC').federalTax + calcTakeHome(65000, 'QC').provincialTax) / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "Environ {} combiné",
+      "source": {
+        "engine": "calcIncomeTax(2000001, 'QC').totalTax - calcIncomeTax(2000000, 'QC').totalTax"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "le {} du",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "le {} fédéral",
+      "source": {
+        "const": "federal.brackets.4.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}. Il",
+      "source": {
+        "const": "federal.brackets.4.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}. Comme",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "Québec ({}, 19",
+      "source": {
+        "const": "provinces.QC.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "%, {}, 24",
+      "source": {
+        "const": "provinces.QC.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "%, {} et",
+      "source": {
+        "const": "provinces.QC.brackets.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "et {} en",
+      "source": {
+        "const": "provinces.QC.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": ": {} sur",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "entre {} et",
+      "source": {
+        "const": "qpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "et {}, plus",
+      "source": {
+        "const": "qpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "jusqu'à {}. Assurance-emploi",
+      "source": {
+        "const": "qpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "réduit à {} en 2026",
+      "source": {
+        "const": "ei.quebec.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "(contre {} ailleurs),",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {} qui",
+      "source": {
+        "const": "qpip.employeeRate"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": ": {} de",
+      "source": {
+        "const": "provinces.QC.workerDeduction.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "maximum de {} en 2026,",
+      "source": {
+        "const": "provinces.QC.workerDeduction.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}) :",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "environ {} Impôt",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "environ {} RRQ",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').provincialTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "environ {} Assurance-emploi",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "environ {} RQAP",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').ei"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "environ {} Le",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').qpip"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}, ce",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').totalDeductions"
+      },
+      "format": "round:10"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "d'environ {} —",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').net"
+      },
+      "format": "round:10"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "près {} de",
+      "source": {
+        "engine": "calcTakeHome(65000, 'QC').net / 65000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {} d'impôt",
+      "source": {
+        "engine": "TC.provinces.QC.workerDeduction.value.max * TC.provinces.QC.brackets.value[1].rate"
+      },
+      "format": "round:5"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}; Revenu",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {} et",
+      "source": {
+        "const": "qpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "admissibles ({} en",
+      "source": {
+        "const": "qpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": ": {} contre",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "contre {}. Un",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "plus, jusqu'à {} en 2026,",
+      "source": {
+        "const": "qpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {} à",
+      "source": {
+        "const": "qpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "à {}. Pourquoi",
+      "source": {
+        "const": "qpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": ": {} en",
+      "source": {
+        "const": "ei.quebec.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "contre {} ailleurs.",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "RQAP ({}). Qu'est-ce",
+      "source": {
+        "const": "qpip.employeeRate"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}? C'est",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {} de",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}. À",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "déduire {} de",
+      "source": {
+        "const": "provinces.QC.workerDeduction.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "entreprise), jusqu'à {} en 2026,",
+      "source": {
+        "const": "provinces.QC.workerDeduction.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "d'environ {} de",
+      "source": {
+        "engine": "TC.provinces.QC.workerDeduction.value.max / TC.provinces.QC.workerDeduction.value.rate"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "main",
+      "anchor": "de {}. Elle",
+      "source": {
+        "const": "provinces.QC.workerDeduction.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {} et",
+      "source": {
+        "const": "qpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "admissibles ({} en",
+      "source": {
+        "const": "qpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": ": {} contre",
+      "source": {
+        "const": "qpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "contre {}. Un",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "plus, jusqu'à {} en 2026,",
+      "source": {
+        "const": "qpp.maxEmployeeContribution"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {} à",
+      "source": {
+        "const": "qpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "à {}.",
+      "source": {
+        "const": "qpp.cpp2.yampe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": ": {} en",
+      "source": {
+        "const": "ei.quebec.rate"
+      },
+      "format": "percent:2"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "contre {} ailleurs.",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "RQAP ({}).",
+      "source": {
+        "const": "qpip.employeeRate"
+      },
+      "format": "percent:3"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}?",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {} de",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}. À",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "déduire {} de",
+      "source": {
+        "const": "provinces.QC.workerDeduction.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "entreprise), jusqu'à {} en 2026,",
+      "source": {
+        "const": "provinces.QC.workerDeduction.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "d'environ {} de",
+      "source": {
+        "engine": "TC.provinces.QC.workerDeduction.value.max / TC.provinces.QC.workerDeduction.value.rate"
+      },
+      "format": "round:1000"
+    },
+    {
+      "page": "/fr/salaire-net-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}. Elle",
+      "source": {
+        "const": "provinces.QC.workerDeduction.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "main",
+      "anchor": "de {}, auquel",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/fr/calculateur-impot-quebec/",
+      "surface": "jsonld",
+      "anchor": "de {}, auquel",
+      "source": {
+        "const": "quebec.federalAbatementRate"
+      },
+      "format": "percent"
     }
   ]
 }

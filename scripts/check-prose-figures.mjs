@@ -125,12 +125,25 @@ export function jsonldText(html) {
 /* ── anchors, sources, formats ──────────────────────────────────────────────────────────── */
 
 const FIG = String.raw`\$\s?\d(?:[\d,]*\d)?(?:\.\d+)?|\d(?:[\d,]*\d)?(?:\.\d+)?\s?%`;
+// Pages under /fr/ write figures the French-Canadian way: "54 345 $", "4 479,30 $", "16,5 %" — the
+// unit after the number, space or no-break-space thousands, comma decimals. The English pattern
+// can't see the dollar amounts at all and misreads "16,5 %" as 165%, so French pages get their own.
+const FR_SP = '[ \\u00a0\\u202f]';
+const FIG_FR = String.raw`(?<![\d,])(?<!\d${FR_SP})\d{1,3}(?:${FR_SP}\d{3})*(?:,\d+)?${FR_SP}?[$%]`;
+export const isFrench = (page) => typeof page === 'string' && page.startsWith('/fr/');
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-export function anchorRegex(anchor) {
+export function anchorRegex(anchor, page) {
+  const fig = isFrench(page) ? FIG_FR : FIG;
   const parts = anchor.split(/(\{\}|\{\*\})/);
   return new RegExp(parts.map((p) =>
-    p === '{}' ? `(${FIG})` : p === '{*}' ? `(?:${FIG})` : escapeRe(p)).join(''), 'gd');
+    p === '{}' ? `(${fig})` : p === '{*}' ? `(?:${fig})` : escapeRe(p)).join(''), 'gd');
+}
+
+/** Figure tokens on a page's surface text — French pages use the French pattern. */
+export function pageTokens(text, page) {
+  if (!isFrench(page)) return figureTokens(text);
+  return [...text.matchAll(new RegExp(FIG_FR, 'g'))].map((m) => ({ raw: m[0].trim(), index: m.index }));
 }
 
 /** Resolve "a.b.c" in the stamped tree, stepping through each stamped record's .value. */
@@ -145,7 +158,9 @@ export function resolveConst(tree, path) {
   return node;
 }
 
-const parseFigure = (raw) => Number(raw.replace(/[$%,\s]/g, ''));
+const parseFigure = (raw) => /[$%]$/.test(raw.trim()) && !raw.trim().startsWith('$')
+  ? Number(raw.replace(/[$%\s\u00a0\u202f]/g, '').replace(',', '.'))       // French: 4 479,30 $ / 16,5 %
+  : Number(raw.replace(/[$%,\s]/g, ''));
 const money = (n) => '$' + n.toLocaleString('en-CA', {
   minimumFractionDigits: Number.isInteger(Math.round(n * 100) / 100) ? 0 : 2, maximumFractionDigits: 2 });
 const round = (n, d) => Number(n.toFixed(d));
@@ -209,7 +224,7 @@ export function check({ registry, readPage, ctx }) {
     if (!pages.has(f.page)) return bad('page is not in registry.pages');
     if (f.surface !== 'main' && f.surface !== 'jsonld') return bad(`surface must be "main" or "jsonld"`);
     if (typeof f.anchor !== 'string' || f.anchor.split('{}').length !== 2) return bad('anchor must contain exactly one {}');
-    if (/\$\{\}|\{\}\s?%/.test(f.anchor)) return bad('put the $ / % inside {}, not in the anchor text');
+    if (/\$\{\}|\{\}\s?%/.test(f.anchor) || (isFrench(f.page) && /\{\}\s?\$/.test(f.anchor))) return bad('put the $ / % inside {}, not in the anchor text');
     const src = f.source || {};
     if (('const' in src) === ('engine' in src)) return bad('source needs exactly one of "const" or "engine"');
 
@@ -223,7 +238,7 @@ export function check({ registry, readPage, ctx }) {
     let text;
     try { text = surfaceOf(f.page)[f.surface]; } catch { return; }       // already reported above
     if (text instanceof Error) return;                                    // already reported above
-    const hits = [...text.matchAll(anchorRegex(f.anchor))];
+    const hits = [...text.matchAll(anchorRegex(f.anchor, f.page))];
     if (hits.length === 0) return failures.push(`MISSING    ${where}: anchor not found`);
     if (hits.length > 1) return failures.push(`AMBIGUOUS  ${where}: anchor matches ${hits.length} times`);
 
@@ -257,7 +272,7 @@ export function check({ registry, readPage, ctx }) {
     if (!a.reason || typeof a.reason !== 'string') return failures.push(`CONFIG     allowlist #${i} ${where}: a reason is required`);
     let text; try { text = surfaceOf(a.page)[a.surface]; } catch { return; }
     if (typeof text !== 'string') return;
-    const hits = [...text.matchAll(anchorRegex(a.anchor))];
+    const hits = [...text.matchAll(anchorRegex(a.anchor, a.page))];
     if (hits.length !== 1) return failures.push(`STALE      allowlist #${i} ${where}: anchor matches ${hits.length} times, must match once`);
     const key = `${a.page}|${a.surface}`;
     if (!allowed.has(key)) allowed.set(key, new Set());
@@ -275,7 +290,7 @@ export function check({ registry, readPage, ctx }) {
       if (typeof text !== 'string') continue;
       const cov = covered.get(`${page}|${surface}`) || new Set();
       const ok = allowed.get(`${page}|${surface}`) || new Set();
-      for (const tok of figureTokens(text)) {
+      for (const tok of pageTokens(text, page)) {
         if (cov.has(tok.index) || ok.has(tok.index)) continue;
         if (strict.has(page)) {
           const near = text.slice(Math.max(0, tok.index - 50), tok.index) + '⟦' + tok.raw + '⟧' + text.slice(tok.index + tok.raw.length, tok.index + tok.raw.length + 30);
@@ -352,6 +367,19 @@ export function selfTest() {
   expectFail('a stale allowlist anchor', run({ html: page('<p>Example on $200 in sales.</p>', goodLd), reg: allowReg }), 'STALE');
   const noReason = { ...allowReg, allowlist: [{ ...allowReg.allowlist[0], reason: '' }] };
   expectFail('an allowance with no reason', run({ html: loose, reg: noReason }), 'CONFIG');
+  // French pages: "16,5 %" and "54 345 $" are read as 16.5 and 54345; a changed French figure
+  // fails; a French dollar amount nobody registered fails a strict page (the English pattern
+  // never even saw it).
+  const frHtml = (pct, amt) => `<html><body><main><p>L'abattement de ${pct} réduit l'impôt.</p><p>Un revenu de ${amt} a ce taux.</p></main></body></html>`;
+  const frTC = { qc: { ab: { value: 0.165, source_url: 'x', last_verified: 'x' }, t: { value: 54345, source_url: 'x', last_verified: 'x' } } };
+  const frReg = { pages: ['/fr/t/'], strict: ['/fr/t/'], figures: [
+    { page: '/fr/t/', surface: 'main', anchor: "L'abattement de {} réduit", source: { const: 'qc.ab' }, format: 'percent' },
+    { page: '/fr/t/', surface: 'main', anchor: 'Un revenu de {} a ce', source: { const: 'qc.t' }, format: 'exact' }] };
+  const frRun = (html, reg = frReg) => check({ registry: reg, readPage: () => html, ctx: { TC: frTC, scope: { TC: frTC } } });
+  const frOk = frRun(frHtml('16,5\u00a0%', '54\u00a0345\u00a0$'));
+  if (frOk.failures.length) errs.push(`self-test: French figures should bind — ${frOk.failures.join(' | ')}`);
+  expectFail('a changed French figure', frRun(frHtml('16,4\u00a0%', '54\u00a0345\u00a0$')), 'MISMATCH');
+  expectFail('an unbound French dollar amount on a strict page', frRun(frHtml('16,5 %', '54 345 $').replace('</main>', '<p>Soit 1 450 $ de plus.</p></main>')), 'UNBOUND');
   if (expectedFor(9.975, 'money:3').text !== '$9.975') errs.push(`self-test: money:3 should print $9.975 (got ${expectedFor(9.975, 'money:3').text})`);
   return errs;
 }
@@ -397,7 +425,7 @@ async function main() {
     `${registry.figures.length} registered figures on ${registry.pages.length} pages: ` +
       `${passes.length} match, ${failures.length} issue(s)`,
     `self-test: ${selfErrs.length ? 'FAIL' : 'ok'} (stamped-value change, prose change, deleted anchor, ` +
-      'JSON-LD-only edit, duplicate anchor, rounding, broken block, bad path, wrong kind, unbound figure on a strict page, stale allowance — each must fail)',
+      'JSON-LD-only edit, duplicate anchor, rounding, broken block, bad path, wrong kind, unbound figure on a strict page, stale allowance, French figures — each must fail)',
     `strict pages: ${(registry.strict || []).length} (${(registry.allowlist || []).length} allowlisted figure(s))`,
     `RATCHET (warning): ${unregistered.length} figure(s) on in-scope pages are not registered` +
       (write ? ' — listed in data/prose-figures-unregistered.txt' : ''),

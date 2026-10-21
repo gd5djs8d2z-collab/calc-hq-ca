@@ -102,6 +102,7 @@ const SRC = {
   oasActS12: 'https://laws-lois.justice.gc.ca/eng/acts/o-9/page-3.html',
   eiAfterApply: 'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/after-applying.html',
   esaGuideOvertime: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay',
+  qcIndex2026: 'https://www.quebec.ca/en/news/actualites/detail/indexing-of-the-parameters-of-the-personal-income-tax-system-social-assistance-benefits-and-certain-government-fees-for-the-2026-taxation-year-67249',
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
@@ -839,6 +840,9 @@ export const TAX_CONSTANTS_2026 = {
         { min: 132245, max: Infinity, rate: 0.2575 },
       ], source_url: SRC.qcRates, last_verified: '2026-07-15' },
       bpa: { value: 18952, source_url: SRC.qcBpa, last_verified: '2026-07-15' },
+      // Ministère des Finances, 2025-11-25: "the indexing rate, which will apply as of January 1, 2026
+      // with regard to parameters of the personal income tax system ... will be 2.05%." Read 2026-10-20.
+      indexationFactor: { value: 0.0205, source_url: SRC.qcIndex2026, last_verified: '2026-10-20' },
       bpaCreditRate: { value: 0.14, source_url: SRC.qcRates, last_verified: '2026-07-15' }, // = brackets[0].rate (Quebec's own conversion rate)
       bpaBundlesContributions: true, // basic amount already embeds QPP/QPIP/EI — don't re-add
       // Deduction for workers (TP-1 line 201): 6% of eligible work income (employment +
