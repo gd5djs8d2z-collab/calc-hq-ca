@@ -437,7 +437,7 @@ select.input {
    only the headers wrap, so they fit a phone without scrolling. */
 .compare-table.fit, .compare-table.stack { min-width: 0; }
 .compare-table.fit thead th, .compare-table.stack thead th { white-space: normal; vertical-align: bottom; }
-.compare-table.fit td:first-child { white-space: normal; }
+.compare-table.fit td:first-child, .compare-table.stack td:first-child, .compare-table.stack td[colspan] { white-space: normal; }
 @media (max-width: 40rem) { .compare-table.fit th, .compare-table.fit td { padding: 0.5rem 0.35rem; } }
 /* Wide figure tables: below 40rem each row becomes a card, one labelled line per cell. The
    label comes from the cell's data-label, so the cell text — and every registered figure —

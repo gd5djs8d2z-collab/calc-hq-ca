@@ -14,3 +14,17 @@ export function provinceStub(code) {
 }
 
 export function el(id) { return document.getElementById(id); }
+
+/** Label every cell of a script-filled table body with its column's header (data-label), so
+ *  the table can stack into labelled cards on phones (.compare-table.stack). Follows colspans;
+ *  a cell spanning several columns is left unlabelled. Attributes only — contents untouched. */
+export function labelCells(tbody) {
+  const heads = [...(tbody.closest('table')?.tHead?.rows[0]?.cells || [])].map((th) => th.textContent.trim());
+  for (const row of tbody.rows) {
+    let col = 0;
+    for (const cell of row.cells) {
+      if (cell.colSpan === 1 && heads[col]) cell.dataset.label = heads[col];
+      col += cell.colSpan;
+    }
+  }
+}

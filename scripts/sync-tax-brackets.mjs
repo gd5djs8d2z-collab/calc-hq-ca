@@ -328,6 +328,13 @@ function label(code, band) {
 }
 
 /* ── Region renderers ──────────────────────────────────────────────────────── */
+// Copy each <th> of the table's header onto the matching <td> of every row as data-label, so the
+// table can stack into labelled cards on phones (.compare-table.stack). Cell contents are untouched.
+function labelCells(html) {
+  const heads = [...html.match(/<thead>[\s\S]*?<\/thead>/)[0].matchAll(/<th>(.*?)<\/th>/g)].map((m) => m[1]);
+  return html.replace(/<tr>((?:<td>[\s\S]*?<\/td>)+)<\/tr>/g, (row, cells) =>
+    `<tr>${[...cells.matchAll(/<td>([\s\S]*?)<\/td>/g)].map((m, i) => `<td data-label="${heads[i]}">${m[1]}</td>`).join('')}</tr>`);
+}
 function bracketTable(brackets, caption) {
   const rows = brackets.map((b) =>
     `<tr><td>${b.min === 0 ? '$0' : money(b.min)}</td><td>${b.max === Infinity ? 'and up' : money(b.max)}</td><td>${rate(b.rate)}</td></tr>`).join('\n          ');
@@ -347,9 +354,9 @@ function bracketTable(brackets, caption) {
 function bpaTable(code) {
   const P = TC.provinces[code], fb = v(TC.federal.bpa);
   const fRate = v(TC.federal.brackets)[0].rate, pRate = v(P.bpaCreditRate);
-  return `
+  return labelCells(`
     <div class="compare-table-wrap">
-      <table class="compare-table bracket-table">
+      <table class="compare-table bracket-table stack">
         <caption>Basic personal amounts, ${TAX_YEAR}</caption>
         <thead><tr><th>Credit</th><th>Amount</th><th>Valued at</th><th>Tax it removes</th></tr></thead>
         <tbody>
@@ -361,7 +368,7 @@ function bpaTable(code) {
         </tbody>
       </table>
     </div>
-    `;
+    `);
 }
 
 function marginalTable(page) {

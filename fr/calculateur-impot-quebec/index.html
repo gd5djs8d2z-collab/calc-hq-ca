@@ -82,7 +82,7 @@
   <section>
     <h2>Comment les paliers du Québec s'appliquent à votre revenu</h2>
     <div class="compare-table-wrap">
-      <table class="compare-table fit">
+      <table class="compare-table stack">
         <thead>
           <tr><th>Palier du Québec (2026)</th><th>Taux</th><th>Votre revenu ici</th><th>Impôt</th></tr>
         </thead>
@@ -167,7 +167,7 @@
 <script type="module">
 import { calcTakeHome } from '/assets/js/tax-engine.js';
 import { PROVINCES, FEDERAL, QUEBEC } from '/data/rates-2026.js';
-import { parseMoney, el } from '/assets/js/calc-ui.js';
+import { parseMoney, el, labelCells } from '/assets/js/calc-ui.js';
 
 const fmt = (n, cents=false) => n.toLocaleString('fr-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
 const pct = (r) => (r*100).toFixed(1).replace('.', ',') + ' %';
@@ -209,6 +209,7 @@ function run() {
     + `<tr class="highlight"><td colspan="3">Impôt des paliers du Québec (avant crédits)</td><td>${fmt(gross)}</td></tr>`
     + `<tr><td colspan="3">Moins : montant personnel de base, déduction pour travailleurs et retenues</td><td>−${fmt(adjust)}</td></tr>`
     + `<tr class="highlight"><td colspan="3">Impôt du Québec</td><td>${fmt(prov)}</td></tr>`;
+  labelCells(el('brackets'));
 
   result.hidden = false;
 }

@@ -188,7 +188,7 @@
     <h2>How the reduction works — and where it differs from the CCB</h2>
     <p>The CDB has a <strong>single</strong> phase-out: one threshold, one rate. Take your adjusted family net income, subtract <span id="t-threshold">$82,847</span>, multiply the excess by your rate, and subtract that from the maximum.</p>
     <div class="compare-table-wrap">
-      <table class="compare-table fit">
+      <table class="compare-table stack">
         <thead><tr><th>Children approved for the DTC</th><th>Reduction rate</th><th>Maximum (all eligible children)</th></tr></thead>
         <tbody id="rate-table"></tbody>
       </table>
@@ -297,7 +297,7 @@
 
 <script type="module">
 import { CDB } from '/data/rates-2026.js';
-import { parseMoney, el } from '/assets/js/calc-ui.js';
+import { parseMoney, el, labelCells } from '/assets/js/calc-ui.js';
 
 const money = (n, cents = true) => n.toLocaleString('en-CA',
   { style: 'currency', currency: 'CAD', minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
@@ -320,6 +320,7 @@ el('rate-table').innerHTML = [1, 2, 3, 4].map((n) => {
          `<td>${(rate * 100).toFixed(1)}%</td>` +
          `<td>${money(cy.maxPerChild * n, false)}</td></tr>`;
 }).join('');
+labelCells(el('rate-table'));
 
 function run() {
   const children = Number(el('children').value);

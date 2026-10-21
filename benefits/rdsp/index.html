@@ -191,7 +191,7 @@
     <h2>The grant: why $1,500 is the number that matters</h2>
     <p>The match is tiered, and the first dollars are worth the most. Below the income threshold the first $500 is matched <strong>three to one</strong> and the next $1,000 <strong>two to one</strong>. Past $1,500 of contributions in a year, the matching stops entirely.</p>
     <div class="compare-table-wrap">
-      <table class="compare-table fit">
+      <table class="compare-table stack">
         <thead><tr><th>You contribute</th><th>Grant (income at or under threshold)</th><th>Per dollar</th></tr></thead>
         <tbody id="tier-table"></tbody>
       </table>
@@ -304,7 +304,7 @@
 
 <script type="module">
 import { RDSP } from '/data/rates-2026.js';
-import { parseMoney, el } from '/assets/js/calc-ui.js';
+import { parseMoney, el, labelCells } from '/assets/js/calc-ui.js';
 
 const money = (n, cents = true) => n.toLocaleString('en-CA',
   { style: 'currency', currency: 'CAD', minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
@@ -340,6 +340,7 @@ el('tier-table').innerHTML = [250, 500, 1000, 1500, 2500].map((c) => {
          `<td>${money(g.amount, false)}</td>` +
          `<td>${(g.amount / c).toFixed(2)}×</td></tr>`;
 }).join('');
+labelCells(el('tier-table'));
 
 function run() {
   const income = parseMoney(el('income').value);

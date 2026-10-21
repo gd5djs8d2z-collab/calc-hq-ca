@@ -84,7 +84,7 @@
   <section>
     <h2>How Quebec's brackets apply to your income</h2>
     <div class="compare-table-wrap">
-      <table class="compare-table fit">
+      <table class="compare-table stack">
         <thead>
           <tr><th>Quebec bracket (2026)</th><th>Rate</th><th>Your income here</th><th>Tax</th></tr>
         </thead>
@@ -189,7 +189,7 @@
 <script type="module">
 import { calcTakeHome } from '/assets/js/tax-engine.js';
 import { PROVINCES, FEDERAL, QUEBEC } from '/data/rates-2026.js';
-import { parseMoney, el } from '/assets/js/calc-ui.js';
+import { parseMoney, el, labelCells } from '/assets/js/calc-ui.js';
 
 const money = (n, cents=false) => n.toLocaleString('en-CA', { style:'currency', currency:'CAD', minimumFractionDigits: cents?2:0, maximumFractionDigits: cents?2:0 });
 const pct = (r) => (r*100).toFixed(1) + '%';
@@ -231,6 +231,7 @@ function run() {
     + `<tr class="highlight"><td colspan="3">Quebec bracket tax (before credits)</td><td>${money(gross)}</td></tr>`
     + `<tr><td colspan="3">Less: basic personal amount, deduction for workers &amp; payroll deductions</td><td>−${money(adjust)}</td></tr>`
     + `<tr class="highlight"><td colspan="3">Quebec provincial tax</td><td>${money(prov)}</td></tr>`;
+  labelCells(el('brackets'));
 
   result.hidden = false;
 }
