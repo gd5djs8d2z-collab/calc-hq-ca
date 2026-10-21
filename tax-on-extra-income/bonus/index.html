@@ -184,19 +184,19 @@
 
   <section class="answer">
     <h2>Worked example: a $10,000 bonus on a $70,000 Ontario salary</h2>
-    <p>Run the subtraction the way payroll does. Income tax on $70,000 of Ontario employment income is $11,134; on $80,000 it's $14,128. The gap — $2,994 — is what the bonus is responsible for. CPP and EI then settle against their own ceilings:</p>
+    <p>Run the subtraction the way payroll does. Income tax on $70,000 of Ontario employment income is $11,133; on $80,000 it's $14,127. The gap — $2,994 — is what the bonus is responsible for. CPP and EI then settle against their own ceilings:</p>
     <div class="compare-table-wrap">
-      <table class="compare-table">
+      <table class="compare-table stack">
         <thead>
-          <tr><th>Taken from the bonus</th><th>Amount</th><th>Why</th></tr>
+          <tr><th>Taken from the bonus</th><th>Amount</th><th class="note">Why</th></tr>
         </thead>
         <tbody>
-          <tr><td>Federal tax</td><td>$1,964</td><td>Sits in the 20.5% bracket ($58,523–$117,045)</td></tr>
-          <tr><td>Ontario tax</td><td>$880</td><td>Sits in the 9.15% bracket ($53,891–$107,785)</td></tr>
-          <tr><td>Ontario Health Premium</td><td>$150</td><td>Crossing $72,000 steps the premium from $600 to $750</td></tr>
-          <tr><td>CPP</td><td>$490</td><td>CPP1 tops out mid-bonus at $74,600, then CPP2 takes 4%</td></tr>
-          <tr><td>EI</td><td>$0</td><td>The salary already passed the $68,900 ceiling</td></tr>
-          <tr><td><strong>Left in your pocket</strong></td><td><strong>$6,516</strong></td><td>34.8% withheld, 65.2% kept</td></tr>
+          <tr><td data-label="Taken from the bonus">Federal tax</td><td data-label="Amount">$1,964</td><td class="note" data-label="Why">Sits in the 20.5% bracket ($58,523–$117,045)</td></tr>
+          <tr><td data-label="Taken from the bonus">Ontario tax</td><td data-label="Amount">$880</td><td class="note" data-label="Why">Sits in the 9.15% bracket ($53,891–$107,785)</td></tr>
+          <tr><td data-label="Taken from the bonus">Ontario Health Premium</td><td data-label="Amount">$150</td><td class="note" data-label="Why">Crossing $72,000 steps the premium from $600 to $750</td></tr>
+          <tr><td data-label="Taken from the bonus">CPP</td><td data-label="Amount">$490</td><td class="note" data-label="Why">CPP1 tops out mid-bonus at $74,600, then CPP2 takes 4%</td></tr>
+          <tr><td data-label="Taken from the bonus">EI</td><td data-label="Amount">$0</td><td class="note" data-label="Why">The salary already passed the $68,900 ceiling</td></tr>
+          <tr><td data-label="Taken from the bonus"><strong>Left in your pocket</strong></td><td data-label="Amount"><strong>$6,516</strong></td><td class="note" data-label="Why">34.8% withheld, 65.2% kept</td></tr>
         </tbody>
       </table>
     </div>
@@ -206,7 +206,7 @@
     <h2>The same bonus in every province and territory</h2>
     <p>These rows take the salary and bonus from the calculator and re-sort when you change either. Most of the spread is provincial tax on the top slice of income. Quebec's row is built on QPP, QPIP and Quebec's own tax, with the federal share cut by the Quebec abatement.</p>
     <div class="compare-table-wrap" id="province-table-wrap">
-      <table class="compare-table">
+      <table class="compare-table stack">
         <thead>
           <tr><th>Jurisdiction</th><th>Net bonus</th><th>Withheld</th><th>Kept</th></tr>
         </thead>

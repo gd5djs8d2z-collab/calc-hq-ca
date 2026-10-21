@@ -70,7 +70,9 @@
     "/fr/calculateur-impot-quebec/",
     "/fr/salaire-net-quebec/",
     "/property/",
-    "/property/land-transfer-tax/"
+    "/property/land-transfer-tax/",
+    "/tax-on-extra-income/bonus/",
+    "/tax-on-extra-income/commission/"
   ],
   "strict": [
     "/business/gst-hst/",
@@ -143,7 +145,9 @@
     "/fr/calculateur-impot-quebec/",
     "/fr/salaire-net-quebec/",
     "/property/",
-    "/property/land-transfer-tax/"
+    "/property/land-transfer-tax/",
+    "/tax-on-extra-income/bonus/",
+    "/tax-on-extra-income/commission/"
   ],
   "allowlist": [
     {
@@ -2707,6 +2711,60 @@
       "surface": "jsonld",
       "anchor": "A {} home",
       "reason": "Example input: a purchase price the worked example quotes; the tax computed on it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "bonus {} Want",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "earn: {} in",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "a {} bonus",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "a {} Ontario",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "on {} of",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "commission {} Want",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "a {} Ontario",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "earns {} in",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "earns {} of",
+      "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
     }
   ],
   "figures": [
@@ -27962,6 +28020,699 @@
         "engine": "LTT.ontarioFtbRebateMax + LTT.torontoFtbRebateMax"
       },
       "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "between {} and",
+      "source": {
+        "engine": "Math.floor((() => { let lo = 1, hi = 0; for (const c of ['ON','AB','BC','SK','MB','NS','NB','NL','PE','YT','NT','NU','QC']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 10000, c); const v = r.net / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[0] * 20) / 20"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "source": {
+        "engine": "Math.ceil((() => { let lo = 1, hi = 0; for (const c of ['ON','AB','BC','SK','MB','NS','NB','NL','PE','YT','NT','NU','QC']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 10000, c); const v = r.net / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[1] * 20) / 20"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "The {} CPP",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "the {} rate",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "so {} comes",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "to {} of",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "at {} federally,",
+      "source": {
+        "const": "federal.brackets.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "at {}, with",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "up {} to",
+      "source": {
+        "engine": "payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).totalDeductions / 70000"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "over at {}, and both",
+      "source": {
+        "engine": "((((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax)) + ((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp2)) + (payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).ei - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).ei)) / 10000)"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "as {} of",
+      "source": {
+        "engine": "10000 * 26"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "flat {} is",
+      "source": {
+        "const": "lumpSumWithholding.topRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "is {}; on",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "on {} it's",
+      "source": {
+        "engine": "70000 + 10000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "it's {}. The",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "— {} —",
+      "source": {
+        "engine": "((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax))"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "Federal tax {} Sits in",
+      "source": {
+        "engine": "payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} Sits in the {} bracket ({*}–{*}) Ontario tax",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} bracket ({}–{*}) Ontario tax",
+      "source": {
+        "const": "federal.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} bracket ({*}–{}) Ontario tax",
+      "source": {
+        "const": "federal.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "Ontario tax {} Sits in",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax - payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).factors.V2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).factors.V2)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} Sits in the {} bracket ({*}–{*}) Ontario Health",
+      "source": {
+        "const": "provinces.ON.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} bracket ({}–{*}) Ontario Health",
+      "source": {
+        "const": "provinces.ON.brackets.1.min"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} bracket ({*}–{}) Ontario Health",
+      "source": {
+        "const": "provinces.ON.brackets.1.max"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "Premium {} Crossing",
+      "source": {
+        "engine": "payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).factors.V2 - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).factors.V2"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "Crossing {} steps",
+      "source": {
+        "const": "provinces.ON.healthPremium.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "from {} to",
+      "source": {
+        "engine": "payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).factors.V2"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "to {} CPP",
+      "source": {
+        "engine": "payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).factors.V2"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "CPP {} CPP1",
+      "source": {
+        "engine": "((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp2))"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "at {}, then",
+      "source": {
+        "const": "cpp.ympe"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "takes {} EI",
+      "source": {
+        "const": "cpp.cpp2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "EI {} The",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).ei - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).ei)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "the {} ceiling",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "pocket {} {*}",
+      "source": {
+        "engine": "10000 * (1 - ((((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax)) + ((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp2)) + (payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).ei - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).ei)) / 10000))"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "{*} {} withheld,",
+      "source": {
+        "engine": "((((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax)) + ((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp2)) + (payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).ei - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).ei)) / 10000)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "withheld, {} kept",
+      "source": {
+        "engine": "1 - ((((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax)) + ((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp2)) + (payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).ei - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).ei)) / 10000)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "up {} of",
+      "source": {
+        "engine": "payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).totalDeductions / 70000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "up {}. Same",
+      "source": {
+        "engine": "((((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).provincialTax)) + ((payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).cpp2) - (payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp + payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).cpp2)) + (payrollDeductions({ code: 'ON', pay: 80000, periods: 1 }).ei - payrollDeductions({ code: 'ON', pay: 70000, periods: 1 }).ei)) / 10000)"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "past {}. Timing",
+      "source": {
+        "const": "provinces.ON.healthPremium.3.upTo"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "that's 25–{} once",
+      "source": {
+        "engine": "Math.ceil((1 - (() => { let lo = 1, hi = 0; for (const c of ['ON','AB','BC','SK','MB','NS','NB','NL','PE','YT','NT','NU','QC']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 10000, c); const v = r.net / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[0]) * 20) / 20"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "flat {} in",
+      "source": {
+        "const": "lumpSumWithholding.topRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "deducted at {}, and when",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "the {} basic",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "at {} until",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "main",
+      "anchor": "reach {}. Can",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "jsonld",
+      "anchor": "that's 25–{} once",
+      "source": {
+        "engine": "Math.ceil((1 - (() => { let lo = 1, hi = 0; for (const c of ['ON','AB','BC','SK','MB','NS','NB','NL','PE','YT','NT','NU','QC']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 10000, c); const v = r.net / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[0]) * 20) / 20"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "jsonld",
+      "anchor": "flat {} in",
+      "source": {
+        "const": "lumpSumWithholding.topRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "jsonld",
+      "anchor": "at {}, and",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "jsonld",
+      "anchor": "the {} basic",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "jsonld",
+      "anchor": "at {} until",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/bonus/",
+      "surface": "jsonld",
+      "anchor": "reach {}.",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "the {} basic",
+      "source": {
+        "const": "cpp.basicExemption"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "and {} on",
+      "source": {
+        "const": "cpp.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "salary,\" {} to",
+      "source": {
+        "const": "ei.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "to {}. One",
+      "source": {
+        "const": "ei.maxInsurableEarnings"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "the {} of",
+      "source": {
+        "engine": "55000 / 12"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "from {} {*}",
+      "source": {
+        "engine": "(55000 / 12 + 12000) * 12"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "from {*} {} Top federal",
+      "source": {
+        "engine": "55000 + 20000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "bracket reached {} {*} Top",
+      "source": {
+        "const": "federal.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "reached {*} {} Top Ontario",
+      "source": {
+        "const": "federal.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "bracket reached {} {*} Ontario",
+      "source": {
+        "const": "provinces.ON.brackets.3.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "{*} {} Ontario",
+      "source": {
+        "const": "provinces.ON.brackets.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "about {}, roughly",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "roughly {} of",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 55000 / 12, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12, periods: 12 }).provincialTax)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "— {}. With",
+      "source": {
+        "engine": "((payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 55000 / 12, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12, periods: 12 }).provincialTax)) / 12000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "estimating {} it",
+      "source": {
+        "engine": "55000 + 20000"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "about {}: same",
+      "source": {
+        "engine": "((55000 / 12 + 12000) * (payrollDeductions({ code: 'ON', pay: 75000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 75000, periods: 1 }).provincialTax) / 75000)"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "some {} less",
+      "source": {
+        "engine": "(payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).provincialTax) - ((55000 / 12 + 12000) * (payrollDeductions({ code: 'ON', pay: 75000, periods: 1 }).federalTax + payrollDeductions({ code: 'ON', pay: 75000, periods: 1 }).provincialTax) / 75000)"
+      },
+      "format": "round:100"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "costing {} in",
+      "source": {
+        "engine": "calcExtraIncome(55000, 20000, 'ON').incomeTax"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "— {}, not",
+      "source": {
+        "engine": "calcExtraIncome(55000, 20000, 'ON').incomeTax / 20000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "not {}. With",
+      "source": {
+        "engine": "((payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12 + 12000, periods: 12 }).provincialTax) - (payrollDeductions({ code: 'ON', pay: 55000 / 12, periods: 12 }).federalTax + payrollDeductions({ code: 'ON', pay: 55000 / 12, periods: 12 }).provincialTax)) / 12000"
+      },
+      "format": "percent:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "With {} of",
+      "source": {
+        "engine": "calcExtraIncome(55000, 20000, 'ON').cpp"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "and {} of",
+      "source": {
+        "engine": "calcExtraIncome(55000, 20000, 'ON').ei"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "up {} and",
+      "source": {
+        "engine": "calcExtraIncome(55000, 20000, 'ON').totalWithheld"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "leaves {}. March's",
+      "source": {
+        "engine": "calcExtraIncome(55000, 20000, 'ON').net"
+      },
+      "format": "round:1"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "main",
+      "anchor": "effective 30–{} off",
+      "source": {
+        "engine": "Math.ceil((() => { let lo = 1, hi = 0; for (const c of ['ON']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 20000, c); const v = r.totalWithheld / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[1] * 20) / 20"
+      },
+      "format": "percent:0"
+    },
+    {
+      "page": "/tax-on-extra-income/commission/",
+      "surface": "jsonld",
+      "anchor": "effective 30–{} off",
+      "source": {
+        "engine": "Math.ceil((() => { let lo = 1, hi = 0; for (const c of ['ON']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 20000, c); const v = r.totalWithheld / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[1] * 20) / 20"
+      },
+      "format": "percent:0"
     }
   ]
 }

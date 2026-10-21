@@ -103,6 +103,7 @@ const SRC = {
   eiAfterApply: 'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/after-applying.html',
   esaGuideOvertime: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay',
   qcIndex2026: 'https://www.quebec.ca/en/news/actualites/detail/indexing-of-the-parameters-of-the-personal-income-tax-system-social-assistance-benefits-and-certain-government-fees-for-the-2026-taxation-year-67249',
+  craLumpSum: 'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/special-payments/lump-payments.html',
   mbBpa:     'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html', // T4127 Jan 2026: the BPAMB formula
   t4127Jul:  'https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html', // T4127 123rd edition, effective July 1, 2026 (tables 8.1, 8.2, CSVs)
   t4127JulEi:'https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/ei-01-26e.csv', // Table 8.7 EI 2026 rates and amounts, linked from the July edition
@@ -988,6 +989,14 @@ export const TAX_CONSTANTS_2026 = {
   // four (or fewer) consecutive calendar quarters". The self-employed calculator restates this
   // figure as a literal in its prose, JSON-LD and result string; stamped here so a re-verifier
   // has one page to land on and check-constants can see the number exists.
+  /* ── LUMP-SUM WITHHOLDING — the flat rates for the payments CRA lists ─────────── */
+  // ITR 103(4). CRA "Lump-sum payments" (modified 2026-10-06), read 2026-10-20: "$15,001 or more"
+  // -> "30%" (15% for Quebec). A payment not on CRA's list "is not considered a lump-sum payment
+  // for income tax purposes" — CRA's own example is a bonus — which is the bonus page's point.
+  lumpSumWithholding: {
+    topRate: { value: 0.30, source_url: SRC.craLumpSum, last_verified: '2026-10-20', cadence: 'statutory' },
+  },
+
   gstHst: {
     smallSupplierThreshold: { value: 30000, source_url: SRC.gstRegister, last_verified: '2026-09-11', cadence: 'statutory' },
   },
