@@ -49,8 +49,12 @@ function showResult(el, leadIn, msg, kind) {
   el.classList.add('lead-status-' + kind);
   el.hidden = false;
   el.tabIndex = -1;
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  el.scrollIntoView({ block: 'center', behavior: still ? 'auto' : 'smooth' });
+  // Instant on purpose: a smooth scroll never ran on the live site (2026-10-25).
+  el.scrollIntoView({ block: 'center', behavior: 'auto' });
+  const r = el.getBoundingClientRect();
+  if (r.top < 0 || r.bottom > innerHeight) {
+    window.scrollTo({ top: scrollY + r.top - Math.max(0, (innerHeight - r.height) / 2), behavior: 'auto' });
+  }
   el.focus({ preventScroll: true });
 }
 

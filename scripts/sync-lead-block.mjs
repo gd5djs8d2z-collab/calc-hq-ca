@@ -211,7 +211,7 @@ function run(check) {
     const html = readFileSync(file, 'utf8');
     const s = html.indexOf(START), e = html.indexOf(END);
     if (!spec) {
-      if (s >= 0 || html.includes('lead-block.js')) problems.push(`${rel || '/'}: has a lead block but is not in LEAD_PAGES`);
+      if (s >= 0 || html.includes('lead-block.js') || html.includes('id="lead-block"')) problems.push(`${rel || '/'}: has a lead block but is not in LEAD_PAGES`);
       continue;
     }
     const want = block(spec);
