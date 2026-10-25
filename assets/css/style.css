@@ -616,8 +616,30 @@ select.input {
 }
 .lead-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .lead-status { margin: 1rem 0 0; padding: 0.85rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--line); }
-.lead-status-ok { background: rgba(21, 41, 62, 0.06); border-left: 3px solid var(--navy); }
-.lead-status-error { background: rgba(200, 16, 46, 0.06); border-left: 3px solid var(--accent-deep); }
+.lead-status:focus { outline: none; box-shadow: 0 0 0 3px var(--focus); }
+.lead-status-lead { margin-right: 0.15rem; }
+/* Success: navy frame and a check mark drawn in CSS (no image). */
+.lead-status-ok {
+  position: relative; padding-left: 3rem; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--navy); border-left-width: 4px;
+}
+.lead-status-ok .lead-status-lead { color: var(--navy); }
+.lead-status-ok::before {
+  content: ""; position: absolute; left: 0.85rem; top: 0.95rem;
+  width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--navy);
+}
+.lead-status-ok::after {
+  content: ""; position: absolute; left: 1.36rem; top: 1.18rem;
+  width: 0.38rem; height: 0.7rem; border: solid var(--surface); border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+/* Error: red frame and text, no mark. */
+.lead-status-error {
+  color: var(--accent-deep); background: rgba(200, 16, 46, 0.06);
+  border: 1px solid var(--accent-deep); border-left-width: 4px;
+}
+.lead-status-error .lead-status-lead { color: var(--accent-deep); }
+.lead-compact-line.lead-status { margin: 0; }
 .lead-form .btn[disabled] { opacity: 0.6; cursor: default; }
 .lead-block-compact { padding: 1rem 1.25rem; }
 .lead-compact-row { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start; }

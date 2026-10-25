@@ -36,6 +36,24 @@ const failureText = res =>
   : res && res.status === 409 ? 'This page is out of date. Reload it, then send your request again.'
   : 'Your request didn’t go through. Please try again in a few minutes.';
 
+/* Fill a confirmation or server error, then bring it on screen and focus it. A successful send
+   hides the fields above it, so without this it lands above the viewport. */
+function showResult(el, leadIn, msg, kind) {
+  el.replaceChildren();
+  const lead = document.createElement('strong');
+  lead.className = 'lead-status-lead';
+  lead.textContent = leadIn;
+  el.append(lead, ' ' + msg);
+  el.classList.add('lead-status');
+  el.classList.remove('lead-status-ok', 'lead-status-error');
+  el.classList.add('lead-status-' + kind);
+  el.hidden = false;
+  el.tabIndex = -1;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({ block: 'center', behavior: still ? 'auto' : 'smooth' });
+  el.focus({ preventScroll: true });
+}
+
 if (block && block.dataset.variant === 'quebec') initQuebecPage();
 else if (block && $('lead-form')) initForm();
 
@@ -47,12 +65,12 @@ function initQuebecPage() {
     send.textContent = 'Sending…';
     const { res, body } = await post({ province: block.dataset.province, source_page: location.origin + location.pathname });
     if (res && res.ok && body.ok) {
-      line.textContent = noPartnerDone('Quebec');
       line.setAttribute('role', 'status');
       send.hidden = true;
+      showResult(line, 'Noted.', noPartnerDone('Quebec'), 'ok');
       return;
     }
-    line.textContent = failureText(res);
+    showResult(line, 'Not sent.', failureText(res), 'error');
     send.disabled = false;
     send.textContent = 'Send';
   });
@@ -118,10 +136,10 @@ function initForm() {
   const clearErrors = () => fields.forEach(f => showError(f));
   fields.forEach(f => $(`lead-${f}`).addEventListener('input', () => showError(f)));
 
-  const setStatus = (msg, kind) => {
-    status.textContent = msg;
-    status.className = 'lead-status' + (kind ? ' lead-status-' + kind : '');
-    status.hidden = !msg;
+  const clearStatus = () => {
+    status.textContent = '';
+    status.className = 'lead-status';
+    status.hidden = true;
   };
 
   function localErrors(d) {
@@ -141,7 +159,7 @@ function initForm() {
   form.addEventListener('submit', async ev => {
     ev.preventDefault();
     clearErrors();
-    setStatus('');
+    clearStatus();
     const np = noPartner();
     const d = np
       ? { province: province.value, website: $('lead-website').value, source_page: location.origin + location.pathname }
@@ -174,10 +192,8 @@ function initForm() {
 
     if (res && res.ok && body.ok) {
       form.querySelectorAll('.field, .lead-personal, .lead-qc-note, .lead-hp, .lead-error, #lead-submit').forEach(n => { n.hidden = true; });
-      setStatus(body.no_partner
-        ? noPartnerDone(provinceName())
-        : `Request sent (reference ${body.id}). Elliott Accounting Group Inc. aims to respond within one business day.`,
-        'ok');
+      if (body.no_partner) showResult(status, 'Noted.', noPartnerDone(provinceName()), 'ok');
+      else showResult(status, 'Sent.', `Request sent (reference ${body.id}). Elliott Accounting Group Inc. aims to respond within one business day.`, 'ok');
       return;
     }
     if (res && res.status === 422 && body.errors) {
@@ -186,7 +202,7 @@ function initForm() {
       if (first) $(`lead-${first}`).focus();
       return;
     }
-    setStatus(failureText(res), 'error');
+    showResult(status, 'Not sent.', failureText(res), 'error');
   });
 
   submit.disabled = false;
