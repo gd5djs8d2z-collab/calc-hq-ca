@@ -230,7 +230,15 @@ if (typeof process !== 'undefined' && process.argv?.[1]?.endsWith('gen-history.m
   lines.push('');
   lines.push(`Infinity-bearing leaves stored as "${INFINITY_SENTINEL}" sentinel: ${infRows.length}`);
   lines.push('');
-  lines.push(`reconcile: rows + skipped == stamped -> ${rows.length} + ${skipped.length} = ` +
-    `${rows.length + skipped.length} (${rows.length + skipped.length === stampedCount ? 'ok' : 'MISMATCH'})`);
+  // Count only in-force rows for leaves emitted this run. Superseded rows (effective_to set)
+  // and in-force rows whose leaf is no longer emitted (an orphan, e.g. a leaf re-tagged
+  // statutory) are kept in the file on purpose, but neither stands for a live stamped leaf.
+  const emittedKeys = new Set(fresh.map((r) => r.key));
+  const inForce = rows.filter((r) => r.effective_to === null && emittedKeys.has(r.key));
+  const orphaned = rows.filter((r) => r.effective_to === null && !emittedKeys.has(r.key));
+  lines.push(`reconcile: in-force emitted rows + skipped == stamped -> ${inForce.length} + ${skipped.length} = ` +
+    `${inForce.length + skipped.length} (${inForce.length + skipped.length === stampedCount ? 'ok' : 'MISMATCH'})` +
+    ` — excludes ${rows.length - inForce.length - orphaned.length} superseded, ` +
+    `${orphaned.length} orphaned in-force${orphaned.length ? ` (${orphaned.map((r) => r.key).join(', ')})` : ''}`);
   console.log(lines.join('\n'));
 }
