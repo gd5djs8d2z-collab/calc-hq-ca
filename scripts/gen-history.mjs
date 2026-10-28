@@ -43,6 +43,8 @@ export function periodStart(cadence, asOf) {
                                     : new Date(Date.UTC(y - 1, 6, 1));
     case 'quarterly': return new Date(Date.UTC(y, Math.floor(m / 3) * 3, 1));
     case 'semiannual': return new Date(Date.UTC(y, m >= 6 ? 6 : 0, 1));   // Jan 1 and Jul 1 (CRA payroll editions)
+    case 'october':   return m >= 9 ? new Date(Date.UTC(y, 9, 1))   // Oct 1 this year
+                                    : new Date(Date.UTC(y - 1, 9, 1));
     default:          return new Date(Date.UTC(y, 0, 1));
   }
 }

@@ -2238,6 +2238,15 @@
     "cadence": "july"
   },
   {
+    "key": "ontarioEsa.generalMinimumWage",
+    "value": 17.95,
+    "effective_from": "2026-10-01",
+    "effective_to": null,
+    "source_url": "https://www.ontario.ca/document/your-guide-employment-standards-act-0/minimum-wage",
+    "verified_at": "2026-10-27",
+    "cadence": "october"
+  },
+  {
     "key": "ccb.benefitYear",
     "value": "July 2026 – June 2027",
     "effective_from": "2026-07-01",
