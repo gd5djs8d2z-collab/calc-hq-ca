@@ -35,7 +35,7 @@ export const LEAD_PAGES = {
   'payroll/payroll-deductions':         { variant: 'full', source: 'province' },
   'payroll/pay-raise':                  { variant: 'full', source: 'province' },
   'payroll/quebec-income-tax':          { variant: 'quebec', after: 'brackets' },
-  'payroll/hourly-to-salary':           { variant: 'compact' },
+  'payroll/hourly-to-salary':           { variant: 'compact', after: 'pay-ladder' },
   'business/profit-margin':             { variant: 'compact' },
   'business/markup':                    { variant: 'compact' },
   'benefits/dtc':                       { variant: 'compact', source: 'prov' },

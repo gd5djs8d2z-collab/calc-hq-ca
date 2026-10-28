@@ -14,6 +14,7 @@
  *   'july'      re-indexed each July on a July–June benefit year (CCB).
  *   'quarterly' re-indexed Jan/Apr/Jul/Oct (GIS/OAS, CPP averages).
  *   'semiannual' re-issued every January 1 and July 1 (CRA T4127 payroll editions).
+ *   'october'   re-indexed each October 1 (Ontario minimum wage, ESA s.23.1).
  *   'statutory' changes only by legislation — never stale on a calendar.
  * A node's own `cadence` wins; otherwise it inherits its block's `_cadence`.
  *
@@ -28,7 +29,7 @@
 import { TAX_CONSTANTS_2026, TAX_YEAR } from '../data/tax-constants-2026.js';
 
 const DEFAULT_CADENCE = 'january';
-const CADENCES = ['january', 'july', 'quarterly', 'semiannual', 'statutory'];
+const CADENCES = ['january', 'july', 'quarterly', 'semiannual', 'october', 'statutory'];
 
 /**
  * STRUCTURAL EXEMPTIONS — leaves that are labels or model flags rather than sourceable
@@ -81,6 +82,8 @@ function periodStart(cadence, asOf) {
                                     : new Date(Date.UTC(y - 1, 6, 1));
     case 'quarterly': return new Date(Date.UTC(y, Math.floor(m / 3) * 3, 1));
     case 'semiannual': return new Date(Date.UTC(y, m >= 6 ? 6 : 0, 1));   // Jan 1 and Jul 1 (CRA payroll editions)
+    case 'october':   return m >= 9 ? new Date(Date.UTC(y, 9, 1))   // Oct 1 this year
+                                    : new Date(Date.UTC(y - 1, 9, 1));
     default:          return new Date(Date.UTC(y, 0, 1));
   }
 }

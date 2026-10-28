@@ -206,6 +206,7 @@ January cycle, every provenance node can carry a `cadence`:
 | `january` | annual CRA/payroll indexation — **the default** when omitted | Rule 1: brackets, BPAs, CPP/EI, contribution limits, EI/QPIP weekly maxima and MIEs, CPP max at 65 |
 | `july` | re-indexed each July on a July–June benefit year | Rule 5: CCB maxima + AFNI thresholds |
 | `quarterly` | re-indexed Jan/Apr/Jul/Oct | Rule 3: GIS/OAS, the published CPP average |
+| `october` | re-indexed each October 1 (ESA s.23.1 CPI adjustment) | Ontario general minimum wage (`ontarioEsa.generalMinimumWage`); the province announces the new rate by April 1 |
 | `statutory` | changes only by legislation/by-law — **never stale on a calendar** | Rule 2: ESA, LTT, CCB reduction percentages, CPP/QPP adjustment factors, EI/QPIP weeks and rates |
 
 A block sets a default with `_cadence`; an individual node overrides it with `cadence`. This

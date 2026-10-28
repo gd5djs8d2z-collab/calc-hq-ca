@@ -25,6 +25,7 @@
  *                     'quarterly' — re-indexed Jan/Apr/Jul/Oct (GIS/OAS, CPP averages).
  *                     'semiannual' — re-issued every January 1 and July 1: the CRA T4127
  *                                   payroll editions and their mid-year prorated figures.
+ *                     'october'   — re-indexed each October 1 (Ontario minimum wage).
  *                     'statutory' — changes ONLY by legislation or by-law, never by
  *                                   indexation. Never goes stale on a calendar; re-verify
  *                                   when the governing statute is amended (MAINTENANCE Rule 2).
@@ -172,6 +173,7 @@ const SRC = {
   esaSeverance:   'https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay',
   esaOvertime:    'https://www.ontario.ca/document/your-guide-employment-standards-act-0/overtime-pay',
   esaVacation:    'https://www.ontario.ca/document/your-guide-employment-standards-act-0/vacation',
+  esaMinimumWage: 'https://www.ontario.ca/document/your-guide-employment-standards-act-0/minimum-wage',
   ccbHowMuch:     'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html',
   ccbSheets:      'https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/canada-child-benefit-calculation-sheets.html',
   // CRA indexation chart — the ONLY canada.ca page that publishes the CCB base maxima and
@@ -1275,6 +1277,11 @@ export const TAX_CONSTANTS_2026 = {
     vacationRate5Plus:   { value: 0.06, source_url: SRC.esaVacation, last_verified: '2026-07-17' },
     vacationWeeksUnder5: { value: 2,    source_url: SRC.esaVacation, last_verified: '2026-07-17' },
     vacationWeeks5Plus:  { value: 3,    source_url: SRC.esaVacation, last_verified: '2026-07-17' },
+
+    // s.23.1 GENERAL MINIMUM WAGE — indexed to CPI every October 1, so this one leaf is
+    // 'october', not the block's 'statutory'. ESA guide, minimum wage: "$17.95 per hour" in the
+    // "Rates from October 1, 2026 to September 30, 2027" column. Read 2026-10-27.
+    generalMinimumWage:  { value: 17.95, source_url: SRC.esaMinimumWage, last_verified: '2026-10-27', cadence: 'october' },
   },
 
   /* ── CANADA CHILD BENEFIT (CCB) ───────────────────────────────────────────── */
