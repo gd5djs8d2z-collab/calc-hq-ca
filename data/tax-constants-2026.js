@@ -227,6 +227,34 @@ const SRC = {
   rdspHowMuch:    'https://www.canada.ca/en/employment-social-development/programs/disability/savings/how-much.html',
   rdspOverview:   'https://www.canada.ca/en/employment-social-development/programs/disability/savings.html',
   rdspCra:        'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp.html',
+  // ── CMHC mortgage loan insurance (default insurance / "CMHC insurance") ──
+  // The homeowner premium table by loan-to-value, and the one line stating which
+  // provinces charge PST on the premium (Quebec, Ontario, Saskatchewan — Manitoba is
+  // deliberately absent: see mbRst2020 below).
+  cmhcPremiums:   'https://www.cmhc-schl.gc.ca/en/finance-and-investing/mortgage-loan-insurance/mortgage-loan-insurance-homeownership-programs/cmhc-mortgage-loan-insurance-cost',
+  // The 20-bps surcharge for 30-year insured amortization, originally tied to
+  // first-time buyers of new builds, effective August 1, 2024.
+  cmhc30yrNotice: 'https://www.cmhc-schl.gc.ca/media-newsroom/notices/2024/cmhc-revises-homeowner-mortgage-loan-insurance-premiums',
+  // Department of Finance announcement: the insured-purchase-price cap raised to
+  // $1.5M, and 30-year amortization eligibility expanded to ALL first-time buyers and
+  // ALL new builds (an OR, not an AND) — both effective December 15, 2024.
+  financeMortgageReforms: 'https://www.canada.ca/en/department-finance/news/2024/09/the-boldest-mortgage-reforms-in-decades.html',
+  // CMHC's own consumer explainer — the one page that states the minimum-down-payment
+  // tiers by price band (5% to $500K, 5%+10% to $1.5M, 20% at $1.5M+) in one place.
+  cmhcDownPayment:'https://www.cmhc-schl.gc.ca/en/observer/2025/cmhc-mortgage-loan-insurance-explained',
+  // ── Provincial sales tax on the mortgage insurance premium (paid in cash at closing) ──
+  onRstInsurance: 'https://www.ontario.ca/document/retail-sales-tax/insurance-and-benefits-plans',
+  qcPremiumTax:   'https://www.revenuquebec.ca/fr/citoyens/taxes/biens-et-services-taxables-detaxes-ou-exoneres/taxe-sur-les-primes-dassurance/',
+  // Saskatchewan's 2017-18 Budget revenue backgrounder: the PST rate increase to 6%
+  // AND the same budget's expansion of the PST base to insurance premiums, in one
+  // primary document (both effective 2017; the insurance base change effective for
+  // premium payment due dates on or after July 1, 2017).
+  skPstBudget2017: 'https://www.saskatchewan.ca/~/media/news%20release%20backgrounders/2017/mar/fin%20-%20revenue%20tax%20backgrounder.pdf',
+  // Manitoba Finance Bulletin No. 061 (RST on insurance), revised July 2020: mortgage
+  // insurance is listed among the contracts "exempt for all purchasers on new or
+  // renewal contracts that come into effect after June 30, 2020" — so Manitoba charges
+  // NO retail sales tax on the premium, unlike Quebec/Ontario/Saskatchewan.
+  mbRst2020:      'https://www.gov.mb.ca/finance/taxation/pubs/bulletins/061.pdf',
 };
 
 export const TAX_CONSTANTS_2026 = {
@@ -1355,6 +1383,53 @@ export const TAX_CONSTANTS_2026 = {
     ontarioFtbRebateMax:  { value: 4000,   source_url: SRC.lttOntarioFtb,   last_verified: '2026-07-13' },
     torontoFtbRebateMax:  { value: 4475,   source_url: SRC.lttToronto,      last_verified: '2026-07-13' },
     torontoRatesEffective:{ value: 'April 1, 2026', source_url: SRC.lttTorontoBylaw, last_verified: '2026-07-13' },
+  },
+
+  /* ── CMHC MORTGAGE LOAN INSURANCE ("CMHC insurance" / mortgage default insurance) ── */
+  // Statutory program rules set by CMHC and the Department of Finance, changed only by
+  // policy announcement — not CRA-indexed — so 'statutory', never stale on a calendar.
+  // Verified 2026-11-01 against cmhc-schl.gc.ca and canada.ca only (no broker/aggregator
+  // sites, per MAINTENANCE Rule 2's standard). Premium rates are a % of the LOAN amount
+  // (price less down payment), never of the purchase price.
+  cmhc: {
+    _cadence: 'statutory',
+    // Minimum down payment: 5% on the first $500,000, plus 10% on the portion from
+    // $500,000 up to the insured-purchase-price cap. At or above the cap, mortgage loan
+    // insurance is not available at all and 20% down is required (conventional only).
+    insuredPriceCap: { value: 1500000, source_url: SRC.financeMortgageReforms, last_verified: '2026-11-01' }, // "effective December 15, 2024"
+    minDownPayment: {
+      tier1Threshold: { value: 500000, source_url: SRC.cmhcDownPayment,       last_verified: '2026-11-01' },
+      tier1Rate:      { value: 0.05,   source_url: SRC.cmhcDownPayment,       last_verified: '2026-11-01' }, // on the first $500,000
+      tier2Rate:      { value: 0.10,   source_url: SRC.cmhcDownPayment,       last_verified: '2026-11-01' }, // on the portion from $500,000 to the cap
+      uninsuredRate:  { value: 0.20,   source_url: SRC.financeMortgageReforms, last_verified: '2026-11-01' }, // at/above the cap — no insurance available
+    },
+    // Premium as % of the loan amount, by loan-to-value band — the three bands relevant
+    // to a purchase insured under the <20%-down rule (CMHC's table also carries lower-LTV
+    // rows for portability/low-ratio insurance, not modelled here; see the page disclaimer).
+    premiumBands: { value: [
+        { maxLtv: 0.85, rate: 0.0280 }, // 80.01%–85% LTV (15.00%–19.99% down)
+        { maxLtv: 0.90, rate: 0.0310 }, // 85.01%–90% LTV (10.00%–14.99% down)
+        { maxLtv: 0.95, rate: 0.0400 }, // 90.01%–95% LTV (5.00%–9.99% down)
+      ], source_url: SRC.cmhcPremiums, last_verified: '2026-11-01' },
+    // Context only, not used by estimate() — a down payment CMHC classifies as
+    // "non-traditional" (e.g. borrowed rather than saved or gifted) in the top band
+    // carries this higher rate instead of premiumBands[2].rate. Not modelled on the page.
+    nonTraditionalRate: { value: 0.0450, source_url: SRC.cmhcPremiums, last_verified: '2026-11-01' },
+    // +20 bps on an insured 30-year amortization. Eligibility (qualifying first-time
+    // home buyer OR the home is newly built — an OR, not an AND) was expanded from
+    // new-build-only to this current scope on December 15, 2024.
+    amortizationSurcharge:        { value: 0.0020, source_url: SRC.cmhc30yrNotice,         last_verified: '2026-11-01' },
+    maxInsuredAmortizationYears:  { value: 25,     source_url: SRC.cmhcPremiums,           last_verified: '2026-11-01' },
+    extendedAmortizationYears:    { value: 30,     source_url: SRC.financeMortgageReforms, last_verified: '2026-11-01' },
+    // Provincial sales tax on the premium — paid in cash at closing, never added to the
+    // mortgage. CMHC's own cost page names exactly these three provinces; Manitoba
+    // repealed its RST on mortgage insurance July 1, 2020 (SRC.mbRst2020) and is deliberately
+    // not a key here — no PST province list should ever include it.
+    pst: {
+      ON: { value: 0.08, source_url: SRC.onRstInsurance,  last_verified: '2026-11-01' },
+      QC: { value: 0.09, source_url: SRC.qcPremiumTax,    last_verified: '2026-11-01' },
+      SK: { value: 0.06, source_url: SRC.skPstBudget2017, last_verified: '2026-11-01' },
+    },
   },
 
   /* ── CPP RETIREMENT PENSION — timing (start at 60 vs 65) ──────────────────── */

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMHC Insurance Calculator 2026 — Mortgage Default Insurance Premium | calc-hq.ca</title>
+<meta name="description" content="Work out your CMHC mortgage insurance premium by down payment, whether you qualify for a 30-year amortization, and the provincial sales tax due on the premium at closing.">
+<link rel="canonical" href="https://calc-hq.ca/property/cmhc-insurance/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CMHC Insurance Calculator 2026 — Mortgage Default Insurance Premium">
+<meta property="og:description" content="Premium rate, minimum down payment, 30-year eligibility and PST on the premium, in one place.">
+<meta property="og:url" content="https://calc-hq.ca/property/cmhc-insurance/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://calc-hq.ca/"},
+{"@type":"ListItem","position":2,"name":"Property & Housing","item":"https://calc-hq.ca/property/"},
+{"@type":"ListItem","position":3,"name":"CMHC Insurance Calculator","item":"https://calc-hq.ca/property/cmhc-insurance/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do I need CMHC insurance on my mortgage?","acceptedAnswer":{"@type":"Answer","text":"Below 20% down on a home under $1,500,000, yes — mortgage loan insurance is mandatory in Canada, whether it comes from CMHC or one of the two private insurers. At 20% or more down you don't need it, and once the price reaches $1,500,000 it isn't available at all, insured or not — that tier needs at least 20% down regardless."}},
+{"@type":"Question","name":"How much is the CMHC insurance premium?","acceptedAnswer":{"@type":"Answer","text":"It's a percentage of the loan amount, not the purchase price: 2.80% for 15.00%–19.99% down, 3.10% for 10.00%–14.99% down, and 4.00% for 5.00%–9.99% down. On a $650,000 home with $65,000 down, the $585,000 loan sits at 90% loan-to-value — the 3.10% band — for an $18,135 premium, rolled into the mortgage for a $603,135 total."}},
+{"@type":"Question","name":"Can I get a 30-year mortgage with mortgage insurance?","acceptedAnswer":{"@type":"Answer","text":"Only if at least one buyer is a qualifying first-time buyer, or the home is newly built — either one qualifies, not both. It carries a 0.20% surcharge on the premium rate. On the same $650,000 example, moving to 30 years pushes the rate to 3.30%, the premium to $19,305, and the mortgage total to $604,305."}},
+{"@type":"Question","name":"Do I pay tax on the CMHC premium?","acceptedAnswer":{"@type":"Answer","text":"In Ontario (8%), Quebec (9%) and Saskatchewan (6%), yes, and it's due in cash at closing — it can't be added to the mortgage like the premium itself can. Manitoba repealed its tax on mortgage insurance in 2020, and no other province or territory charges one. On the $650,000 Ontario example, that's $1,450.80 on closing day, on top of the down payment."}}]}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">calc<span class="logo-thin">-</span>hq<span class="logo-dot">.ca</span></a>
+    <nav class="site-nav">
+      <a href="/payroll/">Payroll</a>
+      <a href="/tax-on-extra-income/">Extra income</a>
+      <a href="/benefits/">Benefits</a>
+      <a href="/employment-standards/">Employment</a>
+      <a href="/property/">Property</a>
+      <a href="/key-dates-limits/">Key dates</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">›</span>
+    <a href="/property/">Property &amp; Housing</a><span class="sep">›</span>
+    <span>CMHC Insurance Calculator</span>
+  </nav>
+</div>
+
+<main class="wrap">
+  <div class="page-head">
+    <h1>CMHC Insurance Calculator (2026)</h1>
+    <p class="lead">Put down less than 20% on a home and the lender has to carry mortgage default insurance — CMHC or one of its two private competitors — and the premium is charged to you. This works out whether a purchase needs it, what the premium costs at your loan-to-value, whether your down payment actually clears the legal minimum, and the provincial sales tax billed on top of the premium in three provinces — due in cash at closing, not financed.</p>
+  </div>
+
+  <section class="calc-card" aria-label="CMHC insurance calculator">
+    <div class="field">
+      <label for="price">Purchase price</label>
+      <input class="input" id="price" type="text" inputmode="numeric" placeholder="650,000" value="650,000">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="down">Down payment</label>
+        <input class="input" id="down" type="text" inputmode="numeric" placeholder="65,000" value="65,000">
+      </div>
+      <div class="field">
+        <label for="downUnit">As</label>
+        <select class="input" id="downUnit">
+          <option value="dollar" selected>Dollar amount</option>
+          <option value="percent">% of price</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="amortization">Amortization</label>
+        <select class="input" id="amortization">
+          <option value="25" selected>25 years</option>
+          <option value="30">30 years</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="province">Property province or territory</label>
+        <select class="input" id="province">
+          <option value="ON" selected>Ontario</option>
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="MB">Manitoba</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NL">Newfoundland and Labrador</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="YT">Yukon</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunavut</option>
+          <option value="QC">Quebec</option>
+        </select>
+      </div>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="ftb">
+      <label for="ftb">At least one buyer is a first-time home buyer</label>
+    </div>
+    <div class="field checkbox">
+      <input type="checkbox" id="newBuild">
+      <label for="newBuild">The home is newly built and never previously occupied</label>
+    </div>
+    <button class="btn" id="go" type="button">Calculate my CMHC premium</button>
+
+    <div class="result" id="result" hidden>
+      <p class="result-label">Mortgage default insurance premium</p>
+      <p class="result-number" id="premiumAmt">$0</p>
+      <p class="result-reading" id="reading"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="notice" id="warn" hidden></div>
+    </div>
+  </section>
+
+  <!-- lead-block placeholder: mortgage broker partner TBD.
+       calc-hq.ca's one live lead-capture system (assets/js/lead-block.js +
+       scripts/sync-lead-block.mjs, driven by LEAD_PAGES in assets/js/lead-config.js) is wired
+       to a partner ACCOUNTANT (Elliott Accounting Group Inc.) for tax/bookkeeping referrals —
+       there is no mortgage-broker partner or config today, so that block is not reused here.
+       When a mortgage-broker partner signs, add a lead-config.js entry for one and generate a
+       real block with sync-lead-block.mjs; until then this page intentionally carries no lead
+       form. -->
+
+  <section class="answer">
+    <h2>Why the premium exists, and who's buying it</h2>
+    <p>A lender financing more than 80% of a home's value is carrying more risk than its own underwriting alone would normally accept, so federal rules require that risk to be insured. The insurer — CMHC, or one of the two private mortgage insurers offering the same product — pays the lender if the borrower defaults and the sale of the home doesn't cover the balance. The cost of that protection is charged to the borrower as a one-time premium at the start of the mortgage, not something that recurs with every payment the way property insurance does.</p>
+    <p>In practice the premium is usually added straight onto the loan rather than paid out of pocket, so it's amortized along with everything else and shows up as a slightly larger payment rather than a bigger cheque at closing. The one piece that can't be rolled in is the provincial sales tax some provinces charge on the premium itself — more on that below.</p>
+
+    <h2>The premium, band by band</h2>
+    <p>The premium is a percentage of the <strong>loan</strong> amount — price minus down payment — not of the purchase price, and it rises as the down payment shrinks:</p>
+    <ul class="conditions">
+      <li>15.00% to 19.99% down (80.01%–85% loan-to-value): <strong>2.80%</strong></li>
+      <li>10.00% to 14.99% down (85.01%–90% loan-to-value): <strong>3.10%</strong></li>
+      <li>5.00% to 9.99% down (90.01%–95% loan-to-value): <strong>4.00%</strong></li>
+    </ul>
+    <p>Take a $650,000 purchase in Ontario with $65,000 down — 10%. The loan is $585,000, which puts the loan-to-value at 90% and lands it in the 3.10% band: a premium of $18,135, added to the mortgage for a $603,135 total. Put down 15% instead of 10% on the same price and the band drops to 2.80%, which is the whole reason some buyers stretch for a slightly larger down payment — it isn't just less principal, it's a cheaper premium rate on what's left.</p>
+
+    <h2>Minimum down payment — and the price where insurance disappears</h2>
+    <p>The minimum isn't a flat percentage once the price passes $500,000. It's 5% on the first $500,000, then 10% on whatever comes after that, up to a $1,500,000 insured-purchase-price cap. On the $650,000 example above, the minimum is $25,000 (5% of the first $500,000) plus $15,000 (10% of the remaining $150,000) — $40,000 in total, well under the $65,000 actually put down, so that down payment clears the minimum with room to spare.</p>
+    <p>At $1,500,000 or more, mortgage loan insurance simply isn't sold — not at a higher premium, not at all — so the minimum jumps straight to 20% with conventional financing. A $1,600,000 home needs at least $320,000 down, full stop; there's no insured path to a smaller down payment on a home at or above the cap.</p>
+
+    <h2>The 30-year option, and who actually qualifies</h2>
+    <p>Insured mortgages are capped at a 25-year amortization by default. Thirty years is available, but only when at least one buyer is a qualifying first-time home buyer <em>or</em> the home is newly built and never previously occupied — either condition is enough on its own, not both. It costs 0.20% on top of the regular premium rate. Run the same $650,000, $65,000-down example as a 30-year amortization for a first-time buyer and the rate climbs from 3.10% to 3.30%, the premium from $18,135 to $19,305, and the mortgage total from $603,135 to $604,305 — $1,170 more, spread over five extra years of payments instead of paid down faster over 25.</p>
+    <p>"First-time buyer" has a specific federal definition here, not just the plain-English one. A borrower qualifies if they've never owned a home, or if neither they nor a spouse or common-law partner has lived in a home either of them owned at any point in the last four calendar years — so someone who sold a home six years ago and has rented since qualifies again. It also extends to someone recently out of a marriage or common-law relationship, even if they owned a home with their former partner within that four-year window. Only one buyer on the application needs to meet it for the whole mortgage to qualify, which is why a first-time buyer purchasing with a repeat-buyer partner still gets the 30-year option.</p>
+
+    <h2>The tax on the premium — paid separately, in cash</h2>
+    <p>Three provinces charge their provincial sales tax on the premium itself: Ontario at 8%, Quebec at 9%, and Saskatchewan at 6%. Manitoba taxed it too until it repealed that tax in 2020, and no other province or territory charges one. This tax can't be added to the mortgage the way the premium can — it's due in cash at closing, on top of the down payment, legal fees and any land transfer tax. On the $650,000 Ontario example, that's $1,450.80 at 25 years, or $1,544.40 at 30 — the tax rides on whatever the premium happens to be.</p>
+
+    <h2>What this calculator doesn't model</h2>
+    <p>A down payment that comes from borrowed funds rather than savings or a gift counts as "non-traditional" and carries a higher premium — 4.50% instead of 4.00% in the 5%–9.99%-down band, 4.70% with the 30-year surcharge — which this page doesn't account for. It also doesn't model portability or low-ratio insurance for buyers already above 80% equity, multi-unit or rental properties, or self-employed income verified under CMHC's alternative documentation rules, all of which can carry different rates. For an exact quote, a mortgage lender runs the application through the insurer directly.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <details><summary>Do I need CMHC insurance on my mortgage?</summary>
+      <p>Below 20% down on a home under $1,500,000, yes — mortgage loan insurance is mandatory in Canada, whether it comes from CMHC or one of the two private insurers. At 20% or more down you don't need it, and once the price reaches $1,500,000 it isn't available at all, insured or not — that tier needs at least 20% down regardless.</p>
+    </details>
+    <details><summary>How much is the CMHC insurance premium?</summary>
+      <p>It's a percentage of the loan amount, not the purchase price: 2.80% for 15.00%–19.99% down, 3.10% for 10.00%–14.99% down, and 4.00% for 5.00%–9.99% down. On a $650,000 home with $65,000 down, the $585,000 loan sits at 90% loan-to-value — the 3.10% band — for an $18,135 premium, rolled into the mortgage for a $603,135 total.</p>
+    </details>
+    <details><summary>Can I get a 30-year mortgage with mortgage insurance?</summary>
+      <p>Only if at least one buyer is a qualifying first-time buyer, or the home is newly built — either one qualifies, not both. It carries a 0.20% surcharge on the premium rate. On the same $650,000 example, moving to 30 years pushes the rate to 3.30%, the premium to $19,305, and the mortgage total to $604,305.</p>
+    </details>
+    <details><summary>Do I pay tax on the CMHC premium?</summary>
+      <p>In Ontario (8%), Quebec (9%) and Saskatchewan (6%), yes, and it's due in cash at closing — it can't be added to the mortgage like the premium itself can. Manitoba repealed its tax on mortgage insurance in 2020, and no other province or territory charges one. On the $650,000 Ontario example, that's $1,450.80 on closing day, on top of the down payment.</p>
+    </details>
+  </section>
+
+  <section class="related">
+    <h2>Related calculators</h2>
+    <div class="card-grid cols-2">
+      <a class="tool-card" href="/property/land-transfer-tax/"><h3>Land Transfer Tax Calculator</h3><p>Ontario and Toronto's closing-day tax, due the same day as the down payment and any PST on this premium.</p></a>
+      <a class="tool-card" href="/property/fhsa/"><h3>FHSA Calculator</h3><p>How much room you have to save toward the down payment that decides which premium band you land in.</p></a>
+    </div>
+    <p class="disclaimer">Estimate only, for a standard owner-occupied purchase with a traditional (savings or gifted) down payment. Uses CMHC's published homeowner premium rates, the federal minimum-down-payment and insured-price-cap rules, and the 30-year-amortization surcharge and eligibility rules in effect November 2026. Does not model non-traditional down payment sources, portability or low-ratio insurance, multi-unit or rental properties, or alternative income documentation, all of which carry different rates. Confirm your exact premium and eligibility with your lender and CMHC.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">calc-hq.ca</div>
+        <p>Plain-language Canadian payroll and benefit calculators, built on current CRA and Service Canada figures for the 2026 tax year.</p>
+      </div>
+      <div>
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/payroll/">Payroll &amp; Take-Home</a></li>
+          <li><a href="/tax-on-extra-income/">Tax on Extra Income</a></li>
+          <li><a href="/business/">Business &amp; Finance</a></li>
+          <li><a href="/benefits/">Government Benefits</a></li>
+          <li><a href="/employment-standards/">Employment Standards</a></li>
+          <li><a href="/property/">Property &amp; Housing</a></li>
+          <li><a href="/key-dates-limits/">Key Dates &amp; Limits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>In this category</h4>
+        <ul>
+          <li><a href="/property/land-transfer-tax/">Land Transfer Tax</a></li>
+          <li><a href="/property/fhsa/">FHSA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="footer-links"><a href="/about/">About</a> · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/disclaimer/">Disclaimer</a> · <a href="/contact/">Contact</a> · <a href="/faq/">FAQ</a> · <a href="/fr/salaire-net-quebec/">Français</a></p>
+      <p class="footer-contact">Sponsorship &amp; advertising: <a href="mailto:partnerships@calc-hq.ca">partnerships@calc-hq.ca</a></p>
+      <p>calc-hq.ca provides estimates for general information only and is not tax, legal, or financial advice. Figures reflect the 2026 tax year; always verify against the CRA and Service Canada before acting on a number.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { CMHC } from '/data/rates-2026.js';
+import { formatCurrency } from '/assets/js/tax-engine.js';
+import { parseMoney, el } from '/assets/js/calc-ui.js';
+
+const row = (k, v, cls = '') => `<div class="row${cls}"><span>${k}</span><span class="val">${v}</span></div>`;
+const pct = (x, d = 2) => (x * 100).toFixed(d) + '%';
+
+function run() {
+  const price = parseMoney(el('price').value);
+  const downRaw = parseMoney(el('down').value);
+  const downUnit = el('downUnit').value;
+  const downPayment = downUnit === 'percent' ? price * (downRaw / 100) : downRaw;
+  const amortization = +el('amortization').value;
+  const ftb = el('ftb').checked;
+  const newBuild = el('newBuild').checked;
+  const eligibleForExtended = ftb || newBuild;
+  const province = el('province').value;
+
+  const r = CMHC.estimate(price, downPayment, amortization, eligibleForExtended, province);
+  const warn = [];
+
+  if (!r.insuranceAvailable) {
+    warn.push(`${formatCurrency(price)} is at or above the $1,500,000 insured-purchase-price cap. Mortgage loan insurance isn't available at any down payment — this purchase needs conventional financing with at least 20% down (${formatCurrency(r.requiredDown)}).`);
+  } else if (!r.meetsMinimum) {
+    warn.push(`${formatCurrency(downPayment)} is below the minimum down payment for this price. At least ${formatCurrency(r.requiredDown)} is required before a lender can insure this mortgage.`);
+  }
+  if (r.insuranceRequired && r.askedFor30 && !r.extendedApplied) {
+    warn.push(`30-year amortization needs at least one buyer to be a first-time buyer, or the home to be newly built. Neither applies here, so this estimate uses the standard 25-year maximum instead.`);
+  }
+  if (r.outsideStandardBands) {
+    warn.push(`This loan-to-value falls outside CMHC's standard homeowner premium bands — the figures below should not be relied on. Speak to a lender directly.`);
+  }
+
+  el('premiumAmt').textContent = formatCurrency(r.premium);
+  el('reading').textContent = r.insuranceRequired
+    ? `${pct(r.premiumRate)} of the ${formatCurrency(r.loanAmount)} loan (${pct(r.ltv, 1)} loan-to-value), over a ${r.amortizationUsed}-year amortization.`
+    : (r.insuranceAvailable ? 'This down payment meets the 20% threshold — mortgage loan insurance is not required.' : 'Mortgage loan insurance is not available on this purchase.');
+
+  let h = row('Purchase price', formatCurrency(price))
+    + row('Down payment', formatCurrency(downPayment))
+    + row('Minimum down payment required', formatCurrency(r.requiredDown))
+    + row('Loan amount', formatCurrency(r.loanAmount));
+  if (r.insuranceAvailable) h += row('Loan-to-value', pct(r.ltv, 1));
+  if (r.insuranceRequired) {
+    h += row('Premium rate', pct(r.premiumRate))
+      + row('Premium', formatCurrency(r.premium), ' total')
+      + row('Total mortgage (loan + premium)', formatCurrency(r.totalMortgage))
+      + row(`Provincial sales tax on the premium (${province})`, r.pstAmount > 0 ? formatCurrency(r.pstAmount) + ' — due in cash at closing' : 'None in this province');
+  } else {
+    h += row('Insurance required', 'No');
+  }
+  el('breakdown').innerHTML = h;
+  el('warn').innerHTML = warn.join('<br><br>');
+  el('warn').hidden = !warn.length;
+  el('result').hidden = false;
+}
+
+el('go').addEventListener('click', run);
+['downUnit', 'amortization', 'province', 'ftb', 'newBuild'].forEach((id) => el(id).addEventListener('change', run));
+['price', 'down'].forEach((id) => el(id).addEventListener('change', run));
+run();
+</script>
+</body>
+</html>

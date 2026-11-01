@@ -297,6 +297,84 @@ export const LTT = {
   },
 };
 
+/* ── CMHC MORTGAGE LOAN INSURANCE ("CMHC insurance" / mortgage default insurance) ─── */
+// Constants + provenance: TC.cmhc (cadence 'statutory' — set by CMHC and the Department
+// of Finance, changed only by policy announcement, never by annual indexation).
+export const CMHC = {
+  insuredPriceCap: v(TC.cmhc.insuredPriceCap),
+  minDownPayment: {
+    tier1Threshold: v(TC.cmhc.minDownPayment.tier1Threshold),
+    tier1Rate:      v(TC.cmhc.minDownPayment.tier1Rate),
+    tier2Rate:      v(TC.cmhc.minDownPayment.tier2Rate),
+    uninsuredRate:  v(TC.cmhc.minDownPayment.uninsuredRate),
+  },
+  premiumBands:           v(TC.cmhc.premiumBands), // [{ maxLtv, rate }], 80.01–85 / 85.01–90 / 90.01–95% LTV
+  nonTraditionalRate:     v(TC.cmhc.nonTraditionalRate), // context only — not used by estimate()
+  amortizationSurcharge:  v(TC.cmhc.amortizationSurcharge),       // added to the premium rate for an insured 30-year am.
+  maxInsuredAmortizationYears: v(TC.cmhc.maxInsuredAmortizationYears),
+  extendedAmortizationYears:   v(TC.cmhc.extendedAmortizationYears),
+  pst: {
+    ON: v(TC.cmhc.pst.ON),
+    QC: v(TC.cmhc.pst.QC),
+    SK: v(TC.cmhc.pst.SK),
+  },
+
+  // Minimum down payment required at this purchase price. Below the insured cap: 5% on
+  // the first $500,000 plus 10% on the rest. At/above the cap: a flat 20% (uninsured —
+  // mortgage loan insurance isn't available at all past the cap).
+  minDown(price) {
+    price = Math.max(0, price);
+    if (price >= this.insuredPriceCap) return price * this.minDownPayment.uninsuredRate;
+    const t1 = this.minDownPayment.tier1Threshold;
+    return Math.min(price, t1) * this.minDownPayment.tier1Rate
+      + Math.max(0, price - t1) * this.minDownPayment.tier2Rate;
+  },
+
+  // Premium rate (as a share of the loan amount) for a given loan-to-value, with the
+  // 30-year surcharge added when `extended` is true. Null outside the three bands this
+  // page models (LTV at or below 80%, where no insurance is needed, or above 95%).
+  premiumRateFor(ltv, extended) {
+    const band = this.premiumBands.find((b) => ltv <= b.maxLtv);
+    if (!band) return null;
+    return band.rate + (extended ? this.amortizationSurcharge : 0);
+  },
+
+  // Full estimate for a purchase. amortizationYears is 25 or 30; eligibleForExtended is
+  // whether the buyer qualifies for 30 (first-time buyer OR new build) if they asked for it.
+  estimate(price, downPayment, amortizationYears, eligibleForExtended, provinceCode) {
+    price = Math.max(0, price);
+    downPayment = Math.max(0, Math.min(downPayment, price));
+    const requiredDown = this.minDown(price);
+    const insuranceAvailable = price < this.insuredPriceCap;
+    const meetsMinimum = downPayment >= requiredDown - 0.005; // tolerate float rounding
+    const loanAmount = price - downPayment;
+    const ltv = price > 0 ? loanAmount / price : 0;
+    const insuranceRequired = insuranceAvailable && ltv > 0.80 + 1e-9;
+
+    const askedFor30 = amortizationYears >= 30;
+    const extendedApplied = insuranceRequired && askedFor30 && eligibleForExtended;
+    const amortizationUsed = insuranceRequired ? (extendedApplied ? 30 : 25) : amortizationYears;
+
+    let premiumRate = 0, premium = 0, pstRate = 0, pstAmount = 0, outsideStandardBands = false;
+    let totalMortgage = loanAmount;
+    if (insuranceRequired) {
+      const rate = this.premiumRateFor(ltv, extendedApplied);
+      outsideStandardBands = rate === null;
+      premiumRate = rate ?? 0;
+      premium = loanAmount * premiumRate;
+      totalMortgage = loanAmount + premium;
+      pstRate = this.pst[provinceCode] ?? 0;
+      pstAmount = premium * pstRate;
+    }
+
+    return {
+      price, downPayment, requiredDown, meetsMinimum, insuranceAvailable, insuranceRequired,
+      loanAmount, ltv, amortizationUsed, askedFor30, extendedApplied, outsideStandardBands,
+      premiumRate, premium, totalMortgage, pstRate, pstAmount,
+    };
+  },
+};
+
 /* ── CPP RETIREMENT PENSION — timing (start at 60 vs 65) ────────────────────── */
 // Federal, nationwide (CPP; Quebec's QPP is separate and NOT covered here).
 // Constants + provenance: TC.cppRetirement. Adjustment factors are set in the CPP Act

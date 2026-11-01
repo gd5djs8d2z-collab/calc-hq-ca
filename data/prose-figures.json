@@ -72,7 +72,8 @@
     "/property/",
     "/property/land-transfer-tax/",
     "/tax-on-extra-income/bonus/",
-    "/tax-on-extra-income/commission/"
+    "/tax-on-extra-income/commission/",
+    "/property/cmhc-insurance/"
   ],
   "allowlist": [
     {
@@ -2696,6 +2697,198 @@
       "surface": "main",
       "anchor": "earns {} of",
       "reason": "Example input: the salary, base pay, bonus or commission the worked example starts from; every figure computed from it is bound."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "premium {} Why the premium exists",
+      "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "shrinks: 15.00% to {} down (",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (19.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "down ({}–85%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (80.01%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "10.00% to {} down (85.01%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (14.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "down ({}–90%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (85.01%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "5.00% to {} down (90.01%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (9.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "down ({}–95%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (90.01%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Take a {} purchase",
+      "reason": "Worked-example input: not derived from a stamp. Purchase price used throughout the worked example."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "with {} down — 10%",
+      "reason": "Worked-example input: not derived from a stamp. Down payment (10% of price) used throughout the worked example."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "down — {}. The loan",
+      "reason": "Worked-example input: not derived from a stamp. Down payment expressed as a percentage of price."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "instead of {} on the same",
+      "reason": "Worked-example input: not derived from a stamp. The original 10% down payment, referenced again for contrast."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "On the {} example above",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused to show the tiered minimum."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "under the {} actually put",
+      "reason": "Worked-example input: not derived from a stamp. Same $65,000 down payment reused."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "A {} home needs",
+      "reason": "Worked-example input: not derived from a stamp. The over-the-cap purchase price used to illustrate the uninsured-only tier."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Run the same {}, $65,000-down",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price carried into the 30-year comparison."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "$650,000, {}-down example",
+      "reason": "Worked-example input: not derived from a stamp. Same $65,000 down payment carried into the 30-year comparison."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "On the {} Ontario example, that's $1,450.80 at",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused for the PST example."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "5%–{}-down band, 4.70%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (9.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "15.00%–{} down, 3.10% for",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (19.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "10.00%–{} down, and 4.00%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (14.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "5.00%–{} down. On a",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (9.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "down. On a {} home with",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "home with {} down, the",
+      "reason": "Worked-example input: not derived from a stamp. Same $65,000 down payment reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "the same {} example, moving",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "On the {} Ontario example, that's $1,450.80 on",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "15.00%–{} down, 3.10% for",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (19.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "10.00%–{} down, and 4.00%",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (14.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "5.00%–{} down. On a",
+      "reason": "Label for the band boundary just below/above a whole number (CMHC's own '.99%'/'.01%' convention); not a separately stamped constant. (9.99%)"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "down. On a {} home with",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "home with {} down, the",
+      "reason": "Worked-example input: not derived from a stamp. Same $65,000 down payment reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "the same {} example, moving",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused in the FAQ."
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "the {} Ontario",
+      "reason": "Worked-example input: not derived from a stamp. Same $650,000 price reused in the FAQ."
     }
   ],
   "figures": [
@@ -28798,6 +28991,915 @@
         "engine": "Math.ceil((() => { let lo = 1, hi = 0; for (const c of ['ON']) for (let s = 50000; s <= 100000; s += 1000) { const r = calcExtraIncome(s, 20000, c); const v = r.totalWithheld / r.extra; if (v < lo) lo = v; if (v > hi) hi = v; } return [lo, hi]; })()[1] * 20) / 20"
       },
       "format": "percent:0"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "less than {} on a home",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "financing more than {} of a home's value",
+      "source": {
+        "engine": "1 - CMHC.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "shrinks: {} to 19.99%",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[0].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "–{} loan-to-value): 2.80%",
+      "source": {
+        "const": "cmhc.premiumBands.0.maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "value): {} 10.00% to",
+      "source": {
+        "const": "cmhc.premiumBands.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "2.80% {} to 14.99%",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[1].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "–{} loan-to-value): 3.10%",
+      "source": {
+        "const": "cmhc.premiumBands.1.maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "value): {} 5.00% to",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "3.10% {} to 9.99%",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[2].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "–{} loan-to-value): 4.00%",
+      "source": {
+        "const": "cmhc.premiumBands.2.maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "value): {} Take a",
+      "source": {
+        "const": "cmhc.premiumBands.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "The loan is {}, which puts",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').loanAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "at {} and lands",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').ltv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "in the {} band: a premium",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "a premium of {}, added to",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "for a {} total. Put down",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Put down {} instead of",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[0].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "drops to {}, which is",
+      "source": {
+        "const": "cmhc.premiumBands.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "price passes {}. It's 5%",
+      "source": {
+        "const": "cmhc.minDownPayment.tier1Threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "It's {} on the first",
+      "source": {
+        "const": "cmhc.minDownPayment.tier1Rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "the first {}, then 10%",
+      "source": {
+        "const": "cmhc.minDownPayment.tier1Threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "then {} on whatever",
+      "source": {
+        "const": "cmhc.minDownPayment.tier2Rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "up to a {} insured-purchase-price",
+      "source": {
+        "const": "cmhc.insuredPriceCap"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "minimum is {} (5%",
+      "source": {
+        "engine": "CMHC.minDownPayment.tier1Threshold * CMHC.minDownPayment.tier1Rate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "({} of the first $500,000) plus",
+      "source": {
+        "const": "cmhc.minDownPayment.tier1Rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "the first {}) plus $15,000",
+      "source": {
+        "const": "cmhc.minDownPayment.tier1Threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "plus {} (10% of the remaining",
+      "source": {
+        "engine": "(650000 - CMHC.minDownPayment.tier1Threshold) * CMHC.minDownPayment.tier2Rate"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "$15,000 ({} of the remaining",
+      "source": {
+        "const": "cmhc.minDownPayment.tier2Rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "the remaining {}) — $40,000",
+      "source": {
+        "engine": "650000 - CMHC.minDownPayment.tier1Threshold"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "— {} in total, well",
+      "source": {
+        "engine": "CMHC.minDown(650000)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "spare. At {} or more",
+      "source": {
+        "const": "cmhc.insuredPriceCap"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "straight to {} with conventional",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "at least {} down, full",
+      "source": {
+        "engine": "CMHC.minDown(1600000)"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "It costs {} on top",
+      "source": {
+        "const": "cmhc.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "climbs from {} to 3.30%",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "to {}, the premium from",
+      "source": {
+        "engine": "CMHC.premiumBands[1].rate + CMHC.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "premium from {} to $19,305",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "$18,135 to {}, and the mortgage",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "total from {} to $604,305",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "to {} — $1,170 more",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "— {} more, spread",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').premium - CMHC.estimate(650000,65000,25,false,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Ontario at {}, Quebec",
+      "source": {
+        "const": "cmhc.pst.ON"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Quebec at {}, and Saskatchewan",
+      "source": {
+        "const": "cmhc.pst.QC"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Saskatchewan at {}. Manitoba",
+      "source": {
+        "const": "cmhc.pst.SK"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "that's {} at 25 years",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').pstAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "or {} at 30 —",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').pstAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "premium — {} instead of",
+      "source": {
+        "const": "cmhc.nonTraditionalRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "instead of {} in the",
+      "source": {
+        "const": "cmhc.premiumBands.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "in the {}–9.99%-down band",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[2].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "band, {} with the",
+      "source": {
+        "engine": "CMHC.nonTraditionalRate + CMHC.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "already above {} equity, multi-unit",
+      "source": {
+        "engine": "1 - CMHC.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Below {} down on a home",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "under {}, yes — mortgage",
+      "source": {
+        "const": "cmhc.insuredPriceCap"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "At {} or more down you",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "reaches {} it isn't available",
+      "source": {
+        "const": "cmhc.insuredPriceCap"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "needs at least {} down regardless",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "purchase price: {} for 15.00%",
+      "source": {
+        "const": "cmhc.premiumBands.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "for {}–19.99% down, 3.10%",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[0].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "down, {} for 10.00%",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "for {}–14.99% down, and",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[1].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "and {} for 5.00%",
+      "source": {
+        "const": "cmhc.premiumBands.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "for {}–9.99% down. On",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[2].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "the {} loan sits at",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').loanAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "sits at {} loan-to-value —",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').ltv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "value — the {} band —",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "for an {} premium, rolled",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "mortgage for a {} total. Can",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "carries a {} surcharge on",
+      "source": {
+        "const": "cmhc.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "rate to {}, the premium to $19,305",
+      "source": {
+        "engine": "CMHC.premiumBands[1].rate + CMHC.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "premium to {}, and the mortgage total",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "mortgage total to {}. Do",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "In Ontario ({}), Quebec",
+      "source": {
+        "const": "cmhc.pst.ON"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Quebec ({}) and Saskatchewan",
+      "source": {
+        "const": "cmhc.pst.QC"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "Saskatchewan ({}), yes,",
+      "source": {
+        "const": "cmhc.pst.SK"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "main",
+      "anchor": "that's {} on closing day",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').pstAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "Below {} down on a home",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "under {}, yes — mortgage",
+      "source": {
+        "const": "cmhc.insuredPriceCap"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "At {} or more down you",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "reaches {} it isn't available",
+      "source": {
+        "const": "cmhc.insuredPriceCap"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "needs at least {} down regardless",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "purchase price: {} for 15.00%",
+      "source": {
+        "const": "cmhc.premiumBands.0.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "for {}–19.99% down, 3.10%",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[0].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "down, {} for 10.00%",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "for {}–14.99% down, and",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[1].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "and {} for 5.00%",
+      "source": {
+        "const": "cmhc.premiumBands.2.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "for {}–9.99% down. On",
+      "source": {
+        "engine": "1 - CMHC.premiumBands[2].maxLtv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "the {} loan sits at",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').loanAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "sits at {} loan-to-value —",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').ltv"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "the {} band",
+      "source": {
+        "const": "cmhc.premiumBands.1.rate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "for an {} premium, rolled",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "mortgage for a {} total.",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "carries a {} surcharge on",
+      "source": {
+        "const": "cmhc.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "rate to {}, the premium to $19,305",
+      "source": {
+        "engine": "CMHC.premiumBands[1].rate + CMHC.amortizationSurcharge"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "premium to {}, and the mortgage total",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').premium"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "mortgage total to {}.",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,30,true,'ON').totalMortgage"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "In Ontario ({}), Quebec",
+      "source": {
+        "const": "cmhc.pst.ON"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "Quebec ({}) and Saskatchewan",
+      "source": {
+        "const": "cmhc.pst.QC"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "Saskatchewan ({}), yes,",
+      "source": {
+        "const": "cmhc.pst.SK"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/cmhc-insurance/",
+      "surface": "jsonld",
+      "anchor": "that's {} on",
+      "source": {
+        "engine": "CMHC.estimate(650000,65000,25,false,'ON').pstAmount"
+      },
+      "format": "exact"
+    },
+    {
+      "page": "/property/fhsa/",
+      "surface": "main",
+      "anchor": "included — lands under {}",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
+    },
+    {
+      "page": "/property/land-transfer-tax/",
+      "surface": "main",
+      "anchor": "down payment below {} needs",
+      "source": {
+        "const": "cmhc.minDownPayment.uninsuredRate"
+      },
+      "format": "percent"
     }
   ],
   "lenient": []
