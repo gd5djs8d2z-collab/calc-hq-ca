@@ -3065,6 +3065,16 @@
     {
       "page": "/benefits/oas/",
       "surface": "main",
+      "anchor": "the current quarterly maximum at {}, because OAS re-indexes",
+      "source": {
+        "const": "oas.recoveryRate"
+      },
+      "format": "percent",
+      "note": "why the published ceiling doesn't back-calculate from the current quarterly maximum"
+    },
+    {
+      "page": "/benefits/oas/",
+      "surface": "main",
       "anchor": "at a lower income than the {} headline figure",
       "source": {
         "const": "oas.fullRecoveryCeiling65to74"
