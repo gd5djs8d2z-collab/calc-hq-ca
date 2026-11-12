@@ -241,8 +241,14 @@
     {
       "page": "/payroll/take-home-pay/",
       "surface": "main",
-      "anchor": "pay {} Want",
+      "anchor": "Your take-home pay {} {*} every second Friday",
       "reason": "Calculator result placeholder in the static HTML; the page script overwrites it on load."
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "leave out. {} in",
+      "reason": "Example input: the salary the one-line answer above the calculator starts from; every figure computed from it is registered."
     },
     {
       "page": "/payroll/take-home-pay/",
@@ -7898,12 +7904,32 @@
     {
       "page": "/payroll/take-home-pay/",
       "surface": "main",
-      "anchor": "Send my request {} every second Friday",
+      "anchor": "{*} {} every second Friday",
       "source": {
         "engine": "calcTakeHome(65000, 'ON').net / 26"
       },
       "format": "round:1",
-      "note": "$65,000 Ontario biweekly cheque (heading)"
+      "note": "$65,000 Ontario biweekly cheque (heading); anchored to the calculator's $0 placeholder that precedes it"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "Ontario = {} take-home",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario annual net (one-line answer above the calculator)"
+    },
+    {
+      "page": "/payroll/take-home-pay/",
+      "surface": "main",
+      "anchor": "or {} per biweekly cheque",
+      "source": {
+        "engine": "calcTakeHome(65000, 'ON').net / 26"
+      },
+      "format": "round:1",
+      "note": "$65,000 Ontario biweekly cheque (one-line answer above the calculator)"
     },
     {
       "page": "/payroll/take-home-pay/",
