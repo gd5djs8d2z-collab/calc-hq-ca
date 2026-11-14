@@ -514,6 +514,25 @@ select.input {
 /* Related calculators */
 .related { margin-top: 3rem; }
 .related h2 { margin-bottom: 1rem; }
+.province-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+}
+.province-links a {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 500;
+}
+.province-links a:hover { border-color: var(--navy-soft); color: var(--navy-soft); }
 
 .card-grid { display: grid; gap: 1rem; }
 
