@@ -58,7 +58,10 @@ export const LEAD_PAGES = {
      commit.
    Excluded on purpose:
    - benefits/gis: GIS is a benefit for low-income seniors. A paid referral pitch is the wrong
-     fit for that audience, so this page gets no block. (benefits/oas keeps its compact block.) */
+     fit for that audience, so this page gets no block. (benefits/oas keeps its compact block.)
+   - property/cmhc-insurance: home buyers sizing a mortgage-insurance premium, the same audience as
+     property/fhsa (ruled out 2026-10-20 as not a fit for the partner accountant). No block until a
+     mortgage-broker partner exists; that would need its own lead-config.js entry, not this template. */
 
 const START = '<!-- lead-block:start -->';
 const END = '<!-- lead-block:end -->';
