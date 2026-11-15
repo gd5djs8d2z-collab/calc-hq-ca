@@ -25,13 +25,15 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
    source: id of the calculator's own province <select>, used to pre-fill the form.
    after: the block normally follows the .calc-card section; where the calculator's results
    continue into a separate section below the card, name an id inside that section and the
-   block goes after it instead. */
+   block goes after it instead.
+   afterSection: where the target section carries no id to name, give its class instead (it must
+   be the only <section> with that class on the page) and the block goes after that section. */
 export const LEAD_PAGES = {
   'payroll/self-employed-tax':          { variant: 'full', source: 'province' },
   'tax-on-extra-income/bonus':          { variant: 'full', source: 'province' },
   'tax-on-extra-income/commission':     { variant: 'full', source: 'province' },
   'tax-on-extra-income/capital-gains':  { variant: 'full', source: 'province' },
-  'payroll/take-home-pay':              { variant: 'full', source: 'province' },
+  'payroll/take-home-pay':              { variant: 'full', source: 'province', afterSection: 'answer' },
   'payroll/payroll-deductions':         { variant: 'full', source: 'province' },
   'payroll/pay-raise':                  { variant: 'full', source: 'province' },
   'payroll/quebec-income-tax':          { variant: 'quebec', after: 'brackets' },
@@ -175,9 +177,14 @@ ${script}
 
 /* Index just past the </section> that closes the page's .calc-card — or, with `after`, the
    section that contains id="<after>". */
-function placementEnd(html, after) {
+function placementEnd(html, after, afterSection) {
   let open;
-  if (after) {
+  if (afterSection) {
+    const re = new RegExp(`<section[^>]*class="[^"]*\\b${afterSection}\\b`, 'g');
+    const hits = [...html.matchAll(re)];
+    if (hits.length !== 1) return -1;
+    open = hits[0].index;
+  } else if (after) {
     const at = html.indexOf(`id="${after}"`);
     if (at < 0) return -1;
     open = html.lastIndexOf('<section', at);
@@ -221,8 +228,8 @@ function run(check) {
     // Take any existing block out (with the blank line and indent inserted before it), then
     // place it fresh, so moving a page's anchor moves its block.
     const bare = s >= 0 && e > s ? html.slice(0, s).replace(/\n\n  $/, '') + html.slice(e + END.length) : html;
-    const at = placementEnd(bare, spec.after);
-    if (at < 0) { problems.push(`${rel}: no ${spec.after ? '#' + spec.after : '.calc-card'} section to place the block after`); continue; }
+    const at = placementEnd(bare, spec.after, spec.afterSection);
+    if (at < 0) { problems.push(`${rel}: no ${spec.afterSection ? 'single section.' + spec.afterSection : spec.after ? '#' + spec.after : '.calc-card'} section to place the block after`); continue; }
     const next = bare.slice(0, at) + '\n\n  ' + want + bare.slice(at);
     if (spec.source && !new RegExp(`<select[^>]*id="${spec.source}"`).test(html)) {
       problems.push(`${rel}: province source #${spec.source} not found`);
