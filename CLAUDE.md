@@ -58,7 +58,7 @@ output — that is expected. Read past it and look for shared *body* prose.
 Run the gates:
 
 ```bash
-for s in check-schema check-constants check-redirects test-schema test-invariants check-faq-parity check-seo; do printf "%-18s " "$s"; node scripts/$s.mjs >/dev/null 2>&1 && echo PASS || echo FAIL; done; node scripts/sync-social-tags.mjs --check | tail -1
+for s in check-schema check-constants check-redirects test-schema test-invariants check-faq-parity check-seo; do printf "%-18s " "$s"; node scripts/$s.mjs >/dev/null 2>&1 && echo PASS || echo FAIL; done; node scripts/sync-social-tags.mjs --check | tail -1; node scripts/sync-lead-block.mjs --check | tail -1
 ```
 
 Then render the page and confirm it — grep does not prove wiring. The `static`
