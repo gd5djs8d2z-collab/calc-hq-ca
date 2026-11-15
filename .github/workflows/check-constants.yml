@@ -160,6 +160,13 @@ jobs:
           set -o pipefail
           node scripts/sync-social-tags.mjs --check | tee social-report.txt
 
+      - name: Run the lead-block sync check
+        id: checklead
+        if: always()   # the partner lead block is generated from LEAD_PAGES; fail on drift, a stray block, or a page that lost its block
+        run: |
+          set -o pipefail
+          node scripts/sync-lead-block.mjs --check | tee lead-report.txt
+
       - name: Publish the report to the job summary
         if: always()
         run: |
@@ -308,5 +315,17 @@ jobs:
               echo 'A page breaks the SEO rules in CLAUDE.md (title over 60, description outside 120–155,'
               echo 'missing OG/X tag, hreflang to a non-200 URL, a www.calc-hq.ca link, or Article schema).'
               echo 'Fix the page; for OG/X drift run `node scripts/sync-social-tags.mjs`.'
+            fi
+            echo
+            echo '## Lead-block sync check'
+            echo
+            echo '```'
+            cat lead-report.txt 2>/dev/null || echo 'lead-block checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checklead.outcome }}' != 'success' ]; then
+              echo
+              echo 'A page drifted from the lead-block template, carries a block without a LEAD_PAGES entry,'
+              echo 'or lost its block. Edit LEAD_PAGES in scripts/sync-lead-block.mjs (use after/afterSection'
+              echo 'to pin a moved block) and run `node scripts/sync-lead-block.mjs`; never hand-edit a block.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"
