@@ -20,6 +20,8 @@
  *               calcIncomeTax (no CPP/EI — interest, pension, rental) and calcTakeHome (salary).
  *               Nothing is added by hand; a surtax, a premium ramp or a phase-out shows up
  *               because the engine charges it.
+ *   others      (every jurisdiction page, required) links to all the other jurisdictions'
+ *               pages, so no bracket page is reachable only from the hub.
  *
  * HOW THE MARGINAL TABLE IS FOUND
  *   Scan $0 to past the top threshold in $25 steps, reading the tax on the next dollar for both profiles.
@@ -62,8 +64,8 @@ const PAGES = [
   {
     file: 'tax-brackets/ontario/index.html',
     code: 'ON',
-    title: (y) => `Ontario Tax Brackets ${y}: Rates, Surtax and Real Marginal Rates | calc-hq.ca`,
-    description: (y) => `Ontario's ${y} tax brackets with the federal rates, and the combined marginal rate on every band — including the surtax and Health Premium that push real rates past the posted ones.`,
+    title: (y) => `Ontario Tax Brackets ${y}: Rates, Surtax & Marginal Rates`,
+    description: (y) => `Ontario's ${y} tax brackets with the federal rates and the combined marginal rate on every band, including the surtax and Health Premium.`,
     ogTitle: (y) => `Ontario Tax Brackets ${y} — and What You Really Pay on the Next Dollar`,
     ogDescription: (y) => `Ontario's ${y} brackets, the surtax that raises its top rate from ${rate(topRate('ON'))} to ${pct(topRealRate('ON'))}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Ontario Tax Brackets ${y}`,
@@ -71,8 +73,8 @@ const PAGES = [
   {
     file: 'tax-brackets/british-columbia/index.html',
     code: 'BC',
-    title: (y) => `British Columbia Tax Brackets ${y}: Rates, the ${pct(lowRate('BC'))} Change and Marginal Rates | calc-hq.ca`,
-    description: (y) => `BC's ${y} tax brackets beside the federal ones: the lowest rate at ${pct(lowRate('BC'))}, the BC tax reduction that lifts the rate on lower incomes, and the combined rate on every band.`,
+    title: (y) => `British Columbia Tax Brackets ${y} & Marginal Rates`,
+    description: (y) => `BC's ${y} tax brackets beside the federal ones: the lowest rate at ${pct(lowRate('BC'))}, the BC tax reduction on lower incomes, and the combined rate on every band.`,
     ogTitle: (y) => `British Columbia Tax Brackets ${y} — Seven Rates and What They Add Up To`,
     ogDescription: (y) => `BC's ${y} brackets from ${pct(lowRate('BC'))} to ${rate(topRate('BC'))}, and a marginal-rate table computed by running the tax engine, reduction and all.`,
     h1: (y) => `British Columbia Tax Brackets ${y}`,
@@ -80,8 +82,8 @@ const PAGES = [
   {
     file: 'tax-brackets/alberta/index.html',
     code: 'AB',
-    title: (y) => `Alberta Tax Brackets ${y}: The ${rate(lowRate('AB'))} Bracket and Marginal Rates | calc-hq.ca`,
-    description: (y) => `Alberta's ${y} tax brackets with the federal rates: ${rate(lowRate('AB'))} on the first ${money(v(TC.provinces.AB.brackets)[0].max)}, a ${money(v(TC.provinces.AB.bpa))} basic personal amount, and the combined rate on every band.`,
+    title: (y) => `Alberta Tax Brackets ${y}: The ${rate(lowRate('AB'))} Bracket & Marginal Rates`,
+    description: (y) => `Alberta's ${y} tax brackets: ${rate(lowRate('AB'))} on the first ${money(v(TC.provinces.AB.brackets)[0].max)}, a ${money(v(TC.provinces.AB.bpa))} basic personal amount, and the combined federal and Alberta rate on every band.`,
     ogTitle: (y) => `Alberta Tax Brackets ${y} — From ${rate(lowRate('AB'))} to ${rate(topRate('AB'))}`,
     ogDescription: (y) => `Alberta's six ${y} brackets and a combined marginal-rate table computed by running the tax engine across the income range.`,
     h1: (y) => `Alberta Tax Brackets ${y}`,
@@ -89,8 +91,8 @@ const PAGES = [
   {
     file: 'tax-brackets/saskatchewan/index.html',
     code: 'SK',
-    title: (y) => `Saskatchewan Tax Brackets ${y}: Three Rates and Real Marginal Rates | calc-hq.ca`,
-    description: (y) => `Saskatchewan's ${y} tax brackets with the federal rates, its ${money(v(TC.provinces.SK.bpa))} basic personal amount, and the combined federal and Saskatchewan rate on every band.`,
+    title: (y) => `Saskatchewan Tax Brackets ${y}: Rates & Marginal Rates`,
+    description: (y) => `Saskatchewan's ${y} tax brackets with the federal rates, its ${money(v(TC.provinces.SK.bpa))} basic personal amount, and the combined marginal rate on every band.`,
     ogTitle: (y) => `Saskatchewan Tax Brackets ${y} — Three Rates, Eight Bands`,
     ogDescription: (y) => `Saskatchewan's ${y} brackets at ${rate(lowRate('SK'))}, ${rate(v(TC.provinces.SK.brackets)[1].rate)} and ${rate(topRate('SK'))}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Saskatchewan Tax Brackets ${y}`,
@@ -98,8 +100,8 @@ const PAGES = [
   {
     file: 'tax-brackets/quebec/index.html',
     code: 'QC',
-    title: (y) => `Quebec Tax Brackets ${y}: Provincial Rates, the Federal Abatement and Marginal Rates | calc-hq.ca`,
-    description: (y) => `Quebec's ${y} tax brackets, the federal brackets after the ${rate(v(TC.quebec.federalAbatementRate))} Quebec abatement, and the combined marginal rate on every band.`,
+    title: (y) => `Quebec Tax Brackets ${y}: Rates, Abatement & Marginal Rates`,
+    description: (y) => `Quebec's ${y} tax brackets, the federal brackets after the ${rate(v(TC.quebec.federalAbatementRate))} Quebec abatement, and the combined federal and Quebec marginal rate on every band.`,
     ogTitle: (y) => `Quebec Tax Brackets ${y} — Two Returns, One Marginal Rate`,
     ogDescription: (y) => `Quebec's ${y} brackets from ${rate(lowRate('QC'))} to ${rate(topRate('QC'))}, the abatement that trims every federal rate, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Quebec Tax Brackets ${y}`,
@@ -107,8 +109,8 @@ const PAGES = [
   {
     file: 'tax-brackets/yukon/index.html',
     code: 'YT',
-    title: (y) => `Yukon Tax Brackets ${y}: Territorial Rates and Real Marginal Rates | calc-hq.ca`,
-    description: (y) => `Yukon's ${y} tax brackets, which share the federal thresholds, the basic personal amount that shrinks with the federal one, and the combined rate on every band.`,
+    title: (y) => `Yukon Tax Brackets ${y}: Territorial & Marginal Rates`,
+    description: (y) => `Yukon's ${y} tax brackets, which share the federal thresholds, the basic personal amount that shrinks with the federal one, and the combined rate per band.`,
     ogTitle: (y) => `Yukon Tax Brackets ${y} — Built on the Federal Thresholds`,
     ogDescription: (y) => `Yukon's ${y} brackets from ${rate(lowRate('YT'))} to ${rate(topRate('YT'))}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Yukon Tax Brackets ${y}`,
@@ -116,7 +118,7 @@ const PAGES = [
   {
     file: 'tax-brackets/northwest-territories/index.html',
     code: 'NT',
-    title: (y) => `Northwest Territories Tax Brackets ${y}: Rates and Marginal Rates | calc-hq.ca`,
+    title: (y) => `Northwest Territories Tax Brackets ${y} & Marginal Rates`,
     description: (y) => `The Northwest Territories' ${y} tax brackets with the federal rates, its ${money(v(TC.provinces.NT.bpa))} basic personal amount, and the combined rate on every band.`,
     ogTitle: (y) => `Northwest Territories Tax Brackets ${y} — Four Rates, Federal Included`,
     ogDescription: (y) => `NWT's ${y} brackets from ${rate(lowRate('NT'))} to ${rate(topRate('NT'))}, and a marginal-rate table computed by running the tax engine.`,
@@ -125,7 +127,7 @@ const PAGES = [
   {
     file: 'tax-brackets/nunavut/index.html',
     code: 'NU',
-    title: (y) => `Nunavut Tax Brackets ${y}: Canada's Lowest Rates and Marginal Rates | calc-hq.ca`,
+    title: (y) => `Nunavut Tax Brackets ${y}: Canada's Lowest Rates`,
     description: (y) => `Nunavut's ${y} tax brackets, from ${rate(lowRate('NU'))} to ${rate(topRate('NU'))}, beside the federal ones, and the combined federal and territorial rate on every band.`,
     ogTitle: (y) => `Nunavut Tax Brackets ${y} — the Lowest Rates in Canada`,
     ogDescription: (y) => `Nunavut's ${y} brackets and a marginal-rate table computed by running the tax engine across the income range.`,
@@ -134,8 +136,8 @@ const PAGES = [
   {
     file: 'tax-brackets/manitoba/index.html',
     code: 'MB',
-    title: (y) => `Manitoba Tax Brackets ${y}: Frozen Thresholds, the BPA Phase-Out and Marginal Rates | calc-hq.ca`,
-    description: (y) => `Manitoba's ${y} tax brackets, still at their 2024 levels, the basic personal amount that phases out between ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutStart)} and ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutEnd)}, and the combined rate on every band.`,
+    title: (y) => `Manitoba Tax Brackets ${y}: BPA Phase-Out & Marginal Rates`,
+    description: (y) => `Manitoba's ${y} tax brackets, frozen at 2024 levels, the basic personal amount that phases out from ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutStart)}, and the combined rate on every band.`,
     ogTitle: (y) => `Manitoba Tax Brackets ${y} — Where the Top Rate Isn't at the Top`,
     ogDescription: (y) => `Manitoba's three ${y} brackets, the BPA phase-out that lifts the rate below ${money(v(TC.provinces.MB.bpaPhaseOut).phaseOutEnd)}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Manitoba Tax Brackets ${y}`,
@@ -143,8 +145,8 @@ const PAGES = [
   {
     file: 'tax-brackets/newfoundland-and-labrador/index.html',
     code: 'NL',
-    title: (y) => `Newfoundland and Labrador Tax Brackets ${y}: Eight Rates and Marginal Rates | calc-hq.ca`,
-    description: (y) => `Newfoundland and Labrador's ${y} brackets, the ${money(v(TC.provinces.NL.bpa))} basic personal amount from the April budget, the low income tax reduction, and the combined rate on every band.`,
+    title: (y) => `Newfoundland and Labrador Tax Brackets ${y}: Eight Rates`,
+    description: (y) => `Newfoundland and Labrador's ${y} brackets, the ${money(v(TC.provinces.NL.bpa))} basic personal amount, the low income tax reduction, and the combined rate on every band.`,
     ogTitle: (y) => `Newfoundland and Labrador Tax Brackets ${y} — Up to ${pct(combinedTop('NL'))}`,
     ogDescription: (y) => `NL's eight ${y} brackets from ${rate(lowRate('NL'))} to ${rate(topRate('NL'))}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `Newfoundland and Labrador Tax Brackets ${y}`,
@@ -152,8 +154,8 @@ const PAGES = [
   {
     file: 'tax-brackets/new-brunswick/index.html',
     code: 'NB',
-    title: (y) => `New Brunswick Tax Brackets ${y}: Rates, the Low-Income Reduction and Marginal Rates | calc-hq.ca`,
-    description: (y) => `New Brunswick's ${y} tax brackets with the federal rates, the low-income tax reduction that runs to ${money(v(TC.provinces.NB.taxReduction).threshold + v(TC.provinces.NB.taxReduction).base / v(TC.provinces.NB.taxReduction).rate)}, and the combined rate on every band.`,
+    title: (y) => `New Brunswick Tax Brackets ${y}: Rates & Marginal Rates`,
+    description: (y) => `New Brunswick's ${y} tax brackets with the federal rates, the low-income tax reduction that runs to ${money(v(TC.provinces.NB.taxReduction).threshold + v(TC.provinces.NB.taxReduction).base / v(TC.provinces.NB.taxReduction).rate)}, and the rate on every band.`,
     ogTitle: (y) => `New Brunswick Tax Brackets ${y} — Four Rates and a Long Taper`,
     ogDescription: (y) => `NB's ${y} brackets from ${rate(lowRate('NB'))} to ${rate(topRate('NB'))}, and a marginal-rate table computed by running the tax engine.`,
     h1: (y) => `New Brunswick Tax Brackets ${y}`,
@@ -161,8 +163,8 @@ const PAGES = [
   {
     file: 'tax-brackets/nova-scotia/index.html',
     code: 'NS',
-    title: (y) => `Nova Scotia Tax Brackets ${y}: Rates, Indexation and Marginal Rates | calc-hq.ca`,
-    description: (y) => `Nova Scotia's ${y} tax brackets beside the federal ones, its ${money(v(TC.provinces.NS.bpa))} basic personal amount, the low-income tax reduction, and the combined rate on every band.`,
+    title: (y) => `Nova Scotia Tax Brackets ${y}: Rates & Marginal Rates`,
+    description: (y) => `Nova Scotia's ${y} tax brackets beside the federal ones, its ${money(v(TC.provinces.NS.bpa))} basic personal amount, the low-income reduction, and the rate on every band.`,
     ogTitle: (y) => `Nova Scotia Tax Brackets ${y} — Five Rates up to ${rate(topRate('NS'))}`,
     ogDescription: (y) => `Nova Scotia's ${y} brackets and a marginal-rate table computed by running the tax engine across the income range.`,
     h1: (y) => `Nova Scotia Tax Brackets ${y}`,
@@ -170,7 +172,7 @@ const PAGES = [
   {
     file: 'tax-brackets/prince-edward-island/index.html',
     code: 'PE',
-    title: (y) => `Prince Edward Island Tax Brackets ${y}: The New ${rate(topRate('PE'))} Bracket and Marginal Rates | calc-hq.ca`,
+    title: (y) => `Prince Edward Island Tax Brackets ${y}: The New ${rate(topRate('PE'))} Bracket`,
     description: (y) => `PEI's ${y} tax brackets, including the sixth bracket at ${rate(topRate('PE'))} over ${money(v(TC.provinces.PE.brackets).at(-1).min)}, the low-income tax reduction, and the combined rate on every band.`,
     ogTitle: (y) => `Prince Edward Island Tax Brackets ${y} — Six Rates from ${rate(lowRate('PE'))}`,
     ogDescription: (y) => `PEI's ${y} brackets and a marginal-rate table computed by running the tax engine, low-income reduction included.`,
@@ -179,7 +181,7 @@ const PAGES = [
   {
     file: 'tax-brackets/index.html',
     code: null,                                    // the hub: federal table + every jurisdiction side by side
-    title: (y) => `Canadian Tax Brackets ${y}: Federal, Provincial and Territorial Rates | calc-hq.ca`,
+    title: (y) => `Canadian Tax Brackets ${y}: Federal & Provincial Rates`,
     description: (y) => `The ${y} federal tax brackets once, then every province and territory: its rates, basic personal amount and the combined rate on a top-bracket dollar.`,
     ogTitle: (y) => `Canadian Tax Brackets ${y} — Federal and All 13 Provinces and Territories`,
     ogDescription: (y) => `Federal brackets from ${rate(v(TC.federal.brackets)[0].rate)} to ${rate(v(TC.federal.brackets).at(-1).rate)}, and every province's and territory's ${y} rates side by side.`,
@@ -196,8 +198,24 @@ const combinedTop = (code) => E.calcIncomeTax(2000001, code).totalTax - E.calcIn
 
 const SUMMARY_HEAD = ['Jurisdiction', 'Brackets', 'Lowest rate', 'Top rate', 'Basic personal amount', 'Combined top rate'];
 
+const pageHref = () => Object.fromEntries(PAGES.filter((p) => p.code).map((p) => [p.code, '/' + p.file.replace(/index\.html$/, '')]));
+
+function otherProvinces(code) {
+  const href = pageHref();
+  const items = ORDER.filter((c) => c !== code && href[c])
+    .map((c) => `<li><a href="${href[c]}">${TC.provinces[c].name}</a></li>`).join('\n      ');
+  return `
+  <section class="related other-provinces" aria-labelledby="other-provinces">
+    <h2 id="other-provinces">Other provinces and territories</h2>
+    <ul class="province-links">
+      ${items}
+    </ul>
+  </section>
+  `;
+}
+
 function summaryTable() {
-  const href = Object.fromEntries(PAGES.filter((p) => p.code).map((p) => [p.code, '/' + p.file.replace(/index\.html$/, '')]));
+  const href = pageHref();
   const rows = ORDER.map((code) => {
     const P = TC.provinces[code], b = v(P.brackets);
     const name = href[code] ? `<a href="${href[code]}">${P.name}</a>` : P.name;
@@ -405,6 +423,7 @@ function render(page, name) {
     case 'bpa': return bpaTable(page.code);
     case 'marginal': return marginalTable(page);
     case 'summary': return summaryTable();
+    case 'others': return otherProvinces(page.code);
     default: throw new Error(`${page.file}: unknown region tb:${name}`);
   }
 }
@@ -416,7 +435,7 @@ function sync(page) {
   const url = new URL(page.file, ROOT), html = readFileSync(url, 'utf8');
   const seen = [];
   const out = html.replace(REGION, (m, open, name, close) => { seen.push(name); return open + render(page, name) + close; });
-  for (const need of ['head', 'h1']) if (!seen.includes(need)) throw new Error(`${page.file}: missing tb:${need} region`);
+  for (const need of ['head', 'h1', ...(page.code ? ['others'] : [])]) if (!seen.includes(need)) throw new Error(`${page.file}: missing tb:${need} region`);
   return { url, html, out, seen };
 }
 

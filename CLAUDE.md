@@ -58,7 +58,7 @@ output — that is expected. Read past it and look for shared *body* prose.
 Run the gates:
 
 ```bash
-for s in check-schema check-constants check-redirects test-schema test-invariants check-faq-parity; do printf "%-18s " "$s"; node scripts/$s.mjs >/dev/null 2>&1 && echo PASS || echo FAIL; done
+for s in check-schema check-constants check-redirects test-schema test-invariants check-faq-parity check-seo; do printf "%-18s " "$s"; node scripts/$s.mjs >/dev/null 2>&1 && echo PASS || echo FAIL; done; node scripts/sync-social-tags.mjs --check | tail -1
 ```
 
 Then render the page and confirm it — grep does not prove wiring. The `static`
@@ -81,3 +81,36 @@ The visible answer is the source of truth — edit it, then copy it into the
 JSON-LD. `scripts/check-faq-parity.mjs` enforces this in CI (MAINTENANCE.md,
 Rule 8); register any figure in an FAQ answer on both the `main` and `jsonld`
 surfaces.
+
+## SEO rules
+
+Enforced by `scripts/check-seo.mjs` (in the gate loop above and in CI). Every page is
+hand-written HTML — there is no shared template — so these hold page by page, except
+where a generator owns the tags (noted below).
+
+1. **Titles ≤ 60 characters**, entities decoded, unique across the site. Main keyword
+   first. Drop the " | calc-hq.ca" suffix before cutting words. Bracket-page titles live
+   in `PAGES` in `scripts/sync-tax-brackets.mjs`, not in the HTML.
+2. **Meta descriptions 120–155 characters**, unique, saying what the calculator does and
+   for which year and province. Avoid $/% figures here: no gate ties head tags to the
+   pack, so a figure in a description goes stale silently (bracket pages excepted — their
+   descriptions are generated from the pack).
+3. **Open Graph + X tags on every indexable page.** Each page owns `og:title`,
+   `og:description`, `og:type` and `og:url` (= canonical, `https://calc-hq.ca/...`).
+   Everything else — `og:site_name`, `og:image` (`/assets/img/og-default.png`, 1200×630),
+   `twitter:card=summary_large_image`, `twitter:title/description/image` — is written by
+   `node scripts/sync-social-tags.mjs` into the `seo:social` region. Re-run it after
+   changing any og:title/og:description, and after `sync-tax-brackets.mjs`.
+4. **Internal links.** No indexable page with only one inbound internal link. New
+   provincial pages join the generated `tb:others` block; new date pages go on the Key
+   Dates hub plus at least two relevant calculator or benefit pages. Plain dofollow links.
+5. **hreflang only between true translations**, pointing at the final 200 URL — never a
+   `_redirects` source. Today the only pair is `/payroll/quebec-income-tax/` ↔
+   `/fr/calculateur-impot-quebec/`. A page with no translation carries no hreflang.
+6. **Apex host only.** Never link to `www.calc-hq.ca`; use `https://calc-hq.ca/`.
+7. **Schema.** Organization JSON-LD on the homepage only (`sameAs` only for profiles that
+   actually exist — none today). No Article schema on calculators or hubs. Leave existing
+   FAQPage / BreadcrumbList blocks alone.
+
+Exemptions live in `EXEMPT` in `check-seo.mjs`, each with a reason and date. Today:
+`/payroll/take-home-pay/` title and meta are frozen during its ranking recovery.

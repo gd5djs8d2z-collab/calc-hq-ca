@@ -146,6 +146,20 @@ jobs:
           set -o pipefail
           node scripts/test-schema.mjs | tee schema-test-report.txt
 
+      - name: Run the SEO head-tag check
+        id: checkseo
+        if: always()   # titles, descriptions, OG/X tags, hreflang, www links, schema type rules (CLAUDE.md, SEO rules)
+        run: |
+          set -o pipefail
+          node scripts/check-seo.mjs | tee seo-report.txt
+
+      - name: Run the shared social-tag check
+        id: checksocial
+        if: always()   # the OG/X block on every page is generated; fail if a page lags its own og:title/description
+        run: |
+          set -o pipefail
+          node scripts/sync-social-tags.mjs --check | tee social-report.txt
+
       - name: Publish the report to the job summary
         if: always()
         run: |
@@ -281,5 +295,18 @@ jobs:
               echo 'The payroll engine no longer reproduces a CRA PDOC result or a T4127 constant. Fix'
               echo 'assets/js/payroll-engine.js or the stamps it reads; never edit the PDOC results in'
               echo 'scripts/fixtures/pdoc-cases.json, which are CRA output.'
+            fi
+            echo
+            echo '## SEO head-tag check'
+            echo
+            echo '```'
+            cat seo-report.txt 2>/dev/null || echo 'SEO checker did not produce output — it likely failed to load'
+            cat social-report.txt 2>/dev/null || echo 'social-tag checker did not produce output — it likely failed to load'
+            echo '```'
+            if [ '${{ steps.checkseo.outcome }}' != 'success' ] || [ '${{ steps.checksocial.outcome }}' != 'success' ]; then
+              echo
+              echo 'A page breaks the SEO rules in CLAUDE.md (title over 60, description outside 120–155,'
+              echo 'missing OG/X tag, hreflang to a non-200 URL, a www.calc-hq.ca link, or Article schema).'
+              echo 'Fix the page; for OG/X drift run `node scripts/sync-social-tags.mjs`.'
             fi
           } >> "$GITHUB_STEP_SUMMARY"
